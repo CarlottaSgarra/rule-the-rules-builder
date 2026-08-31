@@ -19,17 +19,20 @@ import testimonialImg from "@/assets/testimonial-1.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Rule The Rules 2026: Show formativo live con Carlotta Sgarra" },
+      { title: "Rule The Rules 2026: rompi le regole, costruisci la tua identità" },
       {
         name: "description",
         content:
-          "Rule The Rules: 3 serate live dal 5 al 7 ottobre per costruire un business da 30K€/mese nel 2026. Biglietto a 27€.",
+          "3 serate live dal 5 al 7 ottobre con Carlotta Sgarra per smettere di comunicare come ti hanno insegnato e costruire il tuo modo di comunicare. Biglietto a 27€.",
       },
-      { property: "og:title", content: "Rule The Rules 2026: Show formativo live" },
+      {
+        property: "og:title",
+        content: "Rule The Rules 2026: rompi le regole, costruisci la tua identità",
+      },
       {
         property: "og:description",
         content:
-          "3 serate live per ottenere la mappa esatta di un business sostenibile da 30K€/mese. Dal 5 al 7 ottobre, solo online.",
+          "Tre serate live con Carlotta Sgarra per rompere le regole del marketing e ritrovarti nella tua comunicazione.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -39,11 +42,11 @@ export const Route = createFileRoute("/")({
 });
 
 const pains = [
-  "lottando per avere clienti stabili e ben paganti, anche se sai che ci sono persone molto meno qualificate che crescono e guadagnano più di te...",
-  "...guardando altri costruire business semplici e arrivare a 5 cifre, mentre tu sei ancora bloccata a capire da dove iniziare...",
-  "...ti senti sopraffatta da strategie complicate, funnel infiniti e rumore continuo su social e AI...",
-  "...inizi a temere di perdere la finestra d'oro per crescere davvero nel 2026, proprio come tanti hanno perso il boom dell'ecommerce...",
-  "...e ti viene da urlare, perché ogni idea ti sembra incompleta, o peggio, “non abbastanza forte” per vendere davvero.",
+  "“Quando registro mi sembra di recitare.”",
+  "“So di essere brava, ma Instagram non riesce a raccontarlo.”",
+  "“Vedo le altre e mi sembra di essere uguale a tutte.”",
+  "“Sono stanca di seguire regole che non sento mie.”",
+  "“Vorrei che essere semplicemente me stessa bastasse.”",
 ];
 
 const sessions = [
@@ -122,7 +125,7 @@ const caseStudies = [
 const faqs = [
   {
     q: "Cos’è esattamente Rule The Rules 2026?",
-    a: "È uno show formativo in live streaming con Carlotta Sgarra e il suo team, in tre serate dal 5 al 7 ottobre 2026. Durante l’evento riceverai la roadmap completa per arrivare a 30K/mese in 12-18 mesi, spiegata non con teoria fumosa ma con tappe, priorità e azioni nell’ordine giusto.",
+    a: "È uno show formativo in live streaming con Carlotta Sgarra e il suo team, in tre serate dal 5 al 7 ottobre 2026. Ti do gli strumenti per costruire la tua identità, il tuo metodo personale di creazione contenuti e un piano editoriale che è davvero tuo, non l’ennesimo format universale.",
   },
   {
     q: "È un corso registrato o un evento dal vivo?",
@@ -130,28 +133,41 @@ const faqs = [
   },
   {
     q: "A chi è rivolto?",
-    a: "A professionisti, coach, consulenti e imprenditori che: vogliono clienti stabili ogni mese senza elemosinare nei DM, sono stufi di improvvisare con contenuti a caso, vogliono un sistema replicabile per crescere in Italia senza dipendere dagli algoritmi.",
+    a: "A professioniste, coach, consulenti e imprenditrici che si sentono una fotocopia delle altre, sono stufe di seguire regole che non sentono loro, e vogliono costruire una comunicazione che parte davvero da chi sono.",
   },
   {
     q: "Funziona anche nel mio settore?",
-    a: "Sì. Carlotta ha già aiutato nutrizionisti, tatuatrici, consulenti d’immagine, coach, social media manager, make-up artist e tanti altri a passare da clienti saltuari a business stabili. Il principio è lo stesso: parti dalle tue competenze e costruisci un percorso che converte i follower in clienti.",
+    a: "Sì. Carlotta ha già aiutato nutrizionisti, tatuatrici, consulenti d’immagine, coach, social media manager, make-up artist e tanti altri a smettere di comunicare come tutti gli altri nel loro settore. Il principio è lo stesso: parti dalla tua identità, non da un format che “funziona”.",
   },
   {
     q: "E se non riesco a seguirlo live?",
     a: "Con il biglietto standard puoi seguire solo in diretta, non è prevista la registrazione. Se vuoi rivedere l’evento tutte le volte che vuoi, fermarti sui passaggi cruciali o prenderti appunti con calma, scegli il biglietto VIP, che include la registrazione completa.",
   },
   {
-    q: "Qual è la vostra politica di rimborso?",
-    a: "È un evento in live streaming, tutto quello che vedrai sarà in diretta: quindi non offriamo rimborsi.",
+    q: "Se non fa per me, posso riavere indietro i soldi?",
+    a: "Sì. Se dopo la prima serata capisci che “Rule The Rules” non fa per te, scrivici prima dell’inizio della seconda serata live (6 ottobre) e ti rimborsiamo il biglietto, senza bisogno di spiegazioni.",
   },
   {
     q: "Perché il prezzo è così basso?",
-    a: "Perché Rule The Rules 2026 è l’introduzione al 2026: vogliamo che più professionisti possibile abbiano la visione e gli strumenti giusti per crescere. Consideralo un biglietto d’ingresso: un prezzo accessibile per un contenuto che potrebbe letteralmente cambiare la traiettoria del tuo business.",
+    a: "Perché Rule The Rules 2026 è l’introduzione al nostro modo di lavorare: vogliamo che più professioniste possibile abbiano gli strumenti giusti per ritrovarsi nella propria comunicazione. Consideralo un biglietto d’ingresso: un prezzo accessibile per un contenuto che può cambiare il modo in cui ti presenti online.",
   },
 ];
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <p className="eyebrow mb-4">{children}</p>;
+function SectionLabel({
+  children,
+  tone = "gold",
+}: {
+  children: React.ReactNode;
+  tone?: "gold" | "ink";
+}) {
+  return (
+    <p
+      className="mb-4 font-condensed text-[0.72rem] uppercase tracking-[0.28em]"
+      style={{ color: tone === "gold" ? "var(--primary)" : "var(--gold-deep)" }}
+    >
+      {children}
+    </p>
+  );
 }
 
 function Index() {
@@ -194,171 +210,152 @@ function Index() {
       </div>
 
       {/* Hero */}
-      <header
-        className="relative overflow-hidden"
-        style={{ backgroundImage: "var(--gradient-night)" }}
-      >
+      <header className="relative flex min-h-[94vh] items-center overflow-hidden">
+        <img
+          src={heroImg}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover object-top"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(180deg, oklch(0.08 0.01 60 / 0.18) 0%, oklch(0.1 0.01 60 / 0.55) 45%, oklch(0.1 0.01 60 / 0.88) 78%, oklch(0.1 0.01 60 / 0.97) 100%)",
+          }}
+        />
         <img
           src={goldTexture}
           alt=""
           aria-hidden
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.07]"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.08] mix-blend-overlay"
         />
-        <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-12 sm:pt-16">
+
+        <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center px-5 py-20 text-center">
           <Reveal>
-            <p className="font-condensed text-2xl uppercase tracking-[0.5em] text-primary">
-              Rule The Rules
+            <p className="font-condensed text-xs uppercase tracking-[0.4em] text-primary sm:text-sm">
+              Show live · 5, 6 e 7 ottobre 2026
             </p>
           </Reveal>
 
           <Reveal delay={80}>
-            <p className="mt-8 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Per tutte le professioniste italiane che vogliono costruire finalmente un ca**o di
-              business stabile e scalabile nei prossimi 12/18 mesi e diventare leader della propria
-              vita:
-            </p>
-          </Reveal>
-
-          <Reveal delay={140}>
-            <h1 className="mt-5 max-w-4xl text-4xl leading-[1.05] sm:text-6xl">
-              Come costruire un business da <span className="text-gradient-gold">30K€/mese</span>{" "}
-              nel 2026
+            <h1 className="mt-6 font-display text-6xl uppercase leading-[0.95] tracking-tight text-gradient-gold sm:text-8xl">
+              Rule The Rules
             </h1>
           </Reveal>
 
-          <div className="mt-10 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
-            <Reveal delay={200}>
-              <div>
-                <SectionLabel>Video di presentazione</SectionLabel>
-                <VideoFrame
-                  label="Guarda il video di presentazione di Rule The Rules"
-                  duration="06:15"
-                  poster={livestreamImg}
-                />
+          <Reveal delay={160}>
+            <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-foreground/90 sm:text-lg">
+              Per anni ti hanno insegnato come comunicare: cosa dire, come vestirti, quando
+              pubblicare. Tre serate live per rompere quelle regole e tornare alla domanda che conta
+              davvero: <strong>tu, come vuoi comunicare?</strong>
+            </p>
+          </Reveal>
 
-                <p className="mt-8 text-base leading-relaxed text-foreground/90">
-                  <strong>Ottieni la “mappa” esatta per un business sostenibile,</strong>{" "}
-                  <em>attraverso uno show formativo live in tre serate</em> in cui scoprirai come
-                  monetizzare la tua identità attraverso risorse che lavorano per te (processi, AI,
-                  team, funnel) senza dipendere dalla pubblicazione costante o dall’algoritmo e
-                  senza investitori.
-                </p>
+          <Reveal delay={220} className="mt-10 w-full max-w-xl">
+            <SectionLabel>Video di presentazione</SectionLabel>
+            <VideoFrame
+              label="Guarda il video di presentazione di Rule The Rules"
+              duration="06:15"
+              poster={livestreamImg}
+            />
+          </Reveal>
 
-                <div className="mt-6 flex flex-wrap gap-3 font-condensed text-sm uppercase tracking-[0.12em]">
-                  <span className="rounded-md border border-primary/30 bg-card px-4 py-2">
-                    Quando:{" "}
-                    <span className="text-primary">5, 6 e 7 ottobre 2026 · orario in arrivo</span>
-                  </span>
-                  <span className="rounded-md border border-primary/30 bg-card px-4 py-2">
-                    Dove: <span className="text-primary">Online</span>
-                  </span>
-                </div>
+          <Reveal delay={280} className="mt-10 flex flex-col items-center">
+            <div className="flex flex-wrap justify-center gap-3 font-condensed text-sm uppercase tracking-[0.12em]">
+              <span className="rounded-md border border-primary/30 bg-black/30 px-4 py-2 backdrop-blur">
+                Quando:{" "}
+                <span className="text-primary">5, 6 e 7 ottobre 2026 · orario in arrivo</span>
+              </span>
+              <span className="rounded-md border border-primary/30 bg-black/30 px-4 py-2 backdrop-blur">
+                Dove: <span className="text-primary">Online</span>
+              </span>
+            </div>
 
-                <p className="mt-6 text-sm font-semibold italic text-secondary-foreground">
-                  Le iscrizioni chiudono domenica 4 ottobre a mezzanotte!
-                </p>
-                <p className="mt-4 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                  mancano:
-                </p>
-                <div className="mt-3">
-                  <Countdown />
-                </div>
+            <p className="mt-6 text-sm font-semibold italic text-secondary-foreground">
+              Le iscrizioni chiudono domenica 4 ottobre a mezzanotte!
+            </p>
+            <p className="mt-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
+              mancano:
+            </p>
+            <div className="mt-3">
+              <Countdown />
+            </div>
 
-                <div className="mt-8">
-                  <CtaButton />
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={260}>
-              <div className="relative">
-                <img
-                  src={heroImg}
-                  alt="Carlotta Sgarra, host di Rule The Rules"
-                  width={1024}
-                  height={1280}
-                  className="w-full rounded-2xl border border-primary/25 object-cover"
-                  style={{ boxShadow: "var(--shadow-deep)" }}
-                />
-                <div className="surface-card mt-4 grid grid-cols-3 gap-2 p-4 text-center">
-                  {[
-                    { v: "3", l: "giorni" },
-                    { v: "Live", l: "online" },
-                    { v: "27€", l: "biglietto" },
-                  ].map((s) => (
-                    <div key={s.l}>
-                      <div className="font-condensed text-xl text-primary">{s.v}</div>
-                      <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                        {s.l}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          </div>
+            <div className="mt-8">
+              <CtaButton />
+            </div>
+          </Reveal>
         </div>
       </header>
 
       {/* Cos'è */}
-      <section className="mx-auto max-w-4xl px-5 py-20">
-        <Reveal>
-          <SectionLabel>Cos’è</SectionLabel>
-          <h2 className="text-3xl sm:text-4xl">
-            “Rule The Rules 2026” è il primo{" "}
-            <span className="text-gradient-gold">show formativo live</span> in Italia che ti mostra
-            tutta la macchina dietro un business da 30K/mese
-          </h2>
-          <div className="mt-6 space-y-4 text-base leading-relaxed text-foreground/85">
-            <p>
-              ti consegnerà la mappa reale di come si costruisce un business che funziona anche
-              senza postare contenuti ogni giorno.
+      <section className="surface-cream">
+        <div className="mx-auto max-w-4xl px-5 py-20">
+          <Reveal>
+            <SectionLabel tone="ink">Cos’è</SectionLabel>
+            <h2 className="text-3xl text-ink sm:text-4xl">
+              “Rule The Rules” non è un altro corso su come fare contenuti “corretti”. È il
+              contrario.
+            </h2>
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-ink-muted">
+              <p>
+                Per anni ci hanno insegnato come creare contenuti. Come parlare. Come vestirci. Come
+                iniziare un Reel. Quanto pubblicare. Come essere professionali.
+              </p>
+              <p>
+                E a forza di imparare a comunicare “bene”, tantissime professioniste hanno iniziato
+                a comunicare tutte nello stesso modo: profili tecnicamente corretti, contenuti fatti
+                bene, script perfetti.
+              </p>
+              <p className="font-semibold text-ink">Ma nessuna identità.</p>
+              <p>
+                In tre serate live rompiamo quelle regole, una per una, e costruiamo la tua
+                comunicazione: quella che parte da chi sei, non da un format che “funziona”.
+              </p>
+            </div>
+            <p
+              className="mt-8 border-l-2 pl-5 text-lg font-semibold text-ink"
+              style={{ borderColor: "var(--gold-deep)" }}
+            >
+              Prima costruiamo chi sei. Poi costruiamo una strategia attorno a te.
             </p>
-            <p>E lo puoi fare davvero anche tu:</p>
-            <p>
-              perché io stessa ho iniziato con un Iphone, una camera piccola condivisa con i miei
-              fratelli e pochissima esperienza...
-            </p>
-            <p>...e ora sto scrivendo questa landing in Sardegna che mi ospiterà per 40 giorni.</p>
-            <p>Non è un “workshop” per “fare soldi”:</p>
-            <p className="border-l-2 border-primary pl-5 font-semibold text-foreground">
-              è un viaggio trasformativo in cui riceverai le coordinate esatte per ottenere la tua
-              vita fatta di potere decisionale, calma, serenità… e che sia semplicemente
-              un’estensione di chi sei.
-            </p>
-          </div>
 
-          <img
-            src={teamImg}
-            alt="Il team dietro Rule The Rules"
-            loading="lazy"
-            width={1280}
-            height={853}
-            className="mt-10 w-full rounded-2xl border border-primary/20 object-cover"
-          />
+            <img
+              src={teamImg}
+              alt="Il team dietro Rule The Rules"
+              loading="lazy"
+              width={1280}
+              height={853}
+              className="mt-10 w-full rounded-2xl object-cover"
+            />
 
-          <p className="mt-8 text-center font-condensed uppercase tracking-[0.16em] text-primary">
-            Questa offerta scade domenica 4 ottobre a mezzanotte!
-          </p>
-          <div className="mt-6 flex justify-center">
-            <CtaButton />
-          </div>
-        </Reveal>
+            <p
+              className="mt-8 text-center font-condensed uppercase tracking-[0.16em]"
+              style={{ color: "var(--gold-deep)" }}
+            >
+              Questa offerta scade domenica 4 ottobre a mezzanotte!
+            </p>
+            <div className="mt-6 flex justify-center">
+              <CtaButton />
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       {/* Problema */}
-      <section className="border-y border-border/60 bg-card/40">
+      <section className="bg-background">
         <div className="mx-auto max-w-4xl px-5 py-20">
           <Reveal>
             <SectionLabel>Il punto di partenza</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl">In questo momento, probabilmente stai:</h2>
+            <h2 className="text-3xl sm:text-4xl">In questo momento, probabilmente pensi:</h2>
           </Reveal>
           <ul className="mt-8 space-y-4">
             {pains.map((p, i) => (
               <Reveal key={p} delay={i * 60}>
-                <li className="flex gap-4 rounded-xl border border-border/70 bg-background p-5 transition-colors duration-300 hover:border-primary/40">
+                <li className="flex gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-colors duration-300 hover:border-primary/40">
                   <span className="mt-1 size-2 shrink-0 rounded-full bg-primary" />
-                  <span className="text-sm leading-relaxed text-foreground/85 sm:text-base">
+                  <span className="text-sm italic leading-relaxed text-foreground/85 sm:text-base">
                     {p}
                   </span>
                 </li>
@@ -367,102 +364,105 @@ function Index() {
           </ul>
           <Reveal>
             <div className="mt-8 space-y-4 text-base leading-relaxed text-foreground/85">
-              <p>E la parte peggiore?</p>
+              <p>E la sensazione, in fondo, è sempre la stessa:</p>
+              <p className="font-semibold text-primary">Sono diventata una fotocopia.</p>
               <p>
-                Ogni giorno che passa, qualcun altro firma il cliente che avresti potuto avere tu,
-                mentre tu rimani seduta sul tuo potenziale inespresso.
+                Non vuoi più contenuti, non vuoi più follower: vuoi guardare il tuo profilo e
+                pensare “questa sono io”.
               </p>
-              <p className="font-semibold text-primary">👉 Bene, questa lotta finisce ADESSO.</p>
-              <p>È arrivato il momento di avere il tuo riscatto.</p>
+              <p className="font-semibold text-primary">👉 In tre serate, cambiamo questo.</p>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* Riprova sociale */}
-      <section className="mx-auto max-w-6xl px-5 py-20">
-        <Reveal>
-          <SectionLabel>Riprova sociale</SectionLabel>
-          <h2 className="max-w-3xl text-3xl sm:text-4xl">
-            Ho documentato decine di storie di successo delle nostri clienti: donne meravigliose,
-            tenaci, che hanno dato nuova forma al loro dolore e hanno ottenuto ciò che desideravano.
-          </h2>
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-foreground/85">
-            Te le mostro così che tu possa sentire che tutto ciò che sto per raccontarti è davvero
-            possibile.
-          </p>
-          <p className="mt-3 max-w-3xl text-sm italic text-muted-foreground">
-            (Questi non sono solo numeri su uno schermo: sono persone reali che hanno agito,
-            applicato quello che hanno imparato, e trasformato le loro vite, come ho fatto io).
-          </p>
-        </Reveal>
+      <section className="border-y border-border/60 bg-card/40">
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <Reveal>
+            <SectionLabel>Riprova sociale</SectionLabel>
+            <h2 className="max-w-3xl text-3xl sm:text-4xl">
+              Ho documentato decine di storie di successo delle nostre clienti: donne meravigliose,
+              tenaci, che hanno dato nuova forma al loro dolore e hanno ottenuto ciò che
+              desideravano.
+            </h2>
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-foreground/85">
+              Te le mostro così che tu possa sentire che tutto ciò che sto per raccontarti è davvero
+              possibile.
+            </p>
+            <p className="mt-3 max-w-3xl text-sm italic text-muted-foreground">
+              (Questi non sono solo numeri su uno schermo: sono persone reali che hanno agito,
+              applicato quello che hanno imparato, e trasformato le loro vite, come ho fatto io).
+            </p>
+          </Reveal>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {caseStudies.map((c, i) => (
-            <Reveal key={c.name} delay={i * 50}>
-              <div className="surface-card overflow-hidden">
-                <VideoFrame label={c.name} duration={c.duration} poster={testimonialImg} />
-                <div className="p-5">
-                  <p className="font-condensed text-base uppercase tracking-[0.14em] text-primary">
-                    {c.name}
-                  </p>
-                  <p className="mt-1 text-sm text-muted-foreground">{c.role}</p>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {caseStudies.map((c, i) => (
+              <Reveal key={c.name} delay={i * 50}>
+                <div className="surface-card overflow-hidden">
+                  <VideoFrame label={c.name} duration={c.duration} poster={testimonialImg} />
+                  <div className="p-5">
+                    <p className="font-condensed text-base uppercase tracking-[0.14em] text-primary">
+                      {c.name}
+                    </p>
+                    <p className="mt-1 text-sm text-muted-foreground">{c.role}</p>
+                  </div>
                 </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <div className="surface-card mt-12 grid gap-6 p-8 sm:grid-cols-[auto_1fr] sm:items-center">
+              <img
+                src={testimonialImg}
+                alt="Ilaria Mattei, SEO & Copywriter"
+                loading="lazy"
+                width={640}
+                height={640}
+                className="size-24 rounded-full object-cover"
+              />
+              <div>
+                <p className="text-base italic leading-relaxed text-foreground/90">
+                  «Ho sempre pensato di essere meno degli altri, che non avrei mai raggiunto
+                  determinati risultati. Prima mi approcciavo ai clienti con l’atteggiamento della
+                  disperata, dicendo “Oddio ti prego lavora con me”. Ora so quanto valgo. Mi
+                  presento con un’offerta all’altezza, senza sconti, senza paura di dire “Avanti il
+                  prossimo” se non capiscono il mio valore. Ho capito che non devo più sminuirmi. E
+                  oggi mi sveglio con meno ansia, meno mal di stomaco e più consapevole di chi sono
+                  e di cosa posso fare.»
+                </p>
+                <p className="mt-4 font-condensed uppercase tracking-[0.16em] text-primary">
+                  Ilaria Mattei
+                </p>
+                <p className="text-sm text-muted-foreground">SEO &amp; Copywriter</p>
               </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal>
-          <div className="surface-card mt-12 grid gap-6 p-8 sm:grid-cols-[auto_1fr] sm:items-center">
-            <img
-              src={testimonialImg}
-              alt="Ilaria Mattei, SEO & Copywriter"
-              loading="lazy"
-              width={640}
-              height={640}
-              className="size-24 rounded-full object-cover"
-            />
-            <div>
-              <p className="text-base italic leading-relaxed text-foreground/90">
-                «Ho sempre pensato di essere meno degli altri, che non avrei mai raggiunto
-                determinati risultati. Prima mi approcciavo ai clienti con l’atteggiamento della
-                disperata, dicendo “Oddio ti prego lavora con me”. Ora so quanto valgo. Mi presento
-                con un’offerta all’altezza, senza sconti, senza paura di dire “Avanti il prossimo”
-                se non capiscono il mio valore. Ho capito che non devo più sminuirmi. E oggi mi
-                sveglio con meno ansia, meno mal di stomaco e più consapevole di chi sono e di cosa
-                posso fare.»
-              </p>
-              <p className="mt-4 font-condensed uppercase tracking-[0.16em] text-primary">
-                Ilaria Mattei
-              </p>
-              <p className="text-sm text-muted-foreground">SEO &amp; Copywriter</p>
             </div>
-          </div>
 
-          <p className="mt-10 text-center text-sm font-semibold text-foreground/80">
-            Attenzione: non acquistare “Rule The Rules 2026” se non sei pronta a fatturare e a far
-            decollare il tuo business!
-          </p>
-          <div className="mt-6 flex justify-center">
-            <CtaButton />
-          </div>
-        </Reveal>
+            <p className="mt-10 text-center text-sm font-semibold text-foreground/80">
+              Attenzione: non iscriverti a “Rule The Rules 2026” se non sei pronta a riconoscerti di
+              nuovo in quello che pubblichi.
+            </p>
+            <div className="mt-6 flex justify-center">
+              <CtaButton />
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       {/* Storia */}
-      <section className="border-y border-border/60 bg-card/40">
+      <section className="surface-cream">
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <SectionLabel>La storia</SectionLabel>
-            <h2 className="text-3xl sm:text-5xl">
+            <SectionLabel tone="ink">La storia</SectionLabel>
+            <h2 className="text-3xl text-ink sm:text-5xl">
               Da un Iphone ad un’Azienda: come ho fatto e come puoi farlo anche tu.
             </h2>
           </Reveal>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-start">
             <Reveal>
-              <div className="space-y-4 text-base leading-relaxed text-foreground/85">
+              <div className="space-y-4 text-base leading-relaxed text-ink-muted">
                 <p>Ci sono due tipi di professioniste italiane:</p>
                 <ul className="space-y-3 pl-5">
                   <li className="list-disc">
@@ -471,12 +471,12 @@ function Index() {
                   </li>
                   <li className="list-disc">
                     Quelle che, nonostante tutto, sanno che ce la faranno perché{" "}
-                    <strong>sono spinte da quella cazzo di fiamma interiore</strong> e vogliono
-                    davvero avere una struttura e uno schema da seguire.
+                    <strong className="text-ink">sono spinte da quella fiamma interiore</strong> e
+                    vogliono davvero avere una struttura e uno schema da seguire.
                   </li>
                 </ul>
                 <p>Io sto parlando alla seconda categoria.</p>
-                <p className="font-semibold text-foreground">
+                <p className="font-semibold text-ink">
                   Alle professioniste italiane che vogliono davvero cambiare, bruciare, vivere.
                 </p>
                 <p>Perché sono l’unica che può dirtelo:</p>
@@ -498,13 +498,13 @@ function Index() {
                 loading="lazy"
                 width={1024}
                 height={1024}
-                className="w-full rounded-2xl border border-primary/20 object-cover"
+                className="w-full rounded-2xl object-cover"
               />
             </Reveal>
           </div>
 
           <Reveal>
-            <div className="mt-10 space-y-4 text-base leading-relaxed text-foreground/85">
+            <div className="mt-10 space-y-4 text-base leading-relaxed text-ink-muted">
               <p>All’inizio sembrava tutto un tentativo disperato:</p>
               <ul className="space-y-3 pl-5">
                 <li className="list-disc">
@@ -535,7 +535,7 @@ function Index() {
               </p>
               <p>E ho capito che non si cresce da soli.</p>
               <p>Oggi non sono più quella ragazza con il telefono e l’ansia nel cuore.</p>
-              <p className="font-semibold text-foreground">
+              <p className="font-semibold text-ink">
                 Oggi ho un’azienda, un team che è diventato famiglia, e un metodo che ha funzionato
                 per me e per centinaia di professioniste italiane.
               </p>
@@ -553,182 +553,195 @@ function Index() {
                 },
               ].map((x, i) => (
                 <Reveal key={x.t} delay={i * 80}>
-                  <div className="surface-card p-6 transition-transform duration-300 hover:-translate-y-1">
+                  <div className="rounded-xl bg-white p-6 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.15)] transition-transform duration-300 hover:-translate-y-1">
                     <p className="text-2xl">✨</p>
-                    <p className="mt-3 font-condensed text-lg uppercase tracking-[0.12em] text-primary">
+                    <p
+                      className="mt-3 font-condensed text-lg uppercase tracking-[0.12em]"
+                      style={{ color: "var(--gold-deep)" }}
+                    >
                       {x.t}
                     </p>
-                    <p className="mt-2 text-sm text-foreground/80">{x.d}</p>
+                    <p className="mt-2 text-sm text-ink-muted">{x.d}</p>
                   </div>
                 </Reveal>
               ))}
             </div>
-            <p className="mt-6 text-base text-foreground/85">
-              Dal 5 al 7 ottobre ti consegnerò tutto.
-            </p>
+            <p className="mt-6 text-base text-ink-muted">Dal 5 al 7 ottobre ti consegnerò tutto.</p>
           </Reveal>
         </div>
       </section>
 
       {/* Lo show */}
-      <section className="mx-auto max-w-5xl px-5 py-20">
-        <Reveal>
-          <SectionLabel>Lo show</SectionLabel>
-          <h2 className="text-3xl sm:text-4xl">
-            Ho creato uno show live unico nel suo genere che ti mostrerà davvero ogni passo da
-            seguire per arrivare a quella “Vita là”:
-          </h2>
-          <div className="mt-8 space-y-4 text-base leading-relaxed text-foreground/85">
-            <p>Sono stanca di eventi che ti lasciano solo slide e offerte per spennarti.</p>
-            <p>
-              Sono stanca che tu veda imprenditori felici che fanno soldi su soldi, sentendoti una
-              merda di più ogni giorno che passa.
-            </p>
-            <p>Per questo ho deciso di fare davvero questa follia.</p>
-            <p className="font-semibold text-foreground">
-              Durante questo show in diretta streaming:
-            </p>
-          </div>
-        </Reveal>
-
-        <div className="mt-6 grid gap-5 md:grid-cols-3">
-          {[
-            {
-              t: "Ti racconto come ho costruito quasi mezzo milione in organico solo da Instagram",
-              d: "dai contenuti al costruire un team",
-            },
-            {
-              t: "Ti mostro come ho trasformato follower in clienti che restano nel tempo",
-              d: "dall’online a anche eventi dal vivo (l’offline sarà la nuova moda)",
-            },
-            {
-              t: "Ti porto dentro le dinamiche del mio team,",
-              d: "che ha cambiato per sempre il mio modo di fare business. E lo conoscerai, per davvero.",
-            },
-          ].map((x, i) => (
-            <Reveal key={x.t} delay={i * 80}>
-              <div className="surface-card p-6 transition-transform duration-300 hover:-translate-y-1">
-                <p className="font-semibold text-foreground">{x.t}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{x.d}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal>
-          <h3 className="mt-12 text-2xl sm:text-3xl">
-            Ti consegno la ROADMAP per far sì che tu abbia il mio stesso modo di vivere il business
-            nel 2026.
-          </h3>
-          <p className="mt-6 text-base italic text-foreground/85">
-            E dal <strong>5 al 7 ottobre non vedrai solo Carlotta...</strong>
-          </p>
-          <p className="mt-2 text-base text-foreground/85">
-            Vedrai il team intero, le nostre dinamiche, le nostre strategie, le nostre follie.
-          </p>
-          <img
-            src={teamImg}
-            alt="Il team al completo"
-            loading="lazy"
-            width={1280}
-            height={853}
-            className="mt-8 w-full rounded-2xl border border-primary/20 object-cover"
-          />
-          <div className="mt-8 space-y-4 text-base leading-relaxed text-foreground/85">
-            <p>
-              <strong>
-                È la prima volta che in Italia qualcuno ti mostra davvero che cos’è un’azienda
-              </strong>{" "}
-              e CHI ci lavora dietro capendo come puoi costruirla anche tu partendo dal tuo Iphone,
-              come ho fatto io.
-            </p>
-            <p>
-              Per poi diventare (finalmente cazzo) Leader della tua vita gestendo un team di persone
-              che lavorano per la tua azienda mentre sei nel mare cristallino della Sardegna.
-            </p>
-            <p>Sì, libera professionista e imprenditrice, questa volta ci prendiamo tutto.</p>
-            <p className="font-semibold text-foreground">Però, c’è un però…</p>
-          </div>
-
-          <div className="surface-card mt-8 p-8 text-center">
-            <p className="font-condensed text-2xl uppercase tracking-[0.2em] text-primary">
-              Solo live. Solo una volta.
-            </p>
-            <div className="mt-6 grid gap-4 sm:grid-cols-3">
-              {[
-                "📅 5, 6 e 7 ottobre 2026",
-                "🕕 Orario in arrivo",
-                "🌐 100% online, in diretta",
-              ].map((x) => (
-                <p
-                  key={x}
-                  className="rounded-lg border border-border bg-background px-4 py-3 text-sm"
-                >
-                  {x}
-                </p>
-              ))}
-            </div>
-            <div className="mt-6 space-y-2 text-sm text-foreground/85">
-              <p>
-                👉 <strong>SOLO chi sarà live riceverà tutto</strong>: regali, follie, sorprese (e
-                fidati: non sembrerò genovese, ho esagerato con i regali).
-              </p>
-              <p>👉 Nessun “lo guardo domani”.</p>
-              <p>E questa sarà la tua occasione di cambiare tutto.</p>
-            </div>
-          </div>
-
-          <div className="mt-8 flex justify-center">
-            <CtaButton />
-          </div>
-        </Reveal>
-      </section>
-
-      {/* Cosa ottieni */}
       <section className="border-y border-border/60 bg-card/40">
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <SectionLabel>Incluso nel tuo biglietto</SectionLabel>
+            <SectionLabel>Lo show</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
+              Ho creato uno show live unico nel suo genere che ti mostrerà davvero come si rompono
+              le regole della comunicazione:
+            </h2>
+            <div className="mt-8 space-y-4 text-base leading-relaxed text-foreground/85">
+              <p>Sono stanca di eventi che ti lasciano solo slide e offerte per spennarti.</p>
+              <p>
+                Sono stanca che tu veda imprenditori felici che fanno soldi su soldi, sentendoti una
+                merda di più ogni giorno che passa.
+              </p>
+              <p>Per questo ho deciso di fare davvero questa follia.</p>
+              <p className="font-semibold text-foreground">
+                Durante questo show in diretta streaming:
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mt-6 grid gap-5 md:grid-cols-3">
+            {[
+              {
+                t: "Ti racconto come ho costruito quasi mezzo milione in organico solo da Instagram",
+                d: "dai contenuti al costruire un team",
+              },
+              {
+                t: "Ti mostro come ho trasformato follower in clienti che restano nel tempo",
+                d: "dall’online a anche eventi dal vivo (l’offline sarà la nuova moda)",
+              },
+              {
+                t: "Ti porto dentro le dinamiche del mio team,",
+                d: "che ha cambiato per sempre il mio modo di fare business. E lo conoscerai, per davvero.",
+              },
+            ].map((x, i) => (
+              <Reveal key={x.t} delay={i * 80}>
+                <div className="surface-card p-6 transition-transform duration-300 hover:-translate-y-1">
+                  <p className="font-semibold text-foreground">{x.t}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{x.d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <h3 className="mt-12 text-2xl sm:text-3xl">
+              Ti consegno il metodo per smettere di comunicare come tutte le altre e diventare
+              impossibile da confondere.
+            </h3>
+            <p className="mt-6 text-base italic text-foreground/85">
+              E dal <strong>5 al 7 ottobre non vedrai solo Carlotta...</strong>
+            </p>
+            <p className="mt-2 text-base text-foreground/85">
+              Vedrai il team intero, le nostre dinamiche, le nostre strategie, le nostre follie.
+            </p>
+            <img
+              src={teamImg}
+              alt="Il team al completo"
+              loading="lazy"
+              width={1280}
+              height={853}
+              className="mt-8 w-full rounded-2xl border border-primary/20 object-cover"
+            />
+            <div className="mt-8 space-y-4 text-base leading-relaxed text-foreground/85">
+              <p>
+                <strong>
+                  È la prima volta che in Italia qualcuno ti mostra davvero che cos’è un’azienda
+                </strong>{" "}
+                e CHI ci lavora dietro capendo come puoi costruirla anche tu partendo dal tuo
+                Iphone, come ho fatto io.
+              </p>
+              <p>
+                Per poi diventare (finalmente) leader della tua vita gestendo un team di persone che
+                lavorano per la tua azienda mentre sei nel mare cristallino della Sardegna.
+              </p>
+              <p>Sì, libera professionista e imprenditrice, questa volta ci prendiamo tutto.</p>
+              <p className="font-semibold text-foreground">Però, c’è un però…</p>
+            </div>
+
+            <div className="surface-card mt-8 p-8 text-center">
+              <p className="font-condensed text-2xl uppercase tracking-[0.2em] text-primary">
+                Solo live. Solo una volta.
+              </p>
+              <div className="mt-6 grid gap-4 sm:grid-cols-3">
+                {[
+                  "📅 5, 6 e 7 ottobre 2026",
+                  "🕕 Orario in arrivo",
+                  "🌐 100% online, in diretta",
+                ].map((x) => (
+                  <p
+                    key={x}
+                    className="rounded-lg border border-border bg-background px-4 py-3 text-sm"
+                  >
+                    {x}
+                  </p>
+                ))}
+              </div>
+              <div className="mt-6 space-y-2 text-sm text-foreground/85">
+                <p>
+                  👉 <strong>SOLO chi sarà live riceverà tutto</strong>: regali, follie, sorprese.
+                </p>
+                <p>👉 Nessun “lo guardo domani”.</p>
+                <p>E questa sarà la tua occasione di cambiare tutto.</p>
+              </div>
+            </div>
+
+            <div className="mt-8 flex justify-center">
+              <CtaButton />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Cosa ottieni: le 3 serate, in evidenza */}
+      <section className="surface-cream">
+        <div className="mx-auto max-w-5xl px-5 py-20">
+          <Reveal>
+            <SectionLabel tone="ink">Incluso nel tuo biglietto</SectionLabel>
+            <h2 className="text-3xl text-ink sm:text-4xl">
               Ecco tutto ciò che avrai il 5, 6 e 7 ottobre acquistando ORA il tuo biglietto per
               “Rule The Rules” a soli €27:
             </h2>
-            <p className="mt-4 text-base italic text-muted-foreground">
-              “Ho superato il regime forfettario in soli 4 mesi dopo un anno di partita IVA.”
-            </p>
           </Reveal>
 
-          <div className="mt-10 space-y-5">
+          <div className="mt-10 space-y-8">
             {sessions.map((s, i) => (
               <Reveal key={s.n} delay={i * 100}>
-                <div className="surface-card p-7 transition-transform duration-300 hover:-translate-y-1">
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span
-                      className="flex size-10 items-center justify-center rounded-full font-condensed text-lg"
-                      style={{
-                        backgroundImage: "var(--gradient-gold)",
-                        color: "var(--primary-foreground)",
-                      }}
-                    >
-                      {s.n}
-                    </span>
-                    <span className="rounded-full border border-primary/40 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-primary">
-                      Serata {s.n} · {s.date}
-                    </span>
-                    <span className="rounded-full bg-background px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                      Focus: {s.focus}
-                    </span>
+                <div className="relative overflow-hidden rounded-2xl bg-white pl-8 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.2)] sm:pl-10">
+                  <span
+                    className="pointer-events-none absolute -right-4 -top-10 select-none font-display text-[9rem] leading-none sm:text-[11rem]"
+                    style={{ color: "color-mix(in oklab, var(--gold-deep) 14%, transparent)" }}
+                    aria-hidden
+                  >
+                    {s.n}
+                  </span>
+                  <div
+                    className="relative border-l-4 py-8 pl-6 pr-8"
+                    style={{ borderColor: "var(--gold-deep)" }}
+                  >
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span
+                        className="rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground"
+                        style={{ backgroundImage: "var(--gradient-gold)" }}
+                      >
+                        Serata {s.n} · {s.date}
+                      </span>
+                      <span className="rounded-full bg-ink/5 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-ink-muted">
+                        Focus: {s.focus}
+                      </span>
+                    </div>
+                    <h3 className="mt-4 text-2xl text-ink sm:text-3xl">{s.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
+                      {s.intro}
+                    </p>
+                    <ul className="mt-4 space-y-3">
+                      {s.bullets.map((b) => (
+                        <li
+                          key={b}
+                          className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
+                        >
+                          <span
+                            className="mt-2 size-1.5 shrink-0 rounded-full"
+                            style={{ backgroundColor: "var(--gold-deep)" }}
+                          />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h3 className="mt-4 text-2xl">{s.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-foreground/85">{s.intro}</p>
-                  <ul className="mt-4 space-y-3">
-                    {s.bullets.map((b) => (
-                      <li key={b} className="flex gap-3 text-sm leading-relaxed text-foreground/80">
-                        <span className="mt-2 size-1.5 shrink-0 rounded-full bg-primary" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
               </Reveal>
             ))}
@@ -736,7 +749,7 @@ function Index() {
 
           {/* Offerta */}
           <Reveal>
-            <div className="surface-card mt-12 overflow-hidden">
+            <div className="mt-12 overflow-hidden rounded-2xl bg-white shadow-[0_24px_70px_-28px_rgba(0,0,0,0.2)]">
               <img
                 src={livestreamImg}
                 alt="Rule The Rules in live streaming"
@@ -746,13 +759,13 @@ function Index() {
                 className="h-56 w-full object-cover"
               />
               <div className="p-8 text-center">
-                <p className="font-condensed text-lg uppercase tracking-[0.2em] text-muted-foreground">
+                <p className="font-condensed text-lg uppercase tracking-[0.2em] text-ink-muted">
                   Il tuo biglietto per Rule The Rules 2026
                 </p>
                 <p className="mt-3 font-condensed text-4xl uppercase tracking-[0.1em] text-gradient-gold">
                   27€
                 </p>
-                <p className="mt-4 text-sm text-foreground/85">
+                <p className="mt-4 text-sm text-ink-muted">
                   Accesso alle 3 serate live dal 5 al 7 ottobre, in diretta streaming, più il
                   Workbook incluso.
                 </p>
@@ -766,35 +779,57 @@ function Index() {
       </section>
 
       {/* Bonus: il Workbook */}
-      <section className="mx-auto max-w-3xl px-5 py-20 text-center">
-        <Reveal>
-          <SectionLabel>Bonus incluso</SectionLabel>
-          <h2 className="text-3xl sm:text-4xl">Ricevi il Workbook di Rule The Rules</h2>
-          <p className="mt-5 text-base leading-relaxed text-foreground/85">
-            Non è un PDF “in più”. È il documento che ti accompagna serata per serata, e che alla
-            fine delle tre giornate rappresenta fisicamente il percorso che hai fatto.
-          </p>
-        </Reveal>
+      <section className="bg-background">
+        <div className="mx-auto max-w-3xl px-5 py-20 text-center">
+          <Reveal>
+            <SectionLabel>Bonus incluso</SectionLabel>
+            <h2 className="text-3xl sm:text-4xl">Ricevi il Workbook di Rule The Rules</h2>
+            <p className="mt-5 text-base leading-relaxed text-foreground/85">
+              Non è un PDF “in più”. È il documento che ti accompagna serata per serata, e che alla
+              fine delle tre giornate rappresenta fisicamente il percorso che hai fatto.
+            </p>
+          </Reveal>
 
-        <div className="mt-10 grid gap-5 text-left sm:grid-cols-3">
-          {workbookDays.map((w, i) => (
-            <Reveal key={w.t} delay={i * 90}>
-              <div className="surface-card p-6 transition-transform duration-300 hover:-translate-y-1">
-                <p className="font-condensed text-base uppercase tracking-[0.12em] text-primary">
-                  {w.t}
-                </p>
-                <p className="mt-2 text-sm text-foreground/80">{w.d}</p>
-              </div>
-            </Reveal>
-          ))}
+          <div className="mt-10 grid gap-5 text-left sm:grid-cols-3">
+            {workbookDays.map((w, i) => (
+              <Reveal key={w.t} delay={i * 90}>
+                <div className="surface-card p-6 transition-transform duration-300 hover:-translate-y-1">
+                  <p className="font-condensed text-base uppercase tracking-[0.12em] text-primary">
+                    {w.t}
+                  </p>
+                  <p className="mt-2 text-sm text-foreground/80">{w.d}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <p className="mt-8 text-sm italic text-muted-foreground">
+              E alla fine, una pagina conclusiva tutta tua: “Le Mie Regole”, il manifesto personale
+              della tua comunicazione.
+            </p>
+          </Reveal>
         </div>
+      </section>
 
-        <Reveal>
-          <p className="mt-8 text-sm italic text-muted-foreground">
-            E alla fine, una pagina conclusiva tutta tua: “Le Mie Regole”, il manifesto personale
-            della tua comunicazione.
-          </p>
-        </Reveal>
+      {/* Garanzia rimborso */}
+      <section className="surface-gold">
+        <div className="mx-auto max-w-3xl px-5 py-16 text-center">
+          <Reveal>
+            <p className="text-4xl">🛡️</p>
+            <p className="mt-4 font-condensed text-xs uppercase tracking-[0.28em] text-primary-foreground/80">
+              Garanzia
+            </p>
+            <h2 className="mt-2 text-3xl text-primary-foreground sm:text-4xl">
+              Soddisfatta o rimborsata, senza fare domande.
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/90">
+              Se dopo la prima serata pensi che “Rule The Rules” non faccia per te, scrivici prima
+              dell’inizio della seconda serata live (6 ottobre) e ti rimborsiamo il biglietto, senza
+              bisogno di spiegazioni.
+            </p>
+          </Reveal>
+        </div>
       </section>
 
       {/* Form iscrizione */}
@@ -858,27 +893,35 @@ function Index() {
       </section>
 
       {/* FAQ */}
-      <section className="mx-auto max-w-3xl px-5 py-20">
-        <Reveal>
-          <SectionLabel>Supporto</SectionLabel>
-          <h2 className="text-3xl sm:text-4xl">Domande Frequenti</h2>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Hai bisogno di supporto? Scrivi a{" "}
-            <a href="mailto:info@carlottasgarra.it" className="text-primary">
-              info@carlottasgarra.it
-            </a>
-          </p>
-          <Accordion type="single" collapsible className="mt-8">
-            {faqs.map((f) => (
-              <AccordionItem key={f.q} value={f.q}>
-                <AccordionTrigger className="text-left text-base">{f.q}</AccordionTrigger>
-                <AccordionContent className="text-sm leading-relaxed text-foreground/80">
-                  {f.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </Reveal>
+      <section className="surface-cream">
+        <div className="mx-auto max-w-3xl px-5 py-20">
+          <Reveal>
+            <SectionLabel tone="ink">Supporto</SectionLabel>
+            <h2 className="text-3xl text-ink sm:text-4xl">Domande Frequenti</h2>
+            <p className="mt-3 text-sm text-ink-muted">
+              Hai bisogno di supporto? Scrivi a{" "}
+              <a
+                href="mailto:info@carlottasgarra.it"
+                className="underline"
+                style={{ color: "var(--gold-deep)" }}
+              >
+                info@carlottasgarra.it
+              </a>
+            </p>
+            <Accordion type="single" collapsible className="mt-8">
+              {faqs.map((f) => (
+                <AccordionItem key={f.q} value={f.q} className="border-ink/15">
+                  <AccordionTrigger className="text-left text-base text-ink">
+                    {f.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm leading-relaxed text-ink-muted">
+                    {f.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </Reveal>
+        </div>
       </section>
 
       {/* CTA finale */}
@@ -892,10 +935,8 @@ function Index() {
               Il tuo posto ti aspetta:
             </p>
             <p className="mt-4 text-base text-foreground/85">
-              Prendi il biglietto per Rule The Rules 2026 a 27€ e scopri{" "}
-              <strong>
-                la strada passo-passo per costruire un business da 30.000€/mese in Italia
-              </strong>
+              Prendi il biglietto per Rule The Rules 2026 a 27€ e inizia a costruire{" "}
+              <strong>il tuo modo di comunicare, quello che nessun’altra può copiare</strong>.
             </p>
             <div className="mt-8 flex justify-center">
               <CtaButton label="Riserva il tuo posto a soli 27€" />
