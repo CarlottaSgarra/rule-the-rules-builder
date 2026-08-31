@@ -117,11 +117,12 @@ const outcomes = [
 ];
 
 const pains = [
+  "“Non mi riconosco più in quello che pubblico.”",
   "“Quando registro mi sembra di recitare.”",
-  "“So di essere brava, ma Instagram non riesce a raccontarlo.”",
-  "“Vedo le altre e mi sembra di essere uguale a tutte.”",
-  "“Sono stanca di seguire regole che non sento mie.”",
-  "“Vorrei che essere semplicemente me stessa bastasse.”",
+  "“Mi sembra che per funzionare debba diventare qualcun’altra.”",
+  "“Ho salvato mille strategie e alla fine sono ancora più confusa.”",
+  "“Il piano editoriale mi fa sentire in gabbia.”",
+  "“Ho un business, delle competenze e delle cose da dire, ma online non si percepiscono davvero.”",
 ];
 
 const forWhoYes = [
@@ -141,22 +142,29 @@ const forWhoNo = [
 
 const mythReality = [
   {
-    myth: "Se seguo tutte le regole del marketing, il mio profilo funzionerà.",
+    myth: "Esiste un modo giusto di stare su Instagram, e devo trovarlo.",
     reality:
-      "Le regole ti hanno resa brava. Ma ti hanno anche resa uguale a decine di altre professioniste.",
+      "Il nemico non è Instagram. È l’idea che esista un modo giusto di starci. Non sei tu che devi adattarti a Instagram: è Instagram che deve iniziare ad avere la tua faccia.",
   },
   {
-    myth: "Non ho ancora trovato il format giusto.",
-    reality: "Non devi trovare IL format che funziona per tutte. Devi trovare il tuo metodo.",
-  },
-  {
-    myth: "Se non seguo le regole, sembrerò poco professionale.",
+    myth: "Fare tutto “come si deve” mi farà emergere.",
     reality:
-      "Il punto non è smettere di essere professionale. È smettere di sparire dietro la professionalità.",
+      "Fare tutto “come si deve” è probabilmente il motivo per cui oggi nessuno riesce a distinguerti. Le regole ti hanno resa brava. Ora bisogna renderti riconoscibile.",
   },
   {
-    myth: "Il problema è che non pubblico abbastanza.",
-    reality: "Il problema non è quanto pubblichi. È se, quando lo fai, ci sei davvero tu.",
+    myth: "Se rompo le regole, i contenuti smettono di funzionare.",
+    reality:
+      "Non si tratta di eliminare le regole, ma di smettere di subirle. Una regola resta utile solo se ti aiuta a comunicare meglio senza farti sparire.",
+  },
+  {
+    myth: "Rompere le regole vuol dire fare quello che mi pare, senza strategia.",
+    reality:
+      "La libertà arriva da una struttura solida abbastanza da permetterti di essere creativa, non dal caos. Prima costruiamo l’identità. Poi la strategia attorno a te. Mai il contrario.",
+  },
+  {
+    myth: "Non so nemmeno chi sono “senza personaggio”.",
+    reality:
+      "Non devi mostrare la personalità in astratto. Devi trovare gli elementi concreti che ti rendono riconoscibile e non sostituibile. È un lavoro guidato, le Carte Identitarie. Non qualcosa che devi già sapere.",
   },
 ];
 
@@ -342,13 +350,13 @@ function Index() {
 
           <Reveal delay={160}>
             <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-foreground/90 sm:text-lg">
-              Per anni ti hanno insegnato come comunicare: cosa dire, come vestirti, quando
-              pubblicare. Tre serate live per rompere quelle regole e tornare alla domanda che conta
-              davvero: <strong>tu, come vuoi comunicare?</strong>
+              Ti hanno insegnato a fare tutto come si deve. Ed è proprio per questo che oggi nessuno
+              riesce a distinguerti. Tre serate live per smettere di subire le regole e iniziare a
+              comunicare come sei fatta <strong>tu</strong>.
             </p>
           </Reveal>
 
-          <Reveal delay={220} className="mt-10 w-full max-w-xl">
+          <Reveal delay={220} className="mt-10 w-full max-w-3xl">
             <SectionLabel>Video di presentazione</SectionLabel>
             <VideoFrame
               label="Guarda il video di presentazione di Rule The Rules"
@@ -357,43 +365,54 @@ function Index() {
             />
           </Reveal>
 
-          <Reveal delay={280} className="mt-10 flex w-full flex-col items-center">
-            <div className="flex flex-wrap justify-center gap-3 font-condensed text-sm uppercase tracking-[0.12em]">
-              <span className="rounded-md border border-primary/30 bg-black/30 px-4 py-2 backdrop-blur">
-                Quando:{" "}
-                <span className="text-primary">5, 6 e 7 ottobre 2026 · orario in arrivo</span>
-              </span>
-              <span className="rounded-md border border-primary/30 bg-black/30 px-4 py-2 backdrop-blur">
-                Dove: <span className="text-primary">Online</span>
-              </span>
-            </div>
+          <Reveal delay={280} className="mt-10 w-full max-w-2xl">
+            <div
+              className="surface-gold flex w-full flex-col items-center px-6 py-10 sm:px-10 sm:py-12"
+              style={{ borderRadius: "1.75rem" }}
+            >
+              <div className="flex flex-wrap justify-center gap-3 font-condensed text-sm uppercase tracking-[0.12em] text-primary-foreground">
+                <span className="rounded-md border border-black/20 bg-black/15 px-4 py-2">
+                  Quando: 5, 6 e 7 ottobre 2026 · orario in arrivo
+                </span>
+                <span className="rounded-md border border-black/20 bg-black/15 px-4 py-2">
+                  Dove: Online
+                </span>
+              </div>
 
-            <p className="mt-6 text-sm font-semibold italic text-secondary-foreground">
-              Le iscrizioni chiudono domenica 4 ottobre a mezzanotte!
-            </p>
-            <p className="mt-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-              mancano:
-            </p>
-            <div className="mt-3">
-              <Countdown />
-            </div>
-
-            <div className="mt-8 grid w-full max-w-md grid-cols-3 gap-2 rounded-xl border border-primary/20 bg-black/30 p-4 text-center backdrop-blur">
-              {heroStats.map((s) => (
-                <div key={s.l}>
-                  <div className="font-condensed text-xl text-primary">{s.v}</div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                    {s.l}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="surface-card mt-8 w-full max-w-sm p-6 text-left">
-              <p className="text-center text-sm text-foreground/85">
-                Compila il form per <strong>riservare il tuo posto</strong> ↓
+              <p className="mt-6 text-sm font-semibold italic text-primary-foreground">
+                Le iscrizioni chiudono domenica 4 ottobre a mezzanotte!
               </p>
-              <SignupForm compact className="mt-6" />
+              <p className="mt-3 text-xs uppercase tracking-[0.3em] text-primary-foreground/70">
+                mancano:
+              </p>
+              <div className="mt-3">
+                <Countdown />
+              </div>
+
+              <div className="mt-8 grid w-full max-w-md grid-cols-3 gap-2 rounded-xl border border-black/20 bg-black/15 p-4 text-center">
+                {heroStats.map((s) => (
+                  <div key={s.l}>
+                    <div className="font-condensed text-xl text-primary-foreground">{s.v}</div>
+                    <div className="text-[10px] uppercase tracking-[0.2em] text-primary-foreground/70">
+                      {s.l}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-6 space-y-2 text-center text-sm font-medium text-primary-foreground/90">
+                <p>🛡️ Garanzia: soddisfatta o rimborsata entro la seconda serata.</p>
+                <p>
+                  Oltre 1.500 professioniste italiane aiutate a smettere di essere una fotocopia.
+                </p>
+              </div>
+
+              <div className="surface-card mt-8 w-full max-w-sm p-6 text-left">
+                <p className="text-center text-sm text-foreground/85">
+                  Compila il form per <strong>riservare il tuo posto</strong> ↓
+                </p>
+                <SignupForm compact className="mt-6" />
+              </div>
             </div>
           </Reveal>
         </div>
@@ -417,14 +436,20 @@ function Index() {
                 iniziare un Reel. Quanto pubblicare. Come essere professionali.
               </p>
               <p>
-                E a forza di imparare a comunicare “bene”, tantissime professioniste hanno iniziato
-                a comunicare tutte nello stesso modo: profili tecnicamente corretti, contenuti fatti
-                bene, script perfetti.
+                E a forza di fare tutto come si deve, tantissime professioniste sono diventate
+                tecnicamente perfette. E indistinguibili da chiunque altra nel loro settore.
               </p>
               <p className="font-semibold text-ink">Ma nessuna identità.</p>
+              <p className="font-semibold text-ink">
+                Il nemico non è Instagram. È l’idea che esista un modo giusto di starci.
+              </p>
               <p>
-                In tre serate live rompiamo quelle regole, una per una, e costruiamo la tua
-                comunicazione: quella che parte da chi sei, non da un format che “funziona”.
+                Non sei tu che devi adattarti a Instagram. È Instagram che deve iniziare ad avere la
+                tua faccia.
+              </p>
+              <p>
+                In tre serate live rompiamo quelle regole, una per una. Non voglio rendere i tuoi
+                contenuti più corretti. Voglio renderli impossibili da copiare.
               </p>
             </div>
             <p
@@ -645,6 +670,10 @@ function Index() {
           </div>
           <Reveal>
             <div className="mt-8 space-y-4 text-base leading-relaxed text-foreground/85">
+              <p className="font-semibold text-foreground">
+                Il problema non è che non sai fare contenuti. È che hai imparato a farli come tutte
+                le altre.
+              </p>
               <p>E la sensazione, in fondo, è sempre la stessa:</p>
               <p className="font-semibold text-primary">Sono diventata una fotocopia.</p>
               <p>
