@@ -369,8 +369,8 @@ function Index() {
                   backgroundImage: "var(--gradient-gold)",
                   boxShadow: "var(--shadow-gold)",
                   top: "-0.6rem",
-                  right: "-0.5rem",
-                  transform: "rotate(-11deg)",
+                  left: "-0.5rem",
+                  transform: "rotate(11deg)",
                 }}
               >
                 Unico evento 2026
@@ -387,10 +387,7 @@ function Index() {
           </Reveal>
 
           <Reveal delay={220} className="mt-10 w-full">
-            <div
-              className="grid gap-8 rounded-3xl border-2 bg-card/60 p-6 text-left backdrop-blur sm:p-10 md:grid-cols-2 md:items-start"
-              style={{ borderColor: "var(--gold-deep)" }}
-            >
+            <div className="grid gap-10 text-left md:grid-cols-2 md:items-start">
               <div>
                 <SectionLabel>Video di presentazione</SectionLabel>
                 <VideoFrame
@@ -398,49 +395,35 @@ function Index() {
                   duration="06:15"
                   poster={livestreamImg}
                 />
-              </div>
 
-              <div className="flex flex-col items-center text-center md:items-start md:text-left">
-                <div className="flex flex-wrap justify-center gap-3 font-condensed text-sm uppercase tracking-[0.12em] md:justify-start">
+                <div className="mt-6 flex flex-wrap items-center gap-3 font-condensed text-sm uppercase tracking-[0.12em]">
                   <span
-                    className="rounded-md border px-4 py-2 text-foreground"
-                    style={{
-                      borderColor: "var(--gold-deep)",
-                      backgroundColor: "color-mix(in oklab, var(--gold-deep) 12%, transparent)",
-                    }}
+                    className="rounded-full px-3 py-1 text-primary-foreground"
+                    style={{ backgroundImage: "var(--gradient-gold)" }}
                   >
-                    Quando: <span className="text-primary">dal 5 ottobre 2026</span>
+                    Quando: dal 5 ottobre 2026
                   </span>
-                  <span
-                    className="rounded-md border px-4 py-2 text-foreground"
-                    style={{
-                      borderColor: "var(--gold-deep)",
-                      backgroundColor: "color-mix(in oklab, var(--gold-deep) 12%, transparent)",
-                    }}
-                  >
+                  <span className="text-foreground/80">
                     Dove: <span className="text-primary">Online</span>
                   </span>
                 </div>
 
-                <p className="mt-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                  mancano:
+                <p className="mt-5 text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                  Le iscrizioni chiudono tra:
                 </p>
                 <div className="mt-3">
                   <Countdown />
                 </div>
 
-                <div
-                  className="mt-6 grid w-full max-w-md grid-cols-3 gap-2 rounded-xl border p-4 text-center"
-                  style={{
-                    borderColor: "var(--gold-deep)",
-                    backgroundColor: "color-mix(in oklab, var(--gold-deep) 12%, transparent)",
-                  }}
-                >
-                  {heroStats.map((s) => (
-                    <div key={s.l}>
-                      <div className="font-condensed text-xl text-primary">{s.v}</div>
-                      <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                        {s.l}
+                <div className="mt-6 flex items-center gap-6">
+                  {heroStats.map((s, i) => (
+                    <div key={s.l} className="flex items-center gap-6">
+                      {i > 0 ? <span className="h-8 w-px bg-border" aria-hidden /> : null}
+                      <div>
+                        <div className="font-condensed text-xl text-primary">{s.v}</div>
+                        <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                          {s.l}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -452,13 +435,20 @@ function Index() {
                     Oltre 1.500 professioniste italiane aiutate a smettere di essere una fotocopia.
                   </p>
                 </div>
+              </div>
 
-                <div className="surface-card mt-6 w-full p-6">
-                  <p className="text-center text-sm text-foreground/85">
-                    Compila il form per <strong>riservare il tuo posto</strong> ↓
-                  </p>
-                  <SignupForm compact className="mt-6" />
-                </div>
+              <div
+                className="rounded-2xl border-4 p-6 sm:p-8"
+                style={{
+                  borderColor: "var(--primary)",
+                  backgroundColor: "var(--card)",
+                  boxShadow: "var(--shadow-gold)",
+                }}
+              >
+                <p className="text-center text-sm text-foreground/85">
+                  Compila il form per <strong>riservare il tuo posto</strong> ↓
+                </p>
+                <SignupForm compact className="mt-6" />
               </div>
             </div>
           </Reveal>
@@ -1246,56 +1236,106 @@ function Index() {
       </section>
 
       {/* Ricapitolando */}
-      <section className="border-y border-border/60 bg-card/40">
-        <div className="mx-auto max-w-3xl px-5 py-20">
+      <section className="bg-background py-20">
+        <div className="mx-auto max-w-3xl px-5">
           <Reveal>
-            <SectionLabel>Ricapitolando</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl">Registrati e ottieni tutto questo:</h2>
+            <div className="text-center">
+              <SectionLabel>Ricapitolando</SectionLabel>
+              <h2 className="text-3xl sm:text-4xl">Registrati e ottieni tutto questo:</h2>
+            </div>
           </Reveal>
-          <div className="mt-10 space-y-3">
-            {valueStack.map((v, i) => (
-              <Reveal key={v.t} delay={i * 60}>
-                <div className="flex items-center justify-between gap-4 rounded-lg border border-border/70 bg-background px-5 py-4">
-                  <div>
-                    <p className="font-semibold text-foreground">{v.t}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">{v.d}</p>
+
+          <Reveal delay={80}>
+            <div className="mx-auto mt-10 max-w-md">
+              <div
+                className="h-4"
+                style={{
+                  backgroundColor: "var(--cream)",
+                  backgroundImage:
+                    "linear-gradient(135deg, var(--background) 50%, transparent 50%), linear-gradient(-135deg, var(--background) 50%, transparent 50%)",
+                  backgroundSize: "16px 16px",
+                  backgroundPosition: "bottom",
+                  backgroundRepeat: "repeat-x",
+                }}
+                aria-hidden
+              />
+              <div
+                className="px-6 py-8 font-mono text-ink shadow-[0_30px_70px_-30px_rgba(0,0,0,0.6)] sm:px-8"
+                style={{ backgroundColor: "var(--cream)" }}
+              >
+                <p
+                  className="text-center font-condensed text-sm uppercase tracking-[0.3em]"
+                  style={{ color: "var(--gold-deep)" }}
+                >
+                  Rule The Rules · Scontrino
+                </p>
+                <p className="mt-1 text-center text-[11px] text-ink-muted">
+                  5, 6 e 7 ottobre 2026 · Online
+                </p>
+
+                <div className="mt-6 space-y-4 text-sm">
+                  {valueStack.map((v) => (
+                    <div key={v.t}>
+                      <div className="flex items-baseline gap-2">
+                        <span className="shrink-0">{v.t}</span>
+                        <span
+                          className="mb-1 flex-1 border-b border-dotted"
+                          style={{ borderColor: "var(--ink-muted)" }}
+                          aria-hidden
+                        />
+                        <span className="shrink-0">
+                          {v.value ? (
+                            <span className="text-ink-muted line-through">{v.value}€</span>
+                          ) : (
+                            <span className="text-ink-muted">–</span>
+                          )}
+                        </span>
+                      </div>
+                      <p className="text-xs text-ink-muted">{v.d}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div
+                  className="mt-6 border-t border-dashed pt-4"
+                  style={{ borderColor: "var(--ink-muted)" }}
+                >
+                  <div className="flex items-baseline justify-between text-sm">
+                    <span>Subtotale</span>
+                    <span className="text-ink-muted line-through">{valueStackTotal}€</span>
                   </div>
-                  <div className="shrink-0 text-right">
-                    {v.value ? (
-                      <p className="font-condensed text-sm text-muted-foreground line-through">
-                        Valore {v.value}€
-                      </p>
-                    ) : null}
-                    <p className="font-condensed text-xs uppercase tracking-[0.14em] text-primary">
-                      Incluso
-                    </p>
+                  <div className="mt-2 flex items-baseline justify-between text-lg font-semibold">
+                    <span>Da pagare oggi</span>
+                    <span style={{ color: "var(--gold-deep)" }}>27€</span>
                   </div>
                 </div>
-              </Reveal>
-            ))}
-          </div>
 
-          <Reveal>
-            <div className="surface-card mt-6 flex flex-wrap items-center justify-between gap-3 p-6">
-              <div>
-                <p className="font-condensed text-sm uppercase tracking-[0.14em] text-muted-foreground">
-                  Valore totale
-                </p>
-                <p className="font-condensed text-2xl text-muted-foreground line-through">
-                  {valueStackTotal}€
-                </p>
+                <div
+                  className="mt-8 h-8"
+                  style={{
+                    backgroundImage:
+                      "repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px)",
+                  }}
+                  aria-hidden
+                />
               </div>
-              <div className="text-right">
-                <p className="font-condensed text-sm uppercase tracking-[0.14em] text-primary">
-                  Il tuo biglietto oggi
-                </p>
-                <p className="font-condensed text-3xl text-gradient-gold">27€</p>
-              </div>
+              <div
+                className="h-4"
+                style={{
+                  backgroundColor: "var(--cream)",
+                  backgroundImage:
+                    "linear-gradient(45deg, var(--background) 50%, transparent 50%), linear-gradient(-45deg, var(--background) 50%, transparent 50%)",
+                  backgroundSize: "16px 16px",
+                  backgroundPosition: "top",
+                  backgroundRepeat: "repeat-x",
+                }}
+                aria-hidden
+              />
             </div>
           </Reveal>
 
           <Reveal>
-            <div className="mt-8 flex justify-center">
+            <div className="mt-10 flex justify-center">
               <CtaButton />
             </div>
           </Reveal>
