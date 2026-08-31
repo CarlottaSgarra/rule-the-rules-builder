@@ -9,7 +9,6 @@ import { CtaButton } from "@/components/landing/CtaButton";
 import { Countdown } from "@/components/landing/Countdown";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { Reveal } from "@/components/landing/Reveal";
-import heroImg from "@/assets/hero-carlotta.jpg";
 import teamImg from "@/assets/team.jpg";
 import iphoneImg from "@/assets/iphone-start.jpg";
 import livestreamImg from "@/assets/livestream.jpg";
@@ -175,29 +174,21 @@ function Index() {
     <div className="min-h-screen bg-background">
       {/* Topbar */}
       <div className="border-b border-border/60 bg-card/60">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-5 py-2 text-xs text-muted-foreground sm:flex-row sm:justify-between">
-          <div className="flex flex-col items-center gap-1 sm:flex-row sm:gap-4">
-            <p>
-              Ordina su Whatsapp:{" "}
-              <a href="http://wa.me/+393516542989" className="font-semibold text-primary">
-                +39 351 654 2989
-              </a>
-            </p>
-            <p>
-              <span className="font-semibold text-foreground">Serve aiuto?</span>{" "}
-              <a href="mailto:info@carlottasgarra.it" className="text-primary">
-                info@carlottasgarra.it
-              </a>
-            </p>
-          </div>
-          <div className="flex items-center gap-3">
-            <span className="hidden text-[10px] uppercase tracking-[0.15em] text-muted-foreground sm:inline">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-5 py-4 text-sm text-muted-foreground sm:flex-row sm:justify-between">
+          <p>
+            <span className="font-semibold text-foreground">Serve aiuto?</span>{" "}
+            <a href="mailto:info@carlottasgarra.it" className="text-primary">
+              info@carlottasgarra.it
+            </a>
+          </p>
+          <div className="flex items-center gap-4">
+            <span className="hidden text-xs uppercase tracking-[0.15em] text-muted-foreground sm:inline">
               Iscrizioni chiuse tra
             </span>
             <Countdown compact />
             <a
               href="#iscriviti"
-              className="shrink-0 rounded-md px-3 py-1.5 font-condensed text-[11px] uppercase tracking-[0.12em] transition-transform duration-200 hover:-translate-y-0.5"
+              className="shrink-0 rounded-md px-4 py-2 font-condensed text-sm uppercase tracking-[0.12em] transition-transform duration-200 hover:-translate-y-0.5"
               style={{
                 backgroundImage: "var(--gradient-gold)",
                 color: "var(--primary-foreground)",
@@ -210,20 +201,10 @@ function Index() {
       </div>
 
       {/* Hero */}
-      <header className="relative flex min-h-[94vh] items-center overflow-hidden">
-        <img
-          src={heroImg}
-          alt=""
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover object-top"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "linear-gradient(180deg, oklch(0.08 0.01 60 / 0.18) 0%, oklch(0.1 0.01 60 / 0.55) 45%, oklch(0.1 0.01 60 / 0.88) 78%, oklch(0.1 0.01 60 / 0.97) 100%)",
-          }}
-        />
+      <header
+        className="relative flex min-h-[90vh] items-center overflow-hidden"
+        style={{ backgroundImage: "var(--gradient-night)" }}
+      >
         <img
           src={goldTexture}
           alt=""
@@ -290,8 +271,11 @@ function Index() {
       </header>
 
       {/* Cos'è */}
-      <section className="surface-cream">
-        <div className="mx-auto max-w-4xl px-5 py-20">
+      <section className="bg-background px-4 py-10 sm:px-8 sm:py-14">
+        <div
+          className="surface-cream mx-auto max-w-4xl px-6 py-16 sm:px-12 sm:py-20"
+          style={{ borderRadius: "1.75rem" }}
+        >
           <Reveal>
             <SectionLabel tone="ink">Cos’è</SectionLabel>
             <h2 className="text-3xl text-ink sm:text-4xl">
@@ -338,6 +322,101 @@ function Index() {
             </p>
             <div className="mt-6 flex justify-center">
               <CtaButton />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Cosa ottieni: le 3 serate, in evidenza */}
+      <section className="bg-background px-4 py-10 sm:px-8 sm:py-14">
+        <div
+          className="surface-cream mx-auto max-w-5xl px-6 py-16 sm:px-12 sm:py-20"
+          style={{ borderRadius: "1.75rem" }}
+        >
+          <Reveal>
+            <SectionLabel tone="ink">Incluso nel tuo biglietto</SectionLabel>
+            <h2 className="text-3xl text-ink sm:text-4xl">
+              Ecco tutto ciò che avrai il 5, 6 e 7 ottobre acquistando ORA il tuo biglietto per
+              “Rule The Rules” a soli €27:
+            </h2>
+          </Reveal>
+
+          <div className="mt-10 space-y-8">
+            {sessions.map((s, i) => (
+              <Reveal key={s.n} delay={i * 100}>
+                <div className="relative overflow-hidden rounded-2xl bg-white pl-8 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.2)] sm:pl-10">
+                  <span
+                    className="pointer-events-none absolute -right-4 -top-10 select-none font-display text-[9rem] leading-none sm:text-[11rem]"
+                    style={{ color: "color-mix(in oklab, var(--gold-deep) 14%, transparent)" }}
+                    aria-hidden
+                  >
+                    {s.n}
+                  </span>
+                  <div
+                    className="relative border-l-4 py-8 pl-6 pr-8"
+                    style={{ borderColor: "var(--gold-deep)" }}
+                  >
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span
+                        className="rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground"
+                        style={{ backgroundImage: "var(--gradient-gold)" }}
+                      >
+                        Serata {s.n} · {s.date}
+                      </span>
+                      <span className="rounded-full bg-ink/5 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-ink-muted">
+                        Focus: {s.focus}
+                      </span>
+                    </div>
+                    <h3 className="mt-4 text-2xl text-ink sm:text-3xl">{s.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
+                      {s.intro}
+                    </p>
+                    <ul className="mt-4 space-y-3">
+                      {s.bullets.map((b) => (
+                        <li
+                          key={b}
+                          className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
+                        >
+                          <span
+                            className="mt-2 size-1.5 shrink-0 rounded-full"
+                            style={{ backgroundColor: "var(--gold-deep)" }}
+                          />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* Offerta */}
+          <Reveal>
+            <div className="mt-12 overflow-hidden rounded-2xl bg-white shadow-[0_24px_70px_-28px_rgba(0,0,0,0.2)]">
+              <img
+                src={livestreamImg}
+                alt="Rule The Rules in live streaming"
+                loading="lazy"
+                width={1280}
+                height={720}
+                className="h-56 w-full object-cover"
+              />
+              <div className="p-8 text-center">
+                <p className="font-condensed text-lg uppercase tracking-[0.2em] text-ink-muted">
+                  Il tuo biglietto per Rule The Rules 2026
+                </p>
+                <p className="mt-3 font-condensed text-4xl uppercase tracking-[0.1em] text-gradient-gold">
+                  27€
+                </p>
+                <p className="mt-4 text-sm text-ink-muted">
+                  Accesso alle 3 serate live dal 5 al 7 ottobre, in diretta streaming, più il
+                  Workbook incluso.
+                </p>
+                <div className="mt-6 flex justify-center">
+                  <CtaButton />
+                </div>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -451,8 +530,11 @@ function Index() {
       </section>
 
       {/* Storia */}
-      <section className="surface-cream">
-        <div className="mx-auto max-w-5xl px-5 py-20">
+      <section className="bg-background px-4 py-10 sm:px-8 sm:py-14">
+        <div
+          className="surface-cream mx-auto max-w-5xl px-6 py-16 sm:px-12 sm:py-20"
+          style={{ borderRadius: "1.75rem" }}
+        >
           <Reveal>
             <SectionLabel tone="ink">La storia</SectionLabel>
             <h2 className="text-3xl text-ink sm:text-5xl">
@@ -686,98 +768,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Cosa ottieni: le 3 serate, in evidenza */}
-      <section className="surface-cream">
-        <div className="mx-auto max-w-5xl px-5 py-20">
-          <Reveal>
-            <SectionLabel tone="ink">Incluso nel tuo biglietto</SectionLabel>
-            <h2 className="text-3xl text-ink sm:text-4xl">
-              Ecco tutto ciò che avrai il 5, 6 e 7 ottobre acquistando ORA il tuo biglietto per
-              “Rule The Rules” a soli €27:
-            </h2>
-          </Reveal>
-
-          <div className="mt-10 space-y-8">
-            {sessions.map((s, i) => (
-              <Reveal key={s.n} delay={i * 100}>
-                <div className="relative overflow-hidden rounded-2xl bg-white pl-8 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.2)] sm:pl-10">
-                  <span
-                    className="pointer-events-none absolute -right-4 -top-10 select-none font-display text-[9rem] leading-none sm:text-[11rem]"
-                    style={{ color: "color-mix(in oklab, var(--gold-deep) 14%, transparent)" }}
-                    aria-hidden
-                  >
-                    {s.n}
-                  </span>
-                  <div
-                    className="relative border-l-4 py-8 pl-6 pr-8"
-                    style={{ borderColor: "var(--gold-deep)" }}
-                  >
-                    <div className="flex flex-wrap items-center gap-3">
-                      <span
-                        className="rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground"
-                        style={{ backgroundImage: "var(--gradient-gold)" }}
-                      >
-                        Serata {s.n} · {s.date}
-                      </span>
-                      <span className="rounded-full bg-ink/5 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-ink-muted">
-                        Focus: {s.focus}
-                      </span>
-                    </div>
-                    <h3 className="mt-4 text-2xl text-ink sm:text-3xl">{s.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
-                      {s.intro}
-                    </p>
-                    <ul className="mt-4 space-y-3">
-                      {s.bullets.map((b) => (
-                        <li
-                          key={b}
-                          className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
-                        >
-                          <span
-                            className="mt-2 size-1.5 shrink-0 rounded-full"
-                            style={{ backgroundColor: "var(--gold-deep)" }}
-                          />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* Offerta */}
-          <Reveal>
-            <div className="mt-12 overflow-hidden rounded-2xl bg-white shadow-[0_24px_70px_-28px_rgba(0,0,0,0.2)]">
-              <img
-                src={livestreamImg}
-                alt="Rule The Rules in live streaming"
-                loading="lazy"
-                width={1280}
-                height={720}
-                className="h-56 w-full object-cover"
-              />
-              <div className="p-8 text-center">
-                <p className="font-condensed text-lg uppercase tracking-[0.2em] text-ink-muted">
-                  Il tuo biglietto per Rule The Rules 2026
-                </p>
-                <p className="mt-3 font-condensed text-4xl uppercase tracking-[0.1em] text-gradient-gold">
-                  27€
-                </p>
-                <p className="mt-4 text-sm text-ink-muted">
-                  Accesso alle 3 serate live dal 5 al 7 ottobre, in diretta streaming, più il
-                  Workbook incluso.
-                </p>
-                <div className="mt-6 flex justify-center">
-                  <CtaButton />
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Bonus: il Workbook */}
       <section className="bg-background">
         <div className="mx-auto max-w-3xl px-5 py-20 text-center">
@@ -813,8 +803,11 @@ function Index() {
       </section>
 
       {/* Garanzia rimborso */}
-      <section className="surface-gold">
-        <div className="mx-auto max-w-3xl px-5 py-16 text-center">
+      <section className="bg-background px-4 py-10 sm:px-8 sm:py-14">
+        <div
+          className="surface-gold mx-auto max-w-3xl px-6 py-14 text-center sm:px-10 sm:py-16"
+          style={{ borderRadius: "1.75rem" }}
+        >
           <Reveal>
             <p className="text-4xl">🛡️</p>
             <p className="mt-4 font-condensed text-xs uppercase tracking-[0.28em] text-primary-foreground/80">
@@ -893,8 +886,11 @@ function Index() {
       </section>
 
       {/* FAQ */}
-      <section className="surface-cream">
-        <div className="mx-auto max-w-3xl px-5 py-20">
+      <section className="bg-background px-4 py-10 sm:px-8 sm:py-14">
+        <div
+          className="surface-cream mx-auto max-w-3xl px-6 py-16 sm:px-12 sm:py-20"
+          style={{ borderRadius: "1.75rem" }}
+        >
           <Reveal>
             <SectionLabel tone="ink">Supporto</SectionLabel>
             <h2 className="text-3xl text-ink sm:text-4xl">Domande Frequenti</h2>
