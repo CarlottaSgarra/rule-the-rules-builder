@@ -9,6 +9,7 @@ import { CtaButton } from "@/components/landing/CtaButton";
 import { Countdown } from "@/components/landing/Countdown";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { Reveal } from "@/components/landing/Reveal";
+import { SignupForm } from "@/components/landing/SignupForm";
 import teamImg from "@/assets/team.jpg";
 import iphoneImg from "@/assets/iphone-start.jpg";
 import livestreamImg from "@/assets/livestream.jpg";
@@ -40,12 +41,28 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const pains = [
-  "“Quando registro mi sembra di recitare.”",
-  "“So di essere brava, ma Instagram non riesce a raccontarlo.”",
-  "“Vedo le altre e mi sembra di essere uguale a tutte.”",
-  "“Sono stanca di seguire regole che non sento mie.”",
-  "“Vorrei che essere semplicemente me stessa bastasse.”",
+const heroStats = [
+  { v: "3", l: "giorni" },
+  { v: "Live", l: "online" },
+  { v: "27€", l: "biglietto" },
+];
+
+const frameworkSteps = [
+  {
+    n: "1",
+    label: "Identità",
+    d: "Chi sei, cosa ti rende riconoscibile, cosa vuoi smettere di rappresentare.",
+  },
+  {
+    n: "2",
+    label: "Espressione",
+    d: "Come comunichi davvero, con le tue Anti-Regole e il tuo metodo di creazione contenuti.",
+  },
+  {
+    n: "3",
+    label: "Strategia",
+    d: "Un piano editoriale che è uno strumento al tuo servizio, non una gabbia da seguire.",
+  },
 ];
 
 const sessions = [
@@ -90,18 +107,56 @@ const sessions = [
   },
 ];
 
-const workbookDays = [
+const outcomes = [
+  "Le tue Carte Identitarie",
+  "Le tue Anti-Regole personali",
+  "Il tuo metodo personale di creazione contenuti",
+  "I primi format da testare",
+  "La tua banca idee",
+  "La struttura del tuo piano editoriale",
+];
+
+const pains = [
+  "“Quando registro mi sembra di recitare.”",
+  "“So di essere brava, ma Instagram non riesce a raccontarlo.”",
+  "“Vedo le altre e mi sembra di essere uguale a tutte.”",
+  "“Sono stanca di seguire regole che non sento mie.”",
+  "“Vorrei che essere semplicemente me stessa bastasse.”",
+];
+
+const forWhoYes = [
+  "Ti senti una fotocopia delle altre professioniste del tuo settore",
+  "Sei stanca di seguire regole che non senti tue",
+  "Vuoi costruire un modo di comunicare che parte davvero da chi sei",
+  "Hai già provato format e strategie “che funzionano” senza sentirti mai a tuo agio",
+  "Vuoi un metodo tuo, non l’ennesimo format universale",
+];
+
+const forWhoNo = [
+  "Cerchi la formula magica per il Reel che diventa virale",
+  "Vuoi l’ennesimo corso su “come si fa un contenuto fatto bene”",
+  "Non sei disposta a metterti in discussione sulla tua identità",
+  "Cerchi scorciatoie senza costruire nulla di tuo",
+];
+
+const mythReality = [
   {
-    t: "Giorno 1 · Chi sono",
-    d: "Le tue Carte Identitarie: il documento in cui metti nero su bianco cosa ti rende riconoscibile.",
+    myth: "Se seguo tutte le regole del marketing, il mio profilo funzionerà.",
+    reality:
+      "Le regole ti hanno resa brava. Ma ti hanno anche resa uguale a decine di altre professioniste.",
   },
   {
-    t: "Giorno 2 · Come comunico",
-    d: "Le tue Anti-Regole personali e il tuo Content Lab, per iniziare a creare contenuti con il tuo metodo.",
+    myth: "Non ho ancora trovato il format giusto.",
+    reality: "Non devi trovare IL format che funziona per tutte. Devi trovare il tuo metodo.",
   },
   {
-    t: "Giorno 3 · Come costruisco il sistema",
-    d: "Format, banca idee e la struttura del tuo piano editoriale, costruito insieme durante la serata.",
+    myth: "Se non seguo le regole, sembrerò poco professionale.",
+    reality:
+      "Il punto non è smettere di essere professionale. È smettere di sparire dietro la professionalità.",
+  },
+  {
+    myth: "Il problema è che non pubblico abbastanza.",
+    reality: "Il problema non è quanto pubblichi. È se, quando lo fai, ci sei davvero tu.",
   },
 ];
 
@@ -119,6 +174,66 @@ const caseStudies = [
     role: "Da -10k a 6.000€ come Parent Coach",
     duration: "23:58",
   },
+];
+
+const storyStats = [
+  { v: "500K+", l: "reach organico generato da Instagram" },
+  { v: "Centinaia", l: "di professioniste italiane aiutate" },
+  { v: "9", l: "storie di successo documentate" },
+];
+
+const beforeAfter = {
+  before: [
+    "Ogni contenuto è una performance: davanti alla camera ti senti “un’altra”.",
+    "Segui regole che non senti tue, senza sapere se funzionano davvero per te.",
+    "Il piano editoriale è una gabbia che ti fa sentire sempre in ritardo.",
+    "I tuoi contenuti potrebbero essere pubblicati identici da qualsiasi altra professionista del tuo settore.",
+  ],
+  after: [
+    "Riconosci come comunichi davvero, quando smetti di recitare.",
+    "Hai le tue Anti-Regole personali, costruite su come sei fatta tu.",
+    "Hai un piano editoriale che è uno strumento al tuo servizio, non il tuo capo.",
+    "Il tuo modo di comunicare è impossibile da confondere con quello di un’altra.",
+  ],
+};
+
+const twoPaths = {
+  a: {
+    title: "Continuare come adesso",
+    d: "Profili tecnicamente corretti, contenuti fatti bene, script perfetti. E la sensazione, sempre uguale, di essere una fotocopia che nessuno ricorda.",
+  },
+  b: {
+    title: "Costruire la tua comunicazione",
+    d: "Parti dalla tua identità, costruisci il tuo metodo, hai finalmente un piano editoriale che è tuo. E che ti rende riconoscibile.",
+  },
+};
+
+const workbookDays = [
+  {
+    t: "Giorno 1 · Chi sono",
+    d: "Le tue Carte Identitarie: il documento in cui metti nero su bianco cosa ti rende riconoscibile.",
+  },
+  {
+    t: "Giorno 2 · Come comunico",
+    d: "Le tue Anti-Regole personali e il tuo Content Lab, per iniziare a creare contenuti con il tuo metodo.",
+  },
+  {
+    t: "Giorno 3 · Come costruisco il sistema",
+    d: "Format, banca idee e la struttura del tuo piano editoriale, costruito insieme durante la serata.",
+  },
+];
+
+const valueStack = [
+  { t: "Accesso alle 3 serate live", d: "Dal 5 al 7 ottobre, in diretta streaming." },
+  { t: "Workbook completo", d: "Il documento che ti accompagna serata per serata." },
+  { t: "Le tue Carte Identitarie", d: "Il documento su cosa ti rende riconoscibile." },
+  { t: "Le tue Anti-Regole personali", d: "L’alternativa alle regole che non senti tue." },
+  { t: "Il tuo Content Lab", d: "Il tuo metodo personale di creazione contenuti." },
+  {
+    t: "La struttura del tuo piano editoriale",
+    d: "Costruita insieme durante la terza serata.",
+  },
+  { t: "Garanzia soddisfatta o rimborsata", d: "Fino all’inizio della seconda serata." },
 ];
 
 const faqs = [
@@ -242,7 +357,7 @@ function Index() {
             />
           </Reveal>
 
-          <Reveal delay={280} className="mt-10 flex flex-col items-center">
+          <Reveal delay={280} className="mt-10 flex w-full flex-col items-center">
             <div className="flex flex-wrap justify-center gap-3 font-condensed text-sm uppercase tracking-[0.12em]">
               <span className="rounded-md border border-primary/30 bg-black/30 px-4 py-2 backdrop-blur">
                 Quando:{" "}
@@ -263,8 +378,22 @@ function Index() {
               <Countdown />
             </div>
 
-            <div className="mt-8">
-              <CtaButton />
+            <div className="mt-8 grid w-full max-w-md grid-cols-3 gap-2 rounded-xl border border-primary/20 bg-black/30 p-4 text-center backdrop-blur">
+              {heroStats.map((s) => (
+                <div key={s.l}>
+                  <div className="font-condensed text-xl text-primary">{s.v}</div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                    {s.l}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="surface-card mt-8 w-full max-w-sm p-6 text-left">
+              <p className="text-center text-sm text-foreground/85">
+                Compila il form per <strong>riservare il tuo posto</strong> ↓
+              </p>
+              <SignupForm compact className="mt-6" />
             </div>
           </Reveal>
         </div>
@@ -324,6 +453,48 @@ function Index() {
               <CtaButton />
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* Il metodo: Identità -> Espressione -> Strategia */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-5xl px-5 py-20">
+          <Reveal>
+            <SectionLabel>Il metodo</SectionLabel>
+            <h2 className="max-w-2xl text-3xl sm:text-4xl">
+              Tre serate, tre passaggi, un unico percorso lineare.
+            </h2>
+          </Reveal>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
+            {frameworkSteps.map((step, i) => (
+              <div key={step.n} className="contents">
+                <Reveal delay={i * 100}>
+                  <div className="surface-card flex h-full flex-col items-center p-6 text-center">
+                    <span
+                      className="flex size-10 items-center justify-center rounded-full font-condensed text-lg"
+                      style={{
+                        backgroundImage: "var(--gradient-gold)",
+                        color: "var(--primary-foreground)",
+                      }}
+                    >
+                      {step.n}
+                    </span>
+                    <p className="mt-4 font-condensed text-lg uppercase tracking-[0.14em] text-primary">
+                      {step.label}
+                    </p>
+                    <p className="mt-2 text-sm text-muted-foreground">{step.d}</p>
+                  </div>
+                </Reveal>
+                {i < frameworkSteps.length - 1 ? (
+                  <div className="flex items-center justify-center text-2xl text-primary/60 md:rotate-0">
+                    <span className="md:hidden">↓</span>
+                    <span className="hidden md:inline">→</span>
+                  </div>
+                ) : null}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -422,6 +593,37 @@ function Index() {
         </div>
       </section>
 
+      {/* Cosa ti porti a casa */}
+      <section className="border-y border-border/60 bg-card/40">
+        <div className="mx-auto max-w-4xl px-5 py-20">
+          <Reveal>
+            <SectionLabel>Cosa ti porti a casa</SectionLabel>
+            <h2 className="text-3xl sm:text-4xl">
+              Non esci con un piano editoriale da seguire. Esci sapendo finalmente come crearne uno
+              che ti assomiglia.
+            </h2>
+          </Reveal>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {outcomes.map((o, i) => (
+              <Reveal key={o} delay={i * 60}>
+                <div className="flex items-center gap-3 rounded-xl border border-border/70 bg-background p-5">
+                  <span
+                    className="flex size-7 shrink-0 items-center justify-center rounded-full font-condensed text-xs"
+                    style={{
+                      backgroundImage: "var(--gradient-gold)",
+                      color: "var(--primary-foreground)",
+                    }}
+                  >
+                    ✓
+                  </span>
+                  <span className="text-sm text-foreground/90 sm:text-base">{o}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Problema */}
       <section className="bg-background">
         <div className="mx-auto max-w-4xl px-5 py-20">
@@ -429,18 +631,18 @@ function Index() {
             <SectionLabel>Il punto di partenza</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">In questo momento, probabilmente pensi:</h2>
           </Reveal>
-          <ul className="mt-8 space-y-4">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {pains.map((p, i) => (
               <Reveal key={p} delay={i * 60}>
-                <li className="flex gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-colors duration-300 hover:border-primary/40">
+                <div className="flex h-full gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-colors duration-300 hover:border-primary/40">
                   <span className="mt-1 size-2 shrink-0 rounded-full bg-primary" />
                   <span className="text-sm italic leading-relaxed text-foreground/85 sm:text-base">
                     {p}
                   </span>
-                </li>
+                </div>
               </Reveal>
             ))}
-          </ul>
+          </div>
           <Reveal>
             <div className="mt-8 space-y-4 text-base leading-relaxed text-foreground/85">
               <p>E la sensazione, in fondo, è sempre la stessa:</p>
@@ -452,6 +654,80 @@ function Index() {
               <p className="font-semibold text-primary">👉 In tre serate, cambiamo questo.</p>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* Per chi è / per chi non è */}
+      <section className="border-y border-border/60 bg-card/40">
+        <div className="mx-auto max-w-5xl px-5 py-20">
+          <Reveal>
+            <SectionLabel>Rule The Rules fa per te?</SectionLabel>
+            <h2 className="text-3xl sm:text-4xl">Prima di iscriverti, leggi qui.</h2>
+          </Reveal>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            <Reveal>
+              <div className="surface-card h-full p-7">
+                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-primary">
+                  Fa per te se…
+                </p>
+                <ul className="mt-5 space-y-4">
+                  {forWhoYes.map((y) => (
+                    <li key={y} className="flex gap-3 text-sm leading-relaxed text-foreground/85">
+                      <span className="mt-0.5 text-primary">✓</span>
+                      <span>{y}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <div className="h-full rounded-xl border border-border/70 bg-background p-7">
+                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-muted-foreground">
+                  Non fa per te se…
+                </p>
+                <ul className="mt-5 space-y-4">
+                  {forWhoNo.map((n) => (
+                    <li key={n} className="flex gap-3 text-sm leading-relaxed text-foreground/70">
+                      <span className="mt-0.5 text-muted-foreground">✕</span>
+                      <span>{n}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Quello che pensi vs come stanno le cose */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-4xl px-5 py-20">
+          <Reveal>
+            <SectionLabel>Le tue obiezioni</SectionLabel>
+            <h2 className="text-3xl sm:text-4xl">Quello che pensi vs come stanno le cose.</h2>
+          </Reveal>
+          <div className="mt-10 space-y-5">
+            {mythReality.map((m, i) => (
+              <Reveal key={m.myth} delay={i * 80}>
+                <div className="grid gap-0 overflow-hidden rounded-xl border border-border/70 sm:grid-cols-2">
+                  <div className="bg-card/60 p-6">
+                    <p className="font-condensed text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                      Quello che pensi
+                    </p>
+                    <p className="mt-2 text-sm italic leading-relaxed text-foreground/70">
+                      “{m.myth}”
+                    </p>
+                  </div>
+                  <div className="border-t border-border/70 bg-card p-6 sm:border-l sm:border-t-0">
+                    <p className="font-condensed text-[10px] uppercase tracking-[0.2em] text-primary">
+                      Come stanno le cose
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-foreground/90">{m.reality}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -540,6 +816,22 @@ function Index() {
             <h2 className="text-3xl text-ink sm:text-5xl">
               Da un Iphone ad un’Azienda: come ho fatto e come puoi farlo anche tu.
             </h2>
+          </Reveal>
+
+          <Reveal delay={60}>
+            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              {storyStats.map((s) => (
+                <div
+                  key={s.l}
+                  className="rounded-xl bg-white p-5 text-center shadow-[0_16px_40px_-24px_rgba(0,0,0,0.15)]"
+                >
+                  <div className="font-condensed text-2xl" style={{ color: "var(--gold-deep)" }}>
+                    {s.v}
+                  </div>
+                  <div className="mt-1 text-xs text-ink-muted">{s.l}</div>
+                </div>
+              ))}
+            </div>
           </Reveal>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-start">
@@ -768,6 +1060,79 @@ function Index() {
         </div>
       </section>
 
+      {/* Prima vs dopo */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-4xl px-5 py-20">
+          <Reveal>
+            <SectionLabel>La trasformazione</SectionLabel>
+            <h2 className="text-3xl sm:text-4xl">Prima di Rule The Rules, dopo Rule The Rules.</h2>
+          </Reveal>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            <Reveal>
+              <div className="h-full rounded-xl border border-border/70 bg-card/40 p-7">
+                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-muted-foreground">
+                  Prima
+                </p>
+                <ul className="mt-5 space-y-4">
+                  {beforeAfter.before.map((b) => (
+                    <li key={b} className="flex gap-3 text-sm leading-relaxed text-foreground/75">
+                      <span className="mt-0.5 text-muted-foreground">✕</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <div className="surface-card h-full p-7">
+                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-primary">
+                  Dopo
+                </p>
+                <ul className="mt-5 space-y-4">
+                  {beforeAfter.after.map((a) => (
+                    <li key={a} className="flex gap-3 text-sm leading-relaxed text-foreground/90">
+                      <span className="mt-0.5 text-primary">✓</span>
+                      <span>{a}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* La scelta */}
+      <section className="border-y border-border/60 bg-card/40">
+        <div className="mx-auto max-w-4xl px-5 py-20">
+          <Reveal>
+            <SectionLabel>La scelta</SectionLabel>
+            <h2 className="text-3xl sm:text-4xl">Da qui puoi andare in due direzioni.</h2>
+          </Reveal>
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            <Reveal>
+              <div className="h-full rounded-xl border border-border/70 bg-background p-7">
+                <p className="font-condensed text-lg uppercase tracking-[0.12em] text-muted-foreground">
+                  {twoPaths.a.title}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/75">{twoPaths.a.d}</p>
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <div className="surface-card h-full p-7">
+                <p className="font-condensed text-lg uppercase tracking-[0.12em] text-primary">
+                  {twoPaths.b.title}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-foreground/90">{twoPaths.b.d}</p>
+                <div className="mt-6">
+                  <CtaButton />
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* Bonus: il Workbook */}
       <section className="bg-background">
         <div className="mx-auto max-w-3xl px-5 py-20 text-center">
@@ -798,6 +1163,36 @@ function Index() {
               E alla fine, una pagina conclusiva tutta tua: “Le Mie Regole”, il manifesto personale
               della tua comunicazione.
             </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Ricapitolando */}
+      <section className="border-y border-border/60 bg-card/40">
+        <div className="mx-auto max-w-3xl px-5 py-20">
+          <Reveal>
+            <SectionLabel>Ricapitolando</SectionLabel>
+            <h2 className="text-3xl sm:text-4xl">Registrati e ottieni tutto questo:</h2>
+          </Reveal>
+          <div className="mt-10 space-y-3">
+            {valueStack.map((v, i) => (
+              <Reveal key={v.t} delay={i * 60}>
+                <div className="flex items-center justify-between gap-4 rounded-lg border border-border/70 bg-background px-5 py-4">
+                  <div>
+                    <p className="font-semibold text-foreground">{v.t}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">{v.d}</p>
+                  </div>
+                  <span className="shrink-0 font-condensed text-xs uppercase tracking-[0.14em] text-primary">
+                    Incluso
+                  </span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal>
+            <div className="mt-8 flex justify-center">
+              <CtaButton />
+            </div>
           </Reveal>
         </div>
       </section>
@@ -839,47 +1234,7 @@ function Index() {
               <p className="mt-4 text-center text-sm text-foreground/85">
                 Compila il form per <strong>riservare il tuo posto</strong> ↓
               </p>
-              <form className="mt-8 space-y-4" onSubmit={(e) => e.preventDefault()}>
-                <input
-                  type="text"
-                  placeholder="Nome e cognome"
-                  className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary"
-                />
-                <input
-                  type="email"
-                  placeholder="La tua email migliore"
-                  className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary"
-                />
-                <input
-                  type="tel"
-                  placeholder="Numero di telefono"
-                  className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary"
-                />
-                <label className="flex items-start gap-3 text-xs text-muted-foreground">
-                  <input type="checkbox" className="mt-0.5 accent-[oklch(0.79_0.15_84)]" />
-                  <span>
-                    Ho visto e accettato la{" "}
-                    <a
-                      href="https://www.iubenda.com/privacy-policy/47892266"
-                      className="text-primary underline"
-                    >
-                      Privacy Policy
-                    </a>
-                    .
-                  </span>
-                </label>
-                <button
-                  type="submit"
-                  className="w-full rounded-xl px-6 py-4 font-condensed text-lg uppercase tracking-[0.14em] transition-transform hover:-translate-y-0.5"
-                  style={{
-                    backgroundImage: "var(--gradient-gold)",
-                    color: "var(--primary-foreground)",
-                    boxShadow: "var(--shadow-gold)",
-                  }}
-                >
-                  Vai allo STEP #2
-                </button>
-              </form>
+              <SignupForm className="mt-8" />
             </div>
           </Reveal>
         </div>
@@ -937,6 +1292,10 @@ function Index() {
             <div className="mt-8 flex justify-center">
               <CtaButton label="Riserva il tuo posto a soli 27€" />
             </div>
+            <p className="mt-10 text-sm italic text-muted-foreground">
+              P.S. Ti hanno insegnato talmente bene a fare contenuti che hai smesso di esserci
+              dentro. Il 5 ottobre iniziamo a cambiarlo.
+            </p>
           </Reveal>
         </div>
       </section>
