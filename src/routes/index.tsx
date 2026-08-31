@@ -428,13 +428,6 @@ function Index() {
                     </div>
                   ))}
                 </div>
-
-                <div className="mt-6 space-y-2 text-sm font-medium text-foreground/90">
-                  <p>🛡️ Garanzia: soddisfatta o rimborsata entro la seconda serata.</p>
-                  <p>
-                    Oltre 1.500 professioniste italiane aiutate a smettere di essere una fotocopia.
-                  </p>
-                </div>
               </div>
 
               <div
@@ -449,6 +442,11 @@ function Index() {
                   Compila il form per <strong>riservare il tuo posto</strong> ↓
                 </p>
                 <SignupForm compact className="mt-6" />
+
+                <div className="mt-6 space-y-2 text-center text-sm font-medium text-foreground/90">
+                  <p>🛡️ Garanzia: soddisfatta o rimborsata entro la seconda serata.</p>
+                  <p>Oltre 1.500 professioniste nei miei percorsi.</p>
+                </div>
               </div>
             </div>
           </Reveal>
