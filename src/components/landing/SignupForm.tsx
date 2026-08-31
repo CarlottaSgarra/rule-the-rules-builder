@@ -1,9 +1,14 @@
 type Props = {
   compact?: boolean;
   className?: string;
+  submitLabel?: string;
 };
 
-export function SignupForm({ compact = false, className = "" }: Props) {
+export function SignupForm({
+  compact = false,
+  className = "",
+  submitLabel = "Vai al pagamento",
+}: Props) {
   return (
     <form className={`space-y-4 ${className}`} onSubmit={(e) => e.preventDefault()}>
       <input
@@ -45,7 +50,7 @@ export function SignupForm({ compact = false, className = "" }: Props) {
           boxShadow: "var(--shadow-gold)",
         }}
       >
-        Vai allo STEP #2
+        {submitLabel}
       </button>
     </form>
   );

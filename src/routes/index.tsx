@@ -10,6 +10,7 @@ import { Countdown } from "@/components/landing/Countdown";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { Reveal } from "@/components/landing/Reveal";
 import { SignupForm } from "@/components/landing/SignupForm";
+import { Workbook } from "@/components/landing/Workbook";
 import teamImg from "@/assets/team.jpg";
 import iphoneImg from "@/assets/iphone-start.jpg";
 import livestreamImg from "@/assets/livestream.jpg";
@@ -232,17 +233,32 @@ const workbookDays = [
 ];
 
 const valueStack = [
-  { t: "Accesso alle 3 serate live", d: "Dal 5 al 7 ottobre, in diretta streaming." },
-  { t: "Workbook completo", d: "Il documento che ti accompagna serata per serata." },
-  { t: "Le tue Carte Identitarie", d: "Il documento su cosa ti rende riconoscibile." },
-  { t: "Le tue Anti-Regole personali", d: "L’alternativa alle regole che non senti tue." },
-  { t: "Il tuo Content Lab", d: "Il tuo metodo personale di creazione contenuti." },
+  { t: "Accesso alle 3 serate live", d: "Dal 5 al 7 ottobre, in diretta streaming.", value: 97 },
+  { t: "Workbook completo", d: "Il documento che ti accompagna serata per serata.", value: 47 },
+  {
+    t: "Le tue Carte Identitarie",
+    d: "Il documento su cosa ti rende riconoscibile.",
+    value: 67,
+  },
+  {
+    t: "Le tue Anti-Regole personali",
+    d: "L’alternativa alle regole che non senti tue.",
+    value: 67,
+  },
+  { t: "Il tuo Content Lab", d: "Il tuo metodo personale di creazione contenuti.", value: 97 },
   {
     t: "La struttura del tuo piano editoriale",
     d: "Costruita insieme durante la terza serata.",
+    value: 97,
   },
-  { t: "Garanzia soddisfatta o rimborsata", d: "Fino all’inizio della seconda serata." },
+  {
+    t: "Garanzia soddisfatta o rimborsata",
+    d: "Fino all’inizio della seconda serata.",
+    value: null,
+  },
 ];
+
+const valueStackTotal = valueStack.reduce((sum, v) => sum + (v.value ?? 0), 0);
 
 const faqs = [
   {
@@ -335,17 +351,31 @@ function Index() {
           className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.08] mix-blend-overlay"
         />
 
-        <div className="relative mx-auto flex w-full max-w-4xl flex-col items-center px-5 py-20 text-center">
+        <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-20 text-center">
           <Reveal>
             <p className="font-condensed text-xs uppercase tracking-[0.4em] text-primary sm:text-sm">
-              Show live · 5, 6 e 7 ottobre 2026
+              Show live · dal 5 ottobre 2026 · l’unico evento del 2026
             </p>
           </Reveal>
 
           <Reveal delay={80}>
-            <h1 className="mt-6 font-display text-6xl uppercase leading-[0.95] tracking-tight text-gradient-gold sm:text-8xl">
-              Rule The Rules
-            </h1>
+            <div className="relative mt-6 inline-block">
+              <h1 className="font-display text-6xl uppercase leading-[0.95] tracking-tight text-gradient-gold sm:text-8xl">
+                Rule The Rules
+              </h1>
+              <span
+                className="absolute select-none whitespace-nowrap rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary-foreground sm:text-xs"
+                style={{
+                  backgroundImage: "var(--gradient-gold)",
+                  boxShadow: "var(--shadow-gold)",
+                  top: "-0.6rem",
+                  right: "-0.5rem",
+                  transform: "rotate(-11deg)",
+                }}
+              >
+                Unico evento 2026
+              </span>
+            </div>
           </Reveal>
 
           <Reveal delay={160}>
@@ -356,62 +386,79 @@ function Index() {
             </p>
           </Reveal>
 
-          <Reveal delay={220} className="mt-10 w-full max-w-3xl">
-            <SectionLabel>Video di presentazione</SectionLabel>
-            <VideoFrame
-              label="Guarda il video di presentazione di Rule The Rules"
-              duration="06:15"
-              poster={livestreamImg}
-            />
-          </Reveal>
-
-          <Reveal delay={280} className="mt-10 w-full max-w-2xl">
+          <Reveal delay={220} className="mt-10 w-full">
             <div
-              className="surface-gold flex w-full flex-col items-center px-6 py-10 sm:px-10 sm:py-12"
-              style={{ borderRadius: "1.75rem" }}
+              className="grid gap-8 rounded-3xl border-2 bg-card/60 p-6 text-left backdrop-blur sm:p-10 md:grid-cols-2 md:items-start"
+              style={{ borderColor: "var(--gold-deep)" }}
             >
-              <div className="flex flex-wrap justify-center gap-3 font-condensed text-sm uppercase tracking-[0.12em] text-primary-foreground">
-                <span className="rounded-md border border-black/20 bg-black/15 px-4 py-2">
-                  Quando: 5, 6 e 7 ottobre 2026 · orario in arrivo
-                </span>
-                <span className="rounded-md border border-black/20 bg-black/15 px-4 py-2">
-                  Dove: Online
-                </span>
+              <div>
+                <SectionLabel>Video di presentazione</SectionLabel>
+                <VideoFrame
+                  label="Guarda il video di presentazione di Rule The Rules"
+                  duration="06:15"
+                  poster={livestreamImg}
+                />
               </div>
 
-              <p className="mt-6 text-sm font-semibold italic text-primary-foreground">
-                Le iscrizioni chiudono domenica 4 ottobre a mezzanotte!
-              </p>
-              <p className="mt-3 text-xs uppercase tracking-[0.3em] text-primary-foreground/70">
-                mancano:
-              </p>
-              <div className="mt-3">
-                <Countdown />
-              </div>
+              <div className="flex flex-col items-center text-center md:items-start md:text-left">
+                <div className="flex flex-wrap justify-center gap-3 font-condensed text-sm uppercase tracking-[0.12em] md:justify-start">
+                  <span
+                    className="rounded-md border px-4 py-2 text-foreground"
+                    style={{
+                      borderColor: "var(--gold-deep)",
+                      backgroundColor: "color-mix(in oklab, var(--gold-deep) 12%, transparent)",
+                    }}
+                  >
+                    Quando: <span className="text-primary">dal 5 ottobre 2026</span>
+                  </span>
+                  <span
+                    className="rounded-md border px-4 py-2 text-foreground"
+                    style={{
+                      borderColor: "var(--gold-deep)",
+                      backgroundColor: "color-mix(in oklab, var(--gold-deep) 12%, transparent)",
+                    }}
+                  >
+                    Dove: <span className="text-primary">Online</span>
+                  </span>
+                </div>
 
-              <div className="mt-8 grid w-full max-w-md grid-cols-3 gap-2 rounded-xl border border-black/20 bg-black/15 p-4 text-center">
-                {heroStats.map((s) => (
-                  <div key={s.l}>
-                    <div className="font-condensed text-xl text-primary-foreground">{s.v}</div>
-                    <div className="text-[10px] uppercase tracking-[0.2em] text-primary-foreground/70">
-                      {s.l}
+                <p className="mt-3 text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                  mancano:
+                </p>
+                <div className="mt-3">
+                  <Countdown />
+                </div>
+
+                <div
+                  className="mt-6 grid w-full max-w-md grid-cols-3 gap-2 rounded-xl border p-4 text-center"
+                  style={{
+                    borderColor: "var(--gold-deep)",
+                    backgroundColor: "color-mix(in oklab, var(--gold-deep) 12%, transparent)",
+                  }}
+                >
+                  {heroStats.map((s) => (
+                    <div key={s.l}>
+                      <div className="font-condensed text-xl text-primary">{s.v}</div>
+                      <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                        {s.l}
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
 
-              <div className="mt-6 space-y-2 text-center text-sm font-medium text-primary-foreground/90">
-                <p>🛡️ Garanzia: soddisfatta o rimborsata entro la seconda serata.</p>
-                <p>
-                  Oltre 1.500 professioniste italiane aiutate a smettere di essere una fotocopia.
-                </p>
-              </div>
+                <div className="mt-6 space-y-2 text-sm font-medium text-foreground/90">
+                  <p>🛡️ Garanzia: soddisfatta o rimborsata entro la seconda serata.</p>
+                  <p>
+                    Oltre 1.500 professioniste italiane aiutate a smettere di essere una fotocopia.
+                  </p>
+                </div>
 
-              <div className="surface-card mt-8 w-full max-w-sm p-6 text-left">
-                <p className="text-center text-sm text-foreground/85">
-                  Compila il form per <strong>riservare il tuo posto</strong> ↓
-                </p>
-                <SignupForm compact className="mt-6" />
+                <div className="surface-card mt-6 w-full p-6">
+                  <p className="text-center text-sm text-foreground/85">
+                    Compila il form per <strong>riservare il tuo posto</strong> ↓
+                  </p>
+                  <SignupForm compact className="mt-6" />
+                </div>
               </div>
             </div>
           </Reveal>
@@ -468,12 +515,6 @@ function Index() {
               className="mt-10 w-full rounded-2xl object-cover"
             />
 
-            <p
-              className="mt-8 text-center font-condensed uppercase tracking-[0.16em]"
-              style={{ color: "var(--gold-deep)" }}
-            >
-              Questa offerta scade domenica 4 ottobre a mezzanotte!
-            </p>
             <div className="mt-6 flex justify-center">
               <CtaButton />
             </div>
@@ -1164,35 +1205,43 @@ function Index() {
 
       {/* Bonus: il Workbook */}
       <section className="bg-background">
-        <div className="mx-auto max-w-3xl px-5 py-20 text-center">
-          <Reveal>
-            <SectionLabel>Bonus incluso</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl">Ricevi il Workbook di Rule The Rules</h2>
-            <p className="mt-5 text-base leading-relaxed text-foreground/85">
-              Non è un PDF “in più”. È il documento che ti accompagna serata per serata, e che alla
-              fine delle tre giornate rappresenta fisicamente il percorso che hai fatto.
-            </p>
-          </Reveal>
+        <div className="mx-auto max-w-5xl px-5 py-20">
+          <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-center">
+            <Reveal>
+              <Workbook />
+            </Reveal>
 
-          <div className="mt-10 grid gap-5 text-left sm:grid-cols-3">
-            {workbookDays.map((w, i) => (
-              <Reveal key={w.t} delay={i * 90}>
-                <div className="surface-card p-6 transition-transform duration-300 hover:-translate-y-1">
-                  <p className="font-condensed text-base uppercase tracking-[0.12em] text-primary">
-                    {w.t}
-                  </p>
-                  <p className="mt-2 text-sm text-foreground/80">{w.d}</p>
-                </div>
+            <div>
+              <Reveal>
+                <SectionLabel>Bonus incluso</SectionLabel>
+                <h2 className="text-3xl sm:text-4xl">Ricevi il Workbook di Rule The Rules</h2>
+                <p className="mt-5 text-base leading-relaxed text-foreground/85">
+                  Non è un PDF “in più”. È il documento che ti accompagna serata per serata, e che
+                  alla fine delle tre giornate rappresenta fisicamente il percorso che hai fatto.
+                </p>
               </Reveal>
-            ))}
-          </div>
 
-          <Reveal>
-            <p className="mt-8 text-sm italic text-muted-foreground">
-              E alla fine, una pagina conclusiva tutta tua: “Le Mie Regole”, il manifesto personale
-              della tua comunicazione.
-            </p>
-          </Reveal>
+              <div className="mt-8 space-y-4">
+                {workbookDays.map((w, i) => (
+                  <Reveal key={w.t} delay={i * 90}>
+                    <div className="surface-card p-5 transition-transform duration-300 hover:-translate-y-1">
+                      <p className="font-condensed text-base uppercase tracking-[0.12em] text-primary">
+                        {w.t}
+                      </p>
+                      <p className="mt-2 text-sm text-foreground/80">{w.d}</p>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+
+              <Reveal>
+                <p className="mt-6 text-sm italic text-muted-foreground">
+                  E alla fine, una pagina conclusiva tutta tua: “Le Mie Regole”, il manifesto
+                  personale della tua comunicazione.
+                </p>
+              </Reveal>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1211,13 +1260,40 @@ function Index() {
                     <p className="font-semibold text-foreground">{v.t}</p>
                     <p className="mt-1 text-sm text-muted-foreground">{v.d}</p>
                   </div>
-                  <span className="shrink-0 font-condensed text-xs uppercase tracking-[0.14em] text-primary">
-                    Incluso
-                  </span>
+                  <div className="shrink-0 text-right">
+                    {v.value ? (
+                      <p className="font-condensed text-sm text-muted-foreground line-through">
+                        Valore {v.value}€
+                      </p>
+                    ) : null}
+                    <p className="font-condensed text-xs uppercase tracking-[0.14em] text-primary">
+                      Incluso
+                    </p>
+                  </div>
                 </div>
               </Reveal>
             ))}
           </div>
+
+          <Reveal>
+            <div className="surface-card mt-6 flex flex-wrap items-center justify-between gap-3 p-6">
+              <div>
+                <p className="font-condensed text-sm uppercase tracking-[0.14em] text-muted-foreground">
+                  Valore totale
+                </p>
+                <p className="font-condensed text-2xl text-muted-foreground line-through">
+                  {valueStackTotal}€
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="font-condensed text-sm uppercase tracking-[0.14em] text-primary">
+                  Il tuo biglietto oggi
+                </p>
+                <p className="font-condensed text-3xl text-gradient-gold">27€</p>
+              </div>
+            </div>
+          </Reveal>
+
           <Reveal>
             <div className="mt-8 flex justify-center">
               <CtaButton />

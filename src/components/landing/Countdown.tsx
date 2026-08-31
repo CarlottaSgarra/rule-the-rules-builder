@@ -55,7 +55,11 @@ export function Countdown({ compact = false }: Props) {
       {cells.map((c) => (
         <div
           key={c.l}
-          className="min-w-16 rounded-lg border border-primary/30 bg-card px-3 py-2 text-center transition-transform duration-300 hover:-translate-y-0.5 sm:min-w-20 sm:px-4"
+          className="min-w-16 rounded-lg border px-3 py-2 text-center transition-transform duration-300 hover:-translate-y-0.5 sm:min-w-20 sm:px-4"
+          style={{
+            borderColor: "var(--gold-deep)",
+            backgroundColor: "color-mix(in oklab, var(--gold-deep) 12%, transparent)",
+          }}
         >
           <div className="font-condensed text-2xl text-primary tabular-nums sm:text-3xl">
             {left === null ? "00" : pad(c.v)}
