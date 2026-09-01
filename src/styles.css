@@ -154,6 +154,7 @@
 
   html {
     font-size: 18px;
+    overflow-x: hidden;
   }
 
   body {
@@ -161,6 +162,7 @@
     color: var(--color-foreground);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   h1,
@@ -230,6 +232,13 @@
 
 @utility animate-marquee-rtl {
   animation: marquee-rtl 140s linear infinite;
+}
+
+@media (max-width: 767px) {
+  .animate-marquee-ltr,
+  .animate-marquee-rtl {
+    animation-duration: 260s;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

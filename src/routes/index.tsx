@@ -347,7 +347,7 @@ function Index() {
               info@carlottasgarra.it
             </a>
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
             <span className="hidden text-xs uppercase tracking-[0.15em] text-muted-foreground sm:inline">
               L’evento inizia tra
             </span>
@@ -464,7 +464,7 @@ function Index() {
                 } as React.CSSProperties
               }
             >
-              <div className="grid text-left md:grid-cols-[3fr_7fr]">
+              <div className="grid grid-cols-1 text-left md:grid-cols-[3fr_7fr]">
                 <div className="relative h-64 w-full md:h-full">
                   <img
                     src={heroImg}
@@ -528,7 +528,7 @@ function Index() {
                               <Star key={i} className="size-3.5 fill-current" />
                             ))}
                           </div>
-                          <p className="mt-0.5 text-sm text-foreground/85">
+                          <p className="mt-0.5 text-xs text-foreground/85 sm:text-sm">
                             +1.500 professioniste formate
                           </p>
                         </div>
@@ -593,11 +593,13 @@ function Index() {
 
           <Reveal delay={340} className="mt-24 w-full">
             <SectionLabel>Video di presentazione</SectionLabel>
-            <h2 className="max-w-3xl text-3xl sm:text-4xl">
+            <h2 className="mx-auto max-w-3xl text-3xl sm:text-4xl">
               Sai qual è il risultato di seguire mille regole per piacere all’algoritmo? Che ora hai
-              la nausea quando crei i contenuti e ti fa schifo vendere online. Durante l’evento
-              rompiamo tutti questi schemi per tornare alla tua vera identità.
+              la nausea quando crei i contenuti e ti fa schifo vendere online.
             </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-base text-foreground/75 sm:text-lg">
+              Durante l’evento rompiamo tutti questi schemi per tornare alla tua vera identità.
+            </p>
             <div className="mt-10">
               <VideoFrame
                 label="Guarda il video di presentazione di Rule The Rules"
