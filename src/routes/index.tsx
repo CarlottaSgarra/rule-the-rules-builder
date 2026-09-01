@@ -405,35 +405,47 @@ function Index() {
                   "var(--shadow-gold), 0 60px 100px -30px color-mix(in oklab, var(--primary) 45%, transparent)",
               }}
             >
-              <div className="grid text-left md:grid-cols-2">
-                <img
-                  src={heroImg}
-                  alt="Carlotta Sgarra"
-                  loading="lazy"
-                  className="h-64 w-full object-cover md:h-full"
-                />
+              <div className="grid text-left md:grid-cols-[2fr_3fr]">
+                <div className="relative h-64 w-full md:h-full">
+                  <img
+                    src={heroImg}
+                    alt="Carlotta Sgarra"
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
+                  <p className="absolute inset-x-0 bottom-0 p-5 text-sm font-medium leading-snug text-white sm:p-6">
+                    Questo invito è per te, che sei stanca di sottometterti alle regole
+                    dell’algoritmo e vuoi far uscire la vera te stessa.
+                  </p>
+                </div>
 
                 <div
                   className="relative p-6 sm:p-10 md:border-l-2 md:border-dashed"
                   style={{ borderColor: "color-mix(in oklab, var(--primary) 55%, transparent)" }}
                 >
-                  <p className="text-center text-sm text-foreground/85">
-                    Compila il form per <strong>riservare il tuo posto</strong> ↓
+                  <p className="text-center text-base font-semibold text-foreground">
+                    Pronta a rompere le regole una volta per tutte e a ridefinire la tua
+                    comunicazione identitaria?
                   </p>
                   <SignupForm
                     className="mt-6"
-                    submitSub="Soli €27 · 5, 6, 7 ottobre · Garanzia di rimborso"
+                    submitSub="Soli €27 · 5-6-7 ottobre · Garanzia di rimborso"
                   />
+                  <p className="mt-4 text-center text-xs text-muted-foreground">
+                    In oltre dieci anni ho aiutato più di 1500 professioniste a crescere e vendere
+                    online.
+                  </p>
                 </div>
               </div>
 
               <span
-                className="absolute left-1/2 top-0 hidden size-12 -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
+                className="absolute left-[40%] top-0 hidden size-12 -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
                 style={{ backgroundColor: "var(--background)" }}
                 aria-hidden
               />
               <span
-                className="absolute bottom-0 left-1/2 hidden size-12 -translate-x-1/2 translate-y-1/2 rounded-full md:block"
+                className="absolute bottom-0 left-[40%] hidden size-12 -translate-x-1/2 translate-y-1/2 rounded-full md:block"
                 style={{ backgroundColor: "var(--background)" }}
                 aria-hidden
               />
