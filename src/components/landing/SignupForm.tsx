@@ -54,7 +54,7 @@ export function SignupForm({
       >
         <span className="font-condensed text-lg uppercase tracking-[0.14em]">{submitLabel}</span>
         {submitSub ? (
-          <span className="mt-1 text-xs font-medium opacity-80">{submitSub}</span>
+          <span className="mt-1 text-[10px] font-medium opacity-80 sm:text-xs">{submitSub}</span>
         ) : null}
       </button>
     </form>

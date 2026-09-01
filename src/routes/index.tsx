@@ -421,7 +421,7 @@ function Index() {
                 </div>
 
                 <div
-                  className="relative p-6 sm:p-10 md:border-l-2 md:border-dashed"
+                  className="relative border-t-2 border-dashed p-6 sm:p-10 md:border-l-2 md:border-t-0"
                   style={{ borderColor: "color-mix(in oklab, var(--primary) 55%, transparent)" }}
                 >
                   <div className="mx-auto max-w-sm">
@@ -442,13 +442,47 @@ function Index() {
               </div>
 
               <span
-                className="absolute left-[30%] top-0 hidden size-12 -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
-                style={{ backgroundColor: "var(--background)", border: "2px solid var(--primary)" }}
+                className="absolute left-[30%] top-0 hidden h-6 w-12 -translate-x-1/2 md:block"
+                style={{
+                  backgroundColor: "var(--background)",
+                  borderStyle: "solid",
+                  borderWidth: "0 2px 2px 2px",
+                  borderColor: "var(--primary)",
+                  borderRadius: "0 0 999px 999px",
+                }}
                 aria-hidden
               />
               <span
-                className="absolute bottom-0 left-[30%] hidden size-12 -translate-x-1/2 translate-y-1/2 rounded-full md:block"
-                style={{ backgroundColor: "var(--background)", border: "2px solid var(--primary)" }}
+                className="absolute bottom-0 left-[30%] hidden h-6 w-12 -translate-x-1/2 md:block"
+                style={{
+                  backgroundColor: "var(--background)",
+                  borderStyle: "solid",
+                  borderWidth: "2px 2px 0 2px",
+                  borderColor: "var(--primary)",
+                  borderRadius: "999px 999px 0 0",
+                }}
+                aria-hidden
+              />
+              <span
+                className="absolute left-0 top-64 h-12 w-6 -translate-y-1/2 md:hidden"
+                style={{
+                  backgroundColor: "var(--background)",
+                  borderStyle: "solid",
+                  borderWidth: "2px 2px 2px 0",
+                  borderColor: "var(--primary)",
+                  borderRadius: "0 999px 999px 0",
+                }}
+                aria-hidden
+              />
+              <span
+                className="absolute right-0 top-64 h-12 w-6 -translate-y-1/2 md:hidden"
+                style={{
+                  backgroundColor: "var(--background)",
+                  borderStyle: "solid",
+                  borderWidth: "2px 0 2px 2px",
+                  borderColor: "var(--primary)",
+                  borderRadius: "999px 0 0 999px",
+                }}
                 aria-hidden
               />
             </div>
