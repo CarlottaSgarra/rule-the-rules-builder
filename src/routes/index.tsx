@@ -390,9 +390,12 @@ function Index() {
 
         <div className="relative z-10 col-start-1 row-start-1 mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-20 text-center">
           <Reveal>
-            <p className="font-condensed text-xs uppercase tracking-[0.4em] text-primary sm:text-sm">
-              Live su Zoom · 5, 6, 7 ottobre · ore 20:00-21:00
-            </p>
+            <span
+              className="inline-block rounded-full px-5 py-2 font-condensed text-xs uppercase tracking-[0.25em] text-primary-foreground sm:text-sm"
+              style={{ backgroundImage: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
+            >
+              Live su Zoom · 5-6-7 ottobre
+            </span>
           </Reveal>
 
           <Reveal delay={80}>
@@ -475,7 +478,7 @@ function Index() {
                     />
                     <div className="mt-4 flex justify-center">
                       <div
-                        className="inline-flex items-center gap-3 rounded-lg px-4 py-2.5"
+                        className="inline-flex items-center gap-3 rounded-xl px-4 py-2.5"
                         style={{
                           backgroundColor: "color-mix(in oklab, var(--card) 35%, transparent)",
                           border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
