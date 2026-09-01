@@ -371,7 +371,7 @@ function Index() {
                   boxShadow: "var(--shadow-gold)",
                   top: "-0.6rem",
                   right: "-0.5rem",
-                  transform: "rotate(-11deg)",
+                  transform: "rotate(11deg)",
                 }}
               >
                 Unico evento 2026
