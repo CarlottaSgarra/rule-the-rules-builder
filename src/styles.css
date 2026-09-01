@@ -65,61 +65,61 @@
   --radius: 0.5rem;
 
   /* Rule The Rules — Carlotta brand: Mulberry Wood / Tidal / Rosa pastello / Bianco */
-  --background: oklch(0.316 0.129 357.5); /* Mulberry Wood #5f0032 */
-  --foreground: oklch(0.952 0 89.9); /* Bianco #efefef */
+  --background: oklch(0.931 0.034 35.9); /* Rosa pastello #fee1d9 */
+  --foreground: oklch(0.316 0.129 357.5); /* Mulberry Wood #5f0032 */
 
-  --card: oklch(0.366 0.125 357.5); /* Mulberry Wood, lightened */
-  --card-foreground: oklch(0.952 0 89.9);
-  --popover: oklch(0.366 0.125 357.5);
-  --popover-foreground: oklch(0.952 0 89.9);
+  --card: oklch(0.89 0.045 33);
+  --card-foreground: oklch(0.316 0.129 357.5);
+  --popover: oklch(0.89 0.045 33);
+  --popover-foreground: oklch(0.316 0.129 357.5);
 
-  --primary: oklch(0.931 0.034 35.9); /* Rosa pastello #fee1d9 */
+  --primary: oklch(0.95 0.111 117.6); /* Tidal #e8f9a2 */
   --primary-foreground: oklch(0.316 0.129 357.5); /* Mulberry Wood */
 
-  --secondary: oklch(0.95 0.111 117.6); /* Tidal #e8f9a2 */
-  --secondary-foreground: oklch(0.316 0.129 357.5);
+  --secondary: oklch(0.316 0.129 357.5); /* Mulberry Wood */
+  --secondary-foreground: oklch(0.952 0 89.9);
 
-  --muted: oklch(0.4 0.1 357.5);
-  --muted-foreground: oklch(0.85 0.03 40);
+  --muted: oklch(0.87 0.02 30);
+  --muted-foreground: oklch(0.45 0.09 357.5);
 
-  --accent: oklch(0.95 0.111 117.6); /* Tidal */
-  --accent-foreground: oklch(0.316 0.129 357.5);
+  --accent: oklch(0.316 0.129 357.5); /* Mulberry Wood */
+  --accent-foreground: oklch(0.952 0 89.9);
 
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(0.98 0 0);
 
-  --border: oklch(0.5 0.08 357.5);
-  --input: oklch(0.5 0.08 357.5);
-  --ring: oklch(0.931 0.034 35.9);
+  --border: oklch(0.75 0.03 30);
+  --input: oklch(0.75 0.03 30);
+  --ring: oklch(0.95 0.111 117.6);
 
-  --chart-1: oklch(0.931 0.034 35.9);
+  --chart-1: oklch(0.95 0.111 117.6);
   --chart-2: oklch(0.316 0.129 357.5);
-  --chart-3: oklch(0.95 0.111 117.6);
+  --chart-3: oklch(0.931 0.034 35.9);
   --chart-4: oklch(0.6 0.1 60);
   --chart-5: oklch(0.4 0.02 75);
 
-  --sidebar: oklch(0.366 0.125 357.5);
-  --sidebar-foreground: oklch(0.952 0 89.9);
-  --sidebar-primary: oklch(0.931 0.034 35.9);
+  --sidebar: oklch(0.89 0.045 33);
+  --sidebar-foreground: oklch(0.316 0.129 357.5);
+  --sidebar-primary: oklch(0.95 0.111 117.6);
   --sidebar-primary-foreground: oklch(0.316 0.129 357.5);
-  --sidebar-accent: oklch(0.4 0.1 357.5);
+  --sidebar-accent: oklch(0.316 0.129 357.5);
   --sidebar-accent-foreground: oklch(0.952 0 89.9);
-  --sidebar-border: oklch(0.5 0.08 357.5);
-  --sidebar-ring: oklch(0.931 0.034 35.9);
+  --sidebar-border: oklch(0.75 0.03 30);
+  --sidebar-ring: oklch(0.95 0.111 117.6);
 
-  --cream: oklch(0.95 0.111 117.6); /* Tidal #e8f9a2 */
-  --gold-deep: oklch(0.42 0.14 357.5);
-  --ink: oklch(0.316 0.129 357.5); /* Mulberry Wood */
-  --ink-muted: oklch(0.48 0.09 357.5);
+  --cream: oklch(0.316 0.129 357.5); /* Mulberry Wood — the inset panels are now dark */
+  --gold-deep: oklch(0.95 0.111 117.6); /* Tidal, for labels on the now-dark inset panels */
+  --ink: oklch(0.952 0 89.9); /* Bianco — text on the dark inset panels */
+  --ink-muted: oklch(0.85 0.03 40);
 
   --gradient-gold: linear-gradient(
     100deg,
-    oklch(0.86 0.045 28),
-    oklch(0.95 0.03 36),
-    oklch(0.89 0.05 42)
+    oklch(0.8 0.13 110),
+    oklch(0.96 0.1 120),
+    oklch(0.85 0.13 115)
   );
-  --gradient-night: linear-gradient(180deg, oklch(0.3 0.12 357.5), oklch(0.36 0.1 340));
-  --shadow-gold: 0 18px 50px -18px oklch(0.931 0.034 35.9 / 0.5);
+  --gradient-night: linear-gradient(180deg, oklch(0.93 0.035 34), oklch(0.9 0.04 30));
+  --shadow-gold: 0 18px 50px -18px oklch(0.95 0.111 117.6 / 0.5);
   --shadow-deep: 0 30px 70px -30px oklch(0 0 0 / 0.85);
 
   --font-display: "Fraunces", Georgia, serif;

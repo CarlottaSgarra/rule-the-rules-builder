@@ -374,7 +374,7 @@ function Index() {
           aria-hidden
         >
           {heroWhispers.map((phrase, i) => (
-            <div key={i} className="w-full overflow-hidden">
+            <div key={i} className="w-full shrink-0 overflow-hidden">
               <div
                 className={`flex w-max shrink-0 gap-12 ${
                   i % 2 === 0 ? "animate-marquee-ltr" : "animate-marquee-rtl"
@@ -383,7 +383,7 @@ function Index() {
                 {[phrase, phrase].map((p, j) => (
                   <span
                     key={j}
-                    className="whitespace-nowrap font-condensed text-[13vw] font-bold uppercase leading-none tracking-tight text-white/[0.06] md:text-[6vw]"
+                    className="whitespace-nowrap font-condensed text-[13vw] font-bold uppercase leading-none tracking-tight text-[color:var(--foreground)]/[0.08] md:text-[5vw]"
                   >
                     {p}
                   </span>
