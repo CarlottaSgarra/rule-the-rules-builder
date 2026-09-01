@@ -465,7 +465,7 @@ function Index() {
               }
             >
               <div className="grid grid-cols-1 text-left md:grid-cols-[3fr_7fr]">
-                <div className="relative h-64 w-full md:h-full">
+                <div className="relative h-96 w-full md:h-full">
                   <img
                     src={heroImg}
                     alt="Carlotta Sgarra"
@@ -565,7 +565,7 @@ function Index() {
                 aria-hidden
               />
               <span
-                className="absolute top-64 h-12 w-6 -translate-y-1/2 md:hidden"
+                className="absolute top-96 h-12 w-6 -translate-y-1/2 md:hidden"
                 style={{
                   left: "-2px",
                   backgroundColor: "var(--background)",
@@ -577,7 +577,7 @@ function Index() {
                 aria-hidden
               />
               <span
-                className="absolute top-64 h-12 w-6 -translate-y-1/2 md:hidden"
+                className="absolute top-96 h-12 w-6 -translate-y-1/2 md:hidden"
                 style={{
                   right: "-2px",
                   backgroundColor: "var(--background)",
@@ -594,7 +594,8 @@ function Index() {
           <Reveal delay={340} className="mt-24 w-full">
             <h2 className="mx-auto max-w-5xl text-3xl sm:text-4xl">
               Sai qual è il risultato di seguire mille regole per piacere all’algoritmo? Che ora hai
-              la nausea quando crei i contenuti e ti fa schifo vendere online.
+              la nausea quando crei i contenuti e <Highlight>ti fa schifo vendere online</Highlight>
+              .
             </h2>
             <p className="mx-auto mt-4 max-w-5xl text-base text-foreground/75 sm:text-lg">
               Durante l’evento rompiamo tutti questi schemi per tornare alla tua vera identità.
