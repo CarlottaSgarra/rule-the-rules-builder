@@ -44,12 +44,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const heroStats = [
-  { v: "3", l: "giorni" },
-  { v: "Live", l: "su zoom" },
-  { v: "27€", l: "biglietto" },
-];
-
 const frameworkSteps = [
   {
     n: "1",
@@ -400,73 +394,24 @@ function Index() {
             <CtaButton label="Prendi il tuo posto →" />
           </Reveal>
 
-          <Reveal delay={300} className="mt-8">
-            <img
-              src={heroImg}
-              alt="Carlotta Sgarra"
-              loading="lazy"
-              width={320}
-              height={320}
-              className="mx-auto aspect-square w-32 rounded-full object-cover sm:w-40"
-              style={{ border: "3px solid var(--primary)", boxShadow: "var(--shadow-gold)" }}
-            />
-          </Reveal>
-
-          <Reveal delay={360} className="mt-10 w-full">
+          <Reveal delay={300} className="mt-10 w-full">
             <div
               className="relative overflow-hidden rounded-[2rem]"
               style={{
                 backgroundImage:
                   "linear-gradient(100deg, var(--card) 0%, var(--card) 45%, color-mix(in oklab, var(--primary) 32%, var(--card)) 100%)",
                 border: "2px solid var(--primary)",
-                boxShadow: "var(--shadow-gold)",
+                boxShadow:
+                  "var(--shadow-gold), 0 60px 100px -30px color-mix(in oklab, var(--primary) 45%, transparent)",
               }}
             >
               <div className="grid text-left md:grid-cols-2">
-                <div className="p-6 sm:p-10">
-                  <SectionLabel>Video di presentazione</SectionLabel>
-                  <VideoFrame
-                    label="Guarda il video di presentazione di Rule The Rules"
-                    duration="06:15"
-                    poster={livestreamImg}
-                  />
-
-                  <div className="mt-6 flex flex-wrap items-center gap-3 font-condensed text-sm uppercase tracking-[0.12em]">
-                    <span
-                      className="rounded-full px-3 py-1 text-primary-foreground"
-                      style={{ backgroundImage: "var(--gradient-gold)" }}
-                    >
-                      Quando: 5, 6, 7 ottobre
-                    </span>
-                    <span className="text-foreground/80">
-                      Dove: <span className="text-primary">Zoom</span>
-                    </span>
-                    <span className="text-foreground/80">
-                      Ore: <span className="text-primary">20:00-21:00</span>
-                    </span>
-                  </div>
-
-                  <p className="mt-5 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                    Le iscrizioni chiudono tra:
-                  </p>
-                  <div className="mt-3">
-                    <Countdown />
-                  </div>
-
-                  <div className="mt-6 flex items-center gap-6">
-                    {heroStats.map((s, i) => (
-                      <div key={s.l} className="flex items-center gap-6">
-                        {i > 0 ? <span className="h-8 w-px bg-border" aria-hidden /> : null}
-                        <div>
-                          <div className="font-condensed text-xl text-primary">{s.v}</div>
-                          <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                            {s.l}
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                <img
+                  src={heroImg}
+                  alt="Carlotta Sgarra"
+                  loading="lazy"
+                  className="h-64 w-full object-cover md:h-full"
+                />
 
                 <div
                   className="relative p-6 sm:p-10 md:border-l-2 md:border-dashed"
@@ -475,19 +420,10 @@ function Index() {
                   <p className="text-center text-sm text-foreground/85">
                     Compila il form per <strong>riservare il tuo posto</strong> ↓
                   </p>
-                  <SignupForm className="mt-6" />
-
-                  <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs font-medium text-foreground/85 sm:text-sm">
-                    <li className="flex items-center gap-1.5">
-                      <span className="text-primary">✓</span> Soli €27
-                    </li>
-                    <li className="flex items-center gap-1.5">
-                      <span className="text-primary">✓</span> 5, 6, 7 ottobre
-                    </li>
-                    <li className="flex items-center gap-1.5">
-                      <span className="text-primary">✓</span> Garanzia di rimborso
-                    </li>
-                  </ul>
+                  <SignupForm
+                    className="mt-6"
+                    submitSub="Soli €27 · 5, 6, 7 ottobre · Garanzia di rimborso"
+                  />
                 </div>
               </div>
 
@@ -502,6 +438,15 @@ function Index() {
                 aria-hidden
               />
             </div>
+          </Reveal>
+
+          <Reveal delay={340} className="mt-12 w-full">
+            <SectionLabel>Video di presentazione</SectionLabel>
+            <VideoFrame
+              label="Guarda il video di presentazione di Rule The Rules"
+              duration="06:15"
+              poster={livestreamImg}
+            />
           </Reveal>
         </div>
       </header>
