@@ -390,12 +390,9 @@ function Index() {
 
         <div className="relative z-10 col-start-1 row-start-1 mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-20 text-center">
           <Reveal>
-            <span
-              className="inline-block rounded-full px-5 py-2 font-condensed text-xs uppercase tracking-[0.25em] text-primary-foreground sm:text-sm"
-              style={{ backgroundImage: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
-            >
-              Live su Zoom · 5-6-7 ottobre
-            </span>
+            <p className="font-condensed text-xs uppercase tracking-[0.4em] text-primary sm:text-sm">
+              Live su Zoom · 5, 6, 7 ottobre · ore 20:00-21:00
+            </p>
           </Reveal>
 
           <Reveal delay={80}>
@@ -469,9 +466,17 @@ function Index() {
                       Pronta a rompere le regole una volta per tutte e a ridefinire la tua
                       comunicazione identitaria?
                     </p>
-                    <p className="mt-3 text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                      <span className="text-primary">Live su Zoom</span> · 5-6-7 ottobre
-                    </p>
+                    <div className="mt-3 flex justify-center">
+                      <span
+                        className="inline-block rounded-full px-5 py-2 font-condensed text-xs uppercase tracking-[0.25em] text-primary-foreground sm:text-sm"
+                        style={{
+                          backgroundImage: "var(--gradient-gold)",
+                          boxShadow: "var(--shadow-gold)",
+                        }}
+                      >
+                        Live su Zoom · 5-6-7 ottobre
+                      </span>
+                    </div>
                     <SignupForm
                       className="mt-6"
                       submitSub="Soli €27 · 5-6-7 ottobre · Garanzia di rimborso"
