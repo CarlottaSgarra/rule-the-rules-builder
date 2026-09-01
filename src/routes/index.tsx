@@ -137,6 +137,11 @@ const heroWhispers = [
   "NON MI SENTO PIÙ",
   "NON MI RICONOSCO PIÙ IN QUELLO CHE PUBBLICO",
   "QUANDO REGISTRO MI SEMBRA DI RECITARE",
+  "BASTA HOOK",
+  "BASTA REGOLE",
+  "BASTA COPIONI",
+  "BASTA FORMULE",
+  "BASTA PIANI EDITORIALI",
 ];
 
 const forWhoYes = [
@@ -365,7 +370,7 @@ function Index() {
         />
 
         <div
-          className="pointer-events-none sticky top-0 z-0 col-start-1 row-start-1 flex h-screen w-full flex-col items-center justify-center gap-2 md:h-[90vh]"
+          className="pointer-events-none sticky top-0 z-0 col-start-1 row-start-1 flex h-screen w-full flex-col items-center justify-evenly gap-2 py-6 md:h-[90vh]"
           aria-hidden
         >
           {heroWhispers.map((phrase, i) => (
@@ -378,7 +383,7 @@ function Index() {
                 {[phrase, phrase].map((p, j) => (
                   <span
                     key={j}
-                    className="whitespace-nowrap font-condensed text-[11vw] font-bold uppercase leading-none tracking-tight text-white/[0.06]"
+                    className="whitespace-nowrap font-condensed text-[13vw] font-bold uppercase leading-none tracking-tight text-white/[0.06] md:text-[6vw]"
                   >
                     {p}
                   </span>
