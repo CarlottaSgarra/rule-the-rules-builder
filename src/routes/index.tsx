@@ -17,6 +17,7 @@ import iphoneImg from "@/assets/iphone-start.jpg";
 import livestreamImg from "@/assets/livestream.jpg";
 import goldTexture from "@/assets/texture-gold.jpg";
 import testimonialImg from "@/assets/testimonial-1.jpg";
+import heroImg from "@/assets/hero-carlotta.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -45,7 +46,7 @@ export const Route = createFileRoute("/")({
 
 const heroStats = [
   { v: "3", l: "giorni" },
-  { v: "Live", l: "online" },
+  { v: "Live", l: "su zoom" },
   { v: "27€", l: "biglietto" },
 ];
 
@@ -355,7 +356,7 @@ function Index() {
         <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-20 text-center">
           <Reveal>
             <p className="font-condensed text-xs uppercase tracking-[0.4em] text-primary sm:text-sm">
-              Show live · dal 5 ottobre 2026
+              Live su Zoom · 5, 6, 7 ottobre · ore 20:00-21:00
             </p>
           </Reveal>
 
@@ -379,19 +380,44 @@ function Index() {
             </div>
           </Reveal>
 
-          <Reveal delay={160}>
-            <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-foreground/90 sm:text-lg">
-              Ti hanno insegnato a fare tutto come si deve. Ed è proprio per questo che oggi nessuno
-              riesce a distinguerti. Tre serate live per smettere di subire le regole e iniziare a
-              comunicare come sei fatta <strong>tu</strong>.
+          <Reveal delay={150}>
+            <p className="mx-auto mt-8 max-w-2xl text-lg font-semibold leading-snug text-foreground sm:text-2xl">
+              In 3 serate distruggiamo le regole che i guru ti hanno sempre detto di seguire per
+              fatturare online e scolpisci le tue regole per creare una{" "}
+              <Highlight>comunicazione identitaria</Highlight>.
             </p>
           </Reveal>
 
-          <Reveal delay={220} className="mt-10 w-full">
+          <Reveal delay={210}>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-foreground/75 sm:text-lg">
+              Hook, script, editing, formule: non sei stanca di dover seguire un copione tutte le
+              volte che apri Instagram? E se ci fosse la soluzione per poter vendere senza più
+              seguire queste regole?
+            </p>
+          </Reveal>
+
+          <Reveal delay={260} className="mt-8 flex justify-center">
+            <CtaButton label="Prendi il tuo posto →" />
+          </Reveal>
+
+          <Reveal delay={300} className="mt-8">
+            <img
+              src={heroImg}
+              alt="Carlotta Sgarra"
+              loading="lazy"
+              width={320}
+              height={320}
+              className="mx-auto aspect-square w-32 rounded-full object-cover sm:w-40"
+              style={{ border: "3px solid var(--primary)", boxShadow: "var(--shadow-gold)" }}
+            />
+          </Reveal>
+
+          <Reveal delay={360} className="mt-10 w-full">
             <div
               className="relative overflow-hidden rounded-[2rem]"
               style={{
-                backgroundColor: "var(--card)",
+                backgroundImage:
+                  "linear-gradient(100deg, var(--card) 0%, var(--card) 45%, color-mix(in oklab, var(--primary) 32%, var(--card)) 100%)",
                 border: "2px solid var(--primary)",
                 boxShadow: "var(--shadow-gold)",
               }}
@@ -410,10 +436,13 @@ function Index() {
                       className="rounded-full px-3 py-1 text-primary-foreground"
                       style={{ backgroundImage: "var(--gradient-gold)" }}
                     >
-                      Quando: dal 5 ottobre 2026
+                      Quando: 5, 6, 7 ottobre
                     </span>
                     <span className="text-foreground/80">
-                      Dove: <span className="text-primary">Online</span>
+                      Dove: <span className="text-primary">Zoom</span>
+                    </span>
+                    <span className="text-foreground/80">
+                      Ore: <span className="text-primary">20:00-21:00</span>
                     </span>
                   </div>
 
@@ -446,22 +475,29 @@ function Index() {
                   <p className="text-center text-sm text-foreground/85">
                     Compila il form per <strong>riservare il tuo posto</strong> ↓
                   </p>
-                  <SignupForm compact className="mt-6" />
+                  <SignupForm className="mt-6" />
 
-                  <div className="mt-6 space-y-2 text-center text-sm font-medium text-foreground/90">
-                    <p>🛡️ Garanzia: soddisfatta o rimborsata entro la seconda serata.</p>
-                    <p>Oltre 1.500 professioniste nei miei percorsi.</p>
-                  </div>
+                  <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 text-xs font-medium text-foreground/85 sm:text-sm">
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-primary">✓</span> Soli €27
+                    </li>
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-primary">✓</span> 5, 6, 7 ottobre
+                    </li>
+                    <li className="flex items-center gap-1.5">
+                      <span className="text-primary">✓</span> Garanzia di rimborso
+                    </li>
+                  </ul>
                 </div>
               </div>
 
               <span
-                className="absolute left-1/2 top-0 hidden size-8 -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
+                className="absolute left-1/2 top-0 hidden size-12 -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
                 style={{ backgroundColor: "var(--background)" }}
                 aria-hidden
               />
               <span
-                className="absolute bottom-0 left-1/2 hidden size-8 -translate-x-1/2 translate-y-1/2 rounded-full md:block"
+                className="absolute bottom-0 left-1/2 hidden size-12 -translate-x-1/2 translate-y-1/2 rounded-full md:block"
                 style={{ backgroundColor: "var(--background)" }}
                 aria-hidden
               />
