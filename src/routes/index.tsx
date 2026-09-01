@@ -593,11 +593,11 @@ function Index() {
 
           <Reveal delay={340} className="mt-24 w-full">
             <SectionLabel>Video di presentazione</SectionLabel>
-            <h2 className="mx-auto max-w-3xl text-3xl sm:text-4xl">
+            <h2 className="mx-auto max-w-5xl text-3xl sm:text-4xl">
               Sai qual è il risultato di seguire mille regole per piacere all’algoritmo? Che ora hai
               la nausea quando crei i contenuti e ti fa schifo vendere online.
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base text-foreground/75 sm:text-lg">
+            <p className="mx-auto mt-4 max-w-5xl text-base text-foreground/75 sm:text-lg">
               Durante l’evento rompiamo tutti questi schemi per tornare alla tua vera identità.
             </p>
             <div className="mt-10">
@@ -1446,7 +1446,7 @@ function Index() {
                   {valueStack.map((v) => (
                     <div key={v.t}>
                       <div className="flex items-baseline gap-2">
-                        <span className="shrink-0">{v.t}</span>
+                        <span className="min-w-0">{v.t}</span>
                         <span
                           className="mb-1 flex-1 border-b border-dotted"
                           style={{ borderColor: "var(--ink-muted)" }}
