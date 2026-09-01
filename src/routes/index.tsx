@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Star, User } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -43,6 +44,14 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
+
+const avatarPlaceholders = [
+  "oklch(0.55 0.09 40)",
+  "oklch(0.5 0.1 280)",
+  "oklch(0.6 0.12 20)",
+  "oklch(0.45 0.08 200)",
+  "oklch(0.58 0.1 140)",
+];
 
 const frameworkSteps = [
   {
@@ -390,10 +399,6 @@ function Index() {
             </p>
           </Reveal>
 
-          <Reveal delay={260} className="mt-8 flex justify-center">
-            <CtaButton label="Prendi il tuo posto →" />
-          </Reveal>
-
           <Reveal delay={300} className="mt-10 w-full">
             <div
               className="relative overflow-hidden rounded-[2rem]"
@@ -413,8 +418,8 @@ function Index() {
                     loading="lazy"
                     className="h-full w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-black/55" />
-                  <p className="absolute inset-0 flex items-center justify-center p-5 text-center text-lg font-semibold leading-snug text-white sm:p-6 sm:text-xl">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
+                  <p className="absolute inset-x-0 bottom-0 p-5 text-center text-lg font-semibold leading-snug text-white sm:p-6 sm:text-xl">
                     Questo invito è per te, che sei stanca di sottometterti alle regole
                     dell’algoritmo e vuoi far uscire la vera te stessa.
                   </p>
@@ -433,17 +438,46 @@ function Index() {
                       className="mt-6"
                       submitSub="Soli €27 · 5-6-7 ottobre · Garanzia di rimborso"
                     />
-                    <p className="mt-4 text-center text-xs text-muted-foreground">
-                      In oltre dieci anni ho aiutato più di 1500 professioniste a crescere e vendere
-                      online.
-                    </p>
+                    <div className="mt-4 flex justify-center">
+                      <div
+                        className="inline-flex items-center gap-3 rounded-full px-4 py-2.5"
+                        style={{
+                          backgroundColor: "color-mix(in oklab, var(--card) 92%, black)",
+                          border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
+                        }}
+                      >
+                        <div className="flex -space-x-3">
+                          {avatarPlaceholders.map((c, i) => (
+                            <span
+                              key={i}
+                              className="flex size-9 items-center justify-center rounded-full border-2"
+                              style={{ backgroundColor: c, borderColor: "var(--card)" }}
+                            >
+                              <User className="size-4 text-white/85" />
+                            </span>
+                          ))}
+                        </div>
+                        <div className="text-left">
+                          <div className="flex gap-0.5 text-primary">
+                            {Array.from({ length: 5 }).map((_, i) => (
+                              <Star key={i} className="size-3.5 fill-current" />
+                            ))}
+                          </div>
+                          <p className="mt-0.5 text-sm font-bold text-foreground">
+                            +1.500 professioniste formate
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <span
-                className="absolute left-[30%] top-0 hidden h-6 w-12 -translate-x-1/2 md:block"
+                className="absolute hidden h-6 w-12 -translate-x-1/2 md:block"
                 style={{
+                  left: "30%",
+                  top: "-2px",
                   backgroundColor: "var(--background)",
                   borderStyle: "solid",
                   borderWidth: "0 2px 2px 2px",
@@ -453,8 +487,10 @@ function Index() {
                 aria-hidden
               />
               <span
-                className="absolute bottom-0 left-[30%] hidden h-6 w-12 -translate-x-1/2 md:block"
+                className="absolute hidden h-6 w-12 -translate-x-1/2 md:block"
                 style={{
+                  left: "30%",
+                  bottom: "-2px",
                   backgroundColor: "var(--background)",
                   borderStyle: "solid",
                   borderWidth: "2px 2px 0 2px",
@@ -464,8 +500,9 @@ function Index() {
                 aria-hidden
               />
               <span
-                className="absolute left-0 top-64 h-12 w-6 -translate-y-1/2 md:hidden"
+                className="absolute top-64 h-12 w-6 -translate-y-1/2 md:hidden"
                 style={{
+                  left: "-2px",
                   backgroundColor: "var(--background)",
                   borderStyle: "solid",
                   borderWidth: "2px 2px 2px 0",
@@ -475,8 +512,9 @@ function Index() {
                 aria-hidden
               />
               <span
-                className="absolute right-0 top-64 h-12 w-6 -translate-y-1/2 md:hidden"
+                className="absolute top-64 h-12 w-6 -translate-y-1/2 md:hidden"
                 style={{
+                  right: "-2px",
                   backgroundColor: "var(--background)",
                   borderStyle: "solid",
                   borderWidth: "2px 0 2px 2px",
