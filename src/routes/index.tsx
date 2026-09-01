@@ -11,6 +11,7 @@ import { VideoFrame } from "@/components/landing/VideoFrame";
 import { Reveal } from "@/components/landing/Reveal";
 import { SignupForm } from "@/components/landing/SignupForm";
 import { Workbook } from "@/components/landing/Workbook";
+import { Highlight } from "@/components/landing/Highlight";
 import teamImg from "@/assets/team.jpg";
 import iphoneImg from "@/assets/iphone-start.jpg";
 import livestreamImg from "@/assets/livestream.jpg";
@@ -312,7 +313,7 @@ function Index() {
   return (
     <div className="min-h-screen bg-background">
       {/* Topbar */}
-      <div className="border-b border-border/60 bg-card/60">
+      <div className="sticky top-0 z-50 border-b border-border/60 bg-card/95 backdrop-blur">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-5 py-4 text-sm text-muted-foreground sm:flex-row sm:justify-between">
           <p>
             <span className="font-semibold text-foreground">Serve aiuto?</span>{" "}
@@ -322,7 +323,7 @@ function Index() {
           </p>
           <div className="flex items-center gap-4">
             <span className="hidden text-xs uppercase tracking-[0.15em] text-muted-foreground sm:inline">
-              Iscrizioni chiuse tra
+              L’evento inizia tra
             </span>
             <Countdown compact />
             <a
@@ -354,7 +355,7 @@ function Index() {
         <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-20 text-center">
           <Reveal>
             <p className="font-condensed text-xs uppercase tracking-[0.4em] text-primary sm:text-sm">
-              Show live · dal 5 ottobre 2026 · l’unico evento del 2026
+              Show live · dal 5 ottobre 2026
             </p>
           </Reveal>
 
@@ -369,8 +370,8 @@ function Index() {
                   backgroundImage: "var(--gradient-gold)",
                   boxShadow: "var(--shadow-gold)",
                   top: "-0.6rem",
-                  left: "-0.5rem",
-                  transform: "rotate(11deg)",
+                  right: "-0.5rem",
+                  transform: "rotate(-11deg)",
                 }}
               >
                 Unico evento 2026
@@ -387,67 +388,83 @@ function Index() {
           </Reveal>
 
           <Reveal delay={220} className="mt-10 w-full">
-            <div className="grid gap-10 text-left md:grid-cols-2 md:items-start">
-              <div>
-                <SectionLabel>Video di presentazione</SectionLabel>
-                <VideoFrame
-                  label="Guarda il video di presentazione di Rule The Rules"
-                  duration="06:15"
-                  poster={livestreamImg}
-                />
+            <div
+              className="relative overflow-hidden rounded-[2rem]"
+              style={{
+                backgroundColor: "var(--card)",
+                border: "2px solid var(--primary)",
+                boxShadow: "var(--shadow-gold)",
+              }}
+            >
+              <div className="grid text-left md:grid-cols-2">
+                <div className="p-6 sm:p-10">
+                  <SectionLabel>Video di presentazione</SectionLabel>
+                  <VideoFrame
+                    label="Guarda il video di presentazione di Rule The Rules"
+                    duration="06:15"
+                    poster={livestreamImg}
+                  />
 
-                <div className="mt-6 flex flex-wrap items-center gap-3 font-condensed text-sm uppercase tracking-[0.12em]">
-                  <span
-                    className="rounded-full px-3 py-1 text-primary-foreground"
-                    style={{ backgroundImage: "var(--gradient-gold)" }}
-                  >
-                    Quando: dal 5 ottobre 2026
-                  </span>
-                  <span className="text-foreground/80">
-                    Dove: <span className="text-primary">Online</span>
-                  </span>
-                </div>
+                  <div className="mt-6 flex flex-wrap items-center gap-3 font-condensed text-sm uppercase tracking-[0.12em]">
+                    <span
+                      className="rounded-full px-3 py-1 text-primary-foreground"
+                      style={{ backgroundImage: "var(--gradient-gold)" }}
+                    >
+                      Quando: dal 5 ottobre 2026
+                    </span>
+                    <span className="text-foreground/80">
+                      Dove: <span className="text-primary">Online</span>
+                    </span>
+                  </div>
 
-                <p className="mt-5 text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                  Le iscrizioni chiudono tra:
-                </p>
-                <div className="mt-3">
-                  <Countdown />
-                </div>
+                  <p className="mt-5 text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                    Le iscrizioni chiudono tra:
+                  </p>
+                  <div className="mt-3">
+                    <Countdown />
+                  </div>
 
-                <div className="mt-6 flex items-center gap-6">
-                  {heroStats.map((s, i) => (
-                    <div key={s.l} className="flex items-center gap-6">
-                      {i > 0 ? <span className="h-8 w-px bg-border" aria-hidden /> : null}
-                      <div>
-                        <div className="font-condensed text-xl text-primary">{s.v}</div>
-                        <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                          {s.l}
+                  <div className="mt-6 flex items-center gap-6">
+                    {heroStats.map((s, i) => (
+                      <div key={s.l} className="flex items-center gap-6">
+                        {i > 0 ? <span className="h-8 w-px bg-border" aria-hidden /> : null}
+                        <div>
+                          <div className="font-condensed text-xl text-primary">{s.v}</div>
+                          <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                            {s.l}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                </div>
+
+                <div
+                  className="relative p-6 sm:p-10 md:border-l-2 md:border-dashed"
+                  style={{ borderColor: "color-mix(in oklab, var(--primary) 55%, transparent)" }}
+                >
+                  <p className="text-center text-sm text-foreground/85">
+                    Compila il form per <strong>riservare il tuo posto</strong> ↓
+                  </p>
+                  <SignupForm compact className="mt-6" />
+
+                  <div className="mt-6 space-y-2 text-center text-sm font-medium text-foreground/90">
+                    <p>🛡️ Garanzia: soddisfatta o rimborsata entro la seconda serata.</p>
+                    <p>Oltre 1.500 professioniste nei miei percorsi.</p>
+                  </div>
                 </div>
               </div>
 
-              <div
-                className="rounded-2xl border-4 p-6 sm:p-8"
-                style={{
-                  borderColor: "var(--primary)",
-                  backgroundColor: "var(--card)",
-                  boxShadow: "var(--shadow-gold)",
-                }}
-              >
-                <p className="text-center text-sm text-foreground/85">
-                  Compila il form per <strong>riservare il tuo posto</strong> ↓
-                </p>
-                <SignupForm compact className="mt-6" />
-
-                <div className="mt-6 space-y-2 text-center text-sm font-medium text-foreground/90">
-                  <p>🛡️ Garanzia: soddisfatta o rimborsata entro la seconda serata.</p>
-                  <p>Oltre 1.500 professioniste nei miei percorsi.</p>
-                </div>
-              </div>
+              <span
+                className="absolute left-1/2 top-0 hidden size-8 -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
+                style={{ backgroundColor: "var(--background)" }}
+                aria-hidden
+              />
+              <span
+                className="absolute bottom-0 left-1/2 hidden size-8 -translate-x-1/2 translate-y-1/2 rounded-full md:block"
+                style={{ backgroundColor: "var(--background)" }}
+                aria-hidden
+              />
             </div>
           </Reveal>
         </div>
@@ -462,8 +479,8 @@ function Index() {
           <Reveal>
             <SectionLabel tone="ink">Cos’è</SectionLabel>
             <h2 className="text-3xl text-ink sm:text-4xl">
-              “Rule The Rules” non è un altro corso su come fare contenuti “corretti”. È il
-              contrario.
+              “Rule The Rules” non è un altro corso su come fare contenuti “corretti”. È{" "}
+              <Highlight>il contrario</Highlight>.
             </h2>
             <div className="mt-6 space-y-4 text-base leading-relaxed text-ink-muted">
               <p>
@@ -516,7 +533,7 @@ function Index() {
           <Reveal>
             <SectionLabel>Il metodo</SectionLabel>
             <h2 className="max-w-2xl text-3xl sm:text-4xl">
-              Tre serate, tre passaggi, un unico percorso lineare.
+              Tre serate, tre passaggi, <Highlight>un unico percorso</Highlight> lineare.
             </h2>
           </Reveal>
 
@@ -562,7 +579,7 @@ function Index() {
             <SectionLabel tone="ink">Incluso nel tuo biglietto</SectionLabel>
             <h2 className="text-3xl text-ink sm:text-4xl">
               Ecco tutto ciò che avrai il 5, 6 e 7 ottobre acquistando ORA il tuo biglietto per
-              “Rule The Rules” a soli €27:
+              “Rule The Rules” <Highlight>a soli €27</Highlight>:
             </h2>
           </Reveal>
 
@@ -653,8 +670,8 @@ function Index() {
           <Reveal>
             <SectionLabel>Cosa ti porti a casa</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
-              Non esci con un piano editoriale da seguire. Esci sapendo finalmente come crearne uno
-              che ti assomiglia.
+              Non esci con un piano editoriale da seguire. Esci sapendo finalmente{" "}
+              <Highlight>come crearne uno che ti assomiglia</Highlight>.
             </h2>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -720,7 +737,9 @@ function Index() {
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
             <SectionLabel>Rule The Rules fa per te?</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl">Prima di iscriverti, leggi qui.</h2>
+            <h2 className="text-3xl sm:text-4xl">
+              Prima di iscriverti, <Highlight>leggi qui</Highlight>.
+            </h2>
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <Reveal>
@@ -762,7 +781,9 @@ function Index() {
         <div className="mx-auto max-w-4xl px-5 py-20">
           <Reveal>
             <SectionLabel>Le tue obiezioni</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl">Quello che pensi vs come stanno le cose.</h2>
+            <h2 className="text-3xl sm:text-4xl">
+              Quello che pensi vs <Highlight>come stanno le cose</Highlight>.
+            </h2>
           </Reveal>
           <div className="mt-10 space-y-5">
             {mythReality.map((m, i) => (
@@ -872,7 +893,8 @@ function Index() {
           <Reveal>
             <SectionLabel tone="ink">La storia</SectionLabel>
             <h2 className="text-3xl text-ink sm:text-5xl">
-              Da un Iphone ad un’Azienda: come ho fatto e come puoi farlo anche tu.
+              Da un Iphone ad <Highlight>un’Azienda</Highlight>: come ho fatto e come puoi farlo
+              anche tu.
             </h2>
           </Reveal>
 
@@ -1009,8 +1031,8 @@ function Index() {
           <Reveal>
             <SectionLabel>Lo show</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
-              Ho creato uno show live unico nel suo genere che ti mostrerà davvero come si rompono
-              le regole della comunicazione:
+              Ho creato uno show live unico nel suo genere che ti mostrerà davvero{" "}
+              <Highlight>come si rompono le regole della comunicazione</Highlight>:
             </h2>
             <div className="mt-8 space-y-4 text-base leading-relaxed text-foreground/85">
               <p>Sono stanca di eventi che ti lasciano solo slide e offerte per spennarti.</p>
@@ -1123,7 +1145,9 @@ function Index() {
         <div className="mx-auto max-w-4xl px-5 py-20">
           <Reveal>
             <SectionLabel>La trasformazione</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl">Prima di Rule The Rules, dopo Rule The Rules.</h2>
+            <h2 className="text-3xl sm:text-4xl">
+              Prima di Rule The Rules, <Highlight>dopo Rule The Rules</Highlight>.
+            </h2>
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <Reveal>
@@ -1165,7 +1189,9 @@ function Index() {
         <div className="mx-auto max-w-4xl px-5 py-20">
           <Reveal>
             <SectionLabel>La scelta</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl">Da qui puoi andare in due direzioni.</h2>
+            <h2 className="text-3xl sm:text-4xl">
+              Da qui puoi andare in <Highlight>due direzioni</Highlight>.
+            </h2>
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <Reveal>
@@ -1202,7 +1228,9 @@ function Index() {
             <div>
               <Reveal>
                 <SectionLabel>Bonus incluso</SectionLabel>
-                <h2 className="text-3xl sm:text-4xl">Ricevi il Workbook di Rule The Rules</h2>
+                <h2 className="text-3xl sm:text-4xl">
+                  Ricevi il <Highlight>Workbook</Highlight> di Rule The Rules
+                </h2>
                 <p className="mt-5 text-base leading-relaxed text-foreground/85">
                   Non è un PDF “in più”. È il documento che ti accompagna serata per serata, e che
                   alla fine delle tre giornate rappresenta fisicamente il percorso che hai fatto.
@@ -1239,7 +1267,9 @@ function Index() {
           <Reveal>
             <div className="text-center">
               <SectionLabel>Ricapitolando</SectionLabel>
-              <h2 className="text-3xl sm:text-4xl">Registrati e ottieni tutto questo:</h2>
+              <h2 className="text-3xl sm:text-4xl">
+                Registrati e ottieni <Highlight>tutto questo</Highlight>:
+              </h2>
             </div>
           </Reveal>
 
