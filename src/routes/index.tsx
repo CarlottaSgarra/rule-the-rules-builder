@@ -330,7 +330,16 @@ function Index() {
   return (
     <div className="min-h-screen bg-background">
       {/* Topbar */}
-      <div className="sticky top-0 z-50 border-b border-border/60 bg-card/95 backdrop-blur">
+      <div
+        className="sticky top-0 z-50 border-b border-border/60 backdrop-blur"
+        style={
+          {
+            backgroundColor: "color-mix(in oklab, var(--secondary) 95%, transparent)",
+            "--foreground": "var(--secondary-foreground)",
+            "--muted-foreground": "oklch(0.85 0.03 40)",
+          } as React.CSSProperties
+        }
+      >
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-5 py-4 text-sm text-muted-foreground sm:flex-row sm:justify-between">
           <p>
             <span className="font-semibold text-foreground">Serve aiuto?</span>{" "}
@@ -439,13 +448,17 @@ function Index() {
           <Reveal delay={300} className="mt-10 w-full">
             <div
               className="relative overflow-hidden rounded-[2rem]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(100deg, var(--card) 0%, var(--card) 45%, color-mix(in oklab, var(--primary) 32%, var(--card)) 100%)",
-                border: "2px solid var(--primary)",
-                boxShadow:
-                  "var(--shadow-gold), 0 60px 100px -30px color-mix(in oklab, var(--primary) 45%, transparent)",
-              }}
+              style={
+                {
+                  backgroundImage:
+                    "linear-gradient(100deg, var(--secondary) 0%, var(--secondary) 45%, color-mix(in oklab, var(--primary) 32%, var(--secondary)) 100%)",
+                  border: "2px solid var(--primary)",
+                  boxShadow:
+                    "var(--shadow-gold), 0 60px 100px -30px color-mix(in oklab, var(--primary) 45%, transparent)",
+                  "--foreground": "var(--secondary-foreground)",
+                  "--muted-foreground": "oklch(0.85 0.03 40)",
+                } as React.CSSProperties
+              }
             >
               <div className="grid text-left md:grid-cols-[3fr_7fr]">
                 <div className="relative h-64 w-full md:h-full">
@@ -490,7 +503,7 @@ function Index() {
                       <div
                         className="inline-flex items-center gap-3 rounded-xl px-4 py-2.5"
                         style={{
-                          backgroundColor: "color-mix(in oklab, var(--card) 35%, transparent)",
+                          backgroundColor: "color-mix(in oklab, var(--secondary) 35%, transparent)",
                           border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
                         }}
                       >
@@ -499,7 +512,7 @@ function Index() {
                             <span
                               key={i}
                               className="flex size-9 items-center justify-center rounded-full border-2"
-                              style={{ backgroundColor: c, borderColor: "var(--card)" }}
+                              style={{ backgroundColor: c, borderColor: "var(--secondary)" }}
                             >
                               <User className="size-4 text-white/85" />
                             </span>
