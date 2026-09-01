@@ -354,7 +354,7 @@ function Index() {
 
       {/* Hero */}
       <header
-        className="relative flex min-h-[90vh] items-center overflow-hidden"
+        className="relative grid min-h-screen grid-cols-1"
         style={{ backgroundImage: "var(--gradient-night)" }}
       >
         <img
@@ -365,20 +365,30 @@ function Index() {
         />
 
         <div
-          className="pointer-events-none absolute inset-x-0 top-0 z-0 flex h-[90vh] flex-col items-center justify-center gap-2 overflow-hidden"
+          className="pointer-events-none sticky top-0 z-0 col-start-1 row-start-1 flex h-screen w-full flex-col items-center justify-center gap-2 md:h-[90vh]"
           aria-hidden
         >
           {heroWhispers.map((phrase, i) => (
-            <p
-              key={i}
-              className="whitespace-nowrap font-condensed text-[11vw] font-bold uppercase leading-none tracking-tight text-white/[0.06]"
-            >
-              {phrase}
-            </p>
+            <div key={i} className="w-full overflow-hidden">
+              <div
+                className={`flex w-max shrink-0 gap-12 ${
+                  i % 2 === 0 ? "animate-marquee-ltr" : "animate-marquee-rtl"
+                }`}
+              >
+                {[phrase, phrase].map((p, j) => (
+                  <span
+                    key={j}
+                    className="whitespace-nowrap font-condensed text-[11vw] font-bold uppercase leading-none tracking-tight text-white/[0.06]"
+                  >
+                    {p}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
 
-        <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-20 text-center">
+        <div className="relative z-10 col-start-1 row-start-1 mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-20 text-center">
           <Reveal>
             <p className="font-condensed text-xs uppercase tracking-[0.4em] text-primary sm:text-sm">
               Live su Zoom · 5, 6, 7 ottobre · ore 20:00-21:00

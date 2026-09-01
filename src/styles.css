@@ -199,3 +199,36 @@
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-gold);
 }
+
+@keyframes marquee-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes marquee-rtl {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-marquee-ltr {
+  animation: marquee-ltr 38s linear infinite;
+}
+
+@utility animate-marquee-rtl {
+  animation: marquee-rtl 38s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-ltr,
+  .animate-marquee-rtl {
+    animation: none;
+  }
+}
