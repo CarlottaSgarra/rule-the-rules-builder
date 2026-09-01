@@ -806,10 +806,10 @@ function Index() {
       </section>
 
       {/* Cosa ti porti a casa */}
-      <section className="border-y border-border/60 bg-card/40">
+      <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-4xl px-5 py-20">
           <Reveal>
-            <SectionLabel>Cosa ti porti a casa</SectionLabel>
+            <SectionLabel tone="ink">Cosa ti porti a casa</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
               Non esci con un piano editoriale da seguire. Esci sapendo finalmente{" "}
               <Highlight>come crearne uno che ti assomiglia</Highlight>.
@@ -874,10 +874,10 @@ function Index() {
       </section>
 
       {/* Per chi è / per chi non è */}
-      <section className="border-y border-border/60 bg-card/40">
+      <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <SectionLabel>Rule The Rules fa per te?</SectionLabel>
+            <SectionLabel tone="ink">Rule The Rules fa per te?</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
               Prima di iscriverti, <Highlight>leggi qui</Highlight>.
             </h2>
@@ -952,20 +952,20 @@ function Index() {
       </section>
 
       {/* Riprova sociale */}
-      <section className="border-y border-border/60 bg-card/40">
+      <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
-            <SectionLabel>Riprova sociale</SectionLabel>
+            <SectionLabel tone="ink">Riprova sociale</SectionLabel>
             <h2 className="max-w-3xl text-3xl sm:text-4xl">
               Ho documentato decine di storie di successo delle nostre clienti: donne meravigliose,
               tenaci, che hanno dato nuova forma al loro dolore e hanno ottenuto ciò che
               desideravano.
             </h2>
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-foreground/85">
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-ink">
               Te le mostro così che tu possa sentire che tutto ciò che sto per raccontarti è davvero
               possibile.
             </p>
-            <p className="mt-3 max-w-3xl text-sm italic text-muted-foreground">
+            <p className="mt-3 max-w-3xl text-sm italic text-ink-muted">
               (Questi non sono solo numeri su uno schermo: sono persone reali che hanno agito,
               applicato quello che hanno imparato, e trasformato le loro vite, come ho fatto io).
             </p>
@@ -1014,7 +1014,7 @@ function Index() {
               </div>
             </div>
 
-            <p className="mt-10 text-center text-sm font-semibold text-foreground/80">
+            <p className="mt-10 text-center text-sm font-semibold text-ink">
               Attenzione: non iscriverti a “Rule The Rules 2026” se non sei pronta a riconoscerti di
               nuovo in quello che pubblichi.
             </p>
@@ -1167,24 +1167,22 @@ function Index() {
       </section>
 
       {/* Lo show */}
-      <section className="border-y border-border/60 bg-card/40">
+      <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <SectionLabel>Lo show</SectionLabel>
+            <SectionLabel tone="ink">Lo show</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
               Ho creato uno show live unico nel suo genere che ti mostrerà davvero{" "}
               <Highlight>come si rompono le regole della comunicazione</Highlight>:
             </h2>
-            <div className="mt-8 space-y-4 text-base leading-relaxed text-foreground/85">
+            <div className="mt-8 space-y-4 text-base leading-relaxed text-ink">
               <p>Sono stanca di eventi che ti lasciano solo slide e offerte per spennarti.</p>
               <p>
                 Sono stanca che tu veda imprenditori felici che fanno soldi su soldi, sentendoti una
                 merda di più ogni giorno che passa.
               </p>
               <p>Per questo ho deciso di fare davvero questa follia.</p>
-              <p className="font-semibold text-foreground">
-                Durante questo show in diretta streaming:
-              </p>
+              <p className="font-semibold text-ink">Durante questo show in diretta streaming:</p>
             </div>
           </Reveal>
 
@@ -1217,10 +1215,10 @@ function Index() {
               Ti consegno il metodo per smettere di comunicare come tutte le altre e diventare
               impossibile da confondere.
             </h3>
-            <p className="mt-6 text-base italic text-foreground/85">
+            <p className="mt-6 text-base italic text-ink">
               E dal <strong>5 al 7 ottobre non vedrai solo Carlotta...</strong>
             </p>
-            <p className="mt-2 text-base text-foreground/85">
+            <p className="mt-2 text-base text-ink">
               Vedrai il team intero, le nostre dinamiche, le nostre strategie, le nostre follie.
             </p>
             <img
@@ -1231,7 +1229,7 @@ function Index() {
               height={853}
               className="mt-8 w-full rounded-2xl border border-primary/20 object-cover"
             />
-            <div className="mt-8 space-y-4 text-base leading-relaxed text-foreground/85">
+            <div className="mt-8 space-y-4 text-base leading-relaxed text-ink">
               <p>
                 <strong>
                   È la prima volta che in Italia qualcuno ti mostra davvero che cos’è un’azienda
@@ -1244,10 +1242,13 @@ function Index() {
                 lavorano per la tua azienda mentre sei nel mare cristallino della Sardegna.
               </p>
               <p>Sì, libera professionista e imprenditrice, questa volta ci prendiamo tutto.</p>
-              <p className="font-semibold text-foreground">Però, c’è un però…</p>
+              <p className="font-semibold text-ink">Però, c’è un però…</p>
             </div>
 
-            <div className="surface-card mt-8 p-8 text-center">
+            <div
+              className="surface-card mt-8 p-8 text-center"
+              style={{ color: "var(--card-foreground)" }}
+            >
               <p className="font-condensed text-2xl uppercase tracking-[0.2em] text-secondary">
                 Solo live. Solo una volta.
               </p>
@@ -1326,10 +1327,10 @@ function Index() {
       </section>
 
       {/* La scelta */}
-      <section className="border-y border-border/60 bg-card/40">
+      <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-4xl px-5 py-20">
           <Reveal>
-            <SectionLabel>La scelta</SectionLabel>
+            <SectionLabel tone="ink">La scelta</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
               Da qui puoi andare in <Highlight>due direzioni</Highlight>.
             </h2>
@@ -1535,7 +1536,7 @@ function Index() {
       </section>
 
       {/* Form iscrizione */}
-      <section id="iscriviti" className="border-y border-border/60 bg-card/40">
+      <section id="iscriviti" className="bg-secondary">
         <div className="mx-auto max-w-2xl px-5 py-20">
           <Reveal>
             <div className="surface-card p-8">
