@@ -405,7 +405,7 @@ function Index() {
                   "var(--shadow-gold), 0 60px 100px -30px color-mix(in oklab, var(--primary) 45%, transparent)",
               }}
             >
-              <div className="grid text-left md:grid-cols-[2fr_3fr]">
+              <div className="grid text-left md:grid-cols-[3fr_7fr]">
                 <div className="relative h-64 w-full md:h-full">
                   <img
                     src={heroImg}
@@ -413,8 +413,8 @@ function Index() {
                     loading="lazy"
                     className="h-full w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent" />
-                  <p className="absolute inset-x-0 bottom-0 p-5 text-sm font-medium leading-snug text-white sm:p-6">
+                  <div className="absolute inset-0 bg-black/55" />
+                  <p className="absolute inset-0 flex items-center justify-center p-5 text-center text-lg font-semibold leading-snug text-white sm:p-6 sm:text-xl">
                     Questo invito è per te, che sei stanca di sottometterti alle regole
                     dell’algoritmo e vuoi far uscire la vera te stessa.
                   </p>
@@ -424,29 +424,31 @@ function Index() {
                   className="relative p-6 sm:p-10 md:border-l-2 md:border-dashed"
                   style={{ borderColor: "color-mix(in oklab, var(--primary) 55%, transparent)" }}
                 >
-                  <p className="text-center text-base font-semibold text-foreground">
-                    Pronta a rompere le regole una volta per tutte e a ridefinire la tua
-                    comunicazione identitaria?
-                  </p>
-                  <SignupForm
-                    className="mt-6"
-                    submitSub="Soli €27 · 5-6-7 ottobre · Garanzia di rimborso"
-                  />
-                  <p className="mt-4 text-center text-xs text-muted-foreground">
-                    In oltre dieci anni ho aiutato più di 1500 professioniste a crescere e vendere
-                    online.
-                  </p>
+                  <div className="mx-auto max-w-sm">
+                    <p className="text-center text-base font-semibold text-foreground">
+                      Pronta a rompere le regole una volta per tutte e a ridefinire la tua
+                      comunicazione identitaria?
+                    </p>
+                    <SignupForm
+                      className="mt-6"
+                      submitSub="Soli €27 · 5-6-7 ottobre · Garanzia di rimborso"
+                    />
+                    <p className="mt-4 text-center text-xs text-muted-foreground">
+                      In oltre dieci anni ho aiutato più di 1500 professioniste a crescere e vendere
+                      online.
+                    </p>
+                  </div>
                 </div>
               </div>
 
               <span
-                className="absolute left-[40%] top-0 hidden size-12 -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
-                style={{ backgroundColor: "var(--background)" }}
+                className="absolute left-[30%] top-0 hidden size-12 -translate-x-1/2 -translate-y-1/2 rounded-full md:block"
+                style={{ backgroundColor: "var(--background)", border: "2px solid var(--primary)" }}
                 aria-hidden
               />
               <span
-                className="absolute bottom-0 left-[40%] hidden size-12 -translate-x-1/2 translate-y-1/2 rounded-full md:block"
-                style={{ backgroundColor: "var(--background)" }}
+                className="absolute bottom-0 left-[30%] hidden size-12 -translate-x-1/2 translate-y-1/2 rounded-full md:block"
+                style={{ backgroundColor: "var(--background)", border: "2px solid var(--primary)" }}
                 aria-hidden
               />
             </div>
