@@ -31,7 +31,7 @@ export function SignupForm({
         />
       )}
       <label className="flex items-start gap-3 text-xs text-muted-foreground">
-        <input type="checkbox" className="mt-0.5 accent-[oklch(0.79_0.15_84)]" />
+        <input type="checkbox" className="mt-0.5 accent-[var(--primary)]" />
         <span>
           Ho visto e accettato la{" "}
           <a
