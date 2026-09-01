@@ -383,24 +383,27 @@ function Index() {
           style={{ gridTemplateRows: `repeat(${heroWhispers.length}, 1fr)` }}
           aria-hidden
         >
-          {heroWhispers.map((phrase, i) => (
-            <div key={i} className="flex w-full items-center overflow-hidden">
-              <div
-                className={`flex w-max shrink-0 gap-12 ${
-                  i % 2 === 0 ? "animate-marquee-ltr" : "animate-marquee-rtl"
-                }`}
-              >
-                {[phrase, phrase, phrase].map((p, j) => (
-                  <span
-                    key={j}
-                    className="whitespace-nowrap font-condensed text-[9vh] font-bold uppercase leading-none tracking-tight text-[color:var(--foreground)]/[0.08] md:text-[7vh]"
-                  >
-                    {p}
-                  </span>
-                ))}
+          {heroWhispers.map((phrase, i) => {
+            const padded = Array(8).fill(phrase).join("   ·   ");
+            return (
+              <div key={i} className="flex w-full items-center overflow-hidden">
+                <div
+                  className={`flex w-max shrink-0 gap-12 ${
+                    i % 2 === 0 ? "animate-marquee-ltr" : "animate-marquee-rtl"
+                  }`}
+                >
+                  {[padded, padded].map((p, j) => (
+                    <span
+                      key={j}
+                      className="whitespace-nowrap font-condensed text-[9vh] font-bold uppercase leading-none tracking-tight text-[color:var(--foreground)]/[0.08] md:text-[7vh]"
+                    >
+                      {p}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="relative z-10 col-start-1 row-start-1 mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-20 text-center">
