@@ -395,7 +395,7 @@ function Index() {
                   {[padded, padded].map((p, j) => (
                     <span
                       key={j}
-                      className="whitespace-nowrap font-condensed text-[9vh] font-bold uppercase leading-none tracking-tight text-[color:var(--foreground)]/[0.08] md:text-[7vh]"
+                      className="whitespace-nowrap font-condensed text-[9vh] font-bold uppercase leading-none tracking-tight text-[color:var(--foreground)]/[0.04] md:text-[7vh]"
                     >
                       {p}
                     </span>
@@ -592,7 +592,6 @@ function Index() {
           </Reveal>
 
           <Reveal delay={340} className="mt-24 w-full">
-            <SectionLabel>Video di presentazione</SectionLabel>
             <h2 className="mx-auto max-w-5xl text-3xl sm:text-4xl">
               Sai qual è il risultato di seguire mille regole per piacere all’algoritmo? Che ora hai
               la nausea quando crei i contenuti e ti fa schifo vendere online.
