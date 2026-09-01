@@ -131,6 +131,14 @@ const pains = [
   "“Ho un business, delle competenze e delle cose da dire, ma online non si percepiscono davvero.”",
 ];
 
+const heroWhispers = [
+  "SONO STUFA DI SEGUIRE LE REGOLE DI INSTAGRAM",
+  "CHE PALLE QUESTI GANCI",
+  "NON MI SENTO PIÙ",
+  "NON MI RICONOSCO PIÙ IN QUELLO CHE PUBBLICO",
+  "QUANDO REGISTRO MI SEMBRA DI RECITARE",
+];
+
 const forWhoYes = [
   "Ti senti una fotocopia delle altre professioniste del tuo settore",
   "Sei stanca di seguire regole che non senti tue",
@@ -356,7 +364,21 @@ function Index() {
           className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.08] mix-blend-overlay"
         />
 
-        <div className="relative mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-20 text-center">
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 z-0 flex h-[90vh] flex-col items-center justify-center gap-2 overflow-hidden"
+          aria-hidden
+        >
+          {heroWhispers.map((phrase, i) => (
+            <p
+              key={i}
+              className="whitespace-nowrap font-condensed text-[11vw] font-bold uppercase leading-none tracking-tight text-white/[0.06]"
+            >
+              {phrase}
+            </p>
+          ))}
+        </div>
+
+        <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-20 text-center">
           <Reveal>
             <p className="font-condensed text-xs uppercase tracking-[0.4em] text-primary sm:text-sm">
               Live su Zoom · 5, 6, 7 ottobre · ore 20:00-21:00
