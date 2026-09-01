@@ -225,11 +225,11 @@
 }
 
 @utility animate-marquee-ltr {
-  animation: marquee-ltr 38s linear infinite;
+  animation: marquee-ltr 140s linear infinite;
 }
 
 @utility animate-marquee-rtl {
-  animation: marquee-rtl 38s linear infinite;
+  animation: marquee-rtl 140s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
