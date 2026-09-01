@@ -443,7 +443,7 @@ function Index() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
                   <p className="absolute inset-x-0 bottom-0 p-5 text-center text-lg font-semibold leading-snug text-white sm:p-6 sm:text-xl">
                     Questo invito è per te, che sei stanca di sottometterti alle regole
-                    dell’algoritmo e vuoi far uscire la vera te stessa.
+                    dell’algoritmo e vuoi far uscire <Highlight>la vera te stessa</Highlight>.
                   </p>
                 </div>
 
@@ -456,15 +456,18 @@ function Index() {
                       Pronta a rompere le regole una volta per tutte e a ridefinire la tua
                       comunicazione identitaria?
                     </p>
+                    <p className="mt-3 text-center text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      <span className="text-primary">Live su Zoom</span> · 5-6-7 ottobre
+                    </p>
                     <SignupForm
                       className="mt-6"
                       submitSub="Soli €27 · 5-6-7 ottobre · Garanzia di rimborso"
                     />
                     <div className="mt-4 flex justify-center">
                       <div
-                        className="inline-flex items-center gap-3 rounded-full px-4 py-2.5"
+                        className="inline-flex items-center gap-3 rounded-lg px-4 py-2.5"
                         style={{
-                          backgroundColor: "color-mix(in oklab, var(--card) 92%, black)",
+                          backgroundColor: "color-mix(in oklab, var(--card) 35%, transparent)",
                           border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
                         }}
                       >
@@ -485,7 +488,7 @@ function Index() {
                               <Star key={i} className="size-3.5 fill-current" />
                             ))}
                           </div>
-                          <p className="mt-0.5 text-sm font-bold text-foreground">
+                          <p className="mt-0.5 text-sm text-foreground/85">
                             +1.500 professioniste formate
                           </p>
                         </div>
