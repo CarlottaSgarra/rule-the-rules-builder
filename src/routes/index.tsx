@@ -591,13 +591,20 @@ function Index() {
             </div>
           </Reveal>
 
-          <Reveal delay={340} className="mt-12 w-full">
+          <Reveal delay={340} className="mt-24 w-full">
             <SectionLabel>Video di presentazione</SectionLabel>
-            <VideoFrame
-              label="Guarda il video di presentazione di Rule The Rules"
-              duration="06:15"
-              poster={livestreamImg}
-            />
+            <h2 className="max-w-3xl text-3xl sm:text-4xl">
+              Sai qual è il risultato di seguire mille regole per piacere all’algoritmo? Che ora hai
+              la nausea quando crei i contenuti e ti fa schifo vendere online. Durante l’evento
+              rompiamo tutti questi schemi per tornare alla tua vera identità.
+            </h2>
+            <div className="mt-10">
+              <VideoFrame
+                label="Guarda il video di presentazione di Rule The Rules"
+                duration="06:15"
+                poster={livestreamImg}
+              />
+            </div>
           </Reveal>
         </div>
       </header>
