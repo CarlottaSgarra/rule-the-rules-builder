@@ -319,7 +319,7 @@ function SectionLabel({
   return (
     <p
       className="mb-4 font-condensed text-[0.72rem] uppercase tracking-[0.28em]"
-      style={{ color: tone === "gold" ? "var(--primary)" : "var(--gold-deep)" }}
+      style={{ color: tone === "gold" ? "var(--secondary)" : "var(--gold-deep)" }}
     >
       {children}
     </p>
@@ -379,20 +379,21 @@ function Index() {
         />
 
         <div
-          className="pointer-events-none sticky top-0 z-0 col-start-1 row-start-1 flex h-screen w-full flex-col items-center justify-evenly gap-2 py-6 md:h-[90vh]"
+          className="pointer-events-none sticky top-0 z-0 col-start-1 row-start-1 grid h-screen w-full md:h-[90vh]"
+          style={{ gridTemplateRows: `repeat(${heroWhispers.length}, 1fr)` }}
           aria-hidden
         >
           {heroWhispers.map((phrase, i) => (
-            <div key={i} className="w-full shrink-0 overflow-hidden">
+            <div key={i} className="flex w-full items-center overflow-hidden">
               <div
                 className={`flex w-max shrink-0 gap-12 ${
                   i % 2 === 0 ? "animate-marquee-ltr" : "animate-marquee-rtl"
                 }`}
               >
-                {[phrase, phrase].map((p, j) => (
+                {[phrase, phrase, phrase].map((p, j) => (
                   <span
                     key={j}
-                    className="whitespace-nowrap font-condensed text-[13vw] font-bold uppercase leading-none tracking-tight text-[color:var(--foreground)]/[0.08] md:text-[5vw]"
+                    className="whitespace-nowrap font-condensed text-[9vh] font-bold uppercase leading-none tracking-tight text-[color:var(--foreground)]/[0.08] md:text-[7vh]"
                   >
                     {p}
                   </span>
@@ -404,7 +405,7 @@ function Index() {
 
         <div className="relative z-10 col-start-1 row-start-1 mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-20 text-center">
           <Reveal>
-            <p className="font-condensed text-xs uppercase tracking-[0.4em] text-primary sm:text-sm">
+            <p className="font-condensed text-xs uppercase tracking-[0.4em] text-secondary sm:text-sm">
               Live su Zoom · 5, 6, 7 ottobre · ore 20:00-21:00
             </p>
           </Reveal>
@@ -471,7 +472,7 @@ function Index() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
                   <p className="absolute inset-x-0 bottom-0 p-5 text-center text-lg font-semibold leading-snug text-white sm:p-6 sm:text-xl">
                     Questo invito è per te, che sei stanca di sottometterti alle regole
-                    dell’algoritmo e vuoi far uscire <Highlight>la vera te stessa</Highlight>.
+                    dell’algoritmo e vuoi far uscire <Highlight dark>la vera te stessa</Highlight>.
                   </p>
                 </div>
 
@@ -608,7 +609,7 @@ function Index() {
             <SectionLabel tone="ink">Cos’è</SectionLabel>
             <h2 className="text-3xl text-ink sm:text-4xl">
               “Rule The Rules” non è un altro corso su come fare contenuti “corretti”. È{" "}
-              <Highlight>il contrario</Highlight>.
+              <Highlight dark>il contrario</Highlight>.
             </h2>
             <div className="mt-6 space-y-4 text-base leading-relaxed text-ink-muted">
               <p>
@@ -679,14 +680,14 @@ function Index() {
                     >
                       {step.n}
                     </span>
-                    <p className="mt-4 font-condensed text-lg uppercase tracking-[0.14em] text-primary">
+                    <p className="mt-4 font-condensed text-lg uppercase tracking-[0.14em] text-secondary">
                       {step.label}
                     </p>
                     <p className="mt-2 text-sm text-muted-foreground">{step.d}</p>
                   </div>
                 </Reveal>
                 {i < frameworkSteps.length - 1 ? (
-                  <div className="flex items-center justify-center text-2xl text-primary/60 md:rotate-0">
+                  <div className="flex items-center justify-center text-2xl text-secondary/60 md:rotate-0">
                     <span className="md:hidden">↓</span>
                     <span className="hidden md:inline">→</span>
                   </div>
@@ -707,7 +708,7 @@ function Index() {
             <SectionLabel tone="ink">Incluso nel tuo biglietto</SectionLabel>
             <h2 className="text-3xl text-ink sm:text-4xl">
               Ecco tutto ciò che avrai il 5, 6 e 7 ottobre acquistando ORA il tuo biglietto per
-              “Rule The Rules” <Highlight>a soli €27</Highlight>:
+              “Rule The Rules” <Highlight dark>a soli €27</Highlight>:
             </h2>
           </Reveal>
 
@@ -849,12 +850,12 @@ function Index() {
                 le altre.
               </p>
               <p>E la sensazione, in fondo, è sempre la stessa:</p>
-              <p className="font-semibold text-primary">Sono diventata una fotocopia.</p>
+              <p className="font-semibold text-secondary">Sono diventata una fotocopia.</p>
               <p>
                 Non vuoi più contenuti, non vuoi più follower: vuoi guardare il tuo profilo e
                 pensare “questa sono io”.
               </p>
-              <p className="font-semibold text-primary">👉 In tre serate, cambiamo questo.</p>
+              <p className="font-semibold text-secondary">👉 In tre serate, cambiamo questo.</p>
             </div>
           </Reveal>
         </div>
@@ -872,13 +873,13 @@ function Index() {
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <Reveal>
               <div className="surface-card h-full p-7">
-                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-primary">
+                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-secondary">
                   Fa per te se…
                 </p>
                 <ul className="mt-5 space-y-4">
                   {forWhoYes.map((y) => (
                     <li key={y} className="flex gap-3 text-sm leading-relaxed text-foreground/85">
-                      <span className="mt-0.5 text-primary">✓</span>
+                      <span className="mt-0.5 text-secondary">✓</span>
                       <span>{y}</span>
                     </li>
                   ))}
@@ -926,7 +927,7 @@ function Index() {
                     </p>
                   </div>
                   <div className="border-t border-border/70 bg-card p-6 sm:border-l sm:border-t-0">
-                    <p className="font-condensed text-[10px] uppercase tracking-[0.2em] text-primary">
+                    <p className="font-condensed text-[10px] uppercase tracking-[0.2em] text-secondary">
                       Come stanno le cose
                     </p>
                     <p className="mt-2 text-sm leading-relaxed text-foreground/90">{m.reality}</p>
@@ -964,7 +965,7 @@ function Index() {
                 <div className="surface-card overflow-hidden">
                   <VideoFrame label={c.name} duration={c.duration} poster={testimonialImg} />
                   <div className="p-5">
-                    <p className="font-condensed text-base uppercase tracking-[0.14em] text-primary">
+                    <p className="font-condensed text-base uppercase tracking-[0.14em] text-secondary">
                       {c.name}
                     </p>
                     <p className="mt-1 text-sm text-muted-foreground">{c.role}</p>
@@ -994,7 +995,7 @@ function Index() {
                   oggi mi sveglio con meno ansia, meno mal di stomaco e più consapevole di chi sono
                   e di cosa posso fare.»
                 </p>
-                <p className="mt-4 font-condensed uppercase tracking-[0.16em] text-primary">
+                <p className="mt-4 font-condensed uppercase tracking-[0.16em] text-secondary">
                   Ilaria Mattei
                 </p>
                 <p className="text-sm text-muted-foreground">SEO &amp; Copywriter</p>
@@ -1021,8 +1022,8 @@ function Index() {
           <Reveal>
             <SectionLabel tone="ink">La storia</SectionLabel>
             <h2 className="text-3xl text-ink sm:text-5xl">
-              Da un Iphone ad <Highlight>un’Azienda</Highlight>: come ho fatto e come puoi farlo
-              anche tu.
+              Da un Iphone ad <Highlight dark>un’Azienda</Highlight>: come ho fatto e come puoi
+              farlo anche tu.
             </h2>
           </Reveal>
 
@@ -1235,7 +1236,7 @@ function Index() {
             </div>
 
             <div className="surface-card mt-8 p-8 text-center">
-              <p className="font-condensed text-2xl uppercase tracking-[0.2em] text-primary">
+              <p className="font-condensed text-2xl uppercase tracking-[0.2em] text-secondary">
                 Solo live. Solo una volta.
               </p>
               <div className="mt-6 grid gap-4 sm:grid-cols-3">
@@ -1295,13 +1296,13 @@ function Index() {
             </Reveal>
             <Reveal delay={80}>
               <div className="surface-card h-full p-7">
-                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-primary">
+                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-secondary">
                   Dopo
                 </p>
                 <ul className="mt-5 space-y-4">
                   {beforeAfter.after.map((a) => (
                     <li key={a} className="flex gap-3 text-sm leading-relaxed text-foreground/90">
-                      <span className="mt-0.5 text-primary">✓</span>
+                      <span className="mt-0.5 text-secondary">✓</span>
                       <span>{a}</span>
                     </li>
                   ))}
@@ -1332,7 +1333,7 @@ function Index() {
             </Reveal>
             <Reveal delay={100}>
               <div className="surface-card h-full p-7">
-                <p className="font-condensed text-lg uppercase tracking-[0.12em] text-primary">
+                <p className="font-condensed text-lg uppercase tracking-[0.12em] text-secondary">
                   {twoPaths.b.title}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/90">{twoPaths.b.d}</p>
@@ -1369,7 +1370,7 @@ function Index() {
                 {workbookDays.map((w, i) => (
                   <Reveal key={w.t} delay={i * 90}>
                     <div className="surface-card p-5 transition-transform duration-300 hover:-translate-y-1">
-                      <p className="font-condensed text-base uppercase tracking-[0.12em] text-primary">
+                      <p className="font-condensed text-base uppercase tracking-[0.12em] text-secondary">
                         {w.t}
                       </p>
                       <p className="mt-2 text-sm text-foreground/80">{w.d}</p>
@@ -1583,7 +1584,7 @@ function Index() {
       >
         <div className="mx-auto max-w-3xl px-5 py-20 text-center">
           <Reveal>
-            <p className="font-condensed text-2xl uppercase tracking-[0.2em] text-primary">
+            <p className="font-condensed text-2xl uppercase tracking-[0.2em] text-secondary">
               Il tuo posto ti aspetta:
             </p>
             <p className="mt-4 text-base text-foreground/85">
@@ -1637,7 +1638,7 @@ function Index() {
             <p>Viale Emilio Caldara 44 - Milano</p>
             <p>
               Email:{" "}
-              <a href="mailto:info@carlottasgarra.it" className="text-primary">
+              <a href="mailto:info@carlottasgarra.it" className="text-secondary">
                 info@carlottasgarra.it
               </a>
             </p>
