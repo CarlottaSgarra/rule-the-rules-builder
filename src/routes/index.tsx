@@ -1009,27 +1009,42 @@ function Index() {
               Ma quindi, come <Highlight>le crei le tue regole</Highlight>?
             </h3>
             <div className="mt-8 grid gap-8 md:grid-cols-2 md:items-center">
-              <div className="space-y-4 text-base leading-relaxed text-foreground/85">
+              <div className="space-y-5 text-base leading-relaxed text-foreground/85">
                 <p>
                   Tutti i guru che segui online ti hanno insegnato che bisogna fare le cose così:
-                  questo hook, questo script, questa CTA, questo orario di pubblicazione.{" "}
-                  <strong className="font-semibold text-foreground">
-                    Stare dentro lo schema, per vendere online.
-                  </strong>
+                </p>
+                <ul className="space-y-2 pl-5">
+                  <li className="list-disc">Questo hook</li>
+                  <li className="list-disc">Questo script</li>
+                  <li className="list-disc">Questa CTA</li>
+                  <li className="list-disc">Questo orario di pubblicazione</li>
+                </ul>
+                <p className="font-display text-xl leading-snug text-foreground sm:text-2xl">
+                  Stare dentro lo schema, per vendere online.
                 </p>
                 <p>
                   Eppure lo vedi anche tu: i profili che oggi ottengono davvero visibilità sono
-                  quelli che escono dallo schema, non quelli che lo seguono alla lettera. E con
-                  l’intelligenza artificiale che scrive uno script corretto in trenta secondi,
-                  seguire lo schema alla perfezione non ti distingue più da nessuna.{" "}
-                  <strong className="font-semibold text-foreground">Ti rende sostituibile.</strong>
+                  quelli che escono dallo schema, non quelli che lo seguono alla lettera.
+                </p>
+                <p>
+                  E con l’intelligenza artificiale che scrive uno script corretto in trenta secondi,
+                  seguire lo schema alla perfezione non ti distingue più da nessuna.
+                </p>
+                <p className="font-display text-xl leading-snug text-foreground sm:text-2xl">
+                  Ti rende sostituibile.
                 </p>
                 <p>
                   Il vero asset non è più sapere le regole.{" "}
-                  <strong className="font-semibold text-foreground">Sei tu</strong>: il tuo modo di
-                  spiegare, il tuo punto di vista, la tua energia. Nelle tre serate ti mostro
-                  esattamente come si fa a metterlo al centro della tua comunicazione, con un
-                  metodo, non a caso.
+                  <strong className="font-semibold text-foreground">Sei tu</strong>:
+                </p>
+                <ul className="space-y-2 pl-5">
+                  <li className="list-disc">Il tuo modo di spiegare</li>
+                  <li className="list-disc">Il tuo punto di vista</li>
+                  <li className="list-disc">La tua energia</li>
+                </ul>
+                <p>
+                  Nelle tre serate ti mostro esattamente come si fa a metterlo al centro della tua
+                  comunicazione, con un metodo, non a caso.
                 </p>
               </div>
               <img
