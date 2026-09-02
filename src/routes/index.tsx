@@ -1,5 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Star, User } from "lucide-react";
+import {
+  Clapperboard,
+  Copy,
+  Lock,
+  ListChecks,
+  PenLine,
+  ShieldAlert,
+  Star,
+  User,
+} from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -122,13 +131,31 @@ const outcomes = [
   "La struttura del tuo piano editoriale",
 ];
 
-const pains = [
-  "“Non mi riconosco più in quello che pubblico.”",
-  "“Quando registro mi sembra di recitare.”",
-  "“Mi sembra che per funzionare debba diventare qualcun’altra.”",
-  "“Ho salvato mille strategie e alla fine sono ancora più confusa.”",
-  "“Il piano editoriale mi fa sentire in gabbia.”",
-  "“Ho un business, delle competenze e delle cose da dire, ma online non si percepiscono davvero.”",
+const startingPointCards = [
+  {
+    icon: PenLine,
+    text: "Apri Instagram con un’idea, la scrivi, la cancelli, la riscrivi “in un modo più professionale”.",
+  },
+  {
+    icon: Copy,
+    text: "Guardi il profilo di un’altra professionista del tuo settore e ti sembra di vedere il tuo, con un font diverso.",
+  },
+  {
+    icon: Clapperboard,
+    text: "Quando registri un Reel ti senti recitare una parte che non ti appartiene.",
+  },
+  {
+    icon: ListChecks,
+    text: "Hai imparato hook, CTA, piano editoriale, frequenza di pubblicazione: hai fatto tutto come si deve, eppure oggi non ti riconosci più guardando il tuo profilo.",
+  },
+  {
+    icon: ShieldAlert,
+    text: "Hai paura che smettere di seguire le regole significhi far smettere di funzionare i tuoi contenuti.",
+  },
+  {
+    icon: Lock,
+    text: "Il piano editoriale che segui ti fa sentire in gabbia invece che aiutarti a crescere.",
+  },
 ];
 
 const heroWhispers = [
@@ -832,36 +859,70 @@ function Index() {
 
       {/* Problema */}
       <section className="bg-background">
-        <div className="mx-auto max-w-4xl px-5 py-20">
+        <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
             <SectionLabel>Il punto di partenza</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl">In questo momento, probabilmente pensi:</h2>
+            <h2 className="text-3xl sm:text-4xl">Riconosci almeno uno di questi?</h2>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {pains.map((p, i) => (
-              <Reveal key={p} delay={i * 60}>
-                <div className="flex h-full gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-colors duration-300 hover:border-primary/40">
-                  <span className="mt-1 size-2 shrink-0 rounded-full bg-primary" />
-                  <span className="text-sm italic leading-relaxed text-foreground/85 sm:text-base">
-                    {p}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
+            <div className="space-y-4">
+              {startingPointCards.slice(0, 3).map(({ icon: Icon, text }, i) => (
+                <Reveal key={text} delay={i * 60}>
+                  <div className="flex h-full gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-colors duration-300 hover:border-primary/40">
+                    <Icon className="mt-0.5 size-5 shrink-0 text-secondary" />
+                    <span className="text-sm leading-relaxed text-foreground/85 sm:text-base">
+                      {text}
+                    </span>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+            <div className="space-y-4">
+              {startingPointCards.slice(3, 6).map(({ icon: Icon, text }, i) => (
+                <Reveal key={text} delay={(i + 3) * 60}>
+                  <div className="flex h-full gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-colors duration-300 hover:border-primary/40">
+                    <Icon className="mt-0.5 size-5 shrink-0 text-secondary" />
+                    <span className="text-sm leading-relaxed text-foreground/85 sm:text-base">
+                      {text}
+                    </span>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
+
           <Reveal>
-            <div className="mt-8 space-y-4 text-base leading-relaxed text-foreground/85">
-              <p className="font-semibold text-foreground">
-                Il problema non è che non sai fare contenuti. È che hai imparato a farli come tutte
-                le altre.
-              </p>
-              <p>E la sensazione, in fondo, è sempre la stessa:</p>
-              <p className="font-semibold text-secondary">Sono diventata una fotocopia.</p>
-              <p>
-                Non vuoi più contenuti, non vuoi più follower: vuoi guardare il tuo profilo e
-                pensare “questa sono io”.
-              </p>
-              <p className="font-semibold text-secondary">👉 In tre serate, cambiamo questo.</p>
+            <h3 className="mt-16 text-2xl font-semibold text-foreground sm:text-3xl">
+              Ma com’è che si fa, nella pratica?
+            </h3>
+            <div className="mt-8 grid gap-8 md:grid-cols-2 md:items-center">
+              <div className="space-y-4 text-base leading-relaxed text-foreground/85">
+                <p>
+                  Tutti i guru che segui online ti hanno insegnato che bisogna fare le cose così:
+                  questo hook, questo script, questa CTA, questo orario di pubblicazione. Stare
+                  dentro lo schema, per vendere online.
+                </p>
+                <p>
+                  Eppure lo vedi anche tu: i profili che oggi ottengono davvero visibilità sono
+                  quelli che escono dallo schema, non quelli che lo seguono alla lettera. E con
+                  l’intelligenza artificiale che scrive uno script corretto in trenta secondi,
+                  seguire lo schema alla perfezione non ti distingue più da nessuna. Ti rende
+                  sostituibile.
+                </p>
+                <p>
+                  Il vero asset non è più sapere le regole. Sei tu: il tuo modo di spiegare, il tuo
+                  punto di vista, la tua energia. Nelle tre serate ti mostro esattamente come si fa
+                  a metterlo al centro della tua comunicazione, con un metodo, non a caso.
+                </p>
+              </div>
+              <img
+                src={heroImg}
+                alt="Carlotta Sgarra"
+                loading="lazy"
+                width={1024}
+                height={1280}
+                className="aspect-[4/5] w-full rounded-2xl object-cover"
+              />
             </div>
           </Reveal>
         </div>
