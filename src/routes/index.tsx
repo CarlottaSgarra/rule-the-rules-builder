@@ -133,28 +133,73 @@ const outcomes = [
 
 const startingPointCards = [
   {
+    id: "riscrivi",
     icon: PenLine,
-    text: "Apri Instagram con un’idea, la scrivi, la cancelli, la riscrivi “in un modo più professionale”.",
+    text: (
+      <>
+        Apri Instagram con un’idea, la scrivi, la cancelli, la riscrivi{" "}
+        <strong className="font-semibold text-foreground">“in un modo più professionale”</strong>.
+      </>
+    ),
   },
   {
+    id: "font-diverso",
     icon: Copy,
-    text: "Guardi il profilo di un’altra professionista del tuo settore e ti sembra di vedere il tuo, con un font diverso.",
+    text: (
+      <>
+        Guardi il profilo di un’altra professionista del tuo settore e ti sembra di vedere il tuo,{" "}
+        <strong className="font-semibold text-foreground">con un font diverso</strong>.
+      </>
+    ),
   },
   {
+    id: "recitare",
     icon: Clapperboard,
-    text: "Quando registri un Reel ti senti recitare una parte che non ti appartiene.",
+    text: (
+      <>
+        Quando registri un Reel ti senti{" "}
+        <strong className="font-semibold text-foreground">
+          recitare una parte che non ti appartiene
+        </strong>
+        .
+      </>
+    ),
   },
   {
+    id: "non-riconosci",
     icon: ListChecks,
-    text: "Hai imparato hook, CTA, piano editoriale, frequenza di pubblicazione: hai fatto tutto come si deve, eppure oggi non ti riconosci più guardando il tuo profilo.",
+    text: (
+      <>
+        Hai imparato hook, CTA, piano editoriale, frequenza di pubblicazione: hai fatto tutto come
+        si deve, eppure oggi{" "}
+        <strong className="font-semibold text-foreground">non ti riconosci più</strong> guardando il
+        tuo profilo.
+      </>
+    ),
   },
   {
+    id: "paura",
     icon: ShieldAlert,
-    text: "Hai paura che smettere di seguire le regole significhi far smettere di funzionare i tuoi contenuti.",
+    text: (
+      <>
+        Hai paura che smettere di seguire le regole significhi{" "}
+        <strong className="font-semibold text-foreground">
+          far smettere di funzionare i tuoi contenuti
+        </strong>
+        .
+      </>
+    ),
   },
   {
+    id: "gabbia",
     icon: Lock,
-    text: "Il piano editoriale che segui ti fa sentire in gabbia invece che aiutarti a crescere.",
+    text: (
+      <>
+        Il piano editoriale che segui ti fa sentire{" "}
+        <strong className="font-semibold text-foreground">in gabbia</strong> invece che aiutarti a
+        crescere.
+      </>
+    ),
   },
 ];
 
@@ -335,23 +380,6 @@ const faqs = [
     a: "Perché Rule The Rules 2026 è l’introduzione al nostro modo di lavorare: vogliamo che più professioniste possibile abbiano gli strumenti giusti per ritrovarsi nella propria comunicazione. Consideralo un biglietto d’ingresso: un prezzo accessibile per un contenuto che può cambiare il modo in cui ti presenti online.",
   },
 ];
-
-function SectionLabel({
-  children,
-  tone = "gold",
-}: {
-  children: React.ReactNode;
-  tone?: "gold" | "ink";
-}) {
-  return (
-    <p
-      className="mb-4 font-condensed text-[0.72rem] uppercase tracking-[0.28em]"
-      style={{ color: tone === "gold" ? "var(--secondary)" : "var(--gold-deep)" }}
-    >
-      {children}
-    </p>
-  );
-}
 
 function Index() {
   return (
@@ -645,7 +673,6 @@ function Index() {
           style={{ borderRadius: "1.75rem" }}
         >
           <Reveal>
-            <SectionLabel tone="ink">Cos’è</SectionLabel>
             <h2 className="text-3xl text-ink sm:text-4xl">
               Rule the Rules è il mio <Highlight dark>unico show live del 2026</Highlight>
             </h2>
@@ -693,17 +720,16 @@ function Index() {
       <section className="bg-background">
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <SectionLabel>Il punto di partenza</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
-              Se leggendo qui sotto ti trovi ad annuire, credimi che so come ti senti. Ci sono
-              passata anch’io.
+              Se leggendo qui sotto ti trovi ad annuire, credimi che{" "}
+              <Highlight>so come ti senti</Highlight>. Ci sono passata anch’io.
             </h2>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <div className="space-y-4">
-              {startingPointCards.slice(0, 3).map(({ icon: Icon, text }, i) => (
-                <Reveal key={text} delay={i * 60}>
-                  <div className="flex h-full min-h-[13rem] items-center gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-colors duration-300 hover:border-primary/40 sm:min-h-[19.75rem] md:min-h-[14.25rem] lg:min-h-[11rem]">
+              {startingPointCards.slice(0, 3).map(({ id, icon: Icon, text }, i) => (
+                <Reveal key={id} delay={i * 60}>
+                  <div className="flex h-full min-h-[13rem] items-center gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[19.75rem] md:min-h-[14.25rem] lg:min-h-[11rem]">
                     <Icon className="size-5 shrink-0 text-secondary" />
                     <span className="text-sm leading-relaxed text-foreground/85 sm:text-base">
                       {text}
@@ -713,9 +739,9 @@ function Index() {
               ))}
             </div>
             <div className="space-y-4">
-              {startingPointCards.slice(3, 6).map(({ icon: Icon, text }, i) => (
-                <Reveal key={text} delay={(i + 3) * 60}>
-                  <div className="flex h-full min-h-[13rem] items-center gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-colors duration-300 hover:border-primary/40 sm:min-h-[19.75rem] md:min-h-[14.25rem] lg:min-h-[11rem]">
+              {startingPointCards.slice(3, 6).map(({ id, icon: Icon, text }, i) => (
+                <Reveal key={id} delay={(i + 3) * 60}>
+                  <div className="flex h-full min-h-[13rem] items-center gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[19.75rem] md:min-h-[14.25rem] lg:min-h-[11rem]">
                     <Icon className="size-5 shrink-0 text-secondary" />
                     <span className="text-sm leading-relaxed text-foreground/85 sm:text-base">
                       {text}
@@ -727,8 +753,8 @@ function Index() {
           </div>
 
           <Reveal>
-            <h3 className="mt-16 text-2xl font-semibold text-foreground sm:text-3xl">
-              Ma quindi, come le crei le tue regole?
+            <h3 className="mt-16 text-center text-2xl font-semibold text-foreground sm:text-3xl">
+              Ma quindi, come <Highlight>le crei le tue regole</Highlight>?
             </h3>
             <div className="mt-8 grid gap-8 md:grid-cols-2 md:items-center">
               <div className="space-y-4 text-base leading-relaxed text-foreground/85">
@@ -756,7 +782,7 @@ function Index() {
                 loading="lazy"
                 width={1024}
                 height={1280}
-                className="aspect-[4/5] w-full rounded-2xl object-cover"
+                className="mx-auto aspect-[4/5] w-[85%] rounded-2xl object-cover"
               />
             </div>
           </Reveal>
@@ -767,7 +793,6 @@ function Index() {
       <section className="bg-background">
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <SectionLabel>Il metodo</SectionLabel>
             <h2 className="max-w-2xl text-3xl sm:text-4xl">
               Tre serate, tre passaggi, <Highlight>un unico percorso</Highlight> lineare.
             </h2>
@@ -812,7 +837,6 @@ function Index() {
           style={{ borderRadius: "1.75rem" }}
         >
           <Reveal>
-            <SectionLabel tone="ink">Incluso nel tuo biglietto</SectionLabel>
             <h2 className="text-3xl text-ink sm:text-4xl">
               Ecco tutto ciò che avrai il 5, 6 e 7 ottobre acquistando ORA il tuo biglietto per
               “Rule The Rules” <Highlight dark>a soli €27</Highlight>:
@@ -904,7 +928,6 @@ function Index() {
       <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-4xl px-5 py-20">
           <Reveal>
-            <SectionLabel tone="ink">Cosa ti porti a casa</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
               Non esci con un piano editoriale da seguire. Esci sapendo finalmente{" "}
               <Highlight>come crearne uno che ti assomiglia</Highlight>.
@@ -935,7 +958,6 @@ function Index() {
       <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <SectionLabel tone="ink">Rule The Rules fa per te?</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
               Prima di iscriverti, <Highlight>leggi qui</Highlight>.
             </h2>
@@ -979,7 +1001,6 @@ function Index() {
       <section className="bg-background">
         <div className="mx-auto max-w-4xl px-5 py-20">
           <Reveal>
-            <SectionLabel>Le tue obiezioni</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
               Quello che pensi vs <Highlight>come stanno le cose</Highlight>.
             </h2>
@@ -1013,11 +1034,10 @@ function Index() {
       <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
-            <SectionLabel tone="ink">Riprova sociale</SectionLabel>
             <h2 className="max-w-3xl text-3xl sm:text-4xl">
-              Ho documentato decine di storie di successo delle nostre clienti: donne meravigliose,
-              tenaci, che hanno dato nuova forma al loro dolore e hanno ottenuto ciò che
-              desideravano.
+              Ho documentato decine di <Highlight dark>storie di successo</Highlight> delle nostre
+              clienti: donne meravigliose, tenaci, che hanno dato nuova forma al loro dolore e hanno
+              ottenuto ciò che desideravano.
             </h2>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-ink">
               Te le mostro così che tu possa sentire che tutto ciò che sto per raccontarti è davvero
@@ -1090,7 +1110,6 @@ function Index() {
           style={{ borderRadius: "1.75rem" }}
         >
           <Reveal>
-            <SectionLabel tone="ink">La storia</SectionLabel>
             <h2 className="text-3xl text-ink sm:text-5xl">
               Da un Iphone ad <Highlight dark>un’Azienda</Highlight>: come ho fatto e come puoi
               farlo anche tu.
@@ -1228,7 +1247,6 @@ function Index() {
       <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <SectionLabel tone="ink">Lo show</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
               Ho creato uno show live unico nel suo genere che ti mostrerà davvero{" "}
               <Highlight>come si rompono le regole della comunicazione</Highlight>:
@@ -1270,8 +1288,8 @@ function Index() {
 
           <Reveal>
             <h3 className="mt-12 text-2xl sm:text-3xl">
-              Ti consegno il metodo per smettere di comunicare come tutte le altre e diventare
-              impossibile da confondere.
+              Ti consegno il metodo per smettere di comunicare come tutte le altre e diventare{" "}
+              <Highlight dark>impossibile da confondere</Highlight>.
             </h3>
             <p className="mt-6 text-base italic text-ink">
               E dal <strong>5 al 7 ottobre non vedrai solo Carlotta...</strong>
@@ -1344,7 +1362,6 @@ function Index() {
       <section className="bg-background">
         <div className="mx-auto max-w-4xl px-5 py-20">
           <Reveal>
-            <SectionLabel>La trasformazione</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
               Prima di Rule The Rules, <Highlight>dopo Rule The Rules</Highlight>.
             </h2>
@@ -1388,7 +1405,6 @@ function Index() {
       <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-4xl px-5 py-20">
           <Reveal>
-            <SectionLabel tone="ink">La scelta</SectionLabel>
             <h2 className="text-3xl sm:text-4xl">
               Da qui puoi andare in <Highlight>due direzioni</Highlight>.
             </h2>
@@ -1427,7 +1443,6 @@ function Index() {
 
             <div>
               <Reveal>
-                <SectionLabel>Bonus incluso</SectionLabel>
                 <h2 className="text-3xl sm:text-4xl">
                   Ricevi il <Highlight>Workbook</Highlight> di Rule The Rules
                 </h2>
@@ -1466,7 +1481,6 @@ function Index() {
         <div className="mx-auto max-w-3xl px-5">
           <Reveal>
             <div className="text-center">
-              <SectionLabel>Ricapitolando</SectionLabel>
               <h2 className="text-3xl sm:text-4xl">
                 Registrati e ottieni <Highlight>tutto questo</Highlight>:
               </h2>
@@ -1578,11 +1592,8 @@ function Index() {
         >
           <Reveal>
             <p className="text-4xl">🛡️</p>
-            <p className="mt-4 font-condensed text-xs uppercase tracking-[0.28em] text-primary-foreground/80">
-              Garanzia
-            </p>
-            <h2 className="mt-2 text-3xl text-primary-foreground sm:text-4xl">
-              Soddisfatta o rimborsata, senza fare domande.
+            <h2 className="mt-4 text-3xl text-primary-foreground sm:text-4xl">
+              <Highlight>Soddisfatta o rimborsata</Highlight>, senza fare domande.
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/90">
               Se dopo la prima serata pensi che “Rule The Rules” non faccia per te, scrivici prima
@@ -1620,8 +1631,9 @@ function Index() {
           style={{ borderRadius: "1.75rem" }}
         >
           <Reveal>
-            <SectionLabel tone="ink">Supporto</SectionLabel>
-            <h2 className="text-3xl text-ink sm:text-4xl">Domande Frequenti</h2>
+            <h2 className="text-3xl text-ink sm:text-4xl">
+              Domande <Highlight dark>Frequenti</Highlight>
+            </h2>
             <p className="mt-3 text-sm text-ink-muted">
               Hai bisogno di supporto? Scrivi a{" "}
               <a
