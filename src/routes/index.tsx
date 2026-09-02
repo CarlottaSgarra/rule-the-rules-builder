@@ -796,10 +796,10 @@ function Index() {
       <section className="bg-background">
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <h2 className="max-w-2xl text-3xl sm:text-4xl">
+            <h2 className="text-3xl sm:text-4xl">
               Il metodo per rompere il <Highlight>circolo vizioso delle regolette</Highlight>
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/85 sm:text-lg">
+            <p className="mt-4 text-base leading-relaxed text-foreground/85 sm:text-lg">
               Non esiste un modo giusto di stare su Instagram. Esiste il tuo. Per costruirlo
               lavoriamo su 3 livelli, uno alla volta: prima chi sei, poi cosa dici, poi come lo dici
               ogni giorno.
