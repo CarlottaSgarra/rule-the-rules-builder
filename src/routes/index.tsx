@@ -620,45 +620,39 @@ function Index() {
           <Reveal>
             <SectionLabel tone="ink">Cos’è</SectionLabel>
             <h2 className="text-3xl text-ink sm:text-4xl">
-              “Rule The Rules” non è un altro corso su come fare contenuti “corretti”. È{" "}
-              <Highlight dark>il contrario</Highlight>.
+              Rule the Rules è il mio <Highlight dark>unico show live del 2026</Highlight>
             </h2>
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-ink-muted">
-              <p>
-                Per anni ci hanno insegnato come creare contenuti. Come parlare. Come vestirci. Come
-                iniziare un Reel. Quanto pubblicare. Come essere professionali.
-              </p>
-              <p>
-                E a forza di fare tutto come si deve, tantissime professioniste sono diventate
-                tecnicamente perfette. E indistinguibili da chiunque altra nel loro settore.
-              </p>
-              <p className="font-semibold text-ink">Ma nessuna identità.</p>
-              <p className="font-semibold text-ink">
-                Il nemico non è Instagram. È l’idea che esista un modo giusto di starci.
-              </p>
-              <p>
-                Non sei tu che devi adattarti a Instagram. È Instagram che deve iniziare ad avere la
-                tua faccia.
-              </p>
-              <p>
-                In tre serate live rompiamo quelle regole, una per una. Non voglio rendere i tuoi
-                contenuti più corretti. Voglio renderli impossibili da copiare.
-              </p>
-            </div>
             <p
-              className="mt-8 border-l-2 pl-5 text-lg font-semibold text-ink"
+              className="mt-6 border-l-2 pl-5 text-lg italic leading-relaxed text-ink"
               style={{ borderColor: "var(--gold-deep)" }}
             >
-              Prima costruiamo chi sei. Poi costruiamo una strategia attorno a te.
+              “Ogni volta che pubblico non mi sento più me stessa, e mi faccio schifo a seguire
+              tutte queste regole.”
             </p>
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-ink-muted">
+              <p>
+                Parlo ogni giorno con decine di professioniste online, e quasi tutte mi dicono
+                questa frase con parole diverse. Seguono le regole di Instagram, seguono le regole
+                che gli danno i guru, seguono i format che funzionano per tutte, e il risultato è
+                che oggi nessuna di loro comunica più a modo suo. Comunicano a modo di qualcun
+                altro.
+              </p>
+              <p>
+                Io non voglio darti altre regole da seguire. Il 5, 6 e 7 ottobre, dalle 20 alle 21,
+                in diretta su Zoom, ti mostro come smettere di farlo. Prendiamo le regole che ti
+                hanno insegnato e le buttiamo via una a una, e al loro posto costruiamo le tue:
+                quelle che ti fanno riconoscere invece che confondere con qualsiasi altra
+                professionista del tuo settore.
+              </p>
+            </div>
 
             <img
-              src={teamImg}
-              alt="Il team dietro Rule The Rules"
+              src={heroImg}
+              alt="Carlotta Sgarra"
               loading="lazy"
-              width={1280}
-              height={853}
-              className="mt-10 w-full rounded-2xl object-cover"
+              width={1024}
+              height={1280}
+              className="mx-auto mt-10 aspect-[4/5] w-full max-w-sm rounded-2xl object-cover"
             />
 
             <div className="mt-6 flex justify-center">
