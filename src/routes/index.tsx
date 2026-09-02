@@ -62,62 +62,65 @@ const avatarPlaceholders = [
   "oklch(0.58 0.1 140)",
 ];
 
-const frameworkSteps = [
+const systemSteps = [
   {
     n: "1",
-    label: "Identità",
-    d: "Chi sei, cosa ti rende riconoscibile, cosa vuoi smettere di rappresentare.",
+    tag: "Identità",
+    label: "Radica chi sei",
+    d: "Prima di scrivere anche un solo contenuto, mettiamo nero su bianco chi sei davvero: voce, valori, contraddizioni, la tua storia. Senza questo, ogni regola che applichi ti allontana da te invece di avvicinarti a chi vuoi raggiungere.",
   },
   {
     n: "2",
-    label: "Espressione",
-    d: "Come comunichi davvero, con le tue Anti-Regole e il tuo metodo di creazione contenuti.",
+    tag: "Contenuti",
+    label: "Le tue Anti-Regole",
+    d: "Prendiamo hook, script, format che segui oggi per obbligo e li sostituiamo con le tue regole: quelle che funzionano perché sono tue, non perché le ha dette un guru.",
   },
   {
     n: "3",
-    label: "Strategia",
-    d: "Un piano editoriale che è uno strumento al tuo servizio, non una gabbia da seguire.",
+    tag: "Piano editoriale",
+    label: "Costruisci la tua strategia",
+    d: "Trasformiamo identità e Anti-Regole in un piano editoriale che riesci davvero a sostenere, non l’ennesimo calendario rigido che abbandoni dopo due settimane.",
   },
 ];
 
 const sessions = [
   {
     n: "1",
-    date: "5 Ottobre",
-    focus: "Identità",
-    title: "Prima di comunicare, devi tornare a te.",
+    date: "5 ottobre",
+    time: "20:00–21:00",
+    quote: "Prima di comunicare, devi tornare a te.",
     intro:
-      "Togliamo la maschera della “professionista giusta”, quella più seria, più autorevole, più perfetta, e iniziamo a recuperare la persona dietro alla professionista. Scoprirai:",
+      "Partiamo da qui: chi sei quando togli la maschera della “professionista giusta”. Ti mostro il modello COSA/CHI/COME, analizziamo insieme un profilo, e costruisci le tue prime Carte Identitarie. Chiudi la serata già sapendo cosa vuoi rappresentare e cosa non vuoi più rappresentare.",
     bullets: [
-      "Il tuo storytelling: il prima e il dopo della tua comunicazione, e perché senza identità diventi sostituibile.",
-      "Il modello Cosa / Chi / Come, per capire cosa ti rende davvero riconoscibile e non intercambiabile con nessun’altra.",
-      "Un’analisi live di un profilo, per vedere in modo concreto cosa cambia quando la persona torna al centro.",
+      "Il modello COSA/CHI/COME per capire cosa dici, chi sei mentre lo dici, come lo comunichi",
+      "Analisi live di un profilo: cosa vediamo oggi, cosa può diventare",
+      "Costruzione delle tue prime Carte Identitarie",
     ],
   },
   {
     n: "2",
-    date: "6 Ottobre",
-    focus: "Contenuti con le tue regole",
-    title: "Non un altro metodo universale: il tuo metodo di creazione contenuti.",
+    date: "6 ottobre",
+    time: "20:00–21:00",
+    quote: "Il piano editoriale non è una gabbia.",
     intro:
-      "Decostruiamo tutto ciò che ci è stato insegnato sui contenuti e mettiamo in discussione le regole che, invece di aiutarci, ci hanno reso più rigide e più simili a tutte le altre. Scoprirai:",
+      "Prendiamo ogni regola che ti hanno insegnato su hook, script, CTA e frequenza, e ti chiedo una sola domanda per ognuna: funziona per te? Da qui nascono le tue Anti-Regole e il tuo primo metodo personale di creazione contenuti. Il giorno dopo crei un contenuto senza seguire nessuna regola, solo ascoltando te stessa.",
     bullets: [
-      "Le regole che ci hanno insegnato, e perché sono uno strumento, non una gabbia da subire.",
-      "Come costruire le tue Anti-Regole, l’alternativa personale a ogni regola che oggi segui senza chiederti se funziona per te.",
-      "Perché le persone comprano le persone, e come ascoltarti diventa parte della strategia, non il suo contrario.",
+      "Le regole che segui oggi (hook, script, CTA, frequenza) messe alla prova, una per una",
+      "Costruzione delle tue Anti-Regole personali",
+      "Il tuo primo metodo personale di creazione contenuti",
     ],
   },
   {
     n: "3",
-    date: "7 Ottobre",
-    focus: "Strategia + Piano editoriale",
-    title: "Il piano editoriale non è una gabbia.",
+    date: "7 ottobre",
+    time: "20:00–21:00",
+    quote: "Costruisci la tua strategia.",
     intro:
-      "Con identità e metodo personale di creazione già costruiti, li trasformiamo in una strategia vera: un piano editoriale che sostiene il tuo business invece di soffocarti. Scoprirai:",
+      "Identità più metodo personale diventano una strategia vera. Con Sharon lavoriamo sulla struttura creativa (format, banca idee), poi trasformiamo tutto in un piano editoriale che ha una funzione per il tuo business, non solo per la tua immagine.",
     bullets: [
-      "I quattro macro-obiettivi di ogni contenuto: attrarre, connettere, posizionare, convertire.",
-      "Come costruire la tua struttura creativa: format, tipologie di contenuto, banca idee.",
-      "La nuova idea di piano editoriale: non più giorni fissi da riempire, ma contenuti che sai perché stai pubblicando.",
+      "Struttura creativa con Sharon: format, tipologie di contenuto, banca idee",
+      "I 4 obiettivi di ogni contenuto: attrarre, connettere, posizionare, convertire",
+      "Le 5 domande guida per costruire il tuo piano editoriale, contenuto per contenuto",
     ],
   },
 ];
@@ -794,15 +797,20 @@ function Index() {
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
             <h2 className="max-w-2xl text-3xl sm:text-4xl">
-              Tre serate, tre passaggi, <Highlight>un unico percorso</Highlight> lineare.
+              Il metodo per rompere il <Highlight>circolo vizioso delle regolette</Highlight>
             </h2>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-foreground/85 sm:text-lg">
+              Non esiste un modo giusto di stare su Instagram. Esiste il tuo. Per costruirlo
+              lavoriamo su 3 livelli, uno alla volta: prima chi sei, poi cosa dici, poi come lo dici
+              ogni giorno.
+            </p>
           </Reveal>
 
           <div className="mt-10 grid gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
-            {frameworkSteps.map((step, i) => (
+            {systemSteps.map((step, i) => (
               <div key={step.n} className="contents">
                 <Reveal delay={i * 100}>
-                  <div className="surface-card flex h-full flex-col items-center p-6 text-center">
+                  <div className="surface-card flex h-full flex-col p-6">
                     <span
                       className="flex size-10 items-center justify-center rounded-full font-condensed text-lg"
                       style={{
@@ -812,13 +820,14 @@ function Index() {
                     >
                       {step.n}
                     </span>
-                    <p className="mt-4 font-condensed text-lg uppercase tracking-[0.14em] text-secondary">
-                      {step.label}
+                    <p className="mt-4 font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
+                      {step.tag}
                     </p>
-                    <p className="mt-2 text-sm text-muted-foreground">{step.d}</p>
+                    <p className="mt-1 text-lg font-semibold text-foreground">{step.label}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.d}</p>
                   </div>
                 </Reveal>
-                {i < frameworkSteps.length - 1 ? (
+                {i < systemSteps.length - 1 ? (
                   <div className="flex items-center justify-center text-2xl text-secondary/60 md:rotate-0">
                     <span className="md:hidden">↓</span>
                     <span className="hidden md:inline">→</span>
@@ -838,8 +847,8 @@ function Index() {
         >
           <Reveal>
             <h2 className="text-3xl text-ink sm:text-4xl">
-              Ecco tutto ciò che avrai il 5, 6 e 7 ottobre acquistando ORA il tuo biglietto per
-              “Rule The Rules” <Highlight dark>a soli €27</Highlight>:
+              Tutto questo lo vediamo nelle <Highlight dark>tre serate</Highlight>, dal 5 al 7
+              ottobre
             </h2>
           </Reveal>
 
@@ -858,22 +867,20 @@ function Index() {
                     className="relative border-l-4 py-8 pl-6 pr-8"
                     style={{ borderColor: "var(--gold-deep)" }}
                   >
-                    <div className="flex flex-wrap items-center gap-3">
-                      <span
-                        className="rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground"
-                        style={{ backgroundImage: "var(--gradient-gold)" }}
-                      >
-                        Serata {s.n} · {s.date}
-                      </span>
-                      <span className="rounded-full bg-ink/5 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-ink-muted">
-                        Focus: {s.focus}
-                      </span>
-                    </div>
-                    <h3 className="mt-4 text-2xl text-ink sm:text-3xl">{s.title}</h3>
+                    <span
+                      className="inline-block rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground"
+                      style={{ backgroundImage: "var(--gradient-gold)" }}
+                    >
+                      Serata {s.n} · {s.date}, ore {s.time}
+                    </span>
+                    <h3 className="mt-4 text-2xl text-ink sm:text-3xl">“{s.quote}”</h3>
                     <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
                       {s.intro}
                     </p>
-                    <ul className="mt-4 space-y-3">
+                    <p className="mt-4 font-condensed text-xs uppercase tracking-[0.2em] text-ink-muted">
+                      Cosa facciamo insieme:
+                    </p>
+                    <ul className="mt-3 space-y-3">
                       {s.bullets.map((b) => (
                         <li
                           key={b}
