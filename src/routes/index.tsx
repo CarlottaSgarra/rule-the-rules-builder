@@ -32,6 +32,13 @@ import testimonialImg from "@/assets/testimonial-1.jpg";
 import heroImg from "@/assets/hero-carlotta.jpg";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import methodBgImg from "@/assets/method-bg.jpg";
+import carlottaHugImg from "@/assets/carlotta-hug.jpg";
+import socialProof1Img from "@/assets/social-proof-1.jpg";
+import socialProof2Img from "@/assets/social-proof-2.jpg";
+import socialProof3Img from "@/assets/social-proof-3.jpg";
+import socialProof4Img from "@/assets/social-proof-4.jpg";
+import socialProof5Img from "@/assets/social-proof-5.jpg";
+import socialProof6Img from "@/assets/social-proof-6.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -66,21 +73,17 @@ const avatarPlaceholders = [
   "oklch(0.58 0.1 140)",
 ];
 
-// Placeholder photos for the scrolling gallery — swap these for Carlotta's event photos.
-const galleryPlaceholders = [
-  teamImg,
-  testimonialImg,
-  iphoneImg,
-  livestreamImg,
-  heroImg,
-  carlottaPresentingImg,
+const galleryPhotos = [
+  socialProof1Img,
+  socialProof2Img,
+  socialProof3Img,
+  socialProof4Img,
+  socialProof5Img,
+  socialProof6Img,
 ];
 
 const galleryColumns = Array.from({ length: 5 }, (_, col) =>
-  Array.from(
-    { length: 5 },
-    (_, i) => galleryPlaceholders[(col * 2 + i) % galleryPlaceholders.length],
-  ),
+  Array.from({ length: 5 }, (_, i) => galleryPhotos[(col * 2 + i) % galleryPhotos.length]),
 );
 
 const systemSteps = [
@@ -1982,7 +1985,18 @@ function Index() {
 
       {/* Form iscrizione */}
       <section id="iscriviti" className="bg-secondary">
-        <div className="mx-auto max-w-2xl px-5 py-20">
+        <div className="mx-auto grid max-w-5xl items-center gap-10 px-5 py-20 lg:grid-cols-2">
+          <Reveal>
+            <img
+              src={carlottaHugImg}
+              alt="Carlotta Sgarra abbraccia una partecipante a un suo evento live"
+              loading="lazy"
+              width={1376}
+              height={2064}
+              className="mx-auto aspect-[4/5] w-full max-w-md rounded-2xl object-cover lg:max-w-none"
+              style={{ objectPosition: "50% 30%" }}
+            />
+          </Reveal>
           <Reveal>
             <div className="surface-card p-8">
               <p className="text-center font-condensed text-3xl uppercase tracking-[0.1em] text-gradient-gold">
