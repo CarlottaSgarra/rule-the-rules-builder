@@ -915,24 +915,34 @@ function Index() {
               “Ogni volta che pubblico non mi sento più me stessa, e mi faccio schifo a seguire
               tutte queste regole.”
             </p>
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-ink-muted">
+            <div className="mt-6 space-y-5 text-base leading-relaxed text-ink-muted">
               <p>
                 Parlo ogni giorno con decine di professioniste online, e quasi tutte mi dicono
-                questa frase con parole diverse. Seguono le regole di Instagram, seguono le regole
-                che gli danno i guru, seguono i format che funzionano per tutte, e il risultato è
-                che oggi{" "}
+                questa frase con parole diverse.
+              </p>
+              <p className="font-display text-xl leading-snug text-ink sm:text-2xl">
+                Seguono le regole di Instagram. Seguono le regole che gli danno i guru. Seguono i
+                format che funzionano per tutte.
+              </p>
+              <p>
+                E il risultato è che oggi{" "}
                 <strong className="font-semibold text-ink">
                   nessuna di loro comunica più a modo suo
                 </strong>
                 . Comunicano a modo di qualcun altro.
               </p>
+              <p className="font-display text-xl leading-snug text-ink sm:text-2xl">
+                Io non voglio darti altre regole da seguire.
+              </p>
               <p>
-                Io non voglio darti altre regole da seguire. Il 5, 6 e 7 ottobre, dalle 20 alle 21,
-                in diretta su Zoom, ti mostro come smettere di farlo. Prendiamo le regole che ti
-                hanno insegnato e le buttiamo via una a una, e al loro posto{" "}
-                <strong className="font-semibold text-ink">costruiamo le tue</strong>: quelle che ti
-                fanno riconoscere invece che confondere con qualsiasi altra professionista del tuo
-                settore.
+                Il 5, 6 e 7 ottobre, dalle 20 alle 21, in diretta su Zoom, ti mostro come smettere
+                di farlo.
+              </p>
+              <p>
+                Prendiamo le regole che ti hanno insegnato e le buttiamo via una a una, e al loro
+                posto <strong className="font-semibold text-ink">costruiamo le tue</strong>: quelle
+                che ti fanno riconoscere invece che confondere con qualsiasi altra professionista
+                del tuo settore.
               </p>
             </div>
 
@@ -968,7 +978,7 @@ function Index() {
                   <div className="flex h-full min-h-[14.5rem] items-start gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[21.25rem] md:min-h-[15.75rem] lg:min-h-[12.5rem]">
                     <Icon className="mt-1 size-5 shrink-0 text-secondary" />
                     <div>
-                      <p className="font-semibold text-foreground">{title}</p>
+                      <p className="text-lg font-semibold text-foreground sm:text-xl">{title}</p>
                       <span className="mt-1 block text-sm leading-relaxed text-foreground/85 sm:text-base">
                         {text}
                       </span>
@@ -983,7 +993,7 @@ function Index() {
                   <div className="flex h-full min-h-[14.5rem] items-start gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[21.25rem] md:min-h-[15.75rem] lg:min-h-[12.5rem]">
                     <Icon className="mt-1 size-5 shrink-0 text-secondary" />
                     <div>
-                      <p className="font-semibold text-foreground">{title}</p>
+                      <p className="text-lg font-semibold text-foreground sm:text-xl">{title}</p>
                       <span className="mt-1 block text-sm leading-relaxed text-foreground/85 sm:text-base">
                         {text}
                       </span>
