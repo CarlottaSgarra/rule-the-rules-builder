@@ -610,29 +610,26 @@ function Index() {
           } as React.CSSProperties
         }
       >
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-5 py-4 text-sm text-muted-foreground sm:flex-row sm:justify-between">
-          <p>
-            <span className="font-semibold text-foreground">Serve aiuto?</span>{" "}
-            <a href="mailto:info@carlottasgarra.it" className="text-primary">
-              info@carlottasgarra.it
-            </a>
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-5 py-4 text-sm text-muted-foreground sm:grid sm:grid-cols-3 sm:items-center">
+          <p className="font-condensed text-xs uppercase tracking-[0.2em] text-foreground sm:justify-self-start">
+            5-6-7 Ottobre
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-self-center">
             <span className="hidden text-xs uppercase tracking-[0.15em] text-muted-foreground sm:inline">
               L’evento inizia tra
             </span>
             <Countdown compact />
-            <a
-              href="#iscriviti"
-              className="shrink-0 rounded-md px-4 py-2 font-condensed text-sm uppercase tracking-[0.12em] transition-transform duration-200 hover:-translate-y-0.5"
-              style={{
-                backgroundImage: "var(--gradient-gold)",
-                color: "var(--primary-foreground)",
-              }}
-            >
-              Prendi il biglietto
-            </a>
           </div>
+          <a
+            href="#iscriviti"
+            className="shrink-0 rounded-md px-4 py-2 font-condensed text-sm uppercase tracking-[0.12em] transition-transform duration-200 hover:-translate-y-0.5 sm:justify-self-end"
+            style={{
+              backgroundImage: "var(--gradient-gold)",
+              color: "var(--primary-foreground)",
+            }}
+          >
+            Prendi il biglietto
+          </a>
         </div>
       </div>
 
