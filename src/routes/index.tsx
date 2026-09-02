@@ -611,11 +611,11 @@ function Index() {
         }
       >
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-5 py-4 text-sm text-muted-foreground sm:grid sm:grid-cols-3 sm:items-center">
-          <p className="font-condensed text-xs uppercase tracking-[0.2em] text-foreground sm:justify-self-start">
+          <p className="font-condensed text-base font-bold uppercase tracking-[0.15em] text-foreground sm:justify-self-start">
             5-6-7 Ottobre
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-self-center">
-            <span className="hidden text-xs uppercase tracking-[0.15em] text-muted-foreground sm:inline">
+            <span className="hidden font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground sm:inline">
               L’evento inizia tra
             </span>
             <Countdown compact />
@@ -1221,7 +1221,7 @@ function Index() {
           <Reveal>
             <h2 className="text-3xl sm:text-4xl" style={{ color: "var(--secondary-foreground)" }}>
               Ai miei eventi live hanno partecipato <Highlight dark>più di 500 persone</Highlight> e
-              tutte sono tornate a casa con una visione nuova sulla loro comunicazione
+              tutte sono tornate a casa con una visione nuova sulla loro comunicazione.
             </h2>
           </Reveal>
         </div>
