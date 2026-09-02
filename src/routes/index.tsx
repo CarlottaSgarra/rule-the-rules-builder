@@ -1008,16 +1008,16 @@ function Index() {
       <section className="relative overflow-hidden" style={{ backgroundColor: "var(--secondary)" }}>
         <img
           src={methodBgImg}
-          alt=""
-          aria-hidden
+          alt="Carlotta Sgarra sul palco"
           loading="lazy"
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-45"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: "25% center" }}
         />
         <div
           className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(180deg, color-mix(in oklab, var(--secondary) 92%, transparent), color-mix(in oklab, var(--secondary) 90%, transparent))",
+              "linear-gradient(180deg, color-mix(in oklab, var(--secondary) 35%, transparent), color-mix(in oklab, var(--secondary) 15%, transparent) 40%, color-mix(in oklab, var(--secondary) 30%, transparent))",
           }}
           aria-hidden
         />
@@ -1028,11 +1028,17 @@ function Index() {
           <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-start">
             <Reveal>
               <div className="md:sticky md:top-28">
-                <h2 className="text-3xl sm:text-4xl">
+                <h2
+                  className="text-3xl sm:text-4xl"
+                  style={{ textShadow: "0 2px 24px rgba(0,0,0,0.65)" }}
+                >
                   Il metodo per rompere il{" "}
                   <Highlight dark>circolo vizioso delle regolette</Highlight>
                 </h2>
-                <p className="mt-4 text-base leading-relaxed text-ink-muted sm:text-lg">
+                <p
+                  className="mt-4 text-base leading-relaxed text-ink-muted sm:text-lg"
+                  style={{ textShadow: "0 1px 16px rgba(0,0,0,0.7)" }}
+                >
                   Non esiste un modo giusto di stare su Instagram.{" "}
                   <strong className="font-semibold text-ink">Esiste il tuo.</strong> Per costruirlo
                   lavoriamo su 3 livelli, uno alla volta: prima chi sei, poi cosa dici, poi come lo
@@ -1041,10 +1047,17 @@ function Index() {
               </div>
             </Reveal>
 
-            <div className="divide-y divide-primary/20 md:border-t md:border-primary/20">
+            <div className="space-y-4">
               {systemSteps.map((step, i) => (
                 <Reveal key={step.n} delay={i * 100}>
-                  <div className="flex gap-6 py-8 first:pt-0 md:first:pt-8">
+                  <div
+                    className="flex gap-6 rounded-2xl p-6"
+                    style={{
+                      backgroundColor: "color-mix(in oklab, var(--secondary) 82%, transparent)",
+                      backdropFilter: "blur(6px)",
+                      border: "1px solid color-mix(in oklab, var(--primary) 25%, transparent)",
+                    }}
+                  >
                     <span className="shrink-0 font-condensed text-4xl text-primary sm:text-5xl">
                       {step.n}
                     </span>
