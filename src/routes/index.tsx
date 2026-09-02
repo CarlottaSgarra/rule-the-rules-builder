@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   Clapperboard,
   Copy,
+  ImageIcon,
   Lock,
   ListChecks,
   PenLine,
@@ -107,7 +108,8 @@ const sessions = [
   {
     n: "1",
     date: "5 ottobre",
-    time: "20:00–21:00",
+    time: "20:00",
+    guides: [{ name: "Carlotta", role: "CEO e founder dell’evento" }],
     quote: "Prima di comunicare, devi tornare a te.",
     intro: (
       <>
@@ -135,7 +137,11 @@ const sessions = [
   {
     n: "2",
     date: "6 ottobre",
-    time: "20:00–21:00",
+    time: "20:00",
+    guides: [
+      { name: "Carlotta", role: "CEO e founder dell’evento" },
+      { name: "Sharon", role: "esperta di contenuti" },
+    ],
     quote: "Il piano editoriale non è una gabbia.",
     intro: (
       <>
@@ -164,7 +170,8 @@ const sessions = [
   {
     n: "3",
     date: "7 ottobre",
-    time: "20:00–21:00",
+    time: "20:00",
+    guides: [{ name: "Carlotta", role: "CEO e founder dell’evento" }],
     quote: "Costruisci la tua strategia.",
     intro: (
       <>
@@ -653,7 +660,7 @@ function Index() {
         <div className="relative z-10 col-start-1 row-start-1 mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-20 text-center">
           <Reveal>
             <p className="font-condensed text-xs uppercase tracking-[0.4em] text-secondary sm:text-sm">
-              Live su Zoom · 5, 6, 7 ottobre · ore 20:00-21:00
+              Live su Zoom · 5, 6, 7 ottobre · ore 20:00
             </p>
           </Reveal>
 
@@ -1053,80 +1060,99 @@ function Index() {
           <div className="mt-12 space-y-6">
             {sessions.map((s, i) => (
               <Reveal key={s.n} delay={i * 100}>
-                <div
-                  className="relative grid gap-8 overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--background)_14%,transparent)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] sm:p-8 md:grid-cols-[0.7fr_1.3fr] md:items-center md:gap-10"
-                  style={{
-                    backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
-                  }}
-                >
-                  <span
-                    className="pointer-events-none absolute -right-6 top-1/2 hidden -translate-y-1/2 select-none font-display text-[13rem] font-bold leading-none md:block"
-                    style={{ color: "color-mix(in oklab, var(--primary) 16%, transparent)" }}
-                    aria-hidden
+                <div className="relative">
+                  <div
+                    className="relative grid gap-8 overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--background)_14%,transparent)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] sm:p-8 md:grid-cols-[0.7fr_1.3fr] md:items-center md:gap-10"
+                    style={{
+                      backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
+                    }}
                   >
-                    {s.n}
-                  </span>
+                    <span
+                      className="pointer-events-none absolute -right-6 top-1/2 hidden -translate-y-1/2 select-none font-display text-[13rem] font-bold leading-none md:block"
+                      style={{ color: "color-mix(in oklab, var(--primary) 16%, transparent)" }}
+                      aria-hidden
+                    >
+                      {s.n}
+                    </span>
 
-                  <div className="relative flex flex-col items-center text-center">
-                    <div className="flex items-center gap-3">
-                      <span
-                        className="flex size-11 shrink-0 items-center justify-center rounded-full font-condensed text-lg font-bold"
+                    <div className="relative flex flex-col items-center text-center">
+                      <div
+                        className="flex aspect-[4/3] w-full max-w-[220px] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed"
                         style={{
-                          backgroundImage: "var(--gradient-gold)",
-                          color: "var(--primary-foreground)",
+                          borderColor: "color-mix(in oklab, var(--primary) 40%, transparent)",
+                          backgroundColor: "color-mix(in oklab, var(--background) 8%, transparent)",
                         }}
                       >
-                        {s.n.padStart(2, "0")}
-                      </span>
-                      <span
-                        className="inline-block rounded-full px-3 py-1.5 font-condensed text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground"
-                        style={{ backgroundImage: "var(--gradient-gold)" }}
+                        <Presentation className="size-8 text-ink-muted" />
+                        <span className="font-condensed text-[10px] uppercase tracking-[0.2em] text-ink-muted">
+                          Foto del palco
+                        </span>
+                      </div>
+
+                      <h3 className="mt-6 text-2xl text-ink sm:text-3xl">“{s.quote}”</h3>
+                      <div
+                        className="mt-4 h-px w-16"
+                        style={{ backgroundColor: "var(--primary)" }}
+                        aria-hidden
+                      />
+                    </div>
+
+                    <div className="relative">
+                      <p className="text-sm leading-relaxed text-ink-muted sm:text-base">
+                        {s.intro}
+                      </p>
+                      <p className="mt-5 font-condensed text-xs uppercase tracking-[0.2em] text-ink-muted">
+                        Cosa facciamo insieme:
+                      </p>
+                      <ul className="mt-3 space-y-3">
+                        {s.bullets.map((b, bi) => (
+                          <li
+                            key={bi}
+                            className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
+                          >
+                            <span
+                              className="mt-2 size-1.5 shrink-0 rounded-full"
+                              style={{ backgroundColor: "var(--gold-deep)" }}
+                            />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div
+                        className="mt-6 inline-flex flex-col gap-3 rounded-xl px-4 py-3"
+                        style={{
+                          backgroundColor: "color-mix(in oklab, var(--secondary) 35%, transparent)",
+                          border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
+                        }}
                       >
-                        Serata {s.n} · {s.date}, ore {s.time}
-                      </span>
+                        {s.guides.map((g) => (
+                          <div key={g.name} className="flex items-center gap-3">
+                            <span
+                              className="flex size-11 shrink-0 items-center justify-center rounded-full border border-dashed"
+                              style={{
+                                borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)",
+                                backgroundColor:
+                                  "color-mix(in oklab, var(--background) 10%, transparent)",
+                              }}
+                            >
+                              <ImageIcon className="size-4 text-ink-muted" />
+                            </span>
+                            <p className="text-sm text-ink-muted">
+                              <span className="font-semibold text-ink">{g.name}</span>, {g.role}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-
-                    <div
-                      className="mt-5 flex aspect-[4/3] w-full max-w-[220px] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed"
-                      style={{
-                        borderColor: "color-mix(in oklab, var(--primary) 40%, transparent)",
-                        backgroundColor: "color-mix(in oklab, var(--background) 8%, transparent)",
-                      }}
-                    >
-                      <Presentation className="size-8 text-ink-muted" />
-                      <span className="font-condensed text-[10px] uppercase tracking-[0.2em] text-ink-muted">
-                        Foto del palco
-                      </span>
-                    </div>
-
-                    <h3 className="mt-6 text-2xl text-ink sm:text-3xl">“{s.quote}”</h3>
-                    <div
-                      className="mt-4 h-px w-16"
-                      style={{ backgroundColor: "var(--primary)" }}
-                      aria-hidden
-                    />
                   </div>
 
-                  <div className="relative">
-                    <p className="text-sm leading-relaxed text-ink-muted sm:text-base">{s.intro}</p>
-                    <p className="mt-5 font-condensed text-xs uppercase tracking-[0.2em] text-ink-muted">
-                      Cosa facciamo insieme:
-                    </p>
-                    <ul className="mt-3 space-y-3">
-                      {s.bullets.map((b, bi) => (
-                        <li
-                          key={bi}
-                          className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
-                        >
-                          <span
-                            className="mt-2 size-1.5 shrink-0 rounded-full"
-                            style={{ backgroundColor: "var(--gold-deep)" }}
-                          />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <span
+                    className="absolute -bottom-4 -left-3 rounded-2xl px-4 py-2 font-condensed text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground shadow-[0_10px_24px_-8px_rgba(0,0,0,0.5)] md:-left-5"
+                    style={{ backgroundImage: "var(--gradient-gold)" }}
+                  >
+                    Serata {s.n} · {s.date}, ore {s.time}
+                  </span>
                 </div>
               </Reveal>
             ))}
