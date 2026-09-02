@@ -39,6 +39,12 @@ import socialProof3Img from "@/assets/social-proof-3.jpg";
 import socialProof4Img from "@/assets/social-proof-4.jpg";
 import socialProof5Img from "@/assets/social-proof-5.jpg";
 import socialProof6Img from "@/assets/social-proof-6.jpg";
+import socialProof7Img from "@/assets/social-proof-7.jpg";
+import socialProof8Img from "@/assets/social-proof-8.jpg";
+import socialProof9Img from "@/assets/social-proof-9.jpg";
+import socialProof10Img from "@/assets/social-proof-10.jpg";
+import socialProof11Img from "@/assets/social-proof-11.jpg";
+import socialProof12Img from "@/assets/social-proof-12.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -80,6 +86,12 @@ const galleryPhotos = [
   socialProof4Img,
   socialProof5Img,
   socialProof6Img,
+  socialProof7Img,
+  socialProof8Img,
+  socialProof9Img,
+  socialProof10Img,
+  socialProof11Img,
+  socialProof12Img,
 ];
 
 const galleryColumns = Array.from({ length: 5 }, (_, col) =>
@@ -740,10 +752,11 @@ function Index() {
               <div className="grid grid-cols-1 text-left md:grid-cols-[3fr_7fr]">
                 <div className="relative h-96 w-full md:h-full">
                   <img
-                    src={heroImg}
-                    alt="Carlotta Sgarra"
+                    src={carlottaHugImg}
+                    alt="Carlotta Sgarra abbraccia una partecipante a un suo evento live"
                     loading="lazy"
                     className="h-full w-full object-cover"
+                    style={{ objectPosition: "50% 25%" }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
                   <p className="absolute inset-x-0 bottom-0 p-5 text-center text-lg font-semibold leading-snug text-white sm:p-6 sm:text-xl">
@@ -1985,18 +1998,7 @@ function Index() {
 
       {/* Form iscrizione */}
       <section id="iscriviti" className="bg-secondary">
-        <div className="mx-auto grid max-w-5xl items-center gap-10 px-5 py-20 lg:grid-cols-2">
-          <Reveal>
-            <img
-              src={carlottaHugImg}
-              alt="Carlotta Sgarra abbraccia una partecipante a un suo evento live"
-              loading="lazy"
-              width={1376}
-              height={2064}
-              className="mx-auto aspect-[4/5] w-full max-w-md rounded-2xl object-cover lg:max-w-none"
-              style={{ objectPosition: "50% 30%" }}
-            />
-          </Reveal>
+        <div className="mx-auto max-w-2xl px-5 py-20">
           <Reveal>
             <div className="surface-card p-8">
               <p className="text-center font-condensed text-3xl uppercase tracking-[0.1em] text-gradient-gold">
