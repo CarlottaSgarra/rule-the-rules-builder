@@ -5,6 +5,7 @@ import {
   Lock,
   ListChecks,
   PenLine,
+  Presentation,
   ShieldAlert,
   Star,
   User,
@@ -1013,51 +1014,66 @@ function Index() {
       </section>
 
       {/* Cosa ottieni: le 3 serate, in evidenza */}
-      <section className="bg-background px-4 py-10 sm:px-8 sm:py-14">
-        <div
-          className="surface-cream mx-auto max-w-5xl px-6 py-16 sm:px-12 sm:py-20"
-          style={{ borderRadius: "1.75rem" }}
-        >
+      <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
+        <div className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
-            <h2 className="text-3xl text-ink sm:text-4xl">
+            <h2 className="text-3xl sm:text-4xl">
               Tutto questo lo vediamo nelle <Highlight dark>tre serate</Highlight>, dal 5 al 7
               ottobre
             </h2>
           </Reveal>
 
-          <div className="mt-10 space-y-8">
+          <div className="mt-12 divide-y divide-primary/20">
             {sessions.map((s, i) => (
               <Reveal key={s.n} delay={i * 100}>
-                <div className="relative overflow-hidden rounded-2xl bg-white pl-8 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.2)] sm:pl-10">
-                  <span
-                    className="pointer-events-none absolute -right-4 -top-10 select-none font-display text-[9rem] leading-none sm:text-[11rem]"
-                    style={{ color: "color-mix(in oklab, var(--gold-deep) 14%, transparent)" }}
-                    aria-hidden
-                  >
-                    {s.n}
-                  </span>
-                  <div
-                    className="relative border-l-4 py-8 pl-6 pr-8"
-                    style={{ borderColor: "var(--gold-deep)" }}
-                  >
-                    <span
-                      className="inline-block rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground"
-                      style={{ backgroundImage: "var(--gradient-gold)" }}
+                <div className="grid gap-8 py-12 first:pt-0 last:pb-0 md:grid-cols-[0.85fr_1.15fr] md:items-start md:gap-12">
+                  <div>
+                    <div className="flex items-center gap-3">
+                      <span
+                        className="flex size-11 shrink-0 items-center justify-center rounded-full border-2 font-condensed text-lg"
+                        style={{ borderColor: "var(--primary)", color: "var(--primary)" }}
+                      >
+                        {s.n.padStart(2, "0")}
+                      </span>
+                      <span
+                        className="inline-block rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground"
+                        style={{ backgroundImage: "var(--gradient-gold)" }}
+                      >
+                        Serata {s.n} · {s.date}, ore {s.time}
+                      </span>
+                    </div>
+
+                    <div
+                      className="mt-5 flex aspect-[4/3] w-full flex-col items-center justify-center gap-2 rounded-2xl border border-dashed"
+                      style={{
+                        borderColor: "color-mix(in oklab, var(--primary) 40%, transparent)",
+                        backgroundColor: "color-mix(in oklab, var(--background) 8%, transparent)",
+                      }}
                     >
-                      Serata {s.n} · {s.date}, ore {s.time}
-                    </span>
-                    <h3 className="mt-4 text-2xl text-secondary sm:text-3xl">“{s.quote}”</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                      {s.intro}
-                    </p>
-                    <p className="mt-4 font-condensed text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      <Presentation className="size-8 text-ink-muted" />
+                      <span className="font-condensed text-[10px] uppercase tracking-[0.2em] text-ink-muted">
+                        Foto del palco
+                      </span>
+                    </div>
+
+                    <h3 className="mt-6 text-2xl text-ink sm:text-3xl">“{s.quote}”</h3>
+                    <div
+                      className="mt-4 h-px w-16"
+                      style={{ backgroundColor: "var(--primary)" }}
+                      aria-hidden
+                    />
+                  </div>
+
+                  <div>
+                    <p className="text-sm leading-relaxed text-ink-muted sm:text-base">{s.intro}</p>
+                    <p className="mt-5 font-condensed text-xs uppercase tracking-[0.2em] text-ink-muted">
                       Cosa facciamo insieme:
                     </p>
                     <ul className="mt-3 space-y-3">
                       {s.bullets.map((b) => (
                         <li
                           key={b}
-                          className="flex gap-3 text-sm leading-relaxed text-foreground/80 sm:text-base"
+                          className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
                         >
                           <span
                             className="mt-2 size-1.5 shrink-0 rounded-full"
