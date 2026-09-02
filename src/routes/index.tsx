@@ -879,7 +879,7 @@ function Index() {
             />
 
             <div className="mt-6 flex justify-center">
-              <CtaButton />
+              <CtaButton label="Rompiamo le regole, allora?" />
             </div>
           </Reveal>
         </div>
@@ -1096,7 +1096,7 @@ function Index() {
                   <strong className="font-semibold text-foreground">Workbook incluso</strong>.
                 </p>
                 <div className="mt-6 flex justify-center">
-                  <CtaButton />
+                  <CtaButton label="Sì, hai letto bene: 27€" />
                 </div>
               </div>
             </div>
@@ -1281,7 +1281,7 @@ function Index() {
               nuovo in quello che pubblichi.
             </p>
             <div className="mt-6 flex justify-center">
-              <CtaButton />
+              <CtaButton label="Sono avvisata, iscrivimi" />
             </div>
           </Reveal>
         </div>
@@ -1553,7 +1553,7 @@ function Index() {
             </div>
 
             <div className="mt-8 flex justify-center">
-              <CtaButton />
+              <CtaButton label="Non voglio perdermelo" />
             </div>
           </Reveal>
         </div>
@@ -1626,7 +1626,7 @@ function Index() {
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/90">{twoPaths.b.d}</p>
                 <div className="mt-6">
-                  <CtaButton />
+                  <CtaButton label="Ovviamente scelgo la B" />
                 </div>
               </div>
             </Reveal>
@@ -1783,7 +1783,7 @@ function Index() {
 
           <Reveal>
             <div className="mt-10 flex justify-center">
-              <CtaButton />
+              <CtaButton label="Ok, mi hai convinta" />
             </div>
           </Reveal>
         </div>
@@ -1883,7 +1883,7 @@ function Index() {
               <strong>il tuo modo di comunicare, quello che nessun’altra può copiare</strong>.
             </p>
             <div className="mt-8 flex justify-center">
-              <CtaButton label="Riserva il tuo posto a soli 27€" />
+              <CtaButton label="Ultima chiamata, promesso" />
             </div>
             <p className="mt-10 text-sm italic text-muted-foreground">
               P.S. Ti hanno insegnato talmente bene a fare contenuti che hai smesso di esserci

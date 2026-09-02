@@ -6,7 +6,7 @@ type Props = {
 
 export function CtaButton({
   label = "Ottieni il biglietto a soli 27€",
-  sub = "Costruisci il modo in cui vuoi comunicare",
+  sub = "5-6-7 ottobre · Solo 27€ · Garanzia di rimborso",
   className = "",
 }: Props) {
   return (
