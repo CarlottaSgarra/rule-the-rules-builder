@@ -1217,7 +1217,7 @@ function Index() {
 
       {/* Galleria eventi: colonne di foto in scorrimento continuo */}
       <section
-        className="relative overflow-hidden py-20"
+        className="relative min-h-screen overflow-hidden py-20"
         style={{ backgroundColor: "var(--secondary)" }}
       >
         <div className="relative z-10 mx-auto max-w-4xl px-5 text-center">
@@ -1229,7 +1229,7 @@ function Index() {
           </Reveal>
         </div>
 
-        <div className="relative mt-14 grid h-[34rem] grid-cols-3 gap-3 px-3 sm:grid-cols-5 sm:gap-4 sm:px-5">
+        <div className="relative mt-14 grid h-[max(26rem,calc(100vh-22rem))] grid-cols-3 gap-3 px-3 sm:grid-cols-5 sm:gap-4 sm:px-5">
           {galleryColumns.map((col, ci) => (
             <div
               key={ci}
