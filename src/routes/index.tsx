@@ -689,6 +689,80 @@ function Index() {
         </div>
       </section>
 
+      {/* Problema */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-5xl px-5 py-20">
+          <Reveal>
+            <SectionLabel>Il punto di partenza</SectionLabel>
+            <h2 className="text-3xl sm:text-4xl">
+              Se leggendo qui sotto ti trovi ad annuire, credimi che so come ti senti. Ci sono
+              passata anch’io.
+            </h2>
+          </Reveal>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <div className="space-y-4">
+              {startingPointCards.slice(0, 3).map(({ icon: Icon, text }, i) => (
+                <Reveal key={text} delay={i * 60}>
+                  <div className="flex h-full min-h-[13rem] items-center gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-colors duration-300 hover:border-primary/40 sm:min-h-[19.75rem] md:min-h-[14.25rem] lg:min-h-[11rem]">
+                    <Icon className="size-5 shrink-0 text-secondary" />
+                    <span className="text-sm leading-relaxed text-foreground/85 sm:text-base">
+                      {text}
+                    </span>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+            <div className="space-y-4">
+              {startingPointCards.slice(3, 6).map(({ icon: Icon, text }, i) => (
+                <Reveal key={text} delay={(i + 3) * 60}>
+                  <div className="flex h-full min-h-[13rem] items-center gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-colors duration-300 hover:border-primary/40 sm:min-h-[19.75rem] md:min-h-[14.25rem] lg:min-h-[11rem]">
+                    <Icon className="size-5 shrink-0 text-secondary" />
+                    <span className="text-sm leading-relaxed text-foreground/85 sm:text-base">
+                      {text}
+                    </span>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+
+          <Reveal>
+            <h3 className="mt-16 text-2xl font-semibold text-foreground sm:text-3xl">
+              Ma quindi, come le crei le tue regole?
+            </h3>
+            <div className="mt-8 grid gap-8 md:grid-cols-2 md:items-center">
+              <div className="space-y-4 text-base leading-relaxed text-foreground/85">
+                <p>
+                  Tutti i guru che segui online ti hanno insegnato che bisogna fare le cose così:
+                  questo hook, questo script, questa CTA, questo orario di pubblicazione. Stare
+                  dentro lo schema, per vendere online.
+                </p>
+                <p>
+                  Eppure lo vedi anche tu: i profili che oggi ottengono davvero visibilità sono
+                  quelli che escono dallo schema, non quelli che lo seguono alla lettera. E con
+                  l’intelligenza artificiale che scrive uno script corretto in trenta secondi,
+                  seguire lo schema alla perfezione non ti distingue più da nessuna. Ti rende
+                  sostituibile.
+                </p>
+                <p>
+                  Il vero asset non è più sapere le regole. Sei tu: il tuo modo di spiegare, il tuo
+                  punto di vista, la tua energia. Nelle tre serate ti mostro esattamente come si fa
+                  a metterlo al centro della tua comunicazione, con un metodo, non a caso.
+                </p>
+              </div>
+              <img
+                src={heroImg}
+                alt="Carlotta Sgarra"
+                loading="lazy"
+                width={1024}
+                height={1280}
+                className="aspect-[4/5] w-full rounded-2xl object-cover"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* Il metodo: Identità -> Espressione -> Strategia */}
       <section className="bg-background">
         <div className="mx-auto max-w-5xl px-5 py-20">
@@ -854,77 +928,6 @@ function Index() {
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Problema */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-5xl px-5 py-20">
-          <Reveal>
-            <SectionLabel>Il punto di partenza</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl">Riconosci almeno uno di questi?</h2>
-          </Reveal>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            <div className="space-y-4">
-              {startingPointCards.slice(0, 3).map(({ icon: Icon, text }, i) => (
-                <Reveal key={text} delay={i * 60}>
-                  <div className="flex h-full gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-colors duration-300 hover:border-primary/40">
-                    <Icon className="mt-0.5 size-5 shrink-0 text-secondary" />
-                    <span className="text-sm leading-relaxed text-foreground/85 sm:text-base">
-                      {text}
-                    </span>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-            <div className="space-y-4">
-              {startingPointCards.slice(3, 6).map(({ icon: Icon, text }, i) => (
-                <Reveal key={text} delay={(i + 3) * 60}>
-                  <div className="flex h-full gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-colors duration-300 hover:border-primary/40">
-                    <Icon className="mt-0.5 size-5 shrink-0 text-secondary" />
-                    <span className="text-sm leading-relaxed text-foreground/85 sm:text-base">
-                      {text}
-                    </span>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-
-          <Reveal>
-            <h3 className="mt-16 text-2xl font-semibold text-foreground sm:text-3xl">
-              Ma com’è che si fa, nella pratica?
-            </h3>
-            <div className="mt-8 grid gap-8 md:grid-cols-2 md:items-center">
-              <div className="space-y-4 text-base leading-relaxed text-foreground/85">
-                <p>
-                  Tutti i guru che segui online ti hanno insegnato che bisogna fare le cose così:
-                  questo hook, questo script, questa CTA, questo orario di pubblicazione. Stare
-                  dentro lo schema, per vendere online.
-                </p>
-                <p>
-                  Eppure lo vedi anche tu: i profili che oggi ottengono davvero visibilità sono
-                  quelli che escono dallo schema, non quelli che lo seguono alla lettera. E con
-                  l’intelligenza artificiale che scrive uno script corretto in trenta secondi,
-                  seguire lo schema alla perfezione non ti distingue più da nessuna. Ti rende
-                  sostituibile.
-                </p>
-                <p>
-                  Il vero asset non è più sapere le regole. Sei tu: il tuo modo di spiegare, il tuo
-                  punto di vista, la tua energia. Nelle tre serate ti mostro esattamente come si fa
-                  a metterlo al centro della tua comunicazione, con un metodo, non a caso.
-                </p>
-              </div>
-              <img
-                src={heroImg}
-                alt="Carlotta Sgarra"
-                loading="lazy"
-                width={1024}
-                height={1280}
-                className="aspect-[4/5] w-full rounded-2xl object-cover"
-              />
-            </div>
-          </Reveal>
         </div>
       </section>
 
