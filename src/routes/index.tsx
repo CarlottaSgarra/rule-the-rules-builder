@@ -95,7 +95,7 @@ const galleryPhotos = [
 ];
 
 const galleryColumns = Array.from({ length: 5 }, (_, col) =>
-  Array.from({ length: 5 }, (_, i) => galleryPhotos[(col * 2 + i) % galleryPhotos.length]),
+  Array.from({ length: 5 }, (_, i) => galleryPhotos[(col * 5 + i) % galleryPhotos.length]),
 );
 
 const systemSteps = [
