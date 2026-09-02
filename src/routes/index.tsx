@@ -30,6 +30,7 @@ import livestreamImg from "@/assets/livestream.jpg";
 import goldTexture from "@/assets/texture-gold.jpg";
 import testimonialImg from "@/assets/testimonial-1.jpg";
 import heroImg from "@/assets/hero-carlotta.jpg";
+import methodBgImg from "@/assets/method-bg.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -72,7 +73,7 @@ const systemSteps = [
     d: (
       <>
         Prima di scrivere anche un solo contenuto, mettiamo nero su bianco{" "}
-        <strong className="font-semibold text-foreground">chi sei davvero</strong>: voce, valori,
+        <strong className="font-semibold text-ink">chi sei davvero</strong>: voce, valori,
         contraddizioni, la tua storia. Senza questo, ogni regola che applichi ti allontana da te
         invece di avvicinarti a chi vuoi raggiungere.
       </>
@@ -85,8 +86,8 @@ const systemSteps = [
     d: (
       <>
         Prendiamo hook, script, format che segui oggi per obbligo e li sostituiamo con{" "}
-        <strong className="font-semibold text-foreground">le tue regole</strong>: quelle che
-        funzionano perché sono tue, non perché le ha dette un guru.
+        <strong className="font-semibold text-ink">le tue regole</strong>: quelle che funzionano
+        perché sono tue, non perché le ha dette un guru.
       </>
     ),
   },
@@ -97,7 +98,7 @@ const systemSteps = [
     d: (
       <>
         Trasformiamo identità e Anti-Regole in un piano editoriale che{" "}
-        <strong className="font-semibold text-foreground">riesci davvero a sostenere</strong>, non
+        <strong className="font-semibold text-ink">riesci davvero a sostenere</strong>, non
         l’ennesimo calendario rigido che abbandoni dopo due settimane.
       </>
     ),
@@ -1004,38 +1005,55 @@ function Index() {
       </section>
 
       {/* Il metodo: Identità -> Espressione -> Strategia */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-6xl px-5 py-20">
+      <section className="relative overflow-hidden" style={{ backgroundColor: "var(--secondary)" }}>
+        <img
+          src={methodBgImg}
+          alt=""
+          aria-hidden
+          loading="lazy"
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-45"
+        />
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(180deg, color-mix(in oklab, var(--secondary) 92%, transparent), color-mix(in oklab, var(--secondary) 90%, transparent))",
+          }}
+          aria-hidden
+        />
+        <div
+          className="relative mx-auto max-w-6xl px-5 py-20"
+          style={{ color: "var(--secondary-foreground)" }}
+        >
           <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-start">
             <Reveal>
               <div className="md:sticky md:top-28">
                 <h2 className="text-3xl sm:text-4xl">
-                  Il metodo per rompere il <Highlight>circolo vizioso delle regolette</Highlight>
+                  Il metodo per rompere il{" "}
+                  <Highlight dark>circolo vizioso delle regolette</Highlight>
                 </h2>
-                <p className="mt-4 text-base leading-relaxed text-foreground/85 sm:text-lg">
+                <p className="mt-4 text-base leading-relaxed text-ink-muted sm:text-lg">
                   Non esiste un modo giusto di stare su Instagram.{" "}
-                  <strong className="font-semibold text-foreground">Esiste il tuo.</strong> Per
-                  costruirlo lavoriamo su 3 livelli, uno alla volta: prima chi sei, poi cosa dici,
-                  poi come lo dici ogni giorno.
+                  <strong className="font-semibold text-ink">Esiste il tuo.</strong> Per costruirlo
+                  lavoriamo su 3 livelli, uno alla volta: prima chi sei, poi cosa dici, poi come lo
+                  dici ogni giorno.
                 </p>
               </div>
             </Reveal>
 
-            <div className="divide-y divide-border/70 md:border-t md:border-border/70">
+            <div className="divide-y divide-primary/20 md:border-t md:border-primary/20">
               {systemSteps.map((step, i) => (
                 <Reveal key={step.n} delay={i * 100}>
                   <div className="flex gap-6 py-8 first:pt-0 md:first:pt-8">
-                    <span className="shrink-0 font-condensed text-4xl text-secondary sm:text-5xl">
+                    <span className="shrink-0 font-condensed text-4xl text-primary sm:text-5xl">
                       {step.n}
                     </span>
                     <div>
-                      <p className="font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
+                      <p className="font-condensed text-xs uppercase tracking-[0.2em] text-primary">
                         {step.tag}
                       </p>
-                      <p className="mt-1 text-lg font-semibold text-foreground sm:text-xl">
-                        {step.label}
-                      </p>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                      <p className="mt-1 text-lg font-semibold text-ink sm:text-xl">{step.label}</p>
+                      <p className="mt-2 text-sm leading-relaxed text-ink-muted sm:text-base">
                         {step.d}
                       </p>
                     </div>
