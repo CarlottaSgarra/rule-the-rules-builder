@@ -1228,7 +1228,7 @@ function Index() {
 
         <div
           className="relative mt-14 grid grid-cols-3 gap-3 px-3 sm:grid-cols-5 sm:gap-4 sm:px-5"
-          style={{ height: "max(26rem, calc(100vh - 22rem))" }}
+          style={{ height: "max(46rem, calc(100vh + 16rem))" }}
         >
           {galleryColumns.map((col, ci) => (
             <div

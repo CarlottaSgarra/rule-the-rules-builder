@@ -17,7 +17,7 @@ export function Countdown({ compact = false }: Props) {
   useEffect(() => {
     const tick = () => setLeft(TARGET - Date.now());
     tick();
-    const id = setInterval(tick, 1000);
+    const id = setInterval(tick, 30000);
     return () => clearInterval(id);
   }, []);
 
@@ -25,13 +25,11 @@ export function Countdown({ compact = false }: Props) {
   const days = Math.floor(ms / 86400000);
   const hours = Math.floor((ms / 3600000) % 24);
   const minutes = Math.floor((ms / 60000) % 60);
-  const seconds = Math.floor((ms / 1000) % 60);
 
   const cells = [
-    { v: days, l: compact ? "gg" : "giorni" },
-    { v: hours, l: compact ? "hh" : "ore" },
-    { v: minutes, l: compact ? "mm" : "minuti" },
-    { v: seconds, l: compact ? "ss" : "secondi" },
+    { v: days, l: "giorni" },
+    { v: hours, l: "ore" },
+    { v: minutes, l: "minuti" },
   ];
 
   if (compact) {
