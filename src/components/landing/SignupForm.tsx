@@ -12,26 +12,35 @@ export function SignupForm({
   submitSub,
 }: Props) {
   return (
-    <form className={`space-y-4 ${className}`} onSubmit={(e) => e.preventDefault()}>
+    <form
+      method="post"
+      action="https://systeme.io/embedded/44087792/subscription"
+      className={`space-y-4 ${className}`}
+    >
       <input
         type="text"
+        name="first_name"
         placeholder="Nome e cognome"
+        required
         className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary"
       />
       <input
         type="email"
+        name="email"
         placeholder="La tua email migliore"
+        required
         className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary"
       />
       {compact ? null : (
         <input
           type="tel"
+          name="phone_number"
           placeholder="Il tuo WhatsApp"
           className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary"
         />
       )}
       <label className="flex items-start gap-3 text-xs text-muted-foreground">
-        <input type="checkbox" className="mt-0.5 accent-[var(--primary)]" />
+        <input type="checkbox" required className="mt-0.5 accent-[var(--primary)]" />
         <span>
           Ho visto e accettato la{" "}
           <a
