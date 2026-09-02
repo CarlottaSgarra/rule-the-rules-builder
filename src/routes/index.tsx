@@ -1099,7 +1099,7 @@ function Index() {
                     }}
                   >
                     <span
-                      className="pointer-events-none absolute -right-6 top-1/2 hidden -translate-y-1/2 select-none font-display text-[13rem] font-bold leading-none md:block"
+                      className="pointer-events-none absolute -right-6 top-1/2 hidden -translate-y-1/2 select-none font-display text-[40rem] font-bold leading-none md:block"
                       style={{ color: "color-mix(in oklab, var(--primary) 16%, transparent)" }}
                       aria-hidden
                     >
