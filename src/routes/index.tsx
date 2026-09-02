@@ -1025,7 +1025,7 @@ function Index() {
           className="relative mx-auto max-w-6xl px-5 py-20"
           style={{ color: "var(--secondary-foreground)" }}
         >
-          <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-start">
+          <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-end">
             <Reveal>
               <div className="md:sticky md:top-28">
                 <h2
