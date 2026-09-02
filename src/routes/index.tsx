@@ -929,7 +929,7 @@ function Index() {
               loading="lazy"
               width={3504}
               height={1972}
-              className="mx-auto mt-10 aspect-[4/5] w-full max-w-sm rounded-2xl object-cover"
+              className="mt-10 aspect-video w-full rounded-2xl object-cover"
             />
 
             <div className="mt-6 flex justify-center">
