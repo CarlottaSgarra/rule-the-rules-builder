@@ -11,10 +11,21 @@ export function SignupForm({
   submitLabel = "Vai al pagamento",
   submitSub,
 }: Props) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    const phoneInput = e.currentTarget.elements.namedItem("phone_number");
+    if (phoneInput instanceof HTMLInputElement) {
+      const value = phoneInput.value.trim();
+      if (value && !value.startsWith("+")) {
+        phoneInput.value = `+39 ${value}`;
+      }
+    }
+  }
+
   return (
     <form
       method="post"
       action="https://systeme.io/embedded/44087792/subscription"
+      onSubmit={handleSubmit}
       className={`space-y-4 ${className}`}
     >
       <input
@@ -32,12 +43,17 @@ export function SignupForm({
         className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary"
       />
       {compact ? null : (
-        <input
-          type="tel"
-          name="phone_number"
-          placeholder="Il tuo WhatsApp"
-          className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary"
-        />
+        <div className="flex gap-2">
+          <span className="flex shrink-0 items-center justify-center rounded-lg border border-input bg-background px-3 py-3 text-sm text-muted-foreground">
+            🇮🇹 +39
+          </span>
+          <input
+            type="tel"
+            name="phone_number"
+            placeholder="Il tuo WhatsApp"
+            className="w-full min-w-0 rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary"
+          />
+        </div>
       )}
       <label className="flex items-start gap-3 text-xs text-muted-foreground">
         <input type="checkbox" required className="mt-0.5 accent-[var(--primary)]" />
