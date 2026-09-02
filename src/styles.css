@@ -245,3 +245,36 @@
     animation: none;
   }
 }
+
+@keyframes marquee-down {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes marquee-up {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@utility animate-marquee-down {
+  animation: marquee-down 32s linear infinite;
+}
+
+@utility animate-marquee-up {
+  animation: marquee-up 32s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-down,
+  .animate-marquee-up {
+    animation: none;
+  }
+}

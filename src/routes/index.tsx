@@ -30,6 +30,7 @@ import livestreamImg from "@/assets/livestream.jpg";
 import goldTexture from "@/assets/texture-gold.jpg";
 import testimonialImg from "@/assets/testimonial-1.jpg";
 import heroImg from "@/assets/hero-carlotta.jpg";
+import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import methodBgImg from "@/assets/method-bg.jpg";
 
 export const Route = createFileRoute("/")({
@@ -64,6 +65,23 @@ const avatarPlaceholders = [
   "oklch(0.45 0.08 200)",
   "oklch(0.58 0.1 140)",
 ];
+
+// Placeholder photos for the scrolling gallery — swap these for Carlotta's event photos.
+const galleryPlaceholders = [
+  teamImg,
+  testimonialImg,
+  iphoneImg,
+  livestreamImg,
+  heroImg,
+  carlottaPresentingImg,
+];
+
+const galleryColumns = Array.from({ length: 5 }, (_, col) =>
+  Array.from(
+    { length: 5 },
+    (_, i) => galleryPlaceholders[(col * 2 + i) % galleryPlaceholders.length],
+  ),
+);
 
 const systemSteps = [
   {
@@ -906,11 +924,11 @@ function Index() {
             </div>
 
             <img
-              src={heroImg}
-              alt="Carlotta Sgarra"
+              src={carlottaPresentingImg}
+              alt="Carlotta Sgarra sul palco durante uno dei suoi speech"
               loading="lazy"
-              width={1024}
-              height={1280}
+              width={3504}
+              height={1972}
               className="mx-auto mt-10 aspect-[4/5] w-full max-w-sm rounded-2xl object-cover"
             />
 
@@ -1194,36 +1212,64 @@ function Index() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Offerta */}
+      {/* Galleria eventi: colonne di foto in scorrimento continuo */}
+      <section
+        className="relative overflow-hidden py-20"
+        style={{ backgroundColor: "var(--secondary)" }}
+      >
+        <div className="relative z-10 mx-auto max-w-4xl px-5 text-center">
           <Reveal>
-            <div className="mt-12 overflow-hidden rounded-2xl bg-white shadow-[0_24px_70px_-28px_rgba(0,0,0,0.2)]">
-              <img
-                src={livestreamImg}
-                alt="Rule The Rules in live streaming"
-                loading="lazy"
-                width={1280}
-                height={720}
-                className="h-56 w-full object-cover"
-              />
-              <div className="p-8 text-center">
-                <p className="font-condensed text-lg uppercase tracking-[0.2em] text-muted-foreground">
-                  Il tuo biglietto per Rule The Rules 2026
-                </p>
-                <p className="mt-3 font-condensed text-4xl uppercase tracking-[0.1em] text-gradient-gold">
-                  27€
-                </p>
-                <p className="mt-4 text-sm text-muted-foreground">
-                  Accesso alle 3 serate live dal 5 al 7 ottobre, in diretta streaming, più il{" "}
-                  <strong className="font-semibold text-foreground">Workbook incluso</strong>.
-                </p>
-                <div className="mt-6 flex justify-center">
-                  <CtaButton label="Sì, hai letto bene: 27€" />
-                </div>
-              </div>
-            </div>
+            <h2 className="text-3xl sm:text-4xl" style={{ color: "var(--secondary-foreground)" }}>
+              Ai miei eventi live hanno partecipato <Highlight dark>più di 500 persone</Highlight> e
+              tutte sono tornate a casa con una visione nuova sulla loro comunicazione
+            </h2>
           </Reveal>
         </div>
+
+        <div className="relative mt-14 grid h-[34rem] grid-cols-3 gap-3 px-3 sm:grid-cols-5 sm:gap-4 sm:px-5">
+          {galleryColumns.map((col, ci) => (
+            <div
+              key={ci}
+              className={`overflow-hidden rounded-xl ${ci >= 3 ? "hidden sm:block" : ""}`}
+            >
+              <div
+                className={`flex flex-col gap-3 sm:gap-4 ${
+                  ci % 2 === 0 ? "animate-marquee-down" : "animate-marquee-up"
+                }`}
+                style={{ animationDuration: `${28 + ci * 6}s` }}
+              >
+                {[...col, ...col].map((img, ii) => (
+                  <img
+                    key={ii}
+                    src={img}
+                    alt=""
+                    aria-hidden
+                    loading="lazy"
+                    className="aspect-[3/4] w-full rounded-xl object-cover"
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-32 sm:h-40"
+          style={{
+            backgroundImage: "linear-gradient(180deg, var(--secondary), transparent)",
+          }}
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-32 sm:h-40"
+          style={{
+            backgroundImage: "linear-gradient(0deg, var(--secondary), transparent)",
+          }}
+          aria-hidden
+        />
       </section>
 
       {/* Cosa ti porti a casa */}
