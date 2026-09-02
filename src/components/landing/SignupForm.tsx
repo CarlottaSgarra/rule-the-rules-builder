@@ -20,7 +20,7 @@ export function SignupForm({
       <input
         type="text"
         name="first_name"
-        placeholder="Nome e cognome"
+        placeholder="Nome"
         required
         className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary"
       />
