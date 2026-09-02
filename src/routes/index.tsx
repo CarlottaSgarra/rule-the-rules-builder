@@ -118,9 +118,18 @@ const sessions = [
       </>
     ),
     bullets: [
-      "Il modello COSA/CHI/COME per capire cosa dici, chi sei mentre lo dici, come lo comunichi",
-      "Analisi live di un profilo: cosa vediamo oggi, cosa può diventare",
-      "Costruzione delle tue prime Carte Identitarie",
+      <>
+        Il <strong className="font-semibold text-ink">modello COSA/CHI/COME</strong> per capire cosa
+        dici, chi sei mentre lo dici, come lo comunichi
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Analisi live di un profilo</strong>: cosa vediamo
+        oggi, cosa può diventare
+      </>,
+      <>
+        Costruzione delle tue prime{" "}
+        <strong className="font-semibold text-ink">Carte Identitarie</strong>
+      </>,
     ],
   },
   {
@@ -138,9 +147,18 @@ const sessions = [
       </>
     ),
     bullets: [
-      "Le regole che segui oggi (hook, script, CTA, frequenza) messe alla prova, una per una",
-      "Costruzione delle tue Anti-Regole personali",
-      "Il tuo primo metodo personale di creazione contenuti",
+      <>
+        Le regole che segui oggi (hook, script, CTA, frequenza){" "}
+        <strong className="font-semibold text-ink">messe alla prova</strong>, una per una
+      </>,
+      <>
+        Costruzione delle tue{" "}
+        <strong className="font-semibold text-ink">Anti-Regole personali</strong>
+      </>,
+      <>
+        Il tuo primo <strong className="font-semibold text-ink">metodo personale</strong> di
+        creazione contenuti
+      </>,
     ],
   },
   {
@@ -157,9 +175,18 @@ const sessions = [
       </>
     ),
     bullets: [
-      "Struttura creativa con Sharon: format, tipologie di contenuto, banca idee",
-      "I 4 obiettivi di ogni contenuto: attrarre, connettere, posizionare, convertire",
-      "Le 5 domande guida per costruire il tuo piano editoriale, contenuto per contenuto",
+      <>
+        <strong className="font-semibold text-ink">Struttura creativa</strong> con Sharon: format,
+        tipologie di contenuto, banca idee
+      </>,
+      <>
+        I <strong className="font-semibold text-ink">4 obiettivi</strong> di ogni contenuto:
+        attrarre, connettere, posizionare, convertire
+      </>,
+      <>
+        Le <strong className="font-semibold text-ink">5 domande guida</strong> per costruire il tuo
+        piano editoriale, contenuto per contenuto
+      </>,
     ],
   },
 ];
@@ -1027,12 +1054,20 @@ function Index() {
             {sessions.map((s, i) => (
               <Reveal key={s.n} delay={i * 100}>
                 <div
-                  className="grid gap-8 rounded-2xl border border-[color-mix(in_oklab,var(--background)_14%,transparent)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] sm:p-8 md:grid-cols-[0.7fr_1.3fr] md:items-start md:gap-10"
+                  className="relative grid gap-8 overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--background)_14%,transparent)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] sm:p-8 md:grid-cols-[0.7fr_1.3fr] md:items-center md:gap-10"
                   style={{
                     backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
                   }}
                 >
-                  <div className="flex flex-col items-center text-center">
+                  <span
+                    className="pointer-events-none absolute -right-6 top-1/2 hidden -translate-y-1/2 select-none font-display text-[13rem] font-bold leading-none md:block"
+                    style={{ color: "color-mix(in oklab, var(--primary) 16%, transparent)" }}
+                    aria-hidden
+                  >
+                    {s.n}
+                  </span>
+
+                  <div className="relative flex flex-col items-center text-center">
                     <div className="flex items-center gap-3">
                       <span
                         className="flex size-11 shrink-0 items-center justify-center rounded-full font-condensed text-lg font-bold"
@@ -1072,15 +1107,15 @@ function Index() {
                     />
                   </div>
 
-                  <div>
+                  <div className="relative">
                     <p className="text-sm leading-relaxed text-ink-muted sm:text-base">{s.intro}</p>
                     <p className="mt-5 font-condensed text-xs uppercase tracking-[0.2em] text-ink-muted">
                       Cosa facciamo insieme:
                     </p>
                     <ul className="mt-3 space-y-3">
-                      {s.bullets.map((b) => (
+                      {s.bullets.map((b, bi) => (
                         <li
-                          key={b}
+                          key={bi}
                           className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
                         >
                           <span
