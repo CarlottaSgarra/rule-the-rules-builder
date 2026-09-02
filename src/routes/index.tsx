@@ -113,8 +113,8 @@ const sessions = [
       <>
         Partiamo da qui: chi sei quando togli la maschera della “professionista giusta”. Ti mostro
         il modello COSA/CHI/COME, analizziamo insieme un profilo, e costruisci le{" "}
-        <strong className="font-semibold text-foreground">tue prime Carte Identitarie</strong>.
-        Chiudi la serata già sapendo cosa vuoi rappresentare e cosa non vuoi più rappresentare.
+        <strong className="font-semibold text-ink">tue prime Carte Identitarie</strong>. Chiudi la
+        serata già sapendo cosa vuoi rappresentare e cosa non vuoi più rappresentare.
       </>
     ),
     bullets: [
@@ -132,9 +132,9 @@ const sessions = [
       <>
         Prendiamo ogni regola che ti hanno insegnato su hook, script, CTA e frequenza, e ti chiedo
         una sola domanda per ognuna: funziona per te? Da qui nascono{" "}
-        <strong className="font-semibold text-foreground">le tue Anti-Regole</strong> e il tuo primo
-        metodo personale di creazione contenuti. Il giorno dopo crei un contenuto senza seguire
-        nessuna regola, solo ascoltando te stessa.
+        <strong className="font-semibold text-ink">le tue Anti-Regole</strong> e il tuo primo metodo
+        personale di creazione contenuti. Il giorno dopo crei un contenuto senza seguire nessuna
+        regola, solo ascoltando te stessa.
       </>
     ),
     bullets: [
@@ -151,9 +151,9 @@ const sessions = [
     intro: (
       <>
         Identità più metodo personale diventano{" "}
-        <strong className="font-semibold text-foreground">una strategia vera</strong>. Con Sharon
-        lavoriamo sulla struttura creativa (format, banca idee), poi trasformiamo tutto in un piano
-        editoriale che ha una funzione per il tuo business, non solo per la tua immagine.
+        <strong className="font-semibold text-ink">una strategia vera</strong>. Con Sharon lavoriamo
+        sulla struttura creativa (format, banca idee), poi trasformiamo tutto in un piano editoriale
+        che ha una funzione per il tuo business, non solo per la tua immagine.
       </>
     ),
     bullets: [
@@ -1023,20 +1023,28 @@ function Index() {
             </h2>
           </Reveal>
 
-          <div className="mt-12 divide-y divide-primary/20">
+          <div className="mt-12 space-y-6">
             {sessions.map((s, i) => (
               <Reveal key={s.n} delay={i * 100}>
-                <div className="grid gap-8 py-12 first:pt-0 last:pb-0 md:grid-cols-[0.85fr_1.15fr] md:items-start md:gap-12">
-                  <div>
+                <div
+                  className="grid gap-8 rounded-2xl border border-[color-mix(in_oklab,var(--background)_14%,transparent)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] sm:p-8 md:grid-cols-[0.7fr_1.3fr] md:items-start md:gap-10"
+                  style={{
+                    backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
+                  }}
+                >
+                  <div className="flex flex-col items-center text-center">
                     <div className="flex items-center gap-3">
                       <span
-                        className="flex size-11 shrink-0 items-center justify-center rounded-full border-2 font-condensed text-lg"
-                        style={{ borderColor: "var(--primary)", color: "var(--primary)" }}
+                        className="flex size-11 shrink-0 items-center justify-center rounded-full font-condensed text-lg font-bold"
+                        style={{
+                          backgroundImage: "var(--gradient-gold)",
+                          color: "var(--primary-foreground)",
+                        }}
                       >
                         {s.n.padStart(2, "0")}
                       </span>
                       <span
-                        className="inline-block rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground"
+                        className="inline-block rounded-full px-3 py-1.5 font-condensed text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground"
                         style={{ backgroundImage: "var(--gradient-gold)" }}
                       >
                         Serata {s.n} · {s.date}, ore {s.time}
@@ -1044,7 +1052,7 @@ function Index() {
                     </div>
 
                     <div
-                      className="mt-5 flex aspect-[4/3] w-full flex-col items-center justify-center gap-2 rounded-2xl border border-dashed"
+                      className="mt-5 flex aspect-[4/3] w-full max-w-[220px] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed"
                       style={{
                         borderColor: "color-mix(in oklab, var(--primary) 40%, transparent)",
                         backgroundColor: "color-mix(in oklab, var(--background) 8%, transparent)",
