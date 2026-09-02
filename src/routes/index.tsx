@@ -64,22 +64,41 @@ const avatarPlaceholders = [
 
 const systemSteps = [
   {
-    n: "1",
+    n: "01",
     tag: "Identità",
     label: "Radica chi sei",
-    d: "Prima di scrivere anche un solo contenuto, mettiamo nero su bianco chi sei davvero: voce, valori, contraddizioni, la tua storia. Senza questo, ogni regola che applichi ti allontana da te invece di avvicinarti a chi vuoi raggiungere.",
+    d: (
+      <>
+        Prima di scrivere anche un solo contenuto, mettiamo nero su bianco{" "}
+        <strong className="font-semibold text-foreground">chi sei davvero</strong>: voce, valori,
+        contraddizioni, la tua storia. Senza questo, ogni regola che applichi ti allontana da te
+        invece di avvicinarti a chi vuoi raggiungere.
+      </>
+    ),
   },
   {
-    n: "2",
+    n: "02",
     tag: "Contenuti",
     label: "Le tue Anti-Regole",
-    d: "Prendiamo hook, script, format che segui oggi per obbligo e li sostituiamo con le tue regole: quelle che funzionano perché sono tue, non perché le ha dette un guru.",
+    d: (
+      <>
+        Prendiamo hook, script, format che segui oggi per obbligo e li sostituiamo con{" "}
+        <strong className="font-semibold text-foreground">le tue regole</strong>: quelle che
+        funzionano perché sono tue, non perché le ha dette un guru.
+      </>
+    ),
   },
   {
-    n: "3",
+    n: "03",
     tag: "Piano editoriale",
     label: "Costruisci la tua strategia",
-    d: "Trasformiamo identità e Anti-Regole in un piano editoriale che riesci davvero a sostenere, non l’ennesimo calendario rigido che abbandoni dopo due settimane.",
+    d: (
+      <>
+        Trasformiamo identità e Anti-Regole in un piano editoriale che{" "}
+        <strong className="font-semibold text-foreground">riesci davvero a sostenere</strong>, non
+        l’ennesimo calendario rigido che abbandoni dopo due settimane.
+      </>
+    ),
   },
 ];
 
@@ -89,8 +108,14 @@ const sessions = [
     date: "5 ottobre",
     time: "20:00–21:00",
     quote: "Prima di comunicare, devi tornare a te.",
-    intro:
-      "Partiamo da qui: chi sei quando togli la maschera della “professionista giusta”. Ti mostro il modello COSA/CHI/COME, analizziamo insieme un profilo, e costruisci le tue prime Carte Identitarie. Chiudi la serata già sapendo cosa vuoi rappresentare e cosa non vuoi più rappresentare.",
+    intro: (
+      <>
+        Partiamo da qui: chi sei quando togli la maschera della “professionista giusta”. Ti mostro
+        il modello COSA/CHI/COME, analizziamo insieme un profilo, e costruisci le{" "}
+        <strong className="font-semibold text-foreground">tue prime Carte Identitarie</strong>.
+        Chiudi la serata già sapendo cosa vuoi rappresentare e cosa non vuoi più rappresentare.
+      </>
+    ),
     bullets: [
       "Il modello COSA/CHI/COME per capire cosa dici, chi sei mentre lo dici, come lo comunichi",
       "Analisi live di un profilo: cosa vediamo oggi, cosa può diventare",
@@ -102,8 +127,15 @@ const sessions = [
     date: "6 ottobre",
     time: "20:00–21:00",
     quote: "Il piano editoriale non è una gabbia.",
-    intro:
-      "Prendiamo ogni regola che ti hanno insegnato su hook, script, CTA e frequenza, e ti chiedo una sola domanda per ognuna: funziona per te? Da qui nascono le tue Anti-Regole e il tuo primo metodo personale di creazione contenuti. Il giorno dopo crei un contenuto senza seguire nessuna regola, solo ascoltando te stessa.",
+    intro: (
+      <>
+        Prendiamo ogni regola che ti hanno insegnato su hook, script, CTA e frequenza, e ti chiedo
+        una sola domanda per ognuna: funziona per te? Da qui nascono{" "}
+        <strong className="font-semibold text-foreground">le tue Anti-Regole</strong> e il tuo primo
+        metodo personale di creazione contenuti. Il giorno dopo crei un contenuto senza seguire
+        nessuna regola, solo ascoltando te stessa.
+      </>
+    ),
     bullets: [
       "Le regole che segui oggi (hook, script, CTA, frequenza) messe alla prova, una per una",
       "Costruzione delle tue Anti-Regole personali",
@@ -115,8 +147,14 @@ const sessions = [
     date: "7 ottobre",
     time: "20:00–21:00",
     quote: "Costruisci la tua strategia.",
-    intro:
-      "Identità più metodo personale diventano una strategia vera. Con Sharon lavoriamo sulla struttura creativa (format, banca idee), poi trasformiamo tutto in un piano editoriale che ha una funzione per il tuo business, non solo per la tua immagine.",
+    intro: (
+      <>
+        Identità più metodo personale diventano{" "}
+        <strong className="font-semibold text-foreground">una strategia vera</strong>. Con Sharon
+        lavoriamo sulla struttura creativa (format, banca idee), poi trasformiamo tutto in un piano
+        editoriale che ha una funzione per il tuo business, non solo per la tua immagine.
+      </>
+    ),
     bullets: [
       "Struttura creativa con Sharon: format, tipologie di contenuto, banca idee",
       "I 4 obiettivi di ogni contenuto: attrarre, connettere, posizionare, convertire",
@@ -138,6 +176,7 @@ const startingPointCards = [
   {
     id: "riscrivi",
     icon: PenLine,
+    title: "La riscrittura infinita",
     text: (
       <>
         Apri Instagram con un’idea, la scrivi, la cancelli, la riscrivi{" "}
@@ -148,6 +187,7 @@ const startingPointCards = [
   {
     id: "font-diverso",
     icon: Copy,
+    title: "La fotocopia involontaria",
     text: (
       <>
         Guardi il profilo di un’altra professionista del tuo settore e ti sembra di vedere il tuo,{" "}
@@ -158,6 +198,7 @@ const startingPointCards = [
   {
     id: "recitare",
     icon: Clapperboard,
+    title: "La recita del Reel",
     text: (
       <>
         Quando registri un Reel ti senti{" "}
@@ -171,6 +212,7 @@ const startingPointCards = [
   {
     id: "non-riconosci",
     icon: ListChecks,
+    title: "Tutto giusto, eppure niente",
     text: (
       <>
         Hai imparato hook, CTA, piano editoriale, frequenza di pubblicazione: hai fatto tutto come
@@ -183,6 +225,7 @@ const startingPointCards = [
   {
     id: "paura",
     icon: ShieldAlert,
+    title: "La paura di rompere",
     text: (
       <>
         Hai paura che smettere di seguire le regole significhi{" "}
@@ -196,6 +239,7 @@ const startingPointCards = [
   {
     id: "gabbia",
     icon: Lock,
+    title: "Il piano-gabbia",
     text: (
       <>
         Il piano editoriale che segui ti fa sentire{" "}
@@ -237,28 +281,62 @@ const forWhoNo = [
 const mythReality = [
   {
     myth: "Esiste un modo giusto di stare su Instagram, e devo trovarlo.",
-    reality:
-      "Il nemico non è Instagram. È l’idea che esista un modo giusto di starci. Non sei tu che devi adattarti a Instagram: è Instagram che deve iniziare ad avere la tua faccia.",
+    reality: (
+      <>
+        Il nemico non è Instagram. È l’idea che esista un modo giusto di starci. Non sei tu che devi
+        adattarti a Instagram:{" "}
+        <strong className="font-semibold text-foreground">
+          è Instagram che deve iniziare ad avere la tua faccia
+        </strong>
+        .
+      </>
+    ),
   },
   {
     myth: "Fare tutto “come si deve” mi farà emergere.",
-    reality:
-      "Fare tutto “come si deve” è probabilmente il motivo per cui oggi nessuno riesce a distinguerti. Le regole ti hanno resa brava. Ora bisogna renderti riconoscibile.",
+    reality: (
+      <>
+        Fare tutto “come si deve” è probabilmente il motivo per cui oggi nessuno riesce a
+        distinguerti. Le regole ti hanno resa brava.{" "}
+        <strong className="font-semibold text-foreground">
+          Ora bisogna renderti riconoscibile.
+        </strong>
+      </>
+    ),
   },
   {
     myth: "Se rompo le regole, i contenuti smettono di funzionare.",
-    reality:
-      "Non si tratta di eliminare le regole, ma di smettere di subirle. Una regola resta utile solo se ti aiuta a comunicare meglio senza farti sparire.",
+    reality: (
+      <>
+        Non si tratta di eliminare le regole, ma di{" "}
+        <strong className="font-semibold text-foreground">smettere di subirle</strong>. Una regola
+        resta utile solo se ti aiuta a comunicare meglio senza farti sparire.
+      </>
+    ),
   },
   {
     myth: "Rompere le regole vuol dire fare quello che mi pare, senza strategia.",
-    reality:
-      "La libertà arriva da una struttura solida abbastanza da permetterti di essere creativa, non dal caos. Prima costruiamo l’identità. Poi la strategia attorno a te. Mai il contrario.",
+    reality: (
+      <>
+        La libertà arriva da una struttura solida abbastanza da permetterti di essere creativa, non
+        dal caos.{" "}
+        <strong className="font-semibold text-foreground">
+          Prima costruiamo l’identità. Poi la strategia attorno a te.
+        </strong>{" "}
+        Mai il contrario.
+      </>
+    ),
   },
   {
     myth: "Non so nemmeno chi sono “senza personaggio”.",
-    reality:
-      "Non devi mostrare la personalità in astratto. Devi trovare gli elementi concreti che ti rendono riconoscibile e non sostituibile. È un lavoro guidato, le Carte Identitarie. Non qualcosa che devi già sapere.",
+    reality: (
+      <>
+        Non devi mostrare la personalità in astratto. Devi trovare gli elementi concreti che ti
+        rendono riconoscibile e non sostituibile. È un lavoro guidato,{" "}
+        <strong className="font-semibold text-foreground">le Carte Identitarie</strong>. Non
+        qualcosa che devi già sapere.
+      </>
+    ),
   },
 ];
 
@@ -313,15 +391,34 @@ const twoPaths = {
 const workbookDays = [
   {
     t: "Giorno 1 · Chi sono",
-    d: "Le tue Carte Identitarie: il documento in cui metti nero su bianco cosa ti rende riconoscibile.",
+    d: (
+      <>
+        Le tue Carte Identitarie: il documento in cui metti nero su bianco{" "}
+        <strong className="font-semibold text-foreground">cosa ti rende riconoscibile</strong>.
+      </>
+    ),
   },
   {
     t: "Giorno 2 · Come comunico",
-    d: "Le tue Anti-Regole personali e il tuo Content Lab, per iniziare a creare contenuti con il tuo metodo.",
+    d: (
+      <>
+        Le tue Anti-Regole personali e{" "}
+        <strong className="font-semibold text-foreground">il tuo Content Lab</strong>, per iniziare
+        a creare contenuti con il tuo metodo.
+      </>
+    ),
   },
   {
     t: "Giorno 3 · Come costruisco il sistema",
-    d: "Format, banca idee e la struttura del tuo piano editoriale, costruito insieme durante la serata.",
+    d: (
+      <>
+        Format, banca idee e{" "}
+        <strong className="font-semibold text-foreground">
+          la struttura del tuo piano editoriale
+        </strong>
+        , costruito insieme durante la serata.
+      </>
+    ),
   },
 ];
 
@@ -356,31 +453,92 @@ const valueStackTotal = valueStack.reduce((sum, v) => sum + (v.value ?? 0), 0);
 const faqs = [
   {
     q: "Cos’è esattamente Rule The Rules 2026?",
-    a: "È uno show formativo in live streaming con Carlotta Sgarra e il suo team, in tre serate dal 5 al 7 ottobre 2026. Ti do gli strumenti per costruire la tua identità, il tuo metodo personale di creazione contenuti e un piano editoriale che è davvero tuo, non l’ennesimo format universale.",
+    a: (
+      <>
+        È uno show formativo in live streaming con Carlotta Sgarra e il suo team, in tre serate dal
+        5 al 7 ottobre 2026. Ti do gli strumenti per costruire la tua identità, il tuo metodo
+        personale di creazione contenuti e{" "}
+        <strong className="font-semibold text-ink">un piano editoriale che è davvero tuo</strong>,
+        non l’ennesimo format universale.
+      </>
+    ),
   },
   {
     q: "È un corso registrato o un evento dal vivo?",
-    a: "È un evento dal vivo in streaming, ci connetteremo usando il software Zoom.",
+    a: (
+      <>
+        È un <strong className="font-semibold text-ink">evento dal vivo in streaming</strong>, ci
+        connetteremo usando il software Zoom.
+      </>
+    ),
   },
   {
     q: "A chi è rivolto?",
-    a: "A professioniste, coach, consulenti e imprenditrici che si sentono una fotocopia delle altre, sono stufe di seguire regole che non sentono loro, e vogliono costruire una comunicazione che parte davvero da chi sono.",
+    a: (
+      <>
+        A professioniste, coach, consulenti e imprenditrici che si sentono una fotocopia delle
+        altre, sono stufe di seguire regole che non sentono loro, e{" "}
+        <strong className="font-semibold text-ink">
+          vogliono costruire una comunicazione che parte davvero da chi sono
+        </strong>
+        .
+      </>
+    ),
   },
   {
     q: "Funziona anche nel mio settore?",
-    a: "Sì. Carlotta ha già aiutato nutrizionisti, tatuatrici, consulenti d’immagine, coach, social media manager, make-up artist e tanti altri a smettere di comunicare come tutti gli altri nel loro settore. Il principio è lo stesso: parti dalla tua identità, non da un format che “funziona”.",
+    a: (
+      <>
+        Sì. Carlotta ha già aiutato nutrizionisti, tatuatrici, consulenti d’immagine, coach, social
+        media manager, make-up artist e tanti altri a smettere di comunicare come tutti gli altri
+        nel loro settore. Il principio è lo stesso:{" "}
+        <strong className="font-semibold text-ink">
+          parti dalla tua identità, non da un format che “funziona”
+        </strong>
+        .
+      </>
+    ),
   },
   {
     q: "E se non riesco a seguirlo live?",
-    a: "Con il biglietto standard puoi seguire solo in diretta, non è prevista la registrazione. Se vuoi rivedere l’evento tutte le volte che vuoi, fermarti sui passaggi cruciali o prenderti appunti con calma, scegli il biglietto VIP, che include la registrazione completa.",
+    a: (
+      <>
+        Con il biglietto standard puoi seguire solo in diretta, non è prevista la registrazione. Se
+        vuoi rivedere l’evento tutte le volte che vuoi, fermarti sui passaggi cruciali o prenderti
+        appunti con calma,{" "}
+        <strong className="font-semibold text-ink">
+          scegli il biglietto VIP, che include la registrazione completa
+        </strong>
+        .
+      </>
+    ),
   },
   {
     q: "Se non fa per me, posso riavere indietro i soldi?",
-    a: "Sì. Se dopo la prima serata capisci che “Rule The Rules” non fa per te, scrivici prima dell’inizio della seconda serata live (6 ottobre) e ti rimborsiamo il biglietto, senza bisogno di spiegazioni.",
+    a: (
+      <>
+        Sì. Se dopo la prima serata capisci che “Rule The Rules” non fa per te, scrivici prima
+        dell’inizio della seconda serata live (6 ottobre) e{" "}
+        <strong className="font-semibold text-ink">
+          ti rimborsiamo il biglietto, senza bisogno di spiegazioni
+        </strong>
+        .
+      </>
+    ),
   },
   {
     q: "Perché il prezzo è così basso?",
-    a: "Perché Rule The Rules 2026 è l’introduzione al nostro modo di lavorare: vogliamo che più professioniste possibile abbiano gli strumenti giusti per ritrovarsi nella propria comunicazione. Consideralo un biglietto d’ingresso: un prezzo accessibile per un contenuto che può cambiare il modo in cui ti presenti online.",
+    a: (
+      <>
+        Perché Rule The Rules 2026 è l’introduzione al nostro modo di lavorare: vogliamo che più
+        professioniste possibile abbiano gli strumenti giusti per ritrovarsi nella propria
+        comunicazione. Consideralo un biglietto d’ingresso:{" "}
+        <strong className="font-semibold text-ink">
+          un prezzo accessibile per un contenuto che può cambiare il modo in cui ti presenti online
+        </strong>
+        .
+      </>
+    ),
   },
 ];
 
@@ -502,8 +660,11 @@ function Index() {
           <Reveal delay={210}>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-foreground/75 sm:text-lg">
               Hook, script, editing, formule: non sei stanca di dover seguire un copione tutte le
-              volte che apri Instagram? E se ci fosse la soluzione per poter vendere senza più
-              seguire queste regole?
+              volte che apri Instagram? E se ci fosse la soluzione per{" "}
+              <strong className="font-semibold text-foreground">
+                vendere senza più seguire queste regole
+              </strong>
+              ?
             </p>
           </Reveal>
 
@@ -656,7 +817,8 @@ function Index() {
               .
             </h2>
             <p className="mx-auto mt-4 max-w-5xl text-base text-foreground/75 sm:text-lg">
-              Durante l’evento rompiamo tutti questi schemi per tornare alla tua vera identità.
+              Durante l’evento rompiamo tutti questi schemi per tornare alla{" "}
+              <strong className="font-semibold text-foreground">tua vera identità</strong>.
             </p>
             <div className="mt-10">
               <VideoFrame
@@ -691,15 +853,19 @@ function Index() {
                 Parlo ogni giorno con decine di professioniste online, e quasi tutte mi dicono
                 questa frase con parole diverse. Seguono le regole di Instagram, seguono le regole
                 che gli danno i guru, seguono i format che funzionano per tutte, e il risultato è
-                che oggi nessuna di loro comunica più a modo suo. Comunicano a modo di qualcun
-                altro.
+                che oggi{" "}
+                <strong className="font-semibold text-ink">
+                  nessuna di loro comunica più a modo suo
+                </strong>
+                . Comunicano a modo di qualcun altro.
               </p>
               <p>
                 Io non voglio darti altre regole da seguire. Il 5, 6 e 7 ottobre, dalle 20 alle 21,
                 in diretta su Zoom, ti mostro come smettere di farlo. Prendiamo le regole che ti
-                hanno insegnato e le buttiamo via una a una, e al loro posto costruiamo le tue:
-                quelle che ti fanno riconoscere invece che confondere con qualsiasi altra
-                professionista del tuo settore.
+                hanno insegnato e le buttiamo via una a una, e al loro posto{" "}
+                <strong className="font-semibold text-ink">costruiamo le tue</strong>: quelle che ti
+                fanno riconoscere invece che confondere con qualsiasi altra professionista del tuo
+                settore.
               </p>
             </div>
 
@@ -730,25 +896,31 @@ function Index() {
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <div className="space-y-4">
-              {startingPointCards.slice(0, 3).map(({ id, icon: Icon, text }, i) => (
+              {startingPointCards.slice(0, 3).map(({ id, icon: Icon, title, text }, i) => (
                 <Reveal key={id} delay={i * 60}>
-                  <div className="flex h-full min-h-[13rem] items-center gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[19.75rem] md:min-h-[14.25rem] lg:min-h-[11rem]">
-                    <Icon className="size-5 shrink-0 text-secondary" />
-                    <span className="text-sm leading-relaxed text-foreground/85 sm:text-base">
-                      {text}
-                    </span>
+                  <div className="flex h-full min-h-[14.5rem] items-start gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[21.25rem] md:min-h-[15.75rem] lg:min-h-[12.5rem]">
+                    <Icon className="mt-1 size-5 shrink-0 text-secondary" />
+                    <div>
+                      <p className="font-semibold text-foreground">{title}</p>
+                      <span className="mt-1 block text-sm leading-relaxed text-foreground/85 sm:text-base">
+                        {text}
+                      </span>
+                    </div>
                   </div>
                 </Reveal>
               ))}
             </div>
             <div className="space-y-4">
-              {startingPointCards.slice(3, 6).map(({ id, icon: Icon, text }, i) => (
+              {startingPointCards.slice(3, 6).map(({ id, icon: Icon, title, text }, i) => (
                 <Reveal key={id} delay={(i + 3) * 60}>
-                  <div className="flex h-full min-h-[13rem] items-center gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[19.75rem] md:min-h-[14.25rem] lg:min-h-[11rem]">
-                    <Icon className="size-5 shrink-0 text-secondary" />
-                    <span className="text-sm leading-relaxed text-foreground/85 sm:text-base">
-                      {text}
-                    </span>
+                  <div className="flex h-full min-h-[14.5rem] items-start gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[21.25rem] md:min-h-[15.75rem] lg:min-h-[12.5rem]">
+                    <Icon className="mt-1 size-5 shrink-0 text-secondary" />
+                    <div>
+                      <p className="font-semibold text-foreground">{title}</p>
+                      <span className="mt-1 block text-sm leading-relaxed text-foreground/85 sm:text-base">
+                        {text}
+                      </span>
+                    </div>
                   </div>
                 </Reveal>
               ))}
@@ -763,20 +935,24 @@ function Index() {
               <div className="space-y-4 text-base leading-relaxed text-foreground/85">
                 <p>
                   Tutti i guru che segui online ti hanno insegnato che bisogna fare le cose così:
-                  questo hook, questo script, questa CTA, questo orario di pubblicazione. Stare
-                  dentro lo schema, per vendere online.
+                  questo hook, questo script, questa CTA, questo orario di pubblicazione.{" "}
+                  <strong className="font-semibold text-foreground">
+                    Stare dentro lo schema, per vendere online.
+                  </strong>
                 </p>
                 <p>
                   Eppure lo vedi anche tu: i profili che oggi ottengono davvero visibilità sono
                   quelli che escono dallo schema, non quelli che lo seguono alla lettera. E con
                   l’intelligenza artificiale che scrive uno script corretto in trenta secondi,
-                  seguire lo schema alla perfezione non ti distingue più da nessuna. Ti rende
-                  sostituibile.
+                  seguire lo schema alla perfezione non ti distingue più da nessuna.{" "}
+                  <strong className="font-semibold text-foreground">Ti rende sostituibile.</strong>
                 </p>
                 <p>
-                  Il vero asset non è più sapere le regole. Sei tu: il tuo modo di spiegare, il tuo
-                  punto di vista, la tua energia. Nelle tre serate ti mostro esattamente come si fa
-                  a metterlo al centro della tua comunicazione, con un metodo, non a caso.
+                  Il vero asset non è più sapere le regole.{" "}
+                  <strong className="font-semibold text-foreground">Sei tu</strong>: il tuo modo di
+                  spiegare, il tuo punto di vista, la tua energia. Nelle tre serate ti mostro
+                  esattamente come si fa a metterlo al centro della tua comunicazione, con un
+                  metodo, non a caso.
                 </p>
               </div>
               <img
@@ -794,47 +970,44 @@ function Index() {
 
       {/* Il metodo: Identità -> Espressione -> Strategia */}
       <section className="bg-background">
-        <div className="mx-auto max-w-5xl px-5 py-20">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl">
-              Il metodo per rompere il <Highlight>circolo vizioso delle regolette</Highlight>
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-foreground/85 sm:text-lg">
-              Non esiste un modo giusto di stare su Instagram. Esiste il tuo. Per costruirlo
-              lavoriamo su 3 livelli, uno alla volta: prima chi sei, poi cosa dici, poi come lo dici
-              ogni giorno.
-            </p>
-          </Reveal>
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-start">
+            <Reveal>
+              <div className="md:sticky md:top-28">
+                <h2 className="text-3xl sm:text-4xl">
+                  Il metodo per rompere il <Highlight>circolo vizioso delle regolette</Highlight>
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-foreground/85 sm:text-lg">
+                  Non esiste un modo giusto di stare su Instagram.{" "}
+                  <strong className="font-semibold text-foreground">Esiste il tuo.</strong> Per
+                  costruirlo lavoriamo su 3 livelli, uno alla volta: prima chi sei, poi cosa dici,
+                  poi come lo dici ogni giorno.
+                </p>
+              </div>
+            </Reveal>
 
-          <div className="mt-10 grid gap-4 md:grid-cols-[1fr_auto_1fr_auto_1fr]">
-            {systemSteps.map((step, i) => (
-              <div key={step.n} className="contents">
-                <Reveal delay={i * 100}>
-                  <div className="surface-card flex h-full flex-col p-6">
-                    <span
-                      className="flex size-10 items-center justify-center rounded-full font-condensed text-lg"
-                      style={{
-                        backgroundImage: "var(--gradient-gold)",
-                        color: "var(--primary-foreground)",
-                      }}
-                    >
+            <div className="divide-y divide-border/70 md:border-t md:border-border/70">
+              {systemSteps.map((step, i) => (
+                <Reveal key={step.n} delay={i * 100}>
+                  <div className="flex gap-6 py-8 first:pt-0 md:first:pt-8">
+                    <span className="shrink-0 font-condensed text-4xl text-secondary sm:text-5xl">
                       {step.n}
                     </span>
-                    <p className="mt-4 font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
-                      {step.tag}
-                    </p>
-                    <p className="mt-1 text-lg font-semibold text-foreground">{step.label}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.d}</p>
+                    <div>
+                      <p className="font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
+                        {step.tag}
+                      </p>
+                      <p className="mt-1 text-lg font-semibold text-foreground sm:text-xl">
+                        {step.label}
+                      </p>
+                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                        {step.d}
+                      </p>
+                    </div>
                   </div>
                 </Reveal>
-                {i < systemSteps.length - 1 ? (
-                  <div className="flex items-center justify-center text-2xl text-secondary/60 md:rotate-0">
-                    <span className="md:hidden">↓</span>
-                    <span className="hidden md:inline">→</span>
-                  </div>
-                ) : null}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -873,18 +1046,18 @@ function Index() {
                     >
                       Serata {s.n} · {s.date}, ore {s.time}
                     </span>
-                    <h3 className="mt-4 text-2xl text-ink sm:text-3xl">“{s.quote}”</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
+                    <h3 className="mt-4 text-2xl text-secondary sm:text-3xl">“{s.quote}”</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
                       {s.intro}
                     </p>
-                    <p className="mt-4 font-condensed text-xs uppercase tracking-[0.2em] text-ink-muted">
+                    <p className="mt-4 font-condensed text-xs uppercase tracking-[0.2em] text-muted-foreground">
                       Cosa facciamo insieme:
                     </p>
                     <ul className="mt-3 space-y-3">
                       {s.bullets.map((b) => (
                         <li
                           key={b}
-                          className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
+                          className="flex gap-3 text-sm leading-relaxed text-foreground/80 sm:text-base"
                         >
                           <span
                             className="mt-2 size-1.5 shrink-0 rounded-full"
@@ -912,15 +1085,15 @@ function Index() {
                 className="h-56 w-full object-cover"
               />
               <div className="p-8 text-center">
-                <p className="font-condensed text-lg uppercase tracking-[0.2em] text-ink-muted">
+                <p className="font-condensed text-lg uppercase tracking-[0.2em] text-muted-foreground">
                   Il tuo biglietto per Rule The Rules 2026
                 </p>
                 <p className="mt-3 font-condensed text-4xl uppercase tracking-[0.1em] text-gradient-gold">
                   27€
                 </p>
-                <p className="mt-4 text-sm text-ink-muted">
-                  Accesso alle 3 serate live dal 5 al 7 ottobre, in diretta streaming, più il
-                  Workbook incluso.
+                <p className="mt-4 text-sm text-muted-foreground">
+                  Accesso alle 3 serate live dal 5 al 7 ottobre, in diretta streaming, più il{" "}
+                  <strong className="font-semibold text-foreground">Workbook incluso</strong>.
                 </p>
                 <div className="mt-6 flex justify-center">
                   <CtaButton />
@@ -1047,8 +1220,11 @@ function Index() {
               ottenuto ciò che desideravano.
             </h2>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-ink">
-              Te le mostro così che tu possa sentire che tutto ciò che sto per raccontarti è davvero
-              possibile.
+              Te le mostro così che tu possa sentire che{" "}
+              <strong className="font-semibold text-ink">
+                tutto ciò che sto per raccontarti è davvero possibile
+              </strong>
+              .
             </p>
             <p className="mt-3 max-w-3xl text-sm italic text-ink-muted">
               (Questi non sono solo numeri su uno schermo: sono persone reali che hanno agito,
@@ -1086,7 +1262,8 @@ function Index() {
                 <p className="text-base italic leading-relaxed text-foreground/90">
                   «Ho sempre pensato di essere meno degli altri, che non avrei mai raggiunto
                   determinati risultati. Prima mi approcciavo ai clienti con l’atteggiamento della
-                  disperata, dicendo “Oddio ti prego lavora con me”. Ora so quanto valgo. Mi
+                  disperata, dicendo “Oddio ti prego lavora con me”.{" "}
+                  <strong className="font-semibold text-foreground">Ora so quanto valgo.</strong> Mi
                   presento con un’offerta all’altezza, senza sconti, senza paura di dire “Avanti il
                   prossimo” se non capiscono il mio valore. Ho capito che non devo più sminuirmi. E
                   oggi mi sveglio con meno ansia, meno mal di stomaco e più consapevole di chi sono
@@ -1133,7 +1310,7 @@ function Index() {
                   <div className="font-condensed text-2xl" style={{ color: "var(--gold-deep)" }}>
                     {s.v}
                   </div>
-                  <div className="mt-1 text-xs text-ink-muted">{s.l}</div>
+                  <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
                 </div>
               ))}
             </div>
@@ -1259,10 +1436,16 @@ function Index() {
               <Highlight>come si rompono le regole della comunicazione</Highlight>:
             </h2>
             <div className="mt-8 space-y-4 text-base leading-relaxed text-ink">
-              <p>Sono stanca di eventi che ti lasciano solo slide e offerte per spennarti.</p>
               <p>
-                Sono stanca che tu veda imprenditori felici che fanno soldi su soldi, sentendoti una
-                merda di più ogni giorno che passa.
+                Sono stanca di eventi che ti lasciano solo slide e{" "}
+                <strong className="font-semibold text-ink">offerte per spennarti</strong>.
+              </p>
+              <p>
+                Sono stanca che tu veda imprenditori felici che fanno soldi su soldi,{" "}
+                <strong className="font-semibold text-ink">
+                  sentendoti una merda di più ogni giorno che passa
+                </strong>
+                .
               </p>
               <p>Per questo ho deciso di fare davvero questa follia.</p>
               <p className="font-semibold text-ink">Durante questo show in diretta streaming:</p>
@@ -1321,10 +1504,15 @@ function Index() {
                 Iphone, come ho fatto io.
               </p>
               <p>
-                Per poi diventare (finalmente) leader della tua vita gestendo un team di persone che
-                lavorano per la tua azienda mentre sei nel mare cristallino della Sardegna.
+                Per poi diventare (finalmente){" "}
+                <strong className="font-semibold text-ink">leader della tua vita</strong> gestendo
+                un team di persone che lavorano per la tua azienda mentre sei nel mare cristallino
+                della Sardegna.
               </p>
-              <p>Sì, libera professionista e imprenditrice, questa volta ci prendiamo tutto.</p>
+              <p>
+                Sì, libera professionista e imprenditrice,{" "}
+                <strong className="font-semibold text-ink">questa volta ci prendiamo tutto</strong>.
+              </p>
               <p className="font-semibold text-ink">Però, c’è un però…</p>
             </div>
 
@@ -1354,7 +1542,13 @@ function Index() {
                   👉 <strong>SOLO chi sarà live riceverà tutto</strong>: regali, follie, sorprese.
                 </p>
                 <p>👉 Nessun “lo guardo domani”.</p>
-                <p>E questa sarà la tua occasione di cambiare tutto.</p>
+                <p>
+                  E questa sarà{" "}
+                  <strong className="font-semibold text-foreground">
+                    la tua occasione di cambiare tutto
+                  </strong>
+                  .
+                </p>
               </div>
             </div>
 
@@ -1455,7 +1649,11 @@ function Index() {
                 </h2>
                 <p className="mt-5 text-base leading-relaxed text-foreground/85">
                   Non è un PDF “in più”. È il documento che ti accompagna serata per serata, e che
-                  alla fine delle tre giornate rappresenta fisicamente il percorso che hai fatto.
+                  alla fine delle tre giornate{" "}
+                  <strong className="font-semibold text-foreground">
+                    rappresenta fisicamente il percorso che hai fatto
+                  </strong>
+                  .
                 </p>
               </Reveal>
 
@@ -1604,8 +1802,11 @@ function Index() {
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/90">
               Se dopo la prima serata pensi che “Rule The Rules” non faccia per te, scrivici prima
-              dell’inizio della seconda serata live (6 ottobre) e ti rimborsiamo il biglietto, senza
-              bisogno di spiegazioni.
+              dell’inizio della seconda serata live (6 ottobre) e{" "}
+              <strong className="font-semibold text-primary-foreground">
+                ti rimborsiamo il biglietto, senza bisogno di spiegazioni
+              </strong>
+              .
             </p>
           </Reveal>
         </div>
