@@ -1057,12 +1057,12 @@ function Index() {
             </h2>
           </Reveal>
 
-          <div className="mt-12 space-y-6">
+          <div className="mt-16 space-y-14">
             {sessions.map((s, i) => (
               <Reveal key={s.n} delay={i * 100}>
-                <div className="relative">
+                <div className="group relative">
                   <div
-                    className="relative grid gap-8 overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--background)_14%,transparent)] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] sm:p-8 md:grid-cols-[0.7fr_1.3fr] md:items-center md:gap-10"
+                    className="relative grid gap-8 overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--background)_14%,transparent)] p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary group-hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] sm:p-8 md:grid-cols-[0.7fr_1.3fr] md:items-center md:gap-10"
                     style={{
                       backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
                     }}
@@ -1120,35 +1120,41 @@ function Index() {
                       </ul>
 
                       <div
-                        className="mt-6 inline-flex flex-col gap-3 rounded-xl px-4 py-3"
+                        className="mt-6 rounded-xl px-4 py-4"
                         style={{
                           backgroundColor: "color-mix(in oklab, var(--secondary) 35%, transparent)",
                           border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
                         }}
                       >
-                        {s.guides.map((g) => (
-                          <div key={g.name} className="flex items-center gap-3">
-                            <span
-                              className="flex size-11 shrink-0 items-center justify-center rounded-full border border-dashed"
-                              style={{
-                                borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)",
-                                backgroundColor:
-                                  "color-mix(in oklab, var(--background) 10%, transparent)",
-                              }}
-                            >
-                              <ImageIcon className="size-4 text-ink-muted" />
-                            </span>
-                            <p className="text-sm text-ink-muted">
-                              <span className="font-semibold text-ink">{g.name}</span>, {g.role}
-                            </p>
-                          </div>
-                        ))}
+                        <p className="font-condensed text-xs font-semibold uppercase tracking-[0.2em] text-ink">
+                          Chi ti guiderà in questa serata?
+                        </p>
+                        <div className="mt-3 flex flex-wrap gap-x-6 gap-y-3">
+                          {s.guides.map((g) => (
+                            <div key={g.name} className="flex items-center gap-3">
+                              <span
+                                className="flex size-11 shrink-0 items-center justify-center rounded-full border border-dashed"
+                                style={{
+                                  borderColor:
+                                    "color-mix(in oklab, var(--primary) 45%, transparent)",
+                                  backgroundColor:
+                                    "color-mix(in oklab, var(--background) 10%, transparent)",
+                                }}
+                              >
+                                <ImageIcon className="size-4 text-ink-muted" />
+                              </span>
+                              <p className="text-sm text-ink-muted">
+                                <span className="font-semibold text-ink">{g.name}</span>, {g.role}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
 
                   <span
-                    className="absolute -bottom-4 -left-3 rounded-2xl px-4 py-2 font-condensed text-xs font-semibold uppercase tracking-[0.2em] text-primary-foreground shadow-[0_10px_24px_-8px_rgba(0,0,0,0.5)] md:-left-5"
+                    className="absolute -top-6 -left-3 rounded-2xl px-5 py-3 font-condensed text-sm font-semibold uppercase tracking-[0.15em] text-primary-foreground shadow-[0_10px_24px_-8px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:-translate-y-1 sm:text-base md:-left-5 md:px-6"
                     style={{ backgroundImage: "var(--gradient-gold)" }}
                   >
                     Serata {s.n} · {s.date}, ore {s.time}
