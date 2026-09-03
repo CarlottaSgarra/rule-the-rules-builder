@@ -29,7 +29,6 @@ import { Reveal } from "@/components/landing/Reveal";
 import { SignupForm } from "@/components/landing/SignupForm";
 import { Workbook } from "@/components/landing/Workbook";
 import { Highlight } from "@/components/landing/Highlight";
-import teamImg from "@/assets/team.jpg";
 import livestreamImg from "@/assets/livestream.jpg";
 import goldTexture from "@/assets/texture-gold.jpg";
 import testimonialImg from "@/assets/testimonial-1.jpg";
@@ -38,6 +37,7 @@ import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import methodBgImg from "@/assets/method-bg.jpg";
 import carlottaHugImg from "@/assets/carlotta-hug.jpg";
 import carlottaPointingImg from "@/assets/carlotta-pointing.jpg";
+import carlottaWalkingImg from "@/assets/carlotta-walking.jpg";
 import socialProof1Img from "@/assets/social-proof-1.jpg";
 import socialProof2Img from "@/assets/social-proof-2.jpg";
 import socialProof3Img from "@/assets/social-proof-3.jpg";
@@ -481,68 +481,6 @@ const forWhoNo = [
   "Pensi che basti “essere più originale” senza mettere in pratica gli esercizi delle tre serate",
   "Non sei disposta a metterti in discussione su come comunichi oggi",
   "Vuoi un altro corso teorico da guardare senza partecipare in diretta",
-];
-
-const mythReality = [
-  {
-    myth: "Esiste un modo giusto di stare su Instagram, e devo trovarlo.",
-    reality: (
-      <>
-        Il nemico non è Instagram. È l’idea che esista un modo giusto di starci. Non sei tu che devi
-        adattarti a Instagram:{" "}
-        <strong className="font-semibold text-foreground">
-          è Instagram che deve iniziare ad avere la tua faccia
-        </strong>
-        .
-      </>
-    ),
-  },
-  {
-    myth: "Fare tutto “come si deve” mi farà emergere.",
-    reality: (
-      <>
-        Fare tutto “come si deve” è probabilmente il motivo per cui oggi nessuno riesce a
-        distinguerti. Le regole ti hanno resa brava.{" "}
-        <strong className="font-semibold text-foreground">
-          Ora bisogna renderti riconoscibile.
-        </strong>
-      </>
-    ),
-  },
-  {
-    myth: "Se rompo le regole, i contenuti smettono di funzionare.",
-    reality: (
-      <>
-        Non si tratta di eliminare le regole, ma di{" "}
-        <strong className="font-semibold text-foreground">smettere di subirle</strong>. Una regola
-        resta utile solo se ti aiuta a comunicare meglio senza farti sparire.
-      </>
-    ),
-  },
-  {
-    myth: "Rompere le regole vuol dire fare quello che mi pare, senza strategia.",
-    reality: (
-      <>
-        La libertà arriva da una struttura solida abbastanza da permetterti di essere creativa, non
-        dal caos.{" "}
-        <strong className="font-semibold text-foreground">
-          Prima costruiamo l’identità. Poi la strategia attorno a te.
-        </strong>{" "}
-        Mai il contrario.
-      </>
-    ),
-  },
-  {
-    myth: "Non so nemmeno chi sono “senza personaggio”.",
-    reality: (
-      <>
-        Non devi mostrare la personalità in astratto. Devi trovare gli elementi concreti che ti
-        rendono riconoscibile e non sostituibile. È un lavoro guidato,{" "}
-        <strong className="font-semibold text-foreground">le Carte Identitarie</strong>. Non
-        qualcosa che devi già sapere.
-      </>
-    ),
-  },
 ];
 
 const videoTestimonials = [
@@ -1658,39 +1596,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Quello che pensi vs come stanno le cose */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-4xl px-5 py-20">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl">
-              Quello che pensi vs <Highlight>come stanno le cose</Highlight>.
-            </h2>
-          </Reveal>
-          <div className="mt-10 space-y-5">
-            {mythReality.map((m, i) => (
-              <Reveal key={m.myth} delay={i * 80}>
-                <div className="grid gap-0 overflow-hidden rounded-xl border border-border/70 sm:grid-cols-2">
-                  <div className="bg-card/60 p-6">
-                    <p className="font-condensed text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                      Quello che pensi
-                    </p>
-                    <p className="mt-2 text-sm italic leading-relaxed text-foreground/70">
-                      “{m.myth}”
-                    </p>
-                  </div>
-                  <div className="border-t border-border/70 bg-card p-6 sm:border-l sm:border-t-0">
-                    <p className="font-condensed text-[10px] uppercase tracking-[0.2em] text-secondary">
-                      Come stanno le cose
-                    </p>
-                    <p className="mt-2 text-sm leading-relaxed text-foreground/90">{m.reality}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Riprova sociale */}
       <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-6xl px-5 py-20">
@@ -1719,6 +1624,53 @@ function Index() {
 
           <div className="mt-10 flex justify-center">
             <CtaButton label="Voglio rompere le mie regole" />
+          </div>
+        </div>
+      </section>
+
+      {/* Bonus: il Workbook */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-5xl px-5 py-20">
+          <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-center">
+            <Reveal>
+              <Workbook />
+            </Reveal>
+
+            <div>
+              <Reveal>
+                <h2 className="text-3xl sm:text-4xl">
+                  Ricevi il <Highlight>Workbook</Highlight> di Rule The Rules
+                </h2>
+                <p className="mt-5 text-base leading-relaxed text-foreground/85">
+                  Non è un PDF “in più”. È il documento che ti accompagna serata per serata, e che
+                  alla fine delle tre giornate{" "}
+                  <strong className="font-semibold text-foreground">
+                    rappresenta fisicamente il percorso che hai fatto
+                  </strong>
+                  .
+                </p>
+              </Reveal>
+
+              <div className="mt-8 space-y-4">
+                {workbookDays.map((w, i) => (
+                  <Reveal key={w.t} delay={i * 90}>
+                    <div className="surface-card p-5 transition-transform duration-300 hover:-translate-y-1">
+                      <p className="font-condensed text-base uppercase tracking-[0.12em] text-secondary">
+                        {w.t}
+                      </p>
+                      <p className="mt-2 text-sm text-foreground/80">{w.d}</p>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+
+              <Reveal>
+                <p className="mt-6 text-sm italic text-muted-foreground">
+                  E alla fine, una pagina conclusiva tutta tua: “Le Mie Regole”, il manifesto
+                  personale della tua comunicazione.
+                </p>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
@@ -1798,138 +1750,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Lo show */}
-      <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
-        <div className="mx-auto max-w-5xl px-5 py-20">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl">
-              Ho creato uno show live unico nel suo genere che ti mostrerà davvero{" "}
-              <Highlight>come si rompono le regole della comunicazione</Highlight>:
-            </h2>
-            <div className="mt-8 space-y-4 text-base leading-relaxed text-ink">
-              <p>
-                Sono stanca di eventi che ti lasciano solo slide e{" "}
-                <strong className="font-semibold text-ink">offerte per spennarti</strong>.
-              </p>
-              <p>
-                Sono stanca che tu veda imprenditori felici che fanno soldi su soldi,{" "}
-                <strong className="font-semibold text-ink">
-                  sentendoti una merda di più ogni giorno che passa
-                </strong>
-                .
-              </p>
-              <p>Per questo ho deciso di fare davvero questa follia.</p>
-              <p className="font-semibold text-ink">Durante questo show in diretta streaming:</p>
-            </div>
-          </Reveal>
-
-          <div className="mt-6 grid gap-5 md:grid-cols-3">
-            {[
-              {
-                t: "Ti racconto come ho costruito quasi mezzo milione in organico solo da Instagram",
-                d: "dai contenuti al costruire un team",
-              },
-              {
-                t: "Ti mostro come ho trasformato follower in clienti che restano nel tempo",
-                d: "dall’online a anche eventi dal vivo (l’offline sarà la nuova moda)",
-              },
-              {
-                t: "Ti porto dentro le dinamiche del mio team,",
-                d: "che ha cambiato per sempre il mio modo di fare business. E lo conoscerai, per davvero.",
-              },
-            ].map((x, i) => (
-              <Reveal key={x.t} delay={i * 80}>
-                <div className="surface-card p-6 transition-transform duration-300 hover:-translate-y-1">
-                  <p className="font-semibold text-foreground">{x.t}</p>
-                  <p className="mt-2 text-sm text-muted-foreground">{x.d}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal>
-            <h3 className="mt-12 text-2xl sm:text-3xl">
-              Ti consegno il metodo per smettere di comunicare come tutte le altre e diventare{" "}
-              <Highlight dark>impossibile da confondere</Highlight>.
-            </h3>
-            <p className="mt-6 text-base italic text-ink">
-              E dal <strong>5 al 7 ottobre non vedrai solo Carlotta...</strong>
-            </p>
-            <p className="mt-2 text-base text-ink">
-              Vedrai il team intero, le nostre dinamiche, le nostre strategie, le nostre follie.
-            </p>
-            <img
-              src={teamImg}
-              alt="Il team al completo"
-              loading="lazy"
-              width={1280}
-              height={853}
-              className="mt-8 w-full rounded-2xl border border-primary/20 object-cover"
-            />
-            <div className="mt-8 space-y-4 text-base leading-relaxed text-ink">
-              <p>
-                <strong>
-                  È la prima volta che in Italia qualcuno ti mostra davvero che cos’è un’azienda
-                </strong>{" "}
-                e CHI ci lavora dietro capendo come puoi costruirla anche tu partendo dal tuo
-                Iphone, come ho fatto io.
-              </p>
-              <p>
-                Per poi diventare (finalmente){" "}
-                <strong className="font-semibold text-ink">leader della tua vita</strong> gestendo
-                un team di persone che lavorano per la tua azienda mentre sei nel mare cristallino
-                della Sardegna.
-              </p>
-              <p>
-                Sì, libera professionista e imprenditrice,{" "}
-                <strong className="font-semibold text-ink">questa volta ci prendiamo tutto</strong>.
-              </p>
-              <p className="font-semibold text-ink">Però, c’è un però…</p>
-            </div>
-
-            <div
-              className="surface-card mt-8 p-8 text-center"
-              style={{ color: "var(--card-foreground)" }}
-            >
-              <p className="font-condensed text-2xl uppercase tracking-[0.2em] text-secondary">
-                Solo live. Solo una volta.
-              </p>
-              <div className="mt-6 grid gap-4 sm:grid-cols-3">
-                {[
-                  "📅 5, 6 e 7 ottobre 2026",
-                  "🕕 Orario in arrivo",
-                  "🌐 100% online, in diretta",
-                ].map((x) => (
-                  <p
-                    key={x}
-                    className="rounded-lg border border-border bg-background px-4 py-3 text-sm"
-                  >
-                    {x}
-                  </p>
-                ))}
-              </div>
-              <div className="mt-6 space-y-2 text-sm text-foreground/85">
-                <p>
-                  👉 <strong>SOLO chi sarà live riceverà tutto</strong>: regali, follie, sorprese.
-                </p>
-                <p>👉 Nessun “lo guardo domani”.</p>
-                <p>
-                  E questa sarà{" "}
-                  <strong className="font-semibold text-foreground">
-                    la tua occasione di cambiare tutto
-                  </strong>
-                  .
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-8 flex justify-center">
-              <CtaButton label="Non voglio perdermelo" />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Prima vs dopo */}
       <section className="bg-background">
         <div className="mx-auto max-w-4xl px-5 py-20">
@@ -2000,56 +1820,9 @@ function Index() {
         </div>
       </section>
 
-      {/* Bonus: il Workbook */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-5xl px-5 py-20">
-          <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-center">
-            <Reveal>
-              <Workbook />
-            </Reveal>
-
-            <div>
-              <Reveal>
-                <h2 className="text-3xl sm:text-4xl">
-                  Ricevi il <Highlight>Workbook</Highlight> di Rule The Rules
-                </h2>
-                <p className="mt-5 text-base leading-relaxed text-foreground/85">
-                  Non è un PDF “in più”. È il documento che ti accompagna serata per serata, e che
-                  alla fine delle tre giornate{" "}
-                  <strong className="font-semibold text-foreground">
-                    rappresenta fisicamente il percorso che hai fatto
-                  </strong>
-                  .
-                </p>
-              </Reveal>
-
-              <div className="mt-8 space-y-4">
-                {workbookDays.map((w, i) => (
-                  <Reveal key={w.t} delay={i * 90}>
-                    <div className="surface-card p-5 transition-transform duration-300 hover:-translate-y-1">
-                      <p className="font-condensed text-base uppercase tracking-[0.12em] text-secondary">
-                        {w.t}
-                      </p>
-                      <p className="mt-2 text-sm text-foreground/80">{w.d}</p>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-
-              <Reveal>
-                <p className="mt-6 text-sm italic text-muted-foreground">
-                  E alla fine, una pagina conclusiva tutta tua: “Le Mie Regole”, il manifesto
-                  personale della tua comunicazione.
-                </p>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Ricapitolando */}
       <section className="bg-background py-20">
-        <div className="mx-auto max-w-3xl px-5">
+        <div className="mx-auto max-w-4xl px-5">
           <Reveal>
             <div className="text-center">
               <h2 className="text-3xl sm:text-4xl">
@@ -2059,91 +1832,55 @@ function Index() {
           </Reveal>
 
           <Reveal delay={80}>
-            <div className="mx-auto mt-10 max-w-md">
-              <div
-                className="h-4"
-                style={{
-                  backgroundColor: "var(--cream)",
-                  backgroundImage:
-                    "linear-gradient(135deg, var(--background) 50%, transparent 50%), linear-gradient(-135deg, var(--background) 50%, transparent 50%)",
-                  backgroundSize: "16px 16px",
-                  backgroundPosition: "bottom",
-                  backgroundRepeat: "repeat-x",
-                }}
-                aria-hidden
+            <div className="surface-card mt-10 grid overflow-hidden sm:grid-cols-[0.9fr_1.1fr]">
+              <img
+                src={carlottaWalkingImg}
+                alt="Carlotta Sgarra durante un suo evento live"
+                loading="lazy"
+                width={1376}
+                height={2064}
+                className="h-64 w-full object-cover sm:h-full"
+                style={{ objectPosition: "60% 25%" }}
               />
-              <div
-                className="px-6 py-8 font-mono text-ink shadow-[0_30px_70px_-30px_rgba(0,0,0,0.6)] sm:px-8"
-                style={{ backgroundColor: "var(--cream)" }}
-              >
-                <p
-                  className="text-center font-condensed text-sm uppercase tracking-[0.3em]"
-                  style={{ color: "var(--gold-deep)" }}
-                >
-                  Rule The Rules · Scontrino
+              <div className="p-6 sm:p-8">
+                <p className="font-condensed text-sm uppercase tracking-[0.2em] text-secondary">
+                  Rule The Rules · Cosa ottieni
                 </p>
-                <p className="mt-1 text-center text-[11px] text-ink-muted">
-                  5, 6 e 7 ottobre 2026 · Online
-                </p>
+                <p className="mt-1 text-xs text-muted-foreground">5, 6 e 7 ottobre 2026 · Online</p>
 
                 <div className="mt-6 space-y-4 text-sm">
                   {valueStack.map((v) => (
                     <div key={v.t}>
                       <div className="flex items-baseline gap-2">
-                        <span className="min-w-0">{v.t}</span>
+                        <span className="min-w-0 font-medium text-foreground">{v.t}</span>
                         <span
-                          className="mb-1 flex-1 border-b border-dotted"
-                          style={{ borderColor: "var(--ink-muted)" }}
+                          className="mb-1 flex-1 border-b border-dotted border-border"
                           aria-hidden
                         />
                         <span className="shrink-0">
                           {v.value ? (
-                            <span className="text-ink-muted line-through">{v.value}€</span>
+                            <span className="text-muted-foreground line-through">{v.value}€</span>
                           ) : (
-                            <span className="text-ink-muted">–</span>
+                            <span className="text-muted-foreground">–</span>
                           )}
                         </span>
                       </div>
-                      <p className="text-xs text-ink-muted">{v.d}</p>
+                      <p className="text-xs text-muted-foreground">{v.d}</p>
                     </div>
                   ))}
                 </div>
 
-                <div
-                  className="mt-6 border-t border-dashed pt-4"
-                  style={{ borderColor: "var(--ink-muted)" }}
-                >
+                <div className="mt-6 border-t border-dashed border-border pt-4">
                   <div className="flex items-baseline justify-between text-sm">
-                    <span>Subtotale</span>
-                    <span className="text-ink-muted line-through">{valueStackTotal}€</span>
+                    <span className="text-foreground">Subtotale</span>
+                    <span className="text-muted-foreground line-through">{valueStackTotal}€</span>
                   </div>
                   <div className="mt-2 flex items-baseline justify-between text-lg font-semibold">
-                    <span>Da pagare oggi</span>
+                    <span className="text-foreground">Da pagare oggi</span>
                     <span style={{ color: "var(--gold-deep)" }}>27€</span>
                   </div>
                 </div>
-
-                <div
-                  className="mt-8 h-8"
-                  style={{
-                    backgroundImage:
-                      "repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px)",
-                  }}
-                  aria-hidden
-                />
               </div>
-              <div
-                className="h-4"
-                style={{
-                  backgroundColor: "var(--cream)",
-                  backgroundImage:
-                    "linear-gradient(45deg, var(--background) 50%, transparent 50%), linear-gradient(-45deg, var(--background) 50%, transparent 50%)",
-                  backgroundSize: "16px 16px",
-                  backgroundPosition: "top",
-                  backgroundRepeat: "repeat-x",
-                }}
-                aria-hidden
-              />
             </div>
           </Reveal>
 
