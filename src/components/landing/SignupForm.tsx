@@ -33,25 +33,25 @@ export function SignupForm({
         name="first_name"
         placeholder="Nome"
         required
-        className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-card-foreground outline-none placeholder:text-muted-foreground focus:border-primary"
+        className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-card-foreground outline-none placeholder:text-card-foreground/50 focus:border-primary"
       />
       <input
         type="email"
         name="email"
         placeholder="La tua email migliore"
         required
-        className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-card-foreground outline-none placeholder:text-muted-foreground focus:border-primary"
+        className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-card-foreground outline-none placeholder:text-card-foreground/50 focus:border-primary"
       />
       {compact ? null : (
         <div className="flex gap-2">
-          <span className="flex shrink-0 items-center justify-center rounded-lg border border-input bg-background px-3 py-3 text-sm text-muted-foreground">
+          <span className="flex shrink-0 items-center justify-center rounded-lg border border-input bg-background px-3 py-3 text-sm text-card-foreground/50">
             🇮🇹 +39
           </span>
           <input
             type="tel"
             name="phone_number"
             placeholder="Il tuo WhatsApp"
-            className="w-full min-w-0 rounded-lg border border-input bg-background px-4 py-3 text-sm text-card-foreground outline-none placeholder:text-muted-foreground focus:border-primary"
+            className="w-full min-w-0 rounded-lg border border-input bg-background px-4 py-3 text-sm text-card-foreground outline-none placeholder:text-card-foreground/50 focus:border-primary"
           />
         </div>
       )}
