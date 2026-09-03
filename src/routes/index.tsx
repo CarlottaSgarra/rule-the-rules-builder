@@ -31,7 +31,6 @@ import { Highlight } from "@/components/landing/Highlight";
 import livestreamImg from "@/assets/livestream.jpg";
 import goldTexture from "@/assets/texture-gold.jpg";
 import testimonialImg from "@/assets/testimonial-1.jpg";
-import heroImg from "@/assets/hero-carlotta.jpg";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import methodBgImg from "@/assets/method-bg.jpg";
 import carlottaHugImg from "@/assets/carlotta-hug.jpg";
@@ -1205,7 +1204,7 @@ function Index() {
 
           <Reveal>
             <h3 className="mt-16 text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Ma quindi, come <Highlight>le crei le tue regole</Highlight>?
+              Io mi sono <Highlight>stufata di tutto questo</Highlight>. Tu no?
             </h3>
             <div className="mt-8 grid gap-8 md:grid-cols-2 md:items-center">
               <div className="space-y-5 text-base leading-relaxed text-foreground/85">
@@ -1268,12 +1267,13 @@ function Index() {
                 </p>
               </div>
               <img
-                src={heroImg}
-                alt="Carlotta Sgarra"
+                src={carlottaWalkingImg}
+                alt="Carlotta Sgarra durante un suo evento live"
                 loading="lazy"
-                width={1024}
-                height={1280}
+                width={1376}
+                height={2064}
                 className="mx-auto aspect-[4/5] w-[85%] rounded-2xl object-cover"
+                style={{ objectPosition: "50% 20%" }}
               />
             </div>
           </Reveal>
@@ -1304,8 +1304,17 @@ function Index() {
           <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-end">
             <Reveal>
               <div className="md:sticky md:top-28">
+                <span
+                  className="inline-block rounded-full px-5 py-2 font-condensed text-xs uppercase tracking-[0.25em] text-primary-foreground sm:text-sm"
+                  style={{
+                    backgroundImage: "var(--gradient-gold)",
+                    boxShadow: "var(--shadow-gold)",
+                  }}
+                >
+                  Il 5-6-7 ottobre ti mostro tutto questo in diretta
+                </span>
                 <h2
-                  className="text-3xl sm:text-4xl"
+                  className="mt-4 text-3xl sm:text-4xl"
                   style={{ textShadow: "0 2px 24px rgba(0,0,0,0.65)" }}
                 >
                   Il metodo per rompere il{" "}
@@ -1382,36 +1391,27 @@ function Index() {
                       {s.n}
                     </span>
 
-                    <div className="relative flex flex-col items-center text-center">
-                      <div className="flex items-center justify-center gap-4">
-                        {s.guides.map((g) => (
-                          <img
-                            key={g.name}
-                            src={g.photo}
-                            alt={g.name}
-                            loading="lazy"
-                            className="size-24 shrink-0 rounded-full border-4 object-cover sm:size-28"
-                            style={{
-                              borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)",
-                              objectPosition: g.photoPosition,
-                            }}
-                          />
-                        ))}
+                    <div className="relative">
+                      <div className="relative overflow-hidden rounded-2xl">
+                        <img
+                          src={s.guides[0].photo}
+                          alt={s.title}
+                          loading="lazy"
+                          className="aspect-[4/3] w-full object-cover"
+                          style={{ objectPosition: s.guides[0].photoPosition }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+                        <h3 className="absolute inset-x-0 bottom-0 p-5 text-xl text-white sm:text-2xl">
+                          {s.title}
+                        </h3>
                       </div>
-
-                      <h3 className="mt-6 text-2xl text-ink sm:text-3xl">{s.title}</h3>
-                      <div
-                        className="mt-4 h-px w-16"
-                        style={{ backgroundColor: "var(--primary)" }}
-                        aria-hidden
-                      />
+                      <p className="mt-5 text-sm leading-relaxed text-ink-muted sm:text-base">
+                        {s.intro}
+                      </p>
                     </div>
 
                     <div className="relative">
-                      <p className="text-sm leading-relaxed text-ink-muted sm:text-base">
-                        {s.intro}
-                      </p>
-                      <p className="mt-5 font-condensed text-xs uppercase tracking-[0.2em] text-ink-muted">
+                      <p className="text-lg font-semibold text-ink sm:text-xl">
                         Che cosa ti porti a casa da questa serata?
                       </p>
                       <ul className="mt-3 space-y-3">
