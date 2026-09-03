@@ -815,11 +815,12 @@ function Index() {
           } as React.CSSProperties
         }
       >
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-3 px-5 py-4 text-sm text-muted-foreground sm:grid sm:grid-cols-3 sm:items-center">
-          <p className="font-condensed text-base font-bold uppercase tracking-[0.15em] text-foreground sm:justify-self-start">
-            5-6-7 Ottobre
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-1 px-2 py-2 text-sm text-muted-foreground sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5 sm:py-4">
+          <p className="min-w-0 flex-1 font-condensed text-[10px] font-bold uppercase tracking-[0.06em] text-foreground sm:flex-none sm:text-base sm:tracking-[0.15em] sm:justify-self-start">
+            <span className="sm:hidden">Live su Zoom · </span>
+            <span className="whitespace-nowrap">5-6-7 Ottobre</span>
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-self-center">
+          <div className="flex shrink-0 items-center gap-1 sm:flex-wrap sm:justify-center sm:gap-x-4 sm:gap-y-2 sm:justify-self-center">
             <span className="hidden font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground sm:inline">
               L’evento inizia tra
             </span>
@@ -827,7 +828,7 @@ function Index() {
           </div>
           <a
             href="#iscriviti"
-            className="shrink-0 rounded-md px-4 py-2 font-condensed text-sm uppercase tracking-[0.12em] transition-transform duration-200 hover:-translate-y-0.5 sm:justify-self-end"
+            className="min-w-0 shrink-0 rounded-md px-2 py-1.5 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.03em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.12em] sm:justify-self-end"
             style={{
               backgroundImage: "var(--gradient-gold)",
               color: "var(--primary-foreground)",
@@ -878,7 +879,7 @@ function Index() {
           })}
         </div>
 
-        <div className="relative z-10 col-start-1 row-start-1 mx-auto flex w-full max-w-5xl flex-col items-center px-5 py-20 text-center">
+        <div className="relative z-10 col-start-1 row-start-1 mx-auto flex w-full max-w-5xl flex-col items-center px-5 pb-20 pt-10 text-center sm:pt-20">
           <Reveal>
             <p className="font-condensed text-xs uppercase tracking-[0.4em] text-secondary sm:text-sm">
               Live su Zoom · 5, 6, 7 ottobre · ore 20:00

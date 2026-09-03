@@ -34,17 +34,17 @@ export function Countdown({ compact = false }: Props) {
 
   if (compact) {
     return (
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1 sm:gap-2">
         {cells.map((c, i) => (
-          <span key={c.l} className="flex items-baseline gap-1">
-            <span className="font-condensed text-2xl tabular-nums text-primary">
+          <span key={c.l} className="flex items-baseline gap-0.5 sm:gap-1">
+            <span className="font-condensed text-base tabular-nums text-primary sm:text-2xl">
               {left === null ? "00" : pad(c.v)}
             </span>
-            <span className="text-[11px] uppercase tracking-[0.1em] text-muted-foreground">
+            <span className="hidden text-[11px] uppercase tracking-[0.1em] text-muted-foreground sm:inline">
               {c.l}
             </span>
             {i < cells.length - 1 ? (
-              <span className="text-lg text-muted-foreground/50">:</span>
+              <span className="text-sm text-muted-foreground/50 sm:text-lg">:</span>
             ) : null}
           </span>
         ))}
