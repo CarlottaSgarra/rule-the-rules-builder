@@ -26,6 +26,7 @@ import { VideoFrame } from "@/components/landing/VideoFrame";
 import { Reveal } from "@/components/landing/Reveal";
 import { SignupForm } from "@/components/landing/SignupForm";
 import { Workbook } from "@/components/landing/Workbook";
+import { SessionHighlight } from "@/components/landing/SessionHighlight";
 import { Highlight } from "@/components/landing/Highlight";
 import livestreamImg from "@/assets/livestream.jpg";
 import goldTexture from "@/assets/texture-gold.jpg";
@@ -40,6 +41,9 @@ import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import methodBgImg from "@/assets/method-bg.jpg";
 import carlottaHugImg from "@/assets/carlotta-hug.jpg";
 import carlottaPointingImg from "@/assets/carlotta-pointing.jpg";
+import carlottaLookingImg from "@/assets/carlotta-looking.jpg";
+import carlottaLooking2Img from "@/assets/carlotta-looking-2.jpg";
+import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
 import carlottaWalkingImg from "@/assets/carlotta-walking.jpg";
 import sharonFaceImg from "@/assets/sharon-face.jpg";
 import socialProof1Img from "@/assets/social-proof-1.jpg";
@@ -160,6 +164,8 @@ const sessions = [
         photoPosition: "50% 12%",
       },
     ],
+    heroImage: { src: carlottaLookingImg, position: "45% 25%" },
+    highlight: "identity-card" as const,
     title: "Togli il Costume",
     intro: (
       <>
@@ -213,6 +219,8 @@ const sessions = [
         photo: sharonFaceImg,
       },
     ],
+    heroImage: { src: carlottaLooking2Img, position: "55% 25%" },
+    highlight: "anti-rule" as const,
     title: "Licenzia le Regole",
     intro: (
       <>
@@ -260,6 +268,8 @@ const sessions = [
         photoPosition: "50% 12%",
       },
     ],
+    heroImage: { src: carlottaTalkingImg, position: "58% 30%" },
+    highlight: "editorial-plan" as const,
     title: "Costruisci un Sistema che non ti Comandi",
     intro: (
       <>
@@ -1306,7 +1316,7 @@ function Index() {
             <Reveal>
               <div className="md:sticky md:top-28">
                 <span
-                  className="inline-block rounded-full px-5 py-2 font-condensed text-xs uppercase tracking-[0.25em] text-primary-foreground sm:text-sm"
+                  className="inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
                   style={{
                     backgroundImage: "var(--gradient-gold)",
                     boxShadow: "var(--shadow-gold)",
@@ -1393,18 +1403,24 @@ function Index() {
                     </span>
 
                     <div className="relative">
-                      <div className="relative overflow-hidden rounded-2xl">
-                        <img
-                          src={s.guides[0].photo}
-                          alt={s.title}
-                          loading="lazy"
-                          className="aspect-[4/3] w-full object-cover"
-                          style={{ objectPosition: s.guides[0].photoPosition }}
+                      <div className="relative">
+                        <div className="relative overflow-hidden rounded-2xl">
+                          <img
+                            src={s.heroImage.src}
+                            alt={s.title}
+                            loading="lazy"
+                            className="aspect-[4/3] w-full object-cover"
+                            style={{ objectPosition: s.heroImage.position }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+                          <h3 className="absolute inset-x-0 bottom-0 p-5 text-xl text-white sm:text-2xl">
+                            {s.title}
+                          </h3>
+                        </div>
+                        <SessionHighlight
+                          variant={s.highlight}
+                          className="absolute -right-3 -top-3 sm:-right-5 sm:-top-5"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
-                        <h3 className="absolute inset-x-0 bottom-0 p-5 text-xl text-white sm:text-2xl">
-                          {s.title}
-                        </h3>
                       </div>
                       <p className="mt-5 text-sm leading-relaxed text-ink-muted sm:text-base">
                         {s.intro}
