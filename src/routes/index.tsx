@@ -149,29 +149,48 @@ const sessions = [
     date: "5 ottobre",
     time: "20:00",
     guides: [{ name: "Carlotta", role: "CEO e founder dell’evento" }],
-    quote: "Prima di comunicare, devi tornare a te.",
+    title: "Togli il Costume",
     intro: (
       <>
-        Partiamo da qui: chi sei quando togli la maschera della “professionista giusta”. Ti mostro
-        il modello COSA/CHI/COME, analizziamo insieme un profilo, e costruisci le{" "}
-        <strong className="font-semibold text-ink">tue prime Carte Identitarie</strong>. Chiudi la
-        serata già sapendo cosa vuoi rappresentare e cosa non vuoi più rappresentare.
+        Prima di capire cosa pubblicare, dobbiamo capire{" "}
+        <strong className="font-semibold text-ink">
+          chi è rimasto sotto tutto quello che hai imparato a fare “bene”
+        </strong>
+        .
       </>
     ),
     bullets: [
       <>
-        Il <strong className="font-semibold text-ink">modello COSA/CHI/COME</strong> per capire cosa
-        dici, chi sei mentre lo dici, come lo comunichi
+        <strong className="font-semibold text-ink">Identity Excavation</strong> — domande fuori
+        copione per riportare a galla la persona che il marketing ha progressivamente coperto
       </>,
       <>
-        <strong className="font-semibold text-ink">Analisi live di un profilo</strong>: cosa vediamo
-        oggi, cosa può diventare
+        <strong className="font-semibold text-ink">Profilo sotto interrogatorio</strong> — guarderai
+        il tuo Instagram come se non fosse tuo: cosa racconta davvero di te? Cosa promette? Cosa
+        nasconde?
       </>,
       <>
-        Costruzione delle tue prime{" "}
-        <strong className="font-semibold text-ink">Carte Identitarie</strong>
+        <strong className="font-semibold text-ink">La lista delle cose che hai censurato</strong> —
+        lati, opinioni, storie, modi di fare e caratteristiche che hai smesso di mostrare perché
+        “non abbastanza professionali”
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Il tuo DNA comunicativo</strong> — ciò che può
+        appartenere soltanto a te: visione, linguaggio, energia, ossessioni, contraddizioni,
+        esperienze
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Carte Identitarie</strong> — trasformiamo tutto
+        questo in una bussola concreta da usare ogni volta che crei, parli, vendi o prendi posizione
       </>,
     ],
+    closing: (
+      <>
+        Non costruiremo una versione migliore di te.
+        <br />
+        Toglieremo quello che non sei.
+      </>
+    ),
   },
   {
     n: "2",
@@ -181,59 +200,103 @@ const sessions = [
       { name: "Carlotta", role: "CEO e founder dell’evento" },
       { name: "Sharon", role: "esperta di contenuti" },
     ],
-    quote: "Il piano editoriale non è una gabbia.",
+    title: "Licenzia le Regole",
     intro: (
       <>
-        Prendiamo ogni regola che ti hanno insegnato su hook, script, CTA e frequenza, e ti chiedo
-        una sola domanda per ognuna: funziona per te? Da qui nascono{" "}
-        <strong className="font-semibold text-ink">le tue Anti-Regole</strong> e il tuo primo metodo
-        personale di creazione contenuti. Il giorno dopo crei un contenuto senza seguire nessuna
-        regola, solo ascoltando te stessa.
+        Qui prendiamo tutte le cose che ti hanno insegnato sui contenuti e le mettiamo{" "}
+        <strong className="font-semibold text-ink">sul banco degli imputati</strong>.
       </>
     ),
     bullets: [
       <>
-        Le regole che segui oggi (hook, script, CTA, frequenza){" "}
-        <strong className="font-semibold text-ink">messe alla prova</strong>, una per una
+        <strong className="font-semibold text-ink">Il cimitero delle regole</strong> — hook nei
+        primi 3 secondi, CTA obbligatorie, script perfetti, frequenze ideali, setting giusti, format
+        che “funzionano”: cosa merita davvero di sopravvivere?
       </>,
       <>
-        Costruzione delle tue{" "}
-        <strong className="font-semibold text-ink">Anti-Regole personali</strong>
+        <strong className="font-semibold text-ink">Rule Autopsy</strong> — sezioniamo una regola
+        alla volta per capire se ti aiuta, ti limita o ti trasforma in una copia
       </>,
       <>
-        Il tuo primo <strong className="font-semibold text-ink">metodo personale</strong> di
-        creazione contenuti
+        <strong className="font-semibold text-ink">Le tue Anti-Regole</strong> — non quelle di
+        Carlotta, non quelle del mercato: le condizioni in cui TU comunichi meglio
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Content Personality Test</strong> — scopri come
+        crei quando smetti di cercare di sembrare una content creator
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Content Lab</strong> — script o bullet? batch o
+        istinto? talking o voice-over? pulito o sporco? breve o lungo? Testiamo invece di presumere
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Il tuo Operating System creativo</strong> — il
+        modo in cui riesci a produrre contenuti che funzionano senza perdere te stessa nel processo
       </>,
     ],
+    closing: (
+      <>
+        Alla fine non saprai più rispondere alla domanda: “Come si fa un contenuto giusto?”
+        <br />
+        Saprai rispondere a quella molto più importante: “Come lo faccio io?”
+      </>
+    ),
   },
   {
     n: "3",
     date: "7 ottobre",
     time: "20:00",
     guides: [{ name: "Carlotta", role: "CEO e founder dell’evento" }],
-    quote: "Costruisci la tua strategia.",
+    title: "Costruisci un Sistema che non ti Comandi",
     intro: (
       <>
-        Identità più metodo personale diventano{" "}
-        <strong className="font-semibold text-ink">una strategia vera</strong>. Con Sharon lavoriamo
-        sulla struttura creativa (format, banca idee), poi trasformiamo tutto in un piano editoriale
-        che ha una funzione per il tuo business, non solo per la tua immagine.
+        Ora prendiamo tutto quello che hai scoperto e gli diamo una struttura. Non una gabbia
+        colorata chiamata “piano editoriale”.{" "}
+        <strong className="font-semibold text-ink">Un sistema che lavori per te.</strong>
       </>
     ),
     bullets: [
       <>
-        <strong className="font-semibold text-ink">Struttura creativa</strong> con Sharon: format,
-        tipologie di contenuto, banca idee
+        <strong className="font-semibold text-ink">I tuoi Signature Format</strong> — i contenuti
+        che possono diventare immediatamente associabili al tuo nome
       </>,
       <>
-        I <strong className="font-semibold text-ink">4 obiettivi</strong> di ogni contenuto:
-        attrarre, connettere, posizionare, convertire
+        <strong className="font-semibold text-ink">The Idea Vault</strong> — una banca di idee
+        costruita sulla tua identità, non sui trend della settimana
       </>,
       <>
-        Le <strong className="font-semibold text-ink">5 domande guida</strong> per costruire il tuo
-        piano editoriale, contenuto per contenuto
+        <strong className="font-semibold text-ink">Content Jobs</strong> — ogni contenuto avrà un
+        lavoro preciso: attirare, creare relazione, posizionarti o portare verso una scelta
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Identity Matching</strong> — ogni idea dovrà
+        superare una domanda: “questa cosa potrebbe pubblicarla chiunque o ha davvero la mia
+        faccia?”
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Il piano editoriale al contrario</strong> — non
+        partiremo dal calendario per decidere cosa dire. Partiremo da ciò che vuoi dire per decidere
+        quando e come farlo
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Il tuo sistema editoriale personale</strong> —
+        format, idee, obiettivi e ritmo cuciti sul tuo modo di comunicare
+      </>,
+      <>
+        <strong className="font-semibold text-ink">RULE THE RULES — Il Manifesto finale</strong> —
+        le regole che da oggi scegli tu per la tua comunicazione
       </>,
     ],
+    closing: (
+      <>
+        Alla fine dei 3 giorni non avrai un altro PDF pieno di esercizi.
+        <br />
+        Avrai costruito: il tuo DNA, le tue regole, i tuoi format, il tuo modo di creare, il tuo
+        piano.
+        <br />E soprattutto avrai finalmente una risposta alla domanda che Instagram ti ha fatto
+        dimenticare.
+      </>
+    ),
   },
 ];
 
@@ -1369,7 +1432,7 @@ function Index() {
                         </span>
                       </div>
 
-                      <h3 className="mt-6 text-2xl text-ink sm:text-3xl">“{s.quote}”</h3>
+                      <h3 className="mt-6 text-2xl text-ink sm:text-3xl">{s.title}</h3>
                       <div
                         className="mt-4 h-px w-16"
                         style={{ backgroundColor: "var(--primary)" }}
@@ -1398,6 +1461,10 @@ function Index() {
                           </li>
                         ))}
                       </ul>
+
+                      <p className="mt-6 font-display text-lg leading-snug text-ink sm:text-xl">
+                        {s.closing}
+                      </p>
 
                       <div
                         className="mt-6 rounded-xl px-4 py-4"
