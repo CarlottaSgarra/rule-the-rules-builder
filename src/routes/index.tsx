@@ -35,7 +35,6 @@ import client3Img from "@/assets/client-3.png";
 import client4Img from "@/assets/client-4.jpg";
 import client5Img from "@/assets/client-5.png";
 import client6Img from "@/assets/client-6.png";
-import testimonialImg from "@/assets/testimonial-1.jpg";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import methodBgImg from "@/assets/method-bg.jpg";
 import carlottaHugImg from "@/assets/carlotta-hug.jpg";
@@ -464,19 +463,19 @@ const heroWhispers = [
 ];
 
 const forWhoYes = [
-  "Vuoi smettere di guardare il tuo profilo e sentirti una fotocopia di altre professioniste del tuo settore",
-  "Hai già un business avviato, competenze vere e clienti, ma la tua comunicazione non lo dimostra",
-  "Sei stanca di seguire regole di contenuto che ti fanno sentire in gabbia invece di aiutarti",
-  "Vuoi un metodo di creazione contenuti che riesci a sostenere, non l’ennesima lista di best practice",
-  "Hai già provato hook, script, CTA e piano editoriale rigido, e sai già che da soli non bastano",
+  "Prima di pubblicare apri il profilo di un’altra e controlli come ha scritto lei quel post",
+  "Hai già clienti vere e risultati veri, ma il tuo Instagram non lo racconta per niente",
+  "Hai un raccoglitore di corsi su hook, CTA e piani editoriali che non riapri da mesi",
+  "Scrivi una caption, la cancelli, la riscrivi “più professionale” e alla fine non la pubblichi",
+  "Vuoi smettere di aprire Instagram con l’ansia e ricominciare ad avere qualcosa da dire",
 ];
 
 const forWhoNo = [
-  "Stai partendo da zero e non hai ancora un servizio o un’offerta da vendere",
-  "Cerchi trucchi rapidi per far crescere i numeri, non un lavoro reale su identità e struttura",
-  "Pensi che basti “essere più originale” senza mettere in pratica gli esercizi delle tre serate",
+  "Non hai ancora un servizio o un’offerta pronta da vendere",
+  "Cerchi un trucco per l’algoritmo, non un lavoro vero sulla tua comunicazione",
+  "Pensi di guardare le tre dirette e basta, senza fare gli esercizi in mezzo",
   "Non sei disposta a metterti in discussione su come comunichi oggi",
-  "Vuoi un altro corso teorico da guardare senza partecipare in diretta",
+  "Preferisci un corso registrato da guardare quando capita, non tre serate live",
 ];
 
 const videoTestimonials = [
@@ -484,121 +483,127 @@ const videoTestimonials = [
     name: "Elena Rosa",
     role: "Mental Coach Cinofila",
     result: "Superati i 5.000€/mese in pochi mesi",
+    youtubeId: "O75oxbgxdjY",
   },
   {
     name: "Silvia Bedin",
     role: "Life Coach",
     result: "Da 400€/mese a 31.000€ in organico in poche settimane",
+    youtubeId: "A0vabIP_Srk",
   },
   {
     name: "Valeria Salussolia",
     role: "Titolare Centro Benessere & Consulente d’Immagine",
     result: "Fattura in una settimana quello che guadagnava in un mese da dipendente",
+    youtubeId: "gFKD9AkVaZw",
   },
   {
     name: "Mariangela Simioli",
     role: "Marketing Strategist",
     result: "Regime forfettario superato in 4 mesi",
+    youtubeId: "Qd6QLXPzcMs",
   },
   {
     name: "Giulia Santelli",
     role: "Personal Trainer e Life Coach",
     result: "Cliente high ticket da 2.000€ con soli 6 contenuti",
+    youtubeId: "MVOsgoJEHI0",
   },
   {
     name: "Ilaria Mattei",
     role: "SEO e Copywriter",
     result: "6.500€/mese costanti, poi 10.000€ raggiunti",
+    youtubeId: "BxQDPKy141U",
   },
   {
     name: "Giulia Ariganello",
     role: "Business Mentor per le Educatrici",
     result: "Fatturato mensile a cinque cifre",
+    youtubeId: "Qzhc1dBGVpM",
   },
   {
     name: "Vanessa Sciorio",
     role: "Nutrizionista al femminile",
     result: "Fatturato a cinque cifre mensili",
+    youtubeId: "mJh2hT3BIgE",
   },
   {
     name: "Elisa Monasterolo",
     role: "Brand Strategist",
     result: "Da vicina a chiudere la P.IVA a stabilità economica",
+    youtubeId: "fB1zSchLTiI",
   },
   {
     name: "Giusy Pannese",
     role: "Makeup Artist",
     result: "Da clientela solo locale a spose a livello nazionale e internazionale",
+    youtubeId: "IUeaewJX9iU",
   },
   {
     name: "Bianca Lucaci",
     role: "Influencer Coach",
     result: "Dalla commessa alla prima Academy per influencer in Italia",
+    youtubeId: "Kw2nsluTO2A",
   },
   {
     name: "Rosanna Cafarella",
     role: "Tatuatrice",
     result: "10.000€ mensili costanti in soli 3 mesi",
+    youtubeId: "Ek8tUbgTJGk",
   },
   {
     name: "Mariella Tauriello",
     role: "Instagram e Visual Coach",
     result: "Programma sold out",
+    youtubeId: "-D9QGDLWue0",
   },
   {
     name: "Valentina Giuriato",
     role: "Consulente d’Immagine",
     result: "Business trasformato e riempito di clienti",
+    youtubeId: "yDGIN_aaz0k",
   },
   {
     name: "Sharon Convertino",
     role: "Social Media Manager e Consulente Web Marketing",
     result: "Da burnout a selezionare lei i clienti",
+    youtubeId: "eA4QQQXlG54",
   },
   {
     name: "Silvia Errico",
     role: "Coach di LinkedIn e Instagram",
     result: "Da zero clienti a vivere del suo lavoro",
+    youtubeId: "G-ElGXQXcNg",
   },
   {
     name: "Elisabetta Bettonte",
     role: "Parent Coach",
     result: "Da -10.000€ a 6.000€/mese",
+    youtubeId: "zVAuDJ4xJC8",
   },
   {
     name: "Francesca Solignani",
     role: "Instagram Coach per Nutrizionisti",
     result: "Flusso costante di clienti, figura di riferimento nel settore",
+    youtubeId: "h7V0kkYzhec",
   },
   {
     name: "Cristina Buliga",
     role: "Life & Business Coach",
     result: "5 clienti high ticket in 4 mesi",
+    youtubeId: "8JrTY4ulPZQ",
   },
   {
     name: "Roberta Trabucco",
     role: "Make Up Alchemist",
     result: "Identità professionale unica, clienti allineati alla sua visione",
+    youtubeId: "2Q3Keue0i7w",
   },
   {
-    name: "Jessica",
-    role: "Life Coach e Business Mentor",
-    result: "Trasformazione completata in 3 mesi",
-  },
-  {
-    name: "Sofia Lumetta",
-    role: "Content Strategist",
-    result: "Da clienti tossici a Content Strategist ufficiale di Lady Bis Program",
-  },
-  {
-    name: "Danila Castellano",
-    role: "Mental e Stylist Coach",
-    result: "Ha lasciato il lavoro da dipendente, vive del business a 360 gradi",
-  },
-  {
-    name: "Federica Bacci",
-    role: "Operatrice Olistica",
-    result: "Sold out delle richieste, lavora solo quando sceglie",
+    name: "Marta Bolognino",
+    role: "[ruolo da confermare]",
+    result: "[risultato da confermare]",
+    youtubeId: "5W_HI1sYe6U",
   },
 ];
 
@@ -1585,8 +1590,9 @@ function Index() {
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl">
-              <Highlight>Rule the Rules</Highlight> fa per te se
+              Ok, ma questo evento è <Highlight dark>giusto per te</Highlight> o no?
             </h2>
+            <p className="mt-3 text-base text-ink-muted sm:text-lg">Te lo dico subito.</p>
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <Reveal>
@@ -1605,14 +1611,14 @@ function Index() {
               </div>
             </Reveal>
             <Reveal delay={80}>
-              <div className="h-full rounded-xl border border-border/70 bg-background p-7">
-                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-muted-foreground">
+              <div className="h-full p-7">
+                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-ink-muted/60">
                   Non fa per te se…
                 </p>
                 <ul className="mt-5 space-y-4">
                   {forWhoNo.map((n) => (
-                    <li key={n} className="flex gap-3 text-sm leading-relaxed text-foreground/70">
-                      <span className="mt-0.5 text-muted-foreground">✕</span>
+                    <li key={n} className="flex gap-3 text-sm leading-relaxed text-ink-muted/70">
+                      <span className="mt-0.5 text-ink-muted/50">✕</span>
                       <span>{n}</span>
                     </li>
                   ))}
@@ -1628,15 +1634,26 @@ function Index() {
         <div className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
             <h2 className="max-w-3xl text-3xl sm:text-4xl">
-              Guarda chi ha già <Highlight dark>rotto le regole</Highlight> prima di te
+              Ascolta le parole di chi ha già <Highlight dark>seguito il mio metodo</Highlight>
             </h2>
+            <p className="mt-3 text-base text-ink-muted sm:text-lg">
+              Se con loro ha funzionato, perché con te non dovrebbe funzionare?
+            </p>
           </Reveal>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-3 lg:grid-cols-4">
             {videoTestimonials.map((c, i) => (
               <Reveal key={c.name} delay={(i % 8) * 40}>
-                <div className="surface-card overflow-hidden">
-                  <VideoFrame label={c.name} poster={testimonialImg} />
+                <a
+                  href={`https://www.youtube.com/watch?v=${c.youtubeId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="surface-card block overflow-hidden"
+                >
+                  <VideoFrame
+                    label={c.name}
+                    poster={`https://img.youtube.com/vi/${c.youtubeId}/hqdefault.jpg`}
+                  />
                   <div className="p-4">
                     <p className="font-condensed text-sm uppercase tracking-[0.12em] text-secondary">
                       {c.name}
@@ -1644,7 +1661,7 @@ function Index() {
                     <p className="mt-1 text-xs text-muted-foreground">{c.role}</p>
                     <p className="mt-2 text-sm font-semibold text-foreground">{c.result}</p>
                   </div>
-                </div>
+                </a>
               </Reveal>
             ))}
           </div>
