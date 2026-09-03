@@ -5,7 +5,6 @@ import {
   Clapperboard,
   Copy,
   IdCard,
-  Infinity as InfinityIcon,
   ListChecks,
   ListX,
   Lock,
@@ -220,7 +219,7 @@ const sessions = [
       },
     ],
     heroImage: { src: carlottaLooking2Img, position: "55% 25%" },
-    highlight: "anti-rule" as const,
+    highlight: "content-os" as const,
     title: "Licenzia le Regole",
     intro: (
       <>
@@ -323,7 +322,7 @@ const takeawayCards = [
         Un documento che mette nero su bianco cosa vuoi rappresentare, cosa non vuoi più
         rappresentare, quali parti di te hai nascosto perché “poco professionali” e quali invece
         vuoi rendere riconoscibili.{" "}
-        <strong className="font-semibold text-foreground">
+        <strong className="font-semibold text-ink">
           È la base su cui costruisci tutto il resto
         </strong>
         , dalla prima serata.
@@ -339,7 +338,7 @@ const takeawayCards = [
         Per ogni regola che segui oggi per obbligo (hook, script, CTA, frequenza, setting), scrivi
         la tua risposta a “questa cosa funziona per me?”. Un elenco concreto, scritto durante la
         seconda serata:{" "}
-        <strong className="font-semibold text-foreground">cosa tieni, cosa butti via</strong>.
+        <strong className="font-semibold text-ink">cosa tieni, cosa butti via</strong>.
       </>
     ),
   },
@@ -351,7 +350,7 @@ const takeawayCards = [
       <>
         Testi format diversi in diretta: script contro bullet point, talking Reel contro voice-over,
         contenuti brevi contro lunghi.{" "}
-        <strong className="font-semibold text-foreground">
+        <strong className="font-semibold text-ink">
           Alla fine sai qual è il tuo modo naturale di creare
         </strong>
         , quello che riesci a sostenere senza odiarlo dopo due settimane.
@@ -366,24 +365,8 @@ const takeawayCards = [
       <>
         Cinque domande guidano ogni contenuto: cosa voglio dire, perché, quale parte di me, che
         funzione ha nel mio business, qual è il modo più naturale per raccontarlo.{" "}
-        <strong className="font-semibold text-foreground">
-          Una struttura legata ai tuoi obiettivi
-        </strong>
-        : attrarre, connettere, posizionare, convertire.
-      </>
-    ),
-  },
-  {
-    id: "metodo-duraturo",
-    icon: InfinityIcon,
-    title: "Un metodo che duri più delle tre serate",
-    text: (
-      <>
-        Alla fine hai capito il processo, non solo il risultato di una sera:{" "}
-        <strong className="font-semibold text-foreground">
-          sai come costruire un piano editoriale nuovo
-        </strong>{" "}
-        ogni volta che cambia il tuo obiettivo o la fase del tuo business.
+        <strong className="font-semibold text-ink">Una struttura legata ai tuoi obiettivi</strong>:
+        attrarre, connettere, posizionare, convertire.
       </>
     ),
   },
@@ -1555,42 +1538,43 @@ function Index() {
 
       {/* Cosa ti porti a casa */}
       <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
-        <div className="mx-auto max-w-4xl px-5 py-20">
+        <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl">
-              Alla fine delle tre serate <Highlight>hai in mano questo</Highlight>
+              Alla fine delle 3 serate avrai in mano il <Highlight>TUO</Highlight> metodo di
+              comunicazione identitaria, che segue le tue regole per vendere online (e non quelle di
+              altri).
             </h2>
           </Reveal>
 
-          <Reveal delay={60}>
-            <div className="surface-card mt-8 p-8 sm:p-10">
-              <p className="font-condensed text-sm uppercase tracking-[0.18em] text-secondary">
-                Il tuo output principale
-              </p>
-              <p className="mt-3 text-lg leading-relaxed text-foreground/90 sm:text-xl">
-                Il tuo metodo di comunicazione identitaria:{" "}
-                <strong className="font-semibold text-foreground">
-                  non un elenco di regole da seguire, ma la tua struttura
-                </strong>{" "}
-                per creare contenuti che ti rendono riconoscibile.
-              </p>
-            </div>
-          </Reveal>
+          <div className="mt-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <Reveal>
+              <img
+                src={carlottaPresentingImg}
+                alt="Carlotta Sgarra sul palco durante uno dei suoi speech"
+                loading="lazy"
+                width={3504}
+                height={1972}
+                className="aspect-[4/5] w-full rounded-2xl object-cover"
+                style={{ objectPosition: "55% 15%" }}
+              />
+            </Reveal>
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {takeawayCards.map(({ id, icon: Icon, title, text }, i) => (
-              <Reveal key={id} delay={i * 60}>
-                <div className="flex h-full items-start gap-4 rounded-xl border border-border/70 bg-background p-5">
-                  <Icon className="mt-1 size-5 shrink-0 text-secondary" />
-                  <div>
-                    <p className="text-lg font-semibold text-foreground sm:text-xl">{title}</p>
-                    <span className="mt-1 block text-sm leading-relaxed text-foreground/85 sm:text-base">
-                      {text}
-                    </span>
+            <Reveal delay={60}>
+              <div className="divide-y divide-ink/15">
+                {takeawayCards.map(({ id, icon: Icon, title, text }) => (
+                  <div key={id} className="flex gap-4 py-5 first:pt-0 last:pb-0">
+                    <Icon className="mt-1 size-5 shrink-0 text-primary" />
+                    <div>
+                      <p className="text-lg font-semibold text-ink sm:text-xl">{title}</p>
+                      <span className="mt-1 block text-sm leading-relaxed text-ink-muted sm:text-base">
+                        {text}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </Reveal>
-            ))}
+                ))}
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
