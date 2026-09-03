@@ -1566,10 +1566,12 @@ function Index() {
       <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <h2 className="text-3xl sm:text-4xl">
+            <h2 className="text-center text-3xl sm:text-4xl">
               Ok, ma questo evento è <Highlight dark>giusto per te</Highlight> o no?
             </h2>
-            <p className="mt-3 text-base text-ink-muted sm:text-lg">Te lo dico subito.</p>
+            <p className="mt-3 text-center text-base text-ink-muted sm:text-lg">
+              Te lo dico subito.
+            </p>
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <Reveal>
