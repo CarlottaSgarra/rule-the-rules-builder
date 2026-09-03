@@ -44,7 +44,7 @@ import carlottaLookingImg from "@/assets/carlotta-looking.jpg";
 import carlottaLooking2Img from "@/assets/carlotta-looking-2.jpg";
 import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
 import carlottaWalkingImg from "@/assets/carlotta-walking.jpg";
-import sharonFaceImg from "@/assets/sharon-face.jpg";
+import sharonSpeakingImg from "@/assets/sharon-speaking.jpg";
 import socialProof1Img from "@/assets/social-proof-1.jpg";
 import socialProof2Img from "@/assets/social-proof-2.jpg";
 import socialProof3Img from "@/assets/social-proof-3.jpg";
@@ -215,7 +215,8 @@ const sessions = [
       {
         name: "Sharon",
         role: "esperta di contenuti",
-        photo: sharonFaceImg,
+        photo: sharonSpeakingImg,
+        photoPosition: "42% 35%",
       },
     ],
     heroImage: { src: carlottaLooking2Img, position: "55% 25%" },
@@ -376,10 +377,10 @@ const startingPointCards = [
   {
     id: "riscrivi",
     icon: PenLine,
-    title: "La riscrittura infinita",
+    title: "Scrivo, cancello, riscrivo",
     text: (
       <>
-        Apri Instagram con un’idea, la scrivi, la cancelli, la riscrivi{" "}
+        Hai un’idea per un post, la scrivi, la cancelli, la riscrivi{" "}
         <strong className="font-semibold text-foreground">“in un modo più professionale”</strong>.
       </>
     ),
@@ -387,10 +388,10 @@ const startingPointCards = [
   {
     id: "font-diverso",
     icon: Copy,
-    title: "La fotocopia involontaria",
+    title: "Mi sento una fotocopia",
     text: (
       <>
-        Guardi il profilo di un’altra professionista del tuo settore e ti sembra di vedere il tuo,{" "}
+        Guardi il profilo di un’altra professionista e ti sembra il tuo, solo{" "}
         <strong className="font-semibold text-foreground">con un font diverso</strong>.
       </>
     ),
@@ -398,10 +399,10 @@ const startingPointCards = [
   {
     id: "recitare",
     icon: Clapperboard,
-    title: "La recita del Reel",
+    title: "Quando registro, recito",
     text: (
       <>
-        Quando registri un Reel ti senti{" "}
+        Accendi la telecamera e ti senti{" "}
         <strong className="font-semibold text-foreground">
           recitare una parte che non ti appartiene
         </strong>
@@ -412,25 +413,24 @@ const startingPointCards = [
   {
     id: "non-riconosci",
     icon: ListChecks,
-    title: "Tutto giusto, eppure niente",
+    title: "Ho fatto tutto giusto, eppure...",
     text: (
       <>
-        Hai imparato hook, CTA, piano editoriale, frequenza di pubblicazione: hai fatto tutto come
-        si deve, eppure oggi{" "}
-        <strong className="font-semibold text-foreground">non ti riconosci più</strong> guardando il
-        tuo profilo.
+        Hai fatto tutto “per bene”, eppure oggi{" "}
+        <strong className="font-semibold text-foreground">non ti riconosci più</strong> nel tuo
+        profilo.
       </>
     ),
   },
   {
     id: "paura",
     icon: ShieldAlert,
-    title: "La paura di rompere",
+    title: "Ho paura di rompere le regole",
     text: (
       <>
-        Hai paura che smettere di seguire le regole significhi{" "}
+        Hai paura che smettere di seguirle{" "}
         <strong className="font-semibold text-foreground">
-          far smettere di funzionare i tuoi contenuti
+          faccia smettere di funzionare tutto
         </strong>
         .
       </>
@@ -439,11 +439,11 @@ const startingPointCards = [
   {
     id: "gabbia",
     icon: Lock,
-    title: "Il piano-gabbia",
+    title: "Il mio piano mi va stretto",
     text: (
       <>
         Il piano editoriale che segui ti fa sentire{" "}
-        <strong className="font-semibold text-foreground">in gabbia</strong> invece che aiutarti a
+        <strong className="font-semibold text-foreground">in gabbia</strong>, non ti aiuta a
         crescere.
       </>
     ),
@@ -982,14 +982,14 @@ function Index() {
                     />
                     <div className="mt-4 flex justify-center">
                       <div
-                        className="inline-flex items-center gap-3 rounded-xl px-4 py-2.5"
+                        className="inline-flex flex-col items-center gap-1.5 rounded-xl px-4 py-2.5 sm:flex-row sm:items-center sm:gap-3"
                         style={{
                           backgroundColor: "color-mix(in oklab, var(--secondary) 35%, transparent)",
                           border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
                         }}
                       >
                         <div className="flex -space-x-3">
-                          {clientAvatars.map((src, i) => (
+                          {clientAvatars.slice(0, 5).map((src, i) => (
                             <img
                               key={i}
                               src={src}
@@ -1001,13 +1001,13 @@ function Index() {
                             />
                           ))}
                         </div>
-                        <div className="text-left">
-                          <div className="flex gap-0.5 text-primary">
+                        <div className="text-center sm:text-left">
+                          <div className="flex justify-center gap-0.5 text-primary sm:justify-start">
                             {Array.from({ length: 5 }).map((_, i) => (
                               <Star key={i} className="size-3.5 fill-current" />
                             ))}
                           </div>
-                          <p className="mt-0.5 text-xs text-foreground/85 sm:text-sm">
+                          <p className="mt-0.5 whitespace-nowrap text-[10px] text-foreground/85 sm:text-sm">
                             +1.500 professioniste formate
                           </p>
                         </div>
@@ -1168,7 +1168,7 @@ function Index() {
             <div className="space-y-4">
               {startingPointCards.slice(0, 3).map(({ id, icon: Icon, title, text }, i) => (
                 <Reveal key={id} delay={i * 60}>
-                  <div className="flex h-full min-h-[14.5rem] items-start gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[21.25rem] md:min-h-[15.75rem] lg:min-h-[12.5rem]">
+                  <div className="flex h-full min-h-[9.5rem] items-start gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[21.25rem] md:min-h-[15.75rem] lg:min-h-[12.5rem]">
                     <Icon className="mt-1 size-5 shrink-0 text-secondary" />
                     <div>
                       <p className="text-lg font-semibold text-foreground sm:text-xl">{title}</p>
@@ -1183,7 +1183,7 @@ function Index() {
             <div className="space-y-4">
               {startingPointCards.slice(3, 6).map(({ id, icon: Icon, title, text }, i) => (
                 <Reveal key={id} delay={(i + 3) * 60}>
-                  <div className="flex h-full min-h-[14.5rem] items-start gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[21.25rem] md:min-h-[15.75rem] lg:min-h-[12.5rem]">
+                  <div className="flex h-full min-h-[9.5rem] items-start gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[21.25rem] md:min-h-[15.75rem] lg:min-h-[12.5rem]">
                     <Icon className="mt-1 size-5 shrink-0 text-secondary" />
                     <div>
                       <p className="text-lg font-semibold text-foreground sm:text-xl">{title}</p>
@@ -1403,7 +1403,7 @@ function Index() {
                         </div>
                         <SessionHighlight
                           variant={s.highlight}
-                          className="absolute -right-3 -top-3 sm:-right-5 sm:-top-5"
+                          className="absolute -right-7 -top-3 sm:-right-5 sm:-top-5"
                         />
                       </div>
                       <p className="mt-5 text-sm leading-relaxed text-ink-muted sm:text-base">
@@ -1437,7 +1437,7 @@ function Index() {
                           border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
                         }}
                       >
-                        <p className="font-condensed text-xs font-semibold uppercase tracking-[0.2em] text-ink">
+                        <p className="whitespace-nowrap font-condensed text-[10px] font-semibold uppercase tracking-[0.08em] text-ink sm:text-xs sm:tracking-[0.2em]">
                           Chi ti guiderà in questa serata?
                         </p>
                         <div className="mt-3 flex flex-wrap gap-x-6 gap-y-3">
@@ -1465,7 +1465,7 @@ function Index() {
                   </div>
 
                   <span
-                    className="absolute -top-6 -left-3 rounded-2xl px-5 py-3 font-condensed text-sm font-semibold uppercase tracking-[0.15em] text-primary-foreground shadow-[0_10px_24px_-8px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:-translate-y-1 sm:text-base md:-left-5 md:px-6"
+                    className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-2xl px-3 py-2 font-condensed text-[10px] font-semibold uppercase tracking-[0.05em] text-primary-foreground shadow-[0_10px_24px_-8px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:-translate-y-1 sm:-left-3 sm:translate-x-0 sm:px-5 sm:py-3 sm:text-base sm:tracking-[0.15em] md:-left-5 md:px-6"
                     style={{ backgroundImage: "var(--gradient-gold)" }}
                   >
                     Serata {s.n} · {s.date}, ore {s.time}
@@ -1825,7 +1825,7 @@ function Index() {
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <Reveal>
-              <div className="h-full rounded-xl border border-border/70 bg-background p-7">
+              <div className="h-full rounded-xl border border-border/70 bg-background p-5 sm:p-7">
                 <p className="font-condensed text-lg uppercase tracking-[0.12em] text-muted-foreground">
                   {twoPaths.a.title}
                 </p>
@@ -1833,7 +1833,7 @@ function Index() {
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <div className="surface-card h-full p-7">
+              <div className="surface-card h-full p-5 sm:p-7">
                 <p className="font-condensed text-lg uppercase tracking-[0.12em] text-secondary">
                   {twoPaths.b.title}
                 </p>

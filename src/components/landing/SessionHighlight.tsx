@@ -8,7 +8,7 @@ type Props = {
 };
 
 const wrapperClass =
-  "w-36 rounded-xl bg-white p-3 shadow-[0_20px_45px_-15px_rgba(0,0,0,0.45)] ring-1 ring-black/5 sm:w-40";
+  "w-28 rounded-xl bg-white p-2.5 shadow-[0_20px_45px_-15px_rgba(0,0,0,0.45)] ring-1 ring-black/5 sm:w-40 sm:p-3";
 
 function IdentityCard() {
   return (
