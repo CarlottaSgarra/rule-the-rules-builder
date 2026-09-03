@@ -12,7 +12,6 @@ import {
   PenLine,
   ShieldAlert,
   Star,
-  User,
   Wand2,
 } from "lucide-react";
 import {
@@ -30,6 +29,12 @@ import { Workbook } from "@/components/landing/Workbook";
 import { Highlight } from "@/components/landing/Highlight";
 import livestreamImg from "@/assets/livestream.jpg";
 import goldTexture from "@/assets/texture-gold.jpg";
+import client1Img from "@/assets/client-1.jpg";
+import client2Img from "@/assets/client-2.png";
+import client3Img from "@/assets/client-3.png";
+import client4Img from "@/assets/client-4.jpg";
+import client5Img from "@/assets/client-5.png";
+import client6Img from "@/assets/client-6.png";
 import testimonialImg from "@/assets/testimonial-1.jpg";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import methodBgImg from "@/assets/method-bg.jpg";
@@ -78,13 +83,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const avatarPlaceholders = [
-  "oklch(0.55 0.09 40)",
-  "oklch(0.5 0.1 280)",
-  "oklch(0.6 0.12 20)",
-  "oklch(0.45 0.08 200)",
-  "oklch(0.58 0.1 140)",
-];
+const clientAvatars = [client1Img, client2Img, client3Img, client4Img, client5Img, client6Img];
 
 const galleryPhotos = [
   socialProof1Img,
@@ -996,14 +995,16 @@ function Index() {
                         }}
                       >
                         <div className="flex -space-x-3">
-                          {avatarPlaceholders.map((c, i) => (
-                            <span
+                          {clientAvatars.map((src, i) => (
+                            <img
                               key={i}
-                              className="flex size-9 items-center justify-center rounded-full border-2"
-                              style={{ backgroundColor: c, borderColor: "var(--secondary)" }}
-                            >
-                              <User className="size-4 text-white/85" />
-                            </span>
+                              src={src}
+                              alt=""
+                              aria-hidden
+                              loading="lazy"
+                              className="size-9 shrink-0 rounded-full border-2 object-cover"
+                              style={{ borderColor: "var(--secondary)" }}
+                            />
                           ))}
                         </div>
                         <div className="text-left">

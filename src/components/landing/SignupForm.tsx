@@ -33,14 +33,14 @@ export function SignupForm({
         name="first_name"
         placeholder="Nome"
         required
-        className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground focus:border-primary"
+        className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-card-foreground outline-none placeholder:text-muted-foreground focus:border-primary"
       />
       <input
         type="email"
         name="email"
         placeholder="La tua email migliore"
         required
-        className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground focus:border-primary"
+        className="w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-card-foreground outline-none placeholder:text-muted-foreground focus:border-primary"
       />
       {compact ? null : (
         <div className="flex gap-2">
@@ -51,7 +51,7 @@ export function SignupForm({
             type="tel"
             name="phone_number"
             placeholder="Il tuo WhatsApp"
-            className="w-full min-w-0 rounded-lg border border-input bg-background px-4 py-3 text-sm outline-none placeholder:text-muted-foreground focus:border-primary"
+            className="w-full min-w-0 rounded-lg border border-input bg-background px-4 py-3 text-sm text-card-foreground outline-none placeholder:text-muted-foreground focus:border-primary"
           />
         </div>
       )}
