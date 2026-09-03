@@ -10,10 +10,7 @@ type Props = {
 export function VideoFrame({ label, duration, poster, youtubeId }: Props) {
   if (youtubeId) {
     return (
-      <div
-        className="aspect-video w-full overflow-hidden rounded-2xl border border-primary/25"
-        style={{ boxShadow: "var(--shadow-deep)" }}
-      >
+      <div className="aspect-video w-full overflow-hidden rounded-2xl border border-primary/25">
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
           title={label}

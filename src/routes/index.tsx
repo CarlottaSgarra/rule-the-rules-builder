@@ -482,141 +482,270 @@ const videoTestimonials = [
   {
     name: "Elena Rosa",
     role: "Mental Coach Cinofila",
-    summary:
-      "Aveva un progetto forte tra le mani ma nessuna struttura per farlo diventare un business sostenibile: lavorava tantissimo senza una vera direzione strategica. Oggi ha un posizionamento chiaro, un’offerta forte e supera i 5.000€ al mese — è la sua vita a basarsi sul business, non più il contrario.",
+    summary: (
+      <>
+        Aveva un progetto forte tra le mani ma nessuna struttura per farlo diventare un business
+        sostenibile. Oggi supera i{" "}
+        <strong className="font-semibold text-foreground">5.000€ al mese</strong> ed è la sua vita a
+        basarsi sul business, non più il contrario.
+      </>
+    ),
     youtubeId: "O75oxbgxdjY",
   },
   {
     name: "Silvia Bedin",
     role: "Life Coach",
-    summary:
-      "Dopo un anno e mezzo di lavoro come coach energetica guadagnava in media 400€ al mese, senza identità, offerta o direzione chiara. Ha costruito un’offerta high ticket allineata a chi è davvero e in poche settimane ha generato 31.000€ in organico, superando per sempre il loop dei low ticket.",
+    summary: (
+      <>
+        Dopo un anno e mezzo come coach energetica guadagnava in media 400€ al mese, senza identità
+        né direzione. In poche settimane ha generato{" "}
+        <strong className="font-semibold text-foreground">31.000€ in organico</strong>, superando
+        per sempre il loop dei low ticket.
+      </>
+    ),
     youtubeId: "A0vabIP_Srk",
   },
   {
     name: "Valeria Salussolia",
     role: "Titolare di un Centro Benessere & Consulente d’Immagine",
-    summary:
-      "Lavorava come estetista con contratti instabili, confusa e insoddisfatta, finché dopo l’ennesimo licenziamento ha deciso di cambiare tutto e aprire il suo primo centro. Oggi ha un’attività costruita sulle sue vere competenze e fattura in una settimana quello che prima guadagnava in un mese da dipendente.",
+    summary: (
+      <>
+        Lavorava come estetista con contratti instabili, finché dopo l’ennesimo licenziamento ha
+        deciso di cambiare tutto. Oggi{" "}
+        <strong className="font-semibold text-foreground">
+          fattura in una settimana quello che guadagnava in un mese da dipendente
+        </strong>
+        .
+      </>
+    ),
     youtubeId: "gFKD9AkVaZw",
   },
   {
     name: "Mariangela Simioli",
     role: "Marketing Strategist",
-    summary:
-      "Si era appena licenziata da una multinazionale, con 500€ sul conto e un business tutto da costruire: offerta, personal brand, contenuti, vendita. In soli 4 mesi ha superato il regime forfettario e oggi vive di clienti costanti ogni settimana, con l’obiettivo di arrivare a 500.000€ di fatturato.",
+    summary: (
+      <>
+        Si era appena licenziata da una multinazionale, con 500€ sul conto e un business tutto da
+        costruire. In soli{" "}
+        <strong className="font-semibold text-foreground">
+          4 mesi ha superato il regime forfettario
+        </strong>{" "}
+        e oggi vive di clienti costanti ogni settimana.
+      </>
+    ),
     youtubeId: "Qd6QLXPzcMs",
   },
   {
     name: "Giulia Santelli",
     role: "Personal Trainer e Life Coach",
-    summary:
-      "Divisa tra un lavoro da dipendente all’estero e mille altre attività, si sentiva un criceto sulla ruota: sempre di corsa, mai pagata per il suo vero valore. Si è licenziata, ha raddoppiato lo stipendio e con soli 6 contenuti ha chiuso clienti high ticket da 2.000€, costruendo anche un team di collaboratori.",
+    summary: (
+      <>
+        Divisa tra un lavoro da dipendente all’estero e mille altre attività, si sentiva un criceto
+        sulla ruota. Si è licenziata, ha{" "}
+        <strong className="font-semibold text-foreground">raddoppiato lo stipendio</strong> e con
+        soli 6 contenuti ha chiuso{" "}
+        <strong className="font-semibold text-foreground">clienti high ticket da 2.000€</strong>.
+      </>
+    ),
     youtubeId: "MVOsgoJEHI0",
   },
   {
     name: "Ilaria Mattei",
     role: "SEO e Copywriter",
-    summary:
-      "Non sapeva da dove iniziare: nessuna offerta chiara, nessun contenuto, prezzi troppo bassi per la qualità che offriva. Oggi ha un business strutturato e replicabile che incassa 6.500€ al mese in modo costante, dopo aver raddoppiato il suo obiettivo iniziale fino a toccare i 10.000€.",
+    summary: (
+      <>
+        Non sapeva da dove iniziare: nessuna offerta chiara, nessun contenuto, prezzi troppo bassi.
+        Oggi incassa{" "}
+        <strong className="font-semibold text-foreground">6.500€ al mese in modo costante</strong>,
+        dopo aver raddoppiato l’obiettivo fino a{" "}
+        <strong className="font-semibold text-foreground">10.000€</strong>.
+      </>
+    ),
     youtubeId: "BxQDPKy141U",
   },
   {
     name: "Giulia Ariganello",
     role: "Business Mentor per le Educatrici",
-    summary:
-      "Si sentiva bloccata: nessuna direzione chiara, un’offerta difficile da definire e un valore professionale che faticava a comunicare. In pochi mesi ha raggiunto un fatturato mensile a cinque cifre e oggi è un punto di riferimento per le educatrici del suo settore.",
+    summary: (
+      <>
+        Si sentiva bloccata: nessuna direzione chiara e un valore che faticava a comunicare. In
+        pochi mesi ha raggiunto un{" "}
+        <strong className="font-semibold text-foreground">fatturato mensile a cinque cifre</strong>{" "}
+        ed è un punto di riferimento nel suo settore.
+      </>
+    ),
     youtubeId: "Qzhc1dBGVpM",
   },
   {
     name: "Vanessa Sciorio",
     role: "Nutrizionista al femminile",
-    summary:
-      "Lottava per avere una clientela sufficiente e stabile: sapeva di avere valore, ma non riusciva a comunicarlo e a farlo crescere in un vero business. Oggi ha un fatturato a cinque cifre mensili, una clientela mirata e la sua posizione come nutrizionista di riferimento nel settore.",
+    summary: (
+      <>
+        Lottava per avere una clientela sufficiente e stabile, senza riuscire a farla crescere in un
+        vero business. Oggi ha un{" "}
+        <strong className="font-semibold text-foreground">fatturato a cinque cifre mensili</strong>{" "}
+        e la sua posizione come nutrizionista di riferimento.
+      </>
+    ),
     youtubeId: "mJh2hT3BIgE",
   },
   {
     name: "Elisa Monasterolo",
     role: "Brand Strategist",
-    summary:
-      "Stava per chiudere la partita IVA dopo mesi di preventivi rifiutati e l’ansia costante della mancanza di stabilità. Oggi vive del suo business con clienti a lungo termine e un solido equilibrio finanziario, e guarda già ai prossimi progetti per crescere ancora.",
+    summary: (
+      <>
+        Stava per chiudere la partita IVA dopo mesi di preventivi rifiutati e tanta ansia. Oggi vive
+        del suo business con{" "}
+        <strong className="font-semibold text-foreground">clienti a lungo termine</strong> e un
+        solido equilibrio finanziario.
+      </>
+    ),
     youtubeId: "fB1zSchLTiI",
   },
   {
     name: "Giusy Pannese",
     role: "Makeup Artist",
-    summary:
-      "Aveva l’agenda piena ma si sentiva bloccata: faticava a valorizzare il suo lavoro e restava legata a richieste generiche e a una clientela solo locale. Oggi ha aumentato le tariffe e ampliato il mercato, arrivando a spose a livello nazionale e internazionale.",
+    summary: (
+      <>
+        Aveva l’agenda piena ma si sentiva bloccata, legata a richieste generiche e a una clientela
+        solo locale. Oggi ha aumentato le tariffe e ampliato il mercato, arrivando a{" "}
+        <strong className="font-semibold text-foreground">
+          spose a livello nazionale e internazionale
+        </strong>
+        .
+      </>
+    ),
     youtubeId: "IUeaewJX9iU",
   },
   {
     name: "Bianca Lucaci",
     role: "Influencer Coach",
-    summary:
-      "Lavorava come commessa in un centro commerciale, con il sogno di trasformare la sua passione in una vera carriera ma senza sapere come fare il salto. Ha lasciato il lavoro, creato la prima Academy per influencer in Italia e oggi vive la libertà finanziaria e personale che desiderava.",
+    summary: (
+      <>
+        Lavorava come commessa in un centro commerciale, sognando di trasformare la passione in
+        carriera. Ha lasciato il lavoro, creato la{" "}
+        <strong className="font-semibold text-foreground">
+          prima Academy per influencer in Italia
+        </strong>{" "}
+        e raggiunto la libertà finanziaria.
+      </>
+    ),
     youtubeId: "Kw2nsluTO2A",
   },
   {
     name: "Rosanna Cafarella",
     role: "Tatuatrice",
-    summary:
-      "Nonostante 10 anni di esperienza, lottava con clienti low cost e richieste poco costanti, senza riuscire a comunicare la sua unicità. In soli tre mesi ha riorganizzato il business e raggiunto 10.000€ mensili costanti, attirando una clientela in linea con il suo stile.",
+    summary: (
+      <>
+        Nonostante 10 anni di esperienza, lottava con clienti low cost e richieste poco costanti. In
+        soli <strong className="font-semibold text-foreground">tre mesi</strong> ha raggiunto{" "}
+        <strong className="font-semibold text-foreground">10.000€ mensili costanti</strong>, con una
+        clientela in linea col suo stile.
+      </>
+    ),
     youtubeId: "Ek8tUbgTJGk",
   },
   {
     name: "Mariella Tauriello",
     role: "Instagram e Visual Coach",
-    summary:
-      "Si sentiva sopraffatta da troppe idee e confusione, incapace di concretizzare tutta la formazione ricevuta in un business vero e proprio. In pochi mesi, grazie a una gestione chiara dei contenuti su Instagram, ha strutturato un’offerta mirata e portato il suo programma sold out.",
+    summary: (
+      <>
+        Si sentiva sopraffatta da troppe idee, incapace di concretizzare la formazione ricevuta. In
+        pochi mesi ha strutturato un’offerta mirata e portato il suo{" "}
+        <strong className="font-semibold text-foreground">programma sold out</strong>.
+      </>
+    ),
     youtubeId: "-D9QGDLWue0",
   },
   {
     name: "Valentina Giuriato",
     role: "Consulente d’Immagine",
-    summary:
-      "Abituata a fare tutto da sola, faticava a comunicare la sua offerta unica e non aveva un flusso costante di clienti. Ha imparato a valorizzare la sua unicità e a comunicarla con efficacia, trasformando e riempiendo di clienti il suo business, con un aumento significativo del fatturato.",
+    summary: (
+      <>
+        Abituata a fare tutto da sola, faticava a comunicare la sua offerta e non aveva un flusso
+        costante di clienti. Ha trasformato e{" "}
+        <strong className="font-semibold text-foreground">riempito di clienti</strong> il suo
+        business, con un aumento significativo del fatturato.
+      </>
+    ),
     youtubeId: "yDGIN_aaz0k",
   },
   {
     name: "Sharon Convertino",
     role: "Social Media Manager e Consulente di Web Marketing",
-    summary:
-      "Clienti tossici e un burnout profondo l’avevano portata a voler abbandonare tutto, mentre si sottovalutava senza riuscire a chiedere il giusto compenso. Oggi ha ritrovato sicurezza in sé stessa ed è lei a selezionare i clienti, offrendo servizi di alta qualità senza più compromessi.",
+    summary: (
+      <>
+        Clienti tossici e un burnout profondo l’avevano portata a voler abbandonare tutto. Oggi è
+        lei a <strong className="font-semibold text-foreground">selezionare i clienti</strong>,
+        offrendo servizi di alta qualità senza più compromessi.
+      </>
+    ),
     youtubeId: "eA4QQQXlG54",
   },
   {
     name: "Silvia Errico",
     role: "Coach di LinkedIn e Instagram",
-    summary:
-      "Partiva da zero clienti e un business inesistente, bloccata dalla paura e dal giudizio su sé stessa. Ha completamente trasformato mentalità e attività: oggi vive del suo lavoro, con un business che riflette al 100% la sua personalità e attira i clienti giusti.",
+    summary: (
+      <>
+        Partiva da zero clienti e un business inesistente, bloccata dalla paura e dal giudizio su sé
+        stessa. Oggi <strong className="font-semibold text-foreground">vive del suo lavoro</strong>,
+        con un business che riflette al 100% la sua personalità.
+      </>
+    ),
     youtubeId: "G-ElGXQXcNg",
   },
   {
     name: "Elisabetta Bettonte",
     role: "Parent Coach",
-    summary:
-      "Partiva da -10.000€, dopo aver investito in corsi e coach senza risultati concreti e con una motivazione ai minimi storici. Oggi ha raggiunto i 6.000€ al mese, è lei a selezionare i clienti e ha costruito la mentalità vincente per continuare a crescere.",
+    summary: (
+      <>
+        Partiva da -10.000€, dopo aver investito in corsi e coach senza risultati concreti. Oggi ha
+        raggiunto i <strong className="font-semibold text-foreground">6.000€ al mese</strong> ed è
+        lei a selezionare i clienti.
+      </>
+    ),
     youtubeId: "zVAuDJ4xJC8",
   },
   {
     name: "Francesca Solignani",
     role: "Instagram Coach per Nutrizionisti",
-    summary:
-      "Era in una fase di stallo totale, con zero richieste e ancora scottata da un’esperienza di coaching precedente che l’aveva lasciata demotivata. Oggi è una figura di riferimento per i nutrizionisti su Instagram, con un flusso costante di clienti e vive pienamente del suo business.",
+    summary: (
+      <>
+        Era in una fase di stallo totale, con zero richieste e ancora scottata da un’esperienza
+        negativa. Oggi è una{" "}
+        <strong className="font-semibold text-foreground">
+          figura di riferimento per i nutrizionisti
+        </strong>{" "}
+        su Instagram, con un flusso costante di clienti.
+      </>
+    ),
     youtubeId: "h7V0kkYzhec",
   },
   {
     name: "Cristina Buliga",
     role: "Life & Business Coach",
-    summary:
-      "Aveva tante idee ma non sapeva come trasformarle in un’offerta concreta, né come attrarre i suoi primi clienti. In soli quattro mesi ha lanciato il suo business, acquisito cinque clienti high ticket e costruito una presenza online che converte i follower in clienti.",
+    summary: (
+      <>
+        Aveva tante idee ma non sapeva come trasformarle in un’offerta concreta né attrarre i primi
+        clienti. In soli <strong className="font-semibold text-foreground">quattro mesi</strong> ha
+        acquisito{" "}
+        <strong className="font-semibold text-foreground">cinque clienti high ticket</strong> e
+        lanciato il suo business.
+      </>
+    ),
     youtubeId: "8JrTY4ulPZQ",
   },
   {
     name: "Roberta Trabucco",
     role: "Make Up Alchemist",
-    summary:
-      "Dopo aver perso il lavoro si è ritrovata a un punto morto, senza una direzione chiara su come trasformare la sua esperienza di vita in un business vero. Ha unito le sue competenze in un’identità unica, la “Make Up Alchemist”, lanciato un programma suo e oggi seleziona solo i clienti allineati alla sua visione.",
+    summary: (
+      <>
+        Dopo aver perso il lavoro si è ritrovata a un punto morto, senza una direzione chiara. Ha
+        creato un’identità unica, la{" "}
+        <strong className="font-semibold text-foreground">“Make Up Alchemist”</strong>, e oggi
+        seleziona solo i clienti allineati alla sua visione.
+      </>
+    ),
     youtubeId: "2Q3Keue0i7w",
   },
 ];
@@ -1633,7 +1762,7 @@ function Index() {
         <div className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl">
-              <Highlight dark>Ascolta le parole di chi ha già seguito il mio metodo</Highlight>
+              Ascolta le parole di chi ha già <Highlight dark>seguito il mio metodo</Highlight>
             </h2>
             <p className="mt-3 text-base text-ink-muted sm:text-lg">
               Se con loro ha funzionato, perché con te non dovrebbe funzionare?
@@ -1680,7 +1809,7 @@ function Index() {
                     boxShadow: "var(--shadow-gold)",
                   }}
                 >
-                  Durante le serate metterai in pratica tutto questo, ovviamente
+                  Durante le serate si lavora, ovviamente
                 </span>
                 <h2 className="mt-4 text-3xl sm:text-4xl">
                   Ricevi il <Highlight>Workbook</Highlight> di Rule The Rules
