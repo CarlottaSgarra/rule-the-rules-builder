@@ -1712,7 +1712,8 @@ function Index() {
         >
           <Reveal>
             <h2 className="text-3xl text-ink sm:text-4xl">
-              Perché puoi fidarti di <Highlight dark>quello che ti dico</Highlight>
+              Ho creato un’azienda da <em className="not-italic text-ink-muted/60">[fatturato]</em>{" "}
+              di fatturato grazie a <Highlight dark>un’identità riconoscibile</Highlight>
             </h2>
           </Reveal>
 
@@ -1720,32 +1721,46 @@ function Index() {
             <Reveal>
               <div className="space-y-4 text-base leading-relaxed text-ink-muted">
                 <p>
-                  Mi chiamo Carlotta Sgarra, e anche io per anni ho seguito le regole.{" "}
-                  <em className="not-italic text-ink-muted/60">[anni di esperienza specifici]</em>.
-                  Ho scritto script perfetti, seguito i format che “funzionavano”, pubblicato quando
-                  dicevano di pubblicare. E per un periodo ha funzionato, nel senso che i numeri
-                  c’erano.{" "}
-                  <strong className="font-semibold text-ink">Quello che non c’era ero io.</strong>
-                </p>
-                <p className="text-ink-muted/60">
-                  [Episodio preciso del momento in cui ha rotto le regole: cosa ha smesso di fare,
-                  cosa ha iniziato a fare diversamente, primo segnale che stava funzionando]
+                  Non sono nata con i riflettori puntati. Avevo solo un telefono in mano, due
+                  fratelli nella stessa stanza e una paura fortissima di fallire agli occhi dei miei
+                  genitori.
                 </p>
                 <p>
-                  Da quel momento ho costruito la mia comunicazione intorno a chi sono davvero, non
-                  intorno a cosa “avrebbe dovuto” funzionare. Oggi{" "}
-                  <em className="not-italic text-ink-muted/60">
-                    [risultato concreto: fatturato, numero di clienti seguite, o risultato
-                    personale]
-                  </em>
-                  . Non perché ho trovato IL metodo giusto.{" "}
-                  <strong className="font-semibold text-ink">Perché ho trovato il mio.</strong>
+                  Pubblicavo in modo ossessivo e non avevo mai un risultato. Accettavo clienti che
+                  non rispettavano il mio valore, vendendo a 200€. Studiavo fino alle 3 di notte pur
+                  di sentirmi “abbastanza”, e ogni mese il conto in banca restava fisso sugli 800€,
+                  nonostante 10 ore di lavoro al giorno.
                 </p>
                 <p>
-                  Le stesse cose che hanno funzionato per me le ho viste funzionare su{" "}
-                  <em className="not-italic text-ink-muted/60">[numero]</em> professioniste che ho
-                  seguito in questi anni, ognuna con il proprio settore, il proprio pubblico, le
-                  proprie regole da rompere.
+                  Ma non ho mollato. Ho trasformato quella frustrazione in benzina e ho iniziato a
+                  costruire pezzo dopo pezzo:{" "}
+                  <strong className="font-semibold text-ink">
+                    prima l’identità, poi i contenuti, poi le vendite
+                  </strong>
+                  .
+                </p>
+                <p>
+                  Anche quando ho imparato a fare “tutto giusto” — avevo studiato il mercato
+                  americano, spagnolo e italiano, e speso più di 70.000€ in formazione — il mio
+                  business restava instabile: un mese 5.000€, un mese 800€.{" "}
+                  <strong className="font-semibold text-ink">Quello che non c’era ero io.</strong>{" "}
+                  Stavo eseguendo piani editoriali scritti da altri e regole decise da creator che
+                  non conoscevo.
+                </p>
+                <p>
+                  <strong className="font-semibold text-ink">
+                    Non puoi costruire un’azienda sulla base del prodotto che sei. Puoi costruirla
+                    solo sulla persona che sei.
+                  </strong>{" "}
+                  Da quel momento ho smesso di chiedermi “cosa funziona” e ho iniziato a chiedermi
+                  chi volevo essere.
+                </p>
+                <p>
+                  Sono cambiati i contenuti, sono cambiati i clienti, sono cambiati i soldi. È
+                  arrivata la struttura, è arrivato un team che oggi è diventato famiglia, ed è
+                  arrivato un metodo che ha funzionato per me e per centinaia di professioniste
+                  italiane, ognuna con il proprio settore, il proprio pubblico, le proprie regole da
+                  rompere.
                 </p>
               </div>
             </Reveal>
