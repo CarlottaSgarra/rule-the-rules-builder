@@ -599,12 +599,6 @@ const videoTestimonials = [
     result: "Identità professionale unica, clienti allineati alla sua visione",
     youtubeId: "2Q3Keue0i7w",
   },
-  {
-    name: "Marta Bolognino",
-    role: "[ruolo da confermare]",
-    result: "[risultato da confermare]",
-    youtubeId: "5W_HI1sYe6U",
-  },
 ];
 
 const aboutStats = [
@@ -1170,36 +1164,19 @@ function Index() {
             </h2>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            <div className="space-y-4">
-              {startingPointCards.slice(0, 3).map(({ id, icon: Icon, title, text }, i) => (
-                <Reveal key={id} delay={i * 60}>
-                  <div className="flex h-full min-h-[9.5rem] items-start gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[21.25rem] md:min-h-[15.75rem] lg:min-h-[12.5rem]">
-                    <Icon className="mt-1 size-5 shrink-0 text-secondary" />
-                    <div>
-                      <p className="text-lg font-semibold text-foreground sm:text-xl">{title}</p>
-                      <span className="mt-1 block text-sm leading-relaxed text-foreground/85 sm:text-base">
-                        {text}
-                      </span>
-                    </div>
+            {startingPointCards.map(({ id, icon: Icon, title, text }, i) => (
+              <Reveal key={id} delay={i * 60}>
+                <div className="flex h-full min-h-[9.5rem] items-start gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary">
+                  <Icon className="mt-1 size-5 shrink-0 text-secondary" />
+                  <div>
+                    <p className="text-lg font-semibold text-foreground sm:text-xl">{title}</p>
+                    <span className="mt-1 block text-sm leading-relaxed text-foreground/85 sm:text-base">
+                      {text}
+                    </span>
                   </div>
-                </Reveal>
-              ))}
-            </div>
-            <div className="space-y-4">
-              {startingPointCards.slice(3, 6).map(({ id, icon: Icon, title, text }, i) => (
-                <Reveal key={id} delay={(i + 3) * 60}>
-                  <div className="flex h-full min-h-[9.5rem] items-start gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary sm:min-h-[21.25rem] md:min-h-[15.75rem] lg:min-h-[12.5rem]">
-                    <Icon className="mt-1 size-5 shrink-0 text-secondary" />
-                    <div>
-                      <p className="text-lg font-semibold text-foreground sm:text-xl">{title}</p>
-                      <span className="mt-1 block text-sm leading-relaxed text-foreground/85 sm:text-base">
-                        {text}
-                      </span>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
+                </div>
+              </Reveal>
+            ))}
           </div>
 
           <Reveal>
@@ -1633,25 +1610,21 @@ function Index() {
       <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
-            <h2 className="max-w-3xl text-3xl sm:text-4xl">
-              Ascolta le parole di chi ha già <Highlight dark>seguito il mio metodo</Highlight>
+            <h2 className="text-3xl sm:text-4xl">
+              <Highlight dark>Ascolta le parole di chi ha già seguito il mio metodo</Highlight>
             </h2>
             <p className="mt-3 text-base text-ink-muted sm:text-lg">
               Se con loro ha funzionato, perché con te non dovrebbe funzionare?
             </p>
           </Reveal>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {videoTestimonials.map((c, i) => (
               <Reveal key={c.name} delay={(i % 8) * 40}>
-                <a
-                  href={`https://www.youtube.com/watch?v=${c.youtubeId}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="surface-card block overflow-hidden"
-                >
+                <div className="surface-card overflow-hidden">
                   <VideoFrame
                     label={c.name}
+                    youtubeId={c.youtubeId}
                     poster={`https://img.youtube.com/vi/${c.youtubeId}/hqdefault.jpg`}
                   />
                   <div className="p-4">
@@ -1661,7 +1634,7 @@ function Index() {
                     <p className="mt-1 text-xs text-muted-foreground">{c.role}</p>
                     <p className="mt-2 text-sm font-semibold text-foreground">{c.result}</p>
                   </div>
-                </a>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -1682,7 +1655,16 @@ function Index() {
 
             <div>
               <Reveal>
-                <h2 className="text-3xl sm:text-4xl">
+                <span
+                  className="inline-block rounded-full px-5 py-2 font-condensed text-xs uppercase tracking-[0.25em] text-primary-foreground sm:text-sm"
+                  style={{
+                    backgroundImage: "var(--gradient-gold)",
+                    boxShadow: "var(--shadow-gold)",
+                  }}
+                >
+                  Durante le serate metterai in pratica tutto questo, ovviamente
+                </span>
+                <h2 className="mt-4 text-3xl sm:text-4xl">
                   Ricevi il <Highlight>Workbook</Highlight> di Rule The Rules
                 </h2>
                 <p className="mt-5 text-base leading-relaxed text-foreground/85">
@@ -1698,7 +1680,10 @@ function Index() {
               <div className="mt-8 space-y-4">
                 {workbookDays.map((w, i) => (
                   <Reveal key={w.t} delay={i * 90}>
-                    <div className="surface-card p-5 transition-transform duration-300 hover:-translate-y-1">
+                    <div
+                      className="surface-card p-5 transition-transform duration-300 hover:-translate-y-1"
+                      style={{ boxShadow: "none" }}
+                    >
                       <p className="font-condensed text-base uppercase tracking-[0.12em] text-secondary">
                         {w.t}
                       </p>
