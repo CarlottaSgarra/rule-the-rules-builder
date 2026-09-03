@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Play } from "lucide-react";
 
 type Props = {
@@ -8,17 +7,30 @@ type Props = {
   youtubeId?: string;
 };
 
-function Poster({
-  poster,
-  label,
-  duration,
-}: {
-  poster?: string;
-  label: string;
-  duration?: string;
-}) {
+export function VideoFrame({ label, duration, poster, youtubeId }: Props) {
+  if (youtubeId) {
+    return (
+      <div
+        className="aspect-video w-full overflow-hidden rounded-2xl border border-primary/25"
+        style={{ boxShadow: "var(--shadow-deep)" }}
+      >
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${youtubeId}`}
+          title={label}
+          loading="lazy"
+          className="h-full w-full"
+          allow="accelerate-encoded-media; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+    );
+  }
+
   return (
-    <>
+    <div
+      className="group relative aspect-video w-full overflow-hidden rounded-2xl border border-primary/25 bg-muted"
+      style={{ boxShadow: "var(--shadow-deep)" }}
+    >
       {poster ? (
         <img
           src={poster}
@@ -42,50 +54,6 @@ function Poster({
           <span className="text-xs text-muted-foreground tabular-nums">{duration}</span>
         ) : null}
       </div>
-    </>
-  );
-}
-
-export function VideoFrame({ label, duration, poster, youtubeId }: Props) {
-  const [playing, setPlaying] = useState(false);
-
-  if (playing && youtubeId) {
-    return (
-      <div
-        className="aspect-video w-full overflow-hidden rounded-2xl border border-primary/25 bg-black"
-        style={{ boxShadow: "var(--shadow-deep)" }}
-      >
-        <iframe
-          src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0`}
-          title={label}
-          className="h-full w-full"
-          allow="accelerate-encoded-media; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      </div>
-    );
-  }
-
-  if (youtubeId) {
-    return (
-      <button
-        type="button"
-        onClick={() => setPlaying(true)}
-        aria-label={`Guarda il video di ${label}`}
-        className="group relative aspect-video w-full overflow-hidden rounded-2xl border border-primary/25 bg-muted text-left"
-        style={{ boxShadow: "var(--shadow-deep)" }}
-      >
-        <Poster poster={poster} label={label} duration={duration} />
-      </button>
-    );
-  }
-
-  return (
-    <div
-      className="group relative aspect-video w-full overflow-hidden rounded-2xl border border-primary/25 bg-muted"
-      style={{ boxShadow: "var(--shadow-deep)" }}
-    >
-      <Poster poster={poster} label={label} duration={duration} />
     </div>
   );
 }

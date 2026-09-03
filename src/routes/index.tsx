@@ -482,121 +482,141 @@ const videoTestimonials = [
   {
     name: "Elena Rosa",
     role: "Mental Coach Cinofila",
-    result: "Superati i 5.000€/mese in pochi mesi",
+    summary:
+      "Aveva un progetto forte tra le mani ma nessuna struttura per farlo diventare un business sostenibile: lavorava tantissimo senza una vera direzione strategica. Oggi ha un posizionamento chiaro, un’offerta forte e supera i 5.000€ al mese — è la sua vita a basarsi sul business, non più il contrario.",
     youtubeId: "O75oxbgxdjY",
   },
   {
     name: "Silvia Bedin",
     role: "Life Coach",
-    result: "Da 400€/mese a 31.000€ in organico in poche settimane",
+    summary:
+      "Dopo un anno e mezzo di lavoro come coach energetica guadagnava in media 400€ al mese, senza identità, offerta o direzione chiara. Ha costruito un’offerta high ticket allineata a chi è davvero e in poche settimane ha generato 31.000€ in organico, superando per sempre il loop dei low ticket.",
     youtubeId: "A0vabIP_Srk",
   },
   {
     name: "Valeria Salussolia",
-    role: "Titolare Centro Benessere & Consulente d’Immagine",
-    result: "Fattura in una settimana quello che guadagnava in un mese da dipendente",
+    role: "Titolare di un Centro Benessere & Consulente d’Immagine",
+    summary:
+      "Lavorava come estetista con contratti instabili, confusa e insoddisfatta, finché dopo l’ennesimo licenziamento ha deciso di cambiare tutto e aprire il suo primo centro. Oggi ha un’attività costruita sulle sue vere competenze e fattura in una settimana quello che prima guadagnava in un mese da dipendente.",
     youtubeId: "gFKD9AkVaZw",
   },
   {
     name: "Mariangela Simioli",
     role: "Marketing Strategist",
-    result: "Regime forfettario superato in 4 mesi",
+    summary:
+      "Si era appena licenziata da una multinazionale, con 500€ sul conto e un business tutto da costruire: offerta, personal brand, contenuti, vendita. In soli 4 mesi ha superato il regime forfettario e oggi vive di clienti costanti ogni settimana, con l’obiettivo di arrivare a 500.000€ di fatturato.",
     youtubeId: "Qd6QLXPzcMs",
   },
   {
     name: "Giulia Santelli",
     role: "Personal Trainer e Life Coach",
-    result: "Cliente high ticket da 2.000€ con soli 6 contenuti",
+    summary:
+      "Divisa tra un lavoro da dipendente all’estero e mille altre attività, si sentiva un criceto sulla ruota: sempre di corsa, mai pagata per il suo vero valore. Si è licenziata, ha raddoppiato lo stipendio e con soli 6 contenuti ha chiuso clienti high ticket da 2.000€, costruendo anche un team di collaboratori.",
     youtubeId: "MVOsgoJEHI0",
   },
   {
     name: "Ilaria Mattei",
     role: "SEO e Copywriter",
-    result: "6.500€/mese costanti, poi 10.000€ raggiunti",
+    summary:
+      "Non sapeva da dove iniziare: nessuna offerta chiara, nessun contenuto, prezzi troppo bassi per la qualità che offriva. Oggi ha un business strutturato e replicabile che incassa 6.500€ al mese in modo costante, dopo aver raddoppiato il suo obiettivo iniziale fino a toccare i 10.000€.",
     youtubeId: "BxQDPKy141U",
   },
   {
     name: "Giulia Ariganello",
     role: "Business Mentor per le Educatrici",
-    result: "Fatturato mensile a cinque cifre",
+    summary:
+      "Si sentiva bloccata: nessuna direzione chiara, un’offerta difficile da definire e un valore professionale che faticava a comunicare. In pochi mesi ha raggiunto un fatturato mensile a cinque cifre e oggi è un punto di riferimento per le educatrici del suo settore.",
     youtubeId: "Qzhc1dBGVpM",
   },
   {
     name: "Vanessa Sciorio",
     role: "Nutrizionista al femminile",
-    result: "Fatturato a cinque cifre mensili",
+    summary:
+      "Lottava per avere una clientela sufficiente e stabile: sapeva di avere valore, ma non riusciva a comunicarlo e a farlo crescere in un vero business. Oggi ha un fatturato a cinque cifre mensili, una clientela mirata e la sua posizione come nutrizionista di riferimento nel settore.",
     youtubeId: "mJh2hT3BIgE",
   },
   {
     name: "Elisa Monasterolo",
     role: "Brand Strategist",
-    result: "Da vicina a chiudere la P.IVA a stabilità economica",
+    summary:
+      "Stava per chiudere la partita IVA dopo mesi di preventivi rifiutati e l’ansia costante della mancanza di stabilità. Oggi vive del suo business con clienti a lungo termine e un solido equilibrio finanziario, e guarda già ai prossimi progetti per crescere ancora.",
     youtubeId: "fB1zSchLTiI",
   },
   {
     name: "Giusy Pannese",
     role: "Makeup Artist",
-    result: "Da clientela solo locale a spose a livello nazionale e internazionale",
+    summary:
+      "Aveva l’agenda piena ma si sentiva bloccata: faticava a valorizzare il suo lavoro e restava legata a richieste generiche e a una clientela solo locale. Oggi ha aumentato le tariffe e ampliato il mercato, arrivando a spose a livello nazionale e internazionale.",
     youtubeId: "IUeaewJX9iU",
   },
   {
     name: "Bianca Lucaci",
     role: "Influencer Coach",
-    result: "Dalla commessa alla prima Academy per influencer in Italia",
+    summary:
+      "Lavorava come commessa in un centro commerciale, con il sogno di trasformare la sua passione in una vera carriera ma senza sapere come fare il salto. Ha lasciato il lavoro, creato la prima Academy per influencer in Italia e oggi vive la libertà finanziaria e personale che desiderava.",
     youtubeId: "Kw2nsluTO2A",
   },
   {
     name: "Rosanna Cafarella",
     role: "Tatuatrice",
-    result: "10.000€ mensili costanti in soli 3 mesi",
+    summary:
+      "Nonostante 10 anni di esperienza, lottava con clienti low cost e richieste poco costanti, senza riuscire a comunicare la sua unicità. In soli tre mesi ha riorganizzato il business e raggiunto 10.000€ mensili costanti, attirando una clientela in linea con il suo stile.",
     youtubeId: "Ek8tUbgTJGk",
   },
   {
     name: "Mariella Tauriello",
     role: "Instagram e Visual Coach",
-    result: "Programma sold out",
+    summary:
+      "Si sentiva sopraffatta da troppe idee e confusione, incapace di concretizzare tutta la formazione ricevuta in un business vero e proprio. In pochi mesi, grazie a una gestione chiara dei contenuti su Instagram, ha strutturato un’offerta mirata e portato il suo programma sold out.",
     youtubeId: "-D9QGDLWue0",
   },
   {
     name: "Valentina Giuriato",
     role: "Consulente d’Immagine",
-    result: "Business trasformato e riempito di clienti",
+    summary:
+      "Abituata a fare tutto da sola, faticava a comunicare la sua offerta unica e non aveva un flusso costante di clienti. Ha imparato a valorizzare la sua unicità e a comunicarla con efficacia, trasformando e riempiendo di clienti il suo business, con un aumento significativo del fatturato.",
     youtubeId: "yDGIN_aaz0k",
   },
   {
     name: "Sharon Convertino",
-    role: "Social Media Manager e Consulente Web Marketing",
-    result: "Da burnout a selezionare lei i clienti",
+    role: "Social Media Manager e Consulente di Web Marketing",
+    summary:
+      "Clienti tossici e un burnout profondo l’avevano portata a voler abbandonare tutto, mentre si sottovalutava senza riuscire a chiedere il giusto compenso. Oggi ha ritrovato sicurezza in sé stessa ed è lei a selezionare i clienti, offrendo servizi di alta qualità senza più compromessi.",
     youtubeId: "eA4QQQXlG54",
   },
   {
     name: "Silvia Errico",
     role: "Coach di LinkedIn e Instagram",
-    result: "Da zero clienti a vivere del suo lavoro",
+    summary:
+      "Partiva da zero clienti e un business inesistente, bloccata dalla paura e dal giudizio su sé stessa. Ha completamente trasformato mentalità e attività: oggi vive del suo lavoro, con un business che riflette al 100% la sua personalità e attira i clienti giusti.",
     youtubeId: "G-ElGXQXcNg",
   },
   {
     name: "Elisabetta Bettonte",
     role: "Parent Coach",
-    result: "Da -10.000€ a 6.000€/mese",
+    summary:
+      "Partiva da -10.000€, dopo aver investito in corsi e coach senza risultati concreti e con una motivazione ai minimi storici. Oggi ha raggiunto i 6.000€ al mese, è lei a selezionare i clienti e ha costruito la mentalità vincente per continuare a crescere.",
     youtubeId: "zVAuDJ4xJC8",
   },
   {
     name: "Francesca Solignani",
     role: "Instagram Coach per Nutrizionisti",
-    result: "Flusso costante di clienti, figura di riferimento nel settore",
+    summary:
+      "Era in una fase di stallo totale, con zero richieste e ancora scottata da un’esperienza di coaching precedente che l’aveva lasciata demotivata. Oggi è una figura di riferimento per i nutrizionisti su Instagram, con un flusso costante di clienti e vive pienamente del suo business.",
     youtubeId: "h7V0kkYzhec",
   },
   {
     name: "Cristina Buliga",
     role: "Life & Business Coach",
-    result: "5 clienti high ticket in 4 mesi",
+    summary:
+      "Aveva tante idee ma non sapeva come trasformarle in un’offerta concreta, né come attrarre i suoi primi clienti. In soli quattro mesi ha lanciato il suo business, acquisito cinque clienti high ticket e costruito una presenza online che converte i follower in clienti.",
     youtubeId: "8JrTY4ulPZQ",
   },
   {
     name: "Roberta Trabucco",
     role: "Make Up Alchemist",
-    result: "Identità professionale unica, clienti allineati alla sua visione",
+    summary:
+      "Dopo aver perso il lavoro si è ritrovata a un punto morto, senza una direzione chiara su come trasformare la sua esperienza di vita in un business vero. Ha unito le sue competenze in un’identità unica, la “Make Up Alchemist”, lanciato un programma suo e oggi seleziona solo i clienti allineati alla sua visione.",
     youtubeId: "2Q3Keue0i7w",
   },
 ];
@@ -1624,17 +1644,13 @@ function Index() {
             {videoTestimonials.map((c, i) => (
               <Reveal key={c.name} delay={(i % 8) * 40}>
                 <div className="surface-card overflow-hidden">
-                  <VideoFrame
-                    label={c.name}
-                    youtubeId={c.youtubeId}
-                    poster={`https://img.youtube.com/vi/${c.youtubeId}/hqdefault.jpg`}
-                  />
+                  <VideoFrame label={c.name} youtubeId={c.youtubeId} />
                   <div className="p-4">
                     <p className="font-condensed text-sm uppercase tracking-[0.12em] text-secondary">
                       {c.name}
                     </p>
                     <p className="mt-1 text-xs text-muted-foreground">{c.role}</p>
-                    <p className="mt-2 text-sm font-semibold text-foreground">{c.result}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-foreground/85">{c.summary}</p>
                   </div>
                 </div>
               </Reveal>
