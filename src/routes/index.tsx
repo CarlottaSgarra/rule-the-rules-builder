@@ -1,15 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
+  CalendarDays,
   Clapperboard,
   Copy,
+  IdCard,
   ImageIcon,
-  Lock,
+  Infinity as InfinityIcon,
   ListChecks,
+  ListX,
+  Lock,
   PenLine,
   Presentation,
   ShieldAlert,
   Star,
   User,
+  Wand2,
 } from "lucide-react";
 import {
   Accordion,
@@ -25,7 +30,6 @@ import { SignupForm } from "@/components/landing/SignupForm";
 import { Workbook } from "@/components/landing/Workbook";
 import { Highlight } from "@/components/landing/Highlight";
 import teamImg from "@/assets/team.jpg";
-import iphoneImg from "@/assets/iphone-start.jpg";
 import livestreamImg from "@/assets/livestream.jpg";
 import goldTexture from "@/assets/texture-gold.jpg";
 import testimonialImg from "@/assets/testimonial-1.jpg";
@@ -33,6 +37,7 @@ import heroImg from "@/assets/hero-carlotta.jpg";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import methodBgImg from "@/assets/method-bg.jpg";
 import carlottaHugImg from "@/assets/carlotta-hug.jpg";
+import carlottaPointingImg from "@/assets/carlotta-pointing.jpg";
 import socialProof1Img from "@/assets/social-proof-1.jpg";
 import socialProof2Img from "@/assets/social-proof-2.jpg";
 import socialProof3Img from "@/assets/social-proof-3.jpg";
@@ -232,13 +237,80 @@ const sessions = [
   },
 ];
 
-const outcomes = [
-  "Le tue Carte Identitarie",
-  "Le tue Anti-Regole personali",
-  "Il tuo metodo personale di creazione contenuti",
-  "I primi format da testare",
-  "La tua banca idee",
-  "La struttura del tuo piano editoriale",
+const takeawayCards = [
+  {
+    id: "carte-identitarie",
+    icon: IdCard,
+    title: "Le tue Carte Identitarie",
+    text: (
+      <>
+        Un documento che mette nero su bianco cosa vuoi rappresentare, cosa non vuoi più
+        rappresentare, quali parti di te hai nascosto perché “poco professionali” e quali invece
+        vuoi rendere riconoscibili.{" "}
+        <strong className="font-semibold text-foreground">
+          È la base su cui costruisci tutto il resto
+        </strong>
+        , dalla prima serata.
+      </>
+    ),
+  },
+  {
+    id: "anti-regole",
+    icon: ListX,
+    title: "Le tue Anti-Regole personali",
+    text: (
+      <>
+        Per ogni regola che segui oggi per obbligo (hook, script, CTA, frequenza, setting), scrivi
+        la tua risposta a “questa cosa funziona per me?”. Un elenco concreto, scritto durante la
+        seconda serata:{" "}
+        <strong className="font-semibold text-foreground">cosa tieni, cosa butti via</strong>.
+      </>
+    ),
+  },
+  {
+    id: "metodo-creazione",
+    icon: Wand2,
+    title: "Il tuo primo metodo di creazione contenuti",
+    text: (
+      <>
+        Testi format diversi in diretta: script contro bullet point, talking Reel contro voice-over,
+        contenuti brevi contro lunghi.{" "}
+        <strong className="font-semibold text-foreground">
+          Alla fine sai qual è il tuo modo naturale di creare
+        </strong>
+        , quello che riesci a sostenere senza odiarlo dopo due settimane.
+      </>
+    ),
+  },
+  {
+    id: "piano-editoriale",
+    icon: CalendarDays,
+    title: "Una prima bozza del tuo piano editoriale",
+    text: (
+      <>
+        Cinque domande guidano ogni contenuto: cosa voglio dire, perché, quale parte di me, che
+        funzione ha nel mio business, qual è il modo più naturale per raccontarlo.{" "}
+        <strong className="font-semibold text-foreground">
+          Una struttura legata ai tuoi obiettivi
+        </strong>
+        : attrarre, connettere, posizionare, convertire.
+      </>
+    ),
+  },
+  {
+    id: "metodo-duraturo",
+    icon: InfinityIcon,
+    title: "Un metodo che duri più delle tre serate",
+    text: (
+      <>
+        Alla fine hai capito il processo, non solo il risultato di una sera:{" "}
+        <strong className="font-semibold text-foreground">
+          sai come costruire un piano editoriale nuovo
+        </strong>{" "}
+        ogni volta che cambia il tuo obiettivo o la fase del tuo business.
+      </>
+    ),
+  },
 ];
 
 const startingPointCards = [
@@ -333,18 +405,19 @@ const heroWhispers = [
 ];
 
 const forWhoYes = [
-  "Ti senti una fotocopia delle altre professioniste del tuo settore",
-  "Sei stanca di seguire regole che non senti tue",
-  "Vuoi costruire un modo di comunicare che parte davvero da chi sei",
-  "Hai già provato format e strategie “che funzionano” senza sentirti mai a tuo agio",
-  "Vuoi un metodo tuo, non l’ennesimo format universale",
+  "Vuoi smettere di guardare il tuo profilo e sentirti una fotocopia di altre professioniste del tuo settore",
+  "Hai già un business avviato, competenze vere e clienti, ma la tua comunicazione non lo dimostra",
+  "Sei stanca di seguire regole di contenuto che ti fanno sentire in gabbia invece di aiutarti",
+  "Vuoi un metodo di creazione contenuti che riesci a sostenere, non l’ennesima lista di best practice",
+  "Hai già provato hook, script, CTA e piano editoriale rigido, e sai già che da soli non bastano",
 ];
 
 const forWhoNo = [
-  "Cerchi la formula magica per il Reel che diventa virale",
-  "Vuoi l’ennesimo corso su “come si fa un contenuto fatto bene”",
-  "Non sei disposta a metterti in discussione sulla tua identità",
-  "Cerchi scorciatoie senza costruire nulla di tuo",
+  "Stai partendo da zero e non hai ancora un servizio o un’offerta da vendere",
+  "Cerchi trucchi rapidi per far crescere i numeri, non un lavoro reale su identità e struttura",
+  "Pensi che basti “essere più originale” senza mettere in pratica gli esercizi delle tre serate",
+  "Non sei disposta a metterti in discussione su come comunichi oggi",
+  "Vuoi un altro corso teorico da guardare senza partecipare in diretta",
 ];
 
 const mythReality = [
@@ -409,42 +482,162 @@ const mythReality = [
   },
 ];
 
-const caseStudies = [
-  { name: "Sofia", role: "Intervista completa", duration: "14:17" },
-  { name: "Valentina Giuriato", role: "Intervista completa", duration: "20:05" },
-  { name: "Dani", role: "Intervista completa", duration: "16:53" },
-  { name: "Mariangela", role: "Intervista completa", duration: "26:17" },
-  { name: "Ilaria Mattei", role: "Intervista completa", duration: "20:41" },
-  { name: "Vanessa", role: "Intervista completa", duration: "16:30" },
-  { name: "Jessica", role: "Intervista completa", duration: "14:43" },
-  { name: "Giulia Ariganello", role: "Intervista completa", duration: "22:30" },
+const videoTestimonials = [
+  {
+    name: "Elena Rosa",
+    role: "Mental Coach Cinofila",
+    result: "Superati i 5.000€/mese in pochi mesi",
+  },
+  {
+    name: "Silvia Bedin",
+    role: "Life Coach",
+    result: "Da 400€/mese a 31.000€ in organico in poche settimane",
+  },
+  {
+    name: "Valeria Salussolia",
+    role: "Titolare Centro Benessere & Consulente d’Immagine",
+    result: "Fattura in una settimana quello che guadagnava in un mese da dipendente",
+  },
+  {
+    name: "Mariangela Simioli",
+    role: "Marketing Strategist",
+    result: "Regime forfettario superato in 4 mesi",
+  },
+  {
+    name: "Giulia Santelli",
+    role: "Personal Trainer e Life Coach",
+    result: "Cliente high ticket da 2.000€ con soli 6 contenuti",
+  },
+  {
+    name: "Ilaria Mattei",
+    role: "SEO e Copywriter",
+    result: "6.500€/mese costanti, poi 10.000€ raggiunti",
+  },
+  {
+    name: "Giulia Ariganello",
+    role: "Business Mentor per le Educatrici",
+    result: "Fatturato mensile a cinque cifre",
+  },
+  {
+    name: "Vanessa Sciorio",
+    role: "Nutrizionista al femminile",
+    result: "Fatturato a cinque cifre mensili",
+  },
+  {
+    name: "Elisa Monasterolo",
+    role: "Brand Strategist",
+    result: "Da vicina a chiudere la P.IVA a stabilità economica",
+  },
+  {
+    name: "Giusy Pannese",
+    role: "Makeup Artist",
+    result: "Da clientela solo locale a spose a livello nazionale e internazionale",
+  },
+  {
+    name: "Bianca Lucaci",
+    role: "Influencer Coach",
+    result: "Dalla commessa alla prima Academy per influencer in Italia",
+  },
+  {
+    name: "Rosanna Cafarella",
+    role: "Tatuatrice",
+    result: "10.000€ mensili costanti in soli 3 mesi",
+  },
+  {
+    name: "Mariella Tauriello",
+    role: "Instagram e Visual Coach",
+    result: "Programma sold out",
+  },
+  {
+    name: "Valentina Giuriato",
+    role: "Consulente d’Immagine",
+    result: "Business trasformato e riempito di clienti",
+  },
+  {
+    name: "Sharon Convertino",
+    role: "Social Media Manager e Consulente Web Marketing",
+    result: "Da burnout a selezionare lei i clienti",
+  },
+  {
+    name: "Silvia Errico",
+    role: "Coach di LinkedIn e Instagram",
+    result: "Da zero clienti a vivere del suo lavoro",
+  },
   {
     name: "Elisabetta Bettonte",
-    role: "Da -10k a 6.000€ come Parent Coach",
-    duration: "23:58",
+    role: "Parent Coach",
+    result: "Da -10.000€ a 6.000€/mese",
+  },
+  {
+    name: "Francesca Solignani",
+    role: "Instagram Coach per Nutrizionisti",
+    result: "Flusso costante di clienti, figura di riferimento nel settore",
+  },
+  {
+    name: "Cristina Buliga",
+    role: "Life & Business Coach",
+    result: "5 clienti high ticket in 4 mesi",
+  },
+  {
+    name: "Roberta Trabucco",
+    role: "Make Up Alchemist",
+    result: "Identità professionale unica, clienti allineati alla sua visione",
+  },
+  {
+    name: "Jessica",
+    role: "Life Coach e Business Mentor",
+    result: "Trasformazione completata in 3 mesi",
+  },
+  {
+    name: "Sofia Lumetta",
+    role: "Content Strategist",
+    result: "Da clienti tossici a Content Strategist ufficiale di Lady Bis Program",
+  },
+  {
+    name: "Danila Castellano",
+    role: "Mental e Stylist Coach",
+    result: "Ha lasciato il lavoro da dipendente, vive del business a 360 gradi",
+  },
+  {
+    name: "Federica Bacci",
+    role: "Operatrice Olistica",
+    result: "Sold out delle richieste, lavora solo quando sceglie",
   },
 ];
 
-const storyStats = [
-  { v: "500K+", l: "reach organico generato da Instagram" },
-  { v: "Centinaia", l: "di professioniste italiane aiutate" },
-  { v: "9", l: "storie di successo documentate" },
+const aboutStats = [
+  { v: "1.500+", l: "professioniste guidate" },
+  { v: "—", l: "anni di esperienza [da confermare]" },
+  { v: "—", l: "clienti seguite in Ambiziosa [da confermare]" },
+  { v: "—", l: "[numero distintivo da confermare]" },
 ];
 
-const beforeAfter = {
-  before: [
-    "Ogni contenuto è una performance: davanti alla camera ti senti “un’altra”.",
-    "Segui regole che non senti tue, senza sapere se funzionano davvero per te.",
-    "Il piano editoriale è una gabbia che ti fa sentire sempre in ritardo.",
-    "I tuoi contenuti potrebbero essere pubblicati identici da qualsiasi altra professionista del tuo settore.",
-  ],
-  after: [
-    "Riconosci come comunichi davvero, quando smetti di recitare.",
-    "Hai le tue Anti-Regole personali, costruite su come sei fatta tu.",
-    "Hai un piano editoriale che è uno strumento al tuo servizio, non il tuo capo.",
-    "Il tuo modo di comunicare è impossibile da confondere con quello di un’altra.",
-  ],
-};
+const beforeAfterTable = [
+  {
+    before: "Scrivi un contenuto seguendo hook, script e CTA “come si deve”",
+    after: "Scrivi un contenuto partendo da quello che vuoi dire davvero",
+  },
+  {
+    before: "Guardi il profilo di un’altra professionista e ti sembra il tuo, con un font diverso",
+    after: "Il tuo profilo è impossibile da confondere con un altro",
+  },
+  {
+    before: "Segui un piano editoriale rigido che ti fa sentire in gabbia",
+    after: "Hai un piano editoriale costruito sulle tue Anti-Regole",
+  },
+  {
+    before: "Registri un Reel e ti senti recitare una parte",
+    after: "Crei contenuti nel formato che senti davvero tuo",
+  },
+  {
+    before: "Hai paura che rompere le regole faccia smettere di funzionare tutto",
+    after: "Sai quali regole tenere e quali buttare, una per una",
+  },
+  {
+    before: "Non sai chi sei “senza personaggio”",
+    after: "Hai le tue Carte Identitarie scritte nero su bianco",
+  },
+];
 
 const twoPaths = {
   a: {
@@ -1318,24 +1511,36 @@ function Index() {
         <div className="mx-auto max-w-4xl px-5 py-20">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl">
-              Non esci con un piano editoriale da seguire. Esci sapendo finalmente{" "}
-              <Highlight>come crearne uno che ti assomiglia</Highlight>.
+              Alla fine delle tre serate <Highlight>hai in mano questo</Highlight>
             </h2>
           </Reveal>
+
+          <Reveal delay={60}>
+            <div className="surface-card mt-8 p-8 sm:p-10">
+              <p className="font-condensed text-sm uppercase tracking-[0.18em] text-secondary">
+                Il tuo output principale
+              </p>
+              <p className="mt-3 text-lg leading-relaxed text-foreground/90 sm:text-xl">
+                Il tuo metodo di comunicazione identitaria:{" "}
+                <strong className="font-semibold text-foreground">
+                  non un elenco di regole da seguire, ma la tua struttura
+                </strong>{" "}
+                per creare contenuti che ti rendono riconoscibile.
+              </p>
+            </div>
+          </Reveal>
+
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {outcomes.map((o, i) => (
-              <Reveal key={o} delay={i * 60}>
-                <div className="flex items-center gap-3 rounded-xl border border-border/70 bg-background p-5">
-                  <span
-                    className="flex size-7 shrink-0 items-center justify-center rounded-full font-condensed text-xs"
-                    style={{
-                      backgroundImage: "var(--gradient-gold)",
-                      color: "var(--primary-foreground)",
-                    }}
-                  >
-                    ✓
-                  </span>
-                  <span className="text-sm text-foreground/90 sm:text-base">{o}</span>
+            {takeawayCards.map(({ id, icon: Icon, title, text }, i) => (
+              <Reveal key={id} delay={i * 60}>
+                <div className="flex h-full items-start gap-4 rounded-xl border border-border/70 bg-background p-5">
+                  <Icon className="mt-1 size-5 shrink-0 text-secondary" />
+                  <div>
+                    <p className="text-lg font-semibold text-foreground sm:text-xl">{title}</p>
+                    <span className="mt-1 block text-sm leading-relaxed text-foreground/85 sm:text-base">
+                      {text}
+                    </span>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -1348,7 +1553,7 @@ function Index() {
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl">
-              Prima di iscriverti, <Highlight>leggi qui</Highlight>.
+              <Highlight>Rule the Rules</Highlight> fa per te se
             </h2>
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -1424,215 +1629,105 @@ function Index() {
         <div className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
             <h2 className="max-w-3xl text-3xl sm:text-4xl">
-              Ho documentato decine di <Highlight dark>storie di successo</Highlight> delle nostre
-              clienti: donne meravigliose, tenaci, che hanno dato nuova forma al loro dolore e hanno
-              ottenuto ciò che desideravano.
+              Guarda chi ha già <Highlight dark>rotto le regole</Highlight> prima di te
             </h2>
-            <p className="mt-5 max-w-3xl text-base leading-relaxed text-ink">
-              Te le mostro così che tu possa sentire che{" "}
-              <strong className="font-semibold text-ink">
-                tutto ciò che sto per raccontarti è davvero possibile
-              </strong>
-              .
-            </p>
-            <p className="mt-3 max-w-3xl text-sm italic text-ink-muted">
-              (Questi non sono solo numeri su uno schermo: sono persone reali che hanno agito,
-              applicato quello che hanno imparato, e trasformato le loro vite, come ho fatto io).
-            </p>
           </Reveal>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {caseStudies.map((c, i) => (
-              <Reveal key={c.name} delay={i * 50}>
+          <div className="mt-10 grid gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {videoTestimonials.map((c, i) => (
+              <Reveal key={c.name} delay={(i % 8) * 40}>
                 <div className="surface-card overflow-hidden">
-                  <VideoFrame label={c.name} duration={c.duration} poster={testimonialImg} />
-                  <div className="p-5">
-                    <p className="font-condensed text-base uppercase tracking-[0.14em] text-secondary">
+                  <VideoFrame label={c.name} poster={testimonialImg} />
+                  <div className="p-4">
+                    <p className="font-condensed text-sm uppercase tracking-[0.12em] text-secondary">
                       {c.name}
                     </p>
-                    <p className="mt-1 text-sm text-muted-foreground">{c.role}</p>
+                    <p className="mt-1 text-xs text-muted-foreground">{c.role}</p>
+                    <p className="mt-2 text-sm font-semibold text-foreground">{c.result}</p>
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
 
-          <Reveal>
-            <div className="surface-card mt-12 grid gap-6 p-8 sm:grid-cols-[auto_1fr] sm:items-center">
-              <img
-                src={testimonialImg}
-                alt="Ilaria Mattei, SEO & Copywriter"
-                loading="lazy"
-                width={640}
-                height={640}
-                className="size-24 rounded-full object-cover"
-              />
-              <div>
-                <p className="text-base italic leading-relaxed text-foreground/90">
-                  «Ho sempre pensato di essere meno degli altri, che non avrei mai raggiunto
-                  determinati risultati. Prima mi approcciavo ai clienti con l’atteggiamento della
-                  disperata, dicendo “Oddio ti prego lavora con me”.{" "}
-                  <strong className="font-semibold text-foreground">Ora so quanto valgo.</strong> Mi
-                  presento con un’offerta all’altezza, senza sconti, senza paura di dire “Avanti il
-                  prossimo” se non capiscono il mio valore. Ho capito che non devo più sminuirmi. E
-                  oggi mi sveglio con meno ansia, meno mal di stomaco e più consapevole di chi sono
-                  e di cosa posso fare.»
-                </p>
-                <p className="mt-4 font-condensed uppercase tracking-[0.16em] text-secondary">
-                  Ilaria Mattei
-                </p>
-                <p className="text-sm text-muted-foreground">SEO &amp; Copywriter</p>
-              </div>
-            </div>
-
-            <p className="mt-10 text-center text-sm font-semibold text-ink">
-              Attenzione: non iscriverti a “Rule The Rules 2026” se non sei pronta a riconoscerti di
-              nuovo in quello che pubblichi.
-            </p>
-            <div className="mt-6 flex justify-center">
-              <CtaButton label="Sono avvisata, iscrivimi" />
-            </div>
-          </Reveal>
+          <div className="mt-10 flex justify-center">
+            <CtaButton label="Voglio rompere le mie regole" />
+          </div>
         </div>
       </section>
 
-      {/* Storia */}
+      {/* Chi sono */}
       <section className="bg-background px-4 py-10 sm:px-8 sm:py-14">
         <div
           className="surface-cream mx-auto max-w-5xl px-6 py-16 sm:px-12 sm:py-20"
           style={{ borderRadius: "1.75rem" }}
         >
           <Reveal>
-            <h2 className="text-3xl text-ink sm:text-5xl">
-              Da un Iphone ad <Highlight dark>un’Azienda</Highlight>: come ho fatto e come puoi
-              farlo anche tu.
+            <h2 className="text-3xl text-ink sm:text-4xl">
+              Perché puoi fidarti di <Highlight dark>quello che ti dico</Highlight>
             </h2>
           </Reveal>
 
-          <Reveal delay={60}>
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {storyStats.map((s) => (
-                <div
-                  key={s.l}
-                  className="rounded-xl bg-white p-5 text-center shadow-[0_16px_40px_-24px_rgba(0,0,0,0.15)]"
-                >
-                  <div className="font-condensed text-2xl" style={{ color: "var(--gold-deep)" }}>
-                    {s.v}
-                  </div>
-                  <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:items-start">
+          <div className="mt-10 grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-start">
             <Reveal>
               <div className="space-y-4 text-base leading-relaxed text-ink-muted">
-                <p>Ci sono due tipi di professioniste italiane:</p>
-                <ul className="space-y-3 pl-5">
-                  <li className="list-disc">
-                    Quelle che continuano a postare a caso, sperando che i clienti arrivino da soli
-                    lamentandosi del perché non hanno risultati
-                  </li>
-                  <li className="list-disc">
-                    Quelle che, nonostante tutto, sanno che ce la faranno perché{" "}
-                    <strong className="text-ink">sono spinte da quella fiamma interiore</strong> e
-                    vogliono davvero avere una struttura e uno schema da seguire.
-                  </li>
-                </ul>
-                <p>Io sto parlando alla seconda categoria.</p>
-                <p className="font-semibold text-ink">
-                  Alle professioniste italiane che vogliono davvero cambiare, bruciare, vivere.
-                </p>
-                <p>Perché sono l’unica che può dirtelo:</p>
-                <p>Non sono nata con i riflettori puntati.</p>
                 <p>
-                  Non avevo investitori alle spalle, né un ufficio panoramico con vista sul mare.
+                  Mi chiamo Carlotta Sgarra, e anche io per anni ho seguito le regole.{" "}
+                  <em className="not-italic text-ink-muted/60">[anni di esperienza specifici]</em>.
+                  Ho scritto script perfetti, seguito i format che “funzionavano”, pubblicato quando
+                  dicevano di pubblicare. E per un periodo ha funzionato, nel senso che i numeri
+                  c’erano.{" "}
+                  <strong className="font-semibold text-ink">Quello che non c’era ero io.</strong>
+                </p>
+                <p className="text-ink-muted/60">
+                  [Episodio preciso del momento in cui ha rotto le regole: cosa ha smesso di fare,
+                  cosa ha iniziato a fare diversamente, primo segnale che stava funzionando]
                 </p>
                 <p>
-                  Avevo solo un telefono in mano, due fratelli nella stessa stanza, un gatto che mi
-                  teneva compagnia come fosse il mio primo fan e tantissima paura di fallire agli
-                  occhi dei miei genitori.
+                  Da quel momento ho costruito la mia comunicazione intorno a chi sono davvero, non
+                  intorno a cosa “avrebbe dovuto” funzionare. Oggi{" "}
+                  <em className="not-italic text-ink-muted/60">
+                    [risultato concreto: fatturato, numero di clienti seguite, o risultato
+                    personale]
+                  </em>
+                  . Non perché ho trovato IL metodo giusto.{" "}
+                  <strong className="font-semibold text-ink">Perché ho trovato il mio.</strong>
+                </p>
+                <p>
+                  Le stesse cose che hanno funzionato per me le ho viste funzionare su{" "}
+                  <em className="not-italic text-ink-muted/60">[numero]</em> professioniste che ho
+                  seguito in questi anni, ognuna con il proprio settore, il proprio pubblico, le
+                  proprie regole da rompere.
                 </p>
               </div>
             </Reveal>
+
             <Reveal delay={120}>
-              <img
-                src={iphoneImg}
-                alt="Gli inizi: un iPhone, una stanza e un gatto"
-                loading="lazy"
-                width={1024}
-                height={1024}
-                className="w-full rounded-2xl object-cover"
-              />
+              <div className="space-y-5">
+                <img
+                  src={carlottaPointingImg}
+                  alt="Carlotta Sgarra sul palco durante uno dei suoi speech"
+                  loading="lazy"
+                  width={1376}
+                  height={2064}
+                  className="aspect-[4/5] w-full rounded-2xl object-cover"
+                />
+                <div className="grid grid-cols-2 gap-3">
+                  {aboutStats.map((s) => (
+                    <div
+                      key={s.l}
+                      className="rounded-xl bg-white p-4 text-center shadow-[0_16px_40px_-24px_rgba(0,0,0,0.15)]"
+                    >
+                      <div className="font-condensed text-xl" style={{ color: "var(--gold-deep)" }}>
+                        {s.v}
+                      </div>
+                      <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </Reveal>
           </div>
-
-          <Reveal>
-            <div className="mt-10 space-y-4 text-base leading-relaxed text-ink-muted">
-              <p>All’inizio sembrava tutto un tentativo disperato:</p>
-              <ul className="space-y-3 pl-5">
-                <li className="list-disc">
-                  Ero ossessionata dal pubblicare i contenuti e, spoiler, non avevo mai mezzo
-                  risultato;
-                </li>
-                <li className="list-disc">
-                  accettavo clienti che non rispettavano il mio valore, vendendo a 200 euro;
-                </li>
-                <li className="list-disc">
-                  mi sentivo sempre indietro, sempre “non abbastanza”, riducendomi a studiare fino
-                  alle 3 di notte (follia);
-                </li>
-                <li className="list-disc">
-                  mi sentivo presa in giro dagli amici e spesso da me stessa: “ma cosa sto facendo
-                  con sto telefono?! I miei contenuti sono ridicoli?”
-                </li>
-                <li className="list-disc">
-                  Annaspavo ogni mese, refreshando il conto in banca che era fisso sugli 800 euro
-                  nonostante le 10 ore di lavoro quotidiane.
-                </li>
-              </ul>
-              <p>Ma non ho mollato.</p>
-              <p>Ho trasformato quella frustrazione in benzina.</p>
-              <p>
-                Ho iniziato a costruire pezzo dopo pezzo: prima l’identità, poi i contenuti, poi le
-                vendite.
-              </p>
-              <p>E ho capito che non si cresce da soli.</p>
-              <p>Oggi non sono più quella ragazza con il telefono e l’ansia nel cuore.</p>
-              <p className="font-semibold text-ink">
-                Oggi ho un’azienda, un team che è diventato famiglia, e un metodo che ha funzionato
-                per me e per centinaia di professioniste italiane.
-              </p>
-              <p>Ma sono nata dal fango, proprio come te.</p>
-              <p>Per questo so che ce la farai, che ce la faremo.</p>
-            </div>
-
-            <div className="mt-10 grid gap-5 sm:grid-cols-3">
-              {[
-                { t: "La mia storia", d: "...con le cadute, i dubbi e le vittorie." },
-                { t: "Il mio metodo...", d: "...semplice, concreto, replicabile." },
-                {
-                  t: "Il mio team!",
-                  d: "...ovvero le persone che ogni giorno sono la mia forza invisibile.",
-                },
-              ].map((x, i) => (
-                <Reveal key={x.t} delay={i * 80}>
-                  <div className="rounded-xl bg-white p-6 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.15)] transition-transform duration-300 hover:-translate-y-1">
-                    <p className="text-2xl">✨</p>
-                    <p
-                      className="mt-3 font-condensed text-lg uppercase tracking-[0.12em]"
-                      style={{ color: "var(--gold-deep)" }}
-                    >
-                      {x.t}
-                    </p>
-                    <p className="mt-2 text-sm text-ink-muted">{x.d}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-            <p className="mt-6 text-base text-ink-muted">Dal 5 al 7 ottobre ti consegnerò tutto.</p>
-          </Reveal>
         </div>
       </section>
 
@@ -1773,41 +1868,36 @@ function Index() {
         <div className="mx-auto max-w-4xl px-5 py-20">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl">
-              Prima di Rule The Rules, <Highlight>dopo Rule The Rules</Highlight>.
+              Cosa cambia <Highlight>dopo le tre serate</Highlight>
             </h2>
           </Reveal>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            <Reveal>
-              <div className="h-full rounded-xl border border-border/70 bg-card/40 p-7">
-                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-muted-foreground">
+          <Reveal delay={60}>
+            <div className="mt-10 overflow-hidden rounded-xl border border-border/70">
+              <div className="hidden sm:grid sm:grid-cols-2">
+                <p className="border-b border-border/70 bg-card/60 px-6 py-3 font-condensed text-xs uppercase tracking-[0.2em] text-muted-foreground">
                   Prima
                 </p>
-                <ul className="mt-5 space-y-4">
-                  {beforeAfter.before.map((b) => (
-                    <li key={b} className="flex gap-3 text-sm leading-relaxed text-foreground/75">
-                      <span className="mt-0.5 text-muted-foreground">✕</span>
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-            <Reveal delay={80}>
-              <div className="surface-card h-full p-7">
-                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-secondary">
+                <p className="border-b border-l border-border/70 bg-card px-6 py-3 font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
                   Dopo
                 </p>
-                <ul className="mt-5 space-y-4">
-                  {beforeAfter.after.map((a) => (
-                    <li key={a} className="flex gap-3 text-sm leading-relaxed text-foreground/90">
-                      <span className="mt-0.5 text-secondary">✓</span>
-                      <span>{a}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
-            </Reveal>
-          </div>
+              {beforeAfterTable.map((row, i) => (
+                <div
+                  key={row.before}
+                  className={`grid gap-0 sm:grid-cols-2 ${i > 0 ? "border-t border-border/70" : ""}`}
+                >
+                  <div className="flex items-start gap-3 bg-card/60 p-5">
+                    <span className="mt-0.5 shrink-0 text-muted-foreground">✕</span>
+                    <span className="text-sm leading-relaxed text-foreground/75">{row.before}</span>
+                  </div>
+                  <div className="flex items-start gap-3 border-t border-border/70 bg-card p-5 sm:border-l sm:border-t-0">
+                    <span className="mt-0.5 shrink-0 text-secondary">✓</span>
+                    <span className="text-sm leading-relaxed text-foreground/90">{row.after}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
