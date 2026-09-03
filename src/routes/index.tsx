@@ -1,16 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   CalendarDays,
+  Check,
   Clapperboard,
   Copy,
   IdCard,
-  ImageIcon,
   Infinity as InfinityIcon,
   ListChecks,
   ListX,
   Lock,
   PenLine,
-  Presentation,
   ShieldAlert,
   Star,
   User,
@@ -38,6 +37,7 @@ import methodBgImg from "@/assets/method-bg.jpg";
 import carlottaHugImg from "@/assets/carlotta-hug.jpg";
 import carlottaPointingImg from "@/assets/carlotta-pointing.jpg";
 import carlottaWalkingImg from "@/assets/carlotta-walking.jpg";
+import sharonFaceImg from "@/assets/sharon-face.jpg";
 import socialProof1Img from "@/assets/social-proof-1.jpg";
 import socialProof2Img from "@/assets/social-proof-2.jpg";
 import socialProof3Img from "@/assets/social-proof-3.jpg";
@@ -50,6 +50,9 @@ import socialProof9Img from "@/assets/social-proof-9.jpg";
 import socialProof10Img from "@/assets/social-proof-10.jpg";
 import socialProof11Img from "@/assets/social-proof-11.jpg";
 import socialProof12Img from "@/assets/social-proof-12.jpg";
+import socialProof13Img from "@/assets/social-proof-13.jpg";
+import socialProof14Img from "@/assets/social-proof-14.jpg";
+import socialProof15Img from "@/assets/social-proof-15.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -97,6 +100,9 @@ const galleryPhotos = [
   socialProof10Img,
   socialProof11Img,
   socialProof12Img,
+  socialProof13Img,
+  socialProof14Img,
+  socialProof15Img,
 ];
 
 const galleryColumns = Array.from({ length: 5 }, (_, col) =>
@@ -148,7 +154,14 @@ const sessions = [
     n: "1",
     date: "5 ottobre",
     time: "20:00",
-    guides: [{ name: "Carlotta", role: "CEO e founder dell’evento" }],
+    guides: [
+      {
+        name: "Carlotta",
+        role: "CEO e founder dell’evento",
+        photo: carlottaPointingImg,
+        photoPosition: "50% 12%",
+      },
+    ],
     title: "Togli il Costume",
     intro: (
       <>
@@ -161,44 +174,46 @@ const sessions = [
     ),
     bullets: [
       <>
-        <strong className="font-semibold text-ink">Identity Excavation</strong> — domande fuori
+        <strong className="font-semibold text-ink">Identity Excavation</strong>: domande fuori
         copione per riportare a galla la persona che il marketing ha progressivamente coperto
       </>,
       <>
-        <strong className="font-semibold text-ink">Profilo sotto interrogatorio</strong> — guarderai
+        <strong className="font-semibold text-ink">Profilo sotto interrogatorio</strong>: guarderai
         il tuo Instagram come se non fosse tuo: cosa racconta davvero di te? Cosa promette? Cosa
         nasconde?
       </>,
       <>
-        <strong className="font-semibold text-ink">La lista delle cose che hai censurato</strong> —
+        <strong className="font-semibold text-ink">La lista delle cose che hai censurato</strong>:
         lati, opinioni, storie, modi di fare e caratteristiche che hai smesso di mostrare perché
         “non abbastanza professionali”
       </>,
       <>
-        <strong className="font-semibold text-ink">Il tuo DNA comunicativo</strong> — ciò che può
+        <strong className="font-semibold text-ink">Il tuo DNA comunicativo</strong>: ciò che può
         appartenere soltanto a te: visione, linguaggio, energia, ossessioni, contraddizioni,
         esperienze
       </>,
       <>
-        <strong className="font-semibold text-ink">Carte Identitarie</strong> — trasformiamo tutto
+        <strong className="font-semibold text-ink">Carte Identitarie</strong>: trasformiamo tutto
         questo in una bussola concreta da usare ogni volta che crei, parli, vendi o prendi posizione
       </>,
     ],
-    closing: (
-      <>
-        Non costruiremo una versione migliore di te.
-        <br />
-        Toglieremo quello che non sei.
-      </>
-    ),
   },
   {
     n: "2",
     date: "6 ottobre",
     time: "20:00",
     guides: [
-      { name: "Carlotta", role: "CEO e founder dell’evento" },
-      { name: "Sharon", role: "esperta di contenuti" },
+      {
+        name: "Carlotta",
+        role: "CEO e founder dell’evento",
+        photo: carlottaPointingImg,
+        photoPosition: "50% 12%",
+      },
+      {
+        name: "Sharon",
+        role: "esperta di contenuti",
+        photo: sharonFaceImg,
+      },
     ],
     title: "Licenzia le Regole",
     intro: (
@@ -209,44 +224,44 @@ const sessions = [
     ),
     bullets: [
       <>
-        <strong className="font-semibold text-ink">Il cimitero delle regole</strong> — hook nei
-        primi 3 secondi, CTA obbligatorie, script perfetti, frequenze ideali, setting giusti, format
-        che “funzionano”: cosa merita davvero di sopravvivere?
+        <strong className="font-semibold text-ink">Il cimitero delle regole</strong>: hook nei primi
+        3 secondi, CTA obbligatorie, script perfetti, frequenze ideali, setting giusti, format che
+        “funzionano”: cosa merita davvero di sopravvivere?
       </>,
       <>
-        <strong className="font-semibold text-ink">Rule Autopsy</strong> — sezioniamo una regola
-        alla volta per capire se ti aiuta, ti limita o ti trasforma in una copia
+        <strong className="font-semibold text-ink">Rule Autopsy</strong>: sezioniamo una regola alla
+        volta per capire se ti aiuta, ti limita o ti trasforma in una copia
       </>,
       <>
-        <strong className="font-semibold text-ink">Le tue Anti-Regole</strong> — non quelle di
+        <strong className="font-semibold text-ink">Le tue Anti-Regole</strong>: non quelle di
         Carlotta, non quelle del mercato: le condizioni in cui TU comunichi meglio
       </>,
       <>
-        <strong className="font-semibold text-ink">Content Personality Test</strong> — scopri come
+        <strong className="font-semibold text-ink">Content Personality Test</strong>: scopri come
         crei quando smetti di cercare di sembrare una content creator
       </>,
       <>
-        <strong className="font-semibold text-ink">Content Lab</strong> — script o bullet? batch o
+        <strong className="font-semibold text-ink">Content Lab</strong>: script o bullet? batch o
         istinto? talking o voice-over? pulito o sporco? breve o lungo? Testiamo invece di presumere
       </>,
       <>
-        <strong className="font-semibold text-ink">Il tuo Operating System creativo</strong> — il
+        <strong className="font-semibold text-ink">Il tuo Operating System creativo</strong>: il
         modo in cui riesci a produrre contenuti che funzionano senza perdere te stessa nel processo
       </>,
     ],
-    closing: (
-      <>
-        Alla fine non saprai più rispondere alla domanda: “Come si fa un contenuto giusto?”
-        <br />
-        Saprai rispondere a quella molto più importante: “Come lo faccio io?”
-      </>
-    ),
   },
   {
     n: "3",
     date: "7 ottobre",
     time: "20:00",
-    guides: [{ name: "Carlotta", role: "CEO e founder dell’evento" }],
+    guides: [
+      {
+        name: "Carlotta",
+        role: "CEO e founder dell’evento",
+        photo: carlottaPointingImg,
+        photoPosition: "50% 12%",
+      },
+    ],
     title: "Costruisci un Sistema che non ti Comandi",
     intro: (
       <>
@@ -257,46 +272,36 @@ const sessions = [
     ),
     bullets: [
       <>
-        <strong className="font-semibold text-ink">I tuoi Signature Format</strong> — i contenuti
-        che possono diventare immediatamente associabili al tuo nome
+        <strong className="font-semibold text-ink">I tuoi Signature Format</strong>: i contenuti che
+        possono diventare immediatamente associabili al tuo nome
       </>,
       <>
-        <strong className="font-semibold text-ink">The Idea Vault</strong> — una banca di idee
+        <strong className="font-semibold text-ink">The Idea Vault</strong>: una banca di idee
         costruita sulla tua identità, non sui trend della settimana
       </>,
       <>
-        <strong className="font-semibold text-ink">Content Jobs</strong> — ogni contenuto avrà un
+        <strong className="font-semibold text-ink">Content Jobs</strong>: ogni contenuto avrà un
         lavoro preciso: attirare, creare relazione, posizionarti o portare verso una scelta
       </>,
       <>
-        <strong className="font-semibold text-ink">Identity Matching</strong> — ogni idea dovrà
+        <strong className="font-semibold text-ink">Identity Matching</strong>: ogni idea dovrà
         superare una domanda: “questa cosa potrebbe pubblicarla chiunque o ha davvero la mia
         faccia?”
       </>,
       <>
-        <strong className="font-semibold text-ink">Il piano editoriale al contrario</strong> — non
+        <strong className="font-semibold text-ink">Il piano editoriale al contrario</strong>: non
         partiremo dal calendario per decidere cosa dire. Partiremo da ciò che vuoi dire per decidere
         quando e come farlo
       </>,
       <>
-        <strong className="font-semibold text-ink">Il tuo sistema editoriale personale</strong> —
+        <strong className="font-semibold text-ink">Il tuo sistema editoriale personale</strong>:
         format, idee, obiettivi e ritmo cuciti sul tuo modo di comunicare
       </>,
       <>
-        <strong className="font-semibold text-ink">RULE THE RULES — Il Manifesto finale</strong> —
-        le regole che da oggi scegli tu per la tua comunicazione
+        <strong className="font-semibold text-ink">RULE THE RULES · Il Manifesto finale</strong>: le
+        regole che da oggi scegli tu per la tua comunicazione
       </>,
     ],
-    closing: (
-      <>
-        Alla fine dei 3 giorni non avrai un altro PDF pieno di esercizi.
-        <br />
-        Avrai costruito: il tuo DNA, le tue regole, i tuoi format, il tuo modo di creare, il tuo
-        piano.
-        <br />E soprattutto avrai finalmente una risposta alla domanda che Instagram ti ha fatto
-        dimenticare.
-      </>
-    ),
   },
 ];
 
@@ -1207,11 +1212,23 @@ function Index() {
                 <p>
                   Tutti i guru che segui online ti hanno insegnato che bisogna fare le cose così:
                 </p>
-                <ul className="space-y-2 pl-5">
-                  <li className="list-disc">Questo hook</li>
-                  <li className="list-disc">Questo script</li>
-                  <li className="list-disc">Questa CTA</li>
-                  <li className="list-disc">Questo orario di pubblicazione</li>
+                <ul className="space-y-2">
+                  <li className="flex gap-2">
+                    <Check className="mt-1 size-4 shrink-0 text-secondary" />
+                    <span>Questo hook</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <Check className="mt-1 size-4 shrink-0 text-secondary" />
+                    <span>Questo script</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <Check className="mt-1 size-4 shrink-0 text-secondary" />
+                    <span>Questa CTA</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <Check className="mt-1 size-4 shrink-0 text-secondary" />
+                    <span>Questo orario di pubblicazione</span>
+                  </li>
                 </ul>
                 <p className="font-display text-xl leading-snug text-foreground sm:text-2xl">
                   Stare dentro lo schema, per vendere online.
@@ -1231,10 +1248,19 @@ function Index() {
                   Il vero asset non è più sapere le regole.{" "}
                   <strong className="font-semibold text-foreground">Sei tu</strong>:
                 </p>
-                <ul className="space-y-2 pl-5">
-                  <li className="list-disc">Il tuo modo di spiegare</li>
-                  <li className="list-disc">Il tuo punto di vista</li>
-                  <li className="list-disc">La tua energia</li>
+                <ul className="space-y-2">
+                  <li className="flex gap-2">
+                    <Check className="mt-1 size-4 shrink-0 text-secondary" />
+                    <span>Il tuo modo di spiegare</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <Check className="mt-1 size-4 shrink-0 text-secondary" />
+                    <span>Il tuo punto di vista</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <Check className="mt-1 size-4 shrink-0 text-secondary" />
+                    <span>La tua energia</span>
+                  </li>
                 </ul>
                 <p>
                   Nelle tre serate ti mostro esattamente come si fa a metterlo al centro della tua
@@ -1357,17 +1383,20 @@ function Index() {
                     </span>
 
                     <div className="relative flex flex-col items-center text-center">
-                      <div
-                        className="flex aspect-[4/3] w-full max-w-[220px] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed"
-                        style={{
-                          borderColor: "color-mix(in oklab, var(--primary) 40%, transparent)",
-                          backgroundColor: "color-mix(in oklab, var(--background) 8%, transparent)",
-                        }}
-                      >
-                        <Presentation className="size-8 text-ink-muted" />
-                        <span className="font-condensed text-[10px] uppercase tracking-[0.2em] text-ink-muted">
-                          Foto del palco
-                        </span>
+                      <div className="flex items-center justify-center gap-4">
+                        {s.guides.map((g) => (
+                          <img
+                            key={g.name}
+                            src={g.photo}
+                            alt={g.name}
+                            loading="lazy"
+                            className="size-24 shrink-0 rounded-full border-4 object-cover sm:size-28"
+                            style={{
+                              borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)",
+                              objectPosition: g.photoPosition,
+                            }}
+                          />
+                        ))}
                       </div>
 
                       <h3 className="mt-6 text-2xl text-ink sm:text-3xl">{s.title}</h3>
@@ -1383,7 +1412,7 @@ function Index() {
                         {s.intro}
                       </p>
                       <p className="mt-5 font-condensed text-xs uppercase tracking-[0.2em] text-ink-muted">
-                        Cosa facciamo insieme:
+                        Che cosa ti porti a casa da questa serata?
                       </p>
                       <ul className="mt-3 space-y-3">
                         {s.bullets.map((b, bi) => (
@@ -1391,18 +1420,14 @@ function Index() {
                             key={bi}
                             className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
                           >
-                            <span
-                              className="mt-2 size-1.5 shrink-0 rounded-full"
-                              style={{ backgroundColor: "var(--gold-deep)" }}
+                            <Check
+                              className="mt-1 size-4 shrink-0"
+                              style={{ color: "var(--gold-deep)" }}
                             />
                             <span>{b}</span>
                           </li>
                         ))}
                       </ul>
-
-                      <p className="mt-6 font-display text-lg leading-snug text-ink sm:text-xl">
-                        {s.closing}
-                      </p>
 
                       <div
                         className="mt-6 rounded-xl px-4 py-4"
@@ -1417,17 +1442,17 @@ function Index() {
                         <div className="mt-3 flex flex-wrap gap-x-6 gap-y-3">
                           {s.guides.map((g) => (
                             <div key={g.name} className="flex items-center gap-3">
-                              <span
-                                className="flex size-11 shrink-0 items-center justify-center rounded-full border border-dashed"
+                              <img
+                                src={g.photo}
+                                alt={g.name}
+                                loading="lazy"
+                                className="size-11 shrink-0 rounded-full border border-dashed object-cover"
                                 style={{
                                   borderColor:
                                     "color-mix(in oklab, var(--primary) 45%, transparent)",
-                                  backgroundColor:
-                                    "color-mix(in oklab, var(--background) 10%, transparent)",
+                                  objectPosition: g.photoPosition,
                                 }}
-                              >
-                                <ImageIcon className="size-4 text-ink-muted" />
-                              </span>
+                              />
                               <p className="text-sm text-ink-muted">
                                 <span className="font-semibold text-ink">{g.name}</span>, {g.role}
                               </p>
