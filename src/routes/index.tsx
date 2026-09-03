@@ -820,33 +820,6 @@ const aboutStats = [
   { v: "—", l: "[numero distintivo da confermare]" },
 ];
 
-const beforeAfterTable = [
-  {
-    before: "Scrivi un contenuto seguendo hook, script e CTA “come si deve”",
-    after: "Scrivi un contenuto partendo da quello che vuoi dire davvero",
-  },
-  {
-    before: "Guardi il profilo di un’altra professionista e ti sembra il tuo, con un font diverso",
-    after: "Il tuo profilo è impossibile da confondere con un altro",
-  },
-  {
-    before: "Segui un piano editoriale rigido che ti fa sentire in gabbia",
-    after: "Hai un piano editoriale costruito sulle tue Anti-Regole",
-  },
-  {
-    before: "Registri un Reel e ti senti recitare una parte",
-    after: "Crei contenuti nel formato che senti davvero tuo",
-  },
-  {
-    before: "Hai paura che rompere le regole faccia smettere di funzionare tutto",
-    after: "Sai quali regole tenere e quali buttare, una per una",
-  },
-  {
-    before: "Non sai chi sei “senza personaggio”",
-    after: "Hai le tue Carte Identitarie scritte nero su bianco",
-  },
-];
-
 const twoPaths = {
   a: {
     title: "Continuare come adesso",
@@ -1138,6 +1111,7 @@ function Index() {
 
           <Reveal delay={300} className="mt-10 w-full">
             <div
+              id="iscriviti"
               className="relative overflow-hidden rounded-[2rem]"
               style={
                 {
@@ -2049,44 +2023,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Prima vs dopo */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-4xl px-5 py-20">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl">
-              Cosa cambia <Highlight>dopo le tre serate</Highlight>
-            </h2>
-          </Reveal>
-          <Reveal delay={60}>
-            <div className="mt-10 overflow-hidden rounded-xl border border-border/70">
-              <div className="hidden sm:grid sm:grid-cols-2">
-                <p className="border-b border-border/70 bg-card/60 px-6 py-3 font-condensed text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  Prima
-                </p>
-                <p className="border-b border-l border-border/70 bg-card px-6 py-3 font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
-                  Dopo
-                </p>
-              </div>
-              {beforeAfterTable.map((row, i) => (
-                <div
-                  key={row.before}
-                  className={`grid gap-0 sm:grid-cols-2 ${i > 0 ? "border-t border-border/70" : ""}`}
-                >
-                  <div className="flex items-start gap-3 bg-card/60 p-5">
-                    <span className="mt-0.5 shrink-0 text-muted-foreground">✕</span>
-                    <span className="text-sm leading-relaxed text-foreground/75">{row.before}</span>
-                  </div>
-                  <div className="flex items-start gap-3 border-t border-border/70 bg-card p-5 sm:border-l sm:border-t-0">
-                    <span className="mt-0.5 shrink-0 text-secondary">✓</span>
-                    <span className="text-sm leading-relaxed text-foreground/90">{row.after}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* La scelta */}
       <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-4xl px-5 py-20">
@@ -2192,44 +2128,21 @@ function Index() {
       </section>
 
       {/* Garanzia rimborso */}
-      <section className="bg-background px-4 py-10 sm:px-8 sm:py-14">
-        <div
-          className="surface-gold mx-auto max-w-3xl px-6 py-14 text-center sm:px-10 sm:py-16"
-          style={{ borderRadius: "1.75rem" }}
-        >
+      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <p className="text-4xl">🛡️</p>
-            <h2 className="mt-4 text-3xl text-primary-foreground sm:text-4xl">
+            <h2 className="mt-4 text-3xl text-foreground sm:text-4xl">
               <Highlight>Soddisfatta o rimborsata</Highlight>, senza fare domande.
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-primary-foreground/90">
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-foreground/85">
               Se dopo la prima serata pensi che “Rule The Rules” non faccia per te, scrivici prima
               dell’inizio della seconda serata live (6 ottobre) e{" "}
-              <strong className="font-semibold text-primary-foreground">
+              <strong className="font-semibold text-foreground">
                 ti rimborsiamo il biglietto, senza bisogno di spiegazioni
               </strong>
               .
             </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Form iscrizione */}
-      <section id="iscriviti" className="bg-secondary">
-        <div className="mx-auto max-w-2xl px-5 py-20">
-          <Reveal>
-            <div className="surface-card p-8">
-              <p className="text-center font-condensed text-3xl uppercase tracking-[0.1em] text-gradient-gold">
-                27€
-              </p>
-              <p className="mt-2 text-center text-sm text-foreground/85">
-                Il tuo biglietto per Rule The Rules 2026
-              </p>
-              <p className="mt-4 text-center text-sm text-foreground/85">
-                Compila il form per <strong>riservare il tuo posto</strong> ↓
-              </p>
-              <SignupForm className="mt-8" />
-            </div>
           </Reveal>
         </div>
       </section>
