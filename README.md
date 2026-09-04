@@ -8,6 +8,12 @@ Il laout dev'essere moderno, contenente diverse immagini (anche placeholder vann
 
 This project was built with [Lovable](https://lovable.dev).
 
+## Design system
+
+Colori, font, componenti riutilizzabili e convenzioni di layout sono
+documentati in [`docs/DESIGN_SYSTEM.md`](docs/DESIGN_SYSTEM.md). Parti da lì
+prima di costruire una nuova pagina.
+
 ## Build with Lovable
 
 Continue developing this project in the [Lovable editor](https://lovable.dev/projects/5201110c-599d-43bc-9879-1b76040c8df6).

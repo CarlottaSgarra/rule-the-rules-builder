@@ -8,7 +8,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { CtaButton } from "@/components/landing/CtaButton";
-import { Countdown } from "@/components/landing/Countdown";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
 import { Reveal } from "@/components/landing/Reveal";
@@ -17,6 +16,9 @@ import { Workbook } from "@/components/landing/Workbook";
 import { SessionHighlight } from "@/components/landing/SessionHighlight";
 import { TakeawayVisual } from "@/components/landing/TakeawayVisual";
 import { Highlight } from "@/components/landing/Highlight";
+import { SiteTopbar } from "@/components/landing/SiteTopbar";
+import { SiteFooter } from "@/components/landing/SiteFooter";
+import { valueStack, valueStackTotal } from "@/data/offer";
 import livestreamImg from "@/assets/livestream.jpg";
 import goldTexture from "@/assets/texture-gold.jpg";
 import client1Img from "@/assets/client-1.jpg";
@@ -867,34 +869,6 @@ const workbookDays = [
   },
 ];
 
-const valueStack = [
-  { t: "Accesso alle 3 serate live", d: "Dal 5 al 7 ottobre, in diretta streaming.", value: 97 },
-  { t: "Workbook completo", d: "Il documento che ti accompagna serata per serata.", value: 47 },
-  {
-    t: "Le tue Carte Identitarie",
-    d: "Il documento su cosa ti rende riconoscibile.",
-    value: 67,
-  },
-  {
-    t: "Le tue Anti-Regole personali",
-    d: "L’alternativa alle regole che non senti tue.",
-    value: 67,
-  },
-  { t: "Il tuo Content Lab", d: "Il tuo metodo personale di creazione contenuti.", value: 97 },
-  {
-    t: "La struttura del tuo piano editoriale",
-    d: "Costruita insieme durante la terza serata.",
-    value: 97,
-  },
-  {
-    t: "Garanzia soddisfatta o rimborsata",
-    d: "Fino all’inizio della seconda serata.",
-    value: null,
-  },
-];
-
-const valueStackTotal = valueStack.reduce((sum, v) => sum + (v.value ?? 0), 0);
-
 const faqs = [
   {
     q: "Cos’è esattamente Rule The Rules 2026?",
@@ -1006,42 +980,7 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Topbar */}
-      <div
-        className="sticky top-0 z-50 border-b border-border/60 backdrop-blur"
-        style={
-          {
-            backgroundColor: "color-mix(in oklab, var(--secondary) 95%, transparent)",
-            "--foreground": "var(--secondary-foreground)",
-            "--muted-foreground": "oklch(0.85 0.03 40)",
-          } as React.CSSProperties
-        }
-      >
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-1 px-4 py-2 text-sm text-muted-foreground sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5 sm:py-4">
-          <p className="min-w-0 flex-1 font-condensed text-[10px] font-bold uppercase tracking-[0.06em] text-foreground sm:flex-none sm:text-base sm:leading-tight sm:tracking-[0.15em] sm:justify-self-start">
-            <span className="sm:block">
-              Live su Zoom<span className="sm:hidden"> · </span>
-            </span>
-            <span className="whitespace-nowrap sm:block">5-6-7 Ottobre</span>
-          </p>
-          <div className="flex flex-1 items-center justify-center gap-1 sm:flex-none sm:flex-wrap sm:gap-x-4 sm:gap-y-2 sm:justify-self-center">
-            <span className="hidden font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground sm:inline">
-              L’evento inizia tra
-            </span>
-            <Countdown compact />
-          </div>
-          <a
-            href="#iscriviti"
-            className="min-w-0 shrink-0 rounded-md px-2 py-1.5 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.03em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.12em] sm:justify-self-end"
-            style={{
-              backgroundImage: "var(--gradient-gold)",
-              color: "var(--primary-foreground)",
-            }}
-          >
-            Prendi il biglietto
-          </a>
-        </div>
-      </div>
+      <SiteTopbar />
 
       {/* Hero */}
       <header
@@ -2341,59 +2280,7 @@ function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer
-        className="bg-secondary"
-        style={
-          {
-            color: "var(--secondary-foreground)",
-            "--foreground": "var(--secondary-foreground)",
-            "--muted-foreground": "oklch(0.85 0.03 40)",
-            "--border": "color-mix(in oklab, var(--background) 14%, transparent)",
-          } as React.CSSProperties
-        }
-      >
-        <div className="mx-auto max-w-4xl space-y-6 px-5 py-14 text-xs leading-relaxed text-muted-foreground">
-          <p>
-            Questo sito non fa parte del sito web di Facebook né di Meta Platforms, Inc. Inoltre,
-            questo sito NON è approvato da Facebook in alcun modo. FACEBOOK è un marchio di Meta
-            Platforms, Inc.
-          </p>
-          <p>
-            Non possiamo e non garantiamo in alcun modo la tua capacità di ottenere risultati o
-            guadagnare denaro con le nostre idee, informazioni, strumenti o strategie. Ciò che
-            possiamo garantire è la tua soddisfazione con la nostra formazione. Offriamo una
-            garanzia di soddisfazione al 100% per 30 giorni sui prodotti che vendiamo, quindi se non
-            sei soddisfatto per qualsiasi motivo della qualità della nostra formazione, richiedi
-            semplicemente il rimborso. Dovresti sapere che tutti i prodotti e servizi della nostra
-            azienda sono solo a scopo educativo e informativo. Nulla in questa pagina, in nessuno
-            dei nostri siti web o in qualsiasi nostro contenuto o curriculum costituisce una
-            promessa o una garanzia di risultati o guadagni futuri, e non offriamo alcun consiglio
-            legale, medico, fiscale o di altro tipo. Qualsiasi numero finanziario menzionato qui o
-            in uno dei nostri siti è solo illustrativo di concetti e non deve essere considerato
-            come guadagni medi, guadagni esatti o promesse di prestazioni attuali o future. Usa
-            cautela e consulta sempre il tuo commercialista, avvocato o consulente professionale
-            prima di agire su queste informazioni o su qualsiasi informazione relativa a un
-            cambiamento di stile di vita, alla tua attività o alle tue finanze. Sei solo tu il
-            responsabile delle tue decisioni, azioni e risultati nella vita, e con la tua
-            registrazione qui accetti di non tentare di ritenerci responsabili per le tue decisioni,
-            azioni o risultati, in qualsiasi momento e sotto qualsiasi circostanza.
-          </p>
-          <div className="border-t border-border pt-6">
-            <p className="font-condensed uppercase tracking-[0.16em] text-foreground">
-              C.S. ENDLESS GROUP SRL
-            </p>
-            <p className="mt-2">P.iva: 14295170964</p>
-            <p>Viale Emilio Caldara 44 - Milano</p>
-            <p>
-              Email:{" "}
-              <a href="mailto:info@carlottasgarra.it" style={{ color: "var(--gold-deep)" }}>
-                info@carlottasgarra.it
-              </a>
-            </p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
