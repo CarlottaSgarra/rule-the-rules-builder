@@ -823,11 +823,11 @@ const aboutStats = [
 const twoPaths = {
   a: {
     title: "Continuare come adesso",
-    d: "Profili tecnicamente corretti, contenuti fatti bene, script perfetti. E la sensazione, sempre uguale, di essere una fotocopia che nessuno ricorda.",
+    d: "Ti svegli, apri Instagram per “ispirarti” e dopo venti minuti hai solo ansia. Scrivi un post seguendo lo schema che va di moda, lo cancelli tre volte, lo pubblichi lo stesso senza convinzione. La sera controlli gli insight e ti chiedi, ancora una volta, perché a te non funziona come alle altre.",
   },
   b: {
     title: "Costruire la tua comunicazione",
-    d: "Parti dalla tua identità, costruisci il tuo metodo, hai finalmente un piano editoriale che è tuo. E che ti rende riconoscibile.",
+    d: "Ti svegli sapendo esattamente di cosa vuoi parlare, perché hai un piano editoriale che è tuo. Scrivi un contenuto in metà del tempo perché segui le tue Anti-Regole, non quelle di un corso qualsiasi. La sera chiudi il telefono con la sensazione, finalmente, di essere stata vista per quella che sei davvero.",
   },
 };
 
@@ -890,8 +890,6 @@ const valueStack = [
     value: null,
   },
 ];
-
-const valueStackTotal = valueStack.reduce((sum, v) => sum + (v.value ?? 0), 0);
 
 const faqs = [
   {
@@ -2058,28 +2056,26 @@ function Index() {
       {/* Ricapitolando */}
       <section className="bg-background py-20">
         <div className="mx-auto max-w-4xl px-5">
-          <Reveal>
-            <div className="text-center">
-              <h2 className="text-3xl sm:text-4xl">
-                Registrati e ottieni <Highlight>tutto questo</Highlight>:
-              </h2>
-            </div>
-          </Reveal>
-
           <Reveal delay={80}>
-            <div className="surface-card mt-10 grid overflow-hidden sm:grid-cols-[0.9fr_1.1fr]">
-              <img
-                src={carlottaWalkingImg}
-                alt="Carlotta Sgarra durante un suo evento live"
-                loading="lazy"
-                width={1376}
-                height={2064}
-                className="h-64 w-full object-cover sm:h-full"
-                style={{ objectPosition: "60% 25%" }}
-              />
+            <div className="surface-card grid overflow-hidden sm:grid-cols-[0.9fr_1.1fr]">
+              <div className="relative h-64 w-full sm:h-full">
+                <img
+                  src={carlottaWalkingImg}
+                  alt="Carlotta Sgarra durante un suo evento live"
+                  loading="lazy"
+                  width={1376}
+                  height={2064}
+                  className="h-full w-full object-cover"
+                  style={{ objectPosition: "60% 25%" }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/15 to-transparent" />
+                <p className="absolute inset-x-0 top-0 p-5 text-lg font-semibold leading-snug text-white sm:p-6 sm:text-xl">
+                  Ok, dopo tutto quello che hai letto adesso direi che è il momento di iscriverti.
+                </p>
+              </div>
               <div className="p-6 sm:p-8">
-                <p className="font-condensed text-sm uppercase tracking-[0.2em] text-secondary">
-                  Rule The Rules · Cosa ottieni
+                <p className="text-lg font-semibold text-foreground sm:text-xl">
+                  Facciamo un recap di tutto quello che ti porti a casa con solo 27€ di iscrizione
                 </p>
                 <p className="mt-1 text-xs text-muted-foreground">5, 6 e 7 ottobre 2026 · Online</p>
 
@@ -2105,23 +2101,10 @@ function Index() {
                   ))}
                 </div>
 
-                <div className="mt-6 border-t border-dashed border-border pt-4">
-                  <div className="flex items-baseline justify-between text-sm">
-                    <span className="text-foreground">Subtotale</span>
-                    <span className="text-muted-foreground line-through">{valueStackTotal}€</span>
-                  </div>
-                  <div className="mt-2 flex items-baseline justify-between text-lg font-semibold">
-                    <span className="text-foreground">Da pagare oggi</span>
-                    <span style={{ color: "var(--gold-deep)" }}>27€</span>
-                  </div>
+                <div className="mt-6 border-t border-dashed border-border pt-6">
+                  <CtaButton label="Ok, voglio iscrivermi" />
                 </div>
               </div>
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <div className="mt-10 flex justify-center">
-              <CtaButton label="Ok, mi hai convinta" />
             </div>
           </Reveal>
         </div>
