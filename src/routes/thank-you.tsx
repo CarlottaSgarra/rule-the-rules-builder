@@ -6,7 +6,7 @@ import { VideoFrame } from "@/components/landing/VideoFrame";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { AddToCalendarBox } from "@/components/landing/AddToCalendarBox";
 import { QuestionnaireBox } from "@/components/landing/QuestionnaireBox";
-import { valueStack } from "@/data/offer";
+import { EventTicket } from "@/components/landing/EventTicket";
 
 export const Route = createFileRoute("/thank-you")({
   head: () => ({
@@ -52,25 +52,17 @@ function ThankYou() {
         </div>
       </section>
 
-      <section
-        className="bg-secondary px-4 py-14 sm:px-8 sm:py-20"
-        style={{ color: "var(--secondary-foreground)" }}
-      >
+      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-2xl">
           <Reveal>
-            <p className="text-center font-condensed text-xs uppercase tracking-[0.2em] text-primary">
+            <p className="text-center font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
               Il tuo biglietto
             </p>
-            <h2 className="mt-2 text-center text-2xl font-semibold text-ink sm:text-3xl">
-              Ecco cosa ti porti a casa
+            <h2 className="mt-2 text-center text-2xl font-semibold text-foreground sm:text-3xl">
+              Ecco il tuo posto a Rule The Rules
             </h2>
-            <div className="mt-8 space-y-4 text-sm">
-              {valueStack.map((v) => (
-                <div key={v.t} className="rounded-xl border border-white/10 bg-white/5 p-4">
-                  <p className="font-medium text-ink">{v.t}</p>
-                  <p className="mt-1 text-ink-muted">{v.d}</p>
-                </div>
-              ))}
+            <div className="mt-8">
+              <EventTicket />
             </div>
           </Reveal>
         </div>
