@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as ThankYouRouteImport } from './routes/thank-you'
+import { Route as ThankYouVipRouteImport } from './routes/thank-you-vip'
 import { Route as VipRouteImport } from './routes/vip'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +25,16 @@ const CheckoutRoute = CheckoutRouteImport.update({
   path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ThankYouRoute = ThankYouRouteImport.update({
+  id: '/thank-you',
+  path: '/thank-you',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThankYouVipRoute = ThankYouVipRouteImport.update({
+  id: '/thank-you-vip',
+  path: '/thank-you-vip',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VipRoute = VipRouteImport.update({
   id: '/vip',
   path: '/vip',
@@ -32,30 +44,38 @@ const VipRoute = VipRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
+  '/thank-you': typeof ThankYouRoute
+  '/thank-you-vip': typeof ThankYouVipRoute
   '/vip': typeof VipRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
+  '/thank-you': typeof ThankYouRoute
+  '/thank-you-vip': typeof ThankYouVipRoute
   '/vip': typeof VipRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
+  '/thank-you': typeof ThankYouRoute
+  '/thank-you-vip': typeof ThankYouVipRoute
   '/vip': typeof VipRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/checkout' | '/vip'
+  fullPaths: '/' | '/checkout' | '/thank-you' | '/thank-you-vip' | '/vip'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/checkout' | '/vip'
-  id: '__root__' | '/' | '/checkout' | '/vip'
+  to: '/' | '/checkout' | '/thank-you' | '/thank-you-vip' | '/vip'
+  id: '__root__' | '/' | '/checkout' | '/thank-you' | '/thank-you-vip' | '/vip'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CheckoutRoute: typeof CheckoutRoute
+  ThankYouRoute: typeof ThankYouRoute
+  ThankYouVipRoute: typeof ThankYouVipRoute
   VipRoute: typeof VipRoute
 }
 
@@ -75,6 +95,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/thank-you': {
+      id: '/thank-you'
+      path: '/thank-you'
+      fullPath: '/thank-you'
+      preLoaderRoute: typeof ThankYouRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/thank-you-vip': {
+      id: '/thank-you-vip'
+      path: '/thank-you-vip'
+      fullPath: '/thank-you-vip'
+      preLoaderRoute: typeof ThankYouVipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vip': {
       id: '/vip'
       path: '/vip'
@@ -88,6 +122,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CheckoutRoute: CheckoutRoute,
+  ThankYouRoute: ThankYouRoute,
+  ThankYouVipRoute: ThankYouVipRoute,
   VipRoute: VipRoute,
 }
 export const routeTree = rootRouteImport
