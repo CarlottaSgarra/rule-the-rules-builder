@@ -904,6 +904,8 @@ const valueStack = [
   },
 ];
 
+const valueStackTotal = valueStack.reduce((sum, v) => sum + (v.value ?? 0), 0);
+
 const faqs = [
   {
     q: "Cos’è esattamente Rule The Rules 2026?",
@@ -912,8 +914,10 @@ const faqs = [
         È uno show formativo in live streaming con Carlotta Sgarra e il suo team, in tre serate dal
         5 al 7 ottobre 2026. Ti do gli strumenti per costruire la tua identità, il tuo metodo
         personale di creazione contenuti e{" "}
-        <strong className="font-semibold text-ink">un piano editoriale che è davvero tuo</strong>,
-        non l’ennesimo format universale.
+        <strong className="font-semibold text-foreground">
+          un piano editoriale che è davvero tuo
+        </strong>
+        , non l’ennesimo format universale.
       </>
     ),
   },
@@ -921,8 +925,8 @@ const faqs = [
     q: "È un corso registrato o un evento dal vivo?",
     a: (
       <>
-        È un <strong className="font-semibold text-ink">evento dal vivo in streaming</strong>, ci
-        connetteremo usando il software Zoom.
+        È un <strong className="font-semibold text-foreground">evento dal vivo in streaming</strong>
+        , ci connetteremo usando il software Zoom.
       </>
     ),
   },
@@ -932,7 +936,7 @@ const faqs = [
       <>
         A professioniste, coach, consulenti e imprenditrici che si sentono una fotocopia delle
         altre, sono stufe di seguire regole che non sentono loro, e{" "}
-        <strong className="font-semibold text-ink">
+        <strong className="font-semibold text-foreground">
           vogliono costruire una comunicazione che parte davvero da chi sono
         </strong>
         .
@@ -946,7 +950,7 @@ const faqs = [
         Sì. Carlotta ha già aiutato nutrizionisti, tatuatrici, consulenti d’immagine, coach, social
         media manager, make-up artist e tanti altri a smettere di comunicare come tutti gli altri
         nel loro settore. Il principio è lo stesso:{" "}
-        <strong className="font-semibold text-ink">
+        <strong className="font-semibold text-foreground">
           parti dalla tua identità, non da un format che “funziona”
         </strong>
         .
@@ -960,7 +964,7 @@ const faqs = [
         Con il biglietto standard puoi seguire solo in diretta, non è prevista la registrazione. Se
         vuoi rivedere l’evento tutte le volte che vuoi, fermarti sui passaggi cruciali o prenderti
         appunti con calma,{" "}
-        <strong className="font-semibold text-ink">
+        <strong className="font-semibold text-foreground">
           scegli il biglietto VIP, che include la registrazione completa
         </strong>
         .
@@ -973,7 +977,7 @@ const faqs = [
       <>
         Sì. Se dopo la prima serata capisci che “Rule The Rules” non fa per te, scrivici prima
         dell’inizio della seconda serata live (6 ottobre) e{" "}
-        <strong className="font-semibold text-ink">
+        <strong className="font-semibold text-foreground">
           ti rimborsiamo il biglietto, senza bisogno di spiegazioni
         </strong>
         .
@@ -987,7 +991,7 @@ const faqs = [
         Perché Rule The Rules 2026 è l’introduzione al nostro modo di lavorare: vogliamo che più
         professioniste possibile abbiano gli strumenti giusti per ritrovarsi nella propria
         comunicazione. Consideralo un biglietto d’ingresso:{" "}
-        <strong className="font-semibold text-ink">
+        <strong className="font-semibold text-foreground">
           un prezzo accessibile per un contenuto che può cambiare il modo in cui ti presenti online
         </strong>
         .
@@ -1010,7 +1014,7 @@ function Index() {
           } as React.CSSProperties
         }
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-1 px-2 py-2 text-sm text-muted-foreground sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5 sm:py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-1 px-4 py-2 text-sm text-muted-foreground sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5 sm:py-4">
           <p className="min-w-0 flex-1 font-condensed text-[10px] font-bold uppercase tracking-[0.06em] text-foreground sm:flex-none sm:text-base sm:tracking-[0.15em] sm:justify-self-start">
             <span>Live su Zoom · </span>
             <span className="whitespace-nowrap">5-6-7 Ottobre</span>
@@ -2021,9 +2025,7 @@ function Index() {
                       key={s.l}
                       className="rounded-xl bg-white p-4 text-center shadow-[0_16px_40px_-24px_rgba(0,0,0,0.15)]"
                     >
-                      <div className="font-condensed text-xl" style={{ color: "var(--gold-deep)" }}>
-                        {s.v}
-                      </div>
+                      <div className="font-condensed text-xl text-secondary">{s.v}</div>
                       <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
                     </div>
                   ))}
@@ -2140,7 +2142,20 @@ function Index() {
                   ))}
                 </div>
 
-                <div className="mt-6 border-t border-dashed border-border pt-6">
+                <div className="mt-6 border-t border-dashed border-border pt-4">
+                  <div className="flex items-baseline justify-between text-sm">
+                    <span className="text-foreground">Valore totale</span>
+                    <span className="text-muted-foreground line-through">{valueStackTotal}€</span>
+                  </div>
+                  <p
+                    className="mt-1 text-right text-2xl font-semibold"
+                    style={{ color: "var(--gold-deep)" }}
+                  >
+                    27€
+                  </p>
+                </div>
+
+                <div className="mt-6">
                   <CtaButton label="Ok, voglio iscrivermi" />
                 </div>
               </div>
@@ -2211,31 +2226,6 @@ function Index() {
                 </AccordionItem>
               ))}
             </Accordion>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* CTA finale */}
-      <section
-        className="border-t border-border/60"
-        style={{ backgroundImage: "var(--gradient-night)" }}
-      >
-        <div className="mx-auto max-w-3xl px-5 py-20 text-center">
-          <Reveal>
-            <p className="font-condensed text-2xl uppercase tracking-[0.2em] text-secondary">
-              Il tuo posto ti aspetta:
-            </p>
-            <p className="mt-4 text-base text-foreground/85">
-              Prendi il biglietto per Rule The Rules 2026 a 27€ e inizia a costruire{" "}
-              <strong>il tuo modo di comunicare, quello che nessun’altra può copiare</strong>.
-            </p>
-            <div className="mt-8 flex justify-center">
-              <CtaButton label="Ultima chiamata, promesso" />
-            </div>
-            <p className="mt-10 text-sm italic text-muted-foreground">
-              P.S. Ti hanno insegnato talmente bene a fare contenuti che hai smesso di esserci
-              dentro. Il 5 ottobre iniziamo a cambiarlo.
-            </p>
           </Reveal>
         </div>
       </section>
