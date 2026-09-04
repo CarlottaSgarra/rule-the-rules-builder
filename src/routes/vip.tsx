@@ -6,6 +6,9 @@ import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { vipBonuses, vipBonusesTotal, VIP_PRICE } from "@/data/offer";
+import carlottaLookingImg from "@/assets/carlotta-looking.jpg";
+import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
+import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
 
 export const Route = createFileRoute("/vip")({
   head: () => ({
@@ -23,6 +26,7 @@ export const Route = createFileRoute("/vip")({
 });
 
 const bonusIcons = [VideoIcon, Users, FileCheck2];
+const bonusPhotos = [carlottaLookingImg, carlottaPresentingImg, carlottaTalkingImg];
 
 // TODO: sostituire con l'URL reale del prodotto/form systeme.io per
 // l'upgrade VIP a 97€ — non è lo stesso form del biglietto standard.
@@ -61,13 +65,18 @@ function Vip() {
               Offerta esclusiva · Solo su questa pagina
             </span>
             <h1 className="mt-4 text-3xl sm:text-4xl">
-              Aspetta! <Highlight>Prima di continuare</Highlight>, un’ultima cosa
+              Aspetta! <Highlight>Prima di continuare</Highlight>, c’è una cosa che devi sapere
             </h1>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-foreground/80 sm:text-lg">
-              Hai la possibilità di fare l’upgrade a VIP — ma solo adesso.{" "}
+              Hai davanti a te un’occasione che{" "}
+              <strong className="font-semibold text-foreground">non tornerà più</strong>: l’upgrade
+              a VIP. Non è l’ennesimo upsell — è la versione di Rule The Rules pensata per chi non
+              si accontenta di ascoltare, ma vuole{" "}
+              <strong className="font-semibold text-foreground">essere seguita da vicino</strong>,
+              un passo alla volta.{" "}
               <strong className="font-semibold text-foreground">
-                Una volta lasciata questa pagina, questa offerta non sarà più disponibile, a nessun
-                prezzo.
+                Se esci da questa pagina senza decidere, l’occasione sparisce per sempre, a
+                qualsiasi prezzo.
               </strong>
             </p>
           </Reveal>
@@ -87,7 +96,9 @@ function Vip() {
       {/* Bonus */}
       {vipBonuses.map((bonus, i) => {
         const Icon = bonusIcons[i] ?? VideoIcon;
+        const photo = bonusPhotos[i];
         const dark = i % 2 === 0;
+        const imageFirst = i % 2 === 1;
         return (
           <section
             key={bonus.id}
@@ -104,32 +115,51 @@ function Vip() {
                 : undefined
             }
           >
-            <div className="mx-auto max-w-2xl text-center">
+            <div className="mx-auto max-w-4xl">
               <Reveal>
-                <span
-                  className="mx-auto flex size-16 items-center justify-center rounded-full"
-                  style={{
-                    backgroundImage: "var(--gradient-gold)",
-                    boxShadow: "var(--shadow-gold)",
-                  }}
-                >
-                  <Icon className="size-7 text-primary-foreground" />
-                </span>
-                <p
-                  className={`mt-5 font-condensed text-xs uppercase tracking-[0.25em] ${dark ? "text-primary" : "text-secondary"}`}
-                >
-                  Bonus VIP {i + 1} di {vipBonuses.length}
-                </p>
-                <h2 className="mt-3 text-3xl text-foreground sm:text-4xl">{bonus.title}</h2>
-                <p className="mt-4 text-base leading-relaxed text-foreground/80 sm:text-lg">
-                  {bonus.d}
-                </p>
-                <p className="mt-6 text-lg text-foreground/60">
-                  Valore: <span className="font-semibold line-through">{bonus.value}€</span>{" "}
-                  <span className={`font-semibold ${dark ? "text-primary" : "text-secondary"}`}>
-                    incluso nell’upgrade
-                  </span>
-                </p>
+                <div className="grid items-center gap-10 sm:grid-cols-2">
+                  <div className={imageFirst ? "sm:order-2" : ""}>
+                    <div
+                      className="relative overflow-hidden rounded-2xl"
+                      style={{ boxShadow: "var(--shadow-deep)" }}
+                    >
+                      <img
+                        src={photo}
+                        alt="Carlotta Sgarra"
+                        loading="lazy"
+                        className="aspect-[4/5] w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                      <span
+                        className="absolute bottom-4 left-4 flex size-12 items-center justify-center rounded-full"
+                        style={{
+                          backgroundImage: "var(--gradient-gold)",
+                          boxShadow: "var(--shadow-gold)",
+                        }}
+                      >
+                        <Icon className="size-6 text-primary-foreground" />
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className={imageFirst ? "sm:order-1" : ""}>
+                    <p
+                      className={`font-condensed text-xs uppercase tracking-[0.25em] ${dark ? "text-primary" : "text-secondary"}`}
+                    >
+                      Bonus VIP {i + 1} di {vipBonuses.length}
+                    </p>
+                    <h2 className="mt-3 text-3xl text-foreground sm:text-4xl">{bonus.title}</h2>
+                    <p className="mt-4 text-base leading-relaxed text-foreground/80 sm:text-lg">
+                      {bonus.d}
+                    </p>
+                    <p className="mt-6 text-lg text-foreground/60">
+                      Valore: <span className="font-semibold line-through">{bonus.value}€</span>{" "}
+                      <span className={`font-semibold ${dark ? "text-primary" : "text-secondary"}`}>
+                        oggi incluso a costo zero nel tuo upgrade
+                      </span>
+                    </p>
+                  </div>
+                </div>
               </Reveal>
 
               <Reveal delay={80}>
@@ -163,7 +193,7 @@ function Vip() {
                   Riepilogo upgrade VIP
                 </p>
                 <h2 className="mt-2 text-2xl font-semibold text-foreground sm:text-3xl">
-                  Tutto quello che aggiungi
+                  Ecco tutto quello che stai per sbloccare
                 </h2>
 
                 <div className="mt-8 space-y-4 text-left text-sm">
@@ -196,7 +226,7 @@ function Vip() {
           </Reveal>
 
           <Reveal delay={80}>
-            <VipChoice note="Ultima occasione: dopo questa pagina l’offerta non torna" />
+            <VipChoice note="Ultima occasione, sul serio: non torna più" />
           </Reveal>
         </div>
       </section>
