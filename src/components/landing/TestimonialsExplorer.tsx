@@ -22,6 +22,9 @@ export function TestimonialsExplorer({ testimonials }: Props) {
   return (
     <div className="mt-10 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
       <div className="order-2 grid grid-cols-1 gap-3 sm:grid-cols-3 lg:order-none">
+        <p className="col-span-full mb-1 text-center text-xs text-white lg:hidden">
+          Clicca sulle testimonianze qui sotto per farle apparire nel video qui sopra e guardarle
+        </p>
         {testimonials.map((t, i) => {
           const isActive = i === activeIndex;
           return (

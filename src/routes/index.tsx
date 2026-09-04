@@ -846,7 +846,7 @@ const twoPaths = {
 
 const workbookDays = [
   {
-    t: "Giorno 1 · Chi sono",
+    t: "La tua identità riconoscibile",
     d: (
       <>
         Le tue Carte Identitarie: il documento in cui metti nero su bianco{" "}
@@ -855,24 +855,24 @@ const workbookDays = [
     ),
   },
   {
-    t: "Giorno 2 · Come comunico",
+    t: "Il tuo metodo di contenuti",
     d: (
       <>
         Le tue Anti-Regole personali e{" "}
-        <strong className="font-semibold text-foreground">il tuo Content Lab</strong>, per iniziare
-        a creare contenuti con il tuo metodo.
+        <strong className="font-semibold text-foreground">il tuo Content Lab</strong>, per creare
+        contenuti con il tuo metodo, senza copiare nessuno.
       </>
     ),
   },
   {
-    t: "Giorno 3 · Come costruisco il sistema",
+    t: "Il tuo piano editoriale",
     d: (
       <>
         Format, banca idee e{" "}
         <strong className="font-semibold text-foreground">
           la struttura del tuo piano editoriale
         </strong>
-        , costruito insieme durante la serata.
+        , che costruisci passo dopo passo durante l’evento.
       </>
     ),
   },
@@ -1548,7 +1548,10 @@ function Index() {
       </section>
 
       {/* Cosa ottieni: le 3 serate, in evidenza */}
-      <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
+      <section
+        className="overflow-x-clip bg-secondary"
+        style={{ color: "var(--secondary-foreground)" }}
+      >
         <div className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl">
@@ -1562,7 +1565,7 @@ function Index() {
               <Reveal key={s.n} delay={i * 100}>
                 <div className="group relative">
                   <div
-                    className="relative grid gap-8 overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--background)_14%,transparent)] p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary group-hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] sm:p-8 md:grid-cols-[0.7fr_1.3fr] md:items-center md:gap-10"
+                    className="relative grid gap-8 overflow-visible rounded-2xl border border-[color-mix(in_oklab,var(--background)_14%,transparent)] p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary group-hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] sm:p-8 md:grid-cols-[0.7fr_1.3fr] md:items-center md:gap-10 md:overflow-hidden"
                     style={{
                       backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
                     }}
@@ -1906,7 +1909,7 @@ function Index() {
             <div>
               <Reveal>
                 <span
-                  className="inline-block rounded-full px-5 py-2 font-condensed text-xs uppercase tracking-[0.25em] text-primary-foreground sm:text-sm"
+                  className="inline-block rounded-full px-4 py-2 font-condensed text-[10px] uppercase tracking-[0.1em] text-primary-foreground sm:px-5 sm:text-sm sm:tracking-[0.25em]"
                   style={{
                     backgroundImage: "var(--gradient-gold)",
                     boxShadow: "var(--shadow-gold)",
@@ -1982,16 +1985,8 @@ function Index() {
                   nonostante 10 ore di lavoro al giorno.
                 </p>
                 <p>
-                  Ma non ho mollato. Ho trasformato quella frustrazione in benzina e ho iniziato a
-                  costruire pezzo dopo pezzo:{" "}
-                  <strong className="font-semibold text-ink">
-                    prima l’identità, poi i contenuti, poi le vendite
-                  </strong>
-                  .
-                </p>
-                <p>
-                  Anche quando ho imparato a fare “tutto giusto” — avevo studiato il mercato
-                  americano, spagnolo e italiano, e speso più di 70.000€ in formazione — il mio
+                  Anche quando ho imparato a fare “tutto giusto”, dopo aver studiato il mercato
+                  americano, spagnolo e italiano e speso più di 70.000€ in formazione, il mio
                   business restava instabile: un mese 5.000€, un mese 800€.{" "}
                   <strong className="font-semibold text-ink">Quello che non c’era ero io.</strong>{" "}
                   Stavo eseguendo piani editoriali scritti da altri e regole decise da creator che
@@ -2117,15 +2112,23 @@ function Index() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/15 to-transparent" />
                 <p className="absolute inset-x-0 top-0 p-5 text-lg font-semibold leading-snug text-white sm:p-6 sm:text-xl">
-                  Ok, dopo tutto quello che hai letto adesso direi che è il momento di iscriverti.
+                  Ok, dopo tutto quello che hai letto, adesso direi che è il momento di iscriverti.
                 </p>
               </div>
               <div className="p-6 sm:p-8">
-                <p className="text-lg font-semibold text-foreground sm:text-xl">
+                <span
+                  className="inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
+                  style={{
+                    backgroundImage: "var(--gradient-gold)",
+                    boxShadow: "var(--shadow-gold)",
+                  }}
+                >
+                  5-6-7 ottobre 2026 · Online
+                </span>
+                <p className="mt-3 text-lg font-semibold text-foreground sm:text-xl">
                   Facciamo un recap di <Highlight>tutto quello che ti porti a casa</Highlight> con
                   solo 27€ di iscrizione
                 </p>
-                <p className="mt-1 text-xs text-muted-foreground">5-6-7 ottobre 2026 · Online</p>
 
                 <div className="mt-6 space-y-4 text-sm">
                   {valueStack.map((v) => (
@@ -2214,11 +2217,21 @@ function Index() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
+      <section
+        className="bg-secondary px-4 py-14 sm:px-8 sm:py-20"
+        style={
+          {
+            color: "var(--secondary-foreground)",
+            "--foreground": "var(--secondary-foreground)",
+            "--muted-foreground": "oklch(0.85 0.03 40)",
+            "--border": "color-mix(in oklab, var(--background) 14%, transparent)",
+          } as React.CSSProperties
+        }
+      >
         <div className="mx-auto max-w-3xl">
           <Reveal>
             <h2 className="text-3xl text-foreground sm:text-4xl">
-              Domande <Highlight>Frequenti</Highlight>
+              Domande <Highlight dark>Frequenti</Highlight>
             </h2>
             <p className="mt-3 text-sm text-muted-foreground">
               Hai bisogno di supporto? Scrivi a{" "}
@@ -2276,7 +2289,7 @@ function Index() {
           </p>
           <div className="border-t border-border pt-6">
             <p className="font-condensed uppercase tracking-[0.16em] text-foreground">
-              C.S. Genesis Holding SRL
+              ENDLESS GROUP SRL
             </p>
             <p className="mt-2">P.iva: 14295170964</p>
             <p>Viale Emilio Caldara 44 - Milano</p>

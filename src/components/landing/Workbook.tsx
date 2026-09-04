@@ -19,7 +19,7 @@ export function Workbook() {
           boxShadow: "0 10px 24px -8px rgba(0,0,0,0.5)",
         }}
       >
-        Ti arriva pochi giorni prima dell’evento
+        Il workbook ti arriva prima dell’evento
       </span>
     </div>
   );
