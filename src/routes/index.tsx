@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { CalendarDays, Check, IdCard, ListX, Star, Wand2 } from "lucide-react";
 import {
@@ -991,6 +991,18 @@ const faqs = [
 
 function Index() {
   const [activeTakeaway, setActiveTakeaway] = useState(takeawayCards[0].id);
+  const [takeawayOffset, setTakeawayOffset] = useState(0);
+  const takeawayRowRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  useLayoutEffect(() => {
+    const updateOffset = () => {
+      const el = takeawayRowRefs.current[activeTakeaway];
+      if (el) setTakeawayOffset(el.offsetTop);
+    };
+    updateOffset();
+    window.addEventListener("resize", updateOffset);
+    return () => window.removeEventListener("resize", updateOffset);
+  }, [activeTakeaway]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -1363,16 +1375,6 @@ function Index() {
           }}
           aria-hidden
         />
-        <div
-          className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full blur-3xl"
-          style={{ backgroundColor: "color-mix(in oklab, var(--primary) 35%, transparent)" }}
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute -right-20 bottom-0 size-80 rounded-full blur-3xl"
-          style={{ backgroundColor: "color-mix(in oklab, var(--secondary) 20%, transparent)" }}
-          aria-hidden
-        />
         <div className="relative mx-auto max-w-5xl px-5 py-20">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl">
@@ -1678,6 +1680,45 @@ function Index() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={300}>
+            <div
+              className="mt-14 grid overflow-hidden rounded-2xl sm:grid-cols-2"
+              style={{
+                backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
+                border: "1px solid color-mix(in oklab, var(--background) 14%, transparent)",
+              }}
+            >
+              <div
+                className="flex aspect-[4/3] items-center justify-center border-b-2 border-dashed p-6 text-center sm:aspect-auto sm:border-b-0 sm:border-r-2"
+                style={{ borderColor: "color-mix(in oklab, var(--primary) 35%, transparent)" }}
+              >
+                <p className="font-condensed text-xs uppercase leading-relaxed tracking-[0.15em] text-ink-muted/60">
+                  Placeholder
+                  <br />
+                  screenshot chat WhatsApp
+                </p>
+              </div>
+              <div className="p-6 sm:p-8">
+                <span
+                  className="inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
+                  style={{
+                    backgroundImage: "var(--gradient-gold)",
+                    boxShadow: "var(--shadow-gold)",
+                  }}
+                >
+                  Bonus community
+                </span>
+                <p className="mt-4 text-lg font-semibold text-ink sm:text-xl">
+                  Chi si iscrive e lascia il suo numero di WhatsApp accede anche al{" "}
+                  <Highlight dark>gruppo live di WhatsApp</Highlight> dedicato all’evento.
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
+                  Dove ci si scambia i confronti e dove io e il mio team rispondiamo, e così via.
+                </p>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -1829,18 +1870,30 @@ function Index() {
             </h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div className="mt-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <Reveal>
-              <TakeawayVisual activeId={activeTakeaway} />
+              <div className="lg:relative">
+                <div
+                  className="takeaway-track"
+                  style={{ "--row-offset": `${takeawayOffset}px` } as React.CSSProperties}
+                >
+                  <TakeawayVisual activeId={activeTakeaway} />
+                </div>
+              </div>
             </Reveal>
 
             <Reveal delay={60}>
-              <div className="divide-y divide-ink/15">
+              <div className="relative space-y-4">
                 {takeawayCards.map(({ id, icon: Icon, title, text }) => (
                   <div
                     key={id}
-                    className={`-mx-3 flex cursor-default gap-4 rounded-lg px-3 py-5 transition-colors duration-200 first:pt-0 last:pb-0 ${
-                      activeTakeaway === id ? "bg-white/5" : ""
+                    ref={(el) => {
+                      takeawayRowRefs.current[id] = el;
+                    }}
+                    className={`flex cursor-default gap-4 rounded-xl border p-5 transition-colors duration-200 ${
+                      activeTakeaway === id
+                        ? "border-primary/50 bg-white/10"
+                        : "border-white/10 bg-white/5"
                     }`}
                     onMouseEnter={() => setActiveTakeaway(id)}
                     onFocus={() => setActiveTakeaway(id)}
@@ -2071,7 +2124,7 @@ function Index() {
         <div className="mx-auto max-w-4xl px-5 py-20">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl">
-              Da qui puoi andare in <Highlight>due direzioni</Highlight>.
+              Da qui puoi andare in <Highlight dark>due direzioni</Highlight>.
             </h2>
           </Reveal>
           <div className="mt-10 grid gap-6 sm:grid-cols-2">

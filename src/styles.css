@@ -232,6 +232,16 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .takeaway-track {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    transition: transform 300ms ease-out;
+    transform: translateY(var(--row-offset, 0px));
+  }
+}
+
 @utility surface-card {
   background-color: var(--card);
   border: 1px solid color-mix(in oklab, var(--primary) 22%, transparent);

@@ -102,7 +102,7 @@ export function SignupForm({
           <input
             type="tel"
             name="phone_number"
-            placeholder="Il tuo WhatsApp (senza prefisso)"
+            placeholder="WhatsApp (senza prefisso)"
             className="w-full min-w-0 rounded-lg border border-input bg-background px-4 py-3 text-sm text-card-foreground outline-none placeholder:text-card-foreground/50 focus:border-primary"
           />
         </div>

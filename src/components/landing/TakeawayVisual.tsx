@@ -34,7 +34,7 @@ function IdentityCardPanel() {
 function AntiRulesPanel() {
   const rules = [
     { label: "Hook nei primi 3 secondi", on: false },
-    { label: "Un formato al giorno", on: true },
+    { label: "Un formato al giorno", on: false },
     { label: "CTA in ogni caption", on: false },
     { label: "Il tuo modo di spiegare", on: true },
   ];
@@ -158,16 +158,11 @@ export function TakeawayVisual({ activeId }: Props) {
   const day = dayOf[activeId] ?? 1;
 
   return (
-    <div>
-      <div
-        className="flex aspect-[4/5] w-full items-center justify-center rounded-2xl p-8"
-        style={{ backgroundImage: "var(--gradient-ink)", boxShadow: "var(--shadow-deep)" }}
-      >
-        <div key={activeId} className="w-full animate-in fade-in zoom-in-95 duration-300">
-          <Visual />
-        </div>
+    <div className="mx-auto w-full max-w-[240px] lg:mx-0">
+      <div key={activeId} className="animate-in fade-in zoom-in-95 duration-300">
+        <Visual />
       </div>
-      <div className="mt-4 flex justify-center">
+      <div className="mt-3 flex justify-center">
         <span
           key={activeId}
           className="animate-in fade-in inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
