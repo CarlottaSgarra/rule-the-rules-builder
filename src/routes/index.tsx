@@ -1,18 +1,6 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import {
-  CalendarDays,
-  Check,
-  Clapperboard,
-  Copy,
-  IdCard,
-  ListChecks,
-  ListX,
-  Lock,
-  PenLine,
-  ShieldAlert,
-  Star,
-  Wand2,
-} from "lucide-react";
+import { CalendarDays, Check, IdCard, ListX, Star, Wand2 } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -27,6 +15,7 @@ import { Reveal } from "@/components/landing/Reveal";
 import { SignupForm } from "@/components/landing/SignupForm";
 import { Workbook } from "@/components/landing/Workbook";
 import { SessionHighlight } from "@/components/landing/SessionHighlight";
+import { TakeawayVisual } from "@/components/landing/TakeawayVisual";
 import { Highlight } from "@/components/landing/Highlight";
 import livestreamImg from "@/assets/livestream.jpg";
 import goldTexture from "@/assets/texture-gold.jpg";
@@ -362,7 +351,7 @@ const takeawayCards = [
   {
     id: "piano-editoriale",
     icon: CalendarDays,
-    title: "Una prima bozza del tuo piano editoriale",
+    title: "Il tuo piano editoriale",
     text: (
       <>
         Cinque domande guidano ogni contenuto: cosa voglio dire, perché, quale parte di me, che
@@ -377,8 +366,8 @@ const takeawayCards = [
 const startingPointCards = [
   {
     id: "riscrivi",
-    icon: PenLine,
-    title: "Scrivo, cancello, riscrivo",
+    emoji: "😩",
+    title: "Scrivi, cancelli, riscrivi",
     text: (
       <>
         Hai un’idea per un post, la scrivi, la cancelli, la riscrivi{" "}
@@ -388,8 +377,8 @@ const startingPointCards = [
   },
   {
     id: "font-diverso",
-    icon: Copy,
-    title: "Mi sento una fotocopia",
+    emoji: "🫥",
+    title: "Ti senti una fotocopia",
     text: (
       <>
         Guardi il profilo di un’altra professionista e ti sembra il tuo, solo{" "}
@@ -399,8 +388,8 @@ const startingPointCards = [
   },
   {
     id: "recitare",
-    icon: Clapperboard,
-    title: "Quando registro, recito",
+    emoji: "🎭",
+    title: "Quando registri, reciti",
     text: (
       <>
         Accendi la telecamera e ti senti{" "}
@@ -413,8 +402,8 @@ const startingPointCards = [
   },
   {
     id: "non-riconosci",
-    icon: ListChecks,
-    title: "Ho fatto tutto giusto, eppure...",
+    emoji: "😔",
+    title: "Hai fatto tutto giusto, eppure...",
     text: (
       <>
         Hai fatto tutto “per bene”, eppure oggi{" "}
@@ -425,8 +414,8 @@ const startingPointCards = [
   },
   {
     id: "paura",
-    icon: ShieldAlert,
-    title: "Ho paura di rompere le regole",
+    emoji: "😰",
+    title: "Hai paura di rompere le regole",
     text: (
       <>
         Hai paura che smettere di seguirle{" "}
@@ -439,8 +428,8 @@ const startingPointCards = [
   },
   {
     id: "gabbia",
-    icon: Lock,
-    title: "Il mio piano mi va stretto",
+    emoji: "😤",
+    title: "Il tuo piano ti va stretto",
     text: (
       <>
         Il piano editoriale che segui ti fa sentire{" "}
@@ -1001,6 +990,8 @@ const faqs = [
 ];
 
 function Index() {
+  const [activeTakeaway, setActiveTakeaway] = useState(takeawayCards[0].id);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Topbar */}
@@ -1362,19 +1353,40 @@ function Index() {
       </section>
 
       {/* Problema */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-5xl px-5 py-20">
+      <section className="relative overflow-hidden bg-background">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-60"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, color-mix(in oklab, var(--secondary) 22%, transparent) 1.5px, transparent 1.5px)",
+            backgroundSize: "26px 26px",
+          }}
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute -left-24 -top-24 size-72 rounded-full blur-3xl"
+          style={{ backgroundColor: "color-mix(in oklab, var(--primary) 35%, transparent)" }}
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute -right-20 bottom-0 size-80 rounded-full blur-3xl"
+          style={{ backgroundColor: "color-mix(in oklab, var(--secondary) 20%, transparent)" }}
+          aria-hidden
+        />
+        <div className="relative mx-auto max-w-5xl px-5 py-20">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl">
-              Se leggendo qui sotto ti trovi ad annuire, credimi che{" "}
-              <Highlight>so come ti senti</Highlight>. Ci sono passata anch’io.
+              Leggi qui sotto. <Highlight>Ti trovi ad annuire</Highlight> tra un punto e l’altro? Io
+              credo di sì (anche perché ci sono passata anch’io).
             </h2>
           </Reveal>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {startingPointCards.map(({ id, icon: Icon, title, text }, i) => (
+            {startingPointCards.map(({ id, emoji, title, text }, i) => (
               <Reveal key={id} delay={i * 60}>
                 <div className="flex h-full min-h-[9.5rem] items-start gap-4 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary">
-                  <Icon className="mt-1 size-5 shrink-0 text-secondary" />
+                  <span className="mt-0.5 shrink-0 text-2xl leading-none" aria-hidden>
+                    {emoji}
+                  </span>
                   <div>
                     <p className="text-lg font-semibold text-foreground sm:text-xl">{title}</p>
                     <span className="mt-1 block text-sm leading-relaxed text-foreground/85 sm:text-base">
@@ -1390,7 +1402,7 @@ function Index() {
             <h3 className="mt-16 text-center text-2xl font-semibold text-foreground sm:text-3xl">
               Io mi sono <Highlight>stufata di tutto questo</Highlight>. Tu no?
             </h3>
-            <div className="mt-8 grid gap-8 md:grid-cols-2 md:items-center">
+            <div className="mt-8 grid gap-8 md:grid-cols-2 md:items-start">
               <div className="space-y-5 text-base leading-relaxed text-foreground/85">
                 <p>
                   Tutti i guru che segui online ti hanno insegnato che bisogna fare le cose così:
@@ -1456,7 +1468,7 @@ function Index() {
                 loading="lazy"
                 width={1376}
                 height={2064}
-                className="mx-auto aspect-[4/5] w-[85%] rounded-2xl object-cover"
+                className="mx-auto aspect-[4/5] w-[85%] rounded-2xl object-cover md:sticky md:top-24"
                 style={{ objectPosition: "50% 20%" }}
               />
             </div>
@@ -1673,7 +1685,18 @@ function Index() {
       <section className="bg-background">
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <h2 className="text-center text-3xl sm:text-4xl">
+            <div className="flex justify-center">
+              <span
+                className="inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
+                style={{
+                  backgroundImage: "var(--gradient-gold)",
+                  boxShadow: "var(--shadow-gold)",
+                }}
+              >
+                Live su Zoom · 5-6-7 ottobre
+              </span>
+            </div>
+            <h2 className="mt-4 text-center text-3xl sm:text-4xl">
               Chi ti guiderà in questi tre giorni <Highlight>in diretta</Highlight>?
             </h2>
           </Reveal>
@@ -1696,8 +1719,11 @@ function Index() {
                   CEO e Founder di Rule The Rules
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
-                  Ti guida in tutte e tre le serate: smontiamo insieme le regole che segui oggi e
-                  costruiamo, passo dopo passo, la tua identità comunicativa.
+                  Ti guida in tutte e tre le serate: smontiamo insieme le regole che segui oggi e{" "}
+                  <strong className="font-semibold text-foreground">
+                    costruiamo, passo dopo passo, la tua identità comunicativa
+                  </strong>
+                  .
                 </p>
               </div>
             </Reveal>
@@ -1719,9 +1745,12 @@ function Index() {
                   Esperta di Contenuti
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
-                  Guida la serata dedicata ai contenuti: ti aiuta a trovare il tuo Content Lab
-                  personale e a costruire il tuo sistema operativo creativo, senza più copiare le
-                  regole di nessuno.
+                  Guida la serata dedicata ai contenuti:{" "}
+                  <strong className="font-semibold text-foreground">
+                    ti aiuta a trovare il tuo Content Lab personale e a costruire il tuo sistema
+                    operativo creativo
+                  </strong>
+                  , senza più copiare le regole di nessuno.
                 </p>
               </div>
             </Reveal>
@@ -1794,7 +1823,7 @@ function Index() {
         <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl">
-              Alla fine delle 3 serate avrai in mano il <Highlight>TUO</Highlight> metodo di
+              Alla fine delle 3 serate avrai in mano il <Highlight dark>TUO</Highlight> metodo di
               comunicazione identitaria, che segue le tue regole per vendere online (e non quelle di
               altri).
             </h2>
@@ -1802,21 +1831,21 @@ function Index() {
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <Reveal>
-              <img
-                src={carlottaPresentingImg}
-                alt="Carlotta Sgarra sul palco durante uno dei suoi speech"
-                loading="lazy"
-                width={3504}
-                height={1972}
-                className="aspect-[4/5] w-full rounded-2xl object-cover"
-                style={{ objectPosition: "55% 15%" }}
-              />
+              <TakeawayVisual activeId={activeTakeaway} />
             </Reveal>
 
             <Reveal delay={60}>
               <div className="divide-y divide-ink/15">
                 {takeawayCards.map(({ id, icon: Icon, title, text }) => (
-                  <div key={id} className="flex gap-4 py-5 first:pt-0 last:pb-0">
+                  <div
+                    key={id}
+                    className={`-mx-3 flex cursor-default gap-4 rounded-lg px-3 py-5 transition-colors duration-200 first:pt-0 last:pb-0 ${
+                      activeTakeaway === id ? "bg-white/5" : ""
+                    }`}
+                    onMouseEnter={() => setActiveTakeaway(id)}
+                    onFocus={() => setActiveTakeaway(id)}
+                    tabIndex={0}
+                  >
                     <Icon className="mt-1 size-5 shrink-0 text-primary" />
                     <div>
                       <p className="text-lg font-semibold text-ink sm:text-xl">{title}</p>
@@ -1846,7 +1875,7 @@ function Index() {
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <Reveal>
               <div className="surface-card h-full p-7">
-                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-secondary">
+                <p className="text-base font-bold uppercase tracking-[0.05em] text-secondary sm:text-lg">
                   Se rientri qui, prendi subito il biglietto.
                 </p>
                 <ul className="mt-5 space-y-4">
@@ -1861,7 +1890,7 @@ function Index() {
             </Reveal>
             <Reveal delay={80}>
               <div className="h-full p-7">
-                <p className="font-condensed text-sm uppercase tracking-[0.18em] text-ink-muted/60">
+                <p className="text-base font-bold uppercase tracking-[0.05em] text-ink-muted/60 sm:text-lg">
                   Se rientri qui, non è adatto a te.
                 </p>
                 <ul className="mt-5 space-y-4">
@@ -1893,7 +1922,7 @@ function Index() {
           <TestimonialsExplorer testimonials={videoTestimonials} />
 
           <div className="mt-10 flex justify-center">
-            <CtaButton label="Voglio rompere le mie regole" />
+            <CtaButton label="Voglio rompere le regole" />
           </div>
         </div>
       </section>
@@ -2190,13 +2219,13 @@ function Index() {
               Don’t worry, c’è la garanzia di rimborso.
             </p>
             <p className="mt-8 font-condensed text-sm uppercase tracking-[0.2em] text-secondary">
-              Come funziona
+              Come funziona?
             </p>
             <p className="mt-3 text-base leading-relaxed text-foreground/85">
               Se dopo la prima serata pensi che “Rule The Rules” non faccia per te, scrivici prima
               dell’inizio della seconda serata live (6 ottobre) e{" "}
               <strong className="font-semibold text-foreground">
-                ti rimborsiamo il biglietto, senza bisogno di spiegazioni
+                ti rimborso il biglietto, senza bisogno di spiegazioni
               </strong>
               .
             </p>
@@ -2205,11 +2234,11 @@ function Index() {
                 src={carlottaPointingImg}
                 alt="Carlotta Sgarra"
                 loading="lazy"
-                className="size-16 shrink-0 rounded-lg object-cover"
+                className="size-16 shrink-0 rounded-full object-cover"
                 style={{ objectPosition: "50% 12%" }}
               />
               <p className="text-sm font-bold leading-snug text-foreground">
-                Parola di Carlotta: rimborso per intero entro la seconda serata.
+                Parola di Carlotta: te lo rimborso per intero entro la seconda serata.
               </p>
             </div>
           </Reveal>
@@ -2260,7 +2289,17 @@ function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-background">
+      <footer
+        className="bg-secondary"
+        style={
+          {
+            color: "var(--secondary-foreground)",
+            "--foreground": "var(--secondary-foreground)",
+            "--muted-foreground": "oklch(0.85 0.03 40)",
+            "--border": "color-mix(in oklab, var(--background) 14%, transparent)",
+          } as React.CSSProperties
+        }
+      >
         <div className="mx-auto max-w-4xl space-y-6 px-5 py-14 text-xs leading-relaxed text-muted-foreground">
           <p>
             Questo sito non fa parte del sito web di Facebook né di Meta Platforms, Inc. Inoltre,
@@ -2289,13 +2328,13 @@ function Index() {
           </p>
           <div className="border-t border-border pt-6">
             <p className="font-condensed uppercase tracking-[0.16em] text-foreground">
-              ENDLESS GROUP SRL
+              C.S. ENDLESS GROUP SRL
             </p>
             <p className="mt-2">P.iva: 14295170964</p>
             <p>Viale Emilio Caldara 44 - Milano</p>
             <p>
               Email:{" "}
-              <a href="mailto:info@carlottasgarra.it" className="text-secondary">
+              <a href="mailto:info@carlottasgarra.it" style={{ color: "var(--gold-deep)" }}>
                 info@carlottasgarra.it
               </a>
             </p>

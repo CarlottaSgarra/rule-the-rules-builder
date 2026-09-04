@@ -2,7 +2,7 @@ import workbookCoverImg from "@/assets/workbook-cover.png";
 
 export function Workbook() {
   return (
-    <div className="relative mx-auto w-full max-w-xs pb-6 pl-4">
+    <div className="relative mx-auto w-full max-w-xs sm:pb-6 sm:pl-4">
       <img
         src={workbookCoverImg}
         alt="Copertina del Workbook di Rule The Rules"
@@ -13,13 +13,13 @@ export function Workbook() {
         style={{ boxShadow: "var(--shadow-deep)" }}
       />
       <span
-        className="absolute bottom-0 left-0 max-w-[75%] rounded-xl px-4 py-2.5 text-center font-condensed text-xs uppercase leading-tight tracking-[0.08em] text-primary-foreground sm:text-sm"
+        className="absolute right-0 top-0 whitespace-nowrap rounded-xl px-4 py-2.5 text-center font-condensed text-xs uppercase leading-tight tracking-[0.08em] text-primary-foreground sm:bottom-0 sm:left-0 sm:right-auto sm:top-auto sm:text-sm"
         style={{
           backgroundImage: "var(--gradient-gold)",
           boxShadow: "0 10px 24px -8px rgba(0,0,0,0.5)",
         }}
       >
-        Il workbook ti arriva prima dell’evento
+        Ti arriva prima dell’evento
       </span>
     </div>
   );
