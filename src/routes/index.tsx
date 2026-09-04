@@ -1495,6 +1495,12 @@ function Index() {
                   </div>
                 </Reveal>
               ))}
+
+              <Reveal>
+                <div className="mt-4 flex justify-center">
+                  <CtaButton label="Costruiamo il tuo metodo, allora?" />
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -1735,6 +1741,12 @@ function Index() {
               </div>
             </Reveal>
           </div>
+
+          <Reveal>
+            <div className="mt-14 flex justify-center">
+              <CtaButton label="Sì, voglio essere guidata da loro" />
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -1850,6 +1862,12 @@ function Index() {
               </div>
             </Reveal>
           </div>
+
+          <Reveal>
+            <div className="mt-14 flex justify-center">
+              <CtaButton label="Voglio portarmi tutto questo a casa" />
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -2194,44 +2212,52 @@ function Index() {
 
       {/* Garanzia rimborso */}
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto grid max-w-4xl items-center gap-10 sm:grid-cols-2">
-          <Reveal>
-            <img
-              src={garanziaImg}
-              alt="Garanzia soddisfatta o rimborsata al 100%"
-              loading="lazy"
-              className="mx-auto w-full max-w-xs"
-            />
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 className="text-3xl text-foreground sm:text-4xl">
-              Ancora <Highlight>non sei convinta</Highlight> fino in fondo?
-            </h2>
-            <p className="mt-3 text-base text-foreground/85">
-              Don’t worry, c’è la garanzia di rimborso.
-            </p>
-            <p className="mt-8 font-condensed text-sm uppercase tracking-[0.2em] text-secondary">
-              Come funziona?
-            </p>
-            <p className="mt-3 text-base leading-relaxed text-foreground/85">
-              Se dopo la prima serata pensi che “Rule The Rules” non faccia per te, scrivici prima
-              dell’inizio della seconda serata live (6 ottobre) e{" "}
-              <strong className="font-semibold text-foreground">
-                ti rimborso il biglietto, senza bisogno di spiegazioni
-              </strong>
-              .
-            </p>
-            <div className="mt-8 flex items-center gap-4 rounded-xl border border-border/70 bg-card/50 p-4">
+        <div className="mx-auto max-w-4xl">
+          <div className="grid items-center gap-10 sm:grid-cols-2">
+            <Reveal>
               <img
-                src={carlottaPointingImg}
-                alt="Carlotta Sgarra"
+                src={garanziaImg}
+                alt="Garanzia soddisfatta o rimborsata al 100%"
                 loading="lazy"
-                className="size-16 shrink-0 rounded-full object-cover"
-                style={{ objectPosition: "50% 12%" }}
+                className="mx-auto w-full max-w-xs"
               />
-              <p className="text-sm font-bold leading-snug text-foreground">
-                Parola di Carlotta: te lo rimborso per intero entro la seconda serata.
+            </Reveal>
+            <Reveal delay={80}>
+              <h2 className="text-3xl text-foreground sm:text-4xl">
+                Ancora <Highlight>non sei convinta</Highlight> fino in fondo?
+              </h2>
+              <p className="mt-3 text-base text-foreground/85">
+                Don’t worry, c’è la garanzia di rimborso.
               </p>
+              <p className="mt-8 font-condensed text-sm uppercase tracking-[0.2em] text-secondary">
+                Come funziona?
+              </p>
+              <p className="mt-3 text-base leading-relaxed text-foreground/85">
+                Se dopo la prima serata pensi che “Rule The Rules” non faccia per te, scrivici prima
+                dell’inizio della seconda serata live (6 ottobre) e{" "}
+                <strong className="font-semibold text-foreground">
+                  ti rimborso il biglietto, senza bisogno di spiegazioni
+                </strong>
+                .
+              </p>
+              <div className="mt-8 flex items-center gap-4 rounded-xl border border-border/70 bg-card/50 p-4">
+                <img
+                  src={carlottaPointingImg}
+                  alt="Carlotta Sgarra"
+                  loading="lazy"
+                  className="size-16 shrink-0 rounded-full object-cover"
+                  style={{ objectPosition: "50% 12%" }}
+                />
+                <p className="text-sm font-bold leading-snug text-foreground">
+                  Parola di Carlotta: te lo rimborso per intero entro la seconda serata.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal>
+            <div className="mt-14 flex justify-center">
+              <CtaButton label="Mi iscrivo senza rischio" />
             </div>
           </Reveal>
         </div>
