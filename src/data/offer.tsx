@@ -30,3 +30,31 @@ export const valueStack = [
 export const valueStackTotal = valueStack.reduce((sum, v) => sum + (v.value ?? 0), 0);
 
 export const TICKET_PRICE = 27;
+
+// Upgrade VIP: proposto una tantum, disponibile solo sulla pagina /vip.
+// I valori dei singoli bonus sono una proposta (coerente con la scala di
+// prezzi già usata in valueStack) — da confermare/aggiustare prima del lancio.
+export const vipBonuses = [
+  {
+    id: "registrazione",
+    title: "Registrazione completa delle tre serate",
+    d: "Rivedi ogni serata quando vuoi, quante volte vuoi, senza perderti nessun passaggio.",
+    value: 97,
+  },
+  {
+    id: "live-analisi",
+    title: "Live esclusiva il giorno dopo l’evento",
+    d: "Un’ora in diretta con Carlotta: analisi del tuo profilo e formazione sulla parte di vendita.",
+    value: 147,
+  },
+  {
+    id: "correzione-workbook",
+    title: "Correzione del tuo Workbook",
+    d: "Carlotta e il suo team leggono e correggono personalmente il workbook che hai compilato.",
+    value: 97,
+  },
+];
+
+export const vipBonusesTotal = vipBonuses.reduce((sum, b) => sum + b.value, 0);
+
+export const VIP_PRICE = 97;
