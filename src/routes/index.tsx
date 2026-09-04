@@ -38,6 +38,7 @@ import client5Img from "@/assets/client-5.png";
 import client6Img from "@/assets/client-6.png";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import methodBgImg from "@/assets/method-bg.jpg";
+import garanziaImg from "@/assets/soddisfatto-o-rimborsato.png";
 import carlottaHugImg from "@/assets/carlotta-hug.jpg";
 import carlottaPointingImg from "@/assets/carlotta-pointing.jpg";
 import carlottaLookingImg from "@/assets/carlotta-looking.jpg";
@@ -823,11 +824,23 @@ const aboutStats = [
 const twoPaths = {
   a: {
     title: "Continuare come adesso",
-    d: "Ti svegli, apri Instagram per “ispirarti” e dopo venti minuti hai solo ansia. Scrivi un post seguendo lo schema che va di moda, lo cancelli tre volte, lo pubblichi lo stesso senza convinzione. La sera controlli gli insight e ti chiedi, ancora una volta, perché a te non funziona come alle altre.",
+    intro: "La tua giornata tipo, se non cambia niente:",
+    bullets: [
+      "Apri Instagram per “ispirarti” e dopo venti minuti hai solo ansia",
+      "Scrivi un post seguendo lo schema che va di moda, lo cancelli tre volte",
+      "Lo pubblichi lo stesso, senza convinzione",
+      "La sera controlli gli insight e ti chiedi, ancora una volta, perché a te non funziona come alle altre",
+    ],
   },
   b: {
     title: "Costruire la tua comunicazione",
-    d: "Ti svegli sapendo esattamente di cosa vuoi parlare, perché hai un piano editoriale che è tuo. Scrivi un contenuto in metà del tempo perché segui le tue Anti-Regole, non quelle di un corso qualsiasi. La sera chiudi il telefono con la sensazione, finalmente, di essere stata vista per quella che sei davvero.",
+    intro: "La tua giornata tipo, dopo Rule The Rules:",
+    bullets: [
+      "Sai esattamente di cosa vuoi parlare, perché hai un piano editoriale che è tuo",
+      "Scrivi un contenuto in metà del tempo seguendo le tue Anti-Regole",
+      "Non copi più nessun corso, nessuna creator, nessuno schema",
+      "La sera chiudi il telefono con la sensazione di essere stata vista per quella che sei davvero",
+    ],
   },
 };
 
@@ -999,10 +1012,10 @@ function Index() {
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-1 px-2 py-2 text-sm text-muted-foreground sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5 sm:py-4">
           <p className="min-w-0 flex-1 font-condensed text-[10px] font-bold uppercase tracking-[0.06em] text-foreground sm:flex-none sm:text-base sm:tracking-[0.15em] sm:justify-self-start">
-            <span className="sm:hidden">Live su Zoom · </span>
+            <span>Live su Zoom · </span>
             <span className="whitespace-nowrap">5-6-7 Ottobre</span>
           </p>
-          <div className="flex shrink-0 items-center gap-1 sm:flex-wrap sm:justify-center sm:gap-x-4 sm:gap-y-2 sm:justify-self-center">
+          <div className="flex flex-1 items-center justify-center gap-1 sm:flex-none sm:flex-wrap sm:gap-x-4 sm:gap-y-2 sm:justify-self-center">
             <span className="hidden font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground sm:inline">
               L’evento inizia tra
             </span>
@@ -2035,17 +2048,43 @@ function Index() {
                 <p className="font-condensed text-lg uppercase tracking-[0.12em] text-muted-foreground">
                   {twoPaths.a.title}
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-foreground/75">{twoPaths.a.d}</p>
+                <p className="mt-3 text-sm font-semibold text-foreground/85">{twoPaths.a.intro}</p>
+                <ul className="mt-3 space-y-2">
+                  {twoPaths.a.bullets.map((b) => (
+                    <li key={b} className="flex gap-2 text-sm leading-relaxed text-foreground/75">
+                      <span className="mt-0.5 shrink-0 text-muted-foreground">✕</span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </Reveal>
             <Reveal delay={100}>
-              <div className="surface-card h-full p-5 sm:p-7">
-                <p className="font-condensed text-lg uppercase tracking-[0.12em] text-secondary">
-                  {twoPaths.b.title}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-foreground/90">{twoPaths.b.d}</p>
-                <div className="mt-6">
-                  <CtaButton label="Ovviamente scelgo la B" />
+              <div className="relative h-full overflow-hidden rounded-xl p-5 sm:p-7">
+                <img
+                  src={carlottaHugImg}
+                  alt="Carlotta Sgarra abbraccia una partecipante a un suo evento live"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  style={{ objectPosition: "50% 20%" }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40" />
+                <div className="relative">
+                  <p className="font-condensed text-lg uppercase tracking-[0.12em] text-primary">
+                    {twoPaths.b.title}
+                  </p>
+                  <p className="mt-3 text-sm font-semibold text-white">{twoPaths.b.intro}</p>
+                  <ul className="mt-3 space-y-2">
+                    {twoPaths.b.bullets.map((b) => (
+                      <li key={b} className="flex gap-2 text-sm leading-relaxed text-white/90">
+                        <span className="mt-0.5 shrink-0 text-primary">✓</span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-6">
+                    <CtaButton label="Scelgo questa opzione" />
+                  </div>
                 </div>
               </div>
             </Reveal>
@@ -2112,13 +2151,26 @@ function Index() {
 
       {/* Garanzia rimborso */}
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto grid max-w-4xl items-center gap-10 sm:grid-cols-2">
           <Reveal>
-            <p className="text-4xl">🛡️</p>
-            <h2 className="mt-4 text-3xl text-foreground sm:text-4xl">
-              <Highlight>Soddisfatta o rimborsata</Highlight>, senza fare domande.
+            <img
+              src={garanziaImg}
+              alt="Garanzia soddisfatta o rimborsata al 100%"
+              loading="lazy"
+              className="mx-auto w-full max-w-xs"
+            />
+          </Reveal>
+          <Reveal delay={80}>
+            <h2 className="text-3xl text-foreground sm:text-4xl">
+              Ancora <Highlight>non sei convinta</Highlight> fino in fondo?
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-foreground/85">
+            <p className="mt-3 text-base text-foreground/85">
+              Don’t worry, c’è la garanzia di rimborso.
+            </p>
+            <p className="mt-8 font-condensed text-sm uppercase tracking-[0.2em] text-secondary">
+              Come funziona
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-foreground/85">
               Se dopo la prima serata pensi che “Rule The Rules” non faccia per te, scrivici prima
               dell’inizio della seconda serata live (6 ottobre) e{" "}
               <strong className="font-semibold text-foreground">
@@ -2131,16 +2183,13 @@ function Index() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-background px-4 py-10 sm:px-8 sm:py-14">
-        <div
-          className="surface-cream mx-auto max-w-3xl px-6 py-16 sm:px-12 sm:py-20"
-          style={{ borderRadius: "1.75rem" }}
-        >
+      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-3xl">
           <Reveal>
-            <h2 className="text-3xl text-ink sm:text-4xl">
-              Domande <Highlight dark>Frequenti</Highlight>
+            <h2 className="text-3xl text-foreground sm:text-4xl">
+              Domande <Highlight>Frequenti</Highlight>
             </h2>
-            <p className="mt-3 text-sm text-ink-muted">
+            <p className="mt-3 text-sm text-muted-foreground">
               Hai bisogno di supporto? Scrivi a{" "}
               <a
                 href="mailto:info@carlottasgarra.it"
@@ -2152,11 +2201,11 @@ function Index() {
             </p>
             <Accordion type="single" collapsible className="mt-8">
               {faqs.map((f) => (
-                <AccordionItem key={f.q} value={f.q} className="border-ink/15">
-                  <AccordionTrigger className="text-left text-base text-ink">
+                <AccordionItem key={f.q} value={f.q} className="border-border/70">
+                  <AccordionTrigger className="text-left text-base text-foreground">
                     {f.q}
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm leading-relaxed text-ink-muted">
+                  <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
                     {f.a}
                   </AccordionContent>
                 </AccordionItem>
