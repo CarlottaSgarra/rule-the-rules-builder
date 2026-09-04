@@ -155,7 +155,7 @@ const sessions = [
   {
     n: "1",
     date: "5 ottobre",
-    time: "20:00",
+    time: "19:30",
     guides: [
       {
         name: "Carlotta",
@@ -205,7 +205,7 @@ const sessions = [
   {
     n: "2",
     date: "6 ottobre",
-    time: "20:00",
+    time: "19:30",
     guides: [
       {
         name: "Carlotta",
@@ -260,7 +260,7 @@ const sessions = [
   {
     n: "3",
     date: "7 ottobre",
-    time: "20:00",
+    time: "19:30",
     guides: [
       {
         name: "Carlotta",
@@ -1015,9 +1015,11 @@ function Index() {
         }
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-1 px-4 py-2 text-sm text-muted-foreground sm:grid sm:grid-cols-3 sm:gap-3 sm:px-5 sm:py-4">
-          <p className="min-w-0 flex-1 font-condensed text-[10px] font-bold uppercase tracking-[0.06em] text-foreground sm:flex-none sm:text-base sm:tracking-[0.15em] sm:justify-self-start">
-            <span>Live su Zoom · </span>
-            <span className="whitespace-nowrap">5-6-7 Ottobre</span>
+          <p className="min-w-0 flex-1 font-condensed text-[10px] font-bold uppercase tracking-[0.06em] text-foreground sm:flex-none sm:text-base sm:leading-tight sm:tracking-[0.15em] sm:justify-self-start">
+            <span className="sm:block">
+              Live su Zoom<span className="sm:hidden"> · </span>
+            </span>
+            <span className="whitespace-nowrap sm:block">5-6-7 Ottobre</span>
           </p>
           <div className="flex flex-1 items-center justify-center gap-1 sm:flex-none sm:flex-wrap sm:gap-x-4 sm:gap-y-2 sm:justify-self-center">
             <span className="hidden font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground sm:inline">
@@ -1081,7 +1083,7 @@ function Index() {
         <div className="relative z-10 col-start-1 row-start-1 mx-auto flex w-full max-w-5xl flex-col items-center px-5 pb-20 pt-10 text-center sm:pt-20">
           <Reveal>
             <p className="font-condensed text-xs uppercase tracking-[0.4em] text-secondary sm:text-sm">
-              Live su Zoom · 5, 6, 7 ottobre · ore 20:00
+              Live su Zoom · 5-6-7 ottobre · ore 19:30
             </p>
           </Reveal>
 
@@ -1125,148 +1127,153 @@ function Index() {
           </Reveal>
 
           <Reveal delay={300} className="mt-10 w-full">
-            <div
-              id="iscriviti"
-              className="relative overflow-hidden rounded-[2rem]"
-              style={
-                {
-                  backgroundImage:
-                    "linear-gradient(100deg, var(--secondary) 0%, var(--secondary) 45%, color-mix(in oklab, var(--primary) 32%, var(--secondary)) 100%)",
-                  border: "2px solid var(--primary)",
-                  boxShadow:
-                    "var(--shadow-gold), 0 60px 100px -30px color-mix(in oklab, var(--primary) 45%, transparent)",
-                  "--foreground": "var(--secondary-foreground)",
-                  "--muted-foreground": "oklch(0.85 0.03 40)",
-                } as React.CSSProperties
-              }
-            >
-              <div className="grid grid-cols-1 text-left md:grid-cols-[3fr_7fr]">
-                <div className="relative h-96 w-full md:h-full">
-                  <img
-                    src={carlottaHugImg}
-                    alt="Carlotta Sgarra abbraccia una partecipante a un suo evento live"
-                    loading="lazy"
-                    className="h-full w-full object-cover"
-                    style={{ objectPosition: "50% 25%" }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
-                  <p className="absolute inset-x-0 bottom-0 p-5 text-center text-lg font-semibold leading-snug text-white sm:p-6 sm:text-xl">
-                    Questo invito è per te, che sei stanca di sottometterti alle regole
-                    dell’algoritmo e vuoi far uscire <Highlight dark>la vera te stessa</Highlight>.
-                  </p>
-                </div>
-
-                <div
-                  className="relative border-t-2 border-dashed p-6 sm:p-10 md:border-l-2 md:border-t-0"
-                  style={{ borderColor: "color-mix(in oklab, var(--primary) 55%, transparent)" }}
-                >
-                  <div className="mx-auto max-w-sm">
-                    <p className="text-center text-base font-semibold text-foreground">
-                      Pronta a rompere le regole una volta per tutte e a ridefinire la tua
-                      comunicazione identitaria?
-                    </p>
-                    <div className="mt-3 flex justify-center">
-                      <span
-                        className="inline-block rounded-full px-5 py-2 font-condensed text-xs uppercase tracking-[0.25em] text-primary-foreground sm:text-sm"
-                        style={{
-                          backgroundImage: "var(--gradient-gold)",
-                          boxShadow: "var(--shadow-gold)",
-                        }}
-                      >
-                        Live su Zoom · 5-6-7 ottobre
-                      </span>
-                    </div>
-                    <SignupForm
-                      className="mt-6"
-                      submitSub="Soli €27 · 5-6-7 ottobre · Garanzia di rimborso"
+            <div className="ticket-border-glow relative rounded-[2rem]">
+              <div
+                id="iscriviti"
+                className="relative overflow-hidden rounded-[2rem]"
+                style={
+                  {
+                    backgroundImage:
+                      "linear-gradient(100deg, var(--secondary) 0%, var(--secondary) 45%, color-mix(in oklab, var(--primary) 32%, var(--secondary)) 100%)",
+                    border: "2px solid var(--primary)",
+                    boxShadow:
+                      "var(--shadow-gold), 0 60px 100px -30px color-mix(in oklab, var(--primary) 45%, transparent)",
+                    "--foreground": "var(--secondary-foreground)",
+                    "--muted-foreground": "oklch(0.85 0.03 40)",
+                  } as React.CSSProperties
+                }
+              >
+                <div className="grid grid-cols-1 text-left md:grid-cols-[3fr_7fr]">
+                  <div className="relative h-96 w-full md:h-full">
+                    <img
+                      src={carlottaHugImg}
+                      alt="Carlotta Sgarra abbraccia una partecipante a un suo evento live"
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                      style={{ objectPosition: "50% 25%" }}
                     />
-                    <div className="mt-4 flex justify-center">
-                      <div
-                        className="inline-flex flex-col items-center gap-1.5 rounded-xl px-4 py-2.5 sm:flex-row sm:items-center sm:gap-3"
-                        style={{
-                          backgroundColor: "color-mix(in oklab, var(--secondary) 35%, transparent)",
-                          border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
-                        }}
-                      >
-                        <div className="flex -space-x-3">
-                          {clientAvatars.slice(0, 5).map((src, i) => (
-                            <img
-                              key={i}
-                              src={src}
-                              alt=""
-                              aria-hidden
-                              loading="lazy"
-                              className="size-9 shrink-0 rounded-full border-2 object-cover"
-                              style={{ borderColor: "var(--secondary)" }}
-                            />
-                          ))}
-                        </div>
-                        <div className="text-center sm:text-left">
-                          <div className="flex justify-center gap-0.5 text-primary sm:justify-start">
-                            {Array.from({ length: 5 }).map((_, i) => (
-                              <Star key={i} className="size-3.5 fill-current" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
+                    <p className="absolute inset-x-0 bottom-0 p-5 text-center text-lg font-semibold leading-snug text-white sm:p-6 sm:text-xl">
+                      Questo invito è per te, che sei stanca di sottometterti alle regole
+                      dell’algoritmo e vuoi far uscire <Highlight dark>la vera te stessa</Highlight>
+                      .
+                    </p>
+                  </div>
+
+                  <div
+                    className="relative border-t-2 border-dashed p-6 sm:p-10 md:border-l-2 md:border-t-0"
+                    style={{ borderColor: "color-mix(in oklab, var(--primary) 55%, transparent)" }}
+                  >
+                    <div className="mx-auto max-w-sm">
+                      <p className="text-center text-base font-semibold text-foreground">
+                        Pronta a rompere le regole una volta per tutte e a ridefinire la tua
+                        comunicazione identitaria?
+                      </p>
+                      <div className="mt-3 flex justify-center">
+                        <span
+                          className="inline-block rounded-full px-5 py-2 font-condensed text-xs uppercase tracking-[0.25em] text-primary-foreground sm:text-sm"
+                          style={{
+                            backgroundImage: "var(--gradient-gold)",
+                            boxShadow: "var(--shadow-gold)",
+                          }}
+                        >
+                          Live su Zoom · 5-6-7 ottobre
+                        </span>
+                      </div>
+                      <SignupForm
+                        className="mt-6"
+                        submitSub="Soli €27 · 5-6-7 ottobre · Garanzia di rimborso"
+                      />
+                      <div className="mt-4 flex justify-center">
+                        <div
+                          className="inline-flex flex-col items-center gap-1.5 rounded-xl px-4 py-2.5 sm:flex-row sm:items-center sm:gap-3"
+                          style={{
+                            backgroundColor:
+                              "color-mix(in oklab, var(--secondary) 35%, transparent)",
+                            border:
+                              "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
+                          }}
+                        >
+                          <div className="flex -space-x-3">
+                            {clientAvatars.slice(0, 5).map((src, i) => (
+                              <img
+                                key={i}
+                                src={src}
+                                alt=""
+                                aria-hidden
+                                loading="lazy"
+                                className="size-9 shrink-0 rounded-full border-2 object-cover"
+                                style={{ borderColor: "var(--secondary)" }}
+                              />
                             ))}
                           </div>
-                          <p className="mt-0.5 whitespace-nowrap text-[10px] text-foreground/85 sm:text-sm">
-                            +1.500 professioniste formate
-                          </p>
+                          <div className="text-center sm:text-left">
+                            <div className="flex justify-center gap-0.5 text-primary sm:justify-start">
+                              {Array.from({ length: 5 }).map((_, i) => (
+                                <Star key={i} className="size-3.5 fill-current" />
+                              ))}
+                            </div>
+                            <p className="mt-0.5 whitespace-nowrap text-[10px] text-foreground/85 sm:text-sm">
+                              +1.500 professioniste formate
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <span
-                className="absolute hidden h-6 w-12 -translate-x-1/2 md:block"
-                style={{
-                  left: "30%",
-                  top: "-2px",
-                  backgroundColor: "var(--background)",
-                  borderStyle: "solid",
-                  borderWidth: "0 2px 2px 2px",
-                  borderColor: "var(--primary)",
-                  borderRadius: "0 0 999px 999px",
-                }}
-                aria-hidden
-              />
-              <span
-                className="absolute hidden h-6 w-12 -translate-x-1/2 md:block"
-                style={{
-                  left: "30%",
-                  bottom: "-2px",
-                  backgroundColor: "var(--background)",
-                  borderStyle: "solid",
-                  borderWidth: "2px 2px 0 2px",
-                  borderColor: "var(--primary)",
-                  borderRadius: "999px 999px 0 0",
-                }}
-                aria-hidden
-              />
-              <span
-                className="absolute top-96 h-12 w-6 -translate-y-1/2 md:hidden"
-                style={{
-                  left: "-2px",
-                  backgroundColor: "var(--background)",
-                  borderStyle: "solid",
-                  borderWidth: "2px 2px 2px 0",
-                  borderColor: "var(--primary)",
-                  borderRadius: "0 999px 999px 0",
-                }}
-                aria-hidden
-              />
-              <span
-                className="absolute top-96 h-12 w-6 -translate-y-1/2 md:hidden"
-                style={{
-                  right: "-2px",
-                  backgroundColor: "var(--background)",
-                  borderStyle: "solid",
-                  borderWidth: "2px 0 2px 2px",
-                  borderColor: "var(--primary)",
-                  borderRadius: "999px 0 0 999px",
-                }}
-                aria-hidden
-              />
+                <span
+                  className="absolute hidden h-6 w-12 -translate-x-1/2 md:block"
+                  style={{
+                    left: "30%",
+                    top: "-2px",
+                    backgroundColor: "var(--background)",
+                    borderStyle: "solid",
+                    borderWidth: "0 2px 2px 2px",
+                    borderColor: "var(--primary)",
+                    borderRadius: "0 0 999px 999px",
+                  }}
+                  aria-hidden
+                />
+                <span
+                  className="absolute hidden h-6 w-12 -translate-x-1/2 md:block"
+                  style={{
+                    left: "30%",
+                    bottom: "-2px",
+                    backgroundColor: "var(--background)",
+                    borderStyle: "solid",
+                    borderWidth: "2px 2px 0 2px",
+                    borderColor: "var(--primary)",
+                    borderRadius: "999px 999px 0 0",
+                  }}
+                  aria-hidden
+                />
+                <span
+                  className="absolute top-96 h-12 w-6 -translate-y-1/2 md:hidden"
+                  style={{
+                    left: "-2px",
+                    backgroundColor: "var(--background)",
+                    borderStyle: "solid",
+                    borderWidth: "2px 2px 2px 0",
+                    borderColor: "var(--primary)",
+                    borderRadius: "0 999px 999px 0",
+                  }}
+                  aria-hidden
+                />
+                <span
+                  className="absolute top-96 h-12 w-6 -translate-y-1/2 md:hidden"
+                  style={{
+                    right: "-2px",
+                    backgroundColor: "var(--background)",
+                    borderStyle: "solid",
+                    borderWidth: "2px 0 2px 2px",
+                    borderColor: "var(--primary)",
+                    borderRadius: "999px 0 0 999px",
+                  }}
+                  aria-hidden
+                />
+              </div>
             </div>
           </Reveal>
 
@@ -1328,8 +1335,7 @@ function Index() {
                 Io non voglio darti altre regole da seguire.
               </p>
               <p>
-                Il 5, 6 e 7 ottobre, dalle 20 alle 21, in diretta su Zoom, ti mostro come smettere
-                di farlo.
+                Il 5-6-7 ottobre, dalle 19:30, in diretta su Zoom, ti mostro come smettere di farlo.
               </p>
               <p>
                 Prendiamo le regole che ti hanno insegnato e le buttiamo via una a una, e al loro
@@ -2116,9 +2122,10 @@ function Index() {
               </div>
               <div className="p-6 sm:p-8">
                 <p className="text-lg font-semibold text-foreground sm:text-xl">
-                  Facciamo un recap di tutto quello che ti porti a casa con solo 27€ di iscrizione
+                  Facciamo un recap di <Highlight>tutto quello che ti porti a casa</Highlight> con
+                  solo 27€ di iscrizione
                 </p>
-                <p className="mt-1 text-xs text-muted-foreground">5, 6 e 7 ottobre 2026 · Online</p>
+                <p className="mt-1 text-xs text-muted-foreground">5-6-7 ottobre 2026 · Online</p>
 
                 <div className="mt-6 space-y-4 text-sm">
                   {valueStack.map((v) => (
@@ -2147,10 +2154,7 @@ function Index() {
                     <span className="text-foreground">Valore totale</span>
                     <span className="text-muted-foreground line-through">{valueStackTotal}€</span>
                   </div>
-                  <p
-                    className="mt-1 text-right text-2xl font-semibold"
-                    style={{ color: "var(--gold-deep)" }}
-                  >
+                  <p className="mt-2 text-center text-4xl font-bold text-secondary sm:text-5xl">
                     27€
                   </p>
                 </div>
@@ -2193,6 +2197,18 @@ function Index() {
               </strong>
               .
             </p>
+            <div className="mt-8 flex items-center gap-4 rounded-xl border border-border/70 bg-card/50 p-4">
+              <img
+                src={carlottaPointingImg}
+                alt="Carlotta Sgarra"
+                loading="lazy"
+                className="size-16 shrink-0 rounded-lg object-cover"
+                style={{ objectPosition: "50% 12%" }}
+              />
+              <p className="text-sm font-bold leading-snug text-foreground">
+                Parola di Carlotta: rimborso per intero entro la seconda serata.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>
