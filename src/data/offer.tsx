@@ -40,14 +40,22 @@ export const vipBonuses = [
     title: "Registrazione completa delle tre serate",
     d: (
       <>
-        Le serate live durano il tempo che durano, ma la trasformazione che ti porti a casa non
-        dovrebbe avere una scadenza. Con la registrazione completa{" "}
-        <strong className="font-semibold">
-          puoi tornare su ogni singolo passaggio quante volte vuoi
-        </strong>
-        : quel dettaglio che ti è sfuggito, quell’esercizio che vuoi rifare con calma, quella frase
-        di Carlotta che vuoi risentire perché ti ha colpita. Niente ansia di prendere appunti in
-        diretta: <strong className="font-semibold">il metodo resta tuo, per sempre</strong>.
+        <p>
+          Le serate live durano il tempo che durano, ma la trasformazione che ti porti a casa non
+          dovrebbe avere una scadenza.
+        </p>
+        <p>
+          Con la registrazione completa{" "}
+          <strong className="font-semibold">
+            puoi tornare su ogni singolo passaggio quante volte vuoi
+          </strong>
+          : quel dettaglio che ti è sfuggito, quell’esercizio che vuoi rifare con calma, quella
+          frase di Carlotta che vuoi risentire perché ti ha colpita.
+        </p>
+        <p>
+          Niente ansia di prendere appunti in diretta:{" "}
+          <strong className="font-semibold">il metodo resta tuo, per sempre</strong>.
+        </p>
       </>
     ),
     value: 97,
@@ -57,13 +65,17 @@ export const vipBonuses = [
     title: "Live esclusiva il giorno dopo l’evento",
     d: (
       <>
-        Il giorno dopo l’ultima serata, mentre tutte le altre tornano alla loro routine, tu hai
-        ancora <strong className="font-semibold">un’ora intera con Carlotta</strong>, dedicata solo
-        a te e al tuo profilo. Niente teoria generica: analizziamo insieme cosa funziona davvero
-        nella tua comunicazione e cosa no, e ti do gli strumenti pratici per trasformare quello che
-        hai appena imparato in{" "}
-        <strong className="font-semibold">vendite vere, non solo in follower in più</strong>. È il
-        passaggio che separa chi guarda un evento da chi lo trasforma in risultati.
+        <p>
+          Il giorno dopo l’ultima serata, mentre tutte le altre tornano alla loro routine, tu hai
+          ancora <strong className="font-semibold">un’ora intera con Carlotta</strong>, dedicata
+          solo a te e al tuo profilo.
+        </p>
+        <p>
+          Niente teoria generica: analizziamo insieme cosa funziona davvero nella tua comunicazione
+          e cosa no, e ti do gli strumenti pratici per trasformare quello che hai appena imparato in{" "}
+          <strong className="font-semibold">vendite vere, non solo in follower in più</strong>.
+        </p>
+        <p>È il passaggio che separa chi guarda un evento da chi lo trasforma in risultati.</p>
       </>
     ),
     value: 147,
@@ -73,21 +85,48 @@ export const vipBonuses = [
     title: "Correzione del tuo Workbook",
     d: (
       <>
-        Il Workbook che compili durante le tre serate è la mappa della tua nuova identità
-        comunicativa, ma una mappa vale solo se qualcuno di esperto controlla che tu l’abbia
-        disegnata bene.{" "}
-        <strong className="font-semibold">
-          Carlotta e il suo team leggono personalmente il tuo Workbook
-        </strong>{" "}
-        e ti restituiscono correzioni e suggerimenti su misura, così non resti con il dubbio di aver
-        fatto l’esercizio “giusto”:{" "}
-        <strong className="font-semibold">
-          sai esattamente dove sei forte e dove lavorare ancora
-        </strong>
-        .
+        <p>
+          Il Workbook che compili durante le tre serate è la mappa della tua nuova identità
+          comunicativa, ma una mappa vale solo se qualcuno di esperto controlla che tu l’abbia
+          disegnata bene.
+        </p>
+        <p>
+          <strong className="font-semibold">
+            Carlotta e il suo team leggono personalmente il tuo Workbook
+          </strong>{" "}
+          e ti restituiscono correzioni e suggerimenti su misura.
+        </p>
+        <p>
+          Così non resti con il dubbio di aver fatto l’esercizio “giusto”:{" "}
+          <strong className="font-semibold">
+            sai esattamente dove sei forte e dove lavorare ancora
+          </strong>
+          .
+        </p>
       </>
     ),
     value: 97,
+  },
+  {
+    id: "profilo-qa",
+    title: "Il tuo profilo protagonista nei Q&A",
+    d: (
+      <>
+        <p>
+          Durante i momenti di Q&A delle tre serate live, hai la possibilità di{" "}
+          <strong className="font-semibold">
+            portare il tuo profilo o i tuoi contenuti direttamente all’attenzione di Carlotta
+          </strong>
+          .
+        </p>
+        <p>
+          Niente domande generiche su casi teorici: il confronto è sul tuo Instagram vero, con un
+          feedback pratico che puoi applicare da subito.
+        </p>
+        <p>Un’occasione in più per uscire dalle serate con le idee chiare su cosa cambiare.</p>
+      </>
+    ),
+    value: 67,
   },
 ];
 

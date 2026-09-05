@@ -112,7 +112,7 @@ function CheckoutVip() {
                               )}
                             </span>
                           </div>
-                          <p className="text-xs text-muted-foreground">{v.d}</p>
+                          <div className="space-y-1 text-xs text-muted-foreground">{v.d}</div>
                         </div>
                       ))}
                     </div>

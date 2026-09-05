@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FileCheck2, Users, Video as VideoIcon } from "lucide-react";
+import { FileCheck2, Instagram, Users, Video as VideoIcon } from "lucide-react";
 import { CtaButton } from "@/components/landing/CtaButton";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -9,11 +9,12 @@ import { vipBonuses, vipBonusesTotal, VIP_PRICE } from "@/data/offer";
 import carlottaLookingImg from "@/assets/carlotta-looking.jpg";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
+import carlottaWalkingImg from "@/assets/carlotta-walking.jpg";
 
 export const Route = createFileRoute("/vip")({
   head: () => ({
     meta: [
-      { title: "Upgrade VIP — disponibile solo qui | Rule The Rules 2026" },
+      { title: "Upgrade VIP: disponibile solo qui | Rule The Rules 2026" },
       {
         name: "description",
         content:
@@ -25,8 +26,13 @@ export const Route = createFileRoute("/vip")({
   component: Vip,
 });
 
-const bonusIcons = [VideoIcon, Users, FileCheck2];
-const bonusPhotos = [carlottaLookingImg, carlottaPresentingImg, carlottaTalkingImg];
+const bonusIcons = [VideoIcon, Users, FileCheck2, Instagram];
+const bonusPhotos = [
+  carlottaLookingImg,
+  carlottaPresentingImg,
+  carlottaTalkingImg,
+  carlottaWalkingImg,
+];
 
 // TODO: sostituire con l'URL reale del prodotto/form systeme.io per
 // l'upgrade VIP a 97€ — non è lo stesso form del biglietto standard.
@@ -56,7 +62,7 @@ function Vip() {
     <div className="bg-background">
       {/* Intro */}
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-4xl text-center">
           <Reveal>
             <span
               className="inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
@@ -67,11 +73,11 @@ function Vip() {
             <h1 className="mt-4 text-3xl sm:text-4xl">
               Aspetta! <Highlight>Prima di continuare</Highlight>, c’è una cosa che devi sapere
             </h1>
-            <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-foreground/80 sm:text-lg">
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
               Hai davanti a te un’occasione che{" "}
               <strong className="font-semibold text-foreground">non tornerà più</strong>: l’upgrade
-              a VIP. Non è l’ennesimo upsell — è la versione di Rule The Rules pensata per chi non
-              si accontenta di ascoltare, ma vuole{" "}
+              a VIP. Non è l’ennesimo upsell: è la versione di Rule The Rules pensata per chi non si
+              accontenta di ascoltare, ma vuole{" "}
               <strong className="font-semibold text-foreground">essere seguita da vicino</strong>,
               un passo alla volta.{" "}
               <strong className="font-semibold text-foreground">
@@ -149,9 +155,9 @@ function Vip() {
                       Bonus VIP {i + 1} di {vipBonuses.length}
                     </p>
                     <h2 className="mt-3 text-3xl text-foreground sm:text-4xl">{bonus.title}</h2>
-                    <p className="mt-4 text-base leading-relaxed text-foreground/80 sm:text-lg">
+                    <div className="mt-4 space-y-3 text-base leading-relaxed text-foreground/80 sm:text-lg">
                       {bonus.d}
-                    </p>
+                    </div>
                     <p className="mt-6 text-lg text-foreground/60">
                       Valore: <span className="font-semibold line-through">{bonus.value}€</span>{" "}
                       <span className={`font-semibold ${dark ? "text-primary" : "text-secondary"}`}>

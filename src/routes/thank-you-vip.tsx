@@ -162,7 +162,7 @@ function ThankYouVip() {
             {[...valueStack, ...vipBonuses.map((b) => ({ t: b.title, d: b.d }))].map((item) => (
               <div key={item.t} className="rounded-xl border border-border/70 bg-card/50 p-4">
                 <p className="font-medium text-foreground">{item.t}</p>
-                <p className="mt-1 leading-relaxed text-muted-foreground">{item.d}</p>
+                <div className="mt-1 space-y-1 leading-relaxed text-muted-foreground">{item.d}</div>
               </div>
             ))}
           </div>
