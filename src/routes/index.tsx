@@ -1655,11 +1655,13 @@ function Index() {
                   Bonus community
                 </span>
                 <p className="mt-4 text-lg font-semibold text-ink sm:text-xl">
-                  Chi si iscrive e lascia il suo numero di WhatsApp accede anche al{" "}
-                  <Highlight dark>gruppo live di WhatsApp</Highlight> dedicato all’evento.
+                  Tra i bonus per chi si iscrive c’è anche il{" "}
+                  <Highlight dark>gruppo WhatsApp</Highlight>.
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
-                  Dove ci si scambia i confronti e dove io e il mio team rispondiamo, e così via.
+                  Un gruppo attivo per tutta la durata dell’evento, dove puoi confrontarti con me e
+                  con il mio team, fare domande, ricevere i materiali e interagire con le altre
+                  persone iscritte.
                 </p>
               </div>
             </div>
