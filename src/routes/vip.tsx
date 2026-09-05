@@ -66,7 +66,16 @@ function Vip() {
             <h1 className="mt-4 text-3xl sm:text-4xl">
               Aspetta! <Highlight>Prima di continuare</Highlight>, c’è una cosa che devi sapere
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
+          </Reveal>
+
+          <Reveal delay={80}>
+            <div className="mt-8">
+              <VideoFrame label="Guarda perché conviene fare l’upgrade" duration="2:14" />
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
               Hai appena sbloccato l’accesso alle 3 serate live. Ma le 3 serate sono live e non sono
               registrate. O almeno, lo sono se fai{" "}
               <strong className="font-semibold text-foreground">l’upgrade al pacchetto VIP</strong>{" "}
@@ -88,12 +97,6 @@ function Vip() {
               </strong>
               : una cosa che non faccio praticamente mai.
             </p>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <div className="mt-8">
-              <VideoFrame label="Guarda perché conviene fare l’upgrade" duration="2:14" />
-            </div>
           </Reveal>
 
           <Reveal delay={160}>

@@ -41,15 +41,16 @@ export const vipBonuses = [
     d: (
       <>
         <p>
-          Le tre serate sono live: se ti perdi un pezzo o vuoi risentirlo con calma, senza la
-          registrazione non puoi.
+          Con il biglietto standard sblocchi la diretta delle tre serate. Con l’upgrade VIP hai
+          anche <strong className="font-semibold">l’accesso a vita alla registrazione</strong> delle
+          tre serate.
         </p>
         <p>
-          Con l’upgrade VIP hai{" "}
-          <strong className="font-semibold">la registrazione completa delle tre serate</strong>: la
-          guardi quante volte vuoi, quando vuoi, anche dopo la fine dell’evento.
+          Se vuoi rivederti un dettaglio che ti è sfuggito, fare un esercizio o rivedere una parte
+          del metodo, con la registrazione lo fai{" "}
+          <strong className="font-semibold">quante volte vuoi, al tuo ritmo</strong>, senza nessun
+          problema.
         </p>
-        <p>Il metodo resta tuo per sempre, non solo per tre sere.</p>
       </>
     ),
     value: 97,
@@ -59,17 +60,20 @@ export const vipBonuses = [
     title: "Live esclusiva il giorno dopo l’evento",
     d: (
       <>
-        <p>Il giorno dopo l’ultima serata faccio una diretta in più, solo per chi ha il VIP.</p>
         <p>
-          Parliamo di vendita online e{" "}
-          <strong className="font-semibold">
-            analizziamo insieme i profili Instagram di chi partecipa
-          </strong>
-          .
+          Chi ha il biglietto standard accede alle tre dirette dell’evento. Chi ha il biglietto VIP
+          accede anche a{" "}
+          <strong className="font-semibold">una quarta diretta esclusiva di gruppo</strong>, con me
+          e il mio team.
         </p>
         <p>
-          Prendila come <strong className="font-semibold">una consulenza diretta con me</strong>:
-          una cosa che non faccio praticamente mai.
+          Parliamo di due cose fondamentali per qualsiasi business:{" "}
+          <strong className="font-semibold">come vendere online</strong> e{" "}
+          <strong className="font-semibold">come ottimizzare il tuo profilo Instagram</strong>.
+        </p>
+        <p>
+          Ti spiego il mio metodo di vendita, lo stesso che uso con le oltre 1.500 professioniste
+          che ho già seguito, e analizziamo insieme i profili Instagram di chi è in diretta con me.
         </p>
       </>
     ),
@@ -80,13 +84,13 @@ export const vipBonuses = [
     title: "Correzione del tuo Workbook",
     d: (
       <>
-        <p>Il Workbook lo compili tu, serata dopo serata.</p>
+        <p>Con il biglietto standard hai già il Workbook da scaricare e compilare.</p>
         <p>
-          Con l’upgrade VIP, io e il mio team lo leggiamo e ti diamo{" "}
-          <strong className="font-semibold">correzioni scritte apposta per te</strong>, non
-          generiche.
+          Con l’upgrade al pacchetto VIP,{" "}
+          <strong className="font-semibold">te lo correggo io, insieme al mio team</strong>, e ti do
+          suggerimenti personalizzati: un Workbook{" "}
+          <strong className="font-semibold">specifico su di te e sul tuo business</strong>.
         </p>
-        <p>Così sai esattamente cosa hai fatto bene e cosa puoi migliorare.</p>
       </>
     ),
     value: 97,
