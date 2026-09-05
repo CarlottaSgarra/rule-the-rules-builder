@@ -3,7 +3,10 @@ type Props = {
   className?: string;
   submitLabel?: string;
   submitSub?: string;
+  action?: string;
 };
+
+const STANDARD_TICKET_ACTION = "https://systeme.io/embedded/44087792/subscription";
 
 const countryPrefixes = [
   { code: "+39", flag: "🇮🇹", name: "Italia" },
@@ -51,6 +54,7 @@ export function SignupForm({
   className = "",
   submitLabel = "Vai al pagamento",
   submitSub,
+  action = STANDARD_TICKET_ACTION,
 }: Props) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     const phoneInput = e.currentTarget.elements.namedItem("phone_number");
@@ -67,7 +71,7 @@ export function SignupForm({
   return (
     <form
       method="post"
-      action="https://systeme.io/embedded/44087792/subscription"
+      action={action}
       onSubmit={handleSubmit}
       className={`space-y-4 ${className}`}
     >
