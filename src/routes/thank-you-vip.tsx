@@ -41,7 +41,7 @@ const vipAccessInfo = [
     title: "Live esclusiva del giorno dopo",
     d: (
       <>
-        Il link Zoom per la tua ora con Carlotta ti arriva via email{" "}
+        Il link Zoom per la tua ora con me ti arriva via email{" "}
         <strong className="font-semibold text-ink">qualche giorno prima dell’evento</strong>.
         Tienilo d’occhio: è il momento in cui il tuo profilo e la tua strategia di vendita passano
         sotto la lente, uno a uno.
@@ -57,7 +57,7 @@ const vipAccessInfo = [
         <strong className="font-semibold text-ink">
           ti scriviamo via email le istruzioni per inviarcelo
         </strong>{" "}
-        e riceverai le correzioni personali di Carlotta e del suo team.
+        e riceverai le mie correzioni personali e quelle del mio team.
       </>
     ),
   },

@@ -78,6 +78,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const CHECKOUT_HREF = "https://theroad.carlottasgarra.it/checkout-rule-the-rules";
+
 const clientAvatars = [client1Img, client2Img, client3Img, client4Img, client5Img, client6Img];
 
 const galleryPhotos = [
@@ -980,7 +982,7 @@ function Index() {
 
   return (
     <div className="bg-background">
-      <SiteTopbar />
+      <SiteTopbar ctaHref={CHECKOUT_HREF} />
 
       {/* Hero */}
       <header
@@ -1297,7 +1299,7 @@ function Index() {
             />
 
             <div className="mt-6 flex justify-center">
-              <CtaButton label="Rompiamo le regole, allora?" />
+              <CtaButton label="Rompiamo le regole, allora?" href={CHECKOUT_HREF} />
             </div>
           </Reveal>
         </div>
@@ -1498,7 +1500,7 @@ function Index() {
 
               <Reveal>
                 <div className="mt-4 flex justify-center">
-                  <CtaButton label="Costruiamo il tuo metodo, allora?" />
+                  <CtaButton label="Costruiamo il tuo metodo, allora?" href={CHECKOUT_HREF} />
                 </div>
               </Reveal>
             </div>
@@ -1746,7 +1748,7 @@ function Index() {
 
           <Reveal>
             <div className="mt-14 flex justify-center">
-              <CtaButton label="Sì, voglio essere guidata da loro" />
+              <CtaButton label="Sì, voglio essere guidata da loro" href={CHECKOUT_HREF} />
             </div>
           </Reveal>
         </div>
@@ -1867,7 +1869,7 @@ function Index() {
 
           <Reveal>
             <div className="mt-14 flex justify-center">
-              <CtaButton label="Voglio portarmi tutto questo a casa" />
+              <CtaButton label="Voglio portarmi tutto questo a casa" href={CHECKOUT_HREF} />
             </div>
           </Reveal>
         </div>
@@ -1934,7 +1936,7 @@ function Index() {
           <TestimonialsExplorer testimonials={videoTestimonials} />
 
           <div className="mt-10 flex justify-center">
-            <CtaButton label="Voglio rompere le regole" />
+            <CtaButton label="Voglio rompere le regole" href={CHECKOUT_HREF} />
           </div>
         </div>
       </section>
@@ -2127,7 +2129,7 @@ function Index() {
                     ))}
                   </ul>
                   <div className="mt-6">
-                    <CtaButton label="Scelgo questa opzione" />
+                    <CtaButton label="Scelgo questa opzione" href={CHECKOUT_HREF} />
                   </div>
                 </div>
               </div>
@@ -2204,7 +2206,7 @@ function Index() {
                 </div>
 
                 <div className="mt-6">
-                  <CtaButton label="Ok, voglio iscrivermi" />
+                  <CtaButton label="Ok, voglio iscrivermi" href={CHECKOUT_HREF} />
                 </div>
               </div>
             </div>
@@ -2259,7 +2261,7 @@ function Index() {
 
           <Reveal>
             <div className="mt-14 flex justify-center">
-              <CtaButton label="Mi iscrivo senza rischio" />
+              <CtaButton label="Mi iscrivo senza rischio" href={CHECKOUT_HREF} />
             </div>
           </Reveal>
         </div>

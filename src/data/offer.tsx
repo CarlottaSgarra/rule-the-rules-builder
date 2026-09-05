@@ -49,8 +49,8 @@ export const vipBonuses = [
           <strong className="font-semibold">
             puoi tornare su ogni singolo passaggio quante volte vuoi
           </strong>
-          : quel dettaglio che ti è sfuggito, quell’esercizio che vuoi rifare con calma, quella
-          frase di Carlotta che vuoi risentire perché ti ha colpita.
+          : quel dettaglio che ti è sfuggito, quell’esercizio che vuoi rifare con calma, quella mia
+          frase che vuoi risentire perché ti ha colpita.
         </p>
         <p>
           Niente ansia di prendere appunti in diretta:{" "}
@@ -67,8 +67,8 @@ export const vipBonuses = [
       <>
         <p>
           Il giorno dopo l’ultima serata, mentre tutte le altre tornano alla loro routine, tu hai
-          ancora <strong className="font-semibold">un’ora intera con Carlotta</strong>, dedicata
-          solo a te e al tuo profilo.
+          ancora <strong className="font-semibold">un’ora intera con me</strong>, dedicata solo a te
+          e al tuo profilo.
         </p>
         <p>
           Niente teoria generica: analizziamo insieme cosa funziona davvero nella tua comunicazione
@@ -92,9 +92,9 @@ export const vipBonuses = [
         </p>
         <p>
           <strong className="font-semibold">
-            Carlotta e il suo team leggono personalmente il tuo Workbook
+            Io e il mio team leggiamo personalmente il tuo Workbook
           </strong>{" "}
-          e ti restituiscono correzioni e suggerimenti su misura.
+          e ti restituiamo correzioni e suggerimenti su misura.
         </p>
         <p>
           Così non resti con il dubbio di aver fatto l’esercizio “giusto”:{" "}
@@ -115,7 +115,7 @@ export const vipBonuses = [
         <p>
           Durante i momenti di Q&A delle tre serate live, hai la possibilità di{" "}
           <strong className="font-semibold">
-            portare il tuo profilo o i tuoi contenuti direttamente all’attenzione di Carlotta
+            portare il tuo profilo o i tuoi contenuti direttamente alla mia attenzione
           </strong>
           .
         </p>

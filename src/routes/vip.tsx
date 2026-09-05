@@ -8,8 +8,8 @@ import { SiteFooter } from "@/components/landing/SiteFooter";
 import { vipBonuses, vipBonusesTotal, VIP_PRICE } from "@/data/offer";
 import carlottaLookingImg from "@/assets/carlotta-looking.jpg";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
-import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
 import carlottaWalkingImg from "@/assets/carlotta-walking.jpg";
+import workbookCoverImg from "@/assets/workbook-cover.png";
 
 export const Route = createFileRoute("/vip")({
   head: () => ({
@@ -30,14 +30,18 @@ const bonusIcons = [VideoIcon, Users, FileCheck2, Instagram];
 const bonusPhotos = [
   carlottaLookingImg,
   carlottaPresentingImg,
-  carlottaTalkingImg,
+  workbookCoverImg,
   carlottaWalkingImg,
 ];
+const bonusPhotoAlts = [
+  "Carlotta Sgarra",
+  "Carlotta Sgarra",
+  "Copertina del Workbook",
+  "Carlotta Sgarra",
+];
 
-// TODO: sostituire con l'URL reale del prodotto/form systeme.io per
-// l'upgrade VIP a 97€ — non è lo stesso form del biglietto standard.
-const VIP_CHECKOUT_HREF = "#vip-upgrade-todo";
-const DECLINE_HREF = "/";
+const VIP_CHECKOUT_HREF = "https://theroad.carlottasgarra.it/checkout-vip";
+const DECLINE_HREF = "https://theroad.carlottasgarra.it/grazie-iscrizione-standard";
 
 function VipChoice({ note }: { note?: string }) {
   return (
@@ -85,6 +89,16 @@ function Vip() {
                 qualsiasi prezzo.
               </strong>
             </p>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
+              Le tre serate sono{" "}
+              <strong className="font-semibold text-foreground">dal vivo, in diretta</strong>: non
+              sono registrate, quindi con il biglietto standard non potrai riguardarle. Con
+              l’upgrade VIP invece{" "}
+              <strong className="font-semibold text-foreground">
+                hai accesso anche alla registrazione completa
+              </strong>{" "}
+              e puoi portare avanti tutto il lavoro con calma, anche dopo la fine delle tre serate.
+            </p>
           </Reveal>
 
           <Reveal delay={100}>
@@ -131,7 +145,7 @@ function Vip() {
                     >
                       <img
                         src={photo}
-                        alt="Carlotta Sgarra"
+                        alt={bonusPhotoAlts[i] ?? "Carlotta Sgarra"}
                         loading="lazy"
                         className="aspect-[4/5] w-full object-cover"
                       />
@@ -224,7 +238,7 @@ function Vip() {
                   </div>
                   <p className="mt-2 text-5xl font-bold text-primary sm:text-6xl">{VIP_PRICE}€</p>
                   <p className="mt-1 text-xs uppercase tracking-[0.15em] text-muted-foreground">
-                    upgrade una tantum · disponibile solo qui
+                    disponibile solo qui
                   </p>
                 </div>
               </div>
