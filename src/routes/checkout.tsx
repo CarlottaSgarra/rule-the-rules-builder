@@ -74,7 +74,7 @@ const checkoutFaqs = [
 
 function Checkout() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <SiteTopbar />
 
       {/* Intro */}

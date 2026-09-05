@@ -53,7 +53,7 @@ function VipChoice({ note }: { note?: string }) {
 
 function Vip() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       {/* Intro */}
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-3xl text-center">

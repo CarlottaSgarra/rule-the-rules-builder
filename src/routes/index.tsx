@@ -979,12 +979,12 @@ function Index() {
   }, [activeTakeaway]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <SiteTopbar />
 
       {/* Hero */}
       <header
-        className="relative grid min-h-screen grid-cols-1"
+        className="relative grid min-h-[700px] grid-cols-1"
         style={{ backgroundImage: "var(--gradient-night)" }}
       >
         <img
@@ -995,7 +995,7 @@ function Index() {
         />
 
         <div
-          className="pointer-events-none sticky top-0 z-0 col-start-1 row-start-1 grid h-screen w-full md:h-[90vh]"
+          className="pointer-events-none sticky top-0 z-0 col-start-1 row-start-1 grid h-[700px] w-full"
           style={{ gridTemplateRows: `repeat(${heroWhispers.length}, 1fr)` }}
           aria-hidden
         >
@@ -1752,7 +1752,7 @@ function Index() {
 
       {/* Galleria eventi: colonne di foto in scorrimento continuo */}
       <section
-        className="relative min-h-screen overflow-hidden py-20"
+        className="relative overflow-hidden py-20"
         style={{ backgroundColor: "var(--secondary)" }}
       >
         <div className="relative z-10 mx-auto max-w-4xl px-5 text-center">
@@ -1766,7 +1766,7 @@ function Index() {
 
         <div
           className="relative mt-14 grid grid-cols-3 gap-3 px-3 sm:grid-cols-5 sm:gap-4 sm:px-5"
-          style={{ height: "max(46rem, calc(100vh + 16rem))" }}
+          style={{ height: "72rem" }}
         >
           {galleryColumns.map((col, ci) => (
             <div

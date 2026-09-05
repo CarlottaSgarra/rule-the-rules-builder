@@ -65,7 +65,7 @@ const vipAccessInfo = [
 
 function ThankYouVip() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
