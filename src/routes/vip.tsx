@@ -78,16 +78,26 @@ function Vip() {
               Aspetta! <Highlight>Prima di continuare</Highlight>, c’è una cosa che devi sapere
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
-              Questa pagina non la rivedrai più:{" "}
-              <strong className="font-semibold text-foreground">l’upgrade VIP</strong> è per chi non
-              si accontenta di ascoltare da lontano, ma vuole essere seguita da vicino, passo dopo
-              passo. Un’altra cosa che voglio dirti:{" "}
-              <strong className="font-semibold text-foreground">le tre serate sono live</strong>,
-              quindi con il biglietto standard non potrai riguardarle. Con l’upgrade VIP invece{" "}
+              Hai appena sbloccato l’accesso alle 3 serate live. Ma le 3 serate sono live e non sono
+              registrate. O almeno, lo sono se fai{" "}
+              <strong className="font-semibold text-foreground">l’upgrade al pacchetto VIP</strong>{" "}
+              che trovi in questa pagina. Se vuoi avere la possibilità di{" "}
               <strong className="font-semibold text-foreground">
-                hai anche la registrazione completa
+                rivedere tutte le serate, tutte le volte che vuoi
               </strong>
-              , per riprendere tutto con calma quando vuoi.
+              , allora ti consiglio di fare l’upgrade.{" "}
+              <strong className="font-semibold text-foreground">
+                Lo trovi solo su questa pagina e solo ora.
+              </strong>
+            </p>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
+              Il VIP ti sblocca anche un altro bonus: una diretta con me, il giorno dopo l’ultima
+              serata, in cui parliamo di vendita online e analizziamo i profili Instagram di chi
+              partecipa.{" "}
+              <strong className="font-semibold text-foreground">
+                Prendila come una consulenza direttamente con me
+              </strong>
+              : una cosa che non faccio praticamente mai.
             </p>
           </Reveal>
 
