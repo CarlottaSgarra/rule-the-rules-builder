@@ -40,17 +40,16 @@ export const vipBonuses = [
     title: "Registrazione completa delle tre serate",
     d: (
       <>
-        <p>Tre serate live, tre orari da incastrare in una vita già piena. Lo so.</p>
         <p>
-          Con la registrazione{" "}
-          <strong className="font-semibold">te la riguardi quante volte ti serve</strong>: il
-          passaggio che ti è sfuggito, l’esercizio che vuoi rifare con calma, la frase che ti ha
-          colpita e che vuoi risentire.
+          Le tre serate sono live: se ti perdi un pezzo o vuoi risentirlo con calma, senza la
+          registrazione non puoi.
         </p>
         <p>
-          Zero ansia da appunti mentre parlo.{" "}
-          <strong className="font-semibold">Il metodo resta tuo, per sempre</strong>.
+          Con l’upgrade VIP hai{" "}
+          <strong className="font-semibold">la registrazione completa delle tre serate</strong>: la
+          guardi quante volte vuoi, quando vuoi, anche dopo la fine dell’evento.
         </p>
+        <p>Il metodo resta tuo per sempre, non solo per tre sere.</p>
       </>
     ),
     value: 97,
@@ -60,19 +59,17 @@ export const vipBonuses = [
     title: "Live esclusiva il giorno dopo l’evento",
     d: (
       <>
+        <p>Il giorno dopo l’ultima serata faccio una diretta in più, solo per chi ha il VIP.</p>
         <p>
-          Il giorno dopo l’ultima serata, mentre tutte le altre tornano già alla solita routine, tu
-          hai ancora <strong className="font-semibold">un’ora tutta per te, con me</strong>, sul tuo
-          profilo.
+          Parliamo di vendita online e{" "}
+          <strong className="font-semibold">
+            analizziamo insieme i profili Instagram di chi partecipa
+          </strong>
+          .
         </p>
         <p>
-          Non ti riempio la testa di teoria: guardiamo insieme il tuo Instagram vero, ti dico cosa
-          funziona e cosa no, e ti do gli strumenti pratici per trasformarlo in{" "}
-          <strong className="font-semibold">vendite vere</strong>.
-        </p>
-        <p>
-          Perché una cosa è ascoltarmi per tre serate, un’altra è uscirne con un piano concreto da
-          seguire.
+          Prendila come <strong className="font-semibold">una consulenza diretta con me</strong>:
+          una cosa che non faccio praticamente mai.
         </p>
       </>
     ),
@@ -83,47 +80,16 @@ export const vipBonuses = [
     title: "Correzione del tuo Workbook",
     d: (
       <>
+        <p>Il Workbook lo compili tu, serata dopo serata.</p>
         <p>
-          Il Workbook lo compili tu, serata dopo serata: è già un bel lavoro su te stessa. Ma da
-          sola è facile restare con qualche dubbio.
+          Con l’upgrade VIP, io e il mio team lo leggiamo e ti diamo{" "}
+          <strong className="font-semibold">correzioni scritte apposta per te</strong>, non
+          generiche.
         </p>
-        <p>
-          <strong className="font-semibold">
-            Io e il mio team lo leggiamo per davvero, uno per uno
-          </strong>{" "}
-          e ti rispondiamo con correzioni pensate sul tuo caso, non un “brava” generico.
-        </p>
-        <p>
-          Così non resti lì a chiederti se hai capito bene:{" "}
-          <strong className="font-semibold">
-            sai esattamente dove sei già forte e dove devi ancora lavorare
-          </strong>
-          .
-        </p>
+        <p>Così sai esattamente cosa hai fatto bene e cosa puoi migliorare.</p>
       </>
     ),
     value: 97,
-  },
-  {
-    id: "profilo-qa",
-    title: "Il tuo profilo protagonista nei Q&A",
-    d: (
-      <>
-        <p>
-          Durante i Q&A delle tre serate, puoi{" "}
-          <strong className="font-semibold">
-            portare il tuo profilo o i tuoi contenuti e parlarne direttamente con me
-          </strong>
-          .
-        </p>
-        <p>
-          Niente domande su casi teorici che non ti riguardano: guardiamo il tuo profilo Instagram
-          insieme, e ti dico cosa cambiare, subito.
-        </p>
-        <p>Un’occasione in più per uscire dalle serate con le idee chiare, non con altri dubbi.</p>
-      </>
-    ),
-    value: 67,
   },
 ];
 

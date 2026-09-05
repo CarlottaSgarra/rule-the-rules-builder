@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FileCheck2, Instagram, Users, Video as VideoIcon } from "lucide-react";
+import { FileCheck2, Users, Video as VideoIcon } from "lucide-react";
 import { CtaButton } from "@/components/landing/CtaButton";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -8,7 +8,6 @@ import { SiteFooter } from "@/components/landing/SiteFooter";
 import { vipBonuses, vipBonusesTotal, VIP_PRICE } from "@/data/offer";
 import carlottaLookingImg from "@/assets/carlotta-looking.jpg";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
-import carlottaWalkingImg from "@/assets/carlotta-walking.jpg";
 import workbookCoverImg from "@/assets/workbook-cover.png";
 
 export const Route = createFileRoute("/vip")({
@@ -26,19 +25,9 @@ export const Route = createFileRoute("/vip")({
   component: Vip,
 });
 
-const bonusIcons = [VideoIcon, Users, FileCheck2, Instagram];
-const bonusPhotos = [
-  carlottaLookingImg,
-  carlottaPresentingImg,
-  workbookCoverImg,
-  carlottaWalkingImg,
-];
-const bonusPhotoAlts = [
-  "Carlotta Sgarra",
-  "Carlotta Sgarra",
-  "Copertina del Workbook",
-  "Carlotta Sgarra",
-];
+const bonusIcons = [VideoIcon, Users, FileCheck2];
+const bonusPhotos = [carlottaLookingImg, carlottaPresentingImg, workbookCoverImg];
+const bonusPhotoAlts = ["Carlotta Sgarra", "Carlotta Sgarra", "Copertina del Workbook"];
 
 const VIP_CHECKOUT_HREF = "https://theroad.carlottasgarra.it/checkout-vip";
 const DECLINE_HREF = "https://theroad.carlottasgarra.it/grazie-iscrizione-standard";
