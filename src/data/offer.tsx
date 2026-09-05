@@ -40,21 +40,17 @@ export const vipBonuses = [
     title: "Registrazione completa delle tre serate",
     d: (
       <>
+        <p>Tre serate live, tre orari da incastrare in una vita già piena. Lo so.</p>
         <p>
-          Le serate live durano il tempo che durano, ma la trasformazione che ti porti a casa non
-          dovrebbe avere una scadenza.
+          Con la registrazione{" "}
+          <strong className="font-semibold">te la riguardi quante volte ti pare</strong>: il
+          passaggio che ti è sfuggito, l’esercizio che vuoi rifare con calma, la frase che ti ha
+          steso e che vuoi risentire.
         </p>
         <p>
-          Con la registrazione completa{" "}
-          <strong className="font-semibold">
-            puoi tornare su ogni singolo passaggio quante volte vuoi
-          </strong>
-          : quel dettaglio che ti è sfuggito, quell’esercizio che vuoi rifare con calma, quella mia
-          frase che vuoi risentire perché ti ha colpita.
-        </p>
-        <p>
-          Niente ansia di prendere appunti in diretta:{" "}
-          <strong className="font-semibold">il metodo resta tuo, per sempre</strong>.
+          Zero ansia da appunti mentre parlo.{" "}
+          <strong className="font-semibold">Il metodo resta tuo, per sempre</strong>, altro che PDF
+          dimenticato in un drive.
         </p>
       </>
     ),
@@ -66,16 +62,18 @@ export const vipBonuses = [
     d: (
       <>
         <p>
-          Il giorno dopo l’ultima serata, mentre tutte le altre tornano alla loro routine, tu hai
-          ancora <strong className="font-semibold">un’ora intera con me</strong>, dedicata solo a te
-          e al tuo profilo.
+          Il giorno dopo l’ultima serata, mentre tutte le altre tornano già alla solita routine, tu
+          hai ancora <strong className="font-semibold">un’ora tutta per te, con me</strong>, sul tuo
+          profilo.
         </p>
         <p>
-          Niente teoria generica: analizziamo insieme cosa funziona davvero nella tua comunicazione
-          e cosa no, e ti do gli strumenti pratici per trasformare quello che hai appena imparato in{" "}
-          <strong className="font-semibold">vendite vere, non solo in follower in più</strong>.
+          Non ti riempio la testa di teoria: guardiamo il tuo Instagram vero, ti dico cosa funziona
+          e cosa no, e ti do gli strumenti per trasformarlo in{" "}
+          <strong className="font-semibold">vendite vere, non solo cuoricini</strong>.
         </p>
-        <p>È il passaggio che separa chi guarda un evento da chi lo trasforma in risultati.</p>
+        <p>
+          Perché una cosa è ascoltarmi per tre serate, un’altra è uscirne con un piano che fattura.
+        </p>
       </>
     ),
     value: 147,
@@ -86,20 +84,19 @@ export const vipBonuses = [
     d: (
       <>
         <p>
-          Il Workbook che compili durante le tre serate è la mappa della tua nuova identità
-          comunicativa, ma una mappa vale solo se qualcuno di esperto controlla che tu l’abbia
-          disegnata bene.
+          Compili il Workbook durante le tre serate, ok. Ma da sola, senza che nessuno lo corregga,
+          resta solo un compito fatto a metà.
         </p>
         <p>
           <strong className="font-semibold">
-            Io e il mio team leggiamo personalmente il tuo Workbook
+            Io e il mio team lo leggiamo per davvero, uno per uno
           </strong>{" "}
-          e ti restituiamo correzioni e suggerimenti su misura.
+          e ti rispondiamo con correzioni vere, cucite sul tuo caso. Non un “brava” copia-incolla.
         </p>
         <p>
-          Così non resti con il dubbio di aver fatto l’esercizio “giusto”:{" "}
+          Così non resti lì a chiederti se hai capito bene:{" "}
           <strong className="font-semibold">
-            sai esattamente dove sei forte e dove lavorare ancora
+            sai esattamente dove sei già forte e dove devi ancora lavorare
           </strong>
           .
         </p>
@@ -113,17 +110,20 @@ export const vipBonuses = [
     d: (
       <>
         <p>
-          Durante i momenti di Q&A delle tre serate live, hai la possibilità di{" "}
+          Durante i Q&A delle tre serate, puoi{" "}
           <strong className="font-semibold">
-            portare il tuo profilo o i tuoi contenuti direttamente alla mia attenzione
+            portare il tuo profilo o i tuoi contenuti dritti sotto i miei occhi
           </strong>
           .
         </p>
         <p>
-          Niente domande generiche su casi teorici: il confronto è sul tuo Instagram vero, con un
-          feedback pratico che puoi applicare da subito.
+          Non mi fai domande da manuale su casi che non esistono: mi mostri il tuo Instagram vero e
+          ti dico cosa cambiare, subito, davanti a tutte.
         </p>
-        <p>Un’occasione in più per uscire dalle serate con le idee chiare su cosa cambiare.</p>
+        <p>
+          Un motivo in più per non uscire dalle serate con altri dubbi, ma con le idee finalmente
+          chiare.
+        </p>
       </>
     ),
     value: 67,

@@ -78,26 +78,24 @@ function Vip() {
               Aspetta! <Highlight>Prima di continuare</Highlight>, c’è una cosa che devi sapere
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
-              Hai davanti a te un’occasione che{" "}
-              <strong className="font-semibold text-foreground">non tornerà più</strong>: l’upgrade
-              a VIP. Non è l’ennesimo upsell: è la versione di Rule The Rules pensata per chi non si
-              accontenta di ascoltare, ma vuole{" "}
-              <strong className="font-semibold text-foreground">essere seguita da vicino</strong>,
-              un passo alla volta.{" "}
+              Ti do due minuti, poi questa pagina sparisce e con lei{" "}
+              <strong className="font-semibold text-foreground">l’upgrade VIP</strong>. Non è
+              l’ennesimo upsell fotocopia che vedi ovunque: è per chi non si accontenta di guardare
+              da lontano e vuole che la segua io, sul serio, passo dopo passo.{" "}
               <strong className="font-semibold text-foreground">
-                Se esci da questa pagina senza decidere, l’occasione sparisce per sempre, a
-                qualsiasi prezzo.
+                Esci da qui senza decidere e l’occasione è persa. Per sempre, a qualsiasi cifra tu
+                mi offra dopo.
               </strong>
             </p>
             <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
-              Le tre serate sono{" "}
-              <strong className="font-semibold text-foreground">dal vivo, in diretta</strong>: non
-              sono registrate, quindi con il biglietto standard non potrai riguardarle. Con
-              l’upgrade VIP invece{" "}
+              Altra cosa che devi sapere:{" "}
+              <strong className="font-semibold text-foreground">le tre serate sono live</strong>,
+              punto. Non le registro per il biglietto standard, quindi se quella sera non ci sei,
+              hai perso. Con l’upgrade VIP invece{" "}
               <strong className="font-semibold text-foreground">
-                hai accesso anche alla registrazione completa
-              </strong>{" "}
-              e puoi portare avanti tutto il lavoro con calma, anche dopo la fine delle tre serate.
+                ti sblocco anche la registrazione completa
+              </strong>
+              : te la riguardi con calma, quando vuoi, anche a evento finito.
             </p>
           </Reveal>
 
