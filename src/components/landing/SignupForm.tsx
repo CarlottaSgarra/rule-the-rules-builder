@@ -72,6 +72,7 @@ export function SignupForm({
     <form
       method="post"
       action={action}
+      target="_top"
       onSubmit={handleSubmit}
       className={`space-y-4 ${className}`}
     >

@@ -29,19 +29,21 @@ const bonusIcons = [VideoIcon, Users, FileCheck2];
 const bonusPhotos = [carlottaLookingImg, carlottaPresentingImg, workbookCoverImg];
 const bonusPhotoAlts = ["Carlotta Sgarra", "Carlotta Sgarra", "Copertina del Workbook"];
 
-const VIP_CHECKOUT_HREF = "https://rules.carlottasgarra.it/checkout-vip";
-const DECLINE_HREF = "https://rules.carlottasgarra.it/grazie-iscrizione-standard";
+const VIP_CHECKOUT_HREF = "/checkout-vip";
+const DECLINE_HREF = "/thank-you";
 
 function VipChoice({ note }: { note?: string }) {
   return (
     <div className="mt-8 flex flex-col items-center gap-3">
       <CtaButton
         href={VIP_CHECKOUT_HREF}
+        target="_top"
         label={`Sì, voglio fare l’upgrade a soli ${VIP_PRICE}€`}
         sub={note ?? "Disponibile solo su questa pagina, adesso"}
       />
       <a
         href={DECLINE_HREF}
+        target="_top"
         className="text-sm text-foreground/60 underline underline-offset-2 transition-colors hover:text-foreground"
       >
         No, resto con lo standard
