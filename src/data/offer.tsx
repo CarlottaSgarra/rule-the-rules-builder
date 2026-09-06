@@ -53,11 +53,11 @@ export const vipBonuses = [
         </p>
       </>
     ),
-    value: 97,
+    value: 147,
   },
   {
     id: "live-analisi",
-    title: "Live esclusiva il giorno dopo l’evento",
+    title: "Live esclusiva il giorno dopo l’evento, l’8 ottobre",
     d: (
       <>
         <p>
@@ -77,7 +77,7 @@ export const vipBonuses = [
         </p>
       </>
     ),
-    value: 147,
+    value: 197,
   },
   {
     id: "correzione-workbook",
@@ -86,14 +86,14 @@ export const vipBonuses = [
       <>
         <p>Con il biglietto standard hai già il Workbook da scaricare e compilare.</p>
         <p>
-          Con l’upgrade al pacchetto VIP,{" "}
+          Con l’upgrade al biglietto VIP,{" "}
           <strong className="font-semibold">te lo correggo io, insieme al mio team</strong>, e ti do
           suggerimenti personalizzati: un Workbook{" "}
           <strong className="font-semibold">specifico su di te e sul tuo business</strong>.
         </p>
       </>
     ),
-    value: 97,
+    value: 147,
   },
 ];
 

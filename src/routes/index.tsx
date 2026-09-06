@@ -226,12 +226,6 @@ const sessions = [
         photo: carlottaPointingImg,
         photoPosition: "50% 12%",
       },
-      {
-        name: "Sharon",
-        role: "esperta di contenuti",
-        photo: sharonSpeakingImg,
-        photoPosition: "42% 35%",
-      },
     ],
     heroImage: { src: carlottaLooking2Img, position: "55% 25%" },
     highlight: "content-os" as const,
@@ -280,6 +274,12 @@ const sessions = [
         role: "CEO e founder dell’evento",
         photo: carlottaPointingImg,
         photoPosition: "50% 12%",
+      },
+      {
+        name: "Sharon",
+        role: "esperta di contenuti",
+        photo: sharonSpeakingImg,
+        photoPosition: "42% 35%",
       },
     ],
     heroImage: { src: carlottaTalkingImg, position: "58% 30%" },
@@ -827,13 +827,6 @@ const videoTestimonials = [
   },
 ];
 
-const aboutStats = [
-  { v: "1.500+", l: "professioniste guidate" },
-  { v: "—", l: "anni di esperienza [da confermare]" },
-  { v: "—", l: "clienti seguite in Ambiziosa [da confermare]" },
-  { v: "—", l: "[numero distintivo da confermare]" },
-];
-
 const twoPaths = {
   a: {
     title: "Continuare come adesso",
@@ -896,9 +889,9 @@ const faqs = [
     q: "Cos’è esattamente Rule The Rules 2026?",
     a: (
       <>
-        È uno show formativo in live streaming con Carlotta Sgarra e il suo team, in tre serate dal
-        5 al 7 ottobre 2026. Ti do gli strumenti per costruire la tua identità, il tuo metodo
-        personale di creazione contenuti e{" "}
+        È uno show formativo in live streaming con me e il mio team, in tre serate dal 5 al 7
+        ottobre 2026. Ti do gli strumenti per costruire la tua identità, il tuo metodo personale di
+        creazione contenuti e{" "}
         <strong className="font-semibold text-foreground">
           un piano editoriale che è davvero tuo
         </strong>
@@ -932,9 +925,9 @@ const faqs = [
     q: "Funziona anche nel mio settore?",
     a: (
       <>
-        Sì. Carlotta ha già aiutato nutrizionisti, tatuatrici, consulenti d’immagine, coach, social
-        media manager, make-up artist e tanti altri a smettere di comunicare come tutti gli altri
-        nel loro settore. Il principio è lo stesso:{" "}
+        Sì. Ho già aiutato nutrizionisti, tatuatrici, consulenti d’immagine, coach, social media
+        manager, make-up artist e tanti altri a smettere di comunicare come tutti gli altri nel loro
+        settore. Il principio è lo stesso:{" "}
         <strong className="font-semibold text-foreground">
           parti dalla tua identità, non da un format che “funziona”
         </strong>
@@ -948,11 +941,8 @@ const faqs = [
       <>
         Con il biglietto standard puoi seguire solo in diretta, non è prevista la registrazione. Se
         vuoi rivedere l’evento tutte le volte che vuoi, fermarti sui passaggi cruciali o prenderti
-        appunti con calma,{" "}
-        <strong className="font-semibold text-foreground">
-          scegli il biglietto VIP, che include la registrazione completa
-        </strong>
-        .
+        appunti con calma, nella schermata successiva puoi fare l’upgrade al biglietto VIP, che
+        include la registrazione completa e altri bonus.
       </>
     ),
   },
@@ -960,10 +950,10 @@ const faqs = [
     q: "Se non fa per me, posso riavere indietro i soldi?",
     a: (
       <>
-        Sì. Se dopo la prima serata capisci che “Rule The Rules” non fa per te, scrivici prima
+        Sì. Se dopo la prima serata capisci che “Rule The Rules” non fa per te, scrivimi prima
         dell’inizio della seconda serata live (6 ottobre) e{" "}
         <strong className="font-semibold text-foreground">
-          ti rimborsiamo il biglietto, senza bisogno di spiegazioni
+          ti rimborso il biglietto, senza bisogno di spiegazioni
         </strong>
         .
       </>
@@ -973,7 +963,7 @@ const faqs = [
     q: "Perché il prezzo è così basso?",
     a: (
       <>
-        Perché Rule The Rules 2026 è l’introduzione al nostro modo di lavorare: vogliamo che più
+        Perché Rule The Rules 2026 è l’introduzione al mio modo di lavorare: voglio che più
         professioniste possibile abbiano gli strumenti giusti per ritrovarsi nella propria
         comunicazione. Consideralo un biglietto d’ingresso:{" "}
         <strong className="font-semibold text-foreground">
@@ -1073,8 +1063,8 @@ function Index() {
 
           <Reveal delay={150}>
             <p className="mx-auto mt-8 max-w-2xl text-lg font-semibold leading-snug text-foreground sm:text-2xl">
-              In 3 serate distruggiamo le regole che i guru ti hanno sempre detto di seguire per
-              fatturare online e scolpisci le tue regole per creare una{" "}
+              In 3 serate distruggiamo le regole di marketing che i guru ti hanno sempre detto di
+              seguire per fare contenuti online e scolpisci le tue regole per creare la TUA{" "}
               <Highlight>comunicazione identitaria</Highlight>.
             </p>
           </Reveal>
@@ -1768,7 +1758,7 @@ function Index() {
 
           <Reveal>
             <div className="mt-14 flex justify-center">
-              <CtaButton label="Sì, voglio essere guidata da loro" href={SIGNUP_HREF} />
+              <CtaButton label="SÌ VOGLIO ESSERCI ANCH’IO" href={SIGNUP_HREF} />
             </div>
           </Reveal>
         </div>
@@ -2028,8 +2018,8 @@ function Index() {
         >
           <Reveal>
             <h2 className="text-3xl text-ink sm:text-4xl">
-              Ho creato un’azienda da <em className="not-italic text-ink-muted/60">[fatturato]</em>{" "}
-              di fatturato grazie a <Highlight dark>un’identità riconoscibile</Highlight>
+              Ho creato un’azienda da 500.000€ di fatturato in 3 anni grazie a{" "}
+              <Highlight dark>un’identità riconoscibile</Highlight>
             </h2>
           </Reveal>
 
@@ -2074,7 +2064,7 @@ function Index() {
             </Reveal>
 
             <Reveal delay={120}>
-              <div className="space-y-5">
+              <div className="relative">
                 <img
                   src={carlottaPointingImg}
                   alt="Carlotta Sgarra sul palco durante uno dei suoi speech"
@@ -2083,17 +2073,9 @@ function Index() {
                   height={2064}
                   className="aspect-[4/5] w-full rounded-2xl object-cover"
                 />
-                <div className="grid grid-cols-2 gap-3">
-                  {aboutStats.map((s) => (
-                    <div
-                      key={s.l}
-                      className="rounded-xl bg-white p-4 text-center shadow-[0_16px_40px_-24px_rgba(0,0,0,0.15)]"
-                    >
-                      <div className="font-condensed text-xl text-secondary">{s.v}</div>
-                      <div className="mt-1 text-xs text-muted-foreground">{s.l}</div>
-                    </div>
-                  ))}
-                </div>
+                <span className="absolute left-4 top-4 rounded-full bg-emerald-600 px-4 py-1.5 font-condensed text-xs font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_25px_-8px_rgba(0,0,0,0.5)]">
+                  1.500+ professioniste guidate
+                </span>
               </div>
             </Reveal>
           </div>
@@ -2257,7 +2239,7 @@ function Index() {
                 Come funziona?
               </p>
               <p className="mt-3 text-base leading-relaxed text-foreground/85">
-                Se dopo la prima serata pensi che “Rule The Rules” non faccia per te, scrivici prima
+                Se dopo la prima serata pensi che “Rule The Rules” non faccia per te, scrivimi prima
                 dell’inizio della seconda serata live (6 ottobre) e{" "}
                 <strong className="font-semibold text-foreground">
                   ti rimborso il biglietto, senza bisogno di spiegazioni

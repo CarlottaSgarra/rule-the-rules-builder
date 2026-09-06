@@ -80,7 +80,7 @@ function Vip() {
             <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
               Hai appena sbloccato l’accesso alle 3 serate live. Ma le 3 serate sono live e non sono
               registrate. O almeno, lo sono se fai{" "}
-              <strong className="font-semibold text-foreground">l’upgrade al pacchetto VIP</strong>{" "}
+              <strong className="font-semibold text-foreground">l’upgrade al biglietto VIP</strong>{" "}
               che trovi in questa pagina. Se vuoi avere la possibilità di{" "}
               <strong className="font-semibold text-foreground">
                 rivedere tutte le serate, tutte le volte che vuoi

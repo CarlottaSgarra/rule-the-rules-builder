@@ -20,7 +20,7 @@ export const Route = createFileRoute("/checkout-vip")({
       {
         name: "description",
         content:
-          "Assicurati il pacchetto VIP di Rule The Rules 2026: le 3 serate live più registrazioni, live esclusiva e correzione del workbook.",
+          "Assicurati il biglietto VIP di Rule The Rules 2026: le 3 serate live più registrazioni, live esclusiva e correzione del workbook.",
       },
       { name: "robots", content: "noindex" },
     ],
@@ -55,7 +55,7 @@ function CheckoutVip() {
               Live su Zoom · 5-6-7 ottobre
             </span>
             <h1 className="mt-4 text-3xl sm:text-4xl">
-              Il tuo pacchetto <Highlight>VIP</Highlight> ti aspetta
+              Il tuo biglietto <Highlight>VIP</Highlight> ti aspetta
             </h1>
             <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-foreground/80 sm:text-lg">
               Completa l’iscrizione qui sotto: le 3 serate live più tutti i bonus VIP, per{" "}

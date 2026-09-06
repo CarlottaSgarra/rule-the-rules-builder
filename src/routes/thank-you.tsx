@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/landing/SiteFooter";
 import { AddToCalendarBox } from "@/components/landing/AddToCalendarBox";
 import { WhatsAppGroupBox } from "@/components/landing/WhatsAppGroupBox";
 import { QuestionnaireBox } from "@/components/landing/QuestionnaireBox";
+import { InstagramFollowBox } from "@/components/landing/InstagramFollowBox";
 import { EventTicket } from "@/components/landing/EventTicket";
 
 export const Route = createFileRoute("/thank-you")({
@@ -86,8 +87,7 @@ function ThankYou() {
         <div className="mx-auto max-w-4xl">
           <Reveal>
             <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Le ultime 3 cose per trarre il <Highlight>massimo beneficio</Highlight> dall’evento
-              live
+              Le ultime cose per trarre il <Highlight>massimo beneficio</Highlight> dall’evento live
             </h2>
           </Reveal>
 
@@ -100,6 +100,9 @@ function ThankYou() {
             </Reveal>
             <Reveal delay={120}>
               <QuestionnaireBox />
+            </Reveal>
+            <Reveal delay={160}>
+              <InstagramFollowBox />
             </Reveal>
           </div>
         </div>
