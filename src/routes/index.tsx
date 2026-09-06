@@ -1316,7 +1316,7 @@ function Index() {
       </section>
 
       {/* Problema */}
-      <section className="relative overflow-hidden bg-background">
+      <section className="relative bg-background">
         <div
           className="pointer-events-none absolute inset-0 opacity-60"
           style={{
@@ -1835,7 +1835,7 @@ function Index() {
             </h2>
           </Reveal>
 
-          <div className="mt-10 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div className="mt-10 grid gap-10 lg:grid-cols-[240px_1fr] lg:items-start">
             <Reveal>
               <div className="lg:relative">
                 <div
@@ -2073,7 +2073,13 @@ function Index() {
                   height={2064}
                   className="aspect-[4/5] w-full rounded-2xl object-cover"
                 />
-                <span className="absolute left-4 top-4 rounded-full bg-emerald-600 px-4 py-1.5 font-condensed text-xs font-bold uppercase tracking-[0.08em] text-white shadow-[0_10px_25px_-8px_rgba(0,0,0,0.5)]">
+                <span
+                  className="absolute bottom-4 left-4 rounded-full px-4 py-1.5 font-condensed text-xs font-bold uppercase tracking-[0.08em] text-primary-foreground"
+                  style={{
+                    backgroundImage: "var(--gradient-gold)",
+                    boxShadow: "var(--shadow-gold)",
+                  }}
+                >
                   1.500+ professioniste guidate
                 </span>
               </div>
