@@ -2,9 +2,7 @@ import { ClipboardList } from "lucide-react";
 import { CtaButton } from "@/components/landing/CtaButton";
 import questionarioCoverImg from "@/assets/questionario-cover.png";
 
-// TODO: sostituire con il link reale del questionario anonimo (Google Form,
-// Typeform o simili) — per ora è un placeholder.
-const QUESTIONNAIRE_HREF = "#questionario-todo";
+const QUESTIONNAIRE_HREF = "https://forms.gle/aUKTMs5HKfUuCqoz5";
 
 export function QuestionnaireBox() {
   return (

@@ -79,7 +79,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const CHECKOUT_HREF = "https://theroad.carlottasgarra.it/checkout-rule-the-rules";
+const CHECKOUT_HREF = "https://rules.carlottasgarra.it/rule-the-rules-a";
 
 const clientAvatars = [client1Img, client2Img, client3Img, client4Img, client5Img, client6Img];
 
