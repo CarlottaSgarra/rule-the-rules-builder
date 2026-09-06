@@ -29,8 +29,8 @@ const bonusIcons = [VideoIcon, Users, FileCheck2];
 const bonusPhotos = [carlottaLookingImg, carlottaPresentingImg, workbookCoverImg];
 const bonusPhotoAlts = ["Carlotta Sgarra", "Carlotta Sgarra", "Copertina del Workbook"];
 
-const VIP_CHECKOUT_HREF = "/checkout-vip";
-const DECLINE_HREF = "/thank-you";
+const VIP_CHECKOUT_HREF = "https://rules.carlottasgarra.it/checkout-vip";
+const DECLINE_HREF = "https://rules.carlottasgarra.it/grazie-iscrizione-standard";
 
 function VipChoice({ note }: { note?: string }) {
   return (
