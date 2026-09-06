@@ -7,7 +7,7 @@ const WHATSAPP_GROUP_HREF = "#whatsapp-group-todo";
 
 export function WhatsAppGroupBox() {
   return (
-    <div className="grid overflow-hidden rounded-2xl border border-border/70 bg-card/50 sm:grid-cols-2">
+    <div className="grid overflow-hidden rounded-2xl border border-border/70 bg-card/50 sm:grid-cols-[2fr_3fr]">
       <div className="relative flex aspect-[4/3] items-center justify-center border-b-2 border-dashed p-6 text-center sm:aspect-auto sm:border-b-0 sm:border-r-2">
         <p className="font-condensed text-xs uppercase leading-relaxed tracking-[0.15em] text-muted-foreground/60">
           Placeholder

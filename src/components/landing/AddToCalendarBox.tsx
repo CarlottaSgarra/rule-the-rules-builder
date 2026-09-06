@@ -65,7 +65,7 @@ const ICS_HREF = `data:text/calendar;charset=utf-8,${encodeURIComponent(ICS_CONT
 
 export function AddToCalendarBox() {
   return (
-    <div className="grid overflow-hidden rounded-2xl border border-border/70 bg-card/50 sm:grid-cols-2">
+    <div className="grid overflow-hidden rounded-2xl border border-border/70 bg-card/50 sm:grid-cols-[2fr_3fr]">
       <div className="relative flex aspect-[4/3] items-center justify-center border-b-2 border-dashed p-6 text-center sm:aspect-auto sm:border-b-0 sm:border-r-2">
         <p className="font-condensed text-xs uppercase leading-relaxed tracking-[0.15em] text-muted-foreground/60">
           Placeholder
@@ -91,7 +91,7 @@ export function AddToCalendarBox() {
           salvati le date in calendario cliccando qui sotto.
         </p>
 
-        <p className="mt-5 font-condensed text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+        <p className="mt-5 font-condensed text-sm uppercase tracking-[0.15em] text-muted-foreground">
           Aggiungi a Google Calendar
         </p>
         <div className="mt-2 flex flex-wrap gap-2">

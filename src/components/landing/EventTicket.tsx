@@ -1,8 +1,12 @@
 type Props = {
   attendeeName?: string;
+  label?: string;
 };
 
-export function EventTicket({ attendeeName = "Giulia Bianchi" }: Props) {
+export function EventTicket({
+  attendeeName = "Giulia Bianchi",
+  label = "Biglietto ufficiale",
+}: Props) {
   return (
     <div
       className="relative mx-auto flex max-w-lg overflow-hidden rounded-2xl transition-transform duration-300 ease-out hover:-rotate-2 hover:scale-[1.02]"
@@ -16,7 +20,7 @@ export function EventTicket({ attendeeName = "Giulia Bianchi" }: Props) {
     >
       <div className="flex-1 p-5 sm:p-6" style={{ color: "var(--secondary-foreground)" }}>
         <p className="font-condensed text-[10px] uppercase tracking-[0.3em] text-primary">
-          Biglietto ufficiale
+          {label}
         </p>
         <p className="mt-1 font-display text-2xl sm:text-3xl">Rule The Rules</p>
         <p className="font-condensed text-sm uppercase tracking-[0.15em] text-primary">2026</p>

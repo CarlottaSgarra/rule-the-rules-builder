@@ -7,7 +7,7 @@ import { SiteFooter } from "@/components/landing/SiteFooter";
 import { AddToCalendarBox } from "@/components/landing/AddToCalendarBox";
 import { WhatsAppGroupBox } from "@/components/landing/WhatsAppGroupBox";
 import { QuestionnaireBox } from "@/components/landing/QuestionnaireBox";
-import { valueStack, vipBonuses } from "@/data/offer";
+import { EventTicket } from "@/components/landing/EventTicket";
 
 export const Route = createFileRoute("/thank-you-vip")({
   head: () => ({
@@ -30,21 +30,20 @@ const vipAccessInfo = [
     title: "Registrazione delle tre serate",
     d: (
       <>
-        Al termine dell’evento ti inviamo via email il link privato per rivedere tutte e tre le
-        serate <strong className="font-semibold text-ink">quando vuoi, quante volte vuoi</strong>.
-        Salvalo da qualche parte sicuro: è tuo per sempre.
+        Al termine dell’evento ti invio via email il link privato per rivedere tutte e tre le serate{" "}
+        <strong className="font-semibold text-ink">quando vuoi, quante volte vuoi</strong>.
       </>
     ),
   },
   {
     icon: Users,
-    title: "Live esclusiva del giorno dopo",
+    title: "Live esclusiva giovedì 8 ottobre",
     d: (
       <>
         Il link Zoom per la tua ora con me ti arriva via email{" "}
-        <strong className="font-semibold text-ink">qualche giorno prima dell’evento</strong>.
-        Tienilo d’occhio: è il momento in cui il tuo profilo e la tua strategia di vendita passano
-        sotto la lente, uno a uno.
+        <strong className="font-semibold text-ink">qualche giorno prima dell’evento</strong>. Non
+        perderti il link: hai 1 ora a disposizione con me per parlare di vendita e per farti
+        analizzare il profilo Instagram direttamente da me.
       </>
     ),
   },
@@ -68,7 +67,7 @@ function ThankYouVip() {
     <div className="bg-background">
       <div
         className="px-4 py-3 text-center text-sm font-semibold text-white sm:text-base"
-        style={{ backgroundColor: "#6d28d9" }}
+        style={{ backgroundColor: "var(--secondary)" }}
       >
         Leggi le istruzioni qui sotto per partecipare alle 3 serate
       </div>
@@ -108,6 +107,22 @@ function ThankYouVip() {
         </div>
       </section>
 
+      <section className="bg-background px-4 py-8 sm:px-8 sm:py-10">
+        <div className="mx-auto max-w-2xl">
+          <Reveal>
+            <p className="text-center font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
+              Il tuo biglietto
+            </p>
+            <h2 className="mt-2 text-center text-2xl font-semibold text-foreground sm:text-3xl">
+              Ecco il tuo posto <Highlight>VIP</Highlight> a Rule The Rules
+            </h2>
+            <div className="mt-5">
+              <EventTicket label="Biglietto VIP" />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* Come accedere al VIP */}
       <section
         className="bg-secondary px-4 py-14 sm:px-8 sm:py-20"
@@ -119,7 +134,7 @@ function ThankYouVip() {
               Come accedere al VIP
             </p>
             <h2 className="mt-2 text-center text-2xl font-semibold text-ink sm:text-3xl">
-              Tutto quello che hai appena sbloccato
+              Tutto quello che hai appena <Highlight dark>sbloccato</Highlight>
             </h2>
           </Reveal>
           <div className="mt-8 space-y-4">
@@ -138,33 +153,12 @@ function ThankYouVip() {
         </div>
       </section>
 
-      {/* Recap completo: standard + VIP */}
-      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-2xl">
-          <Reveal>
-            <p className="text-center font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
-              Il tuo pacchetto completo
-            </p>
-            <h2 className="mt-2 text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Ecco tutto quello che ti porti a casa
-            </h2>
-          </Reveal>
-          <div className="mt-8 space-y-4 text-sm">
-            {[...valueStack, ...vipBonuses.map((b) => ({ t: b.title, d: b.d }))].map((item) => (
-              <div key={item.t} className="rounded-xl border border-border/70 bg-card/50 p-4">
-                <p className="font-medium text-foreground">{item.t}</p>
-                <div className="mt-1 space-y-1 leading-relaxed text-muted-foreground">{item.d}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-background px-4 pb-14 sm:px-8 sm:pb-20">
-        <div className="mx-auto max-w-2xl">
+      <section className="bg-background px-4 py-14 sm:px-8 sm:pb-20">
+        <div className="mx-auto max-w-4xl">
           <Reveal>
             <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Le ultime 3 cose per trarre il massimo beneficio dall’evento live
+              Le ultime 3 cose per trarre il <Highlight>massimo beneficio</Highlight> dall’evento
+              live
             </h2>
           </Reveal>
 

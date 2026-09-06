@@ -23,6 +23,7 @@ import livestreamImg from "@/assets/livestream.jpg";
 import goldTexture from "@/assets/texture-gold.jpg";
 import client1Img from "@/assets/client-1.jpg";
 import client2Img from "@/assets/client-2.png";
+import silviaBedinImg from "@/assets/silvia-bedin.jpg";
 import client3Img from "@/assets/client-3.png";
 import client4Img from "@/assets/client-4.jpg";
 import client5Img from "@/assets/client-5.png";
@@ -506,7 +507,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "A0vabIP_Srk",
-    photo: client2Img,
+    photo: silviaBedinImg,
   },
   {
     name: "Valeria Salussolia",

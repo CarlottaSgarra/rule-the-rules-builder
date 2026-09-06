@@ -28,7 +28,7 @@ function ThankYou() {
     <div className="bg-background">
       <div
         className="px-4 py-3 text-center text-sm font-semibold text-white sm:text-base"
-        style={{ backgroundColor: "#6d28d9" }}
+        style={{ backgroundColor: "var(--secondary)" }}
       >
         Leggi le istruzioni qui sotto per partecipare alle 3 serate
       </div>
@@ -73,7 +73,7 @@ function ThankYou() {
               Il tuo biglietto
             </p>
             <h2 className="mt-2 text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Ecco il tuo posto a Rule The Rules
+              Ecco il tuo posto a <Highlight>Rule The Rules</Highlight>
             </h2>
             <div className="mt-5">
               <EventTicket />
@@ -83,10 +83,11 @@ function ThankYou() {
       </section>
 
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-4xl">
           <Reveal>
             <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Le ultime 3 cose per trarre il massimo beneficio dall’evento live
+              Le ultime 3 cose per trarre il <Highlight>massimo beneficio</Highlight> dall’evento
+              live
             </h2>
           </Reveal>
 
