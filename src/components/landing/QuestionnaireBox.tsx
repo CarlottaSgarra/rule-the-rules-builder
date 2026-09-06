@@ -1,4 +1,5 @@
 import { ClipboardList } from "lucide-react";
+import { CtaButton } from "@/components/landing/CtaButton";
 
 // TODO: sostituire con il link reale del questionario anonimo (Google Form,
 // Typeform o simili) — per ora è un placeholder.
@@ -13,19 +14,19 @@ export function QuestionnaireBox() {
       >
         <ClipboardList className="size-6 text-primary-foreground" />
       </span>
-      <p className="mt-4 text-lg font-semibold text-foreground">
-        Aiutaci a personalizzare l’evento sui tuoi bisogni
-      </p>
+      <p className="mt-4 text-lg font-semibold text-foreground">Un evento su misura anche per te</p>
       <p className="mx-auto mt-1 max-w-sm text-sm text-muted-foreground">
-        Rispondi a un breve questionario anonimo: ci aiuta a modellare i contenuti delle tre serate
-        su quello che ti serve davvero.
+        Ho creato un breve questionario anonimo per conoscere i tuoi bisogni e la tua situazione
+        attuale, in modo da poter migliorare ancora di più l’evento e personalizzarlo su di te.
+        Compilalo cliccando qui sotto: ci metti solo un minuto.
       </p>
-      <a
-        href={QUESTIONNAIRE_HREF}
-        className="mt-5 inline-flex items-center justify-center rounded-lg border border-secondary/30 px-6 py-3 font-condensed text-sm uppercase tracking-[0.1em] text-secondary transition-colors duration-200 hover:bg-secondary/10"
-      >
-        Compila il questionario anonimo
-      </a>
+      <div className="mt-5 flex justify-center">
+        <CtaButton
+          href={QUESTIONNAIRE_HREF}
+          label="Compila il questionario anonimo"
+          sub="Ci metti solo un minuto"
+        />
+      </div>
     </div>
   );
 }

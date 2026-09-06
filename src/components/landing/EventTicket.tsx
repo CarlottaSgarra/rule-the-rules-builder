@@ -5,7 +5,7 @@ type Props = {
 export function EventTicket({ attendeeName = "Giulia Bianchi" }: Props) {
   return (
     <div
-      className="relative mx-auto flex max-w-md overflow-hidden rounded-2xl transition-transform duration-300 ease-out hover:-rotate-2 hover:scale-[1.02]"
+      className="relative mx-auto flex max-w-lg overflow-hidden rounded-2xl transition-transform duration-300 ease-out hover:-rotate-2 hover:scale-[1.02]"
       style={{
         backgroundImage:
           "linear-gradient(100deg, var(--secondary) 0%, var(--secondary) 55%, color-mix(in oklab, var(--primary) 30%, var(--secondary)) 100%)",
@@ -14,14 +14,14 @@ export function EventTicket({ attendeeName = "Giulia Bianchi" }: Props) {
           "var(--shadow-gold), 0 40px 80px -30px color-mix(in oklab, var(--primary) 40%, transparent)",
       }}
     >
-      <div className="flex-1 p-6 sm:p-8" style={{ color: "var(--secondary-foreground)" }}>
+      <div className="flex-1 p-5 sm:p-6" style={{ color: "var(--secondary-foreground)" }}>
         <p className="font-condensed text-[10px] uppercase tracking-[0.3em] text-primary">
           Biglietto ufficiale
         </p>
         <p className="mt-1 font-display text-2xl sm:text-3xl">Rule The Rules</p>
         <p className="font-condensed text-sm uppercase tracking-[0.15em] text-primary">2026</p>
 
-        <div className="mt-6 grid grid-cols-2 gap-x-4 gap-y-3 text-xs">
+        <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-xs">
           <div>
             <p className="uppercase tracking-[0.1em] text-ink-muted/70">Intestato a</p>
             <p className="mt-0.5 font-semibold">{attendeeName}</p>
@@ -42,7 +42,7 @@ export function EventTicket({ attendeeName = "Giulia Bianchi" }: Props) {
       </div>
 
       <div
-        className="relative flex w-24 shrink-0 flex-col items-center justify-center gap-2 border-l-2 border-dashed px-3 py-6 text-center sm:w-28"
+        className="relative flex w-24 shrink-0 flex-col items-center justify-center gap-2 border-l-2 border-dashed px-3 py-4 text-center sm:w-28"
         style={{
           borderColor: "color-mix(in oklab, var(--primary) 55%, transparent)",
           color: "var(--secondary-foreground)",

@@ -65,49 +65,62 @@ const ICS_HREF = `data:text/calendar;charset=utf-8,${encodeURIComponent(ICS_CONT
 
 export function AddToCalendarBox() {
   return (
-    <div className="rounded-2xl border border-border/70 bg-card/50 p-6 text-center sm:p-8">
-      <span
-        className="mx-auto flex size-12 items-center justify-center rounded-full"
-        style={{ backgroundImage: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
-      >
-        <CalendarPlus className="size-6 text-primary-foreground" />
-      </span>
-      <p className="mt-4 text-lg font-semibold text-foreground">
-        Perfetto! Salvati le date delle tre serate
-      </p>
-      <p className="mt-1 text-sm text-muted-foreground">
-        5, 6 e 7 ottobre 2026 · dalle 19:30 alle 20:30 · Live su Zoom
-      </p>
-
-      <p className="mt-5 font-condensed text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
-        Aggiungi a Google Calendar
-      </p>
-      <div className="mt-2 flex flex-wrap justify-center gap-2">
-        {sessions.map((s) => (
-          <a
-            key={s.date}
-            href={googleCalendarUrl(s.date, s.label)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-lg px-4 py-2.5 font-condensed text-xs uppercase tracking-[0.08em] transition-transform duration-200 hover:-translate-y-0.5"
-            style={{
-              backgroundImage: "var(--gradient-gold)",
-              boxShadow: "var(--shadow-gold)",
-              color: "var(--primary-foreground)",
-            }}
-          >
-            {s.label}
-          </a>
-        ))}
+    <div className="grid overflow-hidden rounded-2xl border border-border/70 bg-card/50 sm:grid-cols-2">
+      <div className="relative flex aspect-[4/3] items-center justify-center border-b-2 border-dashed p-6 text-center sm:aspect-auto sm:border-b-0 sm:border-r-2">
+        <p className="font-condensed text-xs uppercase leading-relaxed tracking-[0.15em] text-muted-foreground/60">
+          Placeholder
+          <br />
+          screenshot Google Calendar
+        </p>
+        <span
+          className="absolute bottom-4 left-4 flex size-12 items-center justify-center rounded-full"
+          style={{ backgroundImage: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
+        >
+          <CalendarPlus className="size-6 text-primary-foreground" />
+        </span>
       </div>
 
-      <a
-        href={ICS_HREF}
-        download="rule-the-rules-2026.ics"
-        className="mt-4 inline-block text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground"
-      >
-        Usi Apple Calendar o Outlook? Scarica il file con tutte e tre le date
-      </a>
+      <div className="p-6 text-left sm:p-8">
+        <p className="text-lg font-semibold text-foreground">Salvati le date delle tre serate</p>
+        <p className="mt-1 text-sm text-muted-foreground">
+          5, 6 e 7 ottobre 2026 · dalle 19:30 alle 20:30 · Live su Zoom
+        </p>
+        <p className="mt-4 text-sm leading-relaxed text-foreground/80">
+          So quanti impegni potresti avere durante la giornata, e non vorrei mai che ti perdessi le
+          tre serate: non sono registrate, sono in diretta live con me. Ti consiglio una cosa:
+          salvati le date in calendario cliccando qui sotto.
+        </p>
+
+        <p className="mt-5 font-condensed text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+          Aggiungi a Google Calendar
+        </p>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {sessions.map((s) => (
+            <a
+              key={s.date}
+              href={googleCalendarUrl(s.date, s.label)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-lg px-4 py-2.5 font-condensed text-xs uppercase tracking-[0.08em] transition-transform duration-200 hover:-translate-y-0.5"
+              style={{
+                backgroundImage: "var(--gradient-gold)",
+                boxShadow: "var(--shadow-gold)",
+                color: "var(--primary-foreground)",
+              }}
+            >
+              {s.label}
+            </a>
+          ))}
+        </div>
+
+        <a
+          href={ICS_HREF}
+          download="rule-the-rules-2026.ics"
+          className="mt-4 inline-block text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground"
+        >
+          Usi Apple Calendar o Outlook? Scarica il file con tutte e tre le date
+        </a>
+      </div>
     </div>
   );
 }

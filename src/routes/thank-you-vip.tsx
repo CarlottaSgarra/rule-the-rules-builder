@@ -5,9 +5,9 @@ import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { AddToCalendarBox } from "@/components/landing/AddToCalendarBox";
+import { WhatsAppGroupBox } from "@/components/landing/WhatsAppGroupBox";
 import { QuestionnaireBox } from "@/components/landing/QuestionnaireBox";
 import { valueStack, vipBonuses } from "@/data/offer";
-import carlottaLooking2Img from "@/assets/carlotta-looking-2.jpg";
 
 export const Route = createFileRoute("/thank-you-vip")({
   head: () => ({
@@ -55,7 +55,7 @@ const vipAccessInfo = [
       <>
         Compila il Workbook durante le tre serate come tutte le altre. Una volta ricevuto,{" "}
         <strong className="font-semibold text-ink">
-          ti scriviamo via email le istruzioni per inviarcelo
+          ti scrivo via email le istruzioni per inviarmelo
         </strong>{" "}
         e riceverai le mie correzioni personali e quelle del mio team.
       </>
@@ -66,6 +66,13 @@ const vipAccessInfo = [
 function ThankYouVip() {
   return (
     <div className="bg-background">
+      <div
+        className="px-4 py-3 text-center text-sm font-semibold text-white sm:text-base"
+        style={{ backgroundColor: "#6d28d9" }}
+      >
+        Leggi le istruzioni qui sotto per partecipare alle 3 serate
+      </div>
+
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
@@ -78,13 +85,13 @@ function ThankYouVip() {
             <h1 className="mt-5 text-3xl sm:text-4xl">
               Upgrade confermato: <Highlight>sei ufficialmente VIP</Highlight>
             </h1>
-            <p className="mx-auto mt-4 max-w-md text-sm text-foreground/75">
-              <Mail className="mr-1.5 mb-0.5 inline size-4 align-text-bottom" /> Ti abbiamo appena
+            <p className="mx-auto mt-4 max-w-xl text-base text-foreground/75 sm:text-lg">
+              <Mail className="mr-1.5 mb-0.5 inline size-4 align-text-bottom" /> Ti ho appena
               inviato un’email di conferma con tutti i dettagli:{" "}
               <strong className="font-semibold text-foreground">vai a controllarla adesso</strong>{" "}
               (occhio anche allo spam).
             </p>
-            <p className="mx-auto mt-3 max-w-md text-sm text-foreground/75">
+            <p className="mx-auto mt-3 max-w-xl text-base text-foreground/75 sm:text-lg">
               Hai scelto di andare oltre, e{" "}
               <strong className="font-semibold text-foreground">
                 te lo sei guadagnata sul serio
@@ -96,22 +103,6 @@ function ThankYouVip() {
           <Reveal delay={100}>
             <div className="mt-8">
               <VideoFrame label="Cosa succede adesso, versione VIP" duration="1:48" />
-            </div>
-          </Reveal>
-
-          <Reveal delay={140}>
-            <div className="mt-8 flex items-center gap-4 rounded-xl border border-border/70 bg-card/50 p-4 text-left">
-              <img
-                src={carlottaLooking2Img}
-                alt="Carlotta Sgarra"
-                loading="lazy"
-                className="size-16 shrink-0 rounded-full object-cover"
-                style={{ objectPosition: "50% 15%" }}
-              />
-              <p className="text-sm font-bold leading-snug text-foreground">
-                Parola di Carlotta: le VIP sono le persone che seguo più da vicino. Preparati,
-                perché il 6 ottobre ci vediamo davvero uno a uno.
-              </p>
             </div>
           </Reveal>
         </div>
@@ -170,13 +161,24 @@ function ThankYouVip() {
       </section>
 
       <section className="bg-background px-4 pb-14 sm:px-8 sm:pb-20">
-        <div className="mx-auto max-w-2xl space-y-6">
+        <div className="mx-auto max-w-2xl">
           <Reveal>
-            <AddToCalendarBox />
+            <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
+              Le ultime 3 cose per trarre il massimo beneficio dall’evento live
+            </h2>
           </Reveal>
-          <Reveal delay={80}>
-            <QuestionnaireBox />
-          </Reveal>
+
+          <div className="mt-8 space-y-6">
+            <Reveal delay={40}>
+              <AddToCalendarBox />
+            </Reveal>
+            <Reveal delay={80}>
+              <WhatsAppGroupBox />
+            </Reveal>
+            <Reveal delay={120}>
+              <QuestionnaireBox />
+            </Reveal>
+          </div>
         </div>
       </section>
 
