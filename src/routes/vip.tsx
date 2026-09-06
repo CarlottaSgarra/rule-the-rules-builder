@@ -137,7 +137,7 @@ function Vip() {
             <div className="mx-auto max-w-4xl">
               <Reveal>
                 <div className="grid items-center gap-10 sm:grid-cols-2">
-                  <div className={imageFirst ? "sm:order-2" : ""}>
+                  <div className={`order-2 ${imageFirst ? "sm:order-2" : "sm:order-1"}`}>
                     <div
                       className="relative overflow-hidden rounded-2xl"
                       style={{ boxShadow: "var(--shadow-deep)" }}
@@ -166,7 +166,7 @@ function Vip() {
                     </div>
                   </div>
 
-                  <div className={imageFirst ? "sm:order-1" : ""}>
+                  <div className={`order-1 ${imageFirst ? "sm:order-1" : "sm:order-2"}`}>
                     <p
                       className={`font-condensed text-xs uppercase tracking-[0.25em] ${dark ? "text-primary" : "text-secondary"}`}
                     >

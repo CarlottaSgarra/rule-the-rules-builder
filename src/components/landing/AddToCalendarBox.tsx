@@ -68,7 +68,11 @@ const ICS_CONTENT = [
 
 const ICS_HREF = `data:text/calendar;charset=utf-8,${encodeURIComponent(ICS_CONTENT)}`;
 
-export function AddToCalendarBox() {
+type Props = {
+  vip?: boolean;
+};
+
+export function AddToCalendarBox({ vip = false }: Props) {
   return (
     <div className="group grid overflow-hidden rounded-2xl border border-border/70 bg-card/50 transition-all duration-300 hover:-translate-y-1 hover:border-secondary hover:shadow-[0_20px_45px_-20px_rgba(0,0,0,0.35)] sm:grid-cols-[2fr_3fr]">
       <div className="relative flex items-center justify-center border-b-2 border-dashed p-4 sm:border-b-0 sm:border-r-2">
@@ -96,10 +100,20 @@ export function AddToCalendarBox() {
           tre serate.
         </p>
         <p className="mt-2 text-sm leading-relaxed text-foreground/80">
-          <strong className="font-semibold">
-            Non sono registrate, sono in diretta live con me.
-          </strong>{" "}
-          Ti consiglio una cosa: salvati le date in calendario cliccando qui sotto.
+          {vip ? (
+            <>
+              <strong className="font-semibold">Le 3 serate sono in diretta con me</strong>, e tu
+              puoi anche vedere la registrazione successivamente, visto che hai il biglietto VIP. Ti
+              consiglio comunque di salvarti le date in calendario cliccando qui sotto.
+            </>
+          ) : (
+            <>
+              <strong className="font-semibold">
+                Non sono registrate, sono in diretta live con me.
+              </strong>{" "}
+              Ti consiglio una cosa: salvati le date in calendario cliccando qui sotto.
+            </>
+          )}
         </p>
 
         <p className="mt-5 font-condensed text-sm uppercase tracking-[0.15em] text-muted-foreground">

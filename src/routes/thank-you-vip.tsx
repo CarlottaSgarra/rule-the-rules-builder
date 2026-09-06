@@ -180,7 +180,7 @@ function ThankYouVip() {
 
           <div className="mt-8 space-y-6">
             <Reveal delay={40}>
-              <AddToCalendarBox />
+              <AddToCalendarBox vip />
             </Reveal>
             <Reveal delay={80}>
               <WhatsAppGroupBox />
