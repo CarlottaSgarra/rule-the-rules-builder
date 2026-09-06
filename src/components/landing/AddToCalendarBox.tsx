@@ -4,16 +4,9 @@ import calendarSaveImg from "@/assets/salva-evento-calendario.png";
 const EVENT_DETAILS = "Live in streaming su Zoom. Il link di accesso arriva via email.";
 const EVENT_LOCATION = "Zoom (link via email)";
 
-const sessions = [
-  { date: "20261005", label: "5 ottobre" },
-  { date: "20261006", label: "6 ottobre" },
-  { date: "20261007", label: "7 ottobre" },
-];
-
-// Google Calendar non supporta più eventi in un solo link "quick add": serve
-// un link per data. Su mobile è la via più affidabile per salvare davvero
-// l'evento (il download di un .ics spesso si perde nei Download e non apre
-// mai Google Calendar).
+// Un unico link "quick add" che crea un evento ricorrente (giornaliero, 3
+// volte) invece di un evento separato per ogni serata: così chi clicca
+// salva tutte e tre le date con un solo tocco.
 export function googleCalendarUrl(date: string, label: string) {
   const params = new URLSearchParams({
     action: "TEMPLATE",
@@ -24,6 +17,18 @@ export function googleCalendarUrl(date: string, label: string) {
   });
   return `https://www.google.com/calendar/render?${params.toString()}`;
 }
+
+const RECURRING_CALENDAR_URL = (() => {
+  const params = new URLSearchParams({
+    action: "TEMPLATE",
+    text: "Rule The Rules - Unico Evento Live 2026 con Carlotta Sgarra",
+    dates: "20261005T173000Z/20261005T183000Z",
+    recur: "RRULE:FREQ=DAILY;COUNT=3",
+    details: EVENT_DETAILS,
+    location: EVENT_LOCATION,
+  });
+  return `https://www.google.com/calendar/render?${params.toString()}`;
+})();
 
 // Un solo file .ics con i tre eventi, per chi preferisce Apple Calendar o
 // Outlook (lì un file multi-evento funziona bene, a differenza di Google).
@@ -101,23 +106,20 @@ export function AddToCalendarBox() {
         <p className="mt-5 font-condensed text-sm uppercase tracking-[0.15em] text-muted-foreground">
           Aggiungi a Google Calendar
         </p>
-        <div className="mt-2 flex flex-wrap gap-2">
-          {sessions.map((s) => (
-            <a
-              key={s.date}
-              href={googleCalendarUrl(s.date, s.label)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-lg px-4 py-2.5 font-condensed text-xs uppercase tracking-[0.08em] transition-transform duration-200 hover:-translate-y-0.5"
-              style={{
-                backgroundImage: "var(--gradient-gold)",
-                boxShadow: "var(--shadow-gold)",
-                color: "var(--primary-foreground)",
-              }}
-            >
-              {s.label}
-            </a>
-          ))}
+        <div className="mt-2">
+          <a
+            href={RECURRING_CALENDAR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-lg px-5 py-2.5 font-condensed text-xs font-bold uppercase tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5"
+            style={{
+              backgroundImage: "var(--gradient-gold)",
+              boxShadow: "var(--shadow-gold)",
+              color: "var(--primary-foreground)",
+            }}
+          >
+            Salva tutte e tre le date
+          </a>
         </div>
 
         <a
