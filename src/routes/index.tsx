@@ -24,6 +24,25 @@ import goldTexture from "@/assets/texture-gold.jpg";
 import client1Img from "@/assets/client-1.jpg";
 import client2Img from "@/assets/client-2.png";
 import silviaBedinImg from "@/assets/silvia-bedin.jpg";
+import elenaRosaImg from "@/assets/elena-rosa.jpg";
+import valeriaSalussoliImg from "@/assets/valeria-salussoli.avif";
+import mariangelaSimioliImg from "@/assets/mariangela-simioli.jpg";
+import giuliaSantelliImg from "@/assets/giulia-santelli.jpg";
+import ilariaMatteiImg from "@/assets/ilaria-mattei.jpg";
+import giuliaAriganelloImg from "@/assets/giulia-ariganello.jpg";
+import vanessaSciorioImg from "@/assets/vanessa-sciorio.jpg";
+import elisaMonasteroloImg from "@/assets/elisa-monasterolo.jpg";
+import giusyPanneseImg from "@/assets/giusy-pannese.jpg";
+import biancaLucaciImg from "@/assets/bianca-lucaci.jpg";
+import rosannaCafarellaImg from "@/assets/rosanna-cafarella.jpg";
+import mariannaTaurielloImg from "@/assets/marianna-tauriello.jpg";
+import valentinaGiuriatoImg from "@/assets/valentina-giuriato.jpg";
+import sharonConvertinoImg from "@/assets/sharon-convertino.jpg";
+import silviaErricoImg from "@/assets/silvia-errico.jpeg";
+import elisabettaBettonteImg from "@/assets/elisabetta-bettonte.jpg";
+import francescaSolignaniImg from "@/assets/francesca-solignani.jpeg";
+import cristinaBuligaImg from "@/assets/cristina-buliga.jpg";
+import robertaTrabuccoImg from "@/assets/roberta-trabucco.jpg";
 import client3Img from "@/assets/client-3.png";
 import client4Img from "@/assets/client-4.jpg";
 import client5Img from "@/assets/client-5.png";
@@ -490,7 +509,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "O75oxbgxdjY",
-    photo: client1Img,
+    photo: elenaRosaImg,
   },
   {
     name: "Silvia Bedin",
@@ -525,7 +544,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "gFKD9AkVaZw",
-    photo: client3Img,
+    photo: valeriaSalussoliImg,
   },
   {
     name: "Mariangela Simioli",
@@ -542,7 +561,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "Qd6QLXPzcMs",
-    photo: client4Img,
+    photo: mariangelaSimioliImg,
   },
   {
     name: "Giulia Santelli",
@@ -559,7 +578,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "MVOsgoJEHI0",
-    photo: client5Img,
+    photo: giuliaSantelliImg,
   },
   {
     name: "Ilaria Mattei",
@@ -576,7 +595,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "BxQDPKy141U",
-    photo: client6Img,
+    photo: ilariaMatteiImg,
   },
   {
     name: "Giulia Ariganello",
@@ -592,7 +611,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "Qzhc1dBGVpM",
-    photo: client1Img,
+    photo: giuliaAriganelloImg,
   },
   {
     name: "Vanessa Sciorio",
@@ -609,7 +628,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "mJh2hT3BIgE",
-    photo: client2Img,
+    photo: vanessaSciorioImg,
   },
   {
     name: "Elisa Monasterolo",
@@ -625,7 +644,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "fB1zSchLTiI",
-    photo: client3Img,
+    photo: elisaMonasteroloImg,
   },
   {
     name: "Giusy Pannese",
@@ -644,7 +663,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "IUeaewJX9iU",
-    photo: client4Img,
+    photo: giusyPanneseImg,
   },
   {
     name: "Bianca Lucaci",
@@ -660,7 +679,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "Kw2nsluTO2A",
-    photo: client5Img,
+    photo: biancaLucaciImg,
   },
   {
     name: "Rosanna Cafarella",
@@ -676,7 +695,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "Ek8tUbgTJGk",
-    photo: client6Img,
+    photo: rosannaCafarellaImg,
   },
   {
     name: "Mariella Tauriello",
@@ -692,7 +711,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "-D9QGDLWue0",
-    photo: client1Img,
+    photo: mariannaTaurielloImg,
   },
   {
     name: "Valentina Giuriato",
@@ -708,7 +727,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "yDGIN_aaz0k",
-    photo: client2Img,
+    photo: valentinaGiuriatoImg,
   },
   {
     name: "Sharon Convertino",
@@ -724,7 +743,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "eA4QQQXlG54",
-    photo: client3Img,
+    photo: sharonConvertinoImg,
   },
   {
     name: "Silvia Errico",
@@ -740,7 +759,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "G-ElGXQXcNg",
-    photo: client4Img,
+    photo: silviaErricoImg,
   },
   {
     name: "Elisabetta Bettonte",
@@ -756,7 +775,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "zVAuDJ4xJC8",
-    photo: client5Img,
+    photo: elisabettaBettonteImg,
   },
   {
     name: "Francesca Solignani",
@@ -772,7 +791,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "h7V0kkYzhec",
-    photo: client6Img,
+    photo: francescaSolignaniImg,
   },
   {
     name: "Cristina Buliga",
@@ -788,7 +807,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "8JrTY4ulPZQ",
-    photo: client1Img,
+    photo: cristinaBuligaImg,
   },
   {
     name: "Roberta Trabucco",
@@ -804,7 +823,7 @@ const videoTestimonials = [
       </>
     ),
     youtubeId: "2Q3Keue0i7w",
-    photo: client2Img,
+    photo: robertaTrabuccoImg,
   },
 ];
 
