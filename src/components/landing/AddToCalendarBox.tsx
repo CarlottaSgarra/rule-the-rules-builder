@@ -1,4 +1,5 @@
 import { CalendarPlus } from "lucide-react";
+import { CtaButton } from "@/components/landing/CtaButton";
 import calendarSaveImg from "@/assets/salva-evento-calendario.png";
 
 const EVENT_DETAILS = "Live in streaming su Zoom. Il link di accesso arriva via email.";
@@ -106,21 +107,14 @@ export function AddToCalendarBox() {
         <p className="mt-5 font-condensed text-sm uppercase tracking-[0.15em] text-muted-foreground">
           Aggiungi a Google Calendar
         </p>
-        <div className="mt-2">
-          <a
-            href={RECURRING_CALENDAR_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-lg px-5 py-2.5 font-condensed text-xs font-bold uppercase tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5"
-            style={{
-              backgroundImage: "var(--gradient-gold)",
-              boxShadow: "var(--shadow-gold)",
-              color: "var(--primary-foreground)",
-            }}
-          >
-            Salva tutte e tre le date
-          </a>
-        </div>
+        <CtaButton
+          href={RECURRING_CALENDAR_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          label="Salva tutte e tre le date"
+          sub="5, 6 e 7 ottobre · dalle 19:30"
+          className="mt-2"
+        />
 
         <a
           href={ICS_HREF}

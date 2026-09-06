@@ -3,6 +3,8 @@ type Props = {
   sub?: string;
   className?: string;
   href?: string;
+  target?: string;
+  rel?: string;
 };
 
 export function CtaButton({
@@ -10,10 +12,14 @@ export function CtaButton({
   sub = "5-6-7 ottobre · 27€ · Garanzia rimborso",
   className = "",
   href = "#iscriviti",
+  target,
+  rel,
 }: Props) {
   return (
     <a
       href={href}
+      target={target}
+      rel={rel}
       className={`group inline-flex w-full max-w-xl flex-col items-center rounded-xl px-4 py-3 text-center transition-transform duration-200 hover:-translate-y-0.5 sm:px-6 sm:py-5 ${className}`}
       style={{
         backgroundImage: "var(--gradient-gold)",
