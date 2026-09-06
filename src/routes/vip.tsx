@@ -28,6 +28,11 @@ export const Route = createFileRoute("/vip")({
 const bonusIcons = [VideoIcon, Users, FileCheck2];
 const bonusPhotos = [carlottaLookingImg, carlottaPresentingImg, workbookCoverImg];
 const bonusPhotoAlts = ["Carlotta Sgarra", "Carlotta Sgarra", "Copertina del Workbook"];
+const bonusPhotoCaptions = [
+  "Puoi vedere la registrazione delle 3 serate tutte le volte che vuoi",
+  "La live è giovedì 8 ottobre alle ore 13",
+  "Io e il mio team correggiamo il tuo workbook",
+];
 
 const VIP_CHECKOUT_HREF = "https://rules.carlottasgarra.it/checkout-vip";
 const DECLINE_HREF = "https://rules.carlottasgarra.it/grazie-iscrizione-standard";
@@ -144,15 +149,20 @@ function Vip() {
                         className="aspect-[4/5] w-full object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      <span
-                        className="absolute bottom-4 left-4 flex size-12 items-center justify-center rounded-full"
-                        style={{
-                          backgroundImage: "var(--gradient-gold)",
-                          boxShadow: "var(--shadow-gold)",
-                        }}
-                      >
-                        <Icon className="size-6 text-primary-foreground" />
-                      </span>
+                      <div className="absolute inset-x-4 bottom-4 flex items-center gap-3 rounded-2xl bg-white/15 p-3 backdrop-blur-sm">
+                        <span
+                          className="flex size-12 shrink-0 items-center justify-center rounded-full"
+                          style={{
+                            backgroundImage: "var(--gradient-gold)",
+                            boxShadow: "var(--shadow-gold)",
+                          }}
+                        >
+                          <Icon className="size-6 text-primary-foreground" />
+                        </span>
+                        <p className="text-sm font-semibold leading-snug text-white">
+                          {bonusPhotoCaptions[i]}
+                        </p>
+                      </div>
                     </div>
                   </div>
 

@@ -38,7 +38,7 @@ const vipAccessInfo = [
   },
   {
     icon: Users,
-    title: "Live esclusiva giovedì 8 ottobre",
+    title: "Live esclusiva giovedì 8 ottobre alle 13",
     d: (
       <>
         Il link Zoom per la tua ora con me ti arriva via email{" "}

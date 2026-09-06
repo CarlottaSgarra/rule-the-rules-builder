@@ -5,14 +5,12 @@ import calendarSaveImg from "@/assets/salva-evento-calendario.png";
 const EVENT_DETAILS = "Live in streaming su Zoom. Il link di accesso arriva via email.";
 const EVENT_LOCATION = "Zoom (link via email)";
 
-// Un unico link "quick add" che crea un evento ricorrente (giornaliero, 3
-// volte) invece di un evento separato per ogni serata: così chi clicca
-// salva tutte e tre le date con un solo tocco.
+// Usato per la live VIP dell'8 ottobre (13:00-14:00 ora italiana = 11:00-12:00 UTC).
 export function googleCalendarUrl(date: string, label: string) {
   const params = new URLSearchParams({
     action: "TEMPLATE",
     text: `Rule The Rules 2026 – ${label}`,
-    dates: `${date}T173000Z/${date}T183000Z`,
+    dates: `${date}T110000Z/${date}T120000Z`,
     details: EVENT_DETAILS,
     location: EVENT_LOCATION,
   });
