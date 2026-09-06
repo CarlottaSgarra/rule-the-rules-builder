@@ -4,7 +4,7 @@ import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { SiteFooter } from "@/components/landing/SiteFooter";
-import { AddToCalendarBox } from "@/components/landing/AddToCalendarBox";
+import { AddToCalendarBox, googleCalendarUrl } from "@/components/landing/AddToCalendarBox";
 import { WhatsAppGroupBox } from "@/components/landing/WhatsAppGroupBox";
 import { QuestionnaireBox } from "@/components/landing/QuestionnaireBox";
 import { EventTicket } from "@/components/landing/EventTicket";
@@ -46,6 +46,7 @@ const vipAccessInfo = [
         analizzare il profilo Instagram direttamente da me.
       </>
     ),
+    calendarHref: googleCalendarUrl("20261008", "Live VIP - 8 ottobre"),
   },
   {
     icon: FileCheck2,
@@ -145,6 +146,21 @@ function ThankYouVip() {
                   <div>
                     <p className="font-semibold text-ink">{item.title}</p>
                     <p className="mt-1 text-sm leading-relaxed text-ink-muted">{item.d}</p>
+                    {item.calendarHref ? (
+                      <a
+                        href={item.calendarHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 inline-flex items-center justify-center rounded-lg px-4 py-2.5 font-condensed text-xs font-bold uppercase tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5"
+                        style={{
+                          backgroundImage: "var(--gradient-gold)",
+                          boxShadow: "var(--shadow-gold)",
+                          color: "var(--primary-foreground)",
+                        }}
+                      >
+                        Salva la data della live sul calendario
+                      </a>
+                    ) : null}
                   </div>
                 </div>
               </Reveal>

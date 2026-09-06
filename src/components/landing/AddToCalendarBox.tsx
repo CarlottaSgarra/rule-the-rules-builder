@@ -1,4 +1,5 @@
 import { CalendarPlus } from "lucide-react";
+import calendarSaveImg from "@/assets/salva-evento-calendario.png";
 
 const EVENT_DETAILS = "Live in streaming su Zoom. Il link di accesso arriva via email.";
 const EVENT_LOCATION = "Zoom (link via email)";
@@ -13,7 +14,7 @@ const sessions = [
 // un link per data. Su mobile è la via più affidabile per salvare davvero
 // l'evento (il download di un .ics spesso si perde nei Download e non apre
 // mai Google Calendar).
-function googleCalendarUrl(date: string, label: string) {
+export function googleCalendarUrl(date: string, label: string) {
   const params = new URLSearchParams({
     action: "TEMPLATE",
     text: `Rule The Rules 2026 – ${label}`,
@@ -65,13 +66,14 @@ const ICS_HREF = `data:text/calendar;charset=utf-8,${encodeURIComponent(ICS_CONT
 
 export function AddToCalendarBox() {
   return (
-    <div className="grid overflow-hidden rounded-2xl border border-border/70 bg-card/50 sm:grid-cols-[2fr_3fr]">
-      <div className="relative flex aspect-[4/3] items-center justify-center border-b-2 border-dashed p-6 text-center sm:aspect-auto sm:border-b-0 sm:border-r-2">
-        <p className="font-condensed text-xs uppercase leading-relaxed tracking-[0.15em] text-muted-foreground/60">
-          Placeholder
-          <br />
-          screenshot Google Calendar
-        </p>
+    <div className="group grid overflow-hidden rounded-2xl border border-border/70 bg-card/50 transition-all duration-300 hover:-translate-y-1 hover:border-secondary hover:shadow-[0_20px_45px_-20px_rgba(0,0,0,0.35)] sm:grid-cols-[2fr_3fr]">
+      <div className="relative flex items-center justify-center border-b-2 border-dashed p-4 sm:border-b-0 sm:border-r-2">
+        <img
+          src={calendarSaveImg}
+          alt="Come salvare l’evento su Google Calendar"
+          loading="lazy"
+          className="max-h-56 w-full rounded-lg object-contain shadow-lg transition-transform duration-300 group-hover:-rotate-2 sm:max-h-full"
+        />
         <span
           className="absolute bottom-4 left-4 flex size-12 items-center justify-center rounded-full"
           style={{ backgroundImage: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
@@ -87,8 +89,13 @@ export function AddToCalendarBox() {
         </p>
         <p className="mt-4 text-sm leading-relaxed text-foreground/80">
           So quanti impegni potresti avere durante la giornata, e non vorrei mai che ti perdessi le
-          tre serate: non sono registrate, sono in diretta live con me. Ti consiglio una cosa:
-          salvati le date in calendario cliccando qui sotto.
+          tre serate.
+        </p>
+        <p className="mt-2 text-sm leading-relaxed text-foreground/80">
+          <strong className="font-semibold">
+            Non sono registrate, sono in diretta live con me.
+          </strong>{" "}
+          Ti consiglio una cosa: salvati le date in calendario cliccando qui sotto.
         </p>
 
         <p className="mt-5 font-condensed text-sm uppercase tracking-[0.15em] text-muted-foreground">
