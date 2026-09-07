@@ -6,7 +6,7 @@ import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { vipBonuses, vipBonusesTotal, VIP_PRICE } from "@/data/offer";
-import workbookCoverImg from "@/assets/workbook-cover.png";
+import workbookCoverImg from "@/assets/workbook-cover-v2.png";
 import copertinaRegistrazioneLiveImg from "@/assets/copertina-registrazione-live.png";
 import invitoPerTeImg from "@/assets/invito-per-te-costruire-la-tua-comunicazione.jpg";
 

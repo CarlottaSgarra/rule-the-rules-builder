@@ -2154,7 +2154,7 @@ function Index() {
                   alt="Carlotta Sgarra abbraccia una partecipante a un suo evento live"
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover"
-                  style={{ objectPosition: "50% 20%" }}
+                  style={{ objectPosition: "50% 8%" }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40" />
                 <div className="relative">
@@ -2195,7 +2195,7 @@ function Index() {
                   className="h-full w-full object-cover"
                   style={{ objectPosition: "60% 25%" }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/15 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/10 to-transparent" />
                 <p className="absolute inset-x-0 top-0 p-5 text-lg font-semibold leading-snug text-white sm:p-6 sm:text-xl">
                   Ok, dopo tutto quello che hai letto, adesso direi che è il momento di iscriverti.
                 </p>

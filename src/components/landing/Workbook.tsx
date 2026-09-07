@@ -19,7 +19,7 @@ export function Workbook() {
           boxShadow: "0 10px 24px -8px rgba(0,0,0,0.5)",
         }}
       >
-        Ti arriva prima dell’evento
+        Hai accesso immediato
       </span>
     </div>
   );
