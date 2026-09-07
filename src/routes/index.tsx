@@ -10,7 +10,6 @@ import {
 import { CtaButton } from "@/components/landing/CtaButton";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
-import { WhatsAppGroupBox } from "@/components/landing/WhatsAppGroupBox";
 import { Reveal } from "@/components/landing/Reveal";
 import { SignupForm } from "@/components/landing/SignupForm";
 import { Workbook } from "@/components/landing/Workbook";
@@ -44,6 +43,8 @@ import francescaSolignaniImg from "@/assets/francesca-solignani.jpeg";
 import cristinaBuligaImg from "@/assets/cristina-buliga.jpg";
 import robertaTrabuccoImg from "@/assets/roberta-trabucco.jpg";
 import martinaFerrariImg from "@/assets/martina-ferrari.jpg";
+import whatsappScreenshot1Img from "@/assets/whatsapp-screenshot-1.png";
+import whatsappScreenshot2Img from "@/assets/whatsapp-screenshot-2.png";
 import client3Img from "@/assets/client-3.png";
 import client4Img from "@/assets/client-4.jpg";
 import client5Img from "@/assets/client-5.png";
@@ -1667,14 +1668,25 @@ function Index() {
               }}
             >
               <div
-                className="flex aspect-[4/3] items-center justify-center border-b-2 border-dashed p-6 text-center sm:aspect-auto sm:border-b-0 sm:border-r-2"
+                className="flex aspect-[4/3] items-center justify-center border-b-2 border-dashed p-6 sm:aspect-auto sm:border-b-0 sm:border-r-2"
                 style={{ borderColor: "color-mix(in oklab, var(--primary) 35%, transparent)" }}
               >
-                <p className="font-condensed text-xs uppercase leading-relaxed tracking-[0.15em] text-ink-muted/60">
-                  Placeholder
-                  <br />
-                  screenshot chat WhatsApp
-                </p>
+                <div className="relative w-full max-w-[220px]">
+                  <img
+                    src={whatsappScreenshot1Img}
+                    alt="Screenshot di una conversazione nel gruppo WhatsApp dell’evento"
+                    loading="lazy"
+                    className="w-4/5 rounded-lg border-2 border-white shadow-[0_20px_40px_-12px_rgba(0,0,0,0.45)]"
+                    style={{ transform: "rotate(-5deg)" }}
+                  />
+                  <img
+                    src={whatsappScreenshot2Img}
+                    alt="Screenshot di un’altra conversazione nel gruppo WhatsApp dell’evento"
+                    loading="lazy"
+                    className="absolute bottom-0 right-0 w-4/5 rounded-lg border-2 border-white shadow-[0_20px_40px_-12px_rgba(0,0,0,0.45)]"
+                    style={{ transform: "rotate(5deg)" }}
+                  />
+                </div>
               </div>
               <div className="p-6 sm:p-8">
                 <span
@@ -1964,12 +1976,6 @@ function Index() {
           </Reveal>
 
           <TestimonialsExplorer testimonials={videoTestimonials} />
-
-          <Reveal delay={80}>
-            <div className="mt-14 max-w-2xl mx-auto">
-              <WhatsAppGroupBox />
-            </div>
-          </Reveal>
 
           <div className="mt-10 flex justify-center">
             <CtaButton label="Voglio rompere le regole" href={SIGNUP_HREF} />
