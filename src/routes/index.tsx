@@ -843,6 +843,7 @@ const videoTestimonials = [
         Continua a far evolvere il suo brand e sta per aprire anche il suo studio.
       </>
     ),
+    youtubeId: "lFtIzpBgW9c",
     photo: martinaFerrariImg,
   },
 ];
