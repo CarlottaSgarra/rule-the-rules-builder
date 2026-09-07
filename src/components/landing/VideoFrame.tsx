@@ -1,13 +1,103 @@
-import { Play } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Play, Volume2 } from "lucide-react";
 
 type Props = {
   label: string;
   duration?: string;
   poster?: string;
   youtubeId?: string;
+  vimeoId?: string;
 };
 
-export function VideoFrame({ label, duration, poster, youtubeId }: Props) {
+type VimeoPlayer = {
+  setMuted: (muted: boolean) => Promise<void>;
+  play: () => Promise<void>;
+};
+
+declare global {
+  interface Window {
+    Vimeo?: {
+      Player: new (element: HTMLIFrameElement) => VimeoPlayer;
+    };
+  }
+}
+
+// Autoplay mutato (richiesto dalle policy dei browser), con un badge
+// centrale cliccabile per attivare l'audio: usa il player.js ufficiale di
+// Vimeo (caricato a runtime) per poter chiamare setMuted() in risposta al
+// click dell'utente.
+function VimeoAutoplayEmbed({ label, vimeoId }: { label: string; vimeoId: string }) {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const playerRef = useRef<VimeoPlayer | null>(null);
+  const [unmuted, setUnmuted] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    function setup() {
+      if (cancelled || !iframeRef.current || !window.Vimeo) return;
+      playerRef.current = new window.Vimeo.Player(iframeRef.current);
+    }
+
+    if (window.Vimeo) {
+      setup();
+    } else {
+      const script = document.createElement("script");
+      script.src = "https://player.vimeo.com/api/player.js";
+      script.async = true;
+      script.onload = setup;
+      document.body.appendChild(script);
+    }
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  function handleUnmute() {
+    setUnmuted(true);
+    playerRef.current?.setMuted(false);
+    playerRef.current?.play();
+  }
+
+  return (
+    <div
+      className="relative aspect-video w-full overflow-hidden rounded-2xl border border-primary/25 bg-muted"
+      style={{ boxShadow: "var(--shadow-deep)" }}
+    >
+      <iframe
+        ref={iframeRef}
+        src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=1&title=0&byline=0&portrait=0`}
+        title={label}
+        className="h-full w-full"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+        allowFullScreen
+      />
+      {!unmuted ? (
+        <button
+          type="button"
+          onClick={handleUnmute}
+          className="absolute inset-0 flex items-center justify-center bg-black/10 transition-colors hover:bg-black/20"
+          aria-label="Attiva l’audio del video"
+        >
+          <span
+            className="flex items-center gap-2 rounded-full px-6 py-3 font-condensed text-sm uppercase tracking-[0.2em] text-primary-foreground"
+            style={{ backgroundImage: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
+          >
+            <Volume2 className="size-4" />
+            Guarda il video
+          </span>
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
+export function VideoFrame({ label, duration, poster, youtubeId, vimeoId }: Props) {
+  if (vimeoId) {
+    return <VimeoAutoplayEmbed label={label} vimeoId={vimeoId} />;
+  }
+
   if (youtubeId) {
     return (
       <div className="aspect-video w-full overflow-hidden rounded-2xl border border-primary/25">

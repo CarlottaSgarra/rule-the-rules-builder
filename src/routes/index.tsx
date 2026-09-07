@@ -19,7 +19,6 @@ import { Highlight } from "@/components/landing/Highlight";
 import { SiteTopbar } from "@/components/landing/SiteTopbar";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { valueStack, valueStackTotal } from "@/data/offer";
-import livestreamImg from "@/assets/livestream.jpg";
 import goldTexture from "@/assets/texture-gold.jpg";
 import client1Img from "@/assets/client-1.jpg";
 import client2Img from "@/assets/client-2.png";
@@ -1244,8 +1243,7 @@ function Index() {
             <div className="mt-10">
               <VideoFrame
                 label="Guarda il video di presentazione di Rule The Rules"
-                duration="06:15"
-                poster={livestreamImg}
+                vimeoId="1224559304"
               />
             </div>
           </Reveal>
