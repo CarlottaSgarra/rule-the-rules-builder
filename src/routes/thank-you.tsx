@@ -4,11 +4,15 @@ import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { SiteFooter } from "@/components/landing/SiteFooter";
+import { CtaButton } from "@/components/landing/CtaButton";
 import { AddToCalendarBox } from "@/components/landing/AddToCalendarBox";
 import { WhatsAppGroupBox } from "@/components/landing/WhatsAppGroupBox";
 import { QuestionnaireBox } from "@/components/landing/QuestionnaireBox";
 import { InstagramFollowBox } from "@/components/landing/InstagramFollowBox";
 import { EventTicket } from "@/components/landing/EventTicket";
+
+const WORKBOOK_HREF =
+  "https://hill-reading-d16.notion.site/WORKBOOK-Rule-the-Rules-3d47c38ddf4a80c6be13d6d53691a0e5?source=copy_link";
 
 export const Route = createFileRoute("/thank-you")({
   head: () => ({
@@ -62,6 +66,22 @@ function ThankYou() {
           <Reveal delay={100}>
             <div className="mt-8">
               <VideoFrame label="Cosa succede adesso" vimeoId="1224559302" />
+            </div>
+          </Reveal>
+
+          <Reveal delay={140}>
+            <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-foreground/75">
+              Cliccando sul link qui sotto potrai accedere al workbook dell’evento. Lo userai
+              durante le 3 serate per mettere in pratica tutto quello che vedrai.
+            </p>
+            <div className="mt-4 flex justify-center">
+              <CtaButton
+                href={WORKBOOK_HREF}
+                target="_blank"
+                rel="noopener noreferrer"
+                label="Accedi ora al Workbook dell’evento"
+                sub="Si apre in una nuova scheda"
+              />
             </div>
           </Reveal>
         </div>

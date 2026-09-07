@@ -1,4 +1,4 @@
-import workbookCoverImg from "@/assets/workbook-cover.png";
+import workbookCoverImg from "@/assets/workbook-cover-v2.png";
 
 export function Workbook() {
   return (
@@ -7,9 +7,9 @@ export function Workbook() {
         src={workbookCoverImg}
         alt="Copertina del Workbook di Rule The Rules"
         loading="lazy"
-        width={1054}
-        height={1492}
-        className="-rotate-3 aspect-[1054/1492] w-full rounded-2xl object-cover transition-transform duration-300 hover:-translate-y-2"
+        width={1061}
+        height={1500}
+        className="-rotate-3 aspect-[1061/1500] w-full rounded-2xl object-cover transition-transform duration-300 hover:-translate-y-2"
         style={{ boxShadow: "var(--shadow-deep)" }}
       />
       <span

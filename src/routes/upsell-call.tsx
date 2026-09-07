@@ -6,6 +6,7 @@ import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import sharonSpeakingImg from "@/assets/sharon-speaking.jpg";
+import chiTiGuideraImg from "@/assets/chi-ti-guidera-in-questi-tre-giorni-in-diretta.jpg";
 
 export const Route = createFileRoute("/upsell-call")({
   head: () => ({
@@ -31,6 +32,8 @@ const guides = [
     icon: IdCard,
     name: "Con me",
     d: "Lavoriamo su identità e posizionamento: chi sei, cosa vuoi rappresentare e come comunicarlo senza copiare nessuno.",
+    photo: chiTiGuideraImg,
+    photoPosition: "50% 12%",
   },
   {
     icon: Wand2,
@@ -148,6 +151,7 @@ function UpsellCall() {
                         alt={g.name}
                         loading="lazy"
                         className="absolute inset-0 h-full w-full object-cover"
+                        style={{ objectPosition: g.photoPosition }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
                     </>

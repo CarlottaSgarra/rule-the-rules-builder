@@ -3,9 +3,7 @@ import { CtaButton } from "@/components/landing/CtaButton";
 import whatsappScreenshot1Img from "@/assets/whatsapp-screenshot-1.png";
 import whatsappScreenshot2Img from "@/assets/whatsapp-screenshot-2.png";
 
-// TODO: sostituire con il link di invito reale al gruppo WhatsApp
-// dell'evento — per ora è un placeholder.
-const WHATSAPP_GROUP_HREF = "#whatsapp-group-todo";
+const WHATSAPP_GROUP_HREF = "https://chat.whatsapp.com/BzHnjsnaB2pEoqt53jcN9b?mode=gi_t";
 
 export function WhatsAppGroupBox() {
   return (
@@ -56,6 +54,8 @@ export function WhatsAppGroupBox() {
         </p>
         <CtaButton
           href={WHATSAPP_GROUP_HREF}
+          target="_blank"
+          rel="noopener noreferrer"
           label="Accedi al gruppo WhatsApp"
           sub="Attivo per tutta la durata dell’evento"
           className="mt-5"

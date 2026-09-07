@@ -6,9 +6,9 @@ import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { vipBonuses, vipBonusesTotal, VIP_PRICE } from "@/data/offer";
-import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import workbookCoverImg from "@/assets/workbook-cover.png";
-import templateMockupImg from "@/assets/template-mockup.png";
+import copertinaRegistrazioneLiveImg from "@/assets/copertina-registrazione-live.png";
+import invitoPerTeImg from "@/assets/invito-per-te-costruire-la-tua-comunicazione.jpg";
 
 export const Route = createFileRoute("/vip")({
   head: () => ({
@@ -26,9 +26,9 @@ export const Route = createFileRoute("/vip")({
 });
 
 const bonusIcons = [VideoIcon, Users, FileCheck2];
-const bonusPhotos = [templateMockupImg, carlottaPresentingImg, workbookCoverImg];
+const bonusPhotos = [copertinaRegistrazioneLiveImg, invitoPerTeImg, workbookCoverImg];
 const bonusPhotoAlts = [
-  "Anteprima della registrazione delle serate",
+  "Copertina della registrazione delle serate live",
   "Carlotta Sgarra",
   "Copertina del Workbook",
 ];

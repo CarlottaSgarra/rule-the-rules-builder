@@ -49,16 +49,18 @@ import client3Img from "@/assets/client-3.png";
 import client4Img from "@/assets/client-4.jpg";
 import client5Img from "@/assets/client-5.png";
 import client6Img from "@/assets/client-6.png";
-import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
-import methodBgImg from "@/assets/method-bg.jpg";
 import garanziaImg from "@/assets/soddisfatto-o-rimborsato.png";
-import carlottaHugImg from "@/assets/carlotta-hug.jpg";
 import carlottaPointingImg from "@/assets/carlotta-pointing.jpg";
-import carlottaLookingImg from "@/assets/carlotta-looking.jpg";
-import carlottaLooking2Img from "@/assets/carlotta-looking-2.jpg";
-import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
-import carlottaWalkingImg from "@/assets/carlotta-walking.jpg";
 import sharonSpeakingImg from "@/assets/sharon-speaking.jpg";
+import togliIlCostumeImg from "@/assets/togli-il-costume.jpg";
+import licenziaLeRegoleImg from "@/assets/licenzia-le-regole.jpg";
+import costruisciSistemaImg from "@/assets/costruisci-un-sistema-che-non-ti-comandi.jpg";
+import nonVoglioDartiAltreRegoleImg from "@/assets/non-voglio-darti-altre-regole-da-seguire.jpg";
+import stufataDiTuttoQuestoImg from "@/assets/stufata-di-tutto-questo.jpg";
+import ilMetodoCircoloViziosoImg from "@/assets/il-metodo-circolo-vizioso-delle-regolette.jpg";
+import chiTiGuideraImg from "@/assets/chi-ti-guidera-in-questi-tre-giorni-in-diretta.jpg";
+import hoCreatoUnaziendaImg from "@/assets/ho-creato-unazienda-identita-riconoscibile.jpg";
+import invitoPerTeImg from "@/assets/invito-per-te-costruire-la-tua-comunicazione.jpg";
 import socialProof1Img from "@/assets/social-proof-1.jpg";
 import socialProof2Img from "@/assets/social-proof-2.jpg";
 import socialProof3Img from "@/assets/social-proof-3.jpg";
@@ -179,7 +181,7 @@ const sessions = [
         photoPosition: "50% 12%",
       },
     ],
-    heroImage: { src: carlottaLookingImg, position: "45% 25%" },
+    heroImage: { src: togliIlCostumeImg, position: "45% 25%" },
     highlight: "identity-card" as const,
     title: "Togli il Costume",
     intro: (
@@ -229,7 +231,7 @@ const sessions = [
         photoPosition: "50% 12%",
       },
     ],
-    heroImage: { src: carlottaLooking2Img, position: "55% 25%" },
+    heroImage: { src: licenziaLeRegoleImg, position: "55% 25%" },
     highlight: "content-os" as const,
     title: "Licenzia le Regole",
     intro: (
@@ -284,7 +286,7 @@ const sessions = [
         photoPosition: "42% 35%",
       },
     ],
-    heroImage: { src: carlottaTalkingImg, position: "58% 30%" },
+    heroImage: { src: costruisciSistemaImg, position: "58% 30%" },
     highlight: "editorial-plan" as const,
     title: "Costruisci un Sistema che non ti Comandi",
     intro: (
@@ -1122,7 +1124,7 @@ function Index() {
                 <div className="grid grid-cols-1 text-left md:grid-cols-[3fr_7fr]">
                   <div className="relative h-96 w-full md:h-full">
                     <img
-                      src={carlottaHugImg}
+                      src={invitoPerTeImg}
                       alt="Carlotta Sgarra abbraccia una partecipante a un suo evento live"
                       loading="lazy"
                       className="h-full w-full object-cover"
@@ -1321,7 +1323,7 @@ function Index() {
             </div>
 
             <img
-              src={carlottaPresentingImg}
+              src={nonVoglioDartiAltreRegoleImg}
               alt="Carlotta Sgarra sul palco durante uno dei suoi speech"
               loading="lazy"
               width={3504}
@@ -1437,7 +1439,7 @@ function Index() {
                 </p>
               </div>
               <img
-                src={carlottaWalkingImg}
+                src={stufataDiTuttoQuestoImg}
                 alt="Carlotta Sgarra durante un suo evento live"
                 loading="lazy"
                 width={1376}
@@ -1453,7 +1455,7 @@ function Index() {
       {/* Il metodo: Identità -> Espressione -> Strategia */}
       <section className="relative overflow-hidden" style={{ backgroundColor: "var(--secondary)" }}>
         <img
-          src={methodBgImg}
+          src={ilMetodoCircoloViziosoImg}
           alt="Carlotta Sgarra sul palco"
           loading="lazy"
           className="pointer-events-none absolute inset-0 h-full w-full object-cover"
@@ -1736,7 +1738,7 @@ function Index() {
             <Reveal>
               <div>
                 <img
-                  src={carlottaPresentingImg}
+                  src={chiTiGuideraImg}
                   alt="Carlotta Sgarra sul palco durante uno dei suoi speech"
                   loading="lazy"
                   width={3504}
@@ -2098,7 +2100,7 @@ function Index() {
             <Reveal delay={120}>
               <div className="relative">
                 <img
-                  src={carlottaPointingImg}
+                  src={hoCreatoUnaziendaImg}
                   alt="Carlotta Sgarra sul palco durante uno dei suoi speech"
                   loading="lazy"
                   width={1376}
@@ -2148,7 +2150,7 @@ function Index() {
             <Reveal delay={100}>
               <div className="relative h-full overflow-hidden rounded-xl p-5 sm:p-7">
                 <img
-                  src={carlottaHugImg}
+                  src={invitoPerTeImg}
                   alt="Carlotta Sgarra abbraccia una partecipante a un suo evento live"
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover"
@@ -2185,7 +2187,7 @@ function Index() {
             <div className="surface-card grid overflow-hidden sm:grid-cols-[0.9fr_1.1fr]">
               <div className="relative h-64 w-full sm:h-full">
                 <img
-                  src={carlottaWalkingImg}
+                  src={hoCreatoUnaziendaImg}
                   alt="Carlotta Sgarra durante un suo evento live"
                   loading="lazy"
                   width={1376}
