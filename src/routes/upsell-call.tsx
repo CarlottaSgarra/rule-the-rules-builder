@@ -82,7 +82,10 @@ function UpsellCall() {
 
           <Reveal delay={80}>
             <div className="mt-8">
-              <VideoFrame label="Guarda come funziona la call di implementazione" duration="3:02" />
+              <VideoFrame
+                label="Guarda come funziona la call di implementazione"
+                vimeoId="1224683201"
+              />
             </div>
           </Reveal>
 
