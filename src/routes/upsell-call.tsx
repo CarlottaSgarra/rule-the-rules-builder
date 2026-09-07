@@ -6,7 +6,7 @@ import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import sharonSpeakingImg from "@/assets/sharon-speaking.jpg";
-import chiTiGuideraImg from "@/assets/chi-ti-guidera-in-questi-tre-giorni-in-diretta.jpg";
+import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 
 export const Route = createFileRoute("/upsell-call")({
   head: () => ({
@@ -32,8 +32,7 @@ const guides = [
     icon: IdCard,
     name: "Con me",
     d: "Lavoriamo su identità e posizionamento: chi sei, cosa vuoi rappresentare e come comunicarlo senza copiare nessuno.",
-    photo: chiTiGuideraImg,
-    photoPosition: "50% 12%",
+    photo: carlottaPresentingImg,
   },
   {
     icon: Wand2,

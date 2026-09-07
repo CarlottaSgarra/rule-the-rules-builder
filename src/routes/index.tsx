@@ -58,7 +58,7 @@ import costruisciSistemaImg from "@/assets/costruisci-un-sistema-che-non-ti-coma
 import nonVoglioDartiAltreRegoleImg from "@/assets/non-voglio-darti-altre-regole-da-seguire.jpg";
 import stufataDiTuttoQuestoImg from "@/assets/stufata-di-tutto-questo.jpg";
 import ilMetodoCircoloViziosoImg from "@/assets/il-metodo-circolo-vizioso-delle-regolette.jpg";
-import chiTiGuideraImg from "@/assets/chi-ti-guidera-in-questi-tre-giorni-in-diretta.jpg";
+import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import hoCreatoUnaziendaImg from "@/assets/ho-creato-unazienda-identita-riconoscibile.jpg";
 import invitoPerTeImg from "@/assets/invito-per-te-costruire-la-tua-comunicazione.jpg";
 import socialProof1Img from "@/assets/social-proof-1.jpg";
@@ -1329,6 +1329,7 @@ function Index() {
               width={3504}
               height={1972}
               className="mt-10 aspect-video w-full rounded-2xl object-cover"
+              style={{ objectPosition: "50% 20%" }}
             />
 
             <div className="mt-6 flex justify-center">
@@ -1458,14 +1459,14 @@ function Index() {
           src={ilMetodoCircoloViziosoImg}
           alt="Carlotta Sgarra sul palco"
           loading="lazy"
-          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-          style={{ objectPosition: "25% center" }}
+          className="pointer-events-none absolute inset-0 h-[520px] w-full object-cover sm:h-full"
+          style={{ objectPosition: "25% 30%" }}
         />
         <div
-          className="pointer-events-none absolute inset-0"
+          className="pointer-events-none absolute inset-0 h-[520px] sm:h-full"
           style={{
             backgroundImage:
-              "linear-gradient(180deg, color-mix(in oklab, var(--secondary) 35%, transparent), color-mix(in oklab, var(--secondary) 15%, transparent) 40%, color-mix(in oklab, var(--secondary) 30%, transparent))",
+              "linear-gradient(180deg, color-mix(in oklab, var(--secondary) 35%, transparent), color-mix(in oklab, var(--secondary) 15%, transparent) 40%, var(--secondary) 100%)",
           }}
           aria-hidden
         />
@@ -1738,13 +1739,12 @@ function Index() {
             <Reveal>
               <div>
                 <img
-                  src={chiTiGuideraImg}
+                  src={carlottaPresentingImg}
                   alt="Carlotta Sgarra sul palco durante uno dei suoi speech"
                   loading="lazy"
                   width={3504}
                   height={1972}
                   className="aspect-video w-full rounded-2xl object-cover"
-                  style={{ objectPosition: "55% 20%" }}
                 />
                 <p className="mt-5 text-xl font-semibold text-foreground sm:text-2xl">
                   Carlotta Sgarra
