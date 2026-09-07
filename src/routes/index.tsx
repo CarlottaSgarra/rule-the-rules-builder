@@ -1459,8 +1459,7 @@ function Index() {
           src={ilMetodoCircoloViziosoImg}
           alt="Carlotta Sgarra sul palco"
           loading="lazy"
-          className="pointer-events-none absolute inset-0 h-[520px] w-full object-cover sm:h-full"
-          style={{ objectPosition: "25% 30%" }}
+          className="pointer-events-none absolute inset-0 h-[520px] w-full object-cover object-[25%_30%] sm:h-full sm:object-[25%_38%]"
         />
         <div
           className="pointer-events-none absolute inset-0 h-[520px] sm:h-full"
