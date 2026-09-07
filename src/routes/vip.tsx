@@ -144,7 +144,7 @@ function Vip() {
                   <div className={`order-2 ${imageFirst ? "sm:order-2" : "sm:order-1"}`}>
                     <div
                       className="relative overflow-hidden rounded-2xl"
-                      style={{ boxShadow: "var(--shadow-deep)" }}
+                      style={i === 0 ? undefined : { boxShadow: "var(--shadow-deep)" }}
                     >
                       <img
                         src={photo}
@@ -152,7 +152,7 @@ function Vip() {
                         loading="lazy"
                         className={
                           i === 0
-                            ? "aspect-[4/5] w-full bg-white object-contain"
+                            ? "aspect-[4/5] w-full object-contain"
                             : "aspect-[4/5] w-full object-cover"
                         }
                       />

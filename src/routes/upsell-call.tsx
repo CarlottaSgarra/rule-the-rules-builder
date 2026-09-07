@@ -5,7 +5,7 @@ import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { SiteFooter } from "@/components/landing/SiteFooter";
-import sharonConvertinoImg from "@/assets/sharon-convertino.jpg";
+import sharonSpeakingImg from "@/assets/sharon-speaking.jpg";
 
 export const Route = createFileRoute("/upsell-call")({
   head: () => ({
@@ -36,7 +36,7 @@ const guides = [
     icon: Wand2,
     name: "Con Sharon",
     d: "Lavorate su piano editoriale, contenuti, editing e template: la parte operativa che trasforma la tua identità in contenuti pubblicabili.",
-    photo: sharonConvertinoImg,
+    photo: sharonSpeakingImg,
   },
 ];
 
@@ -119,22 +119,54 @@ function UpsellCall() {
             </p>
           </Reveal>
 
+          <Reveal delay={140}>
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
+              E se poi deciderai di accedere al{" "}
+              <strong className="font-semibold text-foreground">
+                mio percorso di affiancamento
+              </strong>
+              , che aprirò durante le 3 serate,{" "}
+              <strong className="font-semibold text-foreground">
+                l’intero investimento di questa call di implementazione ti verrà scalato dal
+                percorso
+              </strong>
+              : non lo perdi, lo trasformi in un acconto.
+            </p>
+          </Reveal>
+
           <Reveal delay={160}>
             <div className="mx-auto mt-8 grid max-w-2xl gap-4 text-left sm:grid-cols-2">
               {guides.map((g) => (
-                <div key={g.name} className="rounded-xl border border-border/70 bg-card/50 p-5">
+                <div
+                  key={g.name}
+                  className="relative flex min-h-[260px] flex-col justify-end overflow-hidden rounded-xl"
+                >
                   {g.photo ? (
-                    <img
-                      src={g.photo}
-                      alt={g.name}
-                      loading="lazy"
-                      className="size-16 rounded-lg object-cover"
-                    />
+                    <>
+                      <img
+                        src={g.photo}
+                        alt={g.name}
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+                    </>
                   ) : (
-                    <g.icon className="size-5 text-secondary" />
+                    <div className="absolute inset-0 border border-border/70 bg-card/50" />
                   )}
-                  <p className="mt-3 font-semibold text-foreground">{g.name}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-foreground/80">{g.d}</p>
+                  <div className="relative p-5">
+                    {!g.photo ? <g.icon className="size-5 text-secondary" /> : null}
+                    <p
+                      className={`mt-3 font-semibold ${g.photo ? "text-white" : "text-foreground"}`}
+                    >
+                      {g.name}
+                    </p>
+                    <p
+                      className={`mt-1 text-sm leading-relaxed ${g.photo ? "text-white/90" : "text-foreground/80"}`}
+                    >
+                      {g.d}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>

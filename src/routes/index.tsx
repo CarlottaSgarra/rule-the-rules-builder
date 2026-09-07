@@ -10,6 +10,7 @@ import {
 import { CtaButton } from "@/components/landing/CtaButton";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
+import { WhatsAppGroupBox } from "@/components/landing/WhatsAppGroupBox";
 import { Reveal } from "@/components/landing/Reveal";
 import { SignupForm } from "@/components/landing/SignupForm";
 import { Workbook } from "@/components/landing/Workbook";
@@ -23,8 +24,6 @@ import goldTexture from "@/assets/texture-gold.jpg";
 import client1Img from "@/assets/client-1.jpg";
 import client2Img from "@/assets/client-2.png";
 import silviaBedinImg from "@/assets/silvia-bedin.jpg";
-import whatsappScreenshot1Img from "@/assets/whatsapp-screenshot-1.png";
-import whatsappScreenshot2Img from "@/assets/whatsapp-screenshot-2.png";
 import elenaRosaImg from "@/assets/elena-rosa.jpg";
 import valeriaSalussoliImg from "@/assets/valeria-salussoli.avif";
 import mariangelaSimioliImg from "@/assets/mariangela-simioli.jpg";
@@ -1966,26 +1965,8 @@ function Index() {
           <TestimonialsExplorer testimonials={videoTestimonials} />
 
           <Reveal delay={80}>
-            <div className="mt-14">
-              <p className="text-center font-condensed text-xs uppercase tracking-[0.2em] text-primary">
-                Dentro al gruppo WhatsApp dell’evento
-              </p>
-              <div className="relative mx-auto mt-8 max-w-xs pb-10 pr-8 sm:max-w-sm">
-                <img
-                  src={whatsappScreenshot1Img}
-                  alt="Screenshot di una conversazione nel gruppo WhatsApp dell’evento"
-                  loading="lazy"
-                  className="w-4/5 rounded-2xl border-4 border-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.55)]"
-                  style={{ transform: "rotate(-5deg)" }}
-                />
-                <img
-                  src={whatsappScreenshot2Img}
-                  alt="Screenshot di un’altra conversazione nel gruppo WhatsApp dell’evento"
-                  loading="lazy"
-                  className="absolute bottom-0 right-0 w-4/5 rounded-2xl border-4 border-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.55)]"
-                  style={{ transform: "rotate(5deg)" }}
-                />
-              </div>
+            <div className="mt-14 max-w-2xl mx-auto">
+              <WhatsAppGroupBox />
             </div>
           </Reveal>
 
