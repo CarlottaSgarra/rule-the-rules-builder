@@ -6,9 +6,9 @@ import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { vipBonuses, vipBonusesTotal, VIP_PRICE } from "@/data/offer";
-import carlottaLookingImg from "@/assets/carlotta-looking.jpg";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import workbookCoverImg from "@/assets/workbook-cover.png";
+import templateMockupImg from "@/assets/template-mockup.png";
 
 export const Route = createFileRoute("/vip")({
   head: () => ({
@@ -26,8 +26,12 @@ export const Route = createFileRoute("/vip")({
 });
 
 const bonusIcons = [VideoIcon, Users, FileCheck2];
-const bonusPhotos = [carlottaLookingImg, carlottaPresentingImg, workbookCoverImg];
-const bonusPhotoAlts = ["Carlotta Sgarra", "Carlotta Sgarra", "Copertina del Workbook"];
+const bonusPhotos = [templateMockupImg, carlottaPresentingImg, workbookCoverImg];
+const bonusPhotoAlts = [
+  "Anteprima della registrazione delle serate",
+  "Carlotta Sgarra",
+  "Copertina del Workbook",
+];
 const bonusPhotoCaptions = [
   "Puoi vedere la registrazione delle 3 serate tutte le volte che vuoi",
   "La live è giovedì 8 ottobre alle ore 13",
@@ -77,7 +81,7 @@ function Vip() {
 
           <Reveal delay={80}>
             <div className="mt-8">
-              <VideoFrame label="Guarda perché conviene fare l’upgrade" duration="2:14" />
+              <VideoFrame label="Guarda perché conviene fare l’upgrade" vimeoId="1224559303" />
             </div>
           </Reveal>
 
@@ -146,7 +150,11 @@ function Vip() {
                         src={photo}
                         alt={bonusPhotoAlts[i] ?? "Carlotta Sgarra"}
                         loading="lazy"
-                        className="aspect-[4/5] w-full object-cover"
+                        className={
+                          i === 0
+                            ? "aspect-[4/5] w-full bg-white object-contain"
+                            : "aspect-[4/5] w-full object-cover"
+                        }
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                       <div className="absolute inset-x-4 bottom-4 flex items-center gap-3 rounded-2xl bg-white/15 p-3 backdrop-blur-sm">

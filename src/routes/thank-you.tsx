@@ -61,7 +61,7 @@ function ThankYou() {
 
           <Reveal delay={100}>
             <div className="mt-8">
-              <VideoFrame label="Cosa succede adesso" duration="1:32" />
+              <VideoFrame label="Cosa succede adesso" vimeoId="1224559302" />
             </div>
           </Reveal>
         </div>

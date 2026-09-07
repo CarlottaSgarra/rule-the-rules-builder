@@ -103,7 +103,7 @@ function ThankYouVip() {
 
           <Reveal delay={100}>
             <div className="mt-8">
-              <VideoFrame label="Cosa succede adesso, versione VIP" duration="1:48" />
+              <VideoFrame label="Cosa succede adesso, versione VIP" vimeoId="1224559305" />
             </div>
           </Reveal>
         </div>

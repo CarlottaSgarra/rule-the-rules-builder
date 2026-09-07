@@ -23,6 +23,8 @@ import goldTexture from "@/assets/texture-gold.jpg";
 import client1Img from "@/assets/client-1.jpg";
 import client2Img from "@/assets/client-2.png";
 import silviaBedinImg from "@/assets/silvia-bedin.jpg";
+import whatsappScreenshot1Img from "@/assets/whatsapp-screenshot-1.png";
+import whatsappScreenshot2Img from "@/assets/whatsapp-screenshot-2.png";
 import elenaRosaImg from "@/assets/elena-rosa.jpg";
 import valeriaSalussoliImg from "@/assets/valeria-salussoli.avif";
 import mariangelaSimioliImg from "@/assets/mariangela-simioli.jpg";
@@ -42,6 +44,7 @@ import elisabettaBettonteImg from "@/assets/elisabetta-bettonte.jpg";
 import francescaSolignaniImg from "@/assets/francesca-solignani.jpeg";
 import cristinaBuligaImg from "@/assets/cristina-buliga.jpg";
 import robertaTrabuccoImg from "@/assets/roberta-trabucco.jpg";
+import martinaFerrariImg from "@/assets/martina-ferrari.jpg";
 import client3Img from "@/assets/client-3.png";
 import client4Img from "@/assets/client-4.jpg";
 import client5Img from "@/assets/client-5.png";
@@ -823,6 +826,25 @@ const videoTestimonials = [
     ),
     youtubeId: "2Q3Keue0i7w",
     photo: robertaTrabuccoImg,
+  },
+  {
+    name: "Martina Ferrari",
+    role: "Wedding Planner · Coach per Wedding Planner",
+    tagline: "Da crisi d’identità come wedding planner a 30 clienti in 6 mesi.",
+    before:
+      "Quando ha iniziato il percorso, Martina aveva già un business avviato come wedding planner, clienti e risultati, ma si trovava in una fase di forte confusione. Sentiva che quel ruolo non riusciva più a rappresentarla completamente e cercava di incastrarsi in un’identità professionale che ormai le stava stretta.",
+    after: (
+      <>
+        Ha capito di non essere soltanto una wedding planner, ma{" "}
+        <strong className="font-semibold text-ink">un’imprenditrice</strong> con il bisogno di
+        creare, evolvere e mettere tutte le sue competenze in un progetto che la rappresentasse
+        davvero. Ha creato il suo programma dedicato alle professioniste del mondo wedding e, nei
+        primi sei mesi, ha raggiunto{" "}
+        <strong className="font-semibold text-ink">30 clienti e raddoppiato il fatturato</strong>.
+        Continua a far evolvere il suo brand e sta per aprire anche il suo studio.
+      </>
+    ),
+    photo: martinaFerrariImg,
   },
 ];
 
@@ -1942,6 +1964,30 @@ function Index() {
           </Reveal>
 
           <TestimonialsExplorer testimonials={videoTestimonials} />
+
+          <Reveal delay={80}>
+            <div className="mt-14">
+              <p className="text-center font-condensed text-xs uppercase tracking-[0.2em] text-primary">
+                Dentro al gruppo WhatsApp dell’evento
+              </p>
+              <div className="relative mx-auto mt-8 max-w-xs pb-10 pr-8 sm:max-w-sm">
+                <img
+                  src={whatsappScreenshot1Img}
+                  alt="Screenshot di una conversazione nel gruppo WhatsApp dell’evento"
+                  loading="lazy"
+                  className="w-4/5 rounded-2xl border-4 border-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.55)]"
+                  style={{ transform: "rotate(-5deg)" }}
+                />
+                <img
+                  src={whatsappScreenshot2Img}
+                  alt="Screenshot di un’altra conversazione nel gruppo WhatsApp dell’evento"
+                  loading="lazy"
+                  className="absolute bottom-0 right-0 w-4/5 rounded-2xl border-4 border-white shadow-[0_30px_60px_-15px_rgba(0,0,0,0.55)]"
+                  style={{ transform: "rotate(5deg)" }}
+                />
+              </div>
+            </div>
+          </Reveal>
 
           <div className="mt-10 flex justify-center">
             <CtaButton label="Voglio rompere le regole" href={SIGNUP_HREF} />

@@ -7,7 +7,7 @@ export type Testimonial = {
   tagline: string;
   before: React.ReactNode;
   after: React.ReactNode;
-  youtubeId: string;
+  youtubeId?: string;
   photo: string;
 };
 

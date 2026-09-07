@@ -11,6 +11,7 @@ type Props = {
 
 type VimeoPlayer = {
   setMuted: (muted: boolean) => Promise<void>;
+  setVolume: (volume: number) => Promise<void>;
   play: () => Promise<void>;
 };
 
@@ -29,14 +30,29 @@ declare global {
 function VimeoAutoplayEmbed({ label, vimeoId }: { label: string; vimeoId: string }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const playerRef = useRef<VimeoPlayer | null>(null);
+  // Se l'utente clicca prima che player.js abbia finito di caricarsi,
+  // il player non esiste ancora: ricordiamo l'intenzione e la applichiamo
+  // non appena diventa disponibile, invece di perdere silenziosamente il click.
+  const wantsUnmuteRef = useRef(false);
   const [unmuted, setUnmuted] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
 
+    function unmutePlayer(player: VimeoPlayer) {
+      // setVolume è rispettato dai browser in modo più affidabile di
+      // setMuted per sbloccare l'audio da un iframe cross-origin dopo un
+      // gesto dell'utente: le usiamo entrambe per sicurezza.
+      player.setVolume(1).catch((err) => console.error("Vimeo setVolume:", err));
+      player.setMuted(false).catch((err) => console.error("Vimeo setMuted:", err));
+      player.play().catch((err) => console.error("Vimeo play:", err));
+    }
+
     function setup() {
       if (cancelled || !iframeRef.current || !window.Vimeo) return;
-      playerRef.current = new window.Vimeo.Player(iframeRef.current);
+      const player = new window.Vimeo.Player(iframeRef.current);
+      playerRef.current = player;
+      if (wantsUnmuteRef.current) unmutePlayer(player);
     }
 
     if (window.Vimeo) {
@@ -56,8 +72,12 @@ function VimeoAutoplayEmbed({ label, vimeoId }: { label: string; vimeoId: string
 
   function handleUnmute() {
     setUnmuted(true);
-    playerRef.current?.setMuted(false);
-    playerRef.current?.play();
+    wantsUnmuteRef.current = true;
+    const player = playerRef.current;
+    if (!player) return;
+    player.setVolume(1).catch((err) => console.error("Vimeo setVolume:", err));
+    player.setMuted(false).catch((err) => console.error("Vimeo setMuted:", err));
+    player.play().catch((err) => console.error("Vimeo play:", err));
   }
 
   return (

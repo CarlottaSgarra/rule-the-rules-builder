@@ -5,15 +5,16 @@ import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { SiteFooter } from "@/components/landing/SiteFooter";
+import sharonConvertinoImg from "@/assets/sharon-convertino.jpg";
 
 export const Route = createFileRoute("/upsell-call")({
   head: () => ({
     meta: [
-      { title: "Call di implementazione 1:2:1 | Rule The Rules 2026" },
+      { title: "Call di implementazione 1:1 | Rule The Rules 2026" },
       {
         name: "description",
         content:
-          "Implementa con Carlotta e Sharon, in una call 1:2:1, tutto quello che impari durante Rule The Rules 2026. Solo 12 posti disponibili.",
+          "Implementa con Carlotta e Sharon, in una call 1:1, tutto quello che impari durante Rule The Rules 2026. Solo 12 posti disponibili.",
       },
       { name: "robots", content: "noindex" },
     ],
@@ -35,6 +36,7 @@ const guides = [
     icon: Wand2,
     name: "Con Sharon",
     d: "Lavorate su piano editoriale, contenuti, editing e template: la parte operativa che trasforma la tua identità in contenuti pubblicabili.",
+    photo: sharonConvertinoImg,
   },
 ];
 
@@ -85,9 +87,9 @@ function UpsellCall() {
           <Reveal delay={100}>
             <div
               className="mx-auto mt-6 max-w-xl rounded-2xl p-6 text-center"
-              style={{ border: "2px solid var(--primary)" }}
+              style={{ backgroundColor: "var(--secondary)", border: "2px solid var(--primary)" }}
             >
-              <p className="font-condensed text-lg font-bold uppercase tracking-[0.1em] text-secondary">
+              <p className="font-condensed text-lg font-bold uppercase tracking-[0.1em] text-white">
                 Solo 12 posti disponibili
               </p>
               <div className="mt-4 flex flex-wrap justify-center gap-2">
@@ -99,7 +101,7 @@ function UpsellCall() {
                   />
                 ))}
               </div>
-              <p className="mt-4 text-sm text-foreground/80">
+              <p className="mt-4 text-sm text-white/85">
                 I posti andranno via veloci. Ti consiglio di prenotare il tuo ora.
               </p>
             </div>
@@ -107,7 +109,7 @@ function UpsellCall() {
 
           <Reveal delay={120}>
             <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
-              La call di implementazione 1:2:1 con me e Sharon costa{" "}
+              La call di implementazione 1:1 con me e Sharon costa{" "}
               <strong className="font-semibold text-foreground">solo {CALL_PRICE}€</strong>. Quanto
               costerebbe una consulenza con me?{" "}
               <strong className="font-semibold text-foreground">500€ + IVA</strong>. Qui paghi
@@ -121,7 +123,16 @@ function UpsellCall() {
             <div className="mx-auto mt-8 grid max-w-2xl gap-4 text-left sm:grid-cols-2">
               {guides.map((g) => (
                 <div key={g.name} className="rounded-xl border border-border/70 bg-card/50 p-5">
-                  <g.icon className="size-5 text-secondary" />
+                  {g.photo ? (
+                    <img
+                      src={g.photo}
+                      alt={g.name}
+                      loading="lazy"
+                      className="size-16 rounded-lg object-cover"
+                    />
+                  ) : (
+                    <g.icon className="size-5 text-secondary" />
+                  )}
                   <p className="mt-3 font-semibold text-foreground">{g.name}</p>
                   <p className="mt-1 text-sm leading-relaxed text-foreground/80">{g.d}</p>
                 </div>
