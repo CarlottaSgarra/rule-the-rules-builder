@@ -14,6 +14,7 @@ import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CheckoutVipRouteImport } from './routes/checkout-vip'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as ThankYouVipRouteImport } from './routes/thank-you-vip'
+import { Route as UpsellCallRouteImport } from './routes/upsell-call'
 import { Route as VipRouteImport } from './routes/vip'
 
 const IndexRoute = IndexRouteImport.update({
@@ -41,6 +42,11 @@ const ThankYouVipRoute = ThankYouVipRouteImport.update({
   path: '/thank-you-vip',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UpsellCallRoute = UpsellCallRouteImport.update({
+  id: '/upsell-call',
+  path: '/upsell-call',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VipRoute = VipRouteImport.update({
   id: '/vip',
   path: '/vip',
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/checkout-vip': typeof CheckoutVipRoute
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
+  '/upsell-call': typeof UpsellCallRoute
   '/vip': typeof VipRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/checkout-vip': typeof CheckoutVipRoute
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
+  '/upsell-call': typeof UpsellCallRoute
   '/vip': typeof VipRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/checkout-vip': typeof CheckoutVipRoute
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
+  '/upsell-call': typeof UpsellCallRoute
   '/vip': typeof VipRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/checkout-vip'
     | '/thank-you'
     | '/thank-you-vip'
+    | '/upsell-call'
     | '/vip'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/checkout-vip'
     | '/thank-you'
     | '/thank-you-vip'
+    | '/upsell-call'
     | '/vip'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/checkout-vip'
     | '/thank-you'
     | '/thank-you-vip'
+    | '/upsell-call'
     | '/vip'
   fileRoutesById: FileRoutesById
 }
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   CheckoutVipRoute: typeof CheckoutVipRoute
   ThankYouRoute: typeof ThankYouRoute
   ThankYouVipRoute: typeof ThankYouVipRoute
+  UpsellCallRoute: typeof UpsellCallRoute
   VipRoute: typeof VipRoute
 }
 
@@ -145,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThankYouVipRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/upsell-call': {
+      id: '/upsell-call'
+      path: '/upsell-call'
+      fullPath: '/upsell-call'
+      preLoaderRoute: typeof UpsellCallRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vip': {
       id: '/vip'
       path: '/vip'
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutVipRoute: CheckoutVipRoute,
   ThankYouRoute: ThankYouRoute,
   ThankYouVipRoute: ThankYouVipRoute,
+  UpsellCallRoute: UpsellCallRoute,
   VipRoute: VipRoute,
 }
 export const routeTree = rootRouteImport

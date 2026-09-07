@@ -1,0 +1,141 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { IdCard, Wand2 } from "lucide-react";
+import { CtaButton } from "@/components/landing/CtaButton";
+import { Reveal } from "@/components/landing/Reveal";
+import { Highlight } from "@/components/landing/Highlight";
+import { VideoFrame } from "@/components/landing/VideoFrame";
+import { SiteFooter } from "@/components/landing/SiteFooter";
+
+export const Route = createFileRoute("/upsell-call")({
+  head: () => ({
+    meta: [
+      { title: "Call di implementazione 1:2:1 | Rule The Rules 2026" },
+      {
+        name: "description",
+        content:
+          "Implementa con Carlotta e Sharon, in una call 1:2:1, tutto quello che impari durante Rule The Rules 2026. Solo 12 posti disponibili.",
+      },
+      { name: "robots", content: "noindex" },
+    ],
+  }),
+  component: UpsellCall,
+});
+
+const CALL_PRICE = 247;
+const CHECKOUT_HREF = "https://rules.carlottasgarra.it/checkout-call-implementazione";
+const DECLINE_HREF = "https://rules.carlottasgarra.it/grazie-iscrizione-standard";
+
+const guides = [
+  {
+    icon: IdCard,
+    name: "Con me",
+    d: "Lavoriamo su identità e posizionamento: chi sei, cosa vuoi rappresentare e come comunicarlo senza copiare nessuno.",
+  },
+  {
+    icon: Wand2,
+    name: "Con Sharon",
+    d: "Lavorate su piano editoriale, contenuti, editing e template: la parte operativa che trasforma la tua identità in contenuti pubblicabili.",
+  },
+];
+
+function CallChoice() {
+  return (
+    <div className="mt-8 flex flex-col items-center gap-3">
+      <CtaButton
+        href={CHECKOUT_HREF}
+        target="_top"
+        label={`Sì, voglio la call di implementazione a ${CALL_PRICE}€`}
+        sub="Solo 12 posti disponibili, adesso"
+      />
+      <a
+        href={DECLINE_HREF}
+        target="_top"
+        className="text-sm text-foreground/60 underline underline-offset-2 transition-colors hover:text-foreground"
+      >
+        No, non mi interessa
+      </a>
+    </div>
+  );
+}
+
+function UpsellCall() {
+  return (
+    <div className="bg-background">
+      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-4xl text-center">
+          <Reveal>
+            <span
+              className="inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
+              style={{ backgroundImage: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
+            >
+              Offerta esclusiva · Solo su questa pagina
+            </span>
+            <h1 className="mt-4 text-3xl sm:text-4xl">
+              Vuoi implementare con me e Sharon, in una <Highlight>call one-to-one</Highlight>,
+              tutto quello che imparerai durante l’evento?
+            </h1>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <div className="mt-8">
+              <VideoFrame label="Guarda come funziona la call di implementazione" duration="3:02" />
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <div
+              className="mx-auto mt-6 max-w-xl rounded-2xl p-6 text-center"
+              style={{ border: "2px solid var(--primary)" }}
+            >
+              <p className="font-condensed text-lg font-bold uppercase tracking-[0.1em] text-secondary">
+                Solo 12 posti disponibili
+              </p>
+              <div className="mt-4 flex flex-wrap justify-center gap-2">
+                {Array.from({ length: 12 }).map((_, i) => (
+                  <span
+                    key={i}
+                    className="size-3 rounded-full"
+                    style={{ backgroundImage: "var(--gradient-gold)" }}
+                  />
+                ))}
+              </div>
+              <p className="mt-4 text-sm text-foreground/80">
+                I posti andranno via veloci. Ti consiglio di prenotare il tuo ora.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <p className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-foreground/80 sm:text-lg">
+              La call di implementazione 1:2:1 con me e Sharon costa{" "}
+              <strong className="font-semibold text-foreground">solo {CALL_PRICE}€</strong>. Quanto
+              costerebbe una consulenza con me?{" "}
+              <strong className="font-semibold text-foreground">500€ + IVA</strong>. Qui paghi
+              praticamente la metà, e hai{" "}
+              <strong className="font-semibold text-foreground">due professioniste con te</strong>,
+              non una.
+            </p>
+          </Reveal>
+
+          <Reveal delay={160}>
+            <div className="mx-auto mt-8 grid max-w-2xl gap-4 text-left sm:grid-cols-2">
+              {guides.map((g) => (
+                <div key={g.name} className="rounded-xl border border-border/70 bg-card/50 p-5">
+                  <g.icon className="size-5 text-secondary" />
+                  <p className="mt-3 font-semibold text-foreground">{g.name}</p>
+                  <p className="mt-1 text-sm leading-relaxed text-foreground/80">{g.d}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <CallChoice />
+          </Reveal>
+        </div>
+      </section>
+
+      <SiteFooter />
+    </div>
+  );
+}

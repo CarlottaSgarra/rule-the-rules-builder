@@ -35,7 +35,7 @@ const bonusPhotoCaptions = [
 ];
 
 const VIP_CHECKOUT_HREF = "https://rules.carlottasgarra.it/checkout-vip";
-const DECLINE_HREF = "https://rules.carlottasgarra.it/grazie-iscrizione-standard";
+const DECLINE_HREF = "https://rules.carlottasgarra.it/upsell-call";
 
 function VipChoice({ note }: { note?: string }) {
   return (
