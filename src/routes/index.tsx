@@ -1258,7 +1258,12 @@ function Index() {
           </Reveal>
 
           <Reveal delay={340} className="mt-24 w-full">
-            <p className="mx-auto max-w-5xl text-base text-foreground/75 sm:text-lg">
+            <h2 className="mx-auto max-w-5xl text-3xl sm:text-4xl">
+              Sai qual è il risultato di seguire mille regole per piacere all’algoritmo? Che ora hai
+              la nausea quando crei i contenuti e <Highlight>ti fa schifo vendere online</Highlight>
+              .
+            </h2>
+            <p className="mx-auto mt-4 max-w-5xl text-base text-foreground/75 sm:text-lg">
               Durante l’evento rompiamo tutti questi schemi per tornare alla{" "}
               <strong className="font-semibold text-foreground">tua vera identità</strong>.
             </p>
