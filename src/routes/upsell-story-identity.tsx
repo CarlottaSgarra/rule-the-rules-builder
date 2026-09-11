@@ -878,6 +878,14 @@ function UpsellStoryIdentity() {
     <div className="bg-background">
       <SiteTopbar ctaHref={SIGNUP_HREF} />
 
+      <div
+        className="px-4 py-3 text-center text-sm font-semibold text-white sm:text-base"
+        style={{ backgroundColor: "var(--secondary)" }}
+      >
+        Grazie per il tuo acquisto! Ora ho qualcosa per te: ora che hai Story Identity, puoi
+        accedere a Rule The Rules.
+      </div>
+
       {/* Upsell bridge: per chi ha appena acquistato Story Identity */}
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-3xl text-center">
