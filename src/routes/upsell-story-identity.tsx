@@ -10,7 +10,6 @@ import { SessionHighlight } from "@/components/landing/SessionHighlight";
 import { TakeawayVisual } from "@/components/landing/TakeawayVisual";
 import { Highlight } from "@/components/landing/Highlight";
 import { SiteTopbar } from "@/components/landing/SiteTopbar";
-import { SiteFooter } from "@/components/landing/SiteFooter";
 import goldTexture from "@/assets/texture-gold.jpg";
 import silviaBedinImg from "@/assets/silvia-bedin.jpg";
 import elenaRosaImg from "@/assets/elena-rosa.jpg";
@@ -995,21 +994,10 @@ function UpsellStoryIdentity() {
           </Reveal>
 
           <Reveal delay={340} className="mt-24 w-full">
-            <h2 className="mx-auto max-w-5xl text-3xl sm:text-4xl">
-              Sai qual è il risultato di seguire mille regole per piacere all’algoritmo? Che ora hai
-              la nausea quando crei i contenuti e <Highlight>ti fa schifo vendere online</Highlight>
-              .
-            </h2>
-            <p className="mx-auto mt-4 max-w-5xl text-base text-foreground/75 sm:text-lg">
-              Durante l’evento rompiamo tutti questi schemi per tornare alla{" "}
-              <strong className="font-semibold text-foreground">tua vera identità</strong>.
-            </p>
-            <div className="mt-10">
-              <VideoFrame
-                label="Guarda il video di presentazione di Rule The Rules"
-                vimeoId="1224559304"
-              />
-            </div>
+            <VideoFrame
+              label="Guarda il video di presentazione di Rule The Rules"
+              vimeoId="1224559304"
+            />
           </Reveal>
         </div>
       </header>
@@ -1859,8 +1847,6 @@ function UpsellStoryIdentity() {
           </div>
         </div>
       </section>
-
-      <SiteFooter />
     </div>
   );
 }
