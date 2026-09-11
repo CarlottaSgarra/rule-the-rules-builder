@@ -1847,6 +1847,19 @@ function UpsellStoryIdentity() {
           </div>
         </div>
       </section>
+
+      {/* Checkout (test iframe) */}
+      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
+        <div className="mx-auto max-w-4xl">
+          <iframe
+            src="https://theroad.carlottasgarra.it/checkout-rule-the-rules-a"
+            title="Checkout Rule The Rules"
+            loading="lazy"
+            className="w-full rounded-2xl border border-border/70"
+            style={{ height: "1400px" }}
+          />
+        </div>
+      </section>
     </div>
   );
 }
