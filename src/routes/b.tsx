@@ -1104,6 +1104,19 @@ function Index() {
             </p>
           </Reveal>
 
+          <Reveal delay={260} className="mt-10 w-full">
+            <p className="mx-auto max-w-5xl text-base text-foreground/75 sm:text-lg">
+              Durante l’evento rompiamo tutti questi schemi per tornare alla{" "}
+              <strong className="font-semibold text-foreground">tua vera identità</strong>.
+            </p>
+            <div className="mt-6">
+              <VideoFrame
+                label="Guarda il video di presentazione di Rule The Rules"
+                vimeoId="1224559304"
+              />
+            </div>
+          </Reveal>
+
           <Reveal delay={300} className="mt-10 w-full">
             <div className="ticket-border-glow relative rounded-[2rem]">
               <div
@@ -1252,24 +1265,6 @@ function Index() {
                   aria-hidden
                 />
               </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={340} className="mt-24 w-full">
-            <h2 className="mx-auto max-w-5xl text-3xl sm:text-4xl">
-              Sai qual è il risultato di seguire mille regole per piacere all’algoritmo? Che ora hai
-              la nausea quando crei i contenuti e <Highlight>ti fa schifo vendere online</Highlight>
-              .
-            </h2>
-            <p className="mx-auto mt-4 max-w-5xl text-base text-foreground/75 sm:text-lg">
-              Durante l’evento rompiamo tutti questi schemi per tornare alla{" "}
-              <strong className="font-semibold text-foreground">tua vera identità</strong>.
-            </p>
-            <div className="mt-10">
-              <VideoFrame
-                label="Guarda il video di presentazione di Rule The Rules"
-                vimeoId="1224559304"
-              />
             </div>
           </Reveal>
         </div>
