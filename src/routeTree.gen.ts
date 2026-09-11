@@ -16,6 +16,8 @@ import { Route as CheckoutVipRouteImport } from './routes/checkout-vip'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as ThankYouVipRouteImport } from './routes/thank-you-vip'
 import { Route as UpsellCallRouteImport } from './routes/upsell-call'
+import { Route as UpsellStoryIdentityRouteImport } from './routes/upsell-story-identity'
+import { Route as UpsellStoryIdentity2RouteImport } from './routes/upsell-story-identity-2'
 import { Route as VipRouteImport } from './routes/vip'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +55,16 @@ const UpsellCallRoute = UpsellCallRouteImport.update({
   path: '/upsell-call',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UpsellStoryIdentityRoute = UpsellStoryIdentityRouteImport.update({
+  id: '/upsell-story-identity',
+  path: '/upsell-story-identity',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UpsellStoryIdentity2Route = UpsellStoryIdentity2RouteImport.update({
+  id: '/upsell-story-identity-2',
+  path: '/upsell-story-identity-2',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const VipRoute = VipRouteImport.update({
   id: '/vip',
   path: '/vip',
@@ -67,6 +79,8 @@ export interface FileRoutesByFullPath {
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
+  '/upsell-story-identity': typeof UpsellStoryIdentityRoute
+  '/upsell-story-identity-2': typeof UpsellStoryIdentity2Route
   '/vip': typeof VipRoute
 }
 export interface FileRoutesByTo {
@@ -77,6 +91,8 @@ export interface FileRoutesByTo {
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
+  '/upsell-story-identity': typeof UpsellStoryIdentityRoute
+  '/upsell-story-identity-2': typeof UpsellStoryIdentity2Route
   '/vip': typeof VipRoute
 }
 export interface FileRoutesById {
@@ -88,6 +104,8 @@ export interface FileRoutesById {
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
+  '/upsell-story-identity': typeof UpsellStoryIdentityRoute
+  '/upsell-story-identity-2': typeof UpsellStoryIdentity2Route
   '/vip': typeof VipRoute
 }
 export interface FileRouteTypes {
@@ -100,6 +118,8 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/thank-you-vip'
     | '/upsell-call'
+    | '/upsell-story-identity'
+    | '/upsell-story-identity-2'
     | '/vip'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -110,6 +130,8 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/thank-you-vip'
     | '/upsell-call'
+    | '/upsell-story-identity'
+    | '/upsell-story-identity-2'
     | '/vip'
   id:
     | '__root__'
@@ -120,6 +142,8 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/thank-you-vip'
     | '/upsell-call'
+    | '/upsell-story-identity'
+    | '/upsell-story-identity-2'
     | '/vip'
   fileRoutesById: FileRoutesById
 }
@@ -131,6 +155,8 @@ export interface RootRouteChildren {
   ThankYouRoute: typeof ThankYouRoute
   ThankYouVipRoute: typeof ThankYouVipRoute
   UpsellCallRoute: typeof UpsellCallRoute
+  UpsellStoryIdentityRoute: typeof UpsellStoryIdentityRoute
+  UpsellStoryIdentity2Route: typeof UpsellStoryIdentity2Route
   VipRoute: typeof VipRoute
 }
 
@@ -185,6 +211,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UpsellCallRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/upsell-story-identity': {
+      id: '/upsell-story-identity'
+      path: '/upsell-story-identity'
+      fullPath: '/upsell-story-identity'
+      preLoaderRoute: typeof UpsellStoryIdentityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/upsell-story-identity-2': {
+      id: '/upsell-story-identity-2'
+      path: '/upsell-story-identity-2'
+      fullPath: '/upsell-story-identity-2'
+      preLoaderRoute: typeof UpsellStoryIdentity2RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/vip': {
       id: '/vip'
       path: '/vip'
@@ -203,6 +243,8 @@ const rootRouteChildren: RootRouteChildren = {
   ThankYouRoute: ThankYouRoute,
   ThankYouVipRoute: ThankYouVipRoute,
   UpsellCallRoute: UpsellCallRoute,
+  UpsellStoryIdentityRoute: UpsellStoryIdentityRoute,
+  UpsellStoryIdentity2Route: UpsellStoryIdentity2Route,
   VipRoute: VipRoute,
 }
 export const routeTree = rootRouteImport
