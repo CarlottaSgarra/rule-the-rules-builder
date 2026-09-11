@@ -963,10 +963,12 @@ const faqs = [
     q: "E se non riesco a seguirlo live?",
     a: (
       <>
-        Con il biglietto standard puoi seguire solo in diretta, non è prevista la registrazione. Se
-        vuoi rivedere l’evento tutte le volte che vuoi, fermarti sui passaggi cruciali o prenderti
-        appunti con calma, nella schermata successiva puoi fare l’upgrade al biglietto VIP, che
-        include la registrazione completa e altri bonus.
+        Nessun problema: acquistando il biglietto hai accesso anche alla{" "}
+        <strong className="font-semibold text-foreground">registrazione delle 3 serate</strong>,
+        valida fino a <strong className="font-semibold text-foreground">venerdì 9 ottobre</strong>.
+        Se vuoi rivedere l’evento senza limiti di tempo, fermarti sui passaggi cruciali o prenderti
+        appunti con calma quando vuoi, nella schermata successiva puoi fare l’upgrade al biglietto
+        VIP, che include l’accesso a vita alla registrazione e altri bonus.
       </>
     ),
   },

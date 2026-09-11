@@ -3,6 +3,11 @@
 // evitare che i due elenchi si disallineino nel tempo.
 export const valueStack = [
   { t: "Accesso alle 3 serate live", d: "Dal 5 al 7 ottobre, in diretta streaming.", value: 97 },
+  {
+    t: "Registrazione delle 3 serate",
+    d: "Valida fino a venerdì 9 ottobre, per rivederle quando vuoi.",
+    value: null as number | null,
+  },
   { t: "Workbook completo", d: "Il documento che ti accompagna serata per serata.", value: 47 },
   {
     t: "Le tue Carte Identitarie",
