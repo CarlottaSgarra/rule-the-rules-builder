@@ -45,7 +45,6 @@ import stufataDiTuttoQuestoImg from "@/assets/stufata-di-tutto-questo.jpg";
 import ilMetodoCircoloViziosoImg from "@/assets/il-metodo-circolo-vizioso-delle-regolette.jpg";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import hoCreatoUnaziendaImg from "@/assets/ho-creato-unazienda-identita-riconoscibile.jpg";
-import invitoPerTeImg from "@/assets/invito-per-te-costruire-la-tua-comunicazione.jpg";
 import socialProof1Img from "@/assets/social-proof-1.jpg";
 import socialProof2Img from "@/assets/social-proof-2.jpg";
 import socialProof3Img from "@/assets/social-proof-3.jpg";
@@ -825,29 +824,6 @@ const videoTestimonials = [
     photo: martinaFerrariImg,
   },
 ];
-
-const twoPaths = {
-  a: {
-    title: "Continuare come adesso",
-    intro: "La tua giornata tipo, se non cambia niente:",
-    bullets: [
-      "Apri Instagram per “ispirarti” e dopo venti minuti hai solo ansia",
-      "Scrivi un post seguendo lo schema che va di moda, lo cancelli tre volte",
-      "Lo pubblichi lo stesso, senza convinzione",
-      "La sera controlli gli insight e ti chiedi, ancora una volta, perché a te non funziona come alle altre",
-    ],
-  },
-  b: {
-    title: "Costruire la tua comunicazione",
-    intro: "La tua giornata tipo, dopo Rule The Rules:",
-    bullets: [
-      "Sai esattamente di cosa vuoi parlare, perché hai un piano editoriale che è tuo",
-      "Scrivi un contenuto in metà del tempo seguendo le tue Anti-Regole",
-      "Non copi più nessun corso, nessuna creator, nessuno schema",
-      "La sera chiudi il telefono con la sensazione di essere stata vista per quella che sei davvero",
-    ],
-  },
-};
 
 const workbookDays = [
   {
@@ -1870,64 +1846,6 @@ function UpsellStoryIdentity() {
                 >
                   1.500+ professioniste guidate
                 </span>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* La scelta */}
-      <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
-        <div className="mx-auto max-w-4xl px-5 py-20">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl">
-              Da qui puoi andare in <Highlight dark>due direzioni</Highlight>.
-            </h2>
-          </Reveal>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            <Reveal>
-              <div className="h-full rounded-xl border border-border/70 bg-background p-5 sm:p-7">
-                <p className="font-condensed text-lg uppercase tracking-[0.12em] text-muted-foreground">
-                  {twoPaths.a.title}
-                </p>
-                <p className="mt-3 text-sm font-semibold text-foreground/85">{twoPaths.a.intro}</p>
-                <ul className="mt-3 space-y-2">
-                  {twoPaths.a.bullets.map((b) => (
-                    <li key={b} className="flex gap-2 text-sm leading-relaxed text-foreground/75">
-                      <span className="mt-0.5 shrink-0 text-muted-foreground">✕</span>
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-            <Reveal delay={100}>
-              <div className="relative h-full overflow-hidden rounded-xl p-5 sm:p-7">
-                <img
-                  src={invitoPerTeImg}
-                  alt="Carlotta Sgarra abbraccia una partecipante a un suo evento live"
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover"
-                  style={{ objectPosition: "50% 8%" }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/40" />
-                <div className="relative">
-                  <p className="font-condensed text-lg uppercase tracking-[0.12em] text-primary">
-                    {twoPaths.b.title}
-                  </p>
-                  <p className="mt-3 text-sm font-semibold text-white">{twoPaths.b.intro}</p>
-                  <ul className="mt-3 space-y-2">
-                    {twoPaths.b.bullets.map((b) => (
-                      <li key={b} className="flex gap-2 text-sm leading-relaxed text-white/90">
-                        <span className="mt-0.5 shrink-0 text-primary">✓</span>
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-6">
-                    <CtaButton label="Scelgo questa opzione" href={SIGNUP_HREF} />
-                  </div>
-                </div>
               </div>
             </Reveal>
           </div>
