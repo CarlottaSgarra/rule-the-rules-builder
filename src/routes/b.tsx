@@ -1086,16 +1086,10 @@ function Index() {
           </Reveal>
 
           <Reveal delay={110} className="mt-10 w-full">
-            <p className="mx-auto max-w-5xl text-base text-foreground/75 sm:text-lg">
-              Durante l’evento rompiamo tutti questi schemi per tornare alla{" "}
-              <strong className="font-semibold text-foreground">tua vera identità</strong>.
-            </p>
-            <div className="mt-6">
-              <VideoFrame
-                label="Guarda il video di presentazione di Rule The Rules"
-                vimeoId="1224559304"
-              />
-            </div>
+            <VideoFrame
+              label="Guarda il video di presentazione di Rule The Rules"
+              vimeoId="1224559304"
+            />
           </Reveal>
 
           <Reveal delay={150}>
