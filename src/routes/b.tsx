@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { CtaButton } from "@/components/landing/CtaButton";
+import { LiveRegistrationsNotice } from "@/components/landing/LiveRegistrationsNotice";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
 import { Reveal } from "@/components/landing/Reveal";
@@ -1321,8 +1322,9 @@ function Index() {
               style={{ objectPosition: "50% 20%" }}
             />
 
-            <div className="mt-6 flex justify-center">
+            <div className="mt-6 flex flex-col items-center">
               <CtaButton label="Rompiamo le regole, allora?" href={SIGNUP_HREF} />
+              <LiveRegistrationsNotice />
             </div>
           </Reveal>
         </div>
@@ -1521,8 +1523,9 @@ function Index() {
               ))}
 
               <Reveal>
-                <div className="mt-4 flex justify-center">
+                <div className="mt-4 flex flex-col items-center">
                   <CtaButton label="Costruiamo il tuo metodo, allora?" href={SIGNUP_HREF} />
+                  <LiveRegistrationsNotice />
                 </div>
               </Reveal>
             </div>
@@ -1779,8 +1782,9 @@ function Index() {
           </div>
 
           <Reveal>
-            <div className="mt-14 flex justify-center">
+            <div className="mt-14 flex flex-col items-center">
               <CtaButton label="SÌ VOGLIO ESSERCI ANCH’IO" href={SIGNUP_HREF} />
+              <LiveRegistrationsNotice />
             </div>
           </Reveal>
         </div>
@@ -1900,8 +1904,9 @@ function Index() {
           </div>
 
           <Reveal>
-            <div className="mt-14 flex justify-center">
+            <div className="mt-14 flex flex-col items-center">
               <CtaButton label="Voglio portarmi tutto questo a casa" href={SIGNUP_HREF} />
+              <LiveRegistrationsNotice />
             </div>
           </Reveal>
         </div>
@@ -1967,8 +1972,9 @@ function Index() {
 
           <TestimonialsExplorer testimonials={videoTestimonials} />
 
-          <div className="mt-10 flex justify-center">
+          <div className="mt-10 flex flex-col items-center">
             <CtaButton label="Voglio rompere le regole" href={SIGNUP_HREF} />
+            <LiveRegistrationsNotice />
           </div>
         </div>
       </section>
@@ -2160,6 +2166,7 @@ function Index() {
                   </ul>
                   <div className="mt-6">
                     <CtaButton label="Scelgo questa opzione" href={SIGNUP_HREF} />
+                    <LiveRegistrationsNotice />
                   </div>
                 </div>
               </div>
@@ -2237,6 +2244,7 @@ function Index() {
 
                 <div className="mt-6">
                   <CtaButton label="Ok, voglio iscrivermi" href={SIGNUP_HREF} />
+                  <LiveRegistrationsNotice />
                 </div>
               </div>
             </div>
@@ -2290,8 +2298,9 @@ function Index() {
           </div>
 
           <Reveal>
-            <div className="mt-14 flex justify-center">
+            <div className="mt-14 flex flex-col items-center">
               <CtaButton label="Mi iscrivo senza rischio" href={SIGNUP_HREF} />
+              <LiveRegistrationsNotice />
             </div>
           </Reveal>
         </div>
