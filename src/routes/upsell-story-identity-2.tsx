@@ -91,7 +91,7 @@ const faqs = [
       <>
         Nessun problema: acquistando il biglietto hai accesso anche alla{" "}
         <strong className="font-semibold text-foreground">registrazione delle 3 serate</strong>,
-        valida fino a <strong className="font-semibold text-foreground">venerdì 9 ottobre</strong>.
+        valida fino a <strong className="font-semibold text-foreground">venerdì 16 ottobre</strong>.
         Se vuoi rivedere l’evento senza limiti di tempo, fermarti sui passaggi cruciali o prenderti
         appunti con calma quando vuoi, nella schermata successiva puoi fare l’upgrade al biglietto
         VIP, che include l’accesso a vita alla registrazione e altri bonus.

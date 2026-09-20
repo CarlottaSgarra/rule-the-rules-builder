@@ -14,7 +14,7 @@ export function LiveRegistrationsNotice({ className = "" }: Props) {
       {/* No explicit text color: inherits from the section (light or dark) instead of
           forcing --foreground, which would collide with dark bg-secondary sections. */}
       <span className="opacity-70">
-        Le registrazioni delle tre serate sono disponibili fino a venerdì 9 ottobre
+        Le registrazioni delle tre serate sono disponibili fino a venerdì 16 ottobre
       </span>
     </div>
   );
