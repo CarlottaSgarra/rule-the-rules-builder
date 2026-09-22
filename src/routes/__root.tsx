@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -11,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { initPosthog, capturePageview } from "../lib/posthog";
 
 function NotFoundComponent() {
   return (
@@ -122,6 +124,15 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const href = useRouterState({ select: (s) => s.location.href });
+
+  useEffect(() => {
+    initPosthog();
+  }, []);
+
+  useEffect(() => {
+    capturePageview(href);
+  }, [href]);
 
   return (
     <QueryClientProvider client={queryClient}>
