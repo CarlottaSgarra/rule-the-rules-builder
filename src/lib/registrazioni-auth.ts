@@ -14,12 +14,17 @@ const SESSION_MAX_AGE = 60 * 60 * 24 * 30; // 30 giorni
 
 type RegistrazioniSession = { granted: boolean };
 
-function sessionConfig(): SessionConfig {
+// Se SESSION_SECRET manca o è troppo corta, nessuna sessione può essere
+// creata o letta correttamente: torna null invece di lanciare un'eccezione,
+// così i chiamanti possono fallire in modo pulito (gate chiuso) invece di
+// far crashare la pagina.
+function sessionConfig(): SessionConfig | null {
   const password = process.env.SESSION_SECRET;
   if (!password || password.length < 32) {
-    // Nessun secret valido configurato: nessuna sessione può essere creata o
-    // letta correttamente, quindi il gate resta chiuso per tutti (fail closed).
-    throw new Error("SESSION_SECRET mancante o troppo corto (minimo 32 caratteri)");
+    console.error(
+      "SESSION_SECRET mancante o troppo corto (minimo 32 caratteri): gate sempre chiuso.",
+    );
+    return null;
   }
   return {
     password,
@@ -58,11 +63,19 @@ export const verifyRegistrazioniAccess = createServerFn({ method: "POST" })
     if (!passwordsMatch(data.password, expected)) {
       return { ok: false as const, error: "Email o password non corrette." };
     }
-    await updateSession<RegistrazioniSession>(sessionConfig(), { granted: true });
+    const config = sessionConfig();
+    if (!config) {
+      return { ok: false as const, error: "Accesso non disponibile al momento." };
+    }
+    await updateSession<RegistrazioniSession>(config, { granted: true });
     return { ok: true as const };
   });
 
 export const checkRegistrazioniAccess = createServerFn({ method: "GET" }).handler(async () => {
-  const session = await getSession<RegistrazioniSession>(sessionConfig());
+  const config = sessionConfig();
+  if (!config) {
+    return { granted: false };
+  }
+  const session = await getSession<RegistrazioniSession>(config);
   return { granted: session.data.granted === true };
 });
