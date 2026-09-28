@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BRouteImport } from './routes/b'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CheckoutVipRouteImport } from './routes/checkout-vip'
+import { Route as RegistrazioniRouteImport } from './routes/registrazioni'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as ThankYouVipRouteImport } from './routes/thank-you-vip'
 import { Route as UpsellCallRouteImport } from './routes/upsell-call'
@@ -38,6 +39,11 @@ const CheckoutRoute = CheckoutRouteImport.update({
 const CheckoutVipRoute = CheckoutVipRouteImport.update({
   id: '/checkout-vip',
   path: '/checkout-vip',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegistrazioniRoute = RegistrazioniRouteImport.update({
+  id: '/registrazioni',
+  path: '/registrazioni',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ThankYouRoute = ThankYouRouteImport.update({
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/b': typeof BRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
+  '/registrazioni': typeof RegistrazioniRoute
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/b': typeof BRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
+  '/registrazioni': typeof RegistrazioniRoute
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/b': typeof BRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
+  '/registrazioni': typeof RegistrazioniRoute
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/b'
     | '/checkout'
     | '/checkout-vip'
+    | '/registrazioni'
     | '/thank-you'
     | '/thank-you-vip'
     | '/upsell-call'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/b'
     | '/checkout'
     | '/checkout-vip'
+    | '/registrazioni'
     | '/thank-you'
     | '/thank-you-vip'
     | '/upsell-call'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/b'
     | '/checkout'
     | '/checkout-vip'
+    | '/registrazioni'
     | '/thank-you'
     | '/thank-you-vip'
     | '/upsell-call'
@@ -152,6 +164,7 @@ export interface RootRouteChildren {
   BRoute: typeof BRoute
   CheckoutRoute: typeof CheckoutRoute
   CheckoutVipRoute: typeof CheckoutVipRoute
+  RegistrazioniRoute: typeof RegistrazioniRoute
   ThankYouRoute: typeof ThankYouRoute
   ThankYouVipRoute: typeof ThankYouVipRoute
   UpsellCallRoute: typeof UpsellCallRoute
@@ -188,6 +201,13 @@ declare module '@tanstack/react-router' {
       path: '/checkout-vip'
       fullPath: '/checkout-vip'
       preLoaderRoute: typeof CheckoutVipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/registrazioni': {
+      id: '/registrazioni'
+      path: '/registrazioni'
+      fullPath: '/registrazioni'
+      preLoaderRoute: typeof RegistrazioniRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/thank-you': {
@@ -240,6 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   BRoute: BRoute,
   CheckoutRoute: CheckoutRoute,
   CheckoutVipRoute: CheckoutVipRoute,
+  RegistrazioniRoute: RegistrazioniRoute,
   ThankYouRoute: ThankYouRoute,
   ThankYouVipRoute: ThankYouVipRoute,
   UpsellCallRoute: UpsellCallRoute,
