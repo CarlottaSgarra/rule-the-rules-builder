@@ -1,9 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { CtaButton } from "@/components/landing/CtaButton";
 import { SiteFooter } from "@/components/landing/SiteFooter";
+import { checkRegistrazioniAccess } from "@/lib/registrazioni-auth";
 import togliIlCostumeImg from "@/assets/togli-il-costume.jpg";
 import licenziaLeRegoleImg from "@/assets/licenzia-le-regole.jpg";
 import costruisciSistemaImg from "@/assets/costruisci-un-sistema-che-non-ti-comandi.jpg";
@@ -39,6 +40,12 @@ const recordings = [
 ];
 
 export const Route = createFileRoute("/registrazioni")({
+  beforeLoad: async () => {
+    const { granted } = await checkRegistrazioniAccess();
+    if (!granted) {
+      throw redirect({ to: "/accedi-registrazioni" });
+    }
+  },
   head: () => ({
     meta: [
       { title: "Recupera le registrazioni dell’evento — Rule The Rules 2026" },

@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccediRegistrazioniRouteImport } from './routes/accedi-registrazioni'
 import { Route as BRouteImport } from './routes/b'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CheckoutVipRouteImport } from './routes/checkout-vip'
@@ -24,6 +25,11 @@ import { Route as VipRouteImport } from './routes/vip'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AccediRegistrazioniRoute = AccediRegistrazioniRouteImport.update({
+  id: '/accedi-registrazioni',
+  path: '/accedi-registrazioni',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BRoute = BRouteImport.update({
@@ -79,6 +85,7 @@ const VipRoute = VipRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/accedi-registrazioni': typeof AccediRegistrazioniRoute
   '/b': typeof BRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
@@ -92,6 +99,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/accedi-registrazioni': typeof AccediRegistrazioniRoute
   '/b': typeof BRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
@@ -106,6 +114,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/accedi-registrazioni': typeof AccediRegistrazioniRoute
   '/b': typeof BRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/accedi-registrazioni'
     | '/b'
     | '/checkout'
     | '/checkout-vip'
@@ -134,6 +144,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/accedi-registrazioni'
     | '/b'
     | '/checkout'
     | '/checkout-vip'
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/accedi-registrazioni'
     | '/b'
     | '/checkout'
     | '/checkout-vip'
@@ -161,6 +173,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccediRegistrazioniRoute: typeof AccediRegistrazioniRoute
   BRoute: typeof BRoute
   CheckoutRoute: typeof CheckoutRoute
   CheckoutVipRoute: typeof CheckoutVipRoute
@@ -180,6 +193,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/accedi-registrazioni': {
+      id: '/accedi-registrazioni'
+      path: '/accedi-registrazioni'
+      fullPath: '/accedi-registrazioni'
+      preLoaderRoute: typeof AccediRegistrazioniRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/b': {
@@ -257,6 +277,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccediRegistrazioniRoute: AccediRegistrazioniRoute,
   BRoute: BRoute,
   CheckoutRoute: CheckoutRoute,
   CheckoutVipRoute: CheckoutVipRoute,
