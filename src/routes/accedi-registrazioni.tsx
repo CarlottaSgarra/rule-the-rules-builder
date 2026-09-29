@@ -3,7 +3,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
 import { SiteFooter } from "@/components/landing/SiteFooter";
-import { verifyRegistrazioniAccess } from "@/lib/registrazioni-auth";
+import { verifyRegistrazioniAccess, REGISTRAZIONI_TOKEN_KEY } from "@/lib/registrazioni-auth";
 
 export const Route = createFileRoute("/accedi-registrazioni")({
   head: () => ({
@@ -32,6 +32,7 @@ function AccediRegistrazioni() {
     try {
       const result = await verifyRegistrazioniAccess({ data: { email, password } });
       if (result.ok) {
+        localStorage.setItem(REGISTRAZIONI_TOKEN_KEY, result.token);
         await navigate({ to: "/registrazioni" });
       } else {
         setError(result.error);

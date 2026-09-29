@@ -1,10 +1,11 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { CtaButton } from "@/components/landing/CtaButton";
 import { SiteFooter } from "@/components/landing/SiteFooter";
-import { checkRegistrazioniAccess } from "@/lib/registrazioni-auth";
+import { checkRegistrazioniToken, REGISTRAZIONI_TOKEN_KEY } from "@/lib/registrazioni-auth";
 import togliIlCostumeImg from "@/assets/togli-il-costume.jpg";
 import licenziaLeRegoleImg from "@/assets/licenzia-le-regole.jpg";
 import costruisciSistemaImg from "@/assets/costruisci-un-sistema-che-non-ti-comandi.jpg";
@@ -40,12 +41,6 @@ const recordings = [
 ];
 
 export const Route = createFileRoute("/registrazioni")({
-  beforeLoad: async () => {
-    const { granted } = await checkRegistrazioniAccess();
-    if (!granted) {
-      throw redirect({ to: "/accedi-registrazioni" });
-    }
-  },
   head: () => ({
     meta: [
       { title: "Recupera le registrazioni dell’evento — Rule The Rules 2026" },
@@ -60,6 +55,39 @@ export const Route = createFileRoute("/registrazioni")({
 });
 
 function Registrazioni() {
+  const navigate = useNavigate();
+  const [status, setStatus] = useState<"checking" | "granted" | "denied">("checking");
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const token = localStorage.getItem(REGISTRAZIONI_TOKEN_KEY);
+      if (!token) {
+        if (!cancelled) setStatus("denied");
+        return;
+      }
+      const result = await checkRegistrazioniToken({ data: { token } });
+      if (!cancelled) setStatus(result.granted ? "granted" : "denied");
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (status === "denied") {
+      navigate({ to: "/accedi-registrazioni" });
+    }
+  }, [status, navigate]);
+
+  if (status !== "granted") {
+    return (
+      <div className="flex min-h-[50vh] items-center justify-center bg-background">
+        <p className="text-sm text-foreground/60">Verifica accesso…</p>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-background">
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
