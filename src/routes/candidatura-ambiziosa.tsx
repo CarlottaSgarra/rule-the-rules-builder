@@ -13,12 +13,15 @@ import {
   MessageCircle,
   PhoneCall,
   CheckCircle2,
+  XCircle,
   Sparkles,
   ArrowRight,
   Quote,
   LayoutDashboard,
   Users,
   Video,
+  ShieldCheck,
+  Gift,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -221,6 +224,12 @@ const forWhoCards = [
     lorem:
       "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum, sta cambiando direzione e vuole ripartire su basi solide, questa volta.",
   },
+];
+
+const notForYouPoints = [
+  "Lorem ipsum dolor sit amet, stai cercando l'ennesimo corso da guardare senza mai applicarlo.",
+  "Consectetur adipiscing elit, non hai ancora chiuso nessuna delle 3 serate di Rule the Rules.",
+  "Sed do eiusmod tempor incididunt, cerchi un format già pronto invece di costruire il tuo sistema identitario.",
 ];
 
 const painPoints = [
@@ -441,6 +450,20 @@ function CandidaturaAmbiziosa() {
             />
             Candidature aperte <span className="opacity-70">· Risposta entro 48 ore</span>
           </p>
+          <nav className="hidden items-center gap-5 font-condensed text-xs uppercase tracking-[0.1em] text-foreground/80 lg:flex">
+            <a href="#step-1" className="transition-colors hover:text-foreground">
+              Percorso
+            </a>
+            <a href="#prezzi" className="transition-colors hover:text-foreground">
+              Prezzi
+            </a>
+            <a href="#storie" className="transition-colors hover:text-foreground">
+              Storie
+            </a>
+            <a href="#faq" className="transition-colors hover:text-foreground">
+              FAQ
+            </a>
+          </nav>
           <a
             href={ANCHOR}
             className="shrink-0 rounded-md px-3 py-2 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:text-xs sm:tracking-[0.12em]"
@@ -572,6 +595,22 @@ function CandidaturaAmbiziosa() {
               </Reveal>
             ))}
           </div>
+
+          <Reveal delay={240}>
+            <div className="surface-card mx-auto mt-6 max-w-2xl p-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.04em] text-destructive">
+                Non fa per te se
+              </p>
+              <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-muted-foreground">
+                {notForYouPoints.map((p) => (
+                  <li key={p} className="flex gap-2">
+                    <XCircle className="mt-0.5 size-4 shrink-0 text-destructive" />
+                    <span>{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -580,7 +619,7 @@ function CandidaturaAmbiziosa() {
 
       {/* 6. Reframe del problema */}
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto grid max-w-5xl gap-10 sm:grid-cols-[1.1fr_0.9fr] sm:items-center">
           <Reveal>
             {/* LOREM - sezione 6, blocco di validazione, sostituire con copy reale */}
             <p className="text-base leading-relaxed text-foreground/85 sm:text-lg">
@@ -605,6 +644,30 @@ function CandidaturaAmbiziosa() {
               <Highlight>è mancanza di un sistema strutturato</Highlight> che trasformi le
               fondamenta in azione quotidiana.
             </p>
+          </Reveal>
+          <Reveal delay={100}>
+            <div
+              className="surface-card mx-auto w-full max-w-xs p-5"
+              style={{ borderRadius: "1.25rem" }}
+            >
+              <p className="font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground">
+                Il tuo piano, oggi
+              </p>
+              <div className="mt-4 space-y-3">
+                {painPoints.slice(0, 3).map((p) => (
+                  <div key={p} className="flex items-start gap-2 text-xs text-foreground/50">
+                    <span className="mt-0.5 size-3.5 shrink-0 rounded-sm border border-foreground/30" />
+                    <span className="leading-snug line-through decoration-foreground/30">{p}</span>
+                  </div>
+                ))}
+              </div>
+              <span
+                className="mt-4 inline-block rounded-full border-2 px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.1em] text-destructive"
+                style={{ borderColor: "var(--destructive)", transform: "rotate(-3deg)" }}
+              >
+                Ancora in stallo
+              </span>
+            </div>
           </Reveal>
         </div>
       </section>
@@ -740,7 +803,7 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 11. Presentazione dei 2 livelli */}
-      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
+      <section id="prezzi" className="bg-background px-4 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-5xl">
           <Reveal>
             <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
@@ -921,19 +984,41 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 14. Bonus */}
-      {/* BONUS DA CONFERMARE CON ANDREA - sezione strutturata, contenuto non ancora deciso */}
+      {/* BONUS DA CONFERMARE CON ANDREA - griglia pronta, contenuto e valori non ancora decisi */}
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-4xl">
           <Reveal>
             <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
               I bonus del percorso
             </h2>
-            <div className="surface-card mt-8 flex flex-col items-center gap-3 border-2 border-dashed border-primary/40 p-8 text-center">
-              <Sparkles className="size-8 text-primary/60" />
-              <p className="text-sm text-muted-foreground">
-                Sezione pronta per i bonus di Ambiziosa — contenuto ancora da confermare con Andrea
-                prima della pubblicazione.
+            <p className="mx-auto mt-3 max-w-xl text-center text-sm text-muted-foreground sm:text-base">
+              Griglia pronta per i bonus di Ambiziosa — titoli e valori da confermare con Andrea
+              prima della pubblicazione.
+            </p>
+          </Reveal>
+          <div className="mt-8 grid gap-5 sm:grid-cols-3">
+            {["01", "02", "03"].map((n, i) => (
+              <Reveal key={n} delay={i * 60}>
+                <div className="surface-card h-full border-2 border-dashed border-primary/40 p-6 text-center">
+                  <Gift className="mx-auto size-6 text-primary/60" />
+                  <p className="mt-3 font-condensed text-xs uppercase tracking-[0.15em] text-primary/70">
+                    Bonus {n}
+                  </p>
+                  <p className="mt-2 text-sm font-semibold text-foreground">Titolo da confermare</p>
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                    Descrizione da confermare con Andrea.
+                  </p>
+                  <p className="mt-3 text-xs font-semibold text-secondary">Valore: da confermare</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={200}>
+            <div className="surface-card mt-6 flex items-center justify-between gap-4 border-2 border-dashed border-primary/40 p-5 text-center sm:p-6">
+              <p className="text-sm font-semibold text-foreground sm:text-base">
+                Valore totale dei bonus
               </p>
+              <p className="shrink-0 text-lg font-bold text-secondary sm:text-xl">Da confermare</p>
             </div>
           </Reveal>
         </div>
@@ -978,6 +1063,7 @@ function CandidaturaAmbiziosa() {
 
       {/* 16. Testimonianze / casi studio */}
       <section
+        id="storie"
         className="px-4 py-16 sm:px-8 sm:py-24"
         style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
       >
@@ -1094,8 +1180,26 @@ function CandidaturaAmbiziosa() {
       {/* → CtaBox #3, dopo storytelling/autorità (sezione 17) */}
       <CtaBox context="Lorem ipsum dolor sit amet: se il mio percorso ti ha parlato, probabilmente Ambiziosa è la strada giusta anche per te." />
 
+      {/* 17b. Rassicurazione sulla candidatura, sezione dedicata */}
+      <section
+        className="px-4 py-14 text-center sm:px-8 sm:py-20"
+        style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
+      >
+        <Reveal>
+          <ShieldCheck className="mx-auto size-10 text-primary" />
+          <h2 className="mx-auto mt-4 max-w-xl text-2xl sm:text-3xl">
+            Candidarti non ti impegna a <Highlight dark>nulla</Highlight>
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-ink-muted sm:text-base">
+            La candidatura è gratuita e non richiede nessun pagamento: leggiamo ogni candidatura
+            personalmente e ti rispondiamo entro 48 ore lavorative con i prossimi passi. Deciderai
+            solo dopo aver parlato con noi se procedere o meno.
+          </p>
+        </Reveal>
+      </section>
+
       {/* 18. FAQ */}
-      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
+      <section id="faq" className="bg-background px-4 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-3xl">
           <Reveal>
             <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
