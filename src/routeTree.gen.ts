@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccediRegistrazioniRouteImport } from './routes/accedi-registrazioni'
 import { Route as BRouteImport } from './routes/b'
+import { Route as CandidaturaAmbiziosaRouteImport } from './routes/candidatura-ambiziosa'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CheckoutVipRouteImport } from './routes/checkout-vip'
 import { Route as RegistrazioniRouteImport } from './routes/registrazioni'
@@ -35,6 +36,11 @@ const AccediRegistrazioniRoute = AccediRegistrazioniRouteImport.update({
 const BRoute = BRouteImport.update({
   id: '/b',
   path: '/b',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CandidaturaAmbiziosaRoute = CandidaturaAmbiziosaRouteImport.update({
+  id: '/candidatura-ambiziosa',
+  path: '/candidatura-ambiziosa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutRoute = CheckoutRouteImport.update({
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accedi-registrazioni': typeof AccediRegistrazioniRoute
   '/b': typeof BRoute
+  '/candidatura-ambiziosa': typeof CandidaturaAmbiziosaRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
   '/registrazioni': typeof RegistrazioniRoute
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accedi-registrazioni': typeof AccediRegistrazioniRoute
   '/b': typeof BRoute
+  '/candidatura-ambiziosa': typeof CandidaturaAmbiziosaRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
   '/registrazioni': typeof RegistrazioniRoute
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/accedi-registrazioni': typeof AccediRegistrazioniRoute
   '/b': typeof BRoute
+  '/candidatura-ambiziosa': typeof CandidaturaAmbiziosaRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
   '/registrazioni': typeof RegistrazioniRoute
@@ -132,6 +141,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accedi-registrazioni'
     | '/b'
+    | '/candidatura-ambiziosa'
     | '/checkout'
     | '/checkout-vip'
     | '/registrazioni'
@@ -146,6 +156,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accedi-registrazioni'
     | '/b'
+    | '/candidatura-ambiziosa'
     | '/checkout'
     | '/checkout-vip'
     | '/registrazioni'
@@ -160,6 +171,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accedi-registrazioni'
     | '/b'
+    | '/candidatura-ambiziosa'
     | '/checkout'
     | '/checkout-vip'
     | '/registrazioni'
@@ -175,6 +187,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccediRegistrazioniRoute: typeof AccediRegistrazioniRoute
   BRoute: typeof BRoute
+  CandidaturaAmbiziosaRoute: typeof CandidaturaAmbiziosaRoute
   CheckoutRoute: typeof CheckoutRoute
   CheckoutVipRoute: typeof CheckoutVipRoute
   RegistrazioniRoute: typeof RegistrazioniRoute
@@ -207,6 +220,13 @@ declare module '@tanstack/react-router' {
       path: '/b'
       fullPath: '/b'
       preLoaderRoute: typeof BRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/candidatura-ambiziosa': {
+      id: '/candidatura-ambiziosa'
+      path: '/candidatura-ambiziosa'
+      fullPath: '/candidatura-ambiziosa'
+      preLoaderRoute: typeof CandidaturaAmbiziosaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout': {
@@ -279,6 +299,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccediRegistrazioniRoute: AccediRegistrazioniRoute,
   BRoute: BRoute,
+  CandidaturaAmbiziosaRoute: CandidaturaAmbiziosaRoute,
   CheckoutRoute: CheckoutRoute,
   CheckoutVipRoute: CheckoutVipRoute,
   RegistrazioniRoute: RegistrazioniRoute,
