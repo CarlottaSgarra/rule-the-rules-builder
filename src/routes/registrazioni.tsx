@@ -11,7 +11,7 @@ import togliIlCostumeImg from "@/assets/togli-il-costume.jpg";
 import licenziaLeRegoleImg from "@/assets/licenzia-le-regole.jpg";
 import costruisciSistemaImg from "@/assets/costruisci-un-sistema-che-non-ti-comandi.jpg";
 
-const AMBIZIOSA_HREF = "/candidatura-ambiziosa";
+const AMBIZIOSA_HREF = "/candidati-ambiziosa";
 const REGISTRAZIONI_DEADLINE = new Date("2026-10-16T23:59:59+02:00").getTime();
 
 const recordings = [

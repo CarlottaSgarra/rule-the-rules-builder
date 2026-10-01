@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
-// Form di qualifica per /candidatura-ambiziosa: non c'e' nessun checkout qui,
+// Form di qualifica per /candidati-ambiziosa: non c'e' nessun checkout qui,
 // solo una candidatura. Per ora logghiamo lato server invece di spedire a un
 // vero CRM/servizio email — l'integrazione reale arrivera' in un secondo
 // momento (Andrea se ne occupera').

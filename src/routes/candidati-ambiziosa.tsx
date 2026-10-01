@@ -380,7 +380,7 @@ const inputClassName =
 
 // ---------------------------------------------------------------------------
 
-export const Route = createFileRoute("/candidatura-ambiziosa")({
+export const Route = createFileRoute("/candidati-ambiziosa")({
   head: () => ({
     meta: [
       { title: "Candidatura Ambiziosa — Program e Mentorship" },

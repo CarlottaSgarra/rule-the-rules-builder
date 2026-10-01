@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccediRegistrazioniRouteImport } from './routes/accedi-registrazioni'
 import { Route as BRouteImport } from './routes/b'
-import { Route as CandidaturaAmbiziosaRouteImport } from './routes/candidatura-ambiziosa'
+import { Route as CandidatiAmbiziosaRouteImport } from './routes/candidati-ambiziosa'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CheckoutVipRouteImport } from './routes/checkout-vip'
 import { Route as RegistrazioniRouteImport } from './routes/registrazioni'
@@ -38,9 +38,9 @@ const BRoute = BRouteImport.update({
   path: '/b',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CandidaturaAmbiziosaRoute = CandidaturaAmbiziosaRouteImport.update({
-  id: '/candidatura-ambiziosa',
-  path: '/candidatura-ambiziosa',
+const CandidatiAmbiziosaRoute = CandidatiAmbiziosaRouteImport.update({
+  id: '/candidati-ambiziosa',
+  path: '/candidati-ambiziosa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutRoute = CheckoutRouteImport.update({
@@ -93,7 +93,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accedi-registrazioni': typeof AccediRegistrazioniRoute
   '/b': typeof BRoute
-  '/candidatura-ambiziosa': typeof CandidaturaAmbiziosaRoute
+  '/candidati-ambiziosa': typeof CandidatiAmbiziosaRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
   '/registrazioni': typeof RegistrazioniRoute
@@ -108,7 +108,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accedi-registrazioni': typeof AccediRegistrazioniRoute
   '/b': typeof BRoute
-  '/candidatura-ambiziosa': typeof CandidaturaAmbiziosaRoute
+  '/candidati-ambiziosa': typeof CandidatiAmbiziosaRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
   '/registrazioni': typeof RegistrazioniRoute
@@ -124,7 +124,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/accedi-registrazioni': typeof AccediRegistrazioniRoute
   '/b': typeof BRoute
-  '/candidatura-ambiziosa': typeof CandidaturaAmbiziosaRoute
+  '/candidati-ambiziosa': typeof CandidatiAmbiziosaRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
   '/registrazioni': typeof RegistrazioniRoute
@@ -141,7 +141,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accedi-registrazioni'
     | '/b'
-    | '/candidatura-ambiziosa'
+    | '/candidati-ambiziosa'
     | '/checkout'
     | '/checkout-vip'
     | '/registrazioni'
@@ -156,7 +156,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accedi-registrazioni'
     | '/b'
-    | '/candidatura-ambiziosa'
+    | '/candidati-ambiziosa'
     | '/checkout'
     | '/checkout-vip'
     | '/registrazioni'
@@ -171,7 +171,7 @@ export interface FileRouteTypes {
     | '/'
     | '/accedi-registrazioni'
     | '/b'
-    | '/candidatura-ambiziosa'
+    | '/candidati-ambiziosa'
     | '/checkout'
     | '/checkout-vip'
     | '/registrazioni'
@@ -187,7 +187,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccediRegistrazioniRoute: typeof AccediRegistrazioniRoute
   BRoute: typeof BRoute
-  CandidaturaAmbiziosaRoute: typeof CandidaturaAmbiziosaRoute
+  CandidatiAmbiziosaRoute: typeof CandidatiAmbiziosaRoute
   CheckoutRoute: typeof CheckoutRoute
   CheckoutVipRoute: typeof CheckoutVipRoute
   RegistrazioniRoute: typeof RegistrazioniRoute
@@ -222,11 +222,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/candidatura-ambiziosa': {
-      id: '/candidatura-ambiziosa'
-      path: '/candidatura-ambiziosa'
-      fullPath: '/candidatura-ambiziosa'
-      preLoaderRoute: typeof CandidaturaAmbiziosaRouteImport
+    '/candidati-ambiziosa': {
+      id: '/candidati-ambiziosa'
+      path: '/candidati-ambiziosa'
+      fullPath: '/candidati-ambiziosa'
+      preLoaderRoute: typeof CandidatiAmbiziosaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout': {
@@ -299,7 +299,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccediRegistrazioniRoute: AccediRegistrazioniRoute,
   BRoute: BRoute,
-  CandidaturaAmbiziosaRoute: CandidaturaAmbiziosaRoute,
+  CandidatiAmbiziosaRoute: CandidatiAmbiziosaRoute,
   CheckoutRoute: CheckoutRoute,
   CheckoutVipRoute: CheckoutVipRoute,
   RegistrazioniRoute: RegistrazioniRoute,
