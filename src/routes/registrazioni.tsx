@@ -10,8 +10,7 @@ import togliIlCostumeImg from "@/assets/togli-il-costume.jpg";
 import licenziaLeRegoleImg from "@/assets/licenzia-le-regole.jpg";
 import costruisciSistemaImg from "@/assets/costruisci-un-sistema-che-non-ti-comandi.jpg";
 
-// TODO: sostituire con il link reale alla pagina di candidatura di Ambiziosa Mentorship.
-const AMBIZIOSA_HREF = "#ambiziosa-todo";
+const AMBIZIOSA_HREF = "/candidatura-ambiziosa";
 
 const recordings = [
   {
@@ -90,6 +89,35 @@ function Registrazioni() {
 
   return (
     <div className="bg-background">
+      {/* Banner in alto: registrazioni disponibili + candidature Ambiziosa aperte */}
+      <div
+        className="border-b border-border/60"
+        style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
+      >
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-8">
+          <p className="min-w-0 text-xs leading-tight sm:text-sm">
+            <span
+              className="mr-1.5 inline-block size-1.5 rounded-full align-middle"
+              style={{ backgroundColor: "var(--primary)" }}
+              aria-hidden
+            />
+            Le registrazioni sono disponibili fino a{" "}
+            <strong className="font-semibold">venerdì 16 ottobre</strong>
+            <span className="opacity-70"> · Sono aperte anche le candidature ad Ambiziosa</span>
+          </p>
+          <a
+            href={AMBIZIOSA_HREF}
+            className="shrink-0 rounded-md px-3 py-2 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:text-xs sm:tracking-[0.12em]"
+            style={{
+              backgroundImage: "var(--gradient-gold)",
+              color: "var(--primary-foreground)",
+            }}
+          >
+            Candidati ora
+          </a>
+        </div>
+      </div>
+
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto max-w-5xl">
           <Reveal>
@@ -133,18 +161,18 @@ function Registrazioni() {
               Il prossimo passo
             </p>
             <h2 className="mt-3 text-3xl sm:text-4xl">
-              Pronta a portare tutto questo al <Highlight dark>livello successivo</Highlight>?
+              Sei <Highlight dark>Ambiziosa</Highlight> ma non vedi la luce su Instagram?
             </h2>
-            {/* TODO: testo placeholder — sostituire con la descrizione definitiva di Ambiziosa Mentorship */}
             <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg">
-              Ambiziosa Mentorship è il percorso pensato per chi non vuole fermarsi a un metodo, ma
-              trasformarlo in un business riconoscibile: un accompagnamento su misura per portare la
-              tua identità comunicativa dritta al risultato.
+              Ho aperto le candidature al mio percorso esclusivo Ambiziosa, un percorso di 4 mesi in
+              cui andiamo a lavorare sulla tua identità, i tuoi contenuti, le tue offerte e sulla
+              vendita. Più di 100 professioniste sono entrate all'interno del percorso e hanno avuto
+              risultati incredibili.
             </p>
             <div className="mt-8 flex justify-center">
               <CtaButton
-                label="Clicca qua per candidarti"
-                sub="Candidatura gratuita, posti limitati"
+                label="Candidati ora"
+                sub="Le porte ad Ambiziosa chiudono venerdì 16 ottobre"
                 href={AMBIZIOSA_HREF}
               />
             </div>
