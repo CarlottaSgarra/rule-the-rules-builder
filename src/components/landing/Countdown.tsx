@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 // PLACEHOLDER: conferma la data/ora esatta di chiusura iscrizioni (l'evento è il 5-6-7 ottobre 2026).
-const TARGET = new Date("2026-10-04T23:59:59+02:00").getTime();
+const DEFAULT_TARGET = new Date("2026-10-04T23:59:59+02:00").getTime();
 
 function pad(n: number) {
   return String(Math.max(0, n)).padStart(2, "0");
@@ -9,17 +9,18 @@ function pad(n: number) {
 
 type Props = {
   compact?: boolean;
+  target?: number;
 };
 
-export function Countdown({ compact = false }: Props) {
+export function Countdown({ compact = false, target = DEFAULT_TARGET }: Props) {
   const [left, setLeft] = useState<number | null>(null);
 
   useEffect(() => {
-    const tick = () => setLeft(TARGET - Date.now());
+    const tick = () => setLeft(target - Date.now());
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, []);
+  }, [target]);
 
   const ms = Math.max(0, left ?? 0);
   const days = Math.floor(ms / 86400000);

@@ -4,6 +4,7 @@ import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 import { CtaButton } from "@/components/landing/CtaButton";
+import { Countdown } from "@/components/landing/Countdown";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { checkRegistrazioniToken, REGISTRAZIONI_TOKEN_KEY } from "@/lib/registrazioni-auth";
 import togliIlCostumeImg from "@/assets/togli-il-costume.jpg";
@@ -11,6 +12,7 @@ import licenziaLeRegoleImg from "@/assets/licenzia-le-regole.jpg";
 import costruisciSistemaImg from "@/assets/costruisci-un-sistema-che-non-ti-comandi.jpg";
 
 const AMBIZIOSA_HREF = "/candidatura-ambiziosa";
+const REGISTRAZIONI_DEADLINE = new Date("2026-10-16T23:59:59+02:00").getTime();
 
 const recordings = [
   {
@@ -95,26 +97,31 @@ function Registrazioni() {
         style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
       >
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-8">
-          <p className="min-w-0 text-xs leading-tight sm:text-sm">
-            <span
-              className="mr-1.5 inline-block size-1.5 rounded-full align-middle"
-              style={{ backgroundColor: "var(--primary)" }}
-              aria-hidden
-            />
-            Le registrazioni sono disponibili fino a{" "}
-            <strong className="font-semibold">venerdì 16 ottobre</strong>
-            <span className="opacity-70"> · Sono aperte anche le candidature ad Ambiziosa</span>
-          </p>
-          <a
-            href={AMBIZIOSA_HREF}
-            className="shrink-0 rounded-md px-3 py-2 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:text-xs sm:tracking-[0.12em]"
+          <div className="flex min-w-0 flex-wrap items-center gap-2 text-xs sm:text-sm">
+            <span className="whitespace-nowrap">Registrazioni disponibili ancora per</span>
+            <Countdown compact target={REGISTRAZIONI_DEADLINE} />
+          </div>
+          <div
+            className="flex w-full flex-wrap items-center justify-center gap-3 rounded-lg px-3 py-1.5 sm:w-auto sm:justify-start"
             style={{
-              backgroundImage: "var(--gradient-gold)",
-              color: "var(--primary-foreground)",
+              backgroundColor: "color-mix(in oklab, var(--primary) 18%, transparent)",
+              border: "1px solid color-mix(in oklab, var(--primary) 45%, transparent)",
             }}
           >
-            Candidati ora
-          </a>
+            <span className="whitespace-nowrap text-xs font-medium sm:text-sm">
+              Sono aperte le candidature ad Ambiziosa
+            </span>
+            <a
+              href={AMBIZIOSA_HREF}
+              className="shrink-0 rounded-md px-3 py-1.5 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:text-xs sm:tracking-[0.12em]"
+              style={{
+                backgroundImage: "var(--gradient-gold)",
+                color: "var(--primary-foreground)",
+              }}
+            >
+              Candidati ora
+            </a>
+          </div>
         </div>
       </div>
 
