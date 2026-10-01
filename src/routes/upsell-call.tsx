@@ -15,7 +15,7 @@ export const Route = createFileRoute("/upsell-call")({
       {
         name: "description",
         content:
-          "Implementa con Carlotta e Sharon, in una call 1:1, tutto quello che impari durante Rule The Rules 2026. Solo 12 posti disponibili.",
+          "Implementa con Carlotta e Sharon, in una call 1:1, tutto quello che impari durante Rule The Rules 2026. Solo 10 posti disponibili.",
       },
       { name: "robots", content: "noindex" },
     ],
@@ -49,7 +49,7 @@ function CallChoice() {
         href={CHECKOUT_HREF}
         target="_top"
         label={`Sì, voglio la call di implementazione a ${CALL_PRICE}€`}
-        sub="Solo 12 posti disponibili, adesso"
+        sub="Solo 10 posti disponibili, adesso"
       />
       <a
         href={DECLINE_HREF}
@@ -95,10 +95,10 @@ function UpsellCall() {
               style={{ backgroundColor: "var(--secondary)", border: "2px solid var(--primary)" }}
             >
               <p className="font-condensed text-lg font-bold uppercase tracking-[0.1em] text-white">
-                Solo 12 posti disponibili
+                Solo 10 posti disponibili
               </p>
               <div className="mt-4 flex flex-wrap justify-center gap-2">
-                {Array.from({ length: 12 }).map((_, i) => (
+                {Array.from({ length: 10 }).map((_, i) => (
                   <span
                     key={i}
                     className="size-3 rounded-full"
