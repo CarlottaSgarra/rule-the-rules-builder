@@ -56,29 +56,28 @@ const steps = [
     n: "01",
     title: "Radica chi sei",
     subtitle: "Costruzione Identità e Offerta",
-    lorem:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, le basi di un business identitario e fruttuoso costruite passo dopo passo insieme. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.",
+    description:
+      "Costruiamo insieme la tua Identità e la tua Offerta: le basi di un business identitario e fruttuoso.",
   },
   {
     n: "02",
     title: "Progetta i contenuti",
-    subtitle: "Strategia Contenuti Identitaria e Piano Editoriale ad hoc",
-    lorem:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum, cucito sulla tua identità e non su un format generico.",
+    subtitle: "Costruzione Strategia Contenuti Identitaria e Piano Editoriale ad hoc",
+    description:
+      "Costruiamo la tua Strategia Contenuti Identitaria e il tuo Piano Editoriale ad hoc.",
   },
   {
     n: "03",
     title: "Attiva i contenuti",
     subtitle: "Pubblicazione con editing identitario e strategie per vendere",
-    lorem:
-      "Curabitur pretium tincidunt lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per iniziare a vendere senza più seguire copioni che non ti appartengono.",
+    description:
+      "Pubblichiamo i contenuti con editing identitario e strategie pensate per vendere.",
   },
   {
     n: "04",
     title: "Chiudi e scala",
     subtitle: "Dal follower al cliente, tra DM e call conoscitiva",
-    lorem:
-      "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper, fino a trasformare le conversazioni in clienti pagati.",
+    description: "Trasformiamo il follower in cliente, tra DM e call conoscitiva.",
   },
 ];
 
@@ -485,12 +484,9 @@ function CandidaturaAmbiziosa() {
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <Reveal>
             <p className="eyebrow">Il passo dopo Rule the Rules</p>
-            {/* LOREM - sezione 2, headline, sostituire con copy reale */}
             <h1 className="mt-4 text-3xl leading-tight sm:text-4xl lg:text-5xl">
-              Lorem ipsum dolor sit amet consectetur{" "}
-              <Highlight dark>adipiscing elit sed do eiusmod</Highlight> tempor incididunt.
+              Trasformiamo la tua Ambizione in <Highlight dark>Carriera</Highlight>.
             </h1>
-            {/* LOREM - sezione 2, sottotitolo, sostituire con copy reale */}
             <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg">
               Da{" "}
               <strong className="font-semibold text-ink">le basi costruite nelle 3 serate</strong>{" "}
@@ -498,8 +494,8 @@ function CandidaturaAmbiziosa() {
               <strong className="font-semibold text-ink">
                 un sistema di comunicazione e acquisizione clienti operativo
               </strong>
-              : lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore.
+              : 4 mesi di percorso, con audio e video formativi, esercizi pratici, le tue call
+              dedicate e il supporto diretto di Carlotta e Sharon.
             </p>
 
             <div className="mt-8">
@@ -721,9 +717,8 @@ function CandidaturaAmbiziosa() {
                     <p className="mt-1 text-sm font-semibold uppercase tracking-[0.04em] text-secondary">
                       {s.subtitle}
                     </p>
-                    {/* LOREM - sezione 8, step {s.n}, sostituire con copy reale */}
                     <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                      {s.lorem}
+                      {s.description}
                     </p>
                   </div>
                   <div>{stepMockups[i]}</div>
