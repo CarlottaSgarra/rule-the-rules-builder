@@ -22,6 +22,8 @@ import {
   Video,
   ShieldCheck,
   Gift,
+  Star,
+  ArrowUpLeft,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -232,10 +234,10 @@ const notForYouPoints = [
 ];
 
 const painPoints = [
-  "Lorem ipsum dolor sit amet, nessun progresso concreto nelle ultime settimane.",
-  "Consectetur adipiscing elit, la sensazione di essere ferma nello stesso punto.",
-  "Sed do eiusmod tempor incididunt, clienti che arrivano in modo incostante.",
-  "Ut labore et dolore magna aliqua, decisioni importanti prese sempre in solitudine.",
+  "Pubblichi ogni giorno su Instagram, eppure i contenuti sembrano uguali a quelli di chiunque altro.",
+  "Segui alla lettera le regole dei guru del momento, ma la tua voce non si sente.",
+  "Sei arrivata al burnout, e i clienti continuano a non arrivare.",
+  "Non sai più cosa ti distingue davvero dalle altre professioniste del tuo settore.",
 ];
 
 const scenarios = [
@@ -424,6 +426,59 @@ function CtaBox({ context }: { context: string }) {
         </div>
       </Reveal>
     </section>
+  );
+}
+
+// Stelline sparse, tutte identiche e fluttuanti: la tua voce persa nel marasma
+// delle professioniste che comunicano tutte allo stesso modo. Una, al centro,
+// è "indicata" ma resta comunque indistinguibile dalle altre — quella sei tu.
+const SCATTERED_STARS = [
+  { top: "10%", left: "15%", delay: "0s", duration: "6s" },
+  { top: "18%", left: "72%", delay: "1.2s", duration: "7s" },
+  { top: "52%", left: "12%", delay: "0.6s", duration: "5.5s" },
+  { top: "72%", left: "78%", delay: "2s", duration: "6.5s" },
+  { top: "14%", left: "42%", delay: "0.3s", duration: "7.5s" },
+  { top: "82%", left: "32%", delay: "1.6s", duration: "6s" },
+  { top: "38%", left: "86%", delay: "0.9s", duration: "5s" },
+  { top: "64%", left: "60%", delay: "2.3s", duration: "7s" },
+  { top: "28%", left: "24%", delay: "1.1s", duration: "6.2s" },
+  { top: "86%", left: "58%", delay: "0.4s", duration: "6.8s" },
+];
+
+function FloatingStarsMockup() {
+  return (
+    <div
+      className="surface-card relative mx-auto aspect-square w-full max-w-sm overflow-hidden"
+      style={{ borderRadius: "1.25rem" }}
+    >
+      {SCATTERED_STARS.map((s, i) => (
+        <Star
+          key={i}
+          aria-hidden
+          className="animate-float absolute size-5 fill-primary text-primary"
+          style={{
+            top: s.top,
+            left: s.left,
+            animationDelay: s.delay,
+            animationDuration: s.duration,
+          }}
+        />
+      ))}
+      <Star
+        aria-hidden
+        className="animate-float absolute left-1/2 top-1/2 size-5 -translate-x-1/2 -translate-y-1/2 fill-primary text-primary"
+        style={{ animationDelay: "0.8s", animationDuration: "6s" }}
+      />
+      <div
+        className="absolute flex items-center gap-1 text-secondary"
+        style={{ top: "40%", left: "56%", transform: "rotate(-4deg)" }}
+      >
+        <ArrowUpLeft className="size-4 shrink-0" />
+        <span className="whitespace-nowrap font-condensed text-[11px] font-bold uppercase tracking-[0.06em]">
+          Tu sei questa
+        </span>
+      </div>
+    </div>
   );
 }
 
@@ -617,12 +672,10 @@ function CandidaturaAmbiziosa() {
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
         <div className="mx-auto grid max-w-5xl gap-10 sm:grid-cols-[1.1fr_0.9fr] sm:items-center">
           <Reveal>
-            {/* LOREM - sezione 6, blocco di validazione, sostituire con copy reale */}
             <p className="text-base leading-relaxed text-foreground/85 sm:text-lg">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hai già investito tempo ed
-              energie nel costruire la tua identità, le tue anti-regole, il tuo piano editoriale.
-              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua: eppure, senza un
-              sistema, quel lavoro rischia di restare teoria.
+              Pubblichi ogni giorno su Instagram. Segui alla lettera tutte le regole che ti hanno
+              insegnato i guru del momento. Eppure sei arrivata al burnout, e i clienti continuano a
+              non arrivare.
             </p>
             <ul className="mt-6 space-y-3 text-sm leading-relaxed text-foreground/75 sm:text-base">
               {painPoints.map((p) => (
@@ -636,34 +689,34 @@ function CandidaturaAmbiziosa() {
               className="mt-8 border-l-2 pl-5 text-xl font-semibold leading-snug text-foreground sm:text-2xl"
               style={{ borderColor: "var(--gold-deep)" }}
             >
-              Non è mancanza di impegno o competenza:{" "}
-              <Highlight>è mancanza di un sistema strutturato</Highlight> che trasformi le
-              fondamenta in azione quotidiana.
+              Il problema non è la costanza, né la disciplina: è che non hai mai fatto un vero
+              lavoro su di te, sulla tua identità, sul tuo posizionamento. La tua voce{" "}
+              <Highlight>si è persa</Highlight> nel marasma delle professioniste che comunicano
+              tutte allo stesso modo.
             </p>
           </Reveal>
           <Reveal delay={100}>
-            <div
-              className="surface-card mx-auto w-full max-w-xs p-5"
-              style={{ borderRadius: "1.25rem" }}
-            >
-              <p className="font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground">
-                Il tuo piano, oggi
-              </p>
-              <div className="mt-4 space-y-3">
-                {painPoints.slice(0, 3).map((p) => (
-                  <div key={p} className="flex items-start gap-2 text-xs text-foreground/50">
-                    <span className="mt-0.5 size-3.5 shrink-0 rounded-sm border border-foreground/30" />
-                    <span className="leading-snug line-through decoration-foreground/30">{p}</span>
-                  </div>
-                ))}
-              </div>
-              <span
-                className="mt-4 inline-block rounded-full border-2 px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.1em] text-destructive"
-                style={{ borderColor: "var(--destructive)", transform: "rotate(-3deg)" }}
-              >
-                Ancora in stallo
-              </span>
+            <FloatingStarsMockup />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 6b. Escalation del dolore: mille corsi, mille contenuti, mille strategie */}
+      <section
+        className="px-4 py-14 text-center sm:px-8 sm:py-20"
+        style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
+      >
+        <div className="mx-auto max-w-2xl">
+          <Reveal>
+            <p className="eyebrow">Ti riconosci?</p>
+            <div className="mt-6 space-y-2 text-xl text-ink-muted opacity-70 sm:text-2xl">
+              <p className="line-through decoration-2">Hai seguito mille corsi.</p>
+              <p className="line-through decoration-2">Hai scritto mille contenuti.</p>
+              <p className="line-through decoration-2">Hai applicato mille strategie diverse.</p>
             </div>
+            <p className="mt-8 text-3xl sm:text-4xl">
+              Eppure, <Highlight dark>niente funziona</Highlight>.
+            </p>
           </Reveal>
         </div>
       </section>
