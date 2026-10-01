@@ -98,11 +98,11 @@ function UpsellCall() {
                 Solo 10 posti disponibili
               </p>
               <div className="mt-4 flex flex-wrap justify-center gap-2">
-                {Array.from({ length: 10 }).map((_, i) => (
+                {Array.from({ length: 12 }).map((_, i) => (
                   <span
                     key={i}
                     className="size-3 rounded-full"
-                    style={{ backgroundImage: "var(--gradient-gold)" }}
+                    style={{ backgroundColor: i < 2 ? "var(--destructive)" : "#22c55e" }}
                   />
                 ))}
               </div>
