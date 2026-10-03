@@ -23,6 +23,7 @@ import {
   Video,
   ShieldCheck,
   Gift,
+  Star,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -41,6 +42,11 @@ import mariangelaSimioliImg from "@/assets/mariangela-simioli.jpg";
 import giuliaSantelliImg from "@/assets/giulia-santelli.jpg";
 import ilariaMatteiImg from "@/assets/ilaria-mattei.jpg";
 import giuliaAriganelloImg from "@/assets/giulia-ariganello.jpg";
+import client1Img from "@/assets/client-1.jpg";
+import client2Img from "@/assets/client-2.png";
+import client3Img from "@/assets/client-3.png";
+import client4Img from "@/assets/client-4.jpg";
+import client5Img from "@/assets/client-5.png";
 
 // ---------------------------------------------------------------------------
 // Microcopy condiviso — l'hero (sezione 2) e ogni box CTA ricorrente
@@ -64,6 +70,9 @@ const SECTORS = [
   "Wedding planner",
   "Brand strategist",
 ];
+
+// Stesso bannerino "avatar + stelle" già usato in Rule the Rules (src/routes/index.tsx).
+const HERO_SOCIAL_AVATARS = [client1Img, client2Img, client3Img, client4Img, client5Img];
 
 // Testi accorciati rispetto all'originale per stare nei riquadri a destra
 // della sezione hero (su richiesta esplicita, non sono più il copy esatto).
@@ -486,6 +495,43 @@ function CandidaturaAmbiziosa() {
 
           <div className="mt-8">
             <AmbiziosaCtaButton variant="hero" />
+          </div>
+
+          <div className="mt-4 flex justify-center">
+            <div
+              className="inline-flex flex-col items-center gap-1.5 rounded-xl px-4 py-2.5 sm:flex-row sm:items-center sm:gap-3"
+              style={{
+                backgroundColor: "var(--secondary)",
+                border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
+              }}
+            >
+              <div className="flex -space-x-3">
+                {HERO_SOCIAL_AVATARS.map((src, i) => (
+                  <img
+                    key={i}
+                    src={src}
+                    alt=""
+                    aria-hidden
+                    loading="lazy"
+                    className="size-9 shrink-0 rounded-full border-2 object-cover"
+                    style={{ borderColor: "var(--secondary-foreground)" }}
+                  />
+                ))}
+              </div>
+              <div className="text-center sm:text-left">
+                <div className="flex justify-center gap-0.5 text-primary sm:justify-start">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="size-3.5 fill-current" />
+                  ))}
+                </div>
+                <p
+                  className="mt-0.5 whitespace-nowrap text-[10px] sm:text-sm"
+                  style={{ color: "var(--secondary-foreground)" }}
+                >
+                  Centinaia di professioniste hanno già usato il mio metodo.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="mt-8 w-full">
