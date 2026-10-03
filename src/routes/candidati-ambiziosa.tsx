@@ -13,6 +13,7 @@ import {
   MessageCircle,
   PhoneCall,
   CheckCircle2,
+  Check,
   XCircle,
   Sparkles,
   ArrowRight,
@@ -29,8 +30,9 @@ import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { AmbiziosaTopbar } from "@/components/landing/AmbiziosaTopbar";
+import { AmbiziosaCtaButton } from "@/components/landing/AmbiziosaCtaButton";
+import { AmbiziosaHeroVideo } from "@/components/landing/AmbiziosaHeroVideo";
 import { submitAmbiziosaApplication } from "@/lib/ambiziosa-application";
-import heroCarlottaImg from "@/assets/hero-carlotta.jpg";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import sharonSpeakingImg from "@/assets/sharon-speaking.jpg";
 import carlottaHugImg from "@/assets/carlotta-hug.jpg";
@@ -470,6 +472,20 @@ function ReframeStarsBackground() {
   );
 }
 
+// Segno di spunta bordeaux su cerchio verde acido, per la lista di 4 punti
+// della hero.
+function HeroCheck() {
+  return (
+    <span
+      className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full"
+      style={{ backgroundColor: "var(--primary)" }}
+      aria-hidden
+    >
+      <Check className="size-3" style={{ color: "var(--secondary)" }} strokeWidth={3} />
+    </span>
+  );
+}
+
 function CandidaturaAmbiziosa() {
   return (
     <div className="bg-background">
@@ -477,71 +493,76 @@ function CandidaturaAmbiziosa() {
       <AmbiziosaTopbar />
 
       {/* 2. Hero */}
-      <header
-        className="relative"
-        style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
-      >
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-          <Reveal>
-            <p className="eyebrow">Il passo dopo Rule the Rules</p>
-            <h1 className="mt-4 text-3xl leading-tight sm:text-4xl lg:text-5xl">
-              Trasformiamo la tua Ambizione in <Highlight dark>Carriera</Highlight>.
-            </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-muted sm:text-lg">
-              Da{" "}
-              <strong className="font-semibold text-ink">le basi costruite nelle 3 serate</strong>{" "}
-              di Rule the Rules a{" "}
-              <strong className="font-semibold text-ink">
-                un sistema di comunicazione e acquisizione clienti operativo
-              </strong>
-              : 4 mesi di percorso, con audio e video formativi, esercizi pratici, le tue call
-              dedicate e il supporto diretto di Carlotta e Sharon.
-            </p>
+      <section className="bg-background px-4 py-10 sm:px-8 sm:py-[72px]">
+        <div className="mx-auto flex max-w-[900px] flex-col items-center text-center">
+          <h1
+            className="text-foreground"
+            style={{ fontSize: "clamp(2rem, 1.3rem + 3vw, 3.5rem)", lineHeight: 1.15 }}
+          >
+            <strong className="font-bold">Ambiziosa:</strong> il mio programma per professioniste e
+            imprenditrici che vogliono farsi riconoscere e trasformare l'ambizione in carriera
+          </h1>
 
-            <div className="mt-8">
-              <a
-                href={ANCHOR}
-                className="inline-flex w-full max-w-sm flex-col items-center rounded-xl px-6 py-4 text-center transition-transform duration-200 hover:-translate-y-0.5"
-                style={{
-                  backgroundImage: "var(--gradient-gold)",
-                  color: "var(--primary-foreground)",
-                  boxShadow: "var(--shadow-gold)",
-                }}
-              >
-                <span className="font-condensed text-sm font-bold uppercase tracking-[0.06em] sm:text-base">
-                  {CTA_LABEL}
-                </span>
-              </a>
-              <p className="mt-3 text-xs text-ink-muted">{REASSURANCE}</p>
-            </div>
+          <p
+            className="mt-6 max-w-[760px] text-foreground"
+            style={{ fontSize: "clamp(1.25rem, 1.05rem + 0.6vw, 1.5rem)" }}
+          >
+            In questo momento ti senti una fotocopia di tante altre professioniste. Ma tu sai che il
+            tuo business è unico e sei ambiziosa. Il punto è che ti manca solo un sistema che ti
+            faccia veramente riconoscere da tutti e tiri fuori la tua identità.
+          </p>
 
-            <ul className="mt-8 space-y-2 text-sm text-ink-muted sm:text-base">
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
-                Percorso di mentoring della durata di 4 mesi
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
-                Accompagnamento tra call dedicate e materiali pratici
-              </li>
-              <li className="flex gap-2">
-                <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
-                Nessun prerequisito tecnico: si parte da dove sei ora
-              </li>
-            </ul>
-          </Reveal>
+          <div className="mt-8 w-full max-w-[880px]">
+            <AmbiziosaHeroVideo />
+          </div>
 
-          <Reveal delay={100}>
-            <img
-              src={heroCarlottaImg}
-              alt="Carlotta Sgarra"
-              loading="eager"
-              className="mx-auto aspect-[4/5] w-full max-w-sm rounded-2xl object-cover"
-              style={{ boxShadow: "var(--shadow-deep)" }}
-            />
-          </Reveal>
+          <p
+            className="mt-8 max-w-[720px] text-left text-foreground"
+            style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}
+          >
+            Ambiziosa è il percorso di 4 mesi in cui lavoriamo insieme sulla tua identità per
+            trasformarla in una comunicazione che ti fa riconoscere. Inizi a pubblicare mentre studi
+            il metodo, senza aspettare di aver finito la formazione: hai già tra le mani una
+            strategia costruita sul tuo progetto. Alla fine arrivi con una strategia completa che
+            hai già messo in pratica e sai come farla evolvere anche da sola.
+          </p>
+
+          <div className="mt-8">
+            <AmbiziosaCtaButton variant="hero" />
+          </div>
+
+          <ul className="mt-10 grid max-w-[880px] grid-cols-1 gap-x-8 gap-y-4 text-left sm:grid-cols-2">
+            <li className="flex gap-3">
+              <HeroCheck />
+              <span className="text-foreground">
+                4 mesi di percorso, seguita da me con call dedicate
+              </span>
+            </li>
+            <li className="flex gap-3">
+              <HeroCheck />
+              <span className="text-foreground">
+                Una strategia completa sulla tua identità e sulla tua unicità: macro topic, banca
+                idee personalizzata, struttura dei contenuti e direzione comunicativa, costruiti sul
+                tuo progetto
+              </span>
+            </li>
+            <li className="flex gap-3">
+              <HeroCheck />
+              <span className="text-foreground">
+                Contenuti che finalmente ti rispecchiano al 100%: sai sempre cosa pubblicare e non
+                ti senti più in gabbia
+              </span>
+            </li>
+            <li className="flex gap-3">
+              <HeroCheck />
+              <span className="text-foreground">
+                Un metodo già provato da centinaia di professioniste, in settori molto diversi:
+                tatuatrici, nutrizioniste, wedding planner, copywriter
+              </span>
+            </li>
+          </ul>
         </div>
-      </header>
+      </section>
 
       {/* 6. Reframe del problema — subito dopo l'hero, stelline violacee e
           trasparenti sullo sfondo, titolo e testo centrali e corti */}
