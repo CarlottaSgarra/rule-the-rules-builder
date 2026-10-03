@@ -131,6 +131,17 @@
   --font-display: "Fraunces", Georgia, serif;
   --font-condensed: "Oswald", system-ui, sans-serif;
   --font-body: "Poppins", system-ui, sans-serif;
+
+  /* Altezza di AmbiziosaTopbar: due righe sotto i 1024px, una riga da 1024px
+     in su. Usata per lo scroll-margin-top delle ancore della pagina, così i
+     titoli non restano coperti dalla barra sticky. */
+  --header-h: 88px;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 64px;
+  }
 }
 
 .dark {
@@ -154,11 +165,18 @@
 
   html {
     font-size: 18px;
+    scroll-behavior: smooth;
   }
 
   @media (max-width: 639px) {
     html {
       font-size: 16px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
     }
   }
 
