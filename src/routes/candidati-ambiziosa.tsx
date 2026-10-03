@@ -84,14 +84,17 @@ const CTA_LABEL = "Voglio candidarmi ad Ambiziosa";
 const REASSURANCE = "Ti rispondo entro 48 ore.";
 
 // Testo del box CTA ricorrente (CtaBox): stesso identico testo in ogni
-// sezione che lo richiama, come da indicazione esplicita.
-const CTA_BOX_CONTEXT = (
-  <>
-    4 mesi con me e il mio team:{" "}
-    <Highlight dark>una strategia di comunicazione completa che parte da te</Highlight>, messa in
-    pratica fin dalle prime call.
-  </>
-);
+// sezione che lo richiama, come da indicazione esplicita. `dark` sceglie la
+// tinta di Highlight in base allo sfondo, come in Rule The Rules.
+function CtaBoxContext({ dark = false }: { dark?: boolean }) {
+  return (
+    <>
+      4 mesi con me e il mio team:{" "}
+      <Highlight dark={dark}>una strategia di comunicazione completa che parte da te</Highlight>,
+      messa in pratica fin dalle prime call.
+    </>
+  );
+}
 
 // ---------------------------------------------------------------------------
 // Dati reali (struttura e contenuti confermati)
@@ -1056,17 +1059,16 @@ export const Route = createFileRoute("/candidati-ambiziosa")({
   component: CandidaturaAmbiziosa,
 });
 
-function CtaBox({ context }: { context: React.ReactNode }) {
+// Segue sempre una sezione chiara: -mt-6 lo accosta al testo che lo precede,
+// alla stessa distanza delle CTA interne alle sezioni di Rule The Rules.
+function CtaBox() {
   return (
     <section className="bg-background">
-      <div className="mx-auto max-w-4xl px-5 py-20">
+      <div className="mx-auto -mt-6 max-w-4xl px-5 pb-20">
         <Reveal>
-          <div
-            className="surface-cream flex flex-col items-center px-6 py-12 text-center sm:px-12 sm:py-16"
-            style={{ borderRadius: "1.75rem" }}
-          >
-            <p className="max-w-2xl text-lg font-semibold leading-snug text-ink sm:text-2xl">
-              {context}
+          <div className="flex flex-col items-center text-center">
+            <p className="max-w-2xl text-lg font-semibold leading-snug text-foreground sm:text-2xl">
+              <CtaBoxContext />
             </p>
             <div className="mt-8 flex w-full justify-center">
               <AmbiziosaCtaButton variant="hero" label={CTA_LABEL} />
@@ -1619,7 +1621,7 @@ function CandidaturaAmbiziosa() {
             <Reveal>
               <div className="mt-14 flex flex-col items-center text-center">
                 <p className="max-w-2xl text-lg font-semibold leading-snug text-ink sm:text-xl">
-                  {CTA_BOX_CONTEXT}
+                  <CtaBoxContext dark />
                 </p>
                 <div className="mt-8 flex w-full justify-center">
                   <AmbiziosaCtaButton variant="hero" />
@@ -1721,7 +1723,7 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 5. Box CTA isolato ricorrente #1 */}
-      <CtaBox context={CTA_BOX_CONTEXT} />
+      <CtaBox />
 
       {/* 7. I punti su cui lavoriamo nei 4 mesi */}
       <section
@@ -2059,7 +2061,7 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 6. → CtaBox #2, dopo il reframe (sezione 6) */}
-      <CtaBox context={CTA_BOX_CONTEXT} />
+      <CtaBox />
 
       {/* 13. Anteprima della piattaforma/area riservata */}
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
@@ -2277,7 +2279,7 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* → CtaBox #3, dopo storytelling/autorità (sezione 17) */}
-      <CtaBox context={CTA_BOX_CONTEXT} />
+      <CtaBox />
 
       {/* 17b. Rassicurazione sulla candidatura, sezione dedicata */}
       <section
@@ -2323,7 +2325,7 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* → CtaBox #4, prima del form finale */}
-      <CtaBox context={CTA_BOX_CONTEXT} />
+      <CtaBox />
 
       {/* 19. Form di candidatura + chiusura finale */}
       <section id="candidatura" className="bg-background px-4 py-16 sm:px-8 sm:py-24">
