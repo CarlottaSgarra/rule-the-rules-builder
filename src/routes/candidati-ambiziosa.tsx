@@ -37,6 +37,7 @@ import sharonSpeakingImg from "@/assets/sharon-speaking.jpg";
 import carlottaHugImg from "@/assets/carlotta-hug.jpg";
 import carlottaLookingImg from "@/assets/carlotta-looking-2.jpg";
 import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
+import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
 import elenaRosaImg from "@/assets/elena-rosa.jpg";
 import silviaBedinImg from "@/assets/silvia-bedin.jpg";
 import mariangelaSimioliImg from "@/assets/mariangela-simioli.jpg";
@@ -135,11 +136,18 @@ const HERO_SOCIAL_AVATARS = [client1Img, client2Img, client3Img, client4Img, cli
 
 // Testi accorciati rispetto all'originale per stare nei riquadri a destra
 // della sezione hero (su richiesta esplicita, non sono più il copy esatto).
+// "bold" è la parte in grassetto, "rest" il resto della frase.
 const HERO_CHECKLIST = [
-  "4 mesi di percorso, seguita da me con call dedicate",
-  "Una strategia completa sulla tua identità e sulla tua unicità, costruita sul tuo progetto",
-  "Contenuti che ti rispecchiano al 100%: sai sempre cosa pubblicare",
-  "Un metodo già provato da centinaia di professioniste, in settori molto diversi",
+  { bold: "4 mesi di percorso", rest: ", seguita da me con call dedicate" },
+  {
+    bold: "Una strategia completa",
+    rest: " sulla tua identità e sulla tua unicità, costruita sul tuo progetto",
+  },
+  { bold: "Contenuti che ti rispecchiano al 100%", rest: ": sai sempre cosa pubblicare" },
+  {
+    bold: "Un metodo già provato",
+    rest: " da centinaia di professioniste, in settori molto diversi",
+  },
 ];
 
 const steps = [
@@ -856,70 +864,88 @@ function CandidaturaAmbiziosa() {
       <AmbiziosaTopbar />
 
       {/* 2. Hero */}
-      <section className="bg-background px-4 pb-8 pt-14 sm:px-8 sm:pb-10 sm:pt-20">
-        <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
-          <h1 className="max-w-[820px] text-3xl font-semibold text-foreground sm:text-4xl">
-            <Highlight dark>
-              <strong className="font-bold">Ambiziosa:</strong>
-            </Highlight>{" "}
-            il mio programma per professioniste e imprenditrici che vogliono{" "}
-            <Highlight dark>farsi riconoscere</Highlight> e trasformare l'ambizione in carriera
-          </h1>
+      <section className="bg-background px-4 pb-8 pt-8 sm:px-8 sm:pb-10 sm:pt-10">
+        <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[1.75rem]">
+          <img
+            src={carlottaHeroBgImg}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            className="absolute inset-0 hidden h-full w-full object-cover sm:block"
+            style={{ objectPosition: "center 20%" }}
+          />
+          <div
+            className="absolute inset-0 hidden sm:block"
+            style={{
+              background:
+                "linear-gradient(to right, var(--background) 0%, var(--background) 50%, color-mix(in oklab, var(--background) 15%, transparent) 78%, transparent 100%)",
+            }}
+          />
 
-          <p className="mt-6 max-w-[680px] text-base text-foreground sm:text-lg">
-            In questo momento ti senti una fotocopia di tante altre professioniste. Ma tu sai che{" "}
-            <strong className="font-semibold">il tuo business è unico e sei ambiziosa</strong>. Il
-            punto è che ti manca solo un sistema che{" "}
-            <strong className="font-semibold">
-              ti faccia veramente riconoscere da tutti e tiri fuori la tua identità
-            </strong>
-            .
-          </p>
+          <div className="relative flex flex-col items-start px-5 py-10 text-left sm:px-10 sm:py-16">
+            <h1 className="text-3xl font-semibold text-foreground sm:max-w-[460px] sm:text-4xl">
+              <Highlight dark>
+                <strong className="font-bold">Ambiziosa:</strong>
+              </Highlight>{" "}
+              il mio programma per professioniste e imprenditrici che vogliono{" "}
+              <Highlight dark>farsi riconoscere</Highlight> e trasformare l'ambizione in carriera
+            </h1>
 
-          <div className="mt-8">
-            <AmbiziosaCtaButton variant="hero" />
-          </div>
+            <p className="mt-6 text-base text-foreground sm:max-w-[420px] sm:text-lg">
+              In questo momento ti senti una fotocopia di tante altre professioniste. Ma tu sai che{" "}
+              <strong className="font-semibold">il tuo business è unico e sei ambiziosa</strong>. Il
+              punto è che ti manca solo un sistema che{" "}
+              <strong className="font-semibold">
+                ti faccia veramente riconoscere da tutti e tiri fuori la tua identità
+              </strong>
+              .
+            </p>
 
-          <div className="mt-4 flex justify-center">
-            <div
-              className="inline-flex max-w-[220px] flex-col items-center gap-1 rounded-xl px-3 py-2 sm:max-w-[300px] sm:flex-row sm:gap-2"
-              style={{
-                backgroundColor: "var(--secondary-foreground)",
-                border: "1px solid color-mix(in oklab, var(--secondary) 15%, transparent)",
-              }}
-            >
-              <div className="flex -space-x-2.5">
-                {HERO_SOCIAL_AVATARS.map((src, i) => (
-                  <img
-                    key={i}
-                    src={src}
-                    alt=""
-                    aria-hidden
-                    loading="lazy"
-                    className="size-7 shrink-0 rounded-full border-2 object-cover"
-                    style={{ borderColor: "var(--secondary-foreground)" }}
-                  />
-                ))}
-              </div>
-              <div className="text-center sm:text-left">
-                <div className="flex justify-center gap-0.5 text-primary sm:justify-start">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="size-3 fill-current" />
+            <div className="mt-8">
+              <AmbiziosaCtaButton variant="hero" />
+            </div>
+
+            <div className="mt-4">
+              <div
+                className="inline-flex max-w-[260px] flex-col items-center gap-1 rounded-xl px-3 py-2 sm:max-w-[340px] sm:flex-row sm:gap-2"
+                style={{
+                  backgroundColor: "transparent",
+                  border: "1px solid var(--secondary)",
+                }}
+              >
+                <div className="flex -space-x-2.5">
+                  {HERO_SOCIAL_AVATARS.map((src, i) => (
+                    <img
+                      key={i}
+                      src={src}
+                      alt=""
+                      aria-hidden
+                      loading="lazy"
+                      className="size-7 shrink-0 rounded-full border-2 object-cover"
+                      style={{ borderColor: "var(--background)" }}
+                    />
                   ))}
                 </div>
-                <p
-                  className="mt-0.5 text-[11px] leading-snug"
-                  style={{ color: "var(--secondary)" }}
-                >
-                  Centinaia di professioniste hanno già usato il mio metodo.
-                </p>
+                <div className="text-center sm:text-left">
+                  <div className="flex justify-center gap-0.5 text-primary sm:justify-start">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star key={i} className="size-3 fill-current" />
+                    ))}
+                  </div>
+                  <p
+                    className="mt-0.5 text-[11px] leading-snug"
+                    style={{ color: "var(--secondary)" }}
+                  >
+                    Centinaia di professioniste hanno già usato il mio metodo.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="mt-8 w-full">
-            <AmbiziosaHeroVideo />
-          </div>
+        <div className="mx-auto mt-8 max-w-5xl">
+          <AmbiziosaHeroVideo />
         </div>
 
         <div className="relative mx-auto mt-16 max-w-6xl overflow-hidden rounded-[1.75rem] sm:mt-20">
@@ -937,6 +963,9 @@ function CandidaturaAmbiziosa() {
 
           <div className="relative grid gap-8 px-5 py-10 sm:grid-cols-[1.1fr_0.9fr] sm:items-start sm:px-10 sm:py-14">
             <div className="space-y-3 text-left" style={{ color: "var(--secondary-foreground)" }}>
+              <h3 className="text-xl font-semibold sm:text-2xl">
+                Prima l'identità, poi i contenuti. Questo è il segreto.
+              </h3>
               <p style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
                 Ambiziosa è il percorso di 4 mesi in cui lavoriamo insieme sulla tua identità per
                 trasformarla in{" "}
@@ -965,7 +994,7 @@ function CandidaturaAmbiziosa() {
             <div className="grid grid-cols-1 gap-3">
               {HERO_CHECKLIST.map((item) => (
                 <div
-                  key={item}
+                  key={item.bold}
                   className="flex items-start gap-3 rounded-xl p-4 backdrop-blur-sm"
                   style={{
                     backgroundColor: "rgba(255, 255, 255, 0.14)",
@@ -974,7 +1003,8 @@ function CandidaturaAmbiziosa() {
                 >
                   <HeroCheck />
                   <span className="text-sm" style={{ color: "var(--secondary-foreground)" }}>
-                    {item}
+                    <strong className="font-semibold">{item.bold}</strong>
+                    {item.rest}
                   </span>
                 </div>
               ))}
