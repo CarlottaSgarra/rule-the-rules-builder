@@ -41,8 +41,6 @@ import { AmbiziosaHeroVideo } from "@/components/landing/AmbiziosaHeroVideo";
 import { ProfileBeforeAfter, ResultsCards } from "@/components/landing/AmbiziosaProofCards";
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
 import { submitAmbiziosaApplication } from "@/lib/ambiziosa-application";
-import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
-import sharonSpeakingImg from "@/assets/sharon-speaking.jpg";
 import carlottaHugImg from "@/assets/carlotta-hug.jpg";
 import carlottaLookingImg from "@/assets/carlotta-looking-2.jpg";
 import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
@@ -978,6 +976,197 @@ const communicationPillars: {
         i momenti di confronto previsti.
       </>,
     ],
+  },
+];
+
+// Le due versioni di Ambiziosa: numeri chiave (badge) e passi numerati.
+type VersionStep = { title: string; text: React.ReactNode };
+
+const programStats = [
+  { n: "4", label: "mesi" },
+  { n: "4", label: "call in totale" },
+  { n: "1", label: "call individuale con me" },
+  { n: "1", label: "call individuale con il mio team" },
+];
+
+const mentorshipStats = [
+  { n: "4", label: "mesi" },
+  { n: "20+", label: "call in totale" },
+  { n: "1", label: "call a settimana con il mio team" },
+  { n: "4", label: "call con me, una al mese" },
+];
+
+const programSteps: VersionStep[] = [
+  {
+    title: "La call iniziale",
+    text: (
+      <>
+        Con me e con il mio team guardiamo la tua situazione attuale, definiamo gli obiettivi e{" "}
+        <strong className="font-semibold text-foreground">costruiamo una prima direzione</strong>{" "}
+        per il lavoro dei 4 mesi.
+      </>
+    ),
+  },
+  {
+    title: "La parte introduttiva",
+    text: (
+      <>
+        Dopo la call accedi alla parte introduttiva: entri nel metodo Ambiziosa e inizi a{" "}
+        <strong className="font-semibold text-foreground">
+          mettere a fuoco gli elementi fondamentali
+        </strong>{" "}
+        del tuo progetto professionale.
+      </>
+    ),
+  },
+  {
+    title: "Lo step sull'identità",
+    text: (
+      <>
+        Il primo grande lavoro è l'identità: chi sei come professionista e cosa vuoi comunicare. A
+        fine step hai una{" "}
+        <strong className="font-semibold text-foreground">call individuale con me</strong> su quello
+        che è emerso.{" "}
+        <strong className="font-semibold text-foreground">
+          Da qui parte tutto il lavoro successivo.
+        </strong>
+      </>
+    ),
+  },
+  {
+    title: "La tua strategia di comunicazione",
+    text: (
+      <>
+        Tu continui con gli step e inizi a studiare la teoria della strategia e della comunicazione.
+        Nel frattempo{" "}
+        <strong className="font-semibold text-foreground">
+          il mio team prende il lavoro fatto e lo trasforma in una strategia concreta
+        </strong>
+        , costruita sul tuo progetto.{" "}
+        <strong className="font-semibold text-foreground">
+          Puoi iniziare a pubblicare senza aspettare di aver finito la formazione.
+        </strong>
+      </>
+    ),
+  },
+  {
+    title: "La strategia in pratica",
+    text: (
+      <>
+        Mentre pubblichi continui a studiare. La strategia ti serve per comunicare subito e per
+        vedere come quello che impari si applica al tuo progetto. Piano piano{" "}
+        <strong className="font-semibold text-foreground">la affiniamo insieme</strong> e la fai
+        evolvere.
+      </>
+    ),
+  },
+  {
+    title: "La call con il mio team sulla strategia",
+    text: (
+      <>
+        Durante il percorso hai una{" "}
+        <strong className="font-semibold text-foreground">call individuale con il mio team</strong>:
+        ti confronti con noi sul lavoro fatto, su come stai applicando la strategia e su come farla
+        evolvere con quello che impari.
+      </>
+    ),
+  },
+  {
+    title: "La call finale",
+    text: (
+      <>
+        I 4 mesi finiscono con una call con me e con il mio team: rileggiamo il percorso, guardiamo
+        cosa è cambiato e{" "}
+        <strong className="font-semibold text-foreground">
+          definiamo la direzione con cui continuare a lavorare in autonomia.
+        </strong>
+      </>
+    ),
+  },
+];
+
+const mentorshipSteps: VersionStep[] = [
+  {
+    title: "La call iniziale",
+    text: (
+      <>
+        Con me e con il mio team guardiamo il tuo punto di partenza, gli obiettivi, le priorità e la
+        direzione dei 4 mesi. In quella call{" "}
+        <strong className="font-semibold text-ink">
+          fissiamo anche il giorno della tua call settimanale con il mio team.
+        </strong>
+      </>
+    ),
+  },
+  {
+    title: "Il lavoro sull'identità",
+    text: (
+      <>
+        Inizi dall'identità, il punto da cui nasce una comunicazione coerente e riconoscibile. In
+        questa fase hai anche il{" "}
+        <strong className="font-semibold text-ink">confronto con me</strong>.
+      </>
+    ),
+  },
+  {
+    title: "La tua strategia di comunicazione",
+    text: (
+      <>
+        Il mio team lavora direttamente sul tuo progetto e costruisce la tua strategia completa di
+        comunicazione: macro topic, banca idee personalizzata, struttura dei contenuti e direzione
+        comunicativa. Intanto tu studi la teoria e puoi creare e pubblicare subito.{" "}
+        <strong className="font-semibold text-ink">
+          Prima imparo e poi applico? Qui le due cose avvengono insieme.
+        </strong>
+      </>
+    ),
+  },
+  {
+    title: "La strategia in pratica",
+    text: (
+      <>
+        Mentre applichi la strategia continui a studiare il metodo. Con il supporto e il confronto
+        costante della Mentorship{" "}
+        <strong className="font-semibold text-ink">la affiniamo insieme</strong> passo dopo passo,
+        così a fine percorso{" "}
+        <strong className="font-semibold text-ink">sai come farla evolvere anche da sola</strong>.
+      </>
+    ),
+  },
+  {
+    title: "Una call al mese con me",
+    text: (
+      <>
+        Per 4 mesi hai <strong className="font-semibold text-ink">una call al mese con me</strong>,
+        4 in tutto: lavoriamo sulla tua evoluzione e sui temi che emergono lungo il percorso.
+      </>
+    ),
+  },
+  {
+    title: "Una call a settimana con il mio team",
+    text: (
+      <>
+        Ogni settimana hai una{" "}
+        <strong className="font-semibold text-ink">
+          call individuale di 30 minuti con il mio team
+        </strong>
+        . Il giorno lo fissiamo nella call iniziale e diventa un appuntamento fisso per tutta la
+        Mentorship. Dubbi, contenuti, scelte comunicative, difficoltà e nuove idee: li porti lì,{" "}
+        <strong className="font-semibold text-ink">senza aspettare la fine di uno step.</strong>
+      </>
+    ),
+  },
+  {
+    title: "La call finale",
+    text: (
+      <>
+        L'ultima call è con me e con il mio team: guardiamo il lavoro dei 4 mesi, quello che è
+        cambiato e soprattutto{" "}
+        <strong className="font-semibold text-ink">
+          quello che ora sai portare avanti da sola.
+        </strong>
+      </>
+    ),
   },
 ];
 
@@ -1982,6 +2171,275 @@ function CandidaturaAmbiziosa() {
         </div>
       </section>
 
+      {/* 7e. Le due versioni: Program e Mentorship */}
+      <section id="versioni" className="bg-background">
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <Reveal>
+            <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+              <img
+                src={carlottaLookingImg}
+                alt="Carlotta Sgarra"
+                loading="lazy"
+                className="size-20 rounded-full border-2 object-cover"
+                style={{ borderColor: "var(--secondary)", objectPosition: "60% 30%" }}
+              />
+              <h2 className="mt-6 text-3xl text-foreground sm:text-4xl">
+                Ambiziosa ha due versioni: <Highlight>Program o Mentorship</Highlight>.
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-foreground/75 sm:text-lg">
+                Puoi scegliere quella che preferisci. La durata resta sempre di 4 mesi e in entrambe
+                hai{" "}
+                <strong className="font-semibold text-foreground">me e il mio team con te.</strong>
+              </p>
+            </div>
+          </Reveal>
+
+          <svg
+            viewBox="0 0 800 90"
+            preserveAspectRatio="none"
+            className="mt-6 hidden h-20 w-full md:block"
+            fill="none"
+            stroke="var(--secondary)"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
+            <path d="M400 4 C400 60 200 26 200 82" vectorEffect="non-scaling-stroke" />
+            <path d="M191 70 L200 84 L209 70" vectorEffect="non-scaling-stroke" />
+            <path d="M400 4 C400 60 600 26 600 82" vectorEffect="non-scaling-stroke" />
+            <path d="M591 70 L600 84 L609 70" vectorEffect="non-scaling-stroke" />
+          </svg>
+
+          <div className="mt-12 grid gap-10 md:mt-4 md:grid-cols-2 md:items-stretch md:gap-6">
+            <Reveal>
+              <div className="flex h-full flex-col rounded-2xl border border-border/70 bg-card/50 p-6 sm:p-8">
+                <p className="font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
+                  Le call nei momenti chiave
+                </p>
+                <h3 className="mt-2 text-2xl text-foreground sm:text-3xl">Ambiziosa Program</h3>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {programStats.map((s) => (
+                    <span
+                      key={s.label}
+                      className="inline-flex items-baseline gap-1.5 rounded-full border border-border/70 bg-background px-3 py-1.5 text-xs text-foreground/85 sm:text-sm"
+                    >
+                      <span className="font-display text-lg leading-none text-secondary">
+                        {s.n}
+                      </span>
+                      {s.label}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-6 space-y-4 text-base leading-relaxed text-foreground/85">
+                  <p>
+                    È il metodo Ambiziosa con le call nei momenti chiave:{" "}
+                    <strong className="font-semibold text-foreground">
+                      definisci la tua identità e ricevi una strategia di comunicazione costruita
+                      sul tuo progetto
+                    </strong>
+                    .
+                  </p>
+                  <p>
+                    <strong className="font-semibold text-foreground">Le call sono 4</strong>: la
+                    iniziale, una sull'identità con me, una sulla strategia con il mio team e la
+                    finale.
+                  </p>
+                </div>
+                <ol className="mt-8 space-y-5 border-t border-border/70 pt-8">
+                  {programSteps.map((step, i) => (
+                    <li key={step.title} className="flex gap-4">
+                      <span className="w-7 shrink-0 font-condensed text-3xl leading-none text-secondary">
+                        {i + 1}
+                      </span>
+                      <div>
+                        <p className="text-base font-semibold text-foreground sm:text-lg">
+                          {step.title}
+                        </p>
+                        <p className="mt-1 text-sm leading-relaxed text-foreground/85 sm:text-base">
+                          {step.text}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <div className="ticket-border-glow relative h-full rounded-[1.75rem]">
+                <div
+                  className="surface-cream flex h-full flex-col p-6 sm:p-8"
+                  style={{
+                    borderRadius: "1.75rem",
+                    border: "2px solid var(--primary)",
+                    boxShadow: "var(--shadow-gold)",
+                  }}
+                >
+                  <p className="font-condensed text-xs uppercase tracking-[0.2em] text-primary">
+                    Accompagnamento continuo per 4 mesi
+                  </p>
+                  <h3 className="mt-2 text-2xl text-ink sm:text-3xl">Ambiziosa Mentorship</h3>
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {mentorshipStats.map((s) => (
+                      <span
+                        key={s.label}
+                        className="inline-flex items-baseline gap-1.5 rounded-full px-3 py-1.5 text-xs text-primary-foreground sm:text-sm"
+                        style={{
+                          backgroundImage: "var(--gradient-gold)",
+                          boxShadow: "var(--shadow-gold)",
+                        }}
+                      >
+                        <span className="font-display text-lg font-bold leading-none">{s.n}</span>
+                        {s.label}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="mt-6 space-y-4 text-base leading-relaxed text-ink-muted">
+                    <p>
+                      È tutto il percorso del Program con in più{" "}
+                      <strong className="font-semibold text-ink">
+                        un accompagnamento continuo per tutti i 4 mesi
+                      </strong>
+                      : una call individuale di 30 minuti ogni settimana con il mio team e una call
+                      al mese con me, oltre alla call iniziale e a quella finale:{" "}
+                      <strong className="font-semibold text-ink">più di 20 call in totale</strong>.
+                    </p>
+                  </div>
+                  <ol
+                    className="mt-8 space-y-5 border-t pt-8"
+                    style={{ borderColor: "color-mix(in oklab, var(--primary) 30%, transparent)" }}
+                  >
+                    {mentorshipSteps.map((step, i) => (
+                      <li key={step.title} className="flex gap-4">
+                        <span className="w-7 shrink-0 font-condensed text-3xl leading-none text-primary">
+                          {i + 1}
+                        </span>
+                        <div>
+                          <p className="text-base font-semibold text-ink sm:text-lg">
+                            {step.title}
+                          </p>
+                          <p className="mt-1 text-sm leading-relaxed text-ink-muted sm:text-base">
+                            {step.text}
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal>
+            <p className="mx-auto mt-14 max-w-3xl text-center text-base leading-relaxed text-foreground/85 sm:text-lg">
+              In entrambi i casi arrivi alla fine dei 4 mesi con{" "}
+              <strong className="font-semibold text-foreground">
+                una strategia completa che hai già messo in pratica
+              </strong>{" "}
+              e sai come farla evolvere da sola.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <CtaBox />
+
+      {/* 7f. Il team di Ambiziosa */}
+      <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
+        <div className="mx-auto max-w-5xl px-5 py-20">
+          <Reveal>
+            <div className="flex flex-col items-center text-center">
+              <span
+                className="inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
+                style={{ backgroundImage: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
+              >
+                Il team di Ambiziosa
+              </span>
+              <h2 className="mt-4 text-3xl sm:text-4xl">
+                Dietro ogni call e ogni strategia ci siamo <Highlight dark>io e Sharon</Highlight>.
+              </h2>
+            </div>
+          </Reveal>
+
+          <div className="mt-10 space-y-6">
+            <Reveal>
+              <div className="surface-card grid gap-6 p-6 sm:grid-cols-[220px_1fr] sm:p-8">
+                <img
+                  src={carlottaLookingWideImg}
+                  alt="Carlotta Sgarra"
+                  loading="lazy"
+                  className="aspect-[4/5] w-full max-w-[220px] rounded-2xl object-cover"
+                  style={{ objectPosition: "62% 30%" }}
+                />
+                <div>
+                  <h3 className="text-2xl text-foreground sm:text-3xl">Carlotta Sgarra</h3>
+                  <p className="mt-1 font-condensed text-xs uppercase tracking-[0.15em] text-secondary">
+                    Fondatrice di Ambiziosa
+                  </p>
+                  <div className="mt-4 space-y-4 text-base leading-relaxed text-foreground/85">
+                    <p>
+                      Sono Carlotta Sgarra e{" "}
+                      <strong className="font-semibold text-foreground">
+                        ho costruito la mia azienda partendo dalla persona che sono
+                      </strong>
+                      . Oggi aiuto le professioniste a fare lo stesso, con un metodo che ha
+                      funzionato per me e per centinaia di professioniste italiane.
+                    </p>
+                    <p>
+                      In Ambiziosa ci sono io{" "}
+                      <strong className="font-semibold text-foreground">
+                        nella call iniziale, nel lavoro sull'identità e nella call finale
+                      </strong>
+                      . Nella Mentorship ti seguo anche una volta al mese.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <div className="surface-card grid gap-6 p-6 sm:grid-cols-[220px_1fr] sm:p-8">
+                <img
+                  src={sharonConvertinoImg}
+                  alt="Sharon Convertino"
+                  loading="lazy"
+                  className="aspect-[4/5] w-full max-w-[220px] rounded-2xl object-cover"
+                  style={{ objectPosition: "50% 30%" }}
+                />
+                <div>
+                  <h3 className="text-2xl text-foreground sm:text-3xl">Sharon Convertino</h3>
+                  {/* DA CONFERMARE: titolo ufficiale di Sharon */}
+                  <p className="mt-1 font-condensed text-xs uppercase tracking-[0.15em] text-secondary">
+                    Team Ambiziosa: contenuti, editing e montaggio
+                  </p>
+                  <div className="mt-4 space-y-4 text-base leading-relaxed text-foreground/85">
+                    <p>
+                      Sharon fa parte del mio team e ogni giorno si occupa di contenuti, editing e
+                      montaggio.{" "}
+                      <strong className="font-semibold text-foreground">
+                        È lei che segue tutta la parte di contenuti di Ambiziosa
+                      </strong>
+                      : lavora direttamente sul tuo progetto e costruisce macro topic, banca idee
+                      personalizzata, struttura dei contenuti e direzione comunicativa, a partire
+                      dall'identità emersa con me.
+                    </p>
+                    <p>
+                      Nel Program ti segue nella call individuale sulla strategia. Nella Mentorship
+                      hai con lei una call individuale di 30 minuti ogni settimana:{" "}
+                      <strong className="font-semibold text-foreground">
+                        porti dubbi, contenuti e scelte comunicative, senza aspettare la fine di uno
+                        step.
+                      </strong>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
       {/* 8. I 4 step del percorso */}
       <section id="step-1" className="bg-background">
         <div className="mx-auto max-w-6xl px-5 py-20">
@@ -2159,66 +2617,6 @@ function CandidaturaAmbiziosa() {
                 </div>
               </Reveal>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 12. Bio di Carlotta e Sharon */}
-      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-4xl">
-          <Reveal>
-            <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Non sei sola nel percorso: <Highlight>lavori con me e con Sharon</Highlight>
-            </h2>
-          </Reveal>
-
-          <div className="mt-10 space-y-6">
-            <Reveal delay={40}>
-              <div className="surface-card flex flex-col gap-5 p-6 sm:flex-row sm:items-center sm:p-8">
-                <img
-                  src={carlottaPresentingImg}
-                  alt="Carlotta Sgarra"
-                  loading="lazy"
-                  className="size-24 shrink-0 rounded-full object-cover sm:size-28"
-                />
-                <div>
-                  <p className="text-lg font-semibold text-foreground">Carlotta Sgarra</p>
-                  <p className="text-xs uppercase tracking-[0.1em] text-secondary">
-                    Founder di Rule the Rules
-                  </p>
-                  {/* LOREM - sezione 12, bio Carlotta, sostituire con copy reale */}
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua: lavoro con te soprattutto
-                    sull'identità, sull'offerta e sulla vendita, gli step 1 e 4 del percorso.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <div className="surface-card flex flex-col gap-5 p-6 sm:flex-row sm:items-center sm:p-8">
-                <img
-                  src={sharonSpeakingImg}
-                  alt="Sharon Convertino"
-                  loading="lazy"
-                  className="size-24 shrink-0 rounded-full object-cover sm:size-28"
-                  style={{ objectPosition: "45% 30%" }}
-                />
-                <div>
-                  <p className="text-lg font-semibold text-foreground">Sharon Convertino</p>
-                  <p className="text-xs uppercase tracking-[0.1em] text-secondary">
-                    Esperta di contenuti
-                  </p>
-                  {/* LOREM - sezione 12, bio Sharon, sostituire con copy reale */}
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat: lavoro con te soprattutto sui contenuti, sul
-                    piano editoriale e sull'operatività quotidiana, gli step 2 e 3 del percorso.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
