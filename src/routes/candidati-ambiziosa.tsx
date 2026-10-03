@@ -1936,7 +1936,14 @@ function CandidaturaAmbiziosa() {
                   assomigliano per niente.
                 </p>
                 <p>
-                  E anche se all'epoca sapevo tutto, tecnicamente,{" "}
+                  E{" "}
+                  <strong className="font-semibold text-foreground">
+                    anch'io sono caduta in questa trappola
+                  </strong>
+                  .
+                </p>
+                <p>
+                  E anche se all'epoca sapevo tutto questo, tecnicamente,{" "}
                   <strong className="font-semibold text-foreground">
                     quel modo di comunicare non mi faceva sentire me stessa
                   </strong>
