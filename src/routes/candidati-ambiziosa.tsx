@@ -2175,29 +2175,34 @@ function CandidaturaAmbiziosa() {
       <section id="versioni" className="bg-background">
         <div className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
-            <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+            <div
+              className="surface-cream mx-auto grid max-w-4xl overflow-hidden md:grid-cols-[1.15fr_0.85fr]"
+              style={{ borderRadius: "1.75rem" }}
+            >
               <img
                 src={carlottaLookingImg}
                 alt="Carlotta Sgarra"
                 loading="lazy"
-                className="size-20 rounded-full border-2 object-cover"
-                style={{ borderColor: "var(--secondary)", objectPosition: "60% 30%" }}
+                className="aspect-[4/3] h-full w-full object-cover md:order-2 md:aspect-auto"
+                style={{ objectPosition: "60% 30%" }}
               />
-              <h2 className="mt-6 text-3xl text-foreground sm:text-4xl">
-                Ambiziosa ha due versioni: <Highlight>Program o Mentorship</Highlight>.
-              </h2>
-              <p className="mt-4 text-base leading-relaxed text-foreground/75 sm:text-lg">
-                Puoi scegliere quella che preferisci. La durata resta sempre di 4 mesi e in entrambe
-                hai{" "}
-                <strong className="font-semibold text-foreground">me e il mio team con te.</strong>
-              </p>
+              <div className="flex flex-col justify-center px-6 py-10 sm:px-10 sm:py-12 md:order-1">
+                <h2 className="text-3xl text-ink sm:text-4xl">
+                  Ambiziosa ha due versioni: <Highlight dark>Program o Mentorship</Highlight>.
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-ink-muted sm:text-lg">
+                  Puoi scegliere quella che preferisci. La durata resta sempre di 4 mesi e in
+                  entrambe hai{" "}
+                  <strong className="font-semibold text-ink">me e il mio team con te.</strong>
+                </p>
+              </div>
             </div>
           </Reveal>
 
           <svg
             viewBox="0 0 800 90"
             preserveAspectRatio="none"
-            className="mt-6 hidden h-20 w-full md:block"
+            className="mt-4 hidden h-20 w-full md:block"
             fill="none"
             stroke="var(--secondary)"
             strokeWidth="2"
