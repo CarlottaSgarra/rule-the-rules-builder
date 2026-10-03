@@ -38,6 +38,7 @@ import carlottaHugImg from "@/assets/carlotta-hug.jpg";
 import carlottaLookingImg from "@/assets/carlotta-looking-2.jpg";
 import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
 import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
+import carlottaLeftImg from "@/assets/Carlotta bianco e nerco che guarda a sinistra.jpg";
 import elenaRosaImg from "@/assets/elena-rosa.jpg";
 import silviaBedinImg from "@/assets/silvia-bedin.jpg";
 import mariangelaSimioliImg from "@/assets/mariangela-simioli.jpg";
@@ -156,6 +157,18 @@ const HERO_CHECKLIST = [
     bold: "Un metodo già provato",
     rest: " da centinaia di professioniste, in settori molto diversi",
   },
+];
+
+// Frasi che le professioniste si ritrovano a dirsi (sezione 3b, reframe del
+// problema): copy esatto fornito, testo tra virgolette perché sono pensieri
+// riportati in prima persona.
+const CONTENT_PAIN_POINTS = [
+  "Non so più cosa pubblicare.",
+  "Ho salvato mille strategie e alla fine sono ancora più confusa.",
+  "Il piano editoriale mi fa sentire in gabbia.",
+  "Quando registro mi sembra di recitare.",
+  "Non mi riconosco più in quello che pubblico.",
+  "Vedo le altre e mi sembra di essere uguale.",
 ];
 
 const steps = [
@@ -1129,6 +1142,77 @@ function CandidaturaAmbiziosa() {
                 </div>
               );
             })()}
+          </div>
+        </div>
+      </section>
+
+      {/* 3b. Reframe del problema: hai seguito mille corsi... */}
+      <section style={{ backgroundColor: "var(--secondary)" }}>
+        <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
+          <div className="relative min-h-[360px] overflow-hidden lg:min-h-[560px]">
+            <img
+              src={carlottaLeftImg}
+              alt="Carlotta Sgarra"
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{ objectPosition: "center 15%" }}
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to top, color-mix(in oklab, var(--secondary) 95%, transparent) 5%, transparent 60%)",
+              }}
+            />
+            <div className="relative flex h-full items-end p-6 sm:p-10">
+              <h2
+                className="text-2xl font-semibold sm:text-3xl"
+                style={{ color: "var(--secondary-foreground)" }}
+              >
+                Hai seguito mille corsi e corsetti e le regole le sai. Eppure non ti senti tu su
+                Instagram.
+              </h2>
+            </div>
+          </div>
+
+          <div
+            className="px-6 py-10 sm:px-10 sm:py-14"
+            style={{ color: "var(--secondary-foreground)" }}
+          >
+            <p className="text-sm leading-relaxed sm:text-base">
+              Hai studiato e hai imparato hook, script e CTA. Hai salvato strategie su strategie e
+              hai tenuto un piano editoriale anche quando ti stava stretto. In tutto questo hai
+              investito tempo, energie e magari soldi in corsi e metodi diversi, quindi l'impegno
+              non ti è mai mancato.
+            </p>
+            <p className="mt-4 text-sm leading-relaxed sm:text-base">
+              E nonostante questo ti ritrovi a dire:
+            </p>
+
+            <ul className="mt-5 space-y-3">
+              {CONTENT_PAIN_POINTS.map((p) => (
+                <li key={p} className="flex gap-3 text-sm leading-relaxed sm:text-base">
+                  <XCircle className="mt-0.5 size-4 shrink-0 text-destructive" />
+                  <span>“{p}”</span>
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-6 text-sm leading-relaxed sm:text-base">
+              E questa cosa ti dà fastidio, dentro di te, perché vorresti differenziarti ma non
+              riesci a trasmetterlo. Hai paura che anche i tuoi potenziali clienti vedano questo:
+              perché dovrebbero venire da te e non andare da un'altra?
+            </p>
+
+            <p className="mt-4 text-base font-semibold sm:text-lg">
+              Il problema non è quanto pubblichi o quanto sei costante: è che nei tuoi contenuti non
+              si riconosce chi sei davvero.
+            </p>
+
+            <p className="mt-4 text-sm leading-relaxed sm:text-base">
+              Hai competenze e lo sai, però ti senti identica a mille altre professioniste.{" "}
+              <strong className="font-semibold">Ora bisogna renderti riconoscibile.</strong>
+            </p>
           </div>
         </div>
       </section>
