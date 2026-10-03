@@ -23,8 +23,6 @@ import {
   Video,
   ShieldCheck,
   Gift,
-  Star,
-  ArrowUpLeft,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -445,53 +443,6 @@ function CtaBox({ context }: { context: string }) {
   );
 }
 
-// Stelline sparse sullo sfondo della sezione (non in un riquadro), tutte
-// identiche, violacee e semitrasparenti, che fluttuano. Una è "indicata" da
-// una freccia ma resta comunque indistinguibile dalle altre — quella sei tu.
-const REFRAME_STARS = [
-  { top: "10%", left: "6%", size: "size-5", delay: "0s", duration: "6s" },
-  { top: "76%", left: "4%", size: "size-6", delay: "0.6s", duration: "5.5s" },
-  { top: "6%", left: "40%", size: "size-5", delay: "0.3s", duration: "7.5s" },
-  { top: "88%", left: "28%", size: "size-6", delay: "1.6s", duration: "6s" },
-  { top: "34%", left: "90%", size: "size-5", delay: "0.9s", duration: "5s" },
-  { top: "62%", left: "14%", size: "size-6", delay: "2.3s", duration: "7s" },
-  { top: "28%", left: "18%", size: "size-5", delay: "1.1s", duration: "6.2s" },
-  { top: "82%", left: "62%", size: "size-6", delay: "0.4s", duration: "6.8s" },
-  { top: "50%", left: "86%", size: "size-5", delay: "1.8s", duration: "5.8s" },
-  { top: "90%", left: "82%", size: "size-6", delay: "0.7s", duration: "7.2s" },
-  { top: "16%", left: "70%", size: "size-7", delay: "1.4s", duration: "6.4s" },
-];
-
-function ReframeStarsBackground() {
-  return (
-    <div className="pointer-events-none absolute inset-0" aria-hidden>
-      {REFRAME_STARS.map((s, i) => (
-        <Star
-          key={i}
-          className={`animate-float absolute ${s.size}`}
-          style={{
-            top: s.top,
-            left: s.left,
-            animationDelay: s.delay,
-            animationDuration: s.duration,
-            color: "color-mix(in oklab, var(--secondary) 28%, transparent)",
-            fill: "color-mix(in oklab, var(--secondary) 28%, transparent)",
-          }}
-        />
-      ))}
-      <div
-        className="absolute left-[46%] top-[18%] flex items-center gap-1.5 text-secondary/70 sm:left-[76%] sm:top-[22%]"
-        style={{ transform: "rotate(-6deg)" }}
-      >
-        <ArrowUpLeft className="size-4 shrink-0" />
-        <span className="whitespace-nowrap font-condensed text-[11px] font-bold uppercase tracking-[0.06em]">
-          Tu sei questa
-        </span>
-      </div>
-    </div>
-  );
-}
-
 // Segno di spunta bordeaux su cerchio verde acido, per la lista di 4 punti
 // della hero.
 function HeroCheck() {
@@ -516,8 +467,11 @@ function CandidaturaAmbiziosa() {
       <section className="bg-background px-4 py-8 sm:px-8 sm:py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center text-center">
           <h1 className="text-3xl font-semibold text-foreground sm:text-4xl">
-            <strong className="font-bold">Ambiziosa:</strong> il mio programma per professioniste e
-            imprenditrici che vogliono farsi riconoscere e trasformare l'ambizione in carriera
+            <Highlight dark>
+              <strong className="font-bold">Ambiziosa:</strong>
+            </Highlight>{" "}
+            il mio programma per professioniste e imprenditrici che vogliono{" "}
+            <Highlight dark>farsi riconoscere</Highlight> e trasformare l'ambizione in carriera
           </h1>
 
           <p className="mt-3 max-w-[900px] text-base text-foreground sm:text-lg">
@@ -579,54 +533,16 @@ function CandidaturaAmbiziosa() {
         </div>
       </section>
 
-      {/* 6. Reframe del problema — subito dopo l'hero, stelline violacee e
-          trasparenti sullo sfondo, titolo e testo centrali e corti */}
-      <section className="relative flex min-h-[26rem] items-center overflow-hidden bg-background px-4 py-16 sm:min-h-[32rem] sm:px-8 sm:py-24">
-        <ReframeStarsBackground />
-        <div className="relative mx-auto max-w-2xl text-center">
-          <Reveal>
-            <h2 className="text-2xl font-semibold text-foreground sm:text-3xl">
-              Pubblichi ogni giorno, segui ogni regola dei guru. Eppure sei in burnout e i clienti
-              non arrivano.
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-foreground/80 sm:text-lg">
-              Il problema non è la costanza: è che la tua voce <Highlight>si è persa</Highlight> nel
-              marasma delle professioniste che comunicano tutte allo stesso modo.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 6b. Escalation del dolore: mille corsi, mille contenuti, mille strategie */}
-      <section
-        className="px-4 py-14 text-center sm:px-8 sm:py-20"
-        style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
-      >
-        <div className="mx-auto max-w-2xl">
-          <Reveal>
-            <p className="eyebrow">Ti riconosci?</p>
-            <div className="mt-6 space-y-2 text-xl text-ink-muted opacity-70 sm:text-2xl">
-              <p className="line-through decoration-2">Hai seguito mille corsi.</p>
-              <p className="line-through decoration-2">Hai scritto mille contenuti.</p>
-              <p className="line-through decoration-2">Hai applicato mille strategie diverse.</p>
-            </div>
-            <p className="mt-8 text-3xl sm:text-4xl">
-              Eppure, <Highlight dark>niente funziona</Highlight>.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
       {/* 3. Riprova sociale immediata */}
       <section className="bg-background px-4 py-8 sm:px-8 sm:py-10">
         <div className="mx-auto max-w-[880px] text-center">
-          <p className="text-lg leading-snug text-foreground sm:text-xl">
+          <h2 className="text-2xl font-semibold text-foreground sm:text-3xl">
             Ci sarà un motivo se{" "}
             <strong className="font-semibold">
               Ambiziosa ha funzionato con centinaia di professioniste diverse
             </strong>{" "}
             in settori completamente diversi tra di loro, no?
-          </p>
+          </h2>
         </div>
         <div className="mx-auto mt-6 flex max-w-4xl flex-wrap items-center justify-center gap-2">
           {SECTORS.map((s) => (
