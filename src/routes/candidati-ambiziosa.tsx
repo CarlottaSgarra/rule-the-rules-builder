@@ -844,15 +844,16 @@ function HeroCheck() {
 }
 
 function CandidaturaAmbiziosa() {
-  // Fumetto aperto sopra una pillola di settore (hover da desktop, tocco da
-  // telefono) e nome della testimonianza da aprire quando si clicca il link
-  // "guarda la video testimonianza" dentro al fumetto.
-  const [openSector, setOpenSector] = useState<string | null>(null);
+  // Settore attivo nel riquadro badge+caso studio: cambia al passaggio del
+  // mouse (o al tocco, da telefono) su un badge, ma resta persistente finché
+  // non si passa su un badge diverso (così si può uscire dal badge per
+  // cliccare il link del caso studio senza farlo sparire). Nome della
+  // testimonianza da aprire quando si clicca quel link.
+  const [activeSector, setActiveSector] = useState(SECTOR_TESTIMONIALS[0].sector);
   const [activeTestimonialName, setActiveTestimonialName] = useState<string | undefined>(undefined);
 
   function goToTestimonial(name: string) {
     setActiveTestimonialName(name);
-    setOpenSector(null);
     document
       .getElementById("testimonianze")
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1018,80 +1019,81 @@ function CandidaturaAmbiziosa() {
         <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <div className="text-left">
             <h2 className="text-2xl font-semibold text-foreground sm:text-3xl">
-              Ci sarà un motivo se{" "}
+              Ci sarà un motivo se Ambiziosa ha funzionato con{" "}
               <Highlight>
-                <strong className="font-semibold">
-                  Ambiziosa ha funzionato con centinaia di professioniste diverse
-                </strong>
+                <strong className="font-semibold">centinaia di professioniste diverse</strong>
               </Highlight>{" "}
               in settori completamente diversi tra di loro, no?
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-foreground/85 sm:text-lg">
+            <p className="mt-5 text-sm leading-relaxed text-foreground/85 sm:text-base">
               La maggior parte delle professioniste che finisce in burnout su Instagram, pensando di
               mollare il proprio business, parte da strategie che non sono specifiche per loro, ma
-              che hanno solo visto funzionare per altri. In realtà, le professioniste che riescono
-              davvero a sfondare online hanno tutte una cosa in comune:{" "}
-              <strong className="font-semibold">un'identità forte, chiara e definita</strong>. In
-              Ambiziosa facciamo esattamente questo.
+              che hanno solo visto funzionare per altri.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
+              In realtà, le professioniste che riescono davvero a sfondare online hanno tutte una
+              cosa in comune:{" "}
+              <strong className="font-semibold">un'identità forte, chiara e definita</strong>.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
+              In Ambiziosa facciamo esattamente questo.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-2.5">
-            {SECTOR_TESTIMONIALS.map((item) => (
-              <div key={item.sector} className="relative">
+          <div className="surface-card p-5">
+            <div className="grid grid-cols-2 gap-2.5">
+              {SECTOR_TESTIMONIALS.map((item) => (
                 <button
+                  key={item.sector}
                   type="button"
-                  onMouseEnter={() => setOpenSector(item.sector)}
-                  onMouseLeave={() => setOpenSector((cur) => (cur === item.sector ? null : cur))}
-                  onClick={() => setOpenSector(item.sector)}
-                  aria-expanded={openSector === item.sector}
+                  onMouseEnter={() => setActiveSector(item.sector)}
+                  onFocus={() => setActiveSector(item.sector)}
+                  onClick={() => setActiveSector(item.sector)}
+                  aria-pressed={activeSector === item.sector}
                   className="inline-flex w-full items-center justify-center rounded-full px-3 py-2 text-center font-condensed text-[10px] font-semibold uppercase tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:text-xs sm:tracking-[0.1em]"
-                  style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+                  style={{
+                    backgroundColor: "var(--primary)",
+                    color: "var(--secondary)",
+                    outline: activeSector === item.sector ? "2px solid var(--secondary)" : "none",
+                    outlineOffset: "2px",
+                  }}
                 >
                   {item.sector}
                 </button>
+              ))}
+            </div>
 
-                {openSector === item.sector ? (
-                  <div
-                    className="animate-sway absolute bottom-full left-1/2 z-20 mb-3 w-56 -translate-x-1/2 rounded-2xl p-4 text-left shadow-xl sm:w-64"
-                    style={{
-                      backgroundColor: "rgba(255, 255, 255, 0.9)",
-                      border: "1px solid rgba(255, 255, 255, 0.6)",
-                      backdropFilter: "blur(10px)",
-                    }}
+            {(() => {
+              const active =
+                SECTOR_TESTIMONIALS.find((s) => s.sector === activeSector) ??
+                SECTOR_TESTIMONIALS[0];
+              return (
+                <div
+                  className="mt-5 border-t pt-5 text-left"
+                  style={{ borderColor: "color-mix(in oklab, var(--primary) 35%, transparent)" }}
+                >
+                  <p className="text-sm font-semibold" style={{ color: "var(--secondary)" }}>
+                    {active.name}
+                  </p>
+                  <p className="mt-1.5 text-xs leading-snug text-foreground/80">
+                    <span className="font-semibold">Punto A: </span>
+                    {active.before}
+                  </p>
+                  <p className="mt-1 text-xs leading-snug text-foreground/80">
+                    <span className="font-semibold">Punto B: </span>
+                    {active.after}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => goToTestimonial(active.name)}
+                    className="mt-2.5 text-left text-xs font-semibold underline underline-offset-2"
+                    style={{ color: "var(--secondary)" }}
                   >
-                    <p className="text-sm font-semibold" style={{ color: "var(--secondary)" }}>
-                      {item.name}
-                    </p>
-                    <p className="mt-1.5 text-xs leading-snug text-foreground/80">
-                      <span className="font-semibold">Punto A: </span>
-                      {item.before}
-                    </p>
-                    <p className="mt-1 text-xs leading-snug text-foreground/80">
-                      <span className="font-semibold">Punto B: </span>
-                      {item.after}
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => goToTestimonial(item.name)}
-                      className="mt-2.5 text-left text-xs font-semibold underline underline-offset-2"
-                      style={{ color: "var(--secondary)" }}
-                    >
-                      Guarda la sua video testimonianza →
-                    </button>
-                    <span
-                      className="absolute left-1/2 top-full -mt-1.5 size-3 -translate-x-1/2 rotate-45"
-                      style={{
-                        backgroundColor: "rgba(255, 255, 255, 0.9)",
-                        borderBottom: "1px solid rgba(255, 255, 255, 0.6)",
-                        borderRight: "1px solid rgba(255, 255, 255, 0.6)",
-                      }}
-                      aria-hidden
-                    />
-                  </div>
-                ) : null}
-              </div>
-            ))}
+                    Guarda la sua video testimonianza →
+                  </button>
+                </div>
+              );
+            })()}
           </div>
         </div>
       </section>
