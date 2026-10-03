@@ -1370,6 +1370,57 @@ function CandidaturaAmbiziosa() {
         </div>
       </section>
 
+      {/* 9. Prima/dopo a colonne specchiate */}
+      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
+        <div
+          className="mx-auto max-w-4xl rounded-[1.75rem] p-6 sm:p-10"
+          style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
+        >
+          <Reveal>
+            <h2 className="text-center text-2xl font-semibold sm:text-3xl">
+              Oggi e alla fine dei 4 mesi
+            </h2>
+          </Reveal>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+            <div className="space-y-4 rounded-2xl p-6">
+              <span
+                className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-condensed text-xs uppercase tracking-[0.2em]"
+                style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+              >
+                Oggi
+              </span>
+              {beforeAfterRows.map((r) => (
+                <p key={r.before} className="text-sm leading-relaxed opacity-85">
+                  {r.before}
+                </p>
+              ))}
+            </div>
+            <div className="space-y-4 rounded-2xl p-6">
+              <span
+                className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-condensed text-xs uppercase tracking-[0.2em]"
+                style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+              >
+                Oggi sei qui, ma tra quattro mesi ecco dove sarai.
+              </span>
+              {beforeAfterRows.map((r) => (
+                <p key={r.after} className="text-sm leading-relaxed opacity-85">
+                  {r.after}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          <Reveal delay={120}>
+            <div className="mt-10 text-center">
+              <p className="text-sm leading-relaxed sm:text-base">{CTA_BOX_CONTEXT}</p>
+              <div className="mt-6 flex justify-center">
+                <AmbiziosaCtaButton variant="hero" />
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* 4. Card segmentazione pubblico */}
       <section className="bg-background px-4 py-10 sm:px-8 sm:py-14">
         <div className="mx-auto max-w-5xl">
@@ -1472,67 +1523,6 @@ function CandidaturaAmbiziosa() {
           </div>
         </div>
       </section>
-
-      {/* 9. Prima/dopo a colonne specchiate */}
-      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div
-          className="mx-auto max-w-4xl rounded-[1.75rem] p-6 sm:p-10"
-          style={{ backgroundColor: "var(--card)", border: "1px solid var(--secondary)" }}
-        >
-          <Reveal>
-            <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Oggi e alla fine dei 4 mesi
-            </h2>
-          </Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            <div
-              className="space-y-4 rounded-2xl border-2 p-6"
-              style={{ borderColor: "var(--destructive)" }}
-            >
-              <p className="font-condensed text-xs uppercase tracking-[0.2em] text-destructive">
-                Oggi
-              </p>
-              {beforeAfterRows.map((r) => (
-                <p key={r.before} className="text-sm leading-relaxed text-foreground/75">
-                  {r.before}
-                </p>
-              ))}
-            </div>
-            <div
-              className="space-y-4 rounded-2xl border-2 p-6"
-              style={{ borderColor: "var(--primary)" }}
-            >
-              <p className="font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
-                Alla fine dei 4 mesi
-              </p>
-              {beforeAfterRows.map((r) => (
-                <p key={r.after} className="text-sm leading-relaxed text-foreground/75">
-                  {r.after}
-                </p>
-              ))}
-            </div>
-          </div>
-
-          <Reveal delay={120}>
-            <div className="mt-10">
-              <h3 className="text-lg font-semibold text-foreground sm:text-xl">
-                Hai già investito in corsi e coach senza vedere risultati concreti?
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
-                Se ti è già successo, hai ragione a diffidare. Di solito un corso ti dà un metodo
-                uguale per tutte, da applicare da sola. In Ambiziosa{" "}
-                <strong className="font-semibold">
-                  la strategia la costruiamo insieme, sul tuo progetto
-                </strong>
-                : la metti in pratica da subito e ti seguo con call dedicate, finché non sai farla
-                evolvere da sola.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <CtaBox context={CTA_BOX_CONTEXT} />
 
       {/* 10. Proiezione di scenari futuri concreti */}
       <section
