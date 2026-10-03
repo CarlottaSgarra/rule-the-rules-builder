@@ -17,7 +17,6 @@ import {
   XCircle,
   Sparkles,
   ArrowRight,
-  Quote,
   LayoutDashboard,
   Users,
   Video,
@@ -31,6 +30,7 @@ import { SiteFooter } from "@/components/landing/SiteFooter";
 import { AmbiziosaTopbar } from "@/components/landing/AmbiziosaTopbar";
 import { AmbiziosaCtaButton } from "@/components/landing/AmbiziosaCtaButton";
 import { AmbiziosaHeroVideo } from "@/components/landing/AmbiziosaHeroVideo";
+import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
 import { submitAmbiziosaApplication } from "@/lib/ambiziosa-application";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import sharonSpeakingImg from "@/assets/sharon-speaking.jpg";
@@ -43,6 +43,21 @@ import mariangelaSimioliImg from "@/assets/mariangela-simioli.jpg";
 import giuliaSantelliImg from "@/assets/giulia-santelli.jpg";
 import ilariaMatteiImg from "@/assets/ilaria-mattei.jpg";
 import giuliaAriganelloImg from "@/assets/giulia-ariganello.jpg";
+import valeriaSalussoliImg from "@/assets/valeria-salussoli.avif";
+import vanessaSciorioImg from "@/assets/vanessa-sciorio.jpg";
+import elisaMonasteroloImg from "@/assets/elisa-monasterolo.jpg";
+import giusyPanneseImg from "@/assets/giusy-pannese.jpg";
+import biancaLucaciImg from "@/assets/bianca-lucaci.jpg";
+import rosannaCafarellaImg from "@/assets/rosanna-cafarella.jpg";
+import mariannaTaurielloImg from "@/assets/marianna-tauriello.jpg";
+import valentinaGiuriatoImg from "@/assets/valentina-giuriato.jpg";
+import sharonConvertinoImg from "@/assets/sharon-convertino.jpg";
+import silviaErricoImg from "@/assets/silvia-errico.jpeg";
+import elisabettaBettonteImg from "@/assets/elisabetta-bettonte.jpg";
+import francescaSolignaniImg from "@/assets/francesca-solignani.jpeg";
+import cristinaBuligaImg from "@/assets/cristina-buliga.jpg";
+import robertaTrabuccoImg from "@/assets/roberta-trabucco.jpg";
+import martinaFerrariImg from "@/assets/martina-ferrari.jpg";
 import client1Img from "@/assets/client-1.jpg";
 import client2Img from "@/assets/client-2.png";
 import client3Img from "@/assets/client-3.png";
@@ -61,15 +76,58 @@ const REASSURANCE = "Candidatura gratuita, nessun impegno.";
 // Dati reali (struttura e contenuti confermati)
 // ---------------------------------------------------------------------------
 
-const SECTORS = [
-  "Coach",
-  "Consulenti d'immagine",
-  "Nutrizioniste",
-  "Tatuatrici",
-  "Makeup artist",
-  "SEO e copywriter",
-  "Wedding planner",
-  "Brand strategist",
+// Un settore per pillola, abbinato alla testimonianza più rappresentativa
+// (stessa persona/video presente in VIDEO_TESTIMONIALS più sotto) per il
+// fumetto che appare al passaggio del mouse (o al tocco, da telefono).
+const SECTOR_TESTIMONIALS = [
+  {
+    sector: "Coach",
+    name: "Silvia Bedin",
+    before: "Life coach, solo offerte low ticket: 400€/mese.",
+    after: "31.000€ in organico in poche settimane.",
+  },
+  {
+    sector: "Consulenti d'immagine",
+    name: "Valentina Giuriato",
+    before: "Faceva tutto da sola, nessun flusso costante di clienti.",
+    after: "Business trasformato, pieno di clienti allineati.",
+  },
+  {
+    sector: "Nutrizioniste",
+    name: "Vanessa Sciorio",
+    before: "Clientela insufficiente, difficoltà a comunicare il suo valore.",
+    after: "Fatturato a cinque cifre mensili, clientela targetizzata.",
+  },
+  {
+    sector: "Tatuatrici",
+    name: "Rosanna Cafarella",
+    before: "10 anni di esperienza, ma clienti low cost e poco costanti.",
+    after: "10.000€ mensili costanti in soli 3 mesi.",
+  },
+  {
+    sector: "Makeup artist",
+    name: "Giusy Pannese",
+    before: "Agenda piena ma clientela solo locale, tariffe basse.",
+    after: "Spose a livello nazionale e internazionale.",
+  },
+  {
+    sector: "SEO e copywriter",
+    name: "Ilaria Mattei",
+    before: "Nessuna offerta chiara, prezzi troppo bassi.",
+    after: "6.500€/mese costanti, poi 10.000€.",
+  },
+  {
+    sector: "Wedding planner",
+    name: "Martina Ferrari",
+    before: "Business avviato ma identità professionale in crisi.",
+    after: "30 clienti e fatturato raddoppiato in 6 mesi.",
+  },
+  {
+    sector: "Brand strategist",
+    name: "Elisa Monasterolo",
+    before: "Vicina a chiudere la P.IVA, nessuna stabilità.",
+    after: "Stabilità economica vera, clienti a lungo termine.",
+  },
 ];
 
 // Stesso bannerino "avatar + stelle" già usato in Rule the Rules (src/routes/index.tsx).
@@ -153,50 +211,360 @@ const pricingTiers = [
   },
 ];
 
-const testimonials = [
+// Stessa sezione "video testimonianze" di Rule the Rules (src/routes/index.tsx,
+// costante videoTestimonials), importata qui tale quale: stesso componente
+// TestimonialsExplorer, stessi dati, stesse card.
+const videoTestimonials = [
   {
     name: "Elena Rosa",
     role: "Mental Coach Cinofila",
-    metric: "Oltre 5.000€/mese",
-    context: "Da nessuna struttura di business a oltre 5.000€/mese.",
+    tagline: "Da lavorare tantissimo senza risultati a superare i 5.000€/mese.",
+    before:
+      "Quando ha iniziato il percorso, Elena si trovava in una fase delicata: tanta voglia di crescere, un progetto forte tra le mani, ma ancora nessuna struttura per farlo diventare un business sostenibile. Lavorava tantissimo senza una vera direzione strategica.",
+    after: (
+      <>
+        Ha chiarito il suo posizionamento come mental coach nel mondo cinofilo, strutturato
+        un’offerta forte e alzato i prezzi. Oggi supera i{" "}
+        <strong className="font-semibold text-ink">5.000€ al mese</strong> ed è la sua vita a
+        basarsi sul business, non più il contrario.
+      </>
+    ),
+    youtubeId: "O75oxbgxdjY",
     photo: elenaRosaImg,
   },
   {
     name: "Silvia Bedin",
     role: "Life Coach",
-    metric: "31.000€ in organico",
-    context: "Da 400€/mese (solo low ticket) a 31.000€ in organico in poche settimane.",
+    tagline: "Da 400€/mese a 31.000€ in organico in poche settimane.",
+    before:
+      "Silvia lavorava come coach energetica con sole offerte low ticket. Dopo un anno e mezzo guadagnava in media 400€ al mese e non aveva una struttura chiara: mancavano identità, offerta e direzione.",
+    after: (
+      <>
+        Ha costruito un business autentico, fondato su un’offerta high ticket chiara e potente. In
+        poche settimane ha generato{" "}
+        <strong className="font-semibold text-ink">31.000€ in organico</strong>, superando
+        definitivamente il loop dei low ticket.
+      </>
+    ),
+    youtubeId: "A0vabIP_Srk",
     photo: silviaBedinImg,
+  },
+  {
+    name: "Valeria Salussolia",
+    role: "Titolare di un Centro Benessere & Consulente d’Immagine",
+    tagline: "Fattura in una settimana quello che guadagnava in un mese da dipendente.",
+    before:
+      "Valeria lavorava come estetista con contratti instabili e provava, senza convinzione, ad avviare la consulenza d’immagine online. Dopo l’ennesimo licenziamento ha deciso di cambiare tutto e ha trovato lo spazio per il suo primo centro.",
+    after: (
+      <>
+        Ha un’attività tutta sua, costruita sulle sue vere competenze. Oggi{" "}
+        <strong className="font-semibold text-ink">
+          fattura in una settimana quello che guadagnava in un mese da dipendente
+        </strong>{" "}
+        e si sente finalmente protagonista della sua vita.
+      </>
+    ),
+    youtubeId: "gFKD9AkVaZw",
+    photo: valeriaSalussoliImg,
   },
   {
     name: "Mariangela Simioli",
     role: "Marketing Strategist",
-    metric: "Regime forfettario superato",
-    context: "Da licenziata con 500€ sul conto a superare il regime forfettario in 4 mesi.",
+    tagline: "Regime forfettario superato in 4 mesi, obiettivo 500k in vista.",
+    before:
+      "Si è licenziata da una multinazionale, con tante paure e appena 500€ sul conto. Il suo business era tutto da costruire: offerta, personal brand, contenuti, vendita.",
+    after: (
+      <>
+        Ha superato il{" "}
+        <strong className="font-semibold text-ink">regime forfettario in soli 4 mesi</strong>,
+        costruendosi una vita basata sul suo business. Vive di clienti costanti ogni settimana e ha
+        in progetto un fatturato di 500k.
+      </>
+    ),
+    youtubeId: "Qd6QLXPzcMs",
     photo: mariangelaSimioliImg,
   },
   {
     name: "Giulia Santelli",
     role: "Personal Trainer e Life Coach",
-    metric: "Stipendio raddoppiato",
-    context:
-      "Da “criceto sulla ruota” a stipendio raddoppiato, clienti high ticket da 2.000€ con soli 6 contenuti.",
+    tagline: "Con soli 6 contenuti, clienti high ticket da 2.000€.",
+    before:
+      "Giulia lavorava come networker e dipendente all’estero, divisa tra mille lavori. Si sentiva un criceto sulla ruota: sempre di corsa, mai pagata davvero per il valore che dava.",
+    after: (
+      <>
+        Si è licenziata dal lavoro da dipendente, ha{" "}
+        <strong className="font-semibold text-ink">raddoppiato lo stipendio</strong> in pochi mesi e
+        vive del suo programma personale. Con soli 6 contenuti ha chiuso{" "}
+        <strong className="font-semibold text-ink">clienti high ticket da 2.000€</strong>.
+      </>
+    ),
+    youtubeId: "MVOsgoJEHI0",
     photo: giuliaSantelliImg,
   },
   {
     name: "Ilaria Mattei",
     role: "SEO e Copywriter",
-    metric: "6.500€/mese costanti",
-    context:
-      "Da prezzi troppo bassi e nessuna offerta chiara a 6.500€/mese costanti, 10.000€ raggiunti.",
+    tagline: "Da nessuna offerta chiara a 6.500€/mese costanti, poi 10.000€.",
+    before:
+      "Quando è arrivata, non sapeva nemmeno da dove iniziare. Non conosceva davvero il suo valore: nessuna offerta chiara, nessun contenuto, prezzi troppo bassi per la qualità che offriva.",
+    after: (
+      <>
+        Ha un business strutturato e replicabile. Incassa{" "}
+        <strong className="font-semibold text-ink">6.500€ al mese in modo costante</strong> e ha
+        raddoppiato il suo obiettivo iniziale, toccando i{" "}
+        <strong className="font-semibold text-ink">10.000€</strong>.
+      </>
+    ),
+    youtubeId: "BxQDPKy141U",
     photo: ilariaMatteiImg,
   },
   {
     name: "Giulia Ariganello",
-    role: "Business Mentor per Educatrici",
-    metric: "Fatturato a 5 cifre",
-    context: "Da nessuna direzione chiara a fatturato mensile a cinque cifre.",
+    role: "Business Mentor per le Educatrici",
+    tagline: "Fatturato mensile a cinque cifre, figura di riferimento nel settore.",
+    before:
+      "Giulia si sentiva bloccata nel suo percorso imprenditoriale. Non aveva una direzione chiara, faticava a definire la sua offerta e a comunicare il proprio valore professionale.",
+    after: (
+      <>
+        In pochi mesi ha radicalmente trasformato il suo business, raggiungendo un{" "}
+        <strong className="font-semibold text-ink">fatturato mensile a cinque cifre</strong>. Ora è
+        una figura di riferimento per le educatrici del suo settore.
+      </>
+    ),
+    youtubeId: "Qzhc1dBGVpM",
     photo: giuliaAriganelloImg,
+  },
+  {
+    name: "Vanessa Sciorio",
+    role: "Nutrizionista al femminile",
+    tagline: "Fatturato a cinque cifre mensili, clientela finalmente targetizzata.",
+    before:
+      "Vanessa lottava per ottenere una clientela sufficiente e stabile. Sapeva di avere valore, ma si sentiva bloccata nel comunicarlo e nel far crescere il suo business.",
+    after: (
+      <>
+        In pochi mesi ha raggiunto un{" "}
+        <strong className="font-semibold text-ink">fatturato a cinque cifre mensili</strong>,
+        acquisendo una clientela targetizzata e consolidando la sua posizione come nutrizionista di
+        riferimento.
+      </>
+    ),
+    youtubeId: "mJh2hT3BIgE",
+    photo: vanessaSciorioImg,
+  },
+  {
+    name: "Elisa Monasterolo",
+    role: "Brand Strategist",
+    tagline: "Da vicina a chiudere la P.IVA a stabilità economica vera.",
+    before:
+      "Elisa si trovava in un momento critico, considerando persino di chiudere la partita IVA. Dopo numerosi preventivi rifiutati, sentiva l’ansia della mancanza di stabilità.",
+    after: (
+      <>
+        Ha trasformato mentalità e attività, raggiungendo una{" "}
+        <strong className="font-semibold text-ink">stabilità economica</strong> e clienti a lungo
+        termine. Vive del suo business con un solido equilibrio finanziario.
+      </>
+    ),
+    youtubeId: "fB1zSchLTiI",
+    photo: elisaMonasteroloImg,
+  },
+  {
+    name: "Giusy Pannese",
+    role: "Makeup Artist",
+    tagline: "Da clientela solo locale a spose a livello internazionale.",
+    before:
+      "Giusy si sentiva bloccata nonostante un’agenda piena di clienti. Aveva difficoltà a valorizzare il proprio lavoro, limitandosi a richieste generiche e a una clientela locale.",
+    after: (
+      <>
+        In pochi mesi ha acquisito sicurezza, aumentato le tariffe e ampliato il mercato, arrivando
+        a{" "}
+        <strong className="font-semibold text-ink">
+          spose a livello nazionale e internazionale
+        </strong>
+        .
+      </>
+    ),
+    youtubeId: "IUeaewJX9iU",
+    photo: giusyPanneseImg,
+  },
+  {
+    name: "Bianca Lucaci",
+    role: "Influencer Coach",
+    tagline: "Dalla commessa alla prima Academy per influencer in Italia.",
+    before:
+      "Bianca si sentiva bloccata nel suo lavoro come commessa in un centro commerciale. Aveva il sogno di trasformare la sua passione in una vera carriera, ma non sapeva come fare il salto.",
+    after: (
+      <>
+        Ha lasciato il lavoro, creato la{" "}
+        <strong className="font-semibold text-ink">prima Academy per influencer in Italia</strong> e
+        raggiunto la libertà finanziaria e personale che desiderava.
+      </>
+    ),
+    youtubeId: "Kw2nsluTO2A",
+    photo: biancaLucaciImg,
+  },
+  {
+    name: "Rosanna Cafarella",
+    role: "Tatuatrice",
+    tagline: "10.000€ mensili costanti in soli 3 mesi.",
+    before:
+      "Rosanna, tatuatrice con 10 anni di esperienza, lottava con clienti low cost e richieste poco costanti, senza riuscire a comunicare la sua unicità.",
+    after: (
+      <>
+        In soli <strong className="font-semibold text-ink">tre mesi</strong> ha raggiunto{" "}
+        <strong className="font-semibold text-ink">10.000€ mensili costanti</strong> con un business
+        riorganizzato, attirando una clientela in linea con il suo stile unico.
+      </>
+    ),
+    youtubeId: "Ek8tUbgTJGk",
+    photo: rosannaCafarellaImg,
+  },
+  {
+    name: "Mariella Tauriello",
+    role: "Instagram e Visual Coach",
+    tagline: "Programma sold out grazie a contenuti finalmente chiari.",
+    before:
+      "Mariella si sentiva bloccata e sopraffatta da troppe idee. Non riusciva a concretizzare la formazione ricevuta in un business sano e pieno di clienti.",
+    after: (
+      <>
+        In pochi mesi ha esaurito le iscrizioni al suo{" "}
+        <strong className="font-semibold text-ink">programma sold out</strong>, grazie a una
+        gestione chiara dei contenuti su Instagram e a un’offerta finalmente mirata.
+      </>
+    ),
+    youtubeId: "-D9QGDLWue0",
+    photo: mariannaTaurielloImg,
+  },
+  {
+    name: "Valentina Giuriato",
+    role: "Consulente d’Immagine",
+    tagline: "Business trasformato e riempito di clienti allineati.",
+    before:
+      "Valentina, abituata a fare tutto da sola, aveva difficoltà a comunicare la sua offerta unica e a ottenere un flusso costante di clienti.",
+    after: (
+      <>
+        Ha trasformato e <strong className="font-semibold text-ink">riempito di clienti</strong> il
+        suo business, imparando a valorizzare la sua unicità con un aumento significativo del
+        fatturato.
+      </>
+    ),
+    youtubeId: "yDGIN_aaz0k",
+    photo: valentinaGiuriatoImg,
+  },
+  {
+    name: "Sharon Convertino",
+    role: "Social Media Manager e Consulente di Web Marketing",
+    tagline: "Da burnout a selezionare lei stessa i propri clienti.",
+    before:
+      "Clienti tossici e una situazione di burnout l’avevano portata a voler abbandonare tutto. Nonostante la sua competenza, si sottovalutava e non chiedeva il giusto compenso.",
+    after: (
+      <>
+        Ha ritrovato sicurezza in sé stessa. Ora è lei a{" "}
+        <strong className="font-semibold text-ink">selezionare i clienti</strong>, offrendo servizi
+        di alta qualità senza più compromessi.
+      </>
+    ),
+    youtubeId: "eA4QQQXlG54",
+    photo: sharonConvertinoImg,
+  },
+  {
+    name: "Silvia Errico",
+    role: "Coach di LinkedIn e Instagram",
+    tagline: "Da zero clienti a vivere del proprio lavoro.",
+    before:
+      "Silvia partiva da tanta paura, zero clienti e un business inesistente. Era bloccata dal giudizio su sé stessa, incapace di mostrarsi come la professionista che era.",
+    after: (
+      <>
+        Ha completamente trasformato mentalità e business. Ora{" "}
+        <strong className="font-semibold text-ink">vive del suo lavoro</strong>, con un’attività che
+        riflette al 100% la sua personalità.
+      </>
+    ),
+    youtubeId: "G-ElGXQXcNg",
+    photo: silviaErricoImg,
+  },
+  {
+    name: "Elisabetta Bettonte",
+    role: "Parent Coach",
+    tagline: "Da -10.000€ a 6.000€ mensili, ora seleziona lei i clienti.",
+    before:
+      "Partiva da una situazione di -10.000€, dopo aver investito in molteplici corsi senza risultati concreti. Aveva una motivazione bassissima.",
+    after: (
+      <>
+        Ha raggiunto i <strong className="font-semibold text-ink">6.000€ mensili</strong>,
+        trasformandosi in una vera imprenditrice. Ora è lei a selezionare i clienti, con una
+        mentalità vincente.
+      </>
+    ),
+    youtubeId: "zVAuDJ4xJC8",
+    photo: elisabettaBettonteImg,
+  },
+  {
+    name: "Francesca Solignani",
+    role: "Instagram Coach per Nutrizionisti",
+    tagline: "Da zero richieste a flusso costante di clienti.",
+    before:
+      "Francesca era in una fase di stallo, con zero richieste da parte dei clienti. Veniva da un’esperienza negativa con un coaching precedente che l’aveva lasciata demotivata.",
+    after: (
+      <>
+        Oggi è una <strong className="font-semibold text-ink">figura di riferimento</strong> nel
+        settore dei nutrizionisti su Instagram, con un flusso costante di clienti e piena
+        soddisfazione personale.
+      </>
+    ),
+    youtubeId: "h7V0kkYzhec",
+    photo: francescaSolignaniImg,
+  },
+  {
+    name: "Cristina Buliga",
+    role: "Life & Business Coach",
+    tagline: "Cinque clienti High Ticket acquisiti in quattro mesi.",
+    before:
+      "Cristina si trovava in una fase di confusione, con tante idee ma senza sapere come trasformarle in un’offerta concreta e attrarre i primi clienti.",
+    after: (
+      <>
+        In soli quattro mesi ha acquisito{" "}
+        <strong className="font-semibold text-ink">cinque clienti High Ticket</strong> e lanciato
+        con successo il suo business, con una presenza online che converte follower in clienti.
+      </>
+    ),
+    youtubeId: "8JrTY4ulPZQ",
+    photo: cristinaBuligaImg,
+  },
+  {
+    name: "Roberta Trabucco",
+    role: "Make Up Alchemist",
+    tagline: "Ha creato un’identità unica: la “Make Up Alchemist”.",
+    before:
+      "Roberta ha attraversato momenti difficili: dopo aver perso il lavoro si è trovata a un punto morto, senza una direzione chiara su come reinventarsi.",
+    after: (
+      <>
+        Ha unito le sue diverse competenze in un’identità unica, la{" "}
+        <strong className="font-semibold text-ink">“Make Up Alchemist”</strong>. Ora seleziona i
+        clienti allineati alla sua visione, con serenità e consapevolezza.
+      </>
+    ),
+    youtubeId: "2Q3Keue0i7w",
+    photo: robertaTrabuccoImg,
+  },
+  {
+    name: "Martina Ferrari",
+    role: "Wedding Planner · Coach per Wedding Planner",
+    tagline: "Da crisi d’identità come wedding planner a 30 clienti in 6 mesi.",
+    before:
+      "Quando ha iniziato il percorso, Martina aveva già un business avviato come wedding planner, clienti e risultati, ma si trovava in una fase di forte confusione. Sentiva che quel ruolo non riusciva più a rappresentarla completamente e cercava di incastrarsi in un’identità professionale che ormai le stava stretta.",
+    after: (
+      <>
+        Ha capito di non essere soltanto una wedding planner, ma{" "}
+        <strong className="font-semibold text-ink">un’imprenditrice</strong> con il bisogno di
+        creare, evolvere e mettere tutte le sue competenze in un progetto che la rappresentasse
+        davvero. Ha creato il suo programma dedicato alle professioniste del mondo wedding e, nei
+        primi sei mesi, ha raggiunto{" "}
+        <strong className="font-semibold text-ink">30 clienti e raddoppiato il fatturato</strong>.
+        Continua a far evolvere il suo brand e sta per aprire anche il suo studio.
+      </>
+    ),
+    youtubeId: "lFtIzpBgW9c",
+    photo: martinaFerrariImg,
   },
 ];
 
@@ -468,6 +836,20 @@ function HeroCheck() {
 }
 
 function CandidaturaAmbiziosa() {
+  // Fumetto aperto sopra una pillola di settore (hover da desktop, tocco da
+  // telefono) e nome della testimonianza da aprire quando si clicca il link
+  // "guarda la video testimonianza" dentro al fumetto.
+  const [openSector, setOpenSector] = useState<string | null>(null);
+  const [activeTestimonialName, setActiveTestimonialName] = useState<string | undefined>(undefined);
+
+  function goToTestimonial(name: string) {
+    setActiveTestimonialName(name);
+    setOpenSector(null);
+    document
+      .getElementById("testimonianze")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   return (
     <div className="bg-background">
       {/* 1. Header sticky — AmbiziosaTopbar (stato aperto/chiuso, countdown, menu) */}
@@ -602,26 +984,85 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 3. Riprova sociale immediata */}
-      <section className="bg-background px-4 py-8 sm:px-8 sm:py-10">
-        <div className="mx-auto max-w-[880px] text-center">
-          <h2 className="text-2xl font-semibold text-foreground sm:text-3xl">
-            Ci sarà un motivo se{" "}
-            <strong className="font-semibold">
-              Ambiziosa ha funzionato con centinaia di professioniste diverse
-            </strong>{" "}
-            in settori completamente diversi tra di loro, no?
-          </h2>
-        </div>
-        <div className="mx-auto mt-6 flex max-w-4xl flex-wrap items-center justify-center gap-2">
-          {SECTORS.map((s) => (
-            <span
-              key={s}
-              className="inline-flex items-center rounded-full px-3 py-1 font-condensed text-[10px] font-semibold uppercase tracking-[0.06em] sm:text-xs sm:tracking-[0.1em]"
-              style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
-            >
-              {s}
-            </span>
-          ))}
+      <section className="bg-background px-4 py-12 sm:px-8 sm:py-16">
+        <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <div className="text-left">
+            <h2 className="text-2xl font-semibold text-foreground sm:text-3xl">
+              Ci sarà un motivo se{" "}
+              <Highlight>
+                <strong className="font-semibold">
+                  Ambiziosa ha funzionato con centinaia di professioniste diverse
+                </strong>
+              </Highlight>{" "}
+              in settori completamente diversi tra di loro, no?
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-foreground/85 sm:text-lg">
+              La maggior parte delle professioniste che finisce in burnout su Instagram, pensando di
+              mollare il proprio business, parte da strategie che non sono specifiche per loro, ma
+              che hanno solo visto funzionare per altri. In realtà, le professioniste che riescono
+              davvero a sfondare online hanno tutte una cosa in comune:{" "}
+              <strong className="font-semibold">un'identità forte, chiara e definita</strong>. In
+              Ambiziosa facciamo esattamente questo.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2.5">
+            {SECTOR_TESTIMONIALS.map((item) => (
+              <div key={item.sector} className="relative">
+                <button
+                  type="button"
+                  onMouseEnter={() => setOpenSector(item.sector)}
+                  onMouseLeave={() => setOpenSector((cur) => (cur === item.sector ? null : cur))}
+                  onClick={() => setOpenSector(item.sector)}
+                  aria-expanded={openSector === item.sector}
+                  className="inline-flex w-full items-center justify-center rounded-full px-3 py-2 text-center font-condensed text-[10px] font-semibold uppercase tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:text-xs sm:tracking-[0.1em]"
+                  style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+                >
+                  {item.sector}
+                </button>
+
+                {openSector === item.sector ? (
+                  <div
+                    className="animate-sway absolute bottom-full left-1/2 z-20 mb-3 w-56 -translate-x-1/2 rounded-2xl p-4 text-left shadow-xl sm:w-64"
+                    style={{
+                      backgroundColor: "rgba(255, 255, 255, 0.9)",
+                      border: "1px solid rgba(255, 255, 255, 0.6)",
+                      backdropFilter: "blur(10px)",
+                    }}
+                  >
+                    <p className="text-sm font-semibold" style={{ color: "var(--secondary)" }}>
+                      {item.name}
+                    </p>
+                    <p className="mt-1.5 text-xs leading-snug text-foreground/80">
+                      <span className="font-semibold">Punto A: </span>
+                      {item.before}
+                    </p>
+                    <p className="mt-1 text-xs leading-snug text-foreground/80">
+                      <span className="font-semibold">Punto B: </span>
+                      {item.after}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => goToTestimonial(item.name)}
+                      className="mt-2.5 text-left text-xs font-semibold underline underline-offset-2"
+                      style={{ color: "var(--secondary)" }}
+                    >
+                      Guarda la sua video testimonianza →
+                    </button>
+                    <span
+                      className="absolute left-1/2 top-full -mt-1.5 size-3 -translate-x-1/2 rotate-45"
+                      style={{
+                        backgroundColor: "rgba(255, 255, 255, 0.9)",
+                        borderBottom: "1px solid rgba(255, 255, 255, 0.6)",
+                        borderRight: "1px solid rgba(255, 255, 255, 0.6)",
+                      }}
+                      aria-hidden
+                    />
+                  </div>
+                ) : null}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -1055,69 +1496,42 @@ function CandidaturaAmbiziosa() {
         </div>
       </section>
 
-      {/* 16. Testimonianze / casi studio */}
+      {/* 16. Testimonianze / casi studio — stessa sezione "video testimonianze" di Rule
+          the Rules (src/routes/index.tsx), importata qui tale quale */}
       <section
-        id="storie"
+        id="testimonianze"
         className="px-4 py-16 sm:px-8 sm:py-24"
         style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
       >
         <div className="mx-auto max-w-6xl">
           <Reveal>
-            <p className="eyebrow text-center">Risultati reali</p>
-            <h2 className="mt-3 text-center text-3xl sm:text-4xl">
-              Chi ha già percorso <Highlight dark>questa strada</Highlight>
+            <h2 className="text-3xl sm:text-4xl">
+              Ascolta le parole di chi ha già <Highlight dark>seguito il mio metodo</Highlight>
             </h2>
+            <p className="mt-3 text-base text-ink-muted sm:text-lg">
+              Se con loro ha funzionato, perché con te non dovrebbe funzionare?
+            </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((t, i) => (
-              <Reveal key={t.name} delay={i * 60}>
-                <div
-                  className="flex h-full flex-col gap-4 rounded-2xl p-6"
-                  style={{
-                    backgroundColor: "color-mix(in oklab, var(--secondary) 82%, transparent)",
-                    border: "1px solid color-mix(in oklab, var(--primary) 25%, transparent)",
-                  }}
-                >
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={t.photo}
-                      alt={t.name}
-                      loading="lazy"
-                      className="size-12 shrink-0 rounded-full object-cover"
-                    />
-                    <div className="min-w-0">
-                      <p className="text-sm font-semibold">{t.name}</p>
-                      <p className="text-[11px] uppercase tracking-[0.04em] text-ink-muted">
-                        {t.role}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="font-condensed text-2xl font-bold text-primary" aria-hidden>
-                    {t.metric}
-                  </p>
-                  <p className="text-sm leading-relaxed text-ink-muted">
-                    <Quote className="mr-1 mb-0.5 inline size-3.5 opacity-60" />
-                    {t.context}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <TestimonialsExplorer
+            testimonials={videoTestimonials}
+            initialName={activeTestimonialName}
+          />
 
           <Reveal delay={200}>
-            {/* LOREM - sezione 16, disclaimer, sostituire con copy reale */}
             <div
               className="mx-auto mt-10 max-w-3xl border-l-2 pl-5 text-xs leading-relaxed text-ink-muted"
               style={{ borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)" }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit: i risultati riportati sono
-              individuali e non rappresentano una promessa o garanzia di risultati futuri. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua: i risultati dipendono da
-              variabili individuali come mercato di riferimento, applicazione pratica del metodo e
-              impegno personale.
+              I risultati riportati sono individuali e non rappresentano una promessa o garanzia di
+              risultati futuri: dipendono da variabili individuali come mercato di riferimento,
+              applicazione pratica del metodo e impegno personale.
             </div>
           </Reveal>
+
+          <div className="mt-10 flex justify-center">
+            <AmbiziosaCtaButton variant="hero" />
+          </div>
         </div>
       </section>
 

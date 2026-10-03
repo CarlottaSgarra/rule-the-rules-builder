@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VideoFrame } from "@/components/landing/VideoFrame";
 
 export type Testimonial = {
@@ -13,10 +13,22 @@ export type Testimonial = {
 
 type Props = {
   testimonials: Testimonial[];
+  /** Nome della testimonianza da aprire all'arrivo (es. da un link esterno alla sezione). */
+  initialName?: string;
 };
 
-export function TestimonialsExplorer({ testimonials }: Props) {
-  const [activeIndex, setActiveIndex] = useState(0);
+export function TestimonialsExplorer({ testimonials, initialName }: Props) {
+  const [activeIndex, setActiveIndex] = useState(() => {
+    const i = testimonials.findIndex((t) => t.name === initialName);
+    return i >= 0 ? i : 0;
+  });
+
+  useEffect(() => {
+    if (!initialName) return;
+    const i = testimonials.findIndex((t) => t.name === initialName);
+    if (i >= 0) setActiveIndex(i);
+  }, [initialName, testimonials]);
+
   const active = testimonials[activeIndex];
 
   return (
