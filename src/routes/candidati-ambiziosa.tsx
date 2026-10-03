@@ -1147,43 +1147,34 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 3b. Reframe del problema: hai seguito mille corsi... */}
-      <section style={{ backgroundColor: "var(--secondary)" }}>
-        <div className="mx-auto grid max-w-6xl lg:grid-cols-2">
-          <div className="relative min-h-[360px] overflow-hidden lg:min-h-[560px]">
-            <img
-              src={carlottaLeftImg}
-              alt="Carlotta Sgarra"
-              loading="lazy"
-              className="absolute inset-0 h-full w-full object-cover"
-              style={{ objectPosition: "center 15%" }}
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(to top, color-mix(in oklab, var(--secondary) 95%, transparent) 5%, transparent 60%)",
-              }}
-            />
-            <div className="relative flex h-full items-end p-6 sm:p-10">
-              <h2
-                className="text-2xl font-semibold sm:text-3xl"
-                style={{ color: "var(--secondary-foreground)" }}
-              >
-                Hai seguito mille corsi e corsetti e le regole le sai. Eppure non ti senti tu su
-                Instagram.
-              </h2>
-            </div>
-          </div>
+      <section className="relative overflow-hidden" style={{ backgroundColor: "var(--secondary)" }}>
+        <img
+          src={carlottaLeftImg}
+          alt="Carlotta Sgarra"
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: "center 15%", transform: "scaleX(-1)" }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ backgroundColor: "color-mix(in oklab, var(--secondary) 74%, transparent)" }}
+        />
 
-          <div
-            className="px-6 py-10 sm:px-10 sm:py-14"
-            style={{ color: "var(--secondary-foreground)" }}
-          >
+        <div
+          className="relative mx-auto grid max-w-6xl gap-8 px-6 py-14 sm:px-10 sm:py-20 lg:grid-cols-2 lg:items-center"
+          style={{ color: "var(--secondary-foreground)" }}
+        >
+          <h2 className="text-2xl font-semibold sm:text-3xl">
+            Hai seguito mille corsi e corsetti e le regole le sai. Eppure{" "}
+            <Highlight dark>non ti senti tu</Highlight> su Instagram.
+          </h2>
+
+          <div>
             <p className="text-sm leading-relaxed sm:text-base">
               Hai studiato e hai imparato hook, script e CTA. Hai salvato strategie su strategie e
               hai tenuto un piano editoriale anche quando ti stava stretto. In tutto questo hai
-              investito tempo, energie e magari soldi in corsi e metodi diversi, quindi l'impegno
-              non ti è mai mancato.
+              investito tempo, energie e magari soldi in corsi e metodi diversi, quindi{" "}
+              <strong className="font-semibold">l'impegno non ti è mai mancato</strong>.
             </p>
             <p className="mt-4 text-sm leading-relaxed sm:text-base">
               E nonostante questo ti ritrovi a dire:
@@ -1199,9 +1190,12 @@ function CandidaturaAmbiziosa() {
             </ul>
 
             <p className="mt-6 text-sm leading-relaxed sm:text-base">
-              E questa cosa ti dà fastidio, dentro di te, perché vorresti differenziarti ma non
-              riesci a trasmetterlo. Hai paura che anche i tuoi potenziali clienti vedano questo:
-              perché dovrebbero venire da te e non andare da un'altra?
+              E questa cosa ti dà fastidio, dentro di te, perché{" "}
+              <strong className="font-semibold">
+                vorresti differenziarti ma non riesci a trasmetterlo
+              </strong>
+              . Hai paura che anche i tuoi potenziali clienti vedano questo: perché dovrebbero
+              venire da te e non andare da un'altra?
             </p>
 
             <p className="mt-4 text-base font-semibold sm:text-lg">
