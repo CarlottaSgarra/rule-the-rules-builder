@@ -41,7 +41,6 @@ import { AmbiziosaHeroVideo } from "@/components/landing/AmbiziosaHeroVideo";
 import { ProfileBeforeAfter, ResultsCards } from "@/components/landing/AmbiziosaProofCards";
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
 import { submitAmbiziosaApplication } from "@/lib/ambiziosa-application";
-import carlottaHugImg from "@/assets/carlotta-hug.jpg";
 import carlottaLookingImg from "@/assets/carlotta-looking-2.jpg";
 import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
 import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
@@ -256,36 +255,6 @@ const JOURNEY_STEPS = [
         <strong className="font-semibold">il metodo ormai lo conosci e sai usarlo da sola</strong>.
       </>
     ),
-  },
-];
-
-const steps = [
-  {
-    n: "01",
-    title: "Radica chi sei",
-    subtitle: "Costruzione Identità e Offerta",
-    description:
-      "Costruiamo insieme la tua Identità e la tua Offerta: le basi di un business identitario e fruttuoso.",
-  },
-  {
-    n: "02",
-    title: "Progetta i contenuti",
-    subtitle: "Costruzione Strategia Contenuti Identitaria e Piano Editoriale ad hoc",
-    description:
-      "Costruiamo la tua Strategia Contenuti Identitaria e il tuo Piano Editoriale ad hoc.",
-  },
-  {
-    n: "03",
-    title: "Attiva i contenuti",
-    subtitle: "Pubblicazione con editing identitario e strategie per vendere",
-    description:
-      "Pubblichiamo i contenuti con editing identitario e strategie pensate per vendere.",
-  },
-  {
-    n: "04",
-    title: "Chiudi e scala",
-    subtitle: "Dal follower al cliente, tra DM e call conoscitiva",
-    description: "Trasformiamo il follower in cliente, tra DM e call conoscitiva.",
   },
 ];
 
@@ -811,14 +780,6 @@ const forWhoCards = [
       "Consulente di web marketing",
     ],
   },
-];
-
-const scenarios = [
-  "Lorem ipsum dolor sit amet, apri Instagram e sai esattamente cosa pubblicare oggi, senza ansia da pagina bianca.",
-  "Consectetur adipiscing elit, rispondi a un DM e nel giro di pochi minuti fissi una call conoscitiva.",
-  "Sed do eiusmod tempor incididunt, chiudi la settimana sapendo esattamente da dove arriveranno le prossime clienti.",
-  "Ut labore et dolore magna aliqua, guardi il calendario dei contenuti e non è più un pensiero, è un sistema che gira da solo.",
-  "Quis nostrud exercitation ullamco laboris, ti senti finalmente riconoscibile in un mercato pieno di professioniste uguali.",
 ];
 
 // I 6 punti del percorso, costruiti come le "3 serate" di Rule The Rules:
@@ -2442,84 +2403,6 @@ function CandidaturaAmbiziosa() {
               </div>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* 8. I 4 step del percorso */}
-      <section id="step-1" className="bg-background">
-        <div className="mx-auto max-w-6xl px-5 py-20">
-          <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-start">
-            <Reveal>
-              <div className="md:sticky md:top-28">
-                <span
-                  className="inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
-                  style={{
-                    backgroundImage: "var(--gradient-gold)",
-                    boxShadow: "var(--shadow-gold)",
-                  }}
-                >
-                  Come si svolge Ambiziosa
-                </span>
-                <h2 className="mt-4 text-3xl text-foreground sm:text-4xl">
-                  Il percorso in <Highlight>4 step</Highlight>
-                </h2>
-                <p className="mt-4 text-base leading-relaxed text-foreground/75 sm:text-lg">
-                  Un passo alla volta:{" "}
-                  <strong className="font-semibold text-foreground">
-                    prima chi sei, poi i contenuti, poi la vendita
-                  </strong>
-                  .
-                </p>
-              </div>
-            </Reveal>
-
-            <div className="space-y-4">
-              {steps.map((s, i) => (
-                <Reveal key={s.n} delay={i * 100}>
-                  <div className="flex gap-6 rounded-xl border border-border/70 bg-card/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-secondary">
-                    <span className="shrink-0 font-condensed text-4xl text-secondary sm:text-5xl">
-                      {s.n}
-                    </span>
-                    <div>
-                      <p className="font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
-                        {s.subtitle}
-                      </p>
-                      <h3 className="mt-1 text-lg font-semibold text-foreground sm:text-xl">
-                        {s.title}
-                      </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-foreground/85 sm:text-base">
-                        {s.description}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 10. Proiezione di scenari futuri concreti */}
-      <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
-        <div className="mx-auto grid max-w-5xl gap-10 px-5 py-20 md:grid-cols-[0.9fr_1.1fr] md:items-center">
-          <Reveal>
-            <img
-              src={carlottaHugImg}
-              alt="Carlotta Sgarra con una professionista che segue il suo metodo"
-              loading="lazy"
-              className="mx-auto aspect-[4/5] w-[85%] rounded-2xl object-cover"
-            />
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 className="text-3xl sm:text-4xl">
-              Immagina tra <Highlight dark>4 mesi</Highlight>
-            </h2>
-            <div className="mt-6 space-y-5 text-base leading-relaxed text-ink-muted">
-              {scenarios.map((s, i) => (
-                <p key={i}>{s}</p>
-              ))}
-            </div>
-          </Reveal>
         </div>
       </section>
 
