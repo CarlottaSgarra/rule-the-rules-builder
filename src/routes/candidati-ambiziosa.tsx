@@ -711,27 +711,97 @@ const faqs = [
 const forWhoCards = [
   {
     n: "01",
-    role: "La coach 1:1",
-    lorem:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ha costruito le fondamenta ma non le ha ancora rese un sistema.",
+    role: "Coach e mentor",
+    photo: francescaSolignaniImg,
+    paragraphs: [
+      <>Hai passato la settimana tra sessioni, messaggi e contenuti da preparare.</>,
+      <>
+        Venerdì sera fai i conti:{" "}
+        <strong className="font-semibold">
+          lavori tantissimo e non c'è una proporzione reale con quello che guadagni
+        </strong>
+        .
+      </>,
+      <>
+        Ripensi ai corsi e ai coach in cui hai investito tempo e soldi, ai{" "}
+        <strong className="font-semibold">risultati concreti che non sono mai arrivati</strong>.
+      </>,
+    ],
+    examples: ["Business coach", "Life coach", "Mental coach", "Mentor"],
   },
   {
     n: "02",
-    role: "La consulente",
-    lorem:
-      "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat, sa esattamente chi è ma fatica a trasformarlo in contenuti che vendono.",
+    role: "Consulenti e strategist",
+    photo: valeriaSalussoliImg,
+    paragraphs: [
+      <>Mandi un preventivo e aspetti.</>,
+      <>
+        Dopo qualche giorno arriva la risposta di sempre:{" "}
+        <strong className="font-semibold">"Ci pensiamo."</strong>
+      </>,
+      <>
+        Eppure i tuoi{" "}
+        <strong className="font-semibold">
+          prezzi sono già troppo bassi per la qualità che offri
+        </strong>
+        , perché non sei ancora riuscita a farti riconoscere per quello che vali.
+      </>,
+      <>
+        Intanto apri Instagram e{" "}
+        <strong className="font-semibold">
+          ti chiedi se là fuori ci sia sempre qualcuna più brava di te
+        </strong>
+        .
+      </>,
+    ],
+    examples: [
+      "Consulente di marketing",
+      "Brand strategist",
+      "Consulente d'immagine",
+      "Web marketing",
+    ],
   },
   {
     n: "03",
-    role: "La professionista con servizi 1:1",
-    lorem:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, ha clienti soddisfatte ma nessun sistema per acquisirne di nuove con costanza.",
+    role: "Professioniste della bellezza e del benessere",
+    photo: silviaBedinImg,
+    paragraphs: [
+      <>Hai anni di esperienza e un lavoro che sai fare benissimo.</>,
+      <>
+        Le richieste che ricevi, però, sono <strong className="font-semibold">generiche</strong>:
+        chi ti scrive vuole sapere solo il prezzo e spesso cerca il{" "}
+        <strong className="font-semibold">low cost</strong>.
+      </>,
+      <>
+        Il tuo lavoro vale molto di più ma{" "}
+        <strong className="font-semibold">online questo valore non si vede</strong>, per questo ti
+        scelgono in base al costo.
+      </>,
+    ],
+    examples: ["Make-up artist", "Estetista", "Nutrizionista", "Personal trainer"],
   },
   {
     n: "04",
-    role: "La professionista in transizione",
-    lorem:
-      "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum, sta cambiando direzione e vuole ripartire su basi solide, questa volta.",
+    role: "Social media manager",
+    photo: valentinaGiuriatoImg,
+    paragraphs: [
+      <>
+        Passi le giornate a curare la comunicazione dei tuoi clienti e per la tua non resta mai
+        tempo.
+      </>,
+      <>
+        C'è quel cliente tossico che ti scrive a qualsiasi ora e non rispetta il tuo lavoro, ma lo
+        tieni perché <strong className="font-semibold">ti sottovaluti</strong> e{" "}
+        <strong className="font-semibold">non riesci a chiedere il giusto compenso</strong>.
+      </>,
+      <>A fine giornata sei stanca e a volte ti viene voglia di mollare tutto.</>,
+    ],
+    examples: [
+      "Social media manager",
+      "Content creator",
+      "Community manager",
+      "Consulente di web marketing",
+    ],
   },
 ];
 
@@ -1447,23 +1517,90 @@ function CandidaturaAmbiziosa() {
         <div className="mx-auto max-w-5xl">
           <Reveal>
             <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Ambiziosa è per te se ti riconosci in una di queste
+              Se rientri in una delle categorie qui sotto, allora Ambiziosa è il percorso perfetto
+              per te
             </h2>
           </Reveal>
           <div className="mt-8 grid gap-5 sm:grid-cols-2">
             {forWhoCards.map((c, i) => (
               <Reveal key={c.role} delay={i * 60}>
-                <div className="surface-card h-full p-6">
-                  <span className="font-condensed text-2xl font-bold text-primary/70">{c.n}</span>
-                  <p className="mt-2 text-base font-semibold text-foreground">{c.role}</p>
-                  {/* LOREM - sezione 4, card {c.role}, sostituire con copy reale */}
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{c.lorem}</p>
+                <div className="relative flex h-full min-h-[440px] flex-col overflow-hidden rounded-2xl">
+                  <img
+                    src={c.photo}
+                    alt=""
+                    aria-hidden
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                  <div
+                    className="absolute inset-0"
+                    style={{ backgroundColor: "var(--secondary)", opacity: 0.84 }}
+                  />
+                  <div className="relative flex h-full flex-col gap-4 p-6">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="font-condensed text-xl font-bold text-primary/70">
+                        {c.n}
+                      </span>
+                      <span
+                        className="inline-flex items-center rounded-full px-3 py-1.5 font-condensed text-base font-bold uppercase tracking-[0.03em] sm:text-lg"
+                        style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+                      >
+                        {c.role}
+                      </span>
+                    </div>
+                    <div className="space-y-3">
+                      {c.paragraphs.map((p, pi) => (
+                        <p
+                          key={pi}
+                          className="text-sm leading-relaxed"
+                          style={{ color: "var(--secondary-foreground)", opacity: 0.92 }}
+                        >
+                          {p}
+                        </p>
+                      ))}
+                    </div>
+                    <div className="mt-auto flex flex-wrap gap-2 pt-2">
+                      {c.examples.map((ex) => (
+                        <span
+                          key={ex}
+                          className="rounded-full px-3 py-1 text-xs"
+                          style={{
+                            color: "var(--secondary-foreground)",
+                            backgroundColor:
+                              "color-mix(in oklab, var(--secondary-foreground) 16%, transparent)",
+                            border:
+                              "1px solid color-mix(in oklab, var(--secondary-foreground) 35%, transparent)",
+                          }}
+                        >
+                          {ex}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             ))}
           </div>
 
           <Reveal delay={240}>
+            <div className="mx-auto mt-10 max-w-2xl space-y-4 text-center">
+              <p className="text-sm leading-relaxed text-foreground/85 sm:text-base">
+                Sotto, quasi sempre, c'è lo stesso pensiero:{" "}
+                <strong className="font-semibold">
+                  "So di essere brava, ma Instagram non riesce a raccontarlo."
+                </strong>
+              </p>
+              <p className="text-sm leading-relaxed text-foreground/85 sm:text-base">
+                <strong className="font-semibold">
+                  Non importa che il tuo settore sia molto tecnico o molto di nicchia.
+                </strong>{" "}
+                Ogni professionista con cui ho lavorato è riuscita a tirar fuori un'identità e un
+                posizionamento unici, anche in settori difficili.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={300}>
             <div className="surface-card mx-auto mt-6 max-w-2xl p-6">
               <p className="text-sm font-semibold uppercase tracking-[0.04em] text-destructive">
                 Non fa per te se
