@@ -823,11 +823,10 @@ const scenarios = [
 
 // I 6 punti del percorso, costruiti come le "3 serate" di Rule The Rules:
 // illustrazione React del punto + titolo + intro a sinistra, checklist a
-// destra, titoletto riassuntivo nel badge oro.
+// destra, titolo del punto nel badge oro.
 const communicationPillars: {
   n: string;
   title: string;
-  badge: string;
   visual: PillarVisualVariant;
   intro: React.ReactNode;
   bullets: React.ReactNode[];
@@ -835,7 +834,6 @@ const communicationPillars: {
   {
     n: "1",
     title: "La tua identità",
-    badge: "La base di tutto",
     visual: "identity",
     intro: (
       <>
@@ -864,7 +862,6 @@ const communicationPillars: {
   {
     n: "2",
     title: "I tuoi macro topic",
-    badge: "I temi della tua comunicazione",
     visual: "macro-topics",
     intro: (
       <>
@@ -886,7 +883,6 @@ const communicationPillars: {
   {
     n: "3",
     title: "La tua banca idee personalizzata",
-    badge: "Mai più pagina bianca",
     visual: "idea-bank",
     intro: (
       <>
@@ -908,7 +904,6 @@ const communicationPillars: {
   {
     n: "4",
     title: "La struttura dei tuoi contenuti",
-    badge: "Ogni contenuto ha un ruolo",
     visual: "structure",
     intro: (
       <>
@@ -933,7 +928,6 @@ const communicationPillars: {
   {
     n: "5",
     title: "La tua direzione comunicativa",
-    badge: "Sai sempre dove stai andando",
     visual: "direction",
     intro: (
       <>
@@ -958,7 +952,6 @@ const communicationPillars: {
   {
     n: "6",
     title: "La tua strategia completa di comunicazione",
-    badge: "Tutto in una sola strategia",
     visual: "strategy",
     intro: (
       <>
@@ -1779,8 +1772,7 @@ function CandidaturaAmbiziosa() {
 
                     <div className="relative">
                       <AmbiziosaPillarVisual variant={p.visual} />
-                      <h3 className="mt-5 text-xl text-ink sm:text-2xl">{p.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-ink-muted sm:text-base">
+                      <p className="mt-5 text-sm leading-relaxed text-ink-muted sm:text-base">
                         {p.intro}
                       </p>
                     </div>
@@ -1806,12 +1798,12 @@ function CandidaturaAmbiziosa() {
                     </div>
                   </div>
 
-                  <span
+                  <h3
                     className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-2xl px-3 py-2 font-condensed text-[10px] font-semibold uppercase tracking-[0.05em] text-primary-foreground shadow-[0_10px_24px_-8px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:-translate-y-1 sm:-left-3 sm:translate-x-0 sm:px-5 sm:py-3 sm:text-base sm:tracking-[0.15em] md:-left-5 md:px-6"
                     style={{ backgroundImage: "var(--gradient-gold)" }}
                   >
-                    {p.badge}
-                  </span>
+                    {p.title}
+                  </h3>
                 </div>
               </Reveal>
             ))}
