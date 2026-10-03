@@ -805,12 +805,6 @@ const forWhoCards = [
   },
 ];
 
-const notForYouPoints = [
-  "Lorem ipsum dolor sit amet, stai cercando l'ennesimo corso da guardare senza mai applicarlo.",
-  "Consectetur adipiscing elit, non hai ancora chiuso nessuna delle 3 serate di Rule the Rules.",
-  "Sed do eiusmod tempor incididunt, cerchi un format già pronto invece di costruire il tuo sistema identitario.",
-];
-
 const scenarios = [
   "Lorem ipsum dolor sit amet, apri Instagram e sai esattamente cosa pubblicare oggi, senza ansia da pagina bianca.",
   "Consectetur adipiscing elit, rispondi a un DM e nel giro di pochi minuti fissi una call conoscitiva.",
@@ -1597,22 +1591,6 @@ function CandidaturaAmbiziosa() {
                 Ogni professionista con cui ho lavorato è riuscita a tirar fuori un'identità e un
                 posizionamento unici, anche in settori difficili.
               </p>
-            </div>
-          </Reveal>
-
-          <Reveal delay={300}>
-            <div className="surface-card mx-auto mt-6 max-w-2xl p-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.04em] text-destructive">
-                Non fa per te se
-              </p>
-              <ul className="mt-3 space-y-2.5 text-sm leading-relaxed text-muted-foreground">
-                {notForYouPoints.map((p) => (
-                  <li key={p} className="flex gap-2">
-                    <XCircle className="mt-0.5 size-4 shrink-0 text-destructive" />
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </Reveal>
         </div>
