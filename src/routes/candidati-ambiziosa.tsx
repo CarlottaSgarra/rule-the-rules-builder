@@ -23,6 +23,7 @@ import {
   ShieldCheck,
   Gift,
   Star,
+  ChevronDown,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -39,6 +40,7 @@ import carlottaLookingImg from "@/assets/carlotta-looking-2.jpg";
 import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
 import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
 import carlottaLeftImg from "@/assets/Carlotta bianco e nerco che guarda a sinistra.jpg";
+import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
 import elenaRosaImg from "@/assets/elena-rosa.jpg";
 import silviaBedinImg from "@/assets/silvia-bedin.jpg";
 import mariangelaSimioliImg from "@/assets/mariangela-simioli.jpg";
@@ -169,6 +171,64 @@ const CONTENT_PAIN_POINTS = [
   "Quando registro mi sembra di recitare.",
   "Non mi riconosco più in quello che pubblico.",
   "Vedo le altre e mi sembra di essere uguale.",
+];
+
+// Giornata tipo dopo Ambiziosa (sezione 3c): copy esatto fornito, spezzato
+// in label (il momento della giornata) + testo del riquadro.
+const JOURNEY_STEPS = [
+  {
+    label: "Una mattina qualsiasi",
+    text: (
+      <>
+        Apri il tuo profilo Instagram e pensi:{" "}
+        <strong className="font-semibold">questa sono io.</strong> Quello che pubblichi racconta chi
+        sei e cosa fai: chi arriva sulla tua pagina lo capisce in pochi secondi.
+      </>
+    ),
+  },
+  {
+    label: "Quando decidi cosa pubblicare",
+    text: (
+      <>
+        Apri la tua banca idee, scegli e registri con{" "}
+        <strong className="font-semibold">
+          la serenità di chi sa perché sta dicendo quella cosa
+        </strong>
+        . Hai una struttura che ti sostiene, quindi sei libera di essere creativa.
+      </>
+    ),
+  },
+  {
+    label: "Nel pomeriggio",
+    text: (
+      <>
+        Rispondi ai messaggi di persone che hanno già capito cosa fai e perché sei diversa. Le loro
+        richieste sono dettagliate e mirate, il tuo prezzo lo dici con sicurezza e{" "}
+        <strong className="font-semibold">scegli tu con chi lavorare</strong>.
+      </>
+    ),
+  },
+  {
+    label: "La sera",
+    text: (
+      <>
+        Chiudi il computer senza la sensazione di essere sempre un passo indietro. Se scorri i
+        profili delle altre lo fai con serenità, perché{" "}
+        <strong className="font-semibold">il tuo si riconosce tra tutti</strong>.{" "}
+        <strong className="font-semibold">La tua ambizione si è riversata nel tuo business</strong>,
+        che ora ti rispecchia davvero.
+      </>
+    ),
+  },
+  {
+    label: "La strategia successiva",
+    text: (
+      <>
+        Quando arriva il momento di costruirla la fai tu, partendo da quello che sei, perché{" "}
+        <strong className="font-semibold">il metodo ormai lo conosci e sai usarlo da sola</strong>.
+      </>
+    ),
+  },
 ];
 
 const steps = [
@@ -1207,6 +1267,59 @@ function CandidaturaAmbiziosa() {
               Hai competenze e lo sai, però ti senti identica a mille altre professioniste.{" "}
               <strong className="font-semibold">Ora bisogna renderti riconoscibile.</strong>
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 3c. Quello che succede dopo Ambiziosa: giornata tipo a riquadri */}
+      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <div>
+            <h2 className="text-2xl font-semibold text-foreground sm:text-3xl">
+              Quello che succede dopo Ambiziosa è questo.
+            </h2>
+            <p className="mt-3 text-sm text-foreground/80 sm:text-base">
+              E non te lo dico io, ma te lo confermano le centinaia di professioniste che hanno
+              lavorato con me.
+            </p>
+
+            <div className="mt-8">
+              {JOURNEY_STEPS.map((step, i) => (
+                <div key={step.label}>
+                  <div
+                    className="rounded-xl p-5"
+                    style={{ backgroundColor: "var(--card)", border: "1px solid var(--secondary)" }}
+                  >
+                    <p className="font-condensed text-xs font-semibold uppercase tracking-[0.08em] text-secondary">
+                      {step.label}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-foreground sm:text-base">
+                      {step.text}
+                    </p>
+                  </div>
+                  {i < JOURNEY_STEPS.length - 1 ? (
+                    <div className="flex justify-center py-1" aria-hidden>
+                      <ChevronDown className="size-5" style={{ color: "var(--secondary)" }} />
+                    </div>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-6 text-sm leading-relaxed text-foreground/85 sm:text-base">
+              Sei la stessa professionista di prima, con la stessa ambizione. La differenza è che
+              adesso <strong className="font-semibold">online si vede chi sei davvero</strong>.
+            </p>
+          </div>
+
+          <div className="aspect-[4/5] overflow-hidden rounded-[1.75rem] lg:sticky lg:top-24">
+            <img
+              src={carlottaTalkingImg}
+              alt="Carlotta Sgarra"
+              loading="lazy"
+              className="h-full w-full object-cover"
+              style={{ objectPosition: "32% 25%" }}
+            />
           </div>
         </div>
       </section>
