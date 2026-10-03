@@ -175,22 +175,26 @@ const CONTENT_PAIN_POINTS = [
 
 // Giornata tipo dopo Ambiziosa (sezione 3c): copy esatto fornito, spezzato
 // in label (il momento della giornata) + testo del riquadro.
+// Titoli che sintetizzano il contenuto di ogni riquadro (non più l'orario
+// della giornata), con un'icona coerente per ciascuno.
 const JOURNEY_STEPS = [
   {
-    label: "Una mattina qualsiasi",
+    label: "Identità chiara",
+    icon: IdCard,
     text: (
       <>
-        Apri il tuo profilo Instagram e pensi:{" "}
+        Una mattina qualsiasi apri il tuo profilo Instagram e pensi:{" "}
         <strong className="font-semibold">questa sono io.</strong> Quello che pubblichi racconta chi
         sei e cosa fai: chi arriva sulla tua pagina lo capisce in pochi secondi.
       </>
     ),
   },
   {
-    label: "Quando decidi cosa pubblicare",
+    label: "Piano editoriale cucito su di te",
+    icon: CalendarDays,
     text: (
       <>
-        Apri la tua banca idee, scegli e registri con{" "}
+        Quando decidi cosa pubblicare apri la tua banca idee, scegli e registri con{" "}
         <strong className="font-semibold">
           la serenità di chi sa perché sta dicendo quella cosa
         </strong>
@@ -199,21 +203,23 @@ const JOURNEY_STEPS = [
     ),
   },
   {
-    label: "Nel pomeriggio",
+    label: "Clienti in target",
+    icon: Users,
     text: (
       <>
-        Rispondi ai messaggi di persone che hanno già capito cosa fai e perché sei diversa. Le loro
-        richieste sono dettagliate e mirate, il tuo prezzo lo dici con sicurezza e{" "}
+        Nel pomeriggio rispondi ai messaggi di persone che hanno già capito cosa fai e perché sei
+        diversa. Le loro richieste sono dettagliate e mirate, il tuo prezzo lo dici con sicurezza e{" "}
         <strong className="font-semibold">scegli tu con chi lavorare</strong>.
       </>
     ),
   },
   {
-    label: "La sera",
+    label: "Un brand riconoscibile",
+    icon: Sparkles,
     text: (
       <>
-        Chiudi il computer senza la sensazione di essere sempre un passo indietro. Se scorri i
-        profili delle altre lo fai con serenità, perché{" "}
+        La sera chiudi il computer senza la sensazione di essere sempre un passo indietro. Se scorri
+        i profili delle altre lo fai con serenità, perché{" "}
         <strong className="font-semibold">il tuo si riconosce tra tutti</strong>.{" "}
         <strong className="font-semibold">La tua ambizione si è riversata nel tuo business</strong>,
         che ora ti rispecchia davvero.
@@ -221,10 +227,12 @@ const JOURNEY_STEPS = [
     ),
   },
   {
-    label: "La strategia successiva",
+    label: "Il metodo è tuo",
+    icon: ShieldCheck,
     text: (
       <>
-        Quando arriva il momento di costruirla la fai tu, partendo da quello che sei, perché{" "}
+        E quando arriva il momento di costruire la strategia successiva la fai tu, partendo da
+        quello che sei, perché{" "}
         <strong className="font-semibold">il metodo ormai lo conosci e sai usarlo da sola</strong>.
       </>
     ),
@@ -972,17 +980,25 @@ function CandidaturaAmbiziosa() {
               <Highlight dark>
                 <strong className="font-bold">Ambiziosa:</strong>
               </Highlight>{" "}
-              il mio programma per professioniste e imprenditrici che vogliono{" "}
+              il mio programma esclusivo per professioniste e imprenditrici che vogliono{" "}
               <Highlight dark>farsi riconoscere</Highlight> e trasformare l'ambizione in carriera
             </h1>
 
             <p
-              className="mt-6 text-base sm:max-w-[640px] sm:text-lg"
+              className="mt-6 text-sm sm:max-w-[640px] sm:text-base"
               style={{ color: "var(--secondary-foreground)" }}
             >
-              Ambiziosa sono <strong className="font-semibold">4 mesi, io e te</strong>, a lavorare
-              insieme sulla tua identità, la tua comunicazione, i tuoi contenuti e la tua strategia.
-              Non un corso registrato da guardare quando capita, ma un percorso in cui costruiamo
+              <strong className="font-semibold">
+                Ambiziosa è il mio percorso esclusivo, di 4 mesi
+              </strong>
+              , dove io e te lavoriamo insieme sulla tua identità, la tua comunicazione, i tuoi
+              contenuti e la tua strategia.
+            </p>
+            <p
+              className="mt-3 text-sm sm:max-w-[640px] sm:text-base"
+              style={{ color: "var(--secondary-foreground)" }}
+            >
+              Non è un corso registrato da guardare quando capita, ma un percorso in cui costruiamo
               passo dopo passo chi sei online e come lo comunichi, fino a diventare{" "}
               <strong className="font-semibold">
                 un sistema che continua a funzionare anche dopo la fine del percorso
@@ -1213,7 +1229,7 @@ function CandidaturaAmbiziosa() {
           alt="Carlotta Sgarra"
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover"
-          style={{ objectPosition: "center 15%", transform: "scaleX(-1)" }}
+          style={{ objectPosition: "30% 6%", transform: "scaleX(-1)" }}
         />
         <div
           className="absolute inset-0"
@@ -1242,8 +1258,12 @@ function CandidaturaAmbiziosa() {
 
             <ul className="mt-5 space-y-3">
               {CONTENT_PAIN_POINTS.map((p) => (
-                <li key={p} className="flex gap-3 text-sm leading-relaxed sm:text-base">
-                  <XCircle className="mt-0.5 size-4 shrink-0 text-destructive" />
+                <li key={p} className="flex items-start gap-3 text-sm leading-relaxed sm:text-base">
+                  <XCircle
+                    className="mt-0.5 size-5 shrink-0"
+                    style={{ color: "#ff8a80" }}
+                    strokeWidth={2.25}
+                  />
                   <span>“{p}”</span>
                 </li>
               ))}
@@ -1287,15 +1307,21 @@ function CandidaturaAmbiziosa() {
               {JOURNEY_STEPS.map((step, i) => (
                 <div key={step.label}>
                   <div
-                    className="rounded-xl p-5"
+                    className="flex items-start gap-3 rounded-xl p-5"
                     style={{ backgroundColor: "var(--card)", border: "1px solid var(--secondary)" }}
                   >
-                    <p className="font-condensed text-xs font-semibold uppercase tracking-[0.08em] text-secondary">
-                      {step.label}
-                    </p>
-                    <p className="mt-2 text-sm leading-relaxed text-foreground sm:text-base">
-                      {step.text}
-                    </p>
+                    <step.icon
+                      className="mt-0.5 size-5 shrink-0"
+                      style={{ color: "var(--secondary)" }}
+                    />
+                    <div>
+                      <p className="font-condensed text-xs font-semibold uppercase tracking-[0.08em] text-secondary">
+                        {step.label}
+                      </p>
+                      <p className="mt-1.5 text-xs leading-relaxed text-foreground sm:text-sm">
+                        {step.text}
+                      </p>
+                    </div>
                   </div>
                   {i < JOURNEY_STEPS.length - 1 ? (
                     <div className="flex justify-center py-1" aria-hidden>
