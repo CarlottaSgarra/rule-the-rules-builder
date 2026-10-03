@@ -820,12 +820,41 @@ const communicationPillars = [
   {
     n: "1",
     title: "La tua identità",
-    icon: IdCard,
+    mockup: (
+      <div
+        className="surface-card mx-auto w-full max-w-[220px] p-4"
+        style={{ borderRadius: "1.25rem" }}
+      >
+        <div className="flex items-center gap-3">
+          <span
+            className="flex size-9 shrink-0 items-center justify-center rounded-full"
+            style={{ backgroundImage: "var(--gradient-gold)" }}
+          >
+            <IdCard className="size-4 text-primary-foreground" />
+          </span>
+          <div className="min-w-0">
+            <p className="eyebrow">Carta Identitaria</p>
+            <p className="text-xs font-semibold text-foreground sm:text-sm">
+              Il tuo DNA comunicativo
+            </p>
+          </div>
+        </div>
+        <div className="mt-3 space-y-1.5">
+          {[100, 75, 85].map((w, i) => (
+            <div
+              key={i}
+              className="h-1.5 rounded-full bg-foreground/10"
+              style={{ width: `${w}%` }}
+            />
+          ))}
+        </div>
+      </div>
+    ),
     paragraphs: [
-      <>Chi sei come professionista.</>,
-      <>Cosa vuoi rappresentare.</>,
-      <>Quali sono i tuoi valori.</>,
-      <>Cosa vuoi comunicare e quale percezione vuoi costruire.</>,
+      <>
+        Chi sei come professionista, cosa vuoi rappresentare, quali sono i tuoi valori: definiamo
+        insieme cosa vuoi comunicare e quale percezione vuoi costruire.
+      </>,
       <>
         <strong className="font-semibold">
           È la base su cui costruiamo tutto il lavoro successivo.
@@ -836,74 +865,204 @@ const communicationPillars = [
   {
     n: "2",
     title: "I tuoi macro topic",
-    icon: LayoutDashboard,
+    mockup: (
+      <div
+        className="surface-card mx-auto w-full max-w-[220px] p-4"
+        style={{ borderRadius: "1.25rem" }}
+      >
+        <div className="flex items-center gap-3">
+          <span
+            className="flex size-9 shrink-0 items-center justify-center rounded-full"
+            style={{ backgroundImage: "var(--gradient-gold)" }}
+          >
+            <LayoutDashboard className="size-4 text-primary-foreground" />
+          </span>
+          <p className="text-xs font-semibold text-foreground sm:text-sm">I tuoi macro topic</p>
+        </div>
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {["Mindset", "Metodo", "Dietro le quinte", "Risultati"].map((t) => (
+            <span
+              key={t}
+              className="rounded-full px-2.5 py-1 text-[10px] font-semibold text-foreground/70"
+              style={{ backgroundColor: "color-mix(in oklab, var(--foreground) 8%, transparent)" }}
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+    ),
     paragraphs: [
       <>
-        Il mio team prende tutto il lavoro emerso sull'identità e lo trasforma nella tua strategia.
-      </>,
-      <>
-        <strong className="font-semibold">Si parte dai macro topic della tua comunicazione:</strong>{" "}
-        i temi grandi su cui costruire quello che pubblichi.
+        Il mio team prende tutto quello che emerge dal lavoro sull'identità e lo trasforma in
+        strategia,{" "}
+        <strong className="font-semibold">partendo dai macro topic della tua comunicazione</strong>:
+        i temi grandi su cui costruire tutto quello che pubblichi.
       </>,
     ],
   },
   {
     n: "3",
     title: "La tua banca idee personalizzata",
-    icon: Lightbulb,
+    mockup: (
+      <div
+        className="surface-card mx-auto w-full max-w-[220px] p-4"
+        style={{ borderRadius: "1.25rem" }}
+      >
+        <div className="flex items-center gap-3">
+          <span
+            className="flex size-9 shrink-0 items-center justify-center rounded-full"
+            style={{ backgroundImage: "var(--gradient-gold)" }}
+          >
+            <Lightbulb className="size-4 text-primary-foreground" />
+          </span>
+          <p className="text-xs font-semibold text-foreground sm:text-sm">Banca idee</p>
+        </div>
+        <div className="mt-3 space-y-2">
+          {[1, 2, 3].map((n) => (
+            <div key={n} className="flex items-center gap-2">
+              <span
+                className="flex size-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold"
+                style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+              >
+                {n}
+              </span>
+              <div className="h-1.5 flex-1 rounded-full bg-foreground/10" />
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
     paragraphs: [
-      <>Idee di contenuti pensate per te e per il tuo progetto.</>,
       <>
+        Costruiamo una banca di idee di contenuti pensate su misura per te e per il tuo progetto,
+        così{" "}
         <strong className="font-semibold">
-          Quando ti chiedi cosa pubblicare oggi, hai già dove guardare.
+          quando ti chiedi cosa pubblicare oggi, hai già dove guardare
         </strong>
+        .
       </>,
     ],
   },
   {
     n: "4",
     title: "La struttura dei tuoi contenuti",
-    icon: LayoutTemplate,
+    mockup: (
+      <div
+        className="surface-card mx-auto w-full max-w-[220px] p-4"
+        style={{ borderRadius: "1.25rem" }}
+      >
+        <div className="flex items-center gap-3">
+          <span
+            className="flex size-9 shrink-0 items-center justify-center rounded-full"
+            style={{ backgroundImage: "var(--gradient-gold)" }}
+          >
+            <LayoutTemplate className="size-4 text-primary-foreground" />
+          </span>
+          <p className="text-xs font-semibold text-foreground sm:text-sm">Struttura contenuti</p>
+        </div>
+        <div className="mt-3 space-y-1.5">
+          <div
+            className="h-2 w-1/2 rounded-full"
+            style={{ backgroundImage: "var(--gradient-gold)" }}
+          />
+          <div className="h-5 w-full rounded-md bg-foreground/10" />
+          <div className="h-2 w-2/3 rounded-full bg-foreground/10" />
+        </div>
+      </div>
+    ),
     paragraphs: [
       <>
-        La struttura strategica che tiene insieme quello che pubblichi, costruita sul tuo progetto.
-      </>,
-      <>
-        <strong className="font-semibold">Sai perché pubblichi quello che pubblichi.</strong>
+        Costruiamo la struttura strategica che tiene insieme tutto quello che pubblichi, pensata sul
+        tuo progetto:{" "}
+        <strong className="font-semibold">sai perché pubblichi quello che pubblichi</strong>, non lo
+        fai più a caso.
       </>,
     ],
   },
   {
     n: "5",
     title: "La tua direzione comunicativa",
-    icon: Compass,
+    mockup: (
+      <div
+        className="surface-card mx-auto w-full max-w-[220px] p-4"
+        style={{ borderRadius: "1.25rem" }}
+      >
+        <div className="flex items-center gap-3">
+          <span
+            className="flex size-9 shrink-0 items-center justify-center rounded-full"
+            style={{ backgroundImage: "var(--gradient-gold)" }}
+          >
+            <Compass className="size-4 text-primary-foreground" />
+          </span>
+          <p className="text-xs font-semibold text-foreground sm:text-sm">Direzione comunicativa</p>
+        </div>
+        <div className="relative mt-4">
+          <div className="h-1.5 w-full rounded-full bg-foreground/10">
+            <div
+              className="h-1.5 w-2/3 rounded-full"
+              style={{ backgroundImage: "var(--gradient-gold)" }}
+            />
+          </div>
+          <span
+            className="absolute top-1/2 size-3 -translate-y-1/2 rounded-full border-2"
+            style={{
+              left: "calc(66% - 6px)",
+              backgroundColor: "var(--secondary)",
+              borderColor: "var(--card)",
+            }}
+          />
+        </div>
+      </div>
+    ),
     paragraphs: [
       <>
-        Dove vuoi portare la tua comunicazione, costruita sulla tua identità e sui tuoi obiettivi.
-      </>,
-      <>
-        <strong className="font-semibold">Una direzione precisa fin dai primi contenuti.</strong>
+        Definiamo dove vuoi portare la tua comunicazione, costruita sulla tua identità e sui tuoi
+        obiettivi, per avere{" "}
+        <strong className="font-semibold">una direzione precisa fin dai primi contenuti</strong>.
       </>,
     ],
   },
   {
     n: "6",
     title: "La tua strategia completa di comunicazione",
-    icon: Target,
+    mockup: (
+      <div
+        className="surface-card mx-auto w-full max-w-[220px] p-4"
+        style={{ borderRadius: "1.25rem" }}
+      >
+        <div className="flex items-center gap-3">
+          <span
+            className="flex size-9 shrink-0 items-center justify-center rounded-full"
+            style={{ backgroundImage: "var(--gradient-gold)" }}
+          >
+            <Target className="size-4 text-primary-foreground" />
+          </span>
+          <p className="text-xs font-semibold text-foreground sm:text-sm">Strategia completa</p>
+        </div>
+        <div className="mt-3 space-y-2">
+          {["Cosa pubblichi", "Perché lo pubblichi", "Dove stai andando"].map((t) => (
+            <div key={t} className="flex items-center gap-2 text-xs text-foreground/80">
+              <CheckCircle2 className="size-3.5 shrink-0" style={{ color: "var(--secondary)" }} />
+              {t}
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
     paragraphs: [
       <>
+        Tutti i pezzi si uniscono in una strategia completa che parte da te:{" "}
         <strong className="font-semibold">
-          Tutti i pezzi si uniscono in una strategia completa che parte da te:
-        </strong>{" "}
-        sai cosa pubblicare, perché lo pubblichi e dove stai andando.
+          sai cosa pubblicare, perché lo pubblichi e dove stai andando
+        </strong>
+        , e la applichi già durante il percorso mentre la affiniamo insieme.
       </>,
       <>
-        La applichi già durante il percorso e la affiniamo insieme, così a fine percorso{" "}
-        <strong className="font-semibold">sai come farla evolvere anche da sola</strong>.
-      </>,
-      <>
-        Nella Mentorship ci lavori ogni settimana con il mio team e 4 volte con me, nel Program
-        attraverso gli step e i momenti di confronto previsti.
+        Così, a fine percorso,{" "}
+        <strong className="font-semibold">sai come farla evolvere anche da sola</strong>: nella
+        Mentorship ci lavori ogni settimana con il mio team e 4 volte con me, nel Program attraverso
+        gli step e i momenti di confronto previsti.
       </>,
     ],
   },
@@ -1675,7 +1834,7 @@ function CandidaturaAmbiziosa() {
           <Reveal delay={240}>
             <div className="mx-auto mt-10 max-w-2xl space-y-4 text-center">
               <p className="text-sm leading-relaxed text-foreground/85 sm:text-base">
-                Sotto, quasi sempre, c'è lo stesso pensiero:{" "}
+                Qualsiasi sia la tua professione, sotto, quasi sempre, c'è lo stesso pensiero:{" "}
                 <strong className="font-semibold">
                   "So di essere brava, ma Instagram non riesce a raccontarlo."
                 </strong>
@@ -1727,47 +1886,44 @@ function CandidaturaAmbiziosa() {
             </div>
           </Reveal>
 
-          <div className="mt-14 space-y-10">
-            {communicationPillars.map((p, i) => {
-              const Icon = p.icon;
-              return (
-                <Reveal key={p.title} delay={i * 60}>
-                  <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto] sm:gap-10">
-                    <div>
-                      <span
-                        className="inline-block rounded-xl px-4 py-2 font-condensed text-base font-bold uppercase tracking-[0.02em] sm:text-lg"
-                        style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
-                      >
-                        {p.title}
-                      </span>
-                      <div className="mt-4 space-y-2.5">
-                        {p.paragraphs.map((para, pi) => (
-                          <p key={pi} className="text-sm leading-relaxed opacity-90 sm:text-base">
-                            {para}
-                          </p>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-start gap-3 sm:justify-end">
-                      <Icon
-                        className="size-8 shrink-0 sm:size-10"
-                        style={{ color: "var(--primary)" }}
-                      />
-                      <span
-                        className="font-condensed font-bold leading-none"
-                        style={{
-                          fontSize: "clamp(4.5rem, 11vw, 8rem)",
-                          color: "var(--secondary-foreground)",
-                          opacity: 0.14,
-                        }}
-                      >
-                        {p.n}
-                      </span>
+          <div className="mt-16 space-y-12 sm:space-y-14">
+            {communicationPillars.map((p, i) => (
+              <Reveal key={p.title} delay={i * 60}>
+                <div
+                  className="relative overflow-hidden rounded-[1.75rem] px-6 pb-6 pt-10 sm:px-8 sm:pb-8 sm:pt-12"
+                  style={{ backgroundImage: "var(--gradient-ink)" }}
+                >
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute -right-2 top-1/2 -translate-y-1/2 font-bold leading-none sm:right-4"
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: "clamp(8rem, 22vw, 15rem)",
+                      color: "var(--secondary-foreground)",
+                      opacity: 0.12,
+                    }}
+                  >
+                    {p.n}
+                  </span>
+                  <span
+                    className="absolute left-6 top-0 inline-flex -translate-y-1/2 items-center rounded-full px-4 py-2 font-condensed text-xs font-bold uppercase tracking-[0.08em] sm:left-8 sm:text-sm"
+                    style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+                  >
+                    {p.n} · {p.title}
+                  </span>
+                  <div className="relative grid items-center gap-8 sm:grid-cols-[0.85fr_1.15fr] sm:gap-10">
+                    <div className="flex justify-center sm:justify-start">{p.mockup}</div>
+                    <div className="space-y-3">
+                      {p.paragraphs.map((para, pi) => (
+                        <p key={pi} className="text-sm leading-relaxed opacity-90 sm:text-base">
+                          {para}
+                        </p>
+                      ))}
                     </div>
                   </div>
-                </Reveal>
-              );
-            })}
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
