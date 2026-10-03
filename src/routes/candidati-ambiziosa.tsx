@@ -23,6 +23,7 @@ import {
   ShieldCheck,
   Gift,
   Star,
+  Pointer,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -86,48 +87,56 @@ const SECTOR_TESTIMONIALS = [
     name: "Silvia Bedin",
     before: "Life coach, solo offerte low ticket: 400€/mese.",
     after: "31.000€ in organico in poche settimane.",
+    photo: silviaBedinImg,
   },
   {
     sector: "Consulenti d'immagine",
     name: "Valentina Giuriato",
     before: "Faceva tutto da sola, nessun flusso costante di clienti.",
     after: "Business trasformato, pieno di clienti allineati.",
+    photo: valentinaGiuriatoImg,
   },
   {
     sector: "Nutrizioniste",
     name: "Vanessa Sciorio",
     before: "Clientela insufficiente, difficoltà a comunicare il suo valore.",
     after: "Fatturato a cinque cifre mensili, clientela targetizzata.",
+    photo: vanessaSciorioImg,
   },
   {
     sector: "Tatuatrici",
     name: "Rosanna Cafarella",
     before: "10 anni di esperienza, ma clienti low cost e poco costanti.",
     after: "10.000€ mensili costanti in soli 3 mesi.",
+    photo: rosannaCafarellaImg,
   },
   {
     sector: "Makeup artist",
     name: "Giusy Pannese",
     before: "Agenda piena ma clientela solo locale, tariffe basse.",
     after: "Spose a livello nazionale e internazionale.",
+    photo: giusyPanneseImg,
   },
   {
     sector: "SEO e copywriter",
     name: "Ilaria Mattei",
     before: "Nessuna offerta chiara, prezzi troppo bassi.",
     after: "6.500€/mese costanti, poi 10.000€.",
+    photo: ilariaMatteiImg,
   },
   {
     sector: "Wedding planner",
     name: "Martina Ferrari",
     before: "Business avviato ma identità professionale in crisi.",
     after: "30 clienti e fatturato raddoppiato in 6 mesi.",
+    photo: martinaFerrariImg,
   },
   {
     sector: "Brand strategist",
     name: "Elisa Monasterolo",
     before: "Vicina a chiudere la P.IVA, nessuna stabilità.",
     after: "Stabilità economica vera, clienti a lungo termine.",
+    photo: elisaMonasteroloImg,
   },
 ];
 
@@ -865,26 +874,29 @@ function CandidaturaAmbiziosa() {
       <AmbiziosaTopbar />
 
       {/* 2. Hero */}
-      <section className="bg-background px-4 pb-8 pt-8 sm:px-8 sm:pb-10 sm:pt-10">
-        <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[1.75rem]">
+      <section className="bg-background">
+        <div className="relative overflow-hidden">
           <img
             src={carlottaHeroBgImg}
             alt=""
             aria-hidden
             loading="lazy"
-            className="absolute inset-0 hidden h-full w-full object-cover sm:block"
-            style={{ objectPosition: "center 20%" }}
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ objectPosition: "center 18%" }}
           />
           <div
-            className="absolute inset-0 hidden sm:block"
+            className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(to right, var(--background) 0%, var(--background) 50%, color-mix(in oklab, var(--background) 15%, transparent) 78%, transparent 100%)",
+                "linear-gradient(to bottom, color-mix(in oklab, var(--secondary) 68%, transparent) 0%, color-mix(in oklab, var(--secondary) 80%, transparent) 72%, var(--background) 100%)",
             }}
           />
 
-          <div className="relative flex flex-col items-start px-5 py-10 text-left sm:px-10 sm:py-16">
-            <h1 className="text-3xl font-semibold text-foreground sm:max-w-[460px] sm:text-4xl">
+          <div className="relative mx-auto max-w-6xl px-4 pb-10 pt-10 text-left sm:px-8 sm:pb-16 sm:pt-16">
+            <h1
+              className="text-3xl font-semibold sm:max-w-[760px] sm:text-4xl"
+              style={{ color: "var(--secondary-foreground)" }}
+            >
               <Highlight dark>
                 <strong className="font-bold">Ambiziosa:</strong>
               </Highlight>{" "}
@@ -892,7 +904,10 @@ function CandidaturaAmbiziosa() {
               <Highlight dark>farsi riconoscere</Highlight> e trasformare l'ambizione in carriera
             </h1>
 
-            <p className="mt-6 text-base text-foreground sm:max-w-[420px] sm:text-lg">
+            <p
+              className="mt-6 text-base sm:max-w-[640px] sm:text-lg"
+              style={{ color: "var(--secondary-foreground)" }}
+            >
               In questo momento ti senti una fotocopia di tante altre professioniste. Ma tu sai che{" "}
               <strong className="font-semibold">il tuo business è unico e sei ambiziosa</strong>. Il
               punto è che ti manca solo un sistema che{" "}
@@ -911,7 +926,7 @@ function CandidaturaAmbiziosa() {
                 className="inline-flex max-w-[260px] flex-col items-center gap-1 rounded-xl px-3 py-2 sm:max-w-[340px] sm:flex-row sm:gap-2"
                 style={{
                   backgroundColor: "transparent",
-                  border: "1px solid var(--secondary)",
+                  border: "1px solid var(--secondary-foreground)",
                 }}
               >
                 <div className="flex -space-x-2.5">
@@ -923,19 +938,22 @@ function CandidaturaAmbiziosa() {
                       aria-hidden
                       loading="lazy"
                       className="size-7 shrink-0 rounded-full border-2 object-cover"
-                      style={{ borderColor: "var(--background)" }}
+                      style={{ borderColor: "var(--secondary-foreground)" }}
                     />
                   ))}
                 </div>
                 <div className="text-center sm:text-left">
-                  <div className="flex justify-center gap-0.5 text-primary sm:justify-start">
+                  <div
+                    className="flex justify-center gap-0.5 sm:justify-start"
+                    style={{ color: "var(--primary)" }}
+                  >
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star key={i} className="size-3 fill-current" />
                     ))}
                   </div>
                   <p
                     className="mt-0.5 text-[11px] leading-snug"
-                    style={{ color: "var(--secondary)" }}
+                    style={{ color: "var(--secondary-foreground)" }}
                   >
                     Centinaia di professioniste hanno già usato il mio metodo.
                   </p>
@@ -945,7 +963,7 @@ function CandidaturaAmbiziosa() {
           </div>
         </div>
 
-        <div className="mx-auto mt-8 max-w-5xl">
+        <div className="mx-auto max-w-5xl px-4 pb-8 pt-8 sm:px-8 sm:pb-10 sm:pt-10">
           <AmbiziosaHeroVideo />
         </div>
 
@@ -1040,7 +1058,10 @@ function CandidaturaAmbiziosa() {
             </p>
           </div>
 
-          <div className="surface-card p-5">
+          <div
+            className="flex flex-col rounded-2xl p-5"
+            style={{ backgroundColor: "var(--card)", border: "1px solid var(--secondary)" }}
+          >
             <div className="grid grid-cols-2 gap-2.5">
               {SECTOR_TESTIMONIALS.map((item) => (
                 <button
@@ -1069,28 +1090,40 @@ function CandidaturaAmbiziosa() {
                 SECTOR_TESTIMONIALS[0];
               return (
                 <div
-                  className="mt-5 border-t pt-5 text-left"
-                  style={{ borderColor: "color-mix(in oklab, var(--primary) 35%, transparent)" }}
+                  className="mt-5 flex flex-1 items-start gap-4 rounded-xl p-4 text-left"
+                  style={{
+                    backgroundColor: "var(--secondary)",
+                    color: "var(--secondary-foreground)",
+                  }}
                 >
-                  <p className="text-sm font-semibold" style={{ color: "var(--secondary)" }}>
-                    {active.name}
-                  </p>
-                  <p className="mt-1.5 text-xs leading-snug text-foreground/80">
-                    <span className="font-semibold">Punto A: </span>
-                    {active.before}
-                  </p>
-                  <p className="mt-1 text-xs leading-snug text-foreground/80">
-                    <span className="font-semibold">Punto B: </span>
-                    {active.after}
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => goToTestimonial(active.name)}
-                    className="mt-2.5 text-left text-xs font-semibold underline underline-offset-2"
-                    style={{ color: "var(--secondary)" }}
-                  >
-                    Guarda la sua video testimonianza →
-                  </button>
+                  <img
+                    src={active.photo}
+                    alt=""
+                    aria-hidden
+                    loading="lazy"
+                    className="size-14 shrink-0 rounded-full object-cover"
+                    style={{ border: "2px solid var(--secondary-foreground)" }}
+                  />
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold sm:text-base">{active.name}</p>
+                    <p className="mt-1.5 text-sm leading-snug opacity-90">
+                      <span className="font-semibold">Punto A: </span>
+                      {active.before}
+                    </p>
+                    <p className="mt-1 text-sm leading-snug opacity-90">
+                      <span className="font-semibold">Punto B: </span>
+                      {active.after}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => goToTestimonial(active.name)}
+                      className="mt-2.5 inline-flex items-center gap-1.5 text-left text-sm font-semibold underline underline-offset-2"
+                      style={{ color: "var(--primary)" }}
+                    >
+                      <Pointer className="size-4 shrink-0" />
+                      Guarda la sua video testimonianza
+                    </button>
+                  </div>
                 </div>
               );
             })()}
