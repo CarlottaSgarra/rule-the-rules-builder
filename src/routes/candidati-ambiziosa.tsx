@@ -49,7 +49,6 @@ import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
 import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
 import carlottaLeftImg from "@/assets/Carlotta bianco e nerco che guarda a sinistra.jpg";
 import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
-import togliIlCostumeImg from "@/assets/togli-il-costume.jpg";
 import carlottaAlLavoroImg from "@/assets/method-bg.jpg";
 import elenaRosaImg from "@/assets/elena-rosa.jpg";
 import silviaBedinImg from "@/assets/silvia-bedin.jpg";
@@ -1845,60 +1844,6 @@ function CandidaturaAmbiziosa() {
         </div>
       </section>
 
-      {/* 7b. Lavorare sull'identità porta davvero risultati? */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-5xl px-5 py-20">
-          <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-start">
-            <Reveal>
-              <h2 className="text-3xl text-foreground sm:text-4xl">
-                Lavorare sulla mia identità mi porterà davvero <Highlight>dei risultati</Highlight>?
-              </h2>
-              <div className="mt-6 space-y-5 text-base leading-relaxed text-foreground/85">
-                <p>
-                  Sì, perché quando pubblichi guardando quello che fanno gli altri ti ritrovi sullo
-                  stesso terreno di tutte, con gli stessi formati e lo stesso tono.{" "}
-                  <strong className="font-semibold text-foreground">
-                    Chi ti vede non ha nessun motivo per scegliere proprio te
-                  </strong>{" "}
-                  e finisce per scegliere in base al prezzo.
-                </p>
-                <p>
-                  Quando parti dalla tua identità succede il contrario: i tuoi contenuti dicono cose
-                  che potevi dire solo tu, quindi chi ti segue ti sceglie per quello che sei. È
-                  quello che è successo a me. Ho speso oltre 70.000€ in formazione e portavo avanti
-                  piani editoriali scritti da altri: tecnicamente facevo tutto giusto, ma nei miei
-                  contenuti io non c'ero. Quando ho iniziato a costruire tutto sulla persona che
-                  sono,{" "}
-                  <strong className="font-semibold text-foreground">
-                    sono cambiati i contenuti, i clienti e i soldi
-                  </strong>
-                  .
-                </p>
-                <p>
-                  Lo stesso è successo alle professioniste che hanno lavorato con me, da coach a
-                  tatuatrici e da nutrizioniste a wedding planner: partite da situazioni molto
-                  diverse,{" "}
-                  <strong className="font-semibold text-foreground">
-                    hanno costruito la comunicazione su chi sono
-                  </strong>{" "}
-                  e oggi attirano clienti più in linea con loro. Le loro storie le trovi più sotto,
-                  insieme alla mia.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={80}>
-              <img
-                src={togliIlCostumeImg}
-                alt="Carlotta Sgarra"
-                loading="lazy"
-                className="mx-auto aspect-[4/5] w-[85%] rounded-2xl object-cover md:sticky md:top-24"
-                style={{ objectPosition: "50% 30%" }}
-              />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* 7c. Obiettivo del metodo e versatilità nei settori */}
       <section
         className="overflow-x-clip bg-secondary"
@@ -1919,9 +1864,8 @@ function CandidaturaAmbiziosa() {
               </div>
             </Reveal>
             <Reveal delay={80}>
-              <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-tight text-ink sm:text-5xl">
-                Il mio obiettivo è renderti{" "}
-                <strong className="font-bold text-primary">unica</strong>.
+              <h2 className="text-3xl text-ink sm:text-4xl">
+                Il mio obiettivo è renderti <Highlight dark>unica</Highlight>.
               </h2>
               <div className="mt-6 space-y-5 text-base leading-relaxed text-ink-muted">
                 <p>
@@ -1970,20 +1914,13 @@ function CandidaturaAmbiziosa() {
       <section className="overflow-x-clip bg-background">
         <div className="mx-auto max-w-5xl px-5 pb-12 pt-20 text-center">
           <Reveal>
-            <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-tight text-foreground sm:text-5xl">
-              <Highlight>
-                <strong className="font-bold">Il principio mancante</strong>
-              </Highlight>
+            <h2 className="text-3xl text-foreground sm:text-4xl">
+              <Highlight>Il principio mancante</Highlight>
               <br className="hidden sm:block" /> dei contenuti e dell'identità online
             </h2>
           </Reveal>
         </div>
-        <div
-          className="h-6 w-full"
-          style={{ backgroundImage: "var(--gradient-ink)" }}
-          aria-hidden
-        />
-        <div className="mx-auto max-w-6xl px-5 py-20">
+        <div className="mx-auto max-w-6xl px-5 pb-20 pt-4">
           <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr_0.9fr] lg:items-start lg:gap-10">
             <Reveal>
               <ProfileBeforeAfter />
