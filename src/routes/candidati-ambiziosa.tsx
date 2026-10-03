@@ -28,6 +28,7 @@ import {
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
 import { SiteFooter } from "@/components/landing/SiteFooter";
+import { AmbiziosaTopbar } from "@/components/landing/AmbiziosaTopbar";
 import { submitAmbiziosaApplication } from "@/lib/ambiziosa-application";
 import heroCarlottaImg from "@/assets/hero-carlotta.jpg";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
@@ -472,51 +473,8 @@ function ReframeStarsBackground() {
 function CandidaturaAmbiziosa() {
   return (
     <div className="bg-background">
-      {/* 1. Header sticky a doppio badge */}
-      <div
-        className="sticky top-0 z-50 border-b border-border/60 backdrop-blur"
-        style={
-          {
-            backgroundColor: "color-mix(in oklab, var(--secondary) 95%, transparent)",
-            "--foreground": "var(--secondary-foreground)",
-          } as React.CSSProperties
-        }
-      >
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-8">
-          <p className="min-w-0 font-condensed text-[10px] uppercase leading-tight tracking-[0.08em] text-foreground sm:text-sm sm:tracking-[0.15em]">
-            <span
-              className="mr-1.5 inline-block size-1.5 rounded-full align-middle"
-              style={{ backgroundColor: "var(--primary)" }}
-              aria-hidden
-            />
-            Candidature aperte <span className="opacity-70">· Risposta entro 48 ore</span>
-          </p>
-          <nav className="hidden items-center gap-5 font-condensed text-xs uppercase tracking-[0.1em] text-foreground/80 lg:flex">
-            <a href="#step-1" className="transition-colors hover:text-foreground">
-              Percorso
-            </a>
-            <a href="#prezzi" className="transition-colors hover:text-foreground">
-              Prezzi
-            </a>
-            <a href="#storie" className="transition-colors hover:text-foreground">
-              Storie
-            </a>
-            <a href="#faq" className="transition-colors hover:text-foreground">
-              FAQ
-            </a>
-          </nav>
-          <a
-            href={ANCHOR}
-            className="shrink-0 rounded-md px-3 py-2 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:text-xs sm:tracking-[0.12em]"
-            style={{
-              backgroundImage: "var(--gradient-gold)",
-              color: "var(--primary-foreground)",
-            }}
-          >
-            Candidati ora
-          </a>
-        </div>
-      </div>
+      {/* 1. Header sticky — AmbiziosaTopbar (stato aperto/chiuso, countdown, menu) */}
+      <AmbiziosaTopbar />
 
       {/* 2. Hero */}
       <header
