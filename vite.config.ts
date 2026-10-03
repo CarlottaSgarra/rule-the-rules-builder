@@ -12,14 +12,4 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
-  vite: {
-    define: {
-      // Vercel sets VERCEL_ENV ("production" | "preview" | "development") only
-      // at build time, server-side. Inline it into the client bundle (without a
-      // VITE_ prefix / without touching Vercel project settings) so pages can
-      // tell preview deployments apart from production, e.g. to allow a
-      // debug-only ?stato= override on /candidati-ambiziosa.
-      "import.meta.env.VITE_DEPLOY_ENV": JSON.stringify(process.env.VERCEL_ENV ?? "development"),
-    },
-  },
 });

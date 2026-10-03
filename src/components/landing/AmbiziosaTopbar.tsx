@@ -5,6 +5,15 @@ import { APPLICATIONS_DEADLINE, WAITLIST_URL } from "@/lib/ambiziosa-config";
 
 const DEADLINE_MS = new Date(APPLICATIONS_DEADLINE).getTime();
 
+// Domini di produzione: altrove (preview Vercel, dominio locale, ecc.) il
+// parametro di debug ?stato= resta attivo. Controllo puramente lato client,
+// nessuna variabile d'ambiente/config di build coinvolta.
+const PRODUCTION_HOSTNAMES = ["rule-the-rules.vercel.app", "rules.carlottasgarra.it"];
+
+function isProductionHost() {
+  return PRODUCTION_HOSTNAMES.includes(window.location.hostname);
+}
+
 const MENU_ITEMS = [
   { id: "programma", label: "Il programma" },
   { id: "testimonianze", label: "Testimonianze" },
@@ -162,7 +171,7 @@ export function AmbiziosaTopbar() {
     // Permette di forzare lo stato con ?stato=aperto / ?stato=chiuso, solo
     // fuori produzione, per poter verificare lo stato "chiuso" in anteprima
     // senza aspettare il 16 ottobre.
-    if (import.meta.env.VITE_DEPLOY_ENV !== "production") {
+    if (!isProductionHost()) {
       const params = new URLSearchParams(window.location.search);
       const stato = params.get("stato");
       if (stato === "aperto" || stato === "chiuso") setForcedState(stato);
