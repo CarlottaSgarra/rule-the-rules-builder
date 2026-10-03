@@ -464,9 +464,9 @@ function CandidaturaAmbiziosa() {
       <AmbiziosaTopbar />
 
       {/* 2. Hero */}
-      <section className="bg-background px-4 py-8 sm:px-8 sm:py-10">
-        <div className="mx-auto flex max-w-6xl flex-col items-center text-center">
-          <h1 className="text-3xl font-semibold text-foreground sm:text-4xl">
+      <section className="bg-background px-4 pb-8 pt-14 sm:px-8 sm:pb-10 sm:pt-20">
+        <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
+          <h1 className="max-w-[820px] text-3xl font-semibold text-foreground sm:text-4xl">
             <Highlight dark>
               <strong className="font-bold">Ambiziosa:</strong>
             </Highlight>{" "}
@@ -474,18 +474,26 @@ function CandidaturaAmbiziosa() {
             <Highlight dark>farsi riconoscere</Highlight> e trasformare l'ambizione in carriera
           </h1>
 
-          <p className="mt-3 max-w-[900px] text-base text-foreground sm:text-lg">
-            In questo momento ti senti una fotocopia di tante altre professioniste. Ma tu sai che il
-            tuo business è unico e sei ambiziosa. Il punto è che ti manca solo un sistema che ti
-            faccia veramente riconoscere da tutti e tiri fuori la tua identità.
+          <p className="mt-6 max-w-[680px] text-base text-foreground sm:text-lg">
+            In questo momento ti senti una fotocopia di tante altre professioniste. Ma tu sai che{" "}
+            <strong className="font-semibold">il tuo business è unico e sei ambiziosa</strong>. Il
+            punto è che ti manca solo un sistema che{" "}
+            <strong className="font-semibold">
+              ti faccia veramente riconoscere da tutti e tiri fuori la tua identità
+            </strong>
+            .
           </p>
 
-          <div className="mt-6 w-full">
+          <div className="mt-8">
+            <AmbiziosaCtaButton variant="hero" />
+          </div>
+
+          <div className="mt-8 w-full">
             <AmbiziosaHeroVideo />
           </div>
         </div>
 
-        <div className="mx-auto mt-10 max-w-6xl">
+        <div className="mx-auto mt-16 max-w-6xl sm:mt-20">
           <div className="grid gap-8 sm:grid-cols-[1.1fr_0.9fr] sm:items-start">
             <div className="space-y-3 text-left">
               <p className="text-foreground" style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
@@ -525,10 +533,6 @@ function CandidaturaAmbiziosa() {
                 </div>
               ))}
             </div>
-          </div>
-
-          <div className="mt-8 flex justify-center">
-            <AmbiziosaCtaButton variant="hero" />
           </div>
         </div>
       </section>
