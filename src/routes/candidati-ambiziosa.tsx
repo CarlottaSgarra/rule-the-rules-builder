@@ -500,13 +500,13 @@ function CandidaturaAmbiziosa() {
 
           <div className="mt-4 flex justify-center">
             <div
-              className="inline-flex flex-col items-center gap-1.5 rounded-xl px-4 py-2.5 sm:flex-row sm:items-center sm:gap-3"
+              className="inline-flex max-w-[220px] flex-col items-center gap-1 rounded-xl px-3 py-2 sm:max-w-[300px] sm:flex-row sm:gap-2"
               style={{
-                backgroundColor: "var(--secondary)",
-                border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
+                backgroundColor: "var(--secondary-foreground)",
+                border: "1px solid color-mix(in oklab, var(--secondary) 15%, transparent)",
               }}
             >
-              <div className="flex -space-x-3">
+              <div className="flex -space-x-2.5">
                 {HERO_SOCIAL_AVATARS.map((src, i) => (
                   <img
                     key={i}
@@ -514,7 +514,7 @@ function CandidaturaAmbiziosa() {
                     alt=""
                     aria-hidden
                     loading="lazy"
-                    className="size-9 shrink-0 rounded-full border-2 object-cover"
+                    className="size-7 shrink-0 rounded-full border-2 object-cover"
                     style={{ borderColor: "var(--secondary-foreground)" }}
                   />
                 ))}
@@ -522,12 +522,12 @@ function CandidaturaAmbiziosa() {
               <div className="text-center sm:text-left">
                 <div className="flex justify-center gap-0.5 text-primary sm:justify-start">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="size-3.5 fill-current" />
+                    <Star key={i} className="size-3 fill-current" />
                   ))}
                 </div>
                 <p
-                  className="mt-0.5 whitespace-nowrap text-[10px] sm:text-sm"
-                  style={{ color: "var(--secondary-foreground)" }}
+                  className="mt-0.5 text-[11px] leading-snug"
+                  style={{ color: "var(--secondary)" }}
                 >
                   Centinaia di professioniste hanno già usato il mio metodo.
                 </p>

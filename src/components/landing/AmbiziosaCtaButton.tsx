@@ -45,17 +45,17 @@ export function AmbiziosaCtaButton({ variant, targetId = "candidature", classNam
     <a
       href={`#${targetId}`}
       onClick={handleClick}
-      className={`inline-flex w-full flex-col items-center gap-1 rounded-xl px-6 py-4 text-center transition-transform duration-200 hover:-translate-y-0.5 sm:w-auto sm:min-w-[280px] ${className}`}
+      className={`inline-flex min-w-[260px] flex-col items-center gap-1.5 rounded-xl px-8 py-5 text-center transition-transform duration-200 hover:-translate-y-0.5 sm:min-w-[360px] ${className}`}
       style={{
         backgroundImage: "var(--gradient-gold)",
         color: "var(--primary-foreground)",
         boxShadow: "var(--shadow-gold)",
       }}
     >
-      <span className="font-condensed text-sm font-bold uppercase tracking-[0.06em] sm:text-base">
+      <span className="font-condensed text-base font-bold uppercase tracking-[0.06em] sm:text-lg">
         {CTA_LABEL}
       </span>
-      <span className="font-body text-xs font-normal normal-case tracking-normal opacity-80">
+      <span className="font-body text-sm font-normal normal-case tracking-normal opacity-80">
         {CTA_MICROCOPY}
       </span>
     </a>
