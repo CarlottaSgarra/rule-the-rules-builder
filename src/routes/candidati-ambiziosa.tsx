@@ -67,6 +67,15 @@ const SECTORS = [
   "Brand strategist",
 ];
 
+// Testi accorciati rispetto all'originale per stare nei riquadri a destra
+// della sezione hero (su richiesta esplicita, non sono più il copy esatto).
+const HERO_CHECKLIST = [
+  "4 mesi di percorso, seguita da me con call dedicate",
+  "Una strategia completa sulla tua identità e sulla tua unicità, costruita sul tuo progetto",
+  "Contenuti che ti rispecchiano al 100%: sai sempre cosa pubblicare",
+  "Un metodo già provato da centinaia di professioniste, in settori molto diversi",
+];
+
 const steps = [
   {
     n: "01",
@@ -504,74 +513,69 @@ function CandidaturaAmbiziosa() {
       <AmbiziosaTopbar />
 
       {/* 2. Hero */}
-      <section className="bg-background px-4 py-10 sm:px-8 sm:py-[72px]">
-        <div className="mx-auto flex max-w-[900px] flex-col items-center text-center">
-          <h1
-            className="text-foreground"
-            style={{ fontSize: "clamp(2rem, 1.3rem + 3vw, 3.5rem)", lineHeight: 1.15 }}
-          >
+      <section className="bg-background px-4 py-8 sm:px-8 sm:py-10">
+        <div className="mx-auto flex max-w-[700px] flex-col items-center text-center">
+          <h1 className="text-3xl font-semibold text-foreground sm:text-4xl">
             <strong className="font-bold">Ambiziosa:</strong> il mio programma per professioniste e
             imprenditrici che vogliono farsi riconoscere e trasformare l'ambizione in carriera
           </h1>
 
-          <p
-            className="mt-6 max-w-[760px] text-foreground"
-            style={{ fontSize: "clamp(1.25rem, 1.05rem + 0.6vw, 1.5rem)" }}
-          >
+          <p className="mt-3 max-w-[600px] text-base text-foreground sm:text-lg">
             In questo momento ti senti una fotocopia di tante altre professioniste. Ma tu sai che il
             tuo business è unico e sei ambiziosa. Il punto è che ti manca solo un sistema che ti
             faccia veramente riconoscere da tutti e tiri fuori la tua identità.
           </p>
 
-          <div className="mt-8 w-full max-w-[880px]">
+          <div className="mt-6 w-full">
             <AmbiziosaHeroVideo />
           </div>
+        </div>
 
-          <p
-            className="mt-8 max-w-[720px] text-left text-foreground"
-            style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}
-          >
-            Ambiziosa è il percorso di 4 mesi in cui lavoriamo insieme sulla tua identità per
-            trasformarla in una comunicazione che ti fa riconoscere. Inizi a pubblicare mentre studi
-            il metodo, senza aspettare di aver finito la formazione: hai già tra le mani una
-            strategia costruita sul tuo progetto. Alla fine arrivi con una strategia completa che
-            hai già messo in pratica e sai come farla evolvere anche da sola.
-          </p>
+        <div className="mx-auto mt-10 max-w-6xl">
+          <div className="grid gap-8 sm:grid-cols-[1.1fr_0.9fr] sm:items-start">
+            <div className="space-y-3 text-left">
+              <p className="text-foreground" style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
+                Ambiziosa è il percorso di 4 mesi in cui lavoriamo insieme sulla tua identità per
+                trasformarla in{" "}
+                <strong className="font-semibold">una comunicazione che ti fa riconoscere</strong>.
+              </p>
+              <p className="text-foreground" style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
+                Inizi a pubblicare mentre studi il metodo, senza aspettare di aver finito la
+                formazione:{" "}
+                <strong className="font-semibold">
+                  hai già tra le mani una strategia costruita sul tuo progetto
+                </strong>
+                .
+              </p>
+              <p className="text-foreground" style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
+                Alla fine arrivi con{" "}
+                <strong className="font-semibold">
+                  una strategia completa che hai già messo in pratica
+                </strong>{" "}
+                e sai come farla evolvere anche da sola.
+              </p>
+            </div>
 
-          <div className="mt-8">
-            <AmbiziosaCtaButton variant="hero" />
+            <div className="grid grid-cols-1 gap-3">
+              {HERO_CHECKLIST.map((item) => (
+                <div
+                  key={item}
+                  className="flex items-start gap-3 rounded-xl p-4"
+                  style={{
+                    backgroundColor: "var(--background)",
+                    border: "2px solid var(--secondary)",
+                  }}
+                >
+                  <HeroCheck />
+                  <span className="text-sm text-foreground">{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <ul className="mt-10 grid max-w-[880px] grid-cols-1 gap-x-8 gap-y-4 text-left sm:grid-cols-2">
-            <li className="flex gap-3">
-              <HeroCheck />
-              <span className="text-foreground">
-                4 mesi di percorso, seguita da me con call dedicate
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <HeroCheck />
-              <span className="text-foreground">
-                Una strategia completa sulla tua identità e sulla tua unicità: macro topic, banca
-                idee personalizzata, struttura dei contenuti e direzione comunicativa, costruiti sul
-                tuo progetto
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <HeroCheck />
-              <span className="text-foreground">
-                Contenuti che finalmente ti rispecchiano al 100%: sai sempre cosa pubblicare e non
-                ti senti più in gabbia
-              </span>
-            </li>
-            <li className="flex gap-3">
-              <HeroCheck />
-              <span className="text-foreground">
-                Un metodo già provato da centinaia di professioniste, in settori molto diversi:
-                tatuatrici, nutrizioniste, wedding planner, copywriter
-              </span>
-            </li>
-          </ul>
+          <div className="mt-8 flex justify-center">
+            <AmbiziosaCtaButton variant="hero" />
+          </div>
         </div>
       </section>
 
