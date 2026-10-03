@@ -17,3 +17,6 @@ export const CALENDLY_URL = "";
 export const HERO_VIDEO_URL = "";
 
 export const CTA_LABEL = "Candidati ora";
+
+// Riga piccola sotto l'etichetta del bottone grande, come il "sub" di CtaButton.
+export const CTA_SUB = "Ti rispondo entro 48 ore";

@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
+import { SessionHighlight } from "@/components/landing/SessionHighlight";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { AmbiziosaTopbar } from "@/components/landing/AmbiziosaTopbar";
 import { AmbiziosaCtaButton } from "@/components/landing/AmbiziosaCtaButton";
@@ -44,6 +45,12 @@ import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
 import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
 import carlottaLeftImg from "@/assets/Carlotta bianco e nerco che guarda a sinistra.jpg";
 import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
+import togliIlCostumeImg from "@/assets/togli-il-costume.jpg";
+import carlottaPointingImg from "@/assets/carlotta-pointing.jpg";
+import nonVoglioRegoleImg from "@/assets/non-voglio-darti-altre-regole-da-seguire.jpg";
+import methodBgImg from "@/assets/method-bg.jpg";
+import licenziaLeRegoleImg from "@/assets/licenzia-le-regole.jpg";
+import carlottaWalkingImg from "@/assets/carlotta-walking.jpg";
 import elenaRosaImg from "@/assets/elena-rosa.jpg";
 import silviaBedinImg from "@/assets/silvia-bedin.jpg";
 import mariangelaSimioliImg from "@/assets/mariangela-simioli.jpg";
@@ -84,10 +91,8 @@ const REASSURANCE = "Ti rispondo entro 48 ore.";
 const CTA_BOX_CONTEXT = (
   <>
     4 mesi con me e il mio team:{" "}
-    <strong className="font-semibold">
-      una strategia di comunicazione completa che parte da te
-    </strong>
-    , messa in pratica <strong className="font-semibold">fin dalle prime call</strong>.
+    <Highlight dark>una strategia di comunicazione completa che parte da te</Highlight>, messa in
+    pratica fin dalle prime call.
   </>
 );
 
@@ -816,253 +821,173 @@ const scenarios = [
   "Quis nostrud exercitation ullamco laboris, ti senti finalmente riconoscibile in un mercato pieno di professioniste uguali.",
 ];
 
-const communicationPillars = [
+// I 6 punti del percorso, costruiti come le "3 serate" di Rule The Rules:
+// foto con titolo in sovraimpressione + card bianca ruotata (SessionHighlight),
+// intro sotto la foto, checklist a destra.
+const communicationPillars: {
+  n: string;
+  title: string;
+  photo: string;
+  photoPosition: string;
+  highlight: React.ComponentProps<typeof SessionHighlight>["variant"];
+  intro: React.ReactNode;
+  bullets: React.ReactNode[];
+}[] = [
   {
     n: "1",
     title: "La tua identità",
-    mockup: (
-      <div
-        className="surface-card mx-auto w-full max-w-[220px] p-4"
-        style={{ borderRadius: "1.25rem" }}
-      >
-        <div className="flex items-center gap-3">
-          <span
-            className="flex size-9 shrink-0 items-center justify-center rounded-full"
-            style={{ backgroundImage: "var(--gradient-gold)" }}
-          >
-            <IdCard className="size-4 text-primary-foreground" />
-          </span>
-          <div className="min-w-0">
-            <p className="eyebrow">Carta Identitaria</p>
-            <p className="text-xs font-semibold text-foreground sm:text-sm">
-              Il tuo DNA comunicativo
-            </p>
-          </div>
-        </div>
-        <div className="mt-3 space-y-1.5">
-          {[100, 75, 85].map((w, i) => (
-            <div
-              key={i}
-              className="h-1.5 rounded-full bg-foreground/10"
-              style={{ width: `${w}%` }}
-            />
-          ))}
-        </div>
-      </div>
-    ),
-    paragraphs: [
+    photo: togliIlCostumeImg,
+    photoPosition: "50% 30%",
+    highlight: "identity-card",
+    intro: (
       <>
-        Chi sei come professionista, cosa vuoi rappresentare, quali sono i tuoi valori: definiamo
-        insieme cosa vuoi comunicare e quale percezione vuoi costruire.
+        È il primo passo, e{" "}
+        <strong className="font-semibold text-ink">
+          la base su cui costruiamo tutto il lavoro successivo
+        </strong>
+        .
+      </>
+    ),
+    bullets: [
+      <>
+        <strong className="font-semibold text-ink">Chi sei come professionista</strong>: cosa vuoi
+        rappresentare e quali sono i valori che guidano il tuo lavoro.
       </>,
       <>
-        <strong className="font-semibold">
-          È la base su cui costruiamo tutto il lavoro successivo.
-        </strong>
+        <strong className="font-semibold text-ink">Cosa vuoi comunicare</strong>: il messaggio che
+        deve arrivare a chi ti segue, senza copiare quello che fanno le altre.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">La percezione che vuoi costruire</strong>: come
+        vuoi che ti vedano le persone che ti scelgono.
       </>,
     ],
   },
   {
     n: "2",
     title: "I tuoi macro topic",
-    mockup: (
-      <div
-        className="surface-card mx-auto w-full max-w-[220px] p-4"
-        style={{ borderRadius: "1.25rem" }}
-      >
-        <div className="flex items-center gap-3">
-          <span
-            className="flex size-9 shrink-0 items-center justify-center rounded-full"
-            style={{ backgroundImage: "var(--gradient-gold)" }}
-          >
-            <LayoutDashboard className="size-4 text-primary-foreground" />
-          </span>
-          <p className="text-xs font-semibold text-foreground sm:text-sm">I tuoi macro topic</p>
-        </div>
-        <div className="mt-3 flex flex-wrap gap-1.5">
-          {["Mindset", "Metodo", "Dietro le quinte", "Risultati"].map((t) => (
-            <span
-              key={t}
-              className="rounded-full px-2.5 py-1 text-[10px] font-semibold text-foreground/70"
-              style={{ backgroundColor: "color-mix(in oklab, var(--foreground) 8%, transparent)" }}
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-      </div>
-    ),
-    paragraphs: [
+    photo: carlottaPointingImg,
+    photoPosition: "50% 20%",
+    highlight: "macro-topics",
+    intro: (
       <>
-        Il mio team prende tutto quello che emerge dal lavoro sull'identità e lo trasforma in
-        strategia,{" "}
-        <strong className="font-semibold">partendo dai macro topic della tua comunicazione</strong>:
-        i temi grandi su cui costruire tutto quello che pubblichi.
+        Il mio team prende tutto il lavoro emerso sull'identità e{" "}
+        <strong className="font-semibold text-ink">lo trasforma nella tua strategia</strong>.
+      </>
+    ),
+    bullets: [
+      <>
+        <strong className="font-semibold text-ink">I temi grandi della tua comunicazione</strong>: i
+        macro topic su cui costruisci tutto quello che pubblichi.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Una base che parte da te</strong>: ogni tema
+        nasce da quello che è emerso sulla tua identità, non da un modello uguale per tutte.
       </>,
     ],
   },
   {
     n: "3",
     title: "La tua banca idee personalizzata",
-    mockup: (
-      <div
-        className="surface-card mx-auto w-full max-w-[220px] p-4"
-        style={{ borderRadius: "1.25rem" }}
-      >
-        <div className="flex items-center gap-3">
-          <span
-            className="flex size-9 shrink-0 items-center justify-center rounded-full"
-            style={{ backgroundImage: "var(--gradient-gold)" }}
-          >
-            <Lightbulb className="size-4 text-primary-foreground" />
-          </span>
-          <p className="text-xs font-semibold text-foreground sm:text-sm">Banca idee</p>
-        </div>
-        <div className="mt-3 space-y-2">
-          {[1, 2, 3].map((n) => (
-            <div key={n} className="flex items-center gap-2">
-              <span
-                className="flex size-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold"
-                style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
-              >
-                {n}
-              </span>
-              <div className="h-1.5 flex-1 rounded-full bg-foreground/10" />
-            </div>
-          ))}
-        </div>
-      </div>
-    ),
-    paragraphs: [
+    photo: nonVoglioRegoleImg,
+    photoPosition: "40% 30%",
+    highlight: "idea-bank",
+    intro: (
       <>
-        Costruiamo una banca di idee di contenuti pensate su misura per te e per il tuo progetto,
-        così{" "}
-        <strong className="font-semibold">
-          quando ti chiedi cosa pubblicare oggi, hai già dove guardare
-        </strong>
-        .
+        Idee di contenuti{" "}
+        <strong className="font-semibold text-ink">pensate per te e per il tuo progetto</strong>.
+      </>
+    ),
+    bullets: [
+      <>
+        <strong className="font-semibold text-ink">Mai più pagina bianca</strong>: quando ti chiedi
+        cosa pubblicare oggi, hai già dove guardare.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Idee su misura</strong>: nascono dai tuoi macro
+        topic, non sono prese in prestito da chi fa un altro lavoro.
       </>,
     ],
   },
   {
     n: "4",
     title: "La struttura dei tuoi contenuti",
-    mockup: (
-      <div
-        className="surface-card mx-auto w-full max-w-[220px] p-4"
-        style={{ borderRadius: "1.25rem" }}
-      >
-        <div className="flex items-center gap-3">
-          <span
-            className="flex size-9 shrink-0 items-center justify-center rounded-full"
-            style={{ backgroundImage: "var(--gradient-gold)" }}
-          >
-            <LayoutTemplate className="size-4 text-primary-foreground" />
-          </span>
-          <p className="text-xs font-semibold text-foreground sm:text-sm">Struttura contenuti</p>
-        </div>
-        <div className="mt-3 space-y-1.5">
-          <div
-            className="h-2 w-1/2 rounded-full"
-            style={{ backgroundImage: "var(--gradient-gold)" }}
-          />
-          <div className="h-5 w-full rounded-md bg-foreground/10" />
-          <div className="h-2 w-2/3 rounded-full bg-foreground/10" />
-        </div>
-      </div>
-    ),
-    paragraphs: [
+    photo: methodBgImg,
+    photoPosition: "30% 40%",
+    highlight: "content-os",
+    intro: (
       <>
-        Costruiamo la struttura strategica che tiene insieme tutto quello che pubblichi, pensata sul
-        tuo progetto:{" "}
-        <strong className="font-semibold">sai perché pubblichi quello che pubblichi</strong>, non lo
-        fai più a caso.
+        La struttura strategica che{" "}
+        <strong className="font-semibold text-ink">tiene insieme quello che pubblichi</strong>,
+        costruita sul tuo progetto.
+      </>
+    ),
+    bullets: [
+      <>
+        <strong className="font-semibold text-ink">
+          Sai perché pubblichi quello che pubblichi
+        </strong>
+        : ogni contenuto ha un ruolo preciso.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Basta contenuti a caso</strong>: smetti di
+        pubblicare tanto per esserci.
       </>,
     ],
   },
   {
     n: "5",
     title: "La tua direzione comunicativa",
-    mockup: (
-      <div
-        className="surface-card mx-auto w-full max-w-[220px] p-4"
-        style={{ borderRadius: "1.25rem" }}
-      >
-        <div className="flex items-center gap-3">
-          <span
-            className="flex size-9 shrink-0 items-center justify-center rounded-full"
-            style={{ backgroundImage: "var(--gradient-gold)" }}
-          >
-            <Compass className="size-4 text-primary-foreground" />
-          </span>
-          <p className="text-xs font-semibold text-foreground sm:text-sm">Direzione comunicativa</p>
-        </div>
-        <div className="relative mt-4">
-          <div className="h-1.5 w-full rounded-full bg-foreground/10">
-            <div
-              className="h-1.5 w-2/3 rounded-full"
-              style={{ backgroundImage: "var(--gradient-gold)" }}
-            />
-          </div>
-          <span
-            className="absolute top-1/2 size-3 -translate-y-1/2 rounded-full border-2"
-            style={{
-              left: "calc(66% - 6px)",
-              backgroundColor: "var(--secondary)",
-              borderColor: "var(--card)",
-            }}
-          />
-        </div>
-      </div>
-    ),
-    paragraphs: [
+    photo: licenziaLeRegoleImg,
+    photoPosition: "50% 25%",
+    highlight: "direction",
+    intro: (
       <>
-        Definiamo dove vuoi portare la tua comunicazione, costruita sulla tua identità e sui tuoi
-        obiettivi, per avere{" "}
-        <strong className="font-semibold">una direzione precisa fin dai primi contenuti</strong>.
+        Dove vuoi portare la tua comunicazione,{" "}
+        <strong className="font-semibold text-ink">
+          costruita sulla tua identità e sui tuoi obiettivi
+        </strong>
+        .
+      </>
+    ),
+    bullets: [
+      <>
+        <strong className="font-semibold text-ink">Una direzione precisa</strong>: sai dove stai
+        andando fin dai primi contenuti.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Obiettivi tuoi</strong>: la rotta parte da quello
+        che vuoi ottenere tu, non da quello che funziona per le altre.
       </>,
     ],
   },
   {
     n: "6",
     title: "La tua strategia completa di comunicazione",
-    mockup: (
-      <div
-        className="surface-card mx-auto w-full max-w-[220px] p-4"
-        style={{ borderRadius: "1.25rem" }}
-      >
-        <div className="flex items-center gap-3">
-          <span
-            className="flex size-9 shrink-0 items-center justify-center rounded-full"
-            style={{ backgroundImage: "var(--gradient-gold)" }}
-          >
-            <Target className="size-4 text-primary-foreground" />
-          </span>
-          <p className="text-xs font-semibold text-foreground sm:text-sm">Strategia completa</p>
-        </div>
-        <div className="mt-3 space-y-2">
-          {["Cosa pubblichi", "Perché lo pubblichi", "Dove stai andando"].map((t) => (
-            <div key={t} className="flex items-center gap-2 text-xs text-foreground/80">
-              <CheckCircle2 className="size-3.5 shrink-0" style={{ color: "var(--secondary)" }} />
-              {t}
-            </div>
-          ))}
-        </div>
-      </div>
-    ),
-    paragraphs: [
+    photo: carlottaWalkingImg,
+    photoPosition: "50% 25%",
+    highlight: "editorial-plan",
+    intro: (
       <>
-        Tutti i pezzi si uniscono in una strategia completa che parte da te:{" "}
-        <strong className="font-semibold">
-          sai cosa pubblicare, perché lo pubblichi e dove stai andando
+        Tutti i pezzi si uniscono in{" "}
+        <strong className="font-semibold text-ink">una strategia completa che parte da te</strong>.
+      </>
+    ),
+    bullets: [
+      <>
+        <strong className="font-semibold text-ink">
+          Sai cosa pubblicare, perché lo pubblichi e dove stai andando
         </strong>
-        , e la applichi già durante il percorso mentre la affiniamo insieme.
+        : hai il quadro completo della tua comunicazione.
       </>,
       <>
-        Così, a fine percorso,{" "}
-        <strong className="font-semibold">sai come farla evolvere anche da sola</strong>: nella
-        Mentorship ci lavori ogni settimana con il mio team e 4 volte con me, nel Program attraverso
-        gli step e i momenti di confronto previsti.
+        <strong className="font-semibold text-ink">La applichi già durante il percorso</strong>: la
+        affiniamo insieme, così a fine percorso sai farla evolvere anche da sola.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Mentorship e Program</strong>: nella Mentorship
+        ci lavori ogni settimana con il mio team e 4 volte con me, nel Program attraverso gli step e
+        i momenti di confronto previsti.
       </>,
     ],
   },
@@ -1122,88 +1047,6 @@ const marketBreakdown = [
   },
 ];
 
-const stepMockups = [
-  // 01 · Radica chi sei → mockup "Carta Identitaria"
-  <div className="surface-card mx-auto w-full max-w-xs p-5" style={{ borderRadius: "1.25rem" }}>
-    <div className="flex items-center gap-3">
-      <span
-        className="flex size-10 shrink-0 items-center justify-center rounded-full"
-        style={{ backgroundImage: "var(--gradient-gold)" }}
-      >
-        <IdCard className="size-5 text-primary-foreground" />
-      </span>
-      <div className="min-w-0">
-        <p className="eyebrow">Carta Identitaria</p>
-        <p className="text-sm font-semibold text-foreground">Il tuo DNA comunicativo</p>
-      </div>
-    </div>
-    <div className="mt-4 space-y-2">
-      {[100, 80, 90, 60].map((w, i) => (
-        <div key={i} className="h-2 rounded-full bg-foreground/10" style={{ width: `${w}%` }} />
-      ))}
-    </div>
-  </div>,
-  // 02 · Progetta i contenuti → mockup piano editoriale
-  <div className="surface-card mx-auto w-full max-w-xs p-5" style={{ borderRadius: "1.25rem" }}>
-    <div className="flex items-center gap-3">
-      <span
-        className="flex size-10 shrink-0 items-center justify-center rounded-full"
-        style={{ backgroundImage: "var(--gradient-gold)" }}
-      >
-        <CalendarDays className="size-5 text-primary-foreground" />
-      </span>
-      <p className="text-sm font-semibold text-foreground">Piano editoriale ad hoc</p>
-    </div>
-    <div className="mt-4 grid grid-cols-4 gap-2">
-      {Array.from({ length: 8 }).map((_, i) => (
-        <div
-          key={i}
-          className="aspect-square rounded-md"
-          style={
-            [0, 2, 5, 7].includes(i)
-              ? { backgroundImage: "var(--gradient-gold)" }
-              : { backgroundColor: "color-mix(in oklab, var(--foreground) 8%, transparent)" }
-          }
-        />
-      ))}
-    </div>
-  </div>,
-  // 03 · Attiva i contenuti → mockup post pubblicato
-  <div
-    className="surface-card mx-auto w-full max-w-xs overflow-hidden"
-    style={{ borderRadius: "1.25rem" }}
-  >
-    <div className="flex items-center gap-2 p-3">
-      <span className="size-7 shrink-0 rounded-full bg-foreground/15" />
-      <div className="h-2 w-24 rounded-full bg-foreground/15" />
-    </div>
-    <div className="aspect-square w-full" style={{ backgroundImage: "var(--gradient-gold)" }} />
-    <div className="flex items-center gap-3 p-3 text-primary">
-      <Heart className="size-4 fill-current" />
-      <MessageCircle className="size-4" />
-    </div>
-  </div>,
-  // 04 · Chiudi e scala → mockup DM → call
-  <div
-    className="surface-card mx-auto w-full max-w-xs space-y-2 p-5"
-    style={{ borderRadius: "1.25rem" }}
-  >
-    <div
-      className="ml-auto w-3/4 rounded-2xl rounded-tr-sm px-3 py-2 text-xs text-primary-foreground"
-      style={{ backgroundImage: "var(--gradient-gold)" }}
-    >
-      Ciao! Mi racconti come lavori?
-    </div>
-    <div className="w-3/4 rounded-2xl rounded-tl-sm bg-foreground/10 px-3 py-2 text-xs text-foreground/80">
-      Certo, prenotiamo una call conoscitiva?
-    </div>
-    <div className="mt-3 flex items-center gap-2 rounded-xl border border-primary/40 px-3 py-2 text-xs font-semibold text-secondary">
-      <PhoneCall className="size-4" />
-      Call conoscitiva fissata
-    </div>
-  </div>,
-];
-
 const inputClassName =
   "w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-card-foreground outline-none placeholder:text-card-foreground/50 focus:border-primary";
 
@@ -1225,49 +1068,23 @@ export const Route = createFileRoute("/candidati-ambiziosa")({
 
 function CtaBox({ context }: { context: React.ReactNode }) {
   return (
-    <section className="bg-background px-4 py-14 sm:px-8 sm:py-16">
-      <Reveal>
-        <div
-          className="ticket-border-glow relative mx-auto max-w-xl rounded-[1.75rem]"
-          style={{ borderRadius: "1.75rem" }}
-        >
+    <section className="bg-background">
+      <div className="mx-auto max-w-4xl px-5 py-20">
+        <Reveal>
           <div
-            className="surface-cream flex flex-col items-center gap-4 p-6 text-center sm:p-8"
+            className="surface-cream flex flex-col items-center px-6 py-12 text-center sm:px-12 sm:py-16"
             style={{ borderRadius: "1.75rem" }}
           >
-            <p className="text-sm leading-relaxed sm:text-base">{context}</p>
-            <a
-              href={ANCHOR}
-              className="inline-flex w-full max-w-sm flex-col items-center rounded-xl px-6 py-4 text-center transition-transform duration-200 hover:-translate-y-0.5"
-              style={{
-                backgroundImage: "var(--gradient-gold)",
-                color: "var(--primary-foreground)",
-                boxShadow: "var(--shadow-gold)",
-              }}
-            >
-              <span className="font-condensed text-sm font-bold uppercase tracking-[0.06em] sm:text-base">
-                {CTA_LABEL}
-              </span>
-            </a>
-            <p className="text-xs text-ink-muted">{REASSURANCE}</p>
+            <p className="max-w-2xl text-lg font-semibold leading-snug text-ink sm:text-2xl">
+              {context}
+            </p>
+            <div className="mt-8 flex w-full justify-center">
+              <AmbiziosaCtaButton variant="hero" label={CTA_LABEL} />
+            </div>
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
+      </div>
     </section>
-  );
-}
-
-// Segno di spunta bordeaux su cerchio verde acido, per la lista di 4 punti
-// della hero.
-function HeroCheck() {
-  return (
-    <span
-      className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full"
-      style={{ backgroundColor: "var(--primary)" }}
-      aria-hidden
-    >
-      <Check className="size-3" style={{ color: "var(--secondary)" }} strokeWidth={3} />
-    </span>
   );
 }
 
@@ -1311,253 +1128,286 @@ function CandidaturaAmbiziosa() {
             }}
           />
 
-          <div className="relative mx-auto max-w-6xl px-4 pb-10 pt-10 text-left sm:px-8 sm:pb-16 sm:pt-16">
-            <h1
-              className="text-3xl font-semibold sm:max-w-[760px] sm:text-4xl"
-              style={{ color: "var(--secondary-foreground)" }}
-            >
-              <Highlight dark>
-                <strong className="font-bold">Ambiziosa:</strong>
-              </Highlight>{" "}
-              il mio programma esclusivo per professioniste e imprenditrici che vogliono{" "}
-              <Highlight dark>farsi riconoscere</Highlight> e trasformare l'ambizione in carriera
-            </h1>
+          <div
+            className="relative mx-auto max-w-6xl px-5 pb-16 pt-10 text-left sm:pb-20 sm:pt-20"
+            style={{ color: "var(--secondary-foreground)" }}
+          >
+            <Reveal>
+              <p className="font-condensed text-xs uppercase tracking-[0.4em] text-primary sm:text-sm">
+                Program e Mentorship · Candidature aperte
+              </p>
+            </Reveal>
 
-            <p
-              className="mt-6 text-sm sm:max-w-[640px] sm:text-base"
-              style={{ color: "var(--secondary-foreground)" }}
-            >
-              <strong className="font-semibold">
-                Ambiziosa è il mio percorso esclusivo, di 4 mesi
-              </strong>
-              , dove io e te lavoriamo insieme sulla tua identità, la tua comunicazione, i tuoi
-              contenuti e la tua strategia.
-            </p>
-            <p
-              className="mt-3 text-sm sm:max-w-[640px] sm:text-base"
-              style={{ color: "var(--secondary-foreground)" }}
-            >
-              Non è un corso registrato da guardare quando capita, ma un percorso in cui costruiamo
-              passo dopo passo chi sei online e come lo comunichi, fino a diventare{" "}
-              <strong className="font-semibold">
-                un sistema che continua a funzionare anche dopo la fine del percorso
-              </strong>
-              .
-            </p>
+            <Reveal delay={80}>
+              <div className="relative mt-6 inline-block">
+                <h1 className="font-display text-6xl uppercase leading-[0.95] tracking-tight text-ink sm:text-8xl">
+                  Ambiziosa
+                </h1>
+                <span
+                  className="absolute select-none whitespace-nowrap rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary-foreground sm:text-xs"
+                  style={{
+                    backgroundImage: "var(--gradient-gold)",
+                    boxShadow: "var(--shadow-gold)",
+                    top: "-0.6rem",
+                    right: "-0.5rem",
+                    transform: "rotate(11deg)",
+                  }}
+                >
+                  Percorso di 4 mesi
+                </span>
+              </div>
+            </Reveal>
 
-            <div className="mt-8">
-              <AmbiziosaCtaButton variant="hero" />
-            </div>
+            <Reveal delay={150}>
+              <p className="mt-8 max-w-3xl text-lg font-semibold leading-snug text-ink sm:text-2xl">
+                Il mio programma esclusivo per professioniste e imprenditrici che vogliono{" "}
+                <Highlight dark>farsi riconoscere</Highlight> e trasformare l'ambizione in carriera.
+              </p>
+            </Reveal>
 
-            <div className="mt-4">
-              <div
-                className="inline-flex max-w-[260px] flex-col items-center gap-1 rounded-xl px-3 py-2 sm:max-w-[340px] sm:flex-row sm:gap-2"
-                style={{
-                  backgroundColor: "transparent",
-                  border: "1px solid var(--secondary-foreground)",
-                }}
-              >
-                <div className="flex -space-x-2.5">
-                  {HERO_SOCIAL_AVATARS.map((src, i) => (
-                    <img
-                      key={i}
-                      src={src}
-                      alt=""
-                      aria-hidden
-                      loading="lazy"
-                      className="size-7 shrink-0 rounded-full border-2 object-cover"
-                      style={{ borderColor: "var(--secondary-foreground)" }}
-                    />
-                  ))}
-                </div>
-                <div className="text-center sm:text-left">
-                  <div
-                    className="flex justify-center gap-0.5 sm:justify-start"
-                    style={{ color: "var(--primary)" }}
-                  >
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <Star key={i} className="size-3 fill-current" />
+            <Reveal delay={210}>
+              <div className="mt-5 max-w-2xl space-y-3 text-base leading-relaxed text-ink-muted sm:text-lg">
+                <p>
+                  <strong className="font-semibold text-ink">
+                    Ambiziosa è il mio percorso esclusivo, di 4 mesi
+                  </strong>
+                  , dove io e te lavoriamo insieme sulla tua identità, la tua comunicazione, i tuoi
+                  contenuti e la tua strategia.
+                </p>
+                <p>
+                  Non è un corso registrato da guardare quando capita, ma un percorso in cui
+                  costruiamo passo dopo passo chi sei online e come lo comunichi, fino a diventare{" "}
+                  <strong className="font-semibold text-ink">
+                    un sistema che continua a funzionare anche dopo la fine del percorso
+                  </strong>
+                  .
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={300}>
+              <div className="mt-10 max-w-xl">
+                <AmbiziosaCtaButton variant="hero" />
+              </div>
+
+              <div className="mt-4">
+                <div
+                  className="inline-flex flex-col items-center gap-1.5 rounded-xl px-4 py-2.5 sm:flex-row sm:items-center sm:gap-3"
+                  style={{
+                    backgroundColor: "color-mix(in oklab, var(--secondary) 35%, transparent)",
+                    border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
+                  }}
+                >
+                  <div className="flex -space-x-3">
+                    {HERO_SOCIAL_AVATARS.map((src, i) => (
+                      <img
+                        key={i}
+                        src={src}
+                        alt=""
+                        aria-hidden
+                        loading="lazy"
+                        className="size-9 shrink-0 rounded-full border-2 object-cover"
+                        style={{ borderColor: "var(--secondary)" }}
+                      />
                     ))}
                   </div>
-                  <p
-                    className="mt-0.5 text-[11px] leading-snug"
-                    style={{ color: "var(--secondary-foreground)" }}
-                  >
-                    Centinaia di professioniste hanno già usato il mio metodo.
-                  </p>
+                  <div className="text-center sm:text-left">
+                    <div className="flex justify-center gap-0.5 text-primary sm:justify-start">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="size-3.5 fill-current" />
+                      ))}
+                    </div>
+                    <p className="mt-0.5 text-[10px] text-ink/85 sm:text-sm">
+                      Centinaia di professioniste hanno già usato il mio metodo
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
 
-        <div className="mx-auto max-w-5xl px-4 pb-8 pt-8 sm:px-8 sm:pb-10 sm:pt-10">
+        <div className="mx-auto max-w-5xl px-5 pt-10">
           <AmbiziosaHeroVideo />
         </div>
 
-        <div className="relative mx-auto mt-16 max-w-6xl overflow-hidden rounded-[1.75rem] sm:mt-20">
-          <img
-            src={carlottaLookingWideImg}
-            alt=""
-            aria-hidden
-            loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div
-            className="absolute inset-0"
-            style={{ backgroundColor: "color-mix(in oklab, var(--secondary) 76%, transparent)" }}
-          />
+        <div className="mx-auto max-w-6xl px-5 pb-10 pt-20">
+          <div className="relative overflow-hidden" style={{ borderRadius: "1.75rem" }}>
+            <img
+              src={carlottaLookingWideImg}
+              alt=""
+              aria-hidden
+              loading="lazy"
+              className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+            />
+            <div
+              className="pointer-events-none absolute inset-0"
+              style={{
+                backgroundImage:
+                  "linear-gradient(180deg, color-mix(in oklab, var(--secondary) 80%, transparent), var(--secondary) 100%)",
+              }}
+            />
 
-          <div className="relative grid gap-8 px-5 py-10 sm:grid-cols-[1.1fr_0.9fr] sm:items-start sm:px-10 sm:py-14">
-            <div className="space-y-3 text-left" style={{ color: "var(--secondary-foreground)" }}>
-              <h3 className="text-xl font-semibold sm:text-2xl">
-                Prima l'identità, poi i contenuti. Questo è il segreto.
-              </h3>
-              <p style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
-                Ambiziosa è il percorso di 4 mesi in cui lavoriamo insieme sulla tua identità per
-                trasformarla in{" "}
-                <strong className="font-semibold" style={{ color: "var(--primary)" }}>
-                  una comunicazione che ti fa riconoscere
-                </strong>
-                .
-              </p>
-              <p style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
-                Inizi a pubblicare mentre studi il metodo, senza aspettare di aver finito la
-                formazione:{" "}
-                <strong className="font-semibold" style={{ color: "var(--primary)" }}>
-                  hai già tra le mani una strategia costruita sul tuo progetto
-                </strong>
-                .
-              </p>
-              <p style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
-                Alla fine arrivi con{" "}
-                <strong className="font-semibold" style={{ color: "var(--primary)" }}>
-                  una strategia completa che hai già messo in pratica
-                </strong>{" "}
-                e sai come farla evolvere anche da sola.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-3">
-              {HERO_CHECKLIST.map((item) => (
-                <div
-                  key={item.bold}
-                  className="flex items-start gap-3 rounded-xl p-4 backdrop-blur-sm"
-                  style={{
-                    backgroundColor: "rgba(255, 255, 255, 0.14)",
-                    border: "1px solid rgba(255, 255, 255, 0.25)",
-                  }}
-                >
-                  <HeroCheck />
-                  <span className="text-sm" style={{ color: "var(--secondary-foreground)" }}>
-                    <strong className="font-semibold">{item.bold}</strong>
-                    {item.rest}
-                  </span>
+            <div
+              className="relative grid gap-10 px-6 py-16 sm:px-12 sm:py-20 md:grid-cols-[1.1fr_0.9fr] md:items-start"
+              style={{ color: "var(--secondary-foreground)" }}
+            >
+              <div>
+                <h3 className="text-2xl font-semibold text-ink sm:text-3xl">
+                  Prima l'identità, poi i contenuti. <Highlight dark>Questo è il segreto</Highlight>
+                  .
+                </h3>
+                <div className="mt-6 space-y-5 text-base leading-relaxed text-ink-muted">
+                  <p>
+                    Ambiziosa è il percorso di 4 mesi in cui lavoriamo insieme sulla tua identità
+                    per trasformarla in{" "}
+                    <strong className="font-semibold text-ink">
+                      una comunicazione che ti fa riconoscere
+                    </strong>
+                    .
+                  </p>
+                  <p>
+                    Inizi a pubblicare mentre studi il metodo, senza aspettare di aver finito la
+                    formazione:{" "}
+                    <strong className="font-semibold text-ink">
+                      hai già tra le mani una strategia costruita sul tuo progetto
+                    </strong>
+                    .
+                  </p>
+                  <p>
+                    Alla fine arrivi con{" "}
+                    <strong className="font-semibold text-ink">
+                      una strategia completa che hai già messo in pratica
+                    </strong>{" "}
+                    e sai come farla evolvere anche da sola.
+                  </p>
                 </div>
-              ))}
+              </div>
+
+              <div className="space-y-4">
+                {HERO_CHECKLIST.map((item) => (
+                  <div
+                    key={item.bold}
+                    className="flex gap-4 rounded-xl border border-white/10 bg-white/5 p-5"
+                  >
+                    <Check className="mt-1 size-4 shrink-0" style={{ color: "var(--gold-deep)" }} />
+                    <span className="text-sm leading-relaxed text-ink-muted sm:text-base">
+                      <strong className="font-semibold text-ink">{item.bold}</strong>
+                      {item.rest}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* 3. Riprova sociale immediata */}
-      <section className="bg-background px-4 pb-12 pt-20 sm:px-8 sm:pb-16 sm:pt-28">
-        <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-          <div className="text-left">
-            <h2 className="text-2xl font-semibold text-foreground sm:text-3xl">
+      <section className="bg-background">
+        <div className="mx-auto grid max-w-5xl gap-10 px-5 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <Reveal>
+            <h2 className="text-3xl text-foreground sm:text-4xl">
               Ci sarà un motivo se Ambiziosa ha funzionato con{" "}
-              <Highlight>
-                <strong className="font-semibold">centinaia di professioniste diverse</strong>
-              </Highlight>{" "}
-              in settori completamente diversi tra di loro, no?
+              <Highlight>centinaia di professioniste diverse</Highlight> in settori completamente
+              diversi tra di loro, no?
             </h2>
-            <p className="mt-5 text-sm leading-relaxed text-foreground/85 sm:text-base">
-              La maggior parte delle professioniste che finisce in burnout su Instagram, pensando di
-              mollare il proprio business, parte da strategie che non sono specifiche per loro, ma
-              che hanno solo visto funzionare per altri.
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
-              In realtà, le professioniste che riescono davvero a sfondare online hanno tutte una
-              cosa in comune:{" "}
-              <strong className="font-semibold">un'identità forte, chiara e definita</strong>.
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
-              In Ambiziosa facciamo esattamente questo.
-            </p>
-          </div>
-
-          <div
-            className="flex flex-col rounded-2xl p-5"
-            style={{ backgroundColor: "var(--card)", border: "1px solid var(--secondary)" }}
-          >
-            <p className="mb-3 text-sm font-semibold text-foreground">
-              Questi sono solo alcuni dei settori che abbiamo seguito.
-            </p>
-            <div className="grid grid-cols-2 gap-2.5">
-              {SECTOR_TESTIMONIALS.map((item) => (
-                <button
-                  key={item.sector}
-                  type="button"
-                  onMouseEnter={() => setActiveSector(item.sector)}
-                  onFocus={() => setActiveSector(item.sector)}
-                  onClick={() => setActiveSector(item.sector)}
-                  aria-pressed={activeSector === item.sector}
-                  className="inline-flex w-full items-center justify-center rounded-full px-3 py-2 text-center font-condensed text-[10px] font-semibold uppercase tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:text-xs sm:tracking-[0.1em]"
-                  style={{
-                    backgroundColor: "var(--primary)",
-                    color: "var(--secondary)",
-                    outline: activeSector === item.sector ? "2px solid var(--secondary)" : "none",
-                    outlineOffset: "2px",
-                  }}
-                >
-                  {item.sector}
-                </button>
-              ))}
+            <div className="mt-6 space-y-5 text-base leading-relaxed text-foreground/85">
+              <p>
+                La maggior parte delle professioniste che finisce in burnout su Instagram, pensando
+                di mollare il proprio business,{" "}
+                <strong className="font-semibold text-foreground">
+                  parte da strategie che non sono specifiche per loro
+                </strong>
+                , ma che hanno solo visto funzionare per altri.
+              </p>
+              <p>
+                In realtà, le professioniste che riescono davvero a sfondare online hanno tutte una
+                cosa in comune:{" "}
+                <strong className="font-semibold text-foreground">
+                  un'identità forte, chiara e definita
+                </strong>
+                .
+              </p>
+              <p className="font-display text-xl leading-snug text-foreground sm:text-2xl">
+                In Ambiziosa facciamo esattamente questo.
+              </p>
             </div>
+          </Reveal>
 
-            {(() => {
-              const active =
-                SECTOR_TESTIMONIALS.find((s) => s.sector === activeSector) ??
-                SECTOR_TESTIMONIALS[0];
-              return (
-                <div
-                  className="mt-5 flex flex-1 items-start gap-4 rounded-xl p-4 text-left"
-                  style={{
-                    backgroundColor: "var(--secondary)",
-                    color: "var(--secondary-foreground)",
-                  }}
-                >
-                  <img
-                    src={active.photo}
-                    alt=""
-                    aria-hidden
-                    loading="lazy"
-                    className="size-14 shrink-0 rounded-full object-cover"
-                    style={{ border: "2px solid var(--secondary-foreground)" }}
-                  />
-                  <div className="min-w-0">
-                    <p className="text-sm font-semibold sm:text-base">{active.name}</p>
-                    <p className="mt-1.5 text-sm leading-snug opacity-90">
-                      <span className="font-semibold">Punto A: </span>
-                      {active.before}
-                    </p>
-                    <p className="mt-1 text-sm leading-snug opacity-90">
-                      <span className="font-semibold">Punto B: </span>
-                      {active.after}
-                    </p>
-                    <button
-                      type="button"
-                      onClick={() => goToTestimonial(active.name)}
-                      className="mt-2.5 cursor-pointer text-left text-sm font-semibold underline underline-offset-2"
-                      style={{ color: "var(--primary)" }}
-                    >
-                      Guarda la sua video testimonianza
-                    </button>
+          <Reveal delay={80}>
+            <div className="flex flex-col rounded-xl border border-border/70 bg-card/50 p-5 sm:p-7">
+              <p className="font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
+                Questi sono solo alcuni dei settori che abbiamo seguito
+              </p>
+              <div className="mt-4 grid grid-cols-2 gap-2.5">
+                {SECTOR_TESTIMONIALS.map((item) => (
+                  <button
+                    key={item.sector}
+                    type="button"
+                    onMouseEnter={() => setActiveSector(item.sector)}
+                    onFocus={() => setActiveSector(item.sector)}
+                    onClick={() => setActiveSector(item.sector)}
+                    aria-pressed={activeSector === item.sector}
+                    className="inline-block w-full cursor-pointer rounded-full px-4 py-1.5 text-center font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5 sm:text-xs"
+                    style={{
+                      backgroundImage: "var(--gradient-gold)",
+                      boxShadow: "var(--shadow-gold)",
+                      outline: activeSector === item.sector ? "2px solid var(--secondary)" : "none",
+                      outlineOffset: "2px",
+                    }}
+                  >
+                    {item.sector}
+                  </button>
+                ))}
+              </div>
+
+              {(() => {
+                const active =
+                  SECTOR_TESTIMONIALS.find((s) => s.sector === activeSector) ??
+                  SECTOR_TESTIMONIALS[0];
+                return (
+                  <div
+                    className="mt-5 flex flex-1 items-start gap-4 rounded-xl px-4 py-4 text-left"
+                    style={{
+                      backgroundColor: "var(--secondary)",
+                      color: "var(--secondary-foreground)",
+                    }}
+                  >
+                    <img
+                      src={active.photo}
+                      alt=""
+                      aria-hidden
+                      loading="lazy"
+                      className="size-11 shrink-0 rounded-full border border-dashed object-cover"
+                      style={{
+                        borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)",
+                      }}
+                    />
+                    <div className="min-w-0">
+                      <p className="font-semibold text-ink">{active.name}</p>
+                      <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
+                        <span className="font-semibold text-ink">Punto A: </span>
+                        {active.before}
+                      </p>
+                      <p className="mt-1 text-sm leading-relaxed text-ink-muted">
+                        <span className="font-semibold text-ink">Punto B: </span>
+                        {active.after}
+                      </p>
+                      <button
+                        type="button"
+                        onClick={() => goToTestimonial(active.name)}
+                        className="mt-2.5 cursor-pointer text-left text-sm underline"
+                        style={{ color: "var(--gold-deep)" }}
+                      >
+                        Guarda la sua video testimonianza
+                      </button>
+                    </div>
                   </div>
-                </div>
-              );
-            })()}
-          </div>
+                );
+              })()}
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -1571,113 +1421,132 @@ function CandidaturaAmbiziosa() {
           style={{ objectPosition: "30% 6%", transform: "scaleX(-1)" }}
         />
         <div
-          className="absolute inset-0"
-          style={{ backgroundColor: "color-mix(in oklab, var(--secondary) 74%, transparent)" }}
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(180deg, color-mix(in oklab, var(--secondary) 70%, transparent), color-mix(in oklab, var(--secondary) 82%, transparent) 40%, var(--secondary) 100%)",
+          }}
         />
 
         <div
-          className="relative mx-auto grid max-w-6xl gap-8 px-6 py-14 sm:px-10 sm:py-20 lg:grid-cols-2 lg:items-center"
+          className="relative mx-auto grid max-w-6xl gap-10 px-5 py-20 lg:grid-cols-2 lg:items-center"
           style={{ color: "var(--secondary-foreground)" }}
         >
-          <h2 className="text-2xl font-semibold sm:text-3xl">
-            Hai seguito mille corsi e corsetti e le regole le sai. Eppure{" "}
-            <Highlight dark>non ti senti tu</Highlight> su Instagram.
-          </h2>
+          <Reveal>
+            <h2
+              className="text-3xl sm:text-4xl"
+              style={{ textShadow: "0 2px 24px rgba(0,0,0,0.65)" }}
+            >
+              Hai seguito mille corsi e corsetti e le regole le sai. Eppure{" "}
+              <Highlight dark>non ti senti tu</Highlight> su Instagram.
+            </h2>
+          </Reveal>
 
-          <div>
-            <p className="text-sm leading-relaxed sm:text-base">
-              Hai studiato e hai imparato hook, script e CTA. Hai salvato strategie su strategie e
-              hai tenuto un piano editoriale anche quando ti stava stretto. In tutto questo hai
-              investito tempo, energie e magari soldi in corsi e metodi diversi, quindi{" "}
-              <strong className="font-semibold">l'impegno non ti è mai mancato</strong>.
-            </p>
-            <p className="mt-4 text-sm leading-relaxed sm:text-base">
-              E nonostante questo ti ritrovi a dire:
-            </p>
+          <Reveal delay={80}>
+            <div className="space-y-5 text-base leading-relaxed text-ink-muted">
+              <p>
+                Hai studiato e hai imparato hook, script e CTA. Hai salvato strategie su strategie e
+                hai tenuto un piano editoriale anche quando ti stava stretto. In tutto questo hai
+                investito tempo, energie e magari soldi in corsi e metodi diversi, quindi{" "}
+                <strong className="font-semibold text-ink">l'impegno non ti è mai mancato</strong>.
+              </p>
+              <p>
+                E nonostante questo{" "}
+                <strong className="font-semibold text-ink">ti ritrovi a dire</strong>:
+              </p>
 
-            <ul className="mt-5 space-y-3">
-              {CONTENT_PAIN_POINTS.map((p) => (
-                <li key={p} className="flex items-start gap-3 text-sm leading-relaxed sm:text-base">
-                  <XCircle
-                    className="mt-0.5 size-5 shrink-0"
-                    style={{ color: "#ff8a80" }}
-                    strokeWidth={2.25}
-                  />
-                  <span>“{p}”</span>
-                </li>
-              ))}
-            </ul>
+              <ul className="space-y-4">
+                {CONTENT_PAIN_POINTS.map((p) => (
+                  <li
+                    key={p}
+                    className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
+                  >
+                    <span className="mt-0.5 text-ink-muted/50">✕</span>
+                    <span>“{p}”</span>
+                  </li>
+                ))}
+              </ul>
 
-            <p className="mt-6 text-sm leading-relaxed sm:text-base">
-              E questa cosa ti dà fastidio, dentro di te, perché{" "}
-              <strong className="font-semibold">
-                vorresti differenziarti ma non riesci a trasmetterlo
-              </strong>
-              . Hai paura che anche i tuoi potenziali clienti vedano questo: perché dovrebbero
-              venire da te e non andare da un'altra?
-            </p>
+              <p>
+                E questa cosa ti dà fastidio, dentro di te, perché{" "}
+                <strong className="font-semibold text-ink">
+                  vorresti differenziarti ma non riesci a trasmetterlo
+                </strong>
+                . Hai paura che anche i tuoi potenziali clienti vedano questo: perché dovrebbero
+                venire da te e non andare da un'altra?
+              </p>
 
-            <p className="mt-4 text-base font-semibold sm:text-lg">
-              Il problema non è quanto pubblichi o quanto sei costante: è che nei tuoi contenuti non
-              si riconosce chi sei davvero.
-            </p>
+              <p className="font-display text-xl leading-snug text-ink sm:text-2xl">
+                Il problema non è quanto pubblichi o quanto sei costante: è che nei tuoi contenuti
+                non si riconosce chi sei davvero.
+              </p>
 
-            <p className="mt-4 text-sm leading-relaxed sm:text-base">
-              Hai competenze e lo sai, però ti senti identica a mille altre professioniste.{" "}
-              <strong className="font-semibold">Ora bisogna renderti riconoscibile.</strong>
-            </p>
-          </div>
+              <p>
+                Hai competenze e lo sai, però ti senti identica a mille altre professioniste.{" "}
+                <strong className="font-semibold text-ink">
+                  Ora bisogna renderti riconoscibile.
+                </strong>
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* 3c. Quello che succede dopo Ambiziosa: giornata tipo a riquadri */}
-      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+      <section className="bg-background">
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <div>
-            <h2 className="text-2xl font-semibold text-foreground sm:text-3xl">
-              Quello che succede dopo Ambiziosa è questo.
-            </h2>
-            <p className="mt-3 text-sm text-foreground/80 sm:text-base">
-              E non te lo dico io, ma te lo confermano le centinaia di professioniste che hanno
-              lavorato con me.
-            </p>
+            <Reveal>
+              <h2 className="text-3xl text-foreground sm:text-4xl">
+                Quello che succede <Highlight>dopo Ambiziosa</Highlight> è questo.
+              </h2>
+              <p className="mt-4 text-base text-foreground/75 sm:text-lg">
+                E non te lo dico io, ma te lo confermano{" "}
+                <strong className="font-semibold text-foreground">
+                  le centinaia di professioniste che hanno lavorato con me
+                </strong>
+                .
+              </p>
+            </Reveal>
 
             <div className="mt-8">
               {JOURNEY_STEPS.map((step, i) => (
-                <div key={step.label}>
-                  <div
-                    className="rounded-xl p-5"
-                    style={{ backgroundColor: "var(--card)", border: "1px solid var(--secondary)" }}
-                  >
-                    <div
-                      className="inline-flex items-center gap-2 rounded-full px-3 py-1.5"
-                      style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+                <Reveal key={step.label} delay={i * 60}>
+                  <div className="rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary">
+                    <span
+                      className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 font-condensed text-xs uppercase tracking-[0.2em] text-primary-foreground sm:text-sm"
+                      style={{
+                        backgroundImage: "var(--gradient-gold)",
+                        boxShadow: "var(--shadow-gold)",
+                      }}
                     >
                       <step.icon className="size-4 shrink-0" />
-                      <span className="font-condensed text-xs font-semibold uppercase tracking-[0.08em] sm:text-sm">
-                        {step.label}
-                      </span>
-                    </div>
-                    <p className="mt-3 text-xs leading-relaxed text-foreground sm:text-sm">
+                      {step.label}
+                    </span>
+                    <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
                       {step.text}
                     </p>
                   </div>
                   {i < JOURNEY_STEPS.length - 1 ? (
                     <div className="flex justify-center py-1" aria-hidden>
-                      <ChevronDown className="size-5" style={{ color: "var(--secondary)" }} />
+                      <ChevronDown className="size-5 text-secondary" />
                     </div>
                   ) : null}
-                </div>
+                </Reveal>
               ))}
             </div>
 
-            <p className="mt-6 text-sm leading-relaxed text-foreground/85 sm:text-base">
+            <p className="mt-8 text-base leading-relaxed text-foreground/85">
               Sei la stessa professionista di prima, con la stessa ambizione. La differenza è che
-              adesso <strong className="font-semibold">online si vede chi sei davvero</strong>.
+              adesso{" "}
+              <strong className="font-semibold text-foreground">
+                online si vede chi sei davvero
+              </strong>
+              .
             </p>
           </div>
 
-          <div className="aspect-[4/5] overflow-hidden rounded-[1.75rem] lg:sticky lg:top-24">
+          <div className="aspect-[4/5] overflow-hidden rounded-2xl lg:sticky lg:top-24">
             <img
               src={carlottaTalkingImg}
               alt="Carlotta Sgarra"
@@ -1690,87 +1559,97 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 9. Prima/dopo a colonne specchiate */}
-      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div
-          className="mx-auto max-w-4xl rounded-[1.75rem] p-6 sm:p-10"
-          style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
-        >
-          <Reveal>
-            <h2 className="text-center text-2xl font-semibold sm:text-3xl">
-              Oggi sei qui, ma tra quattro mesi ecco dove sarai.
-            </h2>
-          </Reveal>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            <div className="space-y-4 rounded-2xl p-6">
-              <div className="flex justify-center">
-                <span
-                  className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-condensed text-xs uppercase tracking-[0.2em]"
-                  style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
-                >
-                  Oggi
-                </span>
-              </div>
-              <div className="space-y-4">
-                {beforeAfterRows.map((r) => (
-                  <div key={r.before} className="flex items-start gap-2">
-                    <XCircle
-                      className="mt-0.5 size-5 shrink-0"
-                      strokeWidth={2.25}
-                      style={{ color: "#ff8a80" }}
-                    />
-                    <p className="text-sm leading-relaxed opacity-85">{r.before}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div
-              className="space-y-4 rounded-2xl p-6"
-              style={{ backgroundColor: "var(--card)", color: "var(--foreground)" }}
-            >
-              <div className="flex justify-center">
-                <span
-                  className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-condensed text-xs uppercase tracking-[0.2em]"
-                  style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
-                >
-                  Tra 4 mesi
-                </span>
-              </div>
-              <div className="space-y-4">
-                {beforeAfterRows.map((r) => (
-                  <div key={r.after} className="flex items-start gap-2">
-                    <CheckCircle2
-                      className="mt-0.5 size-5 shrink-0"
-                      strokeWidth={2.25}
-                      style={{ color: "var(--secondary)" }}
-                    />
-                    <p className="text-sm leading-relaxed">{r.after}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+      <section className="bg-background">
+        <div className="mx-auto max-w-5xl px-5 py-20">
+          <div
+            className="surface-cream px-6 py-16 sm:px-12 sm:py-20"
+            style={{ borderRadius: "1.75rem" }}
+          >
+            <Reveal>
+              <h2 className="text-center text-3xl text-ink sm:text-4xl">
+                Oggi sei qui, ma <Highlight dark>tra quattro mesi</Highlight> ecco dove sarai.
+              </h2>
+            </Reveal>
 
-          <Reveal delay={120}>
-            <div className="mt-10 text-center">
-              <p className="text-sm leading-relaxed sm:text-base">{CTA_BOX_CONTEXT}</p>
-              <div className="mt-6 flex justify-center">
-                <AmbiziosaCtaButton variant="hero" />
-              </div>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              <Reveal>
+                <div className="h-full p-7">
+                  <div className="flex justify-center">
+                    <span
+                      className="inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
+                      style={{
+                        backgroundImage: "var(--gradient-gold)",
+                        boxShadow: "var(--shadow-gold)",
+                      }}
+                    >
+                      Oggi
+                    </span>
+                  </div>
+                  <ul className="mt-5 space-y-4">
+                    {beforeAfterRows.map((r) => (
+                      <li
+                        key={r.before}
+                        className="flex gap-3 text-sm leading-relaxed text-ink-muted/70"
+                      >
+                        <span className="mt-0.5 text-ink-muted/50">✕</span>
+                        <span>{r.before}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+              <Reveal delay={80}>
+                <div className="surface-card h-full p-7">
+                  <div className="flex justify-center">
+                    <span
+                      className="inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
+                      style={{
+                        backgroundImage: "var(--gradient-gold)",
+                        boxShadow: "var(--shadow-gold)",
+                      }}
+                    >
+                      Tra 4 mesi
+                    </span>
+                  </div>
+                  <ul className="mt-5 space-y-4">
+                    {beforeAfterRows.map((r) => (
+                      <li
+                        key={r.after}
+                        className="flex gap-3 text-sm leading-relaxed text-foreground/85"
+                      >
+                        <span className="mt-0.5 text-secondary">✓</span>
+                        <span>{r.after}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
             </div>
-          </Reveal>
+
+            <Reveal>
+              <div className="mt-14 flex flex-col items-center text-center">
+                <p className="max-w-2xl text-lg font-semibold leading-snug text-ink sm:text-xl">
+                  {CTA_BOX_CONTEXT}
+                </p>
+                <div className="mt-8 flex w-full justify-center">
+                  <AmbiziosaCtaButton variant="hero" />
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
       {/* 4. Card segmentazione pubblico */}
-      <section className="bg-background px-4 py-10 sm:px-8 sm:py-14">
-        <div className="mx-auto max-w-5xl">
+      <section className="bg-background">
+        <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Se rientri in una delle categorie qui sotto, allora Ambiziosa è il percorso perfetto
-              per te
+            <h2 className="text-center text-3xl text-foreground sm:text-4xl">
+              Se rientri in una delle categorie qui sotto, allora Ambiziosa è{" "}
+              <Highlight>il percorso perfetto per te</Highlight>
             </h2>
           </Reveal>
-          <div className="mt-8 grid gap-5 sm:grid-cols-2">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {forWhoCards.map((c, i) => (
               <Reveal key={c.role} delay={i * 60}>
                 <div className="relative flex h-full min-h-[440px] flex-col overflow-hidden rounded-2xl">
@@ -1779,46 +1658,45 @@ function CandidaturaAmbiziosa() {
                     alt=""
                     aria-hidden
                     loading="lazy"
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="pointer-events-none absolute inset-0 h-full w-full object-cover"
                   />
                   <div
-                    className="absolute inset-0"
-                    style={{ backgroundColor: "var(--secondary)", opacity: 0.84 }}
+                    className="pointer-events-none absolute inset-0"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(180deg, color-mix(in oklab, var(--secondary) 82%, transparent), color-mix(in oklab, var(--secondary) 90%, transparent) 40%, var(--secondary) 100%)",
+                    }}
                   />
-                  <div className="relative flex h-full flex-col gap-4 p-6">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <span className="font-condensed text-xl font-bold text-primary/70">
-                        {c.n}
-                      </span>
-                      <span
-                        className="inline-flex items-center rounded-full px-3 py-1.5 font-condensed text-base font-bold uppercase tracking-[0.03em] sm:text-lg"
-                        style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
-                      >
-                        {c.role}
-                      </span>
-                    </div>
-                    <div className="space-y-3">
+                  <div
+                    className="relative flex h-full flex-col p-6 sm:p-7"
+                    style={{ color: "var(--secondary-foreground)" }}
+                  >
+                    <span
+                      className="self-start rounded-full px-4 py-1.5 font-condensed text-xs font-bold uppercase tracking-[0.08em] text-primary-foreground sm:text-sm"
+                      style={{
+                        backgroundImage: "var(--gradient-gold)",
+                        boxShadow: "var(--shadow-gold)",
+                      }}
+                    >
+                      {c.n} · {c.role}
+                    </span>
+                    <div className="mt-5 space-y-3">
                       {c.paragraphs.map((p, pi) => (
-                        <p
-                          key={pi}
-                          className="text-sm leading-relaxed"
-                          style={{ color: "var(--secondary-foreground)", opacity: 0.92 }}
-                        >
+                        <p key={pi} className="text-sm leading-relaxed text-ink-muted sm:text-base">
                           {p}
                         </p>
                       ))}
                     </div>
-                    <div className="mt-auto flex flex-wrap gap-2 pt-2">
+                    <div className="mt-auto flex flex-wrap gap-2 pt-6">
                       {c.examples.map((ex) => (
                         <span
                           key={ex}
-                          className="rounded-full px-3 py-1 text-xs"
+                          className="rounded-xl px-3 py-1.5 text-xs text-ink"
                           style={{
-                            color: "var(--secondary-foreground)",
                             backgroundColor:
-                              "color-mix(in oklab, var(--secondary-foreground) 16%, transparent)",
+                              "color-mix(in oklab, var(--secondary) 35%, transparent)",
                             border:
-                              "1px solid color-mix(in oklab, var(--secondary-foreground) 35%, transparent)",
+                              "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
                           }}
                         >
                           {ex}
@@ -1831,16 +1709,17 @@ function CandidaturaAmbiziosa() {
             ))}
           </div>
 
-          <Reveal delay={240}>
-            <div className="mx-auto mt-10 max-w-2xl space-y-4 text-center">
-              <p className="text-sm leading-relaxed text-foreground/85 sm:text-base">
-                Qualsiasi sia la tua professione, sotto, quasi sempre, c'è lo stesso pensiero:{" "}
-                <strong className="font-semibold">
-                  "So di essere brava, ma Instagram non riesce a raccontarlo."
-                </strong>
+          <Reveal>
+            <div className="mx-auto mt-14 max-w-3xl space-y-5 text-center">
+              <p className="text-base leading-relaxed text-foreground/85">
+                Qualsiasi sia la tua professione, sotto, quasi sempre,{" "}
+                <strong className="font-semibold text-foreground">c'è lo stesso pensiero</strong>:
               </p>
-              <p className="text-sm leading-relaxed text-foreground/85 sm:text-base">
-                <strong className="font-semibold">
+              <p className="font-display text-xl leading-snug text-foreground sm:text-2xl">
+                “So di essere brava, ma Instagram non riesce a raccontarlo.”
+              </p>
+              <p className="text-base leading-relaxed text-foreground/85">
+                <strong className="font-semibold text-foreground">
                   Non importa che il tuo settore sia molto tecnico o molto di nicchia.
                 </strong>{" "}
                 Ogni professionista con cui ho lavorato è riuscita a tirar fuori un'identità e un
@@ -1856,29 +1735,31 @@ function CandidaturaAmbiziosa() {
 
       {/* 7. I punti su cui lavoriamo nei 4 mesi */}
       <section
-        className="px-4 py-16 sm:px-8 sm:py-24"
-        style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
+        id="programma"
+        className="overflow-x-clip bg-secondary"
+        style={{ color: "var(--secondary-foreground)" }}
       >
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
-            <h2 className="text-center text-2xl font-semibold sm:text-3xl">
-              Nei 4 mesi di Ambiziosa lavoriamo su tutti questi punti.
+            <h2 className="text-3xl sm:text-4xl">
+              Nei 4 mesi di Ambiziosa lavoriamo su <Highlight dark>tutti questi punti</Highlight>.
             </h2>
-          </Reveal>
-          <Reveal delay={60}>
-            <div className="mx-auto mt-6 max-w-2xl space-y-3 text-center">
-              <p className="text-sm leading-relaxed opacity-85 sm:text-base">
+            <div className="mt-6 max-w-3xl space-y-5 text-base leading-relaxed text-ink-muted">
+              <p>
                 Oggi ti bloccano soprattutto queste domande:{" "}
-                <strong className="font-semibold">cosa pubblicare</strong>, che tipo di contenuti
-                creare, chi sei e come posizionarti.
+                <strong className="font-semibold text-ink">cosa pubblicare</strong>, che tipo di
+                contenuti creare, chi sei e come posizionarti.
               </p>
-              <p className="text-sm leading-relaxed opacity-85 sm:text-base">
-                Se continui a fare quello che fanno tutte le altre, prima o poi arrivi al burnout
-                senza esserti mai distinta.
+              <p>
+                Se continui a fare quello che fanno tutte le altre, prima o poi{" "}
+                <strong className="font-semibold text-ink">
+                  arrivi al burnout senza esserti mai distinta
+                </strong>
+                .
               </p>
-              <p className="text-sm leading-relaxed opacity-85 sm:text-base">
+              <p>
                 Per questo{" "}
-                <strong className="font-semibold">
+                <strong className="font-semibold text-ink">
                   dalle prime call mettiamo in pratica tutto sul tuo progetto
                 </strong>
                 .
@@ -1886,41 +1767,76 @@ function CandidaturaAmbiziosa() {
             </div>
           </Reveal>
 
-          <div className="mt-16 space-y-12 sm:space-y-14">
+          <div className="mt-16 space-y-14">
             {communicationPillars.map((p, i) => (
-              <Reveal key={p.title} delay={i * 60}>
-                <div
-                  className="relative overflow-hidden rounded-[1.75rem] px-6 pb-6 pt-10 sm:px-8 sm:pb-8 sm:pt-12"
-                  style={{ backgroundImage: "var(--gradient-ink)" }}
-                >
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute -right-2 top-1/2 -translate-y-1/2 font-bold leading-none sm:right-4"
+              <Reveal key={p.n} delay={i * 100}>
+                <div className="group relative">
+                  <div
+                    className="relative grid gap-8 overflow-visible rounded-2xl border border-[color-mix(in_oklab,var(--background)_14%,transparent)] p-6 transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary group-hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)] sm:p-8 md:grid-cols-[0.7fr_1.3fr] md:items-center md:gap-10 md:overflow-hidden"
                     style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "clamp(8rem, 22vw, 15rem)",
-                      color: "var(--secondary-foreground)",
-                      opacity: 0.12,
+                      backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
                     }}
                   >
-                    {p.n}
-                  </span>
-                  <span
-                    className="absolute left-6 top-0 inline-flex -translate-y-1/2 items-center rounded-full px-4 py-2 font-condensed text-xs font-bold uppercase tracking-[0.08em] sm:left-8 sm:text-sm"
-                    style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
-                  >
-                    {p.n} · {p.title}
-                  </span>
-                  <div className="relative grid items-center gap-8 sm:grid-cols-[0.85fr_1.15fr] sm:gap-10">
-                    <div className="flex justify-center sm:justify-start">{p.mockup}</div>
-                    <div className="space-y-3">
-                      {p.paragraphs.map((para, pi) => (
-                        <p key={pi} className="text-sm leading-relaxed opacity-90 sm:text-base">
-                          {para}
-                        </p>
-                      ))}
+                    <span
+                      className="pointer-events-none absolute -right-6 top-1/2 hidden -translate-y-1/2 select-none font-display text-[40rem] font-bold leading-none md:block"
+                      style={{ color: "color-mix(in oklab, var(--primary) 16%, transparent)" }}
+                      aria-hidden
+                    >
+                      {p.n}
+                    </span>
+
+                    <div className="relative">
+                      <div className="relative">
+                        <div className="relative overflow-hidden rounded-2xl">
+                          <img
+                            src={p.photo}
+                            alt={p.title}
+                            loading="lazy"
+                            className="aspect-[4/3] w-full object-cover"
+                            style={{ objectPosition: p.photoPosition }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
+                          <h3 className="absolute inset-x-0 bottom-0 p-5 text-xl text-white sm:text-2xl">
+                            {p.title}
+                          </h3>
+                        </div>
+                        <SessionHighlight
+                          variant={p.highlight}
+                          className="absolute -right-7 -top-3 sm:-right-5 sm:-top-5"
+                        />
+                      </div>
+                      <p className="mt-5 text-sm leading-relaxed text-ink-muted sm:text-base">
+                        {p.intro}
+                      </p>
+                    </div>
+
+                    <div className="relative">
+                      <p className="text-lg font-semibold text-ink sm:text-xl">
+                        Che cosa costruiamo insieme in questo passaggio?
+                      </p>
+                      <ul className="mt-3 space-y-3">
+                        {p.bullets.map((b, bi) => (
+                          <li
+                            key={bi}
+                            className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
+                          >
+                            <Check
+                              className="mt-1 size-4 shrink-0"
+                              style={{ color: "var(--gold-deep)" }}
+                            />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
+
+                  <span
+                    className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-2xl px-3 py-2 font-condensed text-[10px] font-semibold uppercase tracking-[0.05em] text-primary-foreground shadow-[0_10px_24px_-8px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:-translate-y-1 sm:-left-3 sm:translate-x-0 sm:px-5 sm:py-3 sm:text-base sm:tracking-[0.15em] md:-left-5 md:px-6"
+                    style={{ backgroundImage: "var(--gradient-gold)" }}
+                  >
+                    Punto {p.n} di 6
+                  </span>
                 </div>
               </Reveal>
             ))}
@@ -1929,67 +1845,77 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 8. I 4 step del percorso */}
-      <section id="step-1" className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-5xl">
-          <Reveal>
-            <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Il percorso in <Highlight>4 step</Highlight>
-            </h2>
-          </Reveal>
-
-          <div className="mt-14 space-y-16">
-            {steps.map((s, i) => (
-              <Reveal key={s.n} delay={i * 80}>
-                <div
-                  className={`grid gap-8 sm:grid-cols-2 sm:items-center sm:gap-12 ${
-                    i % 2 === 1 ? "sm:[&>*:first-child]:order-2" : ""
-                  }`}
+      <section id="step-1" className="bg-background">
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <div className="grid gap-10 md:grid-cols-[0.85fr_1.15fr] md:items-start">
+            <Reveal>
+              <div className="md:sticky md:top-28">
+                <span
+                  className="inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
+                  style={{
+                    backgroundImage: "var(--gradient-gold)",
+                    boxShadow: "var(--shadow-gold)",
+                  }}
                 >
-                  <div>
-                    <span className="font-condensed text-5xl font-bold text-primary/50 sm:text-6xl">
+                  Come si svolge Ambiziosa
+                </span>
+                <h2 className="mt-4 text-3xl text-foreground sm:text-4xl">
+                  Il percorso in <Highlight>4 step</Highlight>
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-foreground/75 sm:text-lg">
+                  Un passo alla volta:{" "}
+                  <strong className="font-semibold text-foreground">
+                    prima chi sei, poi i contenuti, poi la vendita
+                  </strong>
+                  .
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="space-y-4">
+              {steps.map((s, i) => (
+                <Reveal key={s.n} delay={i * 100}>
+                  <div className="flex gap-6 rounded-xl border border-border/70 bg-card/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-secondary">
+                    <span className="shrink-0 font-condensed text-4xl text-secondary sm:text-5xl">
                       {s.n}
                     </span>
-                    <h3 className="mt-2 text-xl font-semibold text-foreground sm:text-2xl">
-                      {s.title}
-                    </h3>
-                    <p className="mt-1 text-sm font-semibold uppercase tracking-[0.04em] text-secondary">
-                      {s.subtitle}
-                    </p>
-                    <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-                      {s.description}
-                    </p>
+                    <div>
+                      <p className="font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
+                        {s.subtitle}
+                      </p>
+                      <h3 className="mt-1 text-lg font-semibold text-foreground sm:text-xl">
+                        {s.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-foreground/85 sm:text-base">
+                        {s.description}
+                      </p>
+                    </div>
                   </div>
-                  <div>{stepMockups[i]}</div>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* 10. Proiezione di scenari futuri concreti */}
-      <section
-        className="px-4 py-14 sm:px-8 sm:py-20"
-        style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
-      >
-        <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
+        <div className="mx-auto grid max-w-5xl gap-10 px-5 py-20 md:grid-cols-[0.9fr_1.1fr] md:items-center">
           <Reveal>
             <img
               src={carlottaHugImg}
               alt="Carlotta Sgarra con una professionista che segue il suo metodo"
               loading="lazy"
-              className="mx-auto aspect-[4/5] w-full max-w-sm rounded-2xl object-cover"
+              className="mx-auto aspect-[4/5] w-[85%] rounded-2xl object-cover"
             />
           </Reveal>
           <Reveal delay={80}>
-            <h2 className="text-2xl sm:text-3xl">
+            <h2 className="text-3xl sm:text-4xl">
               Immagina tra <Highlight dark>4 mesi</Highlight>
             </h2>
-            <div className="mt-6 space-y-4">
+            <div className="mt-6 space-y-5 text-base leading-relaxed text-ink-muted">
               {scenarios.map((s, i) => (
-                <p key={i} className="text-sm leading-relaxed text-ink-muted sm:text-base">
-                  {s}
-                </p>
+                <p key={i}>{s}</p>
               ))}
             </div>
           </Reveal>
@@ -1997,14 +1923,14 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 11. Presentazione dei 2 livelli */}
-      <section id="prezzi" className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-5xl">
+      <section id="prezzi" className="bg-background">
+        <div className="mx-auto max-w-5xl px-5 py-20">
           <Reveal>
-            <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Scegli il tuo livello di accompagnamento
+            <h2 className="text-center text-3xl text-foreground sm:text-4xl">
+              Scegli il tuo <Highlight>livello di accompagnamento</Highlight>
             </h2>
             {/* LOREM - sezione 11, intro card prezzi, sostituire con copy reale */}
-            <p className="mx-auto mt-3 max-w-xl text-center text-sm text-muted-foreground sm:text-base">
+            <p className="mx-auto mt-3 max-w-xl text-center text-base text-foreground/75 sm:text-lg">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
               incididunt ut labore.
             </p>
@@ -2014,51 +1940,84 @@ function CandidaturaAmbiziosa() {
             {pricingTiers.map((tier) => (
               <Reveal key={tier.id} delay={tier.recommended ? 0 : 80}>
                 <div
-                  className={`relative flex h-full flex-col rounded-2xl p-6 sm:p-8 ${
+                  className={`relative flex h-full flex-col p-7 ${
                     tier.recommended ? "surface-cream" : "surface-card"
                   }`}
-                  style={tier.recommended ? { boxShadow: "var(--shadow-gold)" } : undefined}
+                  style={tier.recommended ? { borderRadius: "1.75rem" } : undefined}
                 >
                   {tier.recommended ? (
                     <span
-                      className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary-foreground"
-                      style={{ backgroundImage: "var(--gradient-gold)" }}
+                      className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
+                      style={{
+                        backgroundImage: "var(--gradient-gold)",
+                        boxShadow: "var(--shadow-gold)",
+                      }}
                     >
                       Consigliato
                     </span>
                   ) : null}
-                  <p className="font-condensed text-xs uppercase tracking-[0.15em] text-primary">
+                  <p
+                    className={`font-condensed text-xs uppercase tracking-[0.2em] ${
+                      tier.recommended ? "text-primary" : "text-secondary"
+                    }`}
+                  >
                     {tier.name}
                   </p>
-                  <p className="mt-2 text-lg font-semibold">{tier.payoff}</p>
+                  <p
+                    className={`mt-2 text-lg font-semibold sm:text-xl ${
+                      tier.recommended ? "text-ink" : "text-foreground"
+                    }`}
+                  >
+                    {tier.payoff}
+                  </p>
                   <div className="mt-4 flex items-baseline gap-2">
-                    <span className="text-4xl font-bold">{tier.price}</span>
-                    <span className="text-xs opacity-70">{tier.priceNote}</span>
+                    <span
+                      className={`font-display text-5xl ${
+                        tier.recommended ? "text-ink" : "text-foreground"
+                      }`}
+                    >
+                      {tier.price}
+                    </span>
+                    <span
+                      className={`text-xs ${
+                        tier.recommended ? "text-ink-muted" : "text-muted-foreground"
+                      }`}
+                    >
+                      {tier.priceNote}
+                    </span>
                   </div>
-                  <p className="mt-1 text-sm opacity-80">{tier.duration}</p>
+                  <p
+                    className={`mt-1 text-sm ${
+                      tier.recommended ? "text-ink-muted" : "text-foreground/75"
+                    }`}
+                  >
+                    {tier.duration}
+                  </p>
 
-                  <ul className="mt-6 flex-1 space-y-2.5 text-sm leading-relaxed">
+                  <ul className="mt-6 flex-1 space-y-4">
                     {tier.features.map((f) => (
-                      <li key={f} className="flex gap-2">
-                        <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
+                      <li
+                        key={f}
+                        className={`flex gap-3 text-sm leading-relaxed ${
+                          tier.recommended ? "text-ink-muted" : "text-foreground/85"
+                        }`}
+                      >
+                        {tier.recommended ? (
+                          <Check
+                            className="mt-1 size-4 shrink-0"
+                            style={{ color: "var(--gold-deep)" }}
+                          />
+                        ) : (
+                          <Check className="mt-1 size-4 shrink-0 text-secondary" />
+                        )}
                         <span>{f}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <a
-                    href={ANCHOR}
-                    className="mt-6 inline-flex w-full flex-col items-center rounded-xl px-6 py-4 text-center transition-transform duration-200 hover:-translate-y-0.5"
-                    style={{
-                      backgroundImage: "var(--gradient-gold)",
-                      color: "var(--primary-foreground)",
-                      boxShadow: "var(--shadow-gold)",
-                    }}
-                  >
-                    <span className="font-condensed text-sm font-bold uppercase tracking-[0.06em]">
-                      Candidati per {tier.name}
-                    </span>
-                  </a>
+                  <div className="mt-8">
+                    <AmbiziosaCtaButton variant="hero" label={`Candidati per ${tier.name}`} />
+                  </div>
                 </div>
               </Reveal>
             ))}

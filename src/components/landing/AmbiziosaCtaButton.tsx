@@ -1,23 +1,24 @@
-import { CTA_LABEL } from "@/lib/ambiziosa-config";
+import { CTA_LABEL, CTA_SUB } from "@/lib/ambiziosa-config";
 
-// Bottone "Candidati ora" riutilizzabile per /candidati-ambiziosa: legge
-// CTA_LABEL da ambiziosa-config.ts così il testo resta identico ovunque
-// venga usato nella pagina. Fa scroll morbido all'ancora `targetId` (di
-// default "candidature") e non genera errori se quella sezione non esiste
-// ancora: il browser ignora semplicemente l'href "#id" senza corrispondenza.
-//
-// variant "topbar": piccolo, sfondo verde acido/testo bordeaux — usato
-// nella barra sticky.
-// variant "hero": grande, stesso sfondo a gradiente verde/oro degli altri
-// pulsanti CTA della pagina (card prezzo, form finale); solo l'etichetta,
-// senza riga di rassicurazione sotto.
+// Bottone di candidatura per /candidati-ambiziosa, con le stesse ricette
+// grafiche della pagina Rule The Rules: "topbar" = pulsante di SiteTopbar,
+// "hero" = CtaButton (etichetta + riga piccola sotto). Fa scroll morbido
+// all'ancora `targetId` (di default "candidatura", la sezione del form).
 type Props = {
   variant: "topbar" | "hero";
+  label?: string;
+  sub?: string;
   targetId?: string;
   className?: string;
 };
 
-export function AmbiziosaCtaButton({ variant, targetId = "candidature", className = "" }: Props) {
+export function AmbiziosaCtaButton({
+  variant,
+  label = CTA_LABEL,
+  sub = CTA_SUB,
+  targetId = "candidatura",
+  className = "",
+}: Props) {
   function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
     const el = document.getElementById(targetId);
     if (el) {
@@ -31,10 +32,10 @@ export function AmbiziosaCtaButton({ variant, targetId = "candidature", classNam
       <a
         href={`#${targetId}`}
         onClick={handleClick}
-        className={`inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-md px-3 py-2 text-center font-condensed text-[11px] font-semibold uppercase leading-tight tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:text-xs sm:tracking-[0.1em] ${className}`}
-        style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+        className={`min-w-0 shrink-0 rounded-md px-2 py-1.5 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.03em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.12em] ${className}`}
+        style={{ backgroundImage: "var(--gradient-gold)", color: "var(--primary-foreground)" }}
       >
-        {CTA_LABEL}
+        {label}
       </a>
     );
   }
@@ -43,14 +44,19 @@ export function AmbiziosaCtaButton({ variant, targetId = "candidature", classNam
     <a
       href={`#${targetId}`}
       onClick={handleClick}
-      className={`inline-flex min-w-[260px] items-center justify-center rounded-xl px-8 py-5 text-center font-condensed text-base font-bold uppercase tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:min-w-[360px] sm:text-lg ${className}`}
+      className={`group inline-flex w-full max-w-xl flex-col items-center rounded-xl px-4 py-3 text-center transition-transform duration-200 hover:-translate-y-0.5 sm:px-6 sm:py-5 ${className}`}
       style={{
         backgroundImage: "var(--gradient-gold)",
-        color: "var(--primary-foreground)",
         boxShadow: "var(--shadow-gold)",
+        color: "var(--primary-foreground)",
       }}
     >
-      {CTA_LABEL}
+      <span className="font-condensed text-sm font-bold uppercase tracking-[0.04em] sm:text-base sm:tracking-[0.04em]">
+        {label}
+      </span>
+      <span className="mt-1 whitespace-nowrap text-[9px] font-medium opacity-80 sm:text-sm">
+        {sub}
+      </span>
     </a>
   );
 }

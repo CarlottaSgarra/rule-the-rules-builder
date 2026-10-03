@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { AmbiziosaCtaButton } from "@/components/landing/AmbiziosaCtaButton";
+import { Countdown } from "@/components/landing/Countdown";
 import { APPLICATIONS_DEADLINE, WAITLIST_URL } from "@/lib/ambiziosa-config";
 
 const DEADLINE_MS = new Date(APPLICATIONS_DEADLINE).getTime();
@@ -20,10 +21,6 @@ const MENU_ITEMS = [
   { id: "faq", label: "FAQ" },
 ];
 
-function pad2(n: number) {
-  return String(Math.max(0, n)).padStart(2, "0");
-}
-
 // Scorrimento morbido all'ancora; se la sezione non esiste ancora (verrà
 // aggiunta in un prossimo passo) lascia che l'href "#id" normale non faccia
 // nulla, senza generare errori.
@@ -40,8 +37,8 @@ function handleAnchorClick(id: string) {
 function Badge({ isClosed }: { isClosed: boolean }) {
   return (
     <span
-      className="inline-flex min-w-0 items-center rounded-full px-3 py-1 text-left font-condensed text-[10px] font-semibold uppercase leading-tight tracking-[0.06em] sm:text-xs sm:tracking-[0.1em] lg:shrink-0 lg:px-2.5 lg:py-1 lg:text-[10px] lg:tracking-[0.04em]"
-      style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+      className="inline-flex min-w-0 items-center rounded-full px-3 py-1 font-condensed text-[10px] uppercase leading-tight tracking-[0.15em] text-primary-foreground sm:text-xs lg:shrink-0"
+      style={{ backgroundImage: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
     >
       {isClosed ? "Iscriviti alla lista d'attesa per la prossima riapertura" : "Candidature aperte"}
     </span>
@@ -60,44 +57,24 @@ function WaitlistButton({ className = "" }: { className?: string }) {
       onClick={(e) => {
         if (!hasUrl) e.preventDefault();
       }}
-      className={`inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-md px-3 py-2 text-center font-condensed text-[11px] font-semibold uppercase leading-tight tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:text-xs sm:tracking-[0.1em] ${className}`}
-      style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+      className={`min-w-0 shrink-0 rounded-md px-2 py-1.5 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.03em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.12em] ${className}`}
+      style={{ backgroundImage: "var(--gradient-gold)", color: "var(--primary-foreground)" }}
     >
       Iscriviti
     </a>
   );
 }
 
-function CountdownText({ ms, abbreviated }: { ms: number; abbreviated: boolean }) {
-  const days = Math.floor(ms / 86400000);
-  const hours = Math.floor((ms / 3600000) % 24);
-  const minutes = Math.floor((ms / 60000) % 60);
-  const seconds = Math.floor((ms / 1000) % 60);
-
-  const units = abbreviated
-    ? [
-        { v: days, l: "gg" },
-        { v: hours, l: "h" },
-        { v: minutes, l: "min" },
-        { v: seconds, l: "s" },
-      ]
-    : [
-        { v: days, l: "giorni" },
-        { v: hours, l: "ore" },
-        { v: minutes, l: "minuti" },
-        { v: seconds, l: "secondi" },
-      ];
-
+function DeadlineCountdown({ labelClassName = "hidden sm:inline" }: { labelClassName?: string }) {
   return (
-    <>
-      Chiudono tra{" "}
-      {units.map((u, i) => (
-        <span key={u.l}>
-          <span className="font-semibold tabular-nums">{pad2(u.v)}</span> {u.l}
-          {i < units.length - 1 ? " : " : ""}
-        </span>
-      ))}
-    </>
+    <div className="flex items-center gap-1 sm:gap-x-4">
+      <span
+        className={`font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground ${labelClassName}`}
+      >
+        Chiudono tra
+      </span>
+      <Countdown compact target={DEADLINE_MS} />
+    </div>
   );
 }
 
@@ -105,14 +82,14 @@ function DesktopMenu() {
   return (
     <nav
       aria-label="Navigazione della pagina"
-      className="flex shrink-0 items-center gap-3 xl:gap-5"
+      className="flex shrink-0 items-center gap-4 xl:gap-6"
     >
       {MENU_ITEMS.map((item) => (
         <a
           key={item.id}
           href={`#${item.id}`}
           onClick={handleAnchorClick(item.id)}
-          className="whitespace-nowrap text-[13px] text-[#EFEFEF] underline-offset-4 transition-colors hover:underline xl:text-sm"
+          className="whitespace-nowrap font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground transition-colors hover:text-foreground"
         >
           {item.label}
         </a>
@@ -128,7 +105,7 @@ function CompressedMenu() {
   return (
     <details className="group relative">
       <summary
-        className="flex cursor-pointer list-none items-center gap-1 rounded-md px-2 py-1.5 text-xs text-[#EFEFEF] [&::-webkit-details-marker]:hidden"
+        className="flex cursor-pointer list-none items-center gap-1 rounded-md px-2 py-1.5 font-condensed text-[10px] uppercase tracking-[0.15em] text-muted-foreground sm:text-xs [&::-webkit-details-marker]:hidden"
         aria-label="Navigazione della pagina"
       >
         Menu
@@ -136,10 +113,10 @@ function CompressedMenu() {
       </summary>
       <nav
         aria-label="Navigazione della pagina"
-        className="absolute right-0 top-full z-10 mt-1 flex min-w-40 flex-col gap-0.5 rounded-md p-2 shadow-lg"
+        className="absolute right-0 top-full z-10 mt-1 flex min-w-40 flex-col gap-0.5 rounded-xl p-2"
         style={{
           backgroundColor: "var(--secondary)",
-          border: "1px solid color-mix(in oklab, var(--primary) 35%, transparent)",
+          border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
         }}
       >
         {MENU_ITEMS.map((item) => (
@@ -147,7 +124,7 @@ function CompressedMenu() {
             key={item.id}
             href={`#${item.id}`}
             onClick={handleAnchorClick(item.id)}
-            className="rounded px-2 py-1.5 text-sm text-[#EFEFEF] hover:underline"
+            className="rounded px-2 py-1.5 font-condensed text-xs uppercase tracking-[0.15em] text-foreground hover:text-primary"
           >
             {item.label}
           </a>
@@ -161,7 +138,6 @@ export function AmbiziosaTopbar() {
   const [mounted, setMounted] = useState(false);
   const [remainingMs, setRemainingMs] = useState(0);
   const [forcedState, setForcedState] = useState<"aperto" | "chiuso" | null>(null);
-  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -178,48 +154,48 @@ export function AmbiziosaTopbar() {
     const tick = () => setRemainingMs(DEADLINE_MS - Date.now());
     tick();
     const interval = setInterval(tick, 1000);
-
-    const onScroll = () => setScrolled(window.scrollY > 4);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener("scroll", onScroll);
-    };
+    return () => clearInterval(interval);
   }, []);
 
-  // Prima del montaggio mostra sempre lo stato "aperto" con il countdown
-  // azzerato: stesso output lato server e lato client, nessun mismatch di
-  // hydration. Lo stato reale (compreso "chiuso" per chi apre la pagina
-  // dopo la scadenza) viene deciso subito dopo, al primo effetto.
+  // Prima del montaggio mostra sempre lo stato "aperto": stesso output lato
+  // server e lato client, nessun mismatch di hydration. Lo stato reale
+  // (compreso "chiuso" per chi apre la pagina dopo la scadenza) viene deciso
+  // subito dopo, al primo effetto.
   const isClosed = mounted && (forcedState ? forcedState === "chiuso" : remainingMs <= 0);
-  const ms = Math.max(0, remainingMs);
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-shadow duration-200 ${
-        scrolled ? "shadow-[0_8px_24px_-12px_rgba(0,0,0,0.45)]" : ""
-      }`}
-      style={{ backgroundColor: "var(--secondary)", color: "#EFEFEF" }}
+      className="sticky top-0 z-50 border-b border-border/60 backdrop-blur"
+      style={
+        {
+          backgroundColor: "color-mix(in oklab, var(--secondary) 95%, transparent)",
+          "--foreground": "var(--secondary-foreground)",
+          "--muted-foreground": "oklch(0.85 0.03 40)",
+        } as React.CSSProperties
+      }
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="mx-auto max-w-6xl px-4 sm:px-5">
         {/* Desktop (da 1024px): una sola riga */}
-        <div className="hidden lg:flex lg:h-16 lg:items-center lg:justify-between lg:gap-2 xl:gap-5">
-          <div className="flex shrink-0 items-center gap-2">
+        <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-4 lg:py-4">
+          <div className="flex shrink-0 items-center gap-4">
             <Badge isClosed={isClosed} />
-            {!isClosed ? (
-              <span
-                role="timer"
-                aria-live="off"
-                className="whitespace-nowrap text-[11px] xl:text-xs"
-              >
-                <CountdownText ms={ms} abbreviated={false} />
-              </span>
-            ) : null}
+            {!isClosed ? <DeadlineCountdown labelClassName="hidden 2xl:inline" /> : null}
           </div>
-          {!isClosed ? <DesktopMenu /> : <span />}
-          {isClosed ? <WaitlistButton /> : <AmbiziosaCtaButton variant="topbar" />}
+          {!isClosed ? (
+            <div className="hidden xl:block">
+              <DesktopMenu />
+            </div>
+          ) : (
+            <span />
+          )}
+          <div className="flex shrink-0 items-center gap-2">
+            {!isClosed ? (
+              <div className="xl:hidden">
+                <CompressedMenu />
+              </div>
+            ) : null}
+            {isClosed ? <WaitlistButton /> : <AmbiziosaCtaButton variant="topbar" />}
+          </div>
         </div>
 
         {/* Tablet e mobile (sotto 1024px): due righe, menu compresso */}
@@ -234,14 +210,7 @@ export function AmbiziosaTopbar() {
           </div>
           {!isClosed ? (
             <div className="flex items-center justify-between gap-2">
-              <div role="timer" aria-live="off" className="min-w-0 text-xs">
-                <span className="md:hidden">
-                  <CountdownText ms={ms} abbreviated={true} />
-                </span>
-                <span className="hidden md:inline">
-                  <CountdownText ms={ms} abbreviated={false} />
-                </span>
-              </div>
+              <DeadlineCountdown />
               <CompressedMenu />
             </div>
           ) : null}
