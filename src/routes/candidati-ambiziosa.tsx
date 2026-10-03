@@ -1033,7 +1033,7 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 3. Riprova sociale immediata */}
-      <section className="bg-background px-4 py-12 sm:px-8 sm:py-16">
+      <section className="bg-background px-4 pb-12 pt-20 sm:px-8 sm:pb-16 sm:pt-28">
         <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <div className="text-left">
             <h2 className="text-2xl font-semibold text-foreground sm:text-3xl">
