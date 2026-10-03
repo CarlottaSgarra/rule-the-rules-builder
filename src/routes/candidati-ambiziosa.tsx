@@ -38,6 +38,7 @@ import { SiteFooter } from "@/components/landing/SiteFooter";
 import { AmbiziosaTopbar } from "@/components/landing/AmbiziosaTopbar";
 import { AmbiziosaCtaButton } from "@/components/landing/AmbiziosaCtaButton";
 import { AmbiziosaHeroVideo } from "@/components/landing/AmbiziosaHeroVideo";
+import { ProfileBeforeAfter, ResultsCards } from "@/components/landing/AmbiziosaProofCards";
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
 import { submitAmbiziosaApplication } from "@/lib/ambiziosa-application";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
@@ -48,6 +49,8 @@ import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
 import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
 import carlottaLeftImg from "@/assets/Carlotta bianco e nerco che guarda a sinistra.jpg";
 import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
+import togliIlCostumeImg from "@/assets/togli-il-costume.jpg";
+import carlottaAlLavoroImg from "@/assets/method-bg.jpg";
 import elenaRosaImg from "@/assets/elena-rosa.jpg";
 import silviaBedinImg from "@/assets/silvia-bedin.jpg";
 import mariangelaSimioliImg from "@/assets/mariangela-simioli.jpg";
@@ -1052,6 +1055,37 @@ export const Route = createFileRoute("/candidati-ambiziosa")({
   component: CandidaturaAmbiziosa,
 });
 
+// Testo disposto in cerchio, ripetuto, sull'angolo in alto a sinistra della
+// foto della sezione "Il mio obiettivo è renderti unica". textLength adatta
+// il testo alla circonferenza (2π·80 ≈ 503) a prescindere dal font.
+function CircularBadge({ className = "" }: { className?: string }) {
+  const text = "Dall'ambizione alla carriera · Dall'ambizione alla carriera · ";
+  return (
+    <svg
+      viewBox="0 0 200 200"
+      className={`animate-[spin_30s_linear_infinite] motion-reduce:animate-none ${className}`}
+      aria-hidden
+    >
+      <defs>
+        <path
+          id="ambiziosa-badge-circle"
+          d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"
+        />
+      </defs>
+      <text
+        fill="var(--primary)"
+        fontSize="16"
+        fontWeight="600"
+        style={{ fontFamily: "var(--font-condensed)", textTransform: "uppercase" }}
+      >
+        <textPath href="#ambiziosa-badge-circle" textLength="500" lengthAdjust="spacing">
+          {text}
+        </textPath>
+      </text>
+    </svg>
+  );
+}
+
 // Segue sempre una sezione chiara: -mt-6 lo accosta al testo che lo precede,
 // alla stessa distanza delle CTA interne alle sezioni di Rule The Rules.
 function CtaBox() {
@@ -1807,6 +1841,199 @@ function CandidaturaAmbiziosa() {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 7b. Lavorare sull'identità porta davvero risultati? */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-5xl px-5 py-20">
+          <div className="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-start">
+            <Reveal>
+              <h2 className="text-3xl text-foreground sm:text-4xl">
+                Lavorare sulla mia identità mi porterà davvero <Highlight>dei risultati</Highlight>?
+              </h2>
+              <div className="mt-6 space-y-5 text-base leading-relaxed text-foreground/85">
+                <p>
+                  Sì, perché quando pubblichi guardando quello che fanno gli altri ti ritrovi sullo
+                  stesso terreno di tutte, con gli stessi formati e lo stesso tono.{" "}
+                  <strong className="font-semibold text-foreground">
+                    Chi ti vede non ha nessun motivo per scegliere proprio te
+                  </strong>{" "}
+                  e finisce per scegliere in base al prezzo.
+                </p>
+                <p>
+                  Quando parti dalla tua identità succede il contrario: i tuoi contenuti dicono cose
+                  che potevi dire solo tu, quindi chi ti segue ti sceglie per quello che sei. È
+                  quello che è successo a me. Ho speso oltre 70.000€ in formazione e portavo avanti
+                  piani editoriali scritti da altri: tecnicamente facevo tutto giusto, ma nei miei
+                  contenuti io non c'ero. Quando ho iniziato a costruire tutto sulla persona che
+                  sono,{" "}
+                  <strong className="font-semibold text-foreground">
+                    sono cambiati i contenuti, i clienti e i soldi
+                  </strong>
+                  .
+                </p>
+                <p>
+                  Lo stesso è successo alle professioniste che hanno lavorato con me, da coach a
+                  tatuatrici e da nutrizioniste a wedding planner: partite da situazioni molto
+                  diverse,{" "}
+                  <strong className="font-semibold text-foreground">
+                    hanno costruito la comunicazione su chi sono
+                  </strong>{" "}
+                  e oggi attirano clienti più in linea con loro. Le loro storie le trovi più sotto,
+                  insieme alla mia.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <img
+                src={togliIlCostumeImg}
+                alt="Carlotta Sgarra"
+                loading="lazy"
+                className="mx-auto aspect-[4/5] w-[85%] rounded-2xl object-cover md:sticky md:top-24"
+                style={{ objectPosition: "50% 30%" }}
+              />
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* 7c. Obiettivo del metodo e versatilità nei settori */}
+      <section
+        className="overflow-x-clip bg-secondary"
+        style={{ color: "var(--secondary-foreground)" }}
+      >
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <div className="grid gap-12 md:grid-cols-2 md:items-center">
+            <Reveal>
+              <div className="relative pl-10 pt-12 sm:pl-14 sm:pt-14">
+                <img
+                  src={carlottaAlLavoroImg}
+                  alt="Carlotta Sgarra al lavoro durante un suo evento"
+                  loading="lazy"
+                  className="aspect-[4/3] w-full rounded-2xl object-cover"
+                  style={{ objectPosition: "30% 40%" }}
+                />
+                <CircularBadge className="absolute left-0 top-0 size-32 sm:size-40" />
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-tight text-ink sm:text-5xl">
+                Il mio obiettivo è renderti{" "}
+                <strong className="font-bold text-primary">unica</strong>.
+              </h2>
+              <div className="mt-6 space-y-5 text-base leading-relaxed text-ink-muted">
+                <p>
+                  Se un giorno deciderai di lanciare un corso, aprire uno studio, creare un
+                  programma tutto tuo o cambiare settore, saprai con certezza una cosa:{" "}
+                  <strong className="font-semibold text-ink">
+                    finché dietro c'è la tua identità, le persone sceglieranno te.
+                  </strong>
+                </p>
+                <p>
+                  Ho avuto professioniste che hanno applicato questo metodo con successo in{" "}
+                  <strong className="font-semibold text-ink">
+                    alcuni dei settori più particolari
+                  </strong>{" "}
+                  che si possano immaginare.
+                </p>
+                <p>
+                  Tra le mie clienti ci sono{" "}
+                  <strong className="font-semibold text-ink">
+                    tatuatrici, nutrizioniste, wedding planner, makeup artist e mental coach nel
+                    mondo cinofilo
+                  </strong>
+                  .
+                </p>
+                <p>
+                  Con me ha lavorato perfino una commessa di un centro commerciale:{" "}
+                  <strong className="font-semibold text-ink">
+                    oggi ha lasciato il lavoro e ha un'academy tutta sua
+                  </strong>
+                  .
+                </p>
+                <p>
+                  Il{" "}
+                  <strong className="font-semibold text-ink">
+                    metodo funziona in qualsiasi settore
+                  </strong>{" "}
+                  perché parte da te, a patto di applicarlo fino in fondo.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* 7d. Il principio mancante, raccontato in prima persona */}
+      <section className="overflow-x-clip bg-background">
+        <div className="mx-auto max-w-5xl px-5 pb-12 pt-20 text-center">
+          <Reveal>
+            <h2 className="font-display text-4xl uppercase leading-[0.95] tracking-tight text-foreground sm:text-5xl">
+              <Highlight>
+                <strong className="font-bold">Il principio mancante</strong>
+              </Highlight>
+              <br className="hidden sm:block" /> dei contenuti e dell'identità online
+            </h2>
+          </Reveal>
+        </div>
+        <div
+          className="h-6 w-full"
+          style={{ backgroundImage: "var(--gradient-ink)" }}
+          aria-hidden
+        />
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr_0.9fr] lg:items-start lg:gap-10">
+            <Reveal>
+              <ProfileBeforeAfter />
+            </Reveal>
+            <Reveal delay={80}>
+              <div className="space-y-5 text-base leading-relaxed text-foreground/85">
+                <p>
+                  La maggior parte degli "esperti" di social ti dirà che la strada è{" "}
+                  <strong className="font-semibold text-foreground">
+                    fare quello che funziona per gli altri
+                  </strong>
+                  : gli stessi hook e lo stesso piano editoriale, anche se quei contenuti non ti
+                  assomigliano per niente.
+                </p>
+                <p>
+                  E anche se all'epoca sapevo tutto, tecnicamente,{" "}
+                  <strong className="font-semibold text-foreground">
+                    quel modo di comunicare non mi faceva sentire me stessa
+                  </strong>
+                  .
+                </p>
+                <p>
+                  Così ho fatto il contrario:{" "}
+                  <strong className="font-semibold text-foreground">
+                    ho smesso di chiedermi cosa funziona e ho iniziato a chiedermi chi voglio
+                    essere.
+                  </strong>
+                </p>
+                <p>
+                  Ho scelto una voce e un modo di stare nel business, poi{" "}
+                  <strong className="font-semibold text-foreground">
+                    ho costruito i miei contenuti partendo da lì
+                  </strong>
+                  .
+                </p>
+                <p>
+                  Sono cambiati i contenuti e con loro i clienti, poi sono cambiati i soldi. Col
+                  tempo sono arrivati anche la struttura, il team e{" "}
+                  <strong className="font-semibold text-foreground">
+                    una vita che mi assomiglia
+                  </strong>
+                  .
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={160}>
+              <div className="lg:mt-56">
+                <ResultsCards />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
