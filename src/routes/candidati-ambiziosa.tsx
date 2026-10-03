@@ -23,7 +23,6 @@ import {
   ShieldCheck,
   Gift,
   Star,
-  Pointer,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -1063,6 +1062,9 @@ function CandidaturaAmbiziosa() {
             className="flex flex-col rounded-2xl p-5"
             style={{ backgroundColor: "var(--card)", border: "1px solid var(--secondary)" }}
           >
+            <p className="mb-3 text-sm font-semibold text-foreground">
+              Questi sono solo alcuni dei settori che abbiamo seguito.
+            </p>
             <div className="grid grid-cols-2 gap-2.5">
               {SECTOR_TESTIMONIALS.map((item) => (
                 <button
@@ -1118,10 +1120,9 @@ function CandidaturaAmbiziosa() {
                     <button
                       type="button"
                       onClick={() => goToTestimonial(active.name)}
-                      className="mt-2.5 inline-flex items-center gap-1.5 text-left text-sm font-semibold underline underline-offset-2"
+                      className="mt-2.5 cursor-pointer text-left text-sm font-semibold underline underline-offset-2"
                       style={{ color: "var(--primary)" }}
                     >
-                      <Pointer className="size-4 shrink-0" />
                       Guarda la sua video testimonianza
                     </button>
                   </div>
