@@ -47,6 +47,7 @@ import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in cam
 import carlottaLeftImg from "@/assets/Carlotta bianco e nerco che guarda a sinistra.jpg";
 import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
 import carlottaAlLavoroImg from "@/assets/method-bg.jpg";
+import hoCreatoUnaziendaImg from "@/assets/ho-creato-unazienda-identita-riconoscibile.jpg";
 import elenaRosaImg from "@/assets/elena-rosa.jpg";
 import silviaBedinImg from "@/assets/silvia-bedin.jpg";
 import mariangelaSimioliImg from "@/assets/mariangela-simioli.jpg";
@@ -2440,6 +2441,84 @@ function CandidaturaAmbiziosa() {
 
           <div className="mt-10 flex justify-center">
             <AmbiziosaCtaButton variant="hero" />
+          </div>
+        </div>
+      </section>
+
+      {/* 7h. Chi sono — stessa sezione di Rule the Rules (src/routes/index.tsx) */}
+      <section className="bg-background px-4 py-10 sm:px-8 sm:py-14">
+        <div
+          className="surface-cream mx-auto max-w-5xl px-6 py-16 sm:px-12 sm:py-20"
+          style={{ borderRadius: "1.75rem" }}
+        >
+          <Reveal>
+            <h2 className="text-3xl text-ink sm:text-4xl">
+              Ho creato un’azienda da 500.000€ di fatturato in 3 anni grazie a{" "}
+              <Highlight dark>un’identità riconoscibile</Highlight>
+            </h2>
+          </Reveal>
+
+          <div className="mt-10 grid gap-10 lg:grid-cols-[1.3fr_1fr] lg:items-start">
+            <Reveal>
+              <div className="space-y-4 text-base leading-relaxed text-ink-muted">
+                <p>
+                  Non sono nata con i riflettori puntati. Avevo solo un telefono in mano, due
+                  fratelli nella stessa stanza e una paura fortissima di fallire agli occhi dei miei
+                  genitori.
+                </p>
+                <p>
+                  Pubblicavo in modo ossessivo e non avevo mai un risultato. Accettavo clienti che
+                  non rispettavano il mio valore, vendendo a 200€. Studiavo fino alle 3 di notte pur
+                  di sentirmi “abbastanza”, e ogni mese il conto in banca restava fisso sugli 800€,
+                  nonostante 10 ore di lavoro al giorno.
+                </p>
+                <p>
+                  Anche quando ho imparato a fare “tutto giusto”, dopo aver studiato il mercato
+                  americano, spagnolo e italiano e speso più di 70.000€ in formazione, il mio
+                  business restava instabile: un mese 5.000€, un mese 800€.{" "}
+                  <strong className="font-semibold text-ink">Quello che non c’era ero io.</strong>{" "}
+                  Stavo eseguendo piani editoriali scritti da altri e regole decise da creator che
+                  non conoscevo.
+                </p>
+                <p>
+                  <strong className="font-semibold text-ink">
+                    Non puoi costruire un’azienda sulla base del prodotto che sei. Puoi costruirla
+                    solo sulla persona che sei.
+                  </strong>{" "}
+                  Da quel momento ho smesso di chiedermi “cosa funziona” e ho iniziato a chiedermi
+                  chi volevo essere.
+                </p>
+                <p>
+                  Sono cambiati i contenuti, sono cambiati i clienti, sono cambiati i soldi. È
+                  arrivata la struttura, è arrivato un team che oggi è diventato famiglia, ed è
+                  arrivato un metodo che ha funzionato per me e per centinaia di professioniste
+                  italiane, ognuna con il proprio settore, il proprio pubblico, le proprie regole da
+                  rompere.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <div className="relative">
+                <img
+                  src={hoCreatoUnaziendaImg}
+                  alt="Carlotta Sgarra sul palco durante uno dei suoi speech"
+                  loading="lazy"
+                  width={1376}
+                  height={2064}
+                  className="aspect-[4/5] w-full rounded-2xl object-cover"
+                />
+                <span
+                  className="absolute bottom-4 left-4 rounded-full px-4 py-1.5 font-condensed text-xs font-bold uppercase tracking-[0.08em] text-primary-foreground"
+                  style={{
+                    backgroundImage: "var(--gradient-gold)",
+                    boxShadow: "var(--shadow-gold)",
+                  }}
+                >
+                  1.500+ professioniste guidate
+                </span>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
