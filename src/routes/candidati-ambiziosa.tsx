@@ -36,6 +36,7 @@ import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import sharonSpeakingImg from "@/assets/sharon-speaking.jpg";
 import carlottaHugImg from "@/assets/carlotta-hug.jpg";
 import carlottaLookingImg from "@/assets/carlotta-looking-2.jpg";
+import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
 import elenaRosaImg from "@/assets/elena-rosa.jpg";
 import silviaBedinImg from "@/assets/silvia-bedin.jpg";
 import mariangelaSimioliImg from "@/assets/mariangela-simioli.jpg";
@@ -539,25 +540,40 @@ function CandidaturaAmbiziosa() {
           </div>
         </div>
 
-        <div className="mx-auto mt-16 max-w-6xl sm:mt-20">
-          <div className="grid gap-8 sm:grid-cols-[1.1fr_0.9fr] sm:items-start">
-            <div className="space-y-3 text-left">
-              <p className="text-foreground" style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
+        <div className="relative mx-auto mt-16 max-w-6xl overflow-hidden rounded-[1.75rem] sm:mt-20">
+          <img
+            src={carlottaLookingWideImg}
+            alt=""
+            aria-hidden
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div
+            className="absolute inset-0"
+            style={{ backgroundColor: "color-mix(in oklab, var(--secondary) 76%, transparent)" }}
+          />
+
+          <div className="relative grid gap-8 px-5 py-10 sm:grid-cols-[1.1fr_0.9fr] sm:items-start sm:px-10 sm:py-14">
+            <div className="space-y-3 text-left" style={{ color: "var(--secondary-foreground)" }}>
+              <p style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
                 Ambiziosa è il percorso di 4 mesi in cui lavoriamo insieme sulla tua identità per
                 trasformarla in{" "}
-                <strong className="font-semibold">una comunicazione che ti fa riconoscere</strong>.
+                <strong className="font-semibold" style={{ color: "var(--primary)" }}>
+                  una comunicazione che ti fa riconoscere
+                </strong>
+                .
               </p>
-              <p className="text-foreground" style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
+              <p style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
                 Inizi a pubblicare mentre studi il metodo, senza aspettare di aver finito la
                 formazione:{" "}
-                <strong className="font-semibold">
+                <strong className="font-semibold" style={{ color: "var(--primary)" }}>
                   hai già tra le mani una strategia costruita sul tuo progetto
                 </strong>
                 .
               </p>
-              <p className="text-foreground" style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
+              <p style={{ fontSize: "1.0625rem", lineHeight: 1.7 }}>
                 Alla fine arrivi con{" "}
-                <strong className="font-semibold">
+                <strong className="font-semibold" style={{ color: "var(--primary)" }}>
                   una strategia completa che hai già messo in pratica
                 </strong>{" "}
                 e sai come farla evolvere anche da sola.
@@ -568,14 +584,16 @@ function CandidaturaAmbiziosa() {
               {HERO_CHECKLIST.map((item) => (
                 <div
                   key={item}
-                  className="flex items-start gap-3 rounded-xl p-4"
+                  className="flex items-start gap-3 rounded-xl p-4 backdrop-blur-sm"
                   style={{
-                    backgroundColor: "var(--background)",
-                    border: "2px solid var(--secondary)",
+                    backgroundColor: "rgba(255, 255, 255, 0.14)",
+                    border: "1px solid rgba(255, 255, 255, 0.25)",
                   }}
                 >
                   <HeroCheck />
-                  <span className="text-sm text-foreground">{item}</span>
+                  <span className="text-sm" style={{ color: "var(--secondary-foreground)" }}>
+                    {item}
+                  </span>
                 </div>
               ))}
             </div>
