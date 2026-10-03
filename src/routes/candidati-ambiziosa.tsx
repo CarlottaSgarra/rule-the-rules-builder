@@ -16,7 +16,6 @@ import {
   Check,
   XCircle,
   Sparkles,
-  ArrowRight,
   LayoutDashboard,
   Users,
   Video,
@@ -24,6 +23,10 @@ import {
   Gift,
   Star,
   ChevronDown,
+  Lightbulb,
+  LayoutTemplate,
+  Compass,
+  Target,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -813,6 +816,99 @@ const scenarios = [
   "Quis nostrud exercitation ullamco laboris, ti senti finalmente riconoscibile in un mercato pieno di professioniste uguali.",
 ];
 
+const communicationPillars = [
+  {
+    n: "1",
+    title: "La tua identità",
+    icon: IdCard,
+    paragraphs: [
+      <>Chi sei come professionista.</>,
+      <>Cosa vuoi rappresentare.</>,
+      <>Quali sono i tuoi valori.</>,
+      <>Cosa vuoi comunicare e quale percezione vuoi costruire.</>,
+      <>
+        <strong className="font-semibold">
+          È la base su cui costruiamo tutto il lavoro successivo.
+        </strong>
+      </>,
+    ],
+  },
+  {
+    n: "2",
+    title: "I tuoi macro topic",
+    icon: LayoutDashboard,
+    paragraphs: [
+      <>
+        Il mio team prende tutto il lavoro emerso sull'identità e lo trasforma nella tua strategia.
+      </>,
+      <>
+        <strong className="font-semibold">Si parte dai macro topic della tua comunicazione:</strong>{" "}
+        i temi grandi su cui costruire quello che pubblichi.
+      </>,
+    ],
+  },
+  {
+    n: "3",
+    title: "La tua banca idee personalizzata",
+    icon: Lightbulb,
+    paragraphs: [
+      <>Idee di contenuti pensate per te e per il tuo progetto.</>,
+      <>
+        <strong className="font-semibold">
+          Quando ti chiedi cosa pubblicare oggi, hai già dove guardare.
+        </strong>
+      </>,
+    ],
+  },
+  {
+    n: "4",
+    title: "La struttura dei tuoi contenuti",
+    icon: LayoutTemplate,
+    paragraphs: [
+      <>
+        La struttura strategica che tiene insieme quello che pubblichi, costruita sul tuo progetto.
+      </>,
+      <>
+        <strong className="font-semibold">Sai perché pubblichi quello che pubblichi.</strong>
+      </>,
+    ],
+  },
+  {
+    n: "5",
+    title: "La tua direzione comunicativa",
+    icon: Compass,
+    paragraphs: [
+      <>
+        Dove vuoi portare la tua comunicazione, costruita sulla tua identità e sui tuoi obiettivi.
+      </>,
+      <>
+        <strong className="font-semibold">Una direzione precisa fin dai primi contenuti.</strong>
+      </>,
+    ],
+  },
+  {
+    n: "6",
+    title: "La tua strategia completa di comunicazione",
+    icon: Target,
+    paragraphs: [
+      <>
+        <strong className="font-semibold">
+          Tutti i pezzi si uniscono in una strategia completa che parte da te:
+        </strong>{" "}
+        sai cosa pubblicare, perché lo pubblichi e dove stai andando.
+      </>,
+      <>
+        La applichi già durante il percorso e la affiniamo insieme, così a fine percorso{" "}
+        <strong className="font-semibold">sai come farla evolvere anche da sola</strong>.
+      </>,
+      <>
+        Nella Mentorship ci lavori ogni settimana con il mio team e 4 volte con me, nel Program
+        attraverso gli step e i momenti di confronto previsti.
+      </>,
+    ],
+  },
+];
+
 const beforeAfterRows = [
   {
     before: "“Lavoro tantissimo e a fine mese guadagno troppo poco.”",
@@ -1599,26 +1695,81 @@ function CandidaturaAmbiziosa() {
       {/* 5. Box CTA isolato ricorrente #1 */}
       <CtaBox context={CTA_BOX_CONTEXT} />
 
-      {/* 7. Cerniera visiva problema → soluzione */}
+      {/* 7. I punti su cui lavoriamo nei 4 mesi */}
       <section
-        className="px-4 py-16 text-center sm:px-8 sm:py-24"
-        style={{ backgroundImage: "linear-gradient(180deg, var(--background), var(--cream))" }}
+        className="px-4 py-16 sm:px-8 sm:py-24"
+        style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
       >
-        <Reveal>
-          <Sparkles className="mx-auto size-8 text-primary" />
-          {/* LOREM - sezione 7, cerniera, sostituire con copy reale */}
-          <h2 className="mx-auto mt-4 max-w-2xl text-2xl leading-snug text-ink sm:text-3xl">
-            Lorem ipsum dolor sit amet: la differenza è sempre lo stesso ingrediente mancante, un
-            sistema.
-          </h2>
-          <a
-            href="#step-1"
-            className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-secondary underline underline-offset-4"
-          >
-            Scopri come funziona Ambiziosa
-            <ArrowRight className="size-4" />
-          </a>
-        </Reveal>
+        <div className="mx-auto max-w-5xl">
+          <Reveal>
+            <h2 className="text-center text-2xl font-semibold sm:text-3xl">
+              Nei 4 mesi di Ambiziosa lavoriamo su tutti questi punti.
+            </h2>
+          </Reveal>
+          <Reveal delay={60}>
+            <div className="mx-auto mt-6 max-w-2xl space-y-3 text-center">
+              <p className="text-sm leading-relaxed opacity-85 sm:text-base">
+                Oggi ti bloccano soprattutto queste domande:{" "}
+                <strong className="font-semibold">cosa pubblicare</strong>, che tipo di contenuti
+                creare, chi sei e come posizionarti.
+              </p>
+              <p className="text-sm leading-relaxed opacity-85 sm:text-base">
+                Se continui a fare quello che fanno tutte le altre, prima o poi arrivi al burnout
+                senza esserti mai distinta.
+              </p>
+              <p className="text-sm leading-relaxed opacity-85 sm:text-base">
+                Per questo{" "}
+                <strong className="font-semibold">
+                  dalle prime call mettiamo in pratica tutto sul tuo progetto
+                </strong>
+                .
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mt-14 space-y-10">
+            {communicationPillars.map((p, i) => {
+              const Icon = p.icon;
+              return (
+                <Reveal key={p.title} delay={i * 60}>
+                  <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto] sm:gap-10">
+                    <div>
+                      <span
+                        className="inline-block rounded-xl px-4 py-2 font-condensed text-base font-bold uppercase tracking-[0.02em] sm:text-lg"
+                        style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+                      >
+                        {p.title}
+                      </span>
+                      <div className="mt-4 space-y-2.5">
+                        {p.paragraphs.map((para, pi) => (
+                          <p key={pi} className="text-sm leading-relaxed opacity-90 sm:text-base">
+                            {para}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-start gap-3 sm:justify-end">
+                      <Icon
+                        className="size-8 shrink-0 sm:size-10"
+                        style={{ color: "var(--primary)" }}
+                      />
+                      <span
+                        className="font-condensed font-bold leading-none"
+                        style={{
+                          fontSize: "clamp(4.5rem, 11vw, 8rem)",
+                          color: "var(--secondary-foreground)",
+                          opacity: 0.14,
+                        }}
+                      >
+                        {p.n}
+                      </span>
+                    </div>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
       </section>
 
       {/* 8. I 4 step del percorso */}
