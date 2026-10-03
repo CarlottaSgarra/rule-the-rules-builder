@@ -1378,35 +1378,56 @@ function CandidaturaAmbiziosa() {
         >
           <Reveal>
             <h2 className="text-center text-2xl font-semibold sm:text-3xl">
-              Oggi e alla fine dei 4 mesi
+              Oggi sei qui, ma tra quattro mesi ecco dove sarai.
             </h2>
           </Reveal>
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
             <div className="space-y-4 rounded-2xl p-6">
-              <span
-                className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-condensed text-xs uppercase tracking-[0.2em]"
-                style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
-              >
-                Oggi
-              </span>
-              {beforeAfterRows.map((r) => (
-                <p key={r.before} className="text-sm leading-relaxed opacity-85">
-                  {r.before}
-                </p>
-              ))}
+              <div className="flex justify-center">
+                <span
+                  className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-condensed text-xs uppercase tracking-[0.2em]"
+                  style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+                >
+                  Oggi
+                </span>
+              </div>
+              <div className="space-y-4">
+                {beforeAfterRows.map((r) => (
+                  <div key={r.before} className="flex items-start gap-2">
+                    <XCircle
+                      className="mt-0.5 size-5 shrink-0"
+                      strokeWidth={2.25}
+                      style={{ color: "#ff8a80" }}
+                    />
+                    <p className="text-sm leading-relaxed opacity-85">{r.before}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="space-y-4 rounded-2xl p-6">
-              <span
-                className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-condensed text-xs uppercase tracking-[0.2em]"
-                style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
-              >
-                Oggi sei qui, ma tra quattro mesi ecco dove sarai.
-              </span>
-              {beforeAfterRows.map((r) => (
-                <p key={r.after} className="text-sm leading-relaxed opacity-85">
-                  {r.after}
-                </p>
-              ))}
+            <div
+              className="space-y-4 rounded-2xl p-6"
+              style={{ backgroundColor: "var(--card)", color: "var(--foreground)" }}
+            >
+              <div className="flex justify-center">
+                <span
+                  className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 font-condensed text-xs uppercase tracking-[0.2em]"
+                  style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+                >
+                  Tra 4 mesi
+                </span>
+              </div>
+              <div className="space-y-4">
+                {beforeAfterRows.map((r) => (
+                  <div key={r.after} className="flex items-start gap-2">
+                    <CheckCircle2
+                      className="mt-0.5 size-5 shrink-0"
+                      strokeWidth={2.25}
+                      style={{ color: "var(--secondary)" }}
+                    />
+                    <p className="text-sm leading-relaxed">{r.after}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 

@@ -43,9 +43,7 @@ function Badge({ isClosed }: { isClosed: boolean }) {
       className="inline-flex min-w-0 items-center rounded-full px-3 py-1 text-left font-condensed text-[10px] font-semibold uppercase leading-tight tracking-[0.06em] sm:text-xs sm:tracking-[0.1em] lg:shrink-0 lg:px-2.5 lg:py-1 lg:text-[10px] lg:tracking-[0.04em]"
       style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
     >
-      {isClosed
-        ? "Iscriviti alla lista d'attesa per la prossima riapertura"
-        : "Candidature aperte fino al 16 ottobre"}
+      {isClosed ? "Iscriviti alla lista d'attesa per la prossima riapertura" : "Candidature aperte"}
     </span>
   );
 }
