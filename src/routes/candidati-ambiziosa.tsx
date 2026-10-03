@@ -2406,6 +2406,44 @@ function CandidaturaAmbiziosa() {
         </div>
       </section>
 
+      {/* 7g. Video testimonianze — stessa sezione di Rule the Rules (src/routes/index.tsx) */}
+      <section
+        id="testimonianze"
+        className="bg-secondary"
+        style={{ color: "var(--secondary-foreground)" }}
+      >
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <Reveal>
+            <h2 className="text-3xl sm:text-4xl">
+              Funziona anche <Highlight dark>nel tuo settore</Highlight>? Guarda qui sotto.
+            </h2>
+            <p className="mt-3 text-base text-ink-muted sm:text-lg">
+              Se con loro ha funzionato, perché con te non dovrebbe funzionare?
+            </p>
+          </Reveal>
+
+          <TestimonialsExplorer
+            testimonials={videoTestimonials}
+            initialName={activeTestimonialName}
+          />
+
+          <Reveal delay={200}>
+            <div
+              className="mx-auto mt-10 max-w-3xl border-l-2 pl-5 text-xs leading-relaxed text-ink-muted"
+              style={{ borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)" }}
+            >
+              I risultati riportati sono individuali e non rappresentano una promessa o garanzia di
+              risultati futuri: dipendono da variabili individuali come mercato di riferimento,
+              applicazione pratica del metodo e impegno personale.
+            </div>
+          </Reveal>
+
+          <div className="mt-10 flex justify-center">
+            <AmbiziosaCtaButton variant="hero" />
+          </div>
+        </div>
+      </section>
+
       {/* 11. Presentazione dei 2 livelli */}
       <section id="prezzi" className="bg-background">
         <div className="mx-auto max-w-5xl px-5 py-20">
@@ -2635,45 +2673,6 @@ function CandidaturaAmbiziosa() {
               Con Ambiziosa Program, tutto questo è incluso a partire da 5.000€.
             </p>
           </Reveal>
-        </div>
-      </section>
-
-      {/* 16. Testimonianze / casi studio — stessa sezione "video testimonianze" di Rule
-          the Rules (src/routes/index.tsx), importata qui tale quale */}
-      <section
-        id="testimonianze"
-        className="px-4 py-16 sm:px-8 sm:py-24"
-        style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
-      >
-        <div className="mx-auto max-w-6xl">
-          <Reveal>
-            <h2 className="text-3xl sm:text-4xl">
-              Ascolta le parole di chi ha già <Highlight dark>seguito il mio metodo</Highlight>
-            </h2>
-            <p className="mt-3 text-base text-ink-muted sm:text-lg">
-              Se con loro ha funzionato, perché con te non dovrebbe funzionare?
-            </p>
-          </Reveal>
-
-          <TestimonialsExplorer
-            testimonials={videoTestimonials}
-            initialName={activeTestimonialName}
-          />
-
-          <Reveal delay={200}>
-            <div
-              className="mx-auto mt-10 max-w-3xl border-l-2 pl-5 text-xs leading-relaxed text-ink-muted"
-              style={{ borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)" }}
-            >
-              I risultati riportati sono individuali e non rappresentano una promessa o garanzia di
-              risultati futuri: dipendono da variabili individuali come mercato di riferimento,
-              applicazione pratica del metodo e impegno personale.
-            </div>
-          </Reveal>
-
-          <div className="mt-10 flex justify-center">
-            <AmbiziosaCtaButton variant="hero" />
-          </div>
         </div>
       </section>
 
