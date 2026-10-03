@@ -9,7 +9,8 @@ import { CTA_LABEL, CTA_MICROCOPY } from "@/lib/ambiziosa-config";
 //
 // variant "topbar": piccolo, sfondo verde acido/testo bordeaux, senza riga
 // di rassicurazione — usato nella barra sticky.
-// variant "hero": grande, sfondo bordeaux/testo chiaro, con la riga di
+// variant "hero": grande, stesso sfondo a gradiente verde/oro degli altri
+// pulsanti CTA della pagina (card prezzo, form finale), con la riga di
 // rassicurazione sotto — usato nella hero e nelle altre sezioni "piene".
 type Props = {
   variant: "topbar" | "hero";
@@ -44,8 +45,12 @@ export function AmbiziosaCtaButton({ variant, targetId = "candidature", classNam
       <a
         href={`#${targetId}`}
         onClick={handleClick}
-        className="inline-flex min-h-[56px] w-full items-center justify-center rounded-xl px-6 text-center font-condensed text-sm font-bold uppercase tracking-[0.06em] transition-[filter] duration-200 hover:brightness-90 sm:w-auto sm:min-w-[280px] sm:text-base"
-        style={{ backgroundColor: "var(--secondary)", color: "#EFEFEF" }}
+        className="inline-flex min-h-[56px] w-full items-center justify-center rounded-xl px-6 text-center font-condensed text-sm font-bold uppercase tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:w-auto sm:min-w-[280px] sm:text-base"
+        style={{
+          backgroundImage: "var(--gradient-gold)",
+          color: "var(--primary-foreground)",
+          boxShadow: "var(--shadow-gold)",
+        }}
       >
         {CTA_LABEL}
       </a>
