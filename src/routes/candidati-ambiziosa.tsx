@@ -74,7 +74,19 @@ import client5Img from "@/assets/client-5.png";
 // ---------------------------------------------------------------------------
 const ANCHOR = "#candidatura";
 const CTA_LABEL = "Voglio candidarmi ad Ambiziosa";
-const REASSURANCE = "Candidatura gratuita, nessun impegno.";
+const REASSURANCE = "Ti rispondo entro 48 ore.";
+
+// Testo del box CTA ricorrente (CtaBox): stesso identico testo in ogni
+// sezione che lo richiama, come da indicazione esplicita.
+const CTA_BOX_CONTEXT = (
+  <>
+    4 mesi con me e il mio team:{" "}
+    <strong className="font-semibold">
+      una strategia di comunicazione completa che parte da te
+    </strong>
+    , messa in pratica <strong className="font-semibold">fin dalle prime call</strong>.
+  </>
+);
 
 // ---------------------------------------------------------------------------
 // Dati reali (struttura e contenuti confermati)
@@ -739,24 +751,32 @@ const scenarios = [
 
 const beforeAfterRows = [
   {
-    before: "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.",
-    after: "Tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam.",
+    before: "“Lavoro tantissimo e a fine mese guadagno troppo poco.”",
+    after: "“Guadagno molto di più, in proporzione al valore che porto ai miei clienti.”",
   },
   {
-    before: "Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.",
-    after: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+    before: "“Mi sottovaluto: i miei prezzi sono troppo bassi per la qualità che offro.”",
+    after: "“So quanto vale il mio lavoro e chiedo il giusto compenso con sicurezza.”",
   },
   {
-    before: "Eu fugiat nulla pariatur, excepteur sint occaecat cupidatat non proident.",
-    after: "Sunt in culpa qui officia deserunt mollit anim id est laborum curabitur.",
+    before: "“Tengo clienti che mi sfiniscono per paura di restare senza.”",
+    after: "“Scelgo io con chi lavorare.”",
   },
   {
-    before: "Pretium tincidunt lacus, ut interdum tellus elit sed risus maecenas eget.",
-    after: "Condimentum velit, sit amet feugiat lectus class aptent taciti sociosqu.",
+    before: "“Le richieste che ricevo sono generiche e arrivano a singhiozzo.”",
+    after: "“Mi scrivono persone che hanno già capito cosa faccio e vogliono lavorare con me.”",
   },
   {
-    before: "Ad litora torquent per conubia nostra, per inceptos himenaeos pellentesque.",
-    after: "Habitant morbi tristique senectus et netus et malesuada fames ac turpis.",
+    before: "“Vorrei che essere me bastasse.”",
+    after: "“Essere me basta: mi riconoscono e mi scelgono per come sono.”",
+  },
+  {
+    before: "“Ho speso tempo e soldi in corsi e coach e i risultati concreti non sono arrivati.”",
+    after: "“Ho una strategia costruita sul mio progetto e la applico da subito.”",
+  },
+  {
+    before: "“Ogni volta mi serve qualcuno che mi dica cosa comunicare.”",
+    after: "“So come far evolvere da sola la mia strategia di comunicazione.”",
   },
 ];
 
@@ -884,7 +904,7 @@ export const Route = createFileRoute("/candidati-ambiziosa")({
   component: CandidaturaAmbiziosa,
 });
 
-function CtaBox({ context }: { context: string }) {
+function CtaBox({ context }: { context: React.ReactNode }) {
   return (
     <section className="bg-background px-4 py-14 sm:px-8 sm:py-16">
       <Reveal>
@@ -1307,21 +1327,21 @@ function CandidaturaAmbiziosa() {
               {JOURNEY_STEPS.map((step, i) => (
                 <div key={step.label}>
                   <div
-                    className="flex items-start gap-3 rounded-xl p-5"
+                    className="rounded-xl p-5"
                     style={{ backgroundColor: "var(--card)", border: "1px solid var(--secondary)" }}
                   >
-                    <step.icon
-                      className="mt-0.5 size-5 shrink-0"
-                      style={{ color: "var(--secondary)" }}
-                    />
-                    <div>
-                      <p className="font-condensed text-xs font-semibold uppercase tracking-[0.08em] text-secondary">
+                    <div
+                      className="inline-flex items-center gap-2 rounded-full px-3 py-1.5"
+                      style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+                    >
+                      <step.icon className="size-4 shrink-0" />
+                      <span className="font-condensed text-xs font-semibold uppercase tracking-[0.08em] sm:text-sm">
                         {step.label}
-                      </p>
-                      <p className="mt-1.5 text-xs leading-relaxed text-foreground sm:text-sm">
-                        {step.text}
-                      </p>
+                      </span>
                     </div>
+                    <p className="mt-3 text-xs leading-relaxed text-foreground sm:text-sm">
+                      {step.text}
+                    </p>
                   </div>
                   {i < JOURNEY_STEPS.length - 1 ? (
                     <div className="flex justify-center py-1" aria-hidden>
@@ -1344,7 +1364,7 @@ function CandidaturaAmbiziosa() {
               alt="Carlotta Sgarra"
               loading="lazy"
               className="h-full w-full object-cover"
-              style={{ objectPosition: "32% 25%" }}
+              style={{ objectPosition: "58% 35%" }}
             />
           </div>
         </div>
@@ -1390,7 +1410,7 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 5. Box CTA isolato ricorrente #1 */}
-      <CtaBox context="Lorem ipsum dolor sit amet, consectetur adipiscing elit: da qui puoi trasformare tutto quello che hai costruito in un sistema che lavora per te ogni giorno." />
+      <CtaBox context={CTA_BOX_CONTEXT} />
 
       {/* 7. Cerniera visiva problema → soluzione */}
       <section
@@ -1455,10 +1475,13 @@ function CandidaturaAmbiziosa() {
 
       {/* 9. Prima/dopo a colonne specchiate */}
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-4xl">
+        <div
+          className="mx-auto max-w-4xl rounded-[1.75rem] p-6 sm:p-10"
+          style={{ backgroundColor: "var(--card)", border: "1px solid var(--secondary)" }}
+        >
           <Reveal>
             <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Cosa cambia, riga per riga
+              Oggi e alla fine dei 4 mesi
             </h2>
           </Reveal>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -1467,7 +1490,7 @@ function CandidaturaAmbiziosa() {
               style={{ borderColor: "var(--destructive)" }}
             >
               <p className="font-condensed text-xs uppercase tracking-[0.2em] text-destructive">
-                Prima
+                Oggi
               </p>
               {beforeAfterRows.map((r) => (
                 <p key={r.before} className="text-sm leading-relaxed text-foreground/75">
@@ -1480,7 +1503,7 @@ function CandidaturaAmbiziosa() {
               style={{ borderColor: "var(--primary)" }}
             >
               <p className="font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
-                Dopo
+                Alla fine dei 4 mesi
               </p>
               {beforeAfterRows.map((r) => (
                 <p key={r.after} className="text-sm leading-relaxed text-foreground/75">
@@ -1489,8 +1512,27 @@ function CandidaturaAmbiziosa() {
               ))}
             </div>
           </div>
+
+          <Reveal delay={120}>
+            <div className="mt-10">
+              <h3 className="text-lg font-semibold text-foreground sm:text-xl">
+                Hai già investito in corsi e coach senza vedere risultati concreti?
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
+                Se ti è già successo, hai ragione a diffidare. Di solito un corso ti dà un metodo
+                uguale per tutte, da applicare da sola. In Ambiziosa{" "}
+                <strong className="font-semibold">
+                  la strategia la costruiamo insieme, sul tuo progetto
+                </strong>
+                : la metti in pratica da subito e ti seguo con call dedicate, finché non sai farla
+                evolvere da sola.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
+
+      <CtaBox context={CTA_BOX_CONTEXT} />
 
       {/* 10. Proiezione di scenari futuri concreti */}
       <section
@@ -1652,7 +1694,7 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 6. → CtaBox #2, dopo il reframe (sezione 6) */}
-      <CtaBox context="Lorem ipsum dolor sit amet: se ti riconosci in quello che hai appena letto, il prossimo passo è uno solo." />
+      <CtaBox context={CTA_BOX_CONTEXT} />
 
       {/* 13. Anteprima della piattaforma/area riservata */}
       <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
@@ -1870,7 +1912,7 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* → CtaBox #3, dopo storytelling/autorità (sezione 17) */}
-      <CtaBox context="Lorem ipsum dolor sit amet: se il mio percorso ti ha parlato, probabilmente Ambiziosa è la strada giusta anche per te." />
+      <CtaBox context={CTA_BOX_CONTEXT} />
 
       {/* 17b. Rassicurazione sulla candidatura, sezione dedicata */}
       <section
@@ -1916,7 +1958,7 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* → CtaBox #4, prima del form finale */}
-      <CtaBox context="Lorem ipsum dolor sit amet: sei a un passo dall'inviare la tua candidatura, qui sotto trovi il form." />
+      <CtaBox context={CTA_BOX_CONTEXT} />
 
       {/* 19. Form di candidatura + chiusura finale */}
       <section id="candidatura" className="bg-background px-4 py-16 sm:px-8 sm:py-24">
