@@ -56,6 +56,17 @@ const REASSURANCE = "Candidatura gratuita, nessun impegno.";
 // Dati reali (struttura e contenuti confermati)
 // ---------------------------------------------------------------------------
 
+const SECTORS = [
+  "Coach",
+  "Consulenti d'immagine",
+  "Nutrizioniste",
+  "Tatuatrici",
+  "Makeup artist",
+  "SEO e copywriter",
+  "Wedding planner",
+  "Brand strategist",
+];
+
 const steps = [
   {
     n: "01",
@@ -603,31 +614,27 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 3. Riprova sociale immediata */}
-      <section className="bg-background px-4 py-10 sm:px-8">
-        <Reveal>
-          <div className="mx-auto grid max-w-4xl gap-6 text-center sm:grid-cols-3">
-            <div>
-              <p className="font-condensed text-3xl font-bold text-secondary sm:text-4xl">1.500+</p>
-              <p className="mt-1 text-xs uppercase tracking-[0.1em] text-muted-foreground">
-                Professioniste guidate
-              </p>
-            </div>
-            <div>
-              {/* NUMERO DA CONFERMARE CON ANDREA */}
-              <p className="font-condensed text-3xl font-bold text-secondary sm:text-4xl">XX%</p>
-              <p className="mt-1 text-xs uppercase tracking-[0.1em] text-muted-foreground">
-                Lorem ipsum dolor sit amet
-              </p>
-            </div>
-            <div>
-              {/* NUMERO DA CONFERMARE CON ANDREA */}
-              <p className="font-condensed text-3xl font-bold text-secondary sm:text-4xl">XX</p>
-              <p className="mt-1 text-xs uppercase tracking-[0.1em] text-muted-foreground">
-                Lorem ipsum dolor sit amet
-              </p>
-            </div>
-          </div>
-        </Reveal>
+      <section className="bg-background px-4 py-8 sm:px-8 sm:py-10">
+        <div className="mx-auto max-w-[880px] text-center">
+          <p className="text-lg leading-snug text-foreground sm:text-xl">
+            Ci sarà un motivo se{" "}
+            <strong className="font-semibold">
+              Ambiziosa ha funzionato con centinaia di professioniste diverse
+            </strong>{" "}
+            in settori completamente diversi tra di loro, no?
+          </p>
+        </div>
+        <div className="mx-auto mt-6 flex max-w-4xl flex-wrap items-center justify-center gap-2">
+          {SECTORS.map((s) => (
+            <span
+              key={s}
+              className="inline-flex items-center rounded-full px-3 py-1 font-condensed text-[10px] font-semibold uppercase tracking-[0.06em] sm:text-xs sm:tracking-[0.1em]"
+              style={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+            >
+              {s}
+            </span>
+          ))}
+        </div>
       </section>
 
       {/* 4. Card segmentazione pubblico */}
