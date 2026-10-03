@@ -25,7 +25,7 @@ function parseVimeoId(url: string): string | null {
   return match ? match[1] : null;
 }
 
-const containerClassName = "mx-auto aspect-video w-full max-w-[880px] overflow-hidden rounded-2xl";
+const containerClassName = "mx-auto aspect-video w-full overflow-hidden rounded-2xl";
 
 export function AmbiziosaHeroVideo() {
   if (!HERO_VIDEO_URL) {

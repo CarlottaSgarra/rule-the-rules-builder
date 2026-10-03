@@ -9,9 +9,10 @@ import { CTA_LABEL, CTA_MICROCOPY } from "@/lib/ambiziosa-config";
 //
 // variant "topbar": piccolo, sfondo verde acido/testo bordeaux, senza riga
 // di rassicurazione — usato nella barra sticky.
-// variant "hero": grande, stesso sfondo a gradiente verde/oro degli altri
-// pulsanti CTA della pagina (card prezzo, form finale), con la riga di
-// rassicurazione sotto — usato nella hero e nelle altre sezioni "piene".
+// variant "hero": grande, stesso sfondo a gradiente verde/oro e stessa
+// struttura (flex-col dentro un unico <a>) degli altri pulsanti CTA della
+// pagina (card prezzo, form finale); la riga di rassicurazione è una
+// seconda riga dentro al pulsante stesso, non un testo separato sotto.
 type Props = {
   variant: "topbar" | "hero";
   targetId?: string;
@@ -41,20 +42,22 @@ export function AmbiziosaCtaButton({ variant, targetId = "candidature", classNam
   }
 
   return (
-    <div className={`flex flex-col items-center ${className}`}>
-      <a
-        href={`#${targetId}`}
-        onClick={handleClick}
-        className="inline-flex min-h-[56px] w-full items-center justify-center rounded-xl px-6 text-center font-condensed text-sm font-bold uppercase tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:w-auto sm:min-w-[280px] sm:text-base"
-        style={{
-          backgroundImage: "var(--gradient-gold)",
-          color: "var(--primary-foreground)",
-          boxShadow: "var(--shadow-gold)",
-        }}
-      >
+    <a
+      href={`#${targetId}`}
+      onClick={handleClick}
+      className={`inline-flex w-full flex-col items-center gap-1 rounded-xl px-6 py-4 text-center transition-transform duration-200 hover:-translate-y-0.5 sm:w-auto sm:min-w-[280px] ${className}`}
+      style={{
+        backgroundImage: "var(--gradient-gold)",
+        color: "var(--primary-foreground)",
+        boxShadow: "var(--shadow-gold)",
+      }}
+    >
+      <span className="font-condensed text-sm font-bold uppercase tracking-[0.06em] sm:text-base">
         {CTA_LABEL}
-      </a>
-      <p className="mt-3 text-center text-[0.875rem] italic text-foreground/70">{CTA_MICROCOPY}</p>
-    </div>
+      </span>
+      <span className="font-body text-xs font-normal normal-case tracking-normal opacity-80">
+        {CTA_MICROCOPY}
+      </span>
+    </a>
   );
 }

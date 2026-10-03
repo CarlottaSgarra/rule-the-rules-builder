@@ -514,13 +514,13 @@ function CandidaturaAmbiziosa() {
 
       {/* 2. Hero */}
       <section className="bg-background px-4 py-8 sm:px-8 sm:py-10">
-        <div className="mx-auto flex max-w-[700px] flex-col items-center text-center">
+        <div className="mx-auto flex max-w-6xl flex-col items-center text-center">
           <h1 className="text-3xl font-semibold text-foreground sm:text-4xl">
             <strong className="font-bold">Ambiziosa:</strong> il mio programma per professioniste e
             imprenditrici che vogliono farsi riconoscere e trasformare l'ambizione in carriera
           </h1>
 
-          <p className="mt-3 max-w-[600px] text-base text-foreground sm:text-lg">
+          <p className="mt-3 max-w-[900px] text-base text-foreground sm:text-lg">
             In questo momento ti senti una fotocopia di tante altre professioniste. Ma tu sai che il
             tuo business è unico e sei ambiziosa. Il punto è che ti manca solo un sistema che ti
             faccia veramente riconoscere da tutti e tiri fuori la tua identità.
