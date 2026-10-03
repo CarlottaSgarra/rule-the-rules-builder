@@ -1,18 +1,16 @@
-import { CTA_LABEL, CTA_MICROCOPY } from "@/lib/ambiziosa-config";
+import { CTA_LABEL } from "@/lib/ambiziosa-config";
 
 // Bottone "Candidati ora" riutilizzabile per /candidati-ambiziosa: legge
-// CTA_LABEL (ed eventualmente CTA_MICROCOPY) da ambiziosa-config.ts così il
-// testo resta identico ovunque venga usato nella pagina. Fa scroll morbido
-// all'ancora `targetId` (di default "candidature") e non genera errori se
-// quella sezione non esiste ancora: il browser ignora semplicemente l'href
-// "#id" senza corrispondenza.
+// CTA_LABEL da ambiziosa-config.ts così il testo resta identico ovunque
+// venga usato nella pagina. Fa scroll morbido all'ancora `targetId` (di
+// default "candidature") e non genera errori se quella sezione non esiste
+// ancora: il browser ignora semplicemente l'href "#id" senza corrispondenza.
 //
-// variant "topbar": piccolo, sfondo verde acido/testo bordeaux, senza riga
-// di rassicurazione — usato nella barra sticky.
-// variant "hero": grande, stesso sfondo a gradiente verde/oro e stessa
-// struttura (flex-col dentro un unico <a>) degli altri pulsanti CTA della
-// pagina (card prezzo, form finale); la riga di rassicurazione è una
-// seconda riga dentro al pulsante stesso, non un testo separato sotto.
+// variant "topbar": piccolo, sfondo verde acido/testo bordeaux — usato
+// nella barra sticky.
+// variant "hero": grande, stesso sfondo a gradiente verde/oro degli altri
+// pulsanti CTA della pagina (card prezzo, form finale); solo l'etichetta,
+// senza riga di rassicurazione sotto.
 type Props = {
   variant: "topbar" | "hero";
   targetId?: string;
@@ -45,19 +43,14 @@ export function AmbiziosaCtaButton({ variant, targetId = "candidature", classNam
     <a
       href={`#${targetId}`}
       onClick={handleClick}
-      className={`inline-flex min-w-[260px] flex-col items-center gap-1.5 rounded-xl px-8 py-5 text-center transition-transform duration-200 hover:-translate-y-0.5 sm:min-w-[360px] ${className}`}
+      className={`inline-flex min-w-[260px] items-center justify-center rounded-xl px-8 py-5 text-center font-condensed text-base font-bold uppercase tracking-[0.06em] transition-transform duration-200 hover:-translate-y-0.5 sm:min-w-[360px] sm:text-lg ${className}`}
       style={{
         backgroundImage: "var(--gradient-gold)",
         color: "var(--primary-foreground)",
         boxShadow: "var(--shadow-gold)",
       }}
     >
-      <span className="font-condensed text-base font-bold uppercase tracking-[0.06em] sm:text-lg">
-        {CTA_LABEL}
-      </span>
-      <span className="font-body text-sm font-normal normal-case tracking-normal opacity-80">
-        {CTA_MICROCOPY}
-      </span>
+      {CTA_LABEL}
     </a>
   );
 }

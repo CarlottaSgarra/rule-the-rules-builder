@@ -908,11 +908,12 @@ function CandidaturaAmbiziosa() {
               className="mt-6 text-base sm:max-w-[640px] sm:text-lg"
               style={{ color: "var(--secondary-foreground)" }}
             >
-              In questo momento ti senti una fotocopia di tante altre professioniste. Ma tu sai che{" "}
-              <strong className="font-semibold">il tuo business è unico e sei ambiziosa</strong>. Il
-              punto è che ti manca solo un sistema che{" "}
+              Ambiziosa sono <strong className="font-semibold">4 mesi, io e te</strong>, a lavorare
+              insieme sulla tua identità, la tua comunicazione, i tuoi contenuti e la tua strategia.
+              Non un corso registrato da guardare quando capita, ma un percorso in cui costruiamo
+              passo dopo passo chi sei online e come lo comunichi, fino a diventare{" "}
               <strong className="font-semibold">
-                ti faccia veramente riconoscere da tutti e tiri fuori la tua identità
+                un sistema che continua a funzionare anche dopo la fine del percorso
               </strong>
               .
             </p>

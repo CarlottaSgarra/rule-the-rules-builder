@@ -17,4 +17,3 @@ export const CALENDLY_URL = "";
 export const HERO_VIDEO_URL = "";
 
 export const CTA_LABEL = "Candidati ora";
-export const CTA_MICROCOPY = "Ti rispondo entro 48 ore.";
