@@ -1,14 +1,6 @@
-import {
-  CalendarDays,
-  Compass,
-  IdCard,
-  LayoutDashboard,
-  Lightbulb,
-  SlidersHorizontal,
-} from "lucide-react";
+import { CalendarDays, IdCard, SlidersHorizontal } from "lucide-react";
 
-type Variant =
-  "identity-card" | "content-os" | "editorial-plan" | "macro-topics" | "idea-bank" | "direction";
+type Variant = "identity-card" | "content-os" | "editorial-plan";
 
 type Props = {
   variant: Variant;
@@ -108,102 +100,15 @@ function EditorialPlan() {
   );
 }
 
-function MacroTopics() {
-  const topics = [
-    { w: "w-14", c: "var(--primary)" },
-    { w: "w-10", c: "var(--secondary)" },
-    { w: "w-8", c: "color-mix(in oklab, var(--foreground) 15%, transparent)" },
-    { w: "w-12", c: "var(--secondary)" },
-    { w: "w-9", c: "var(--primary)" },
-  ];
-  return (
-    <div className={`${wrapperClass} rotate-6`}>
-      <div className="flex items-center justify-between">
-        <span className="font-condensed text-[8px] uppercase tracking-[0.15em] text-muted-foreground">
-          I tuoi macro topic
-        </span>
-        <LayoutDashboard className="size-3.5 text-secondary" />
-      </div>
-      <div className="mt-2.5 flex flex-wrap gap-1">
-        {topics.map((t, i) => (
-          <span
-            key={i}
-            className={`block h-3 rounded-full ${t.w}`}
-            style={{ backgroundColor: t.c }}
-          />
-        ))}
-      </div>
-      <span className="mt-2 block h-1 w-4/5 rounded-full bg-foreground/15" />
-    </div>
-  );
-}
-
-function IdeaBank() {
-  const ideas = ["var(--primary)", "var(--secondary)", "var(--primary)"];
-  return (
-    <div className={`${wrapperClass} -rotate-3`}>
-      <div className="flex items-center justify-between">
-        <span className="font-condensed text-[8px] uppercase tracking-[0.15em] text-muted-foreground">
-          Banca idee
-        </span>
-        <Lightbulb className="size-3.5 text-secondary" />
-      </div>
-      <div className="mt-2.5 space-y-1.5">
-        {ideas.map((c, i) => (
-          <div key={i} className="flex items-center gap-1.5">
-            <span className="size-2 shrink-0 rounded-full" style={{ backgroundColor: c }} />
-            <span
-              className={`block h-1.5 rounded-full bg-foreground/15 ${i === 1 ? "w-3/5" : "w-full"}`}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function Direction() {
-  return (
-    <div className={`${wrapperClass} -rotate-6`}>
-      <div className="flex items-center justify-between">
-        <span className="font-condensed text-[8px] uppercase tracking-[0.15em] text-muted-foreground">
-          La tua direzione
-        </span>
-        <Compass className="size-3.5 text-secondary" />
-      </div>
-      <div className="relative mt-3">
-        <span className="block h-1.5 w-full rounded-full bg-foreground/15" />
-        <span
-          className="absolute inset-y-0 left-0 block w-2/3 rounded-full"
-          style={{ backgroundImage: "var(--gradient-gold)" }}
-        />
-        <span
-          className="absolute top-1/2 size-2.5 -translate-y-1/2 rounded-full ring-2 ring-white"
-          style={{ left: "calc(66% - 5px)", backgroundColor: "var(--secondary)" }}
-        />
-      </div>
-      <div className="mt-2.5 space-y-1">
-        <span className="block h-1 w-full rounded-full bg-foreground/15" />
-        <span className="block h-1 w-3/5 rounded-full bg-foreground/15" />
-      </div>
-    </div>
-  );
-}
-
-const VARIANTS: Record<Variant, () => React.JSX.Element> = {
-  "identity-card": IdentityCard,
-  "content-os": ContentOS,
-  "editorial-plan": EditorialPlan,
-  "macro-topics": MacroTopics,
-  "idea-bank": IdeaBank,
-  direction: Direction,
-};
-
 export function SessionHighlight({ variant, className = "" }: Props) {
-  const Content = VARIANTS[variant];
-  return (
-    <div className={className}>
-      <Content />
-    </div>
-  );
+  const content =
+    variant === "identity-card" ? (
+      <IdentityCard />
+    ) : variant === "content-os" ? (
+      <ContentOS />
+    ) : (
+      <EditorialPlan />
+    );
+
+  return <div className={className}>{content}</div>;
 }

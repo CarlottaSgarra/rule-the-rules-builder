@@ -30,7 +30,10 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
-import { SessionHighlight } from "@/components/landing/SessionHighlight";
+import {
+  AmbiziosaPillarVisual,
+  type PillarVisualVariant,
+} from "@/components/landing/AmbiziosaPillarVisual";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { AmbiziosaTopbar } from "@/components/landing/AmbiziosaTopbar";
 import { AmbiziosaCtaButton } from "@/components/landing/AmbiziosaCtaButton";
@@ -45,12 +48,6 @@ import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
 import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
 import carlottaLeftImg from "@/assets/Carlotta bianco e nerco che guarda a sinistra.jpg";
 import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
-import togliIlCostumeImg from "@/assets/togli-il-costume.jpg";
-import carlottaPointingImg from "@/assets/carlotta-pointing.jpg";
-import nonVoglioRegoleImg from "@/assets/non-voglio-darti-altre-regole-da-seguire.jpg";
-import methodBgImg from "@/assets/method-bg.jpg";
-import licenziaLeRegoleImg from "@/assets/licenzia-le-regole.jpg";
-import carlottaWalkingImg from "@/assets/carlotta-walking.jpg";
 import elenaRosaImg from "@/assets/elena-rosa.jpg";
 import silviaBedinImg from "@/assets/silvia-bedin.jpg";
 import mariangelaSimioliImg from "@/assets/mariangela-simioli.jpg";
@@ -822,23 +819,21 @@ const scenarios = [
 ];
 
 // I 6 punti del percorso, costruiti come le "3 serate" di Rule The Rules:
-// foto con titolo in sovraimpressione + card bianca ruotata (SessionHighlight),
-// intro sotto la foto, checklist a destra.
+// illustrazione React del punto + titolo + intro a sinistra, checklist a
+// destra, titoletto riassuntivo nel badge oro.
 const communicationPillars: {
   n: string;
   title: string;
-  photo: string;
-  photoPosition: string;
-  highlight: React.ComponentProps<typeof SessionHighlight>["variant"];
+  badge: string;
+  visual: PillarVisualVariant;
   intro: React.ReactNode;
   bullets: React.ReactNode[];
 }[] = [
   {
     n: "1",
     title: "La tua identità",
-    photo: togliIlCostumeImg,
-    photoPosition: "50% 30%",
-    highlight: "identity-card",
+    badge: "La base di tutto",
+    visual: "identity",
     intro: (
       <>
         È il primo passo, e{" "}
@@ -866,9 +861,8 @@ const communicationPillars: {
   {
     n: "2",
     title: "I tuoi macro topic",
-    photo: carlottaPointingImg,
-    photoPosition: "50% 20%",
-    highlight: "macro-topics",
+    badge: "I temi della tua comunicazione",
+    visual: "macro-topics",
     intro: (
       <>
         Il mio team prende tutto il lavoro emerso sull'identità e{" "}
@@ -889,9 +883,8 @@ const communicationPillars: {
   {
     n: "3",
     title: "La tua banca idee personalizzata",
-    photo: nonVoglioRegoleImg,
-    photoPosition: "40% 30%",
-    highlight: "idea-bank",
+    badge: "Mai più pagina bianca",
+    visual: "idea-bank",
     intro: (
       <>
         Idee di contenuti{" "}
@@ -912,9 +905,8 @@ const communicationPillars: {
   {
     n: "4",
     title: "La struttura dei tuoi contenuti",
-    photo: methodBgImg,
-    photoPosition: "30% 40%",
-    highlight: "content-os",
+    badge: "Ogni contenuto ha un ruolo",
+    visual: "structure",
     intro: (
       <>
         La struttura strategica che{" "}
@@ -938,9 +930,8 @@ const communicationPillars: {
   {
     n: "5",
     title: "La tua direzione comunicativa",
-    photo: licenziaLeRegoleImg,
-    photoPosition: "50% 25%",
-    highlight: "direction",
+    badge: "Sai sempre dove stai andando",
+    visual: "direction",
     intro: (
       <>
         Dove vuoi portare la tua comunicazione,{" "}
@@ -964,9 +955,8 @@ const communicationPillars: {
   {
     n: "6",
     title: "La tua strategia completa di comunicazione",
-    photo: carlottaWalkingImg,
-    photoPosition: "50% 25%",
-    highlight: "editorial-plan",
+    badge: "Tutto in una sola strategia",
+    visual: "strategy",
     intro: (
       <>
         Tutti i pezzi si uniscono in{" "}
@@ -1786,26 +1776,9 @@ function CandidaturaAmbiziosa() {
                     </span>
 
                     <div className="relative">
-                      <div className="relative">
-                        <div className="relative overflow-hidden rounded-2xl">
-                          <img
-                            src={p.photo}
-                            alt={p.title}
-                            loading="lazy"
-                            className="aspect-[4/3] w-full object-cover"
-                            style={{ objectPosition: p.photoPosition }}
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
-                          <h3 className="absolute inset-x-0 bottom-0 p-5 text-xl text-white sm:text-2xl">
-                            {p.title}
-                          </h3>
-                        </div>
-                        <SessionHighlight
-                          variant={p.highlight}
-                          className="absolute -right-7 -top-3 sm:-right-5 sm:-top-5"
-                        />
-                      </div>
-                      <p className="mt-5 text-sm leading-relaxed text-ink-muted sm:text-base">
+                      <AmbiziosaPillarVisual variant={p.visual} />
+                      <h3 className="mt-5 text-xl text-ink sm:text-2xl">{p.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-ink-muted sm:text-base">
                         {p.intro}
                       </p>
                     </div>
@@ -1835,7 +1808,7 @@ function CandidaturaAmbiziosa() {
                     className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-2xl px-3 py-2 font-condensed text-[10px] font-semibold uppercase tracking-[0.05em] text-primary-foreground shadow-[0_10px_24px_-8px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:-translate-y-1 sm:-left-3 sm:translate-x-0 sm:px-5 sm:py-3 sm:text-base sm:tracking-[0.15em] md:-left-5 md:px-6"
                     style={{ backgroundImage: "var(--gradient-gold)" }}
                   >
-                    Punto {p.n} di 6
+                    {p.badge}
                   </span>
                 </div>
               </Reveal>
