@@ -4,13 +4,17 @@ import { CTA_LABEL, CTA_SUB } from "@/lib/ambiziosa-config";
 // grafiche della pagina Rule The Rules: "topbar" = pulsante di SiteTopbar,
 // "hero" = CtaButton (etichetta + riga piccola sotto). Fa scroll morbido
 // all'ancora `targetId` (di default "candidatura", la sezione del form).
+// `tier` preseleziona la versione nel form di candidatura.
 type Props = {
   variant: "topbar" | "hero";
   label?: string;
   sub?: string;
   targetId?: string;
   className?: string;
+  tier?: "program" | "mentorship";
 };
+
+export const TIER_EVENT = "ambiziosa:tier";
 
 export function AmbiziosaCtaButton({
   variant,
@@ -18,8 +22,10 @@ export function AmbiziosaCtaButton({
   sub = CTA_SUB,
   targetId = "candidatura",
   className = "",
+  tier,
 }: Props) {
   function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    if (tier) window.dispatchEvent(new CustomEvent(TIER_EVENT, { detail: tier }));
     const el = document.getElementById(targetId);
     if (el) {
       e.preventDefault();

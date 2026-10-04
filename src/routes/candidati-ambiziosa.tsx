@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Accordion,
@@ -28,14 +28,19 @@ import {
 } from "@/components/landing/AmbiziosaPillarVisual";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { AmbiziosaTopbar } from "@/components/landing/AmbiziosaTopbar";
-import { AmbiziosaCtaButton } from "@/components/landing/AmbiziosaCtaButton";
+import { AmbiziosaCtaButton, TIER_EVENT } from "@/components/landing/AmbiziosaCtaButton";
+import { Countdown } from "@/components/landing/Countdown";
 import { AmbiziosaHeroVideo } from "@/components/landing/AmbiziosaHeroVideo";
 import { ProfileBeforeAfter, ResultsCards } from "@/components/landing/AmbiziosaProofCards";
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
 import { submitAmbiziosaApplication } from "@/lib/ambiziosa-application";
 import {
+  APPLICATIONS_DEADLINE,
+  MENTORSHIP_PRICE,
   MENTORSHIP_STATS as mentorshipStats,
+  PROGRAM_PRICE,
   PROGRAM_STATS as programStats,
+  WHATSAPP_URL,
 } from "@/lib/ambiziosa-config";
 import carlottaLookingImg from "@/assets/carlotta-looking-2.jpg";
 import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
@@ -92,6 +97,7 @@ import client5Img from "@/assets/client-5.png";
 // (sezione 5) devono usare esattamente questo stesso testo, senza varianti.
 // ---------------------------------------------------------------------------
 const ANCHOR = "#candidatura";
+const APPLICATIONS_DEADLINE_MS = new Date(APPLICATIONS_DEADLINE).getTime();
 const CTA_LABEL = "Voglio candidarmi ad Ambiziosa";
 
 // Testo del box CTA ricorrente (CtaBox): stesso identico testo in ogni
@@ -270,43 +276,105 @@ const JOURNEY_STEPS = [
   },
 ];
 
-const pricingTiers = [
-  {
-    id: "program",
-    name: "Ambiziosa Program",
-    payoff: "Trasformiamo la tua Ambizione in Carriera",
-    price: "5.000€",
-    priceNote: "IVA inclusa",
-    duration: "4 mesi di percorso",
-    recommended: true,
-    features: [
-      "Materiali audio/video ed esercizi pratici per ogni step",
-      "5 call totali: 1 call iniziale + 1 call dopo ogni step",
-      "GPT dedicato per i contenuti in stile alter-ego",
-      "Notion dedicato al percorso",
-      "Community Slack",
-      "Lavoro diretto con Carlotta e Sharon",
-      "Assistenza lunedì–giovedì, 10:00–16:00",
-    ],
-  },
-  {
-    id: "mentorship",
-    name: "Ambiziosa Mentorship",
-    payoff: "Trasformiamo la tua Ambizione in Carriera",
-    price: "7.000€",
-    priceNote: "IVA inclusa",
-    duration: "4 mesi di percorso",
-    recommended: false,
-    features: [
-      "Materiali audio/video ed esercizi pratici per ogni step",
-      "Call 1:1 illimitate per tutti i 4 mesi",
-      "GPT dedicato per i contenuti in stile alter-ego",
-      "Notion dedicato al percorso",
-      "Community Slack",
-      "Lavoro diretto con Carlotta e Sharon",
-      "Assistenza lunedì–giovedì, 10:00–16:00",
-    ],
-  },
+// Le due versioni a confronto nella sezione prezzi (#prezzi). La Mentorship
+// è messa in evidenza: card scura con bordo oro animato e badge.
+const programFeatures: React.ReactNode[] = [
+  <>
+    <strong className="font-semibold text-foreground">
+      Call iniziale con me e con il mio team
+    </strong>
+    : partiamo dalla tua situazione e fissiamo la direzione dei 4 mesi.
+  </>,
+  <>
+    <strong className="font-semibold text-foreground">La parte introduttiva</strong> per entrare nel
+    metodo Ambiziosa.
+  </>,
+  <>
+    <strong className="font-semibold text-foreground">Lo step Identità</strong>, con una call
+    individuale con me alla fine.
+  </>,
+  <>
+    <strong className="font-semibold text-foreground">
+      La tua strategia completa di comunicazione
+    </strong>
+    , costruita dal mio team sul tuo progetto: macro topic, banca idee personalizzata, struttura dei
+    contenuti, direzione comunicativa.
+  </>,
+  <>
+    <strong className="font-semibold text-foreground">Gli step formativi</strong> per capire il
+    metodo mentre pubblichi.
+  </>,
+  <>
+    <strong className="font-semibold text-foreground">La strategia affinata insieme a noi</strong>{" "}
+    mentre la metti in pratica.
+  </>,
+  <>
+    <strong className="font-semibold text-foreground">Una call individuale con il mio team</strong>{" "}
+    sulla strategia.
+  </>,
+  <>
+    <strong className="font-semibold text-foreground">
+      La call finale con me e con il mio team
+    </strong>{" "}
+    per definire come continuare in autonomia.
+  </>,
+];
+
+const mentorshipBaseFeatures: React.ReactNode[] = [
+  <>
+    <strong className="font-semibold text-ink">Call iniziale con me e con il mio team</strong>:
+    definiamo punto di partenza, obiettivi, priorità e il giorno della tua call settimanale.
+  </>,
+  <>
+    <strong className="font-semibold text-ink">La parte introduttiva</strong> per entrare nel metodo
+    Ambiziosa.
+  </>,
+  <>
+    <strong className="font-semibold text-ink">Gli step formativi</strong> per capire il metodo
+    mentre pubblichi.
+  </>,
+  <>
+    <strong className="font-semibold text-ink">Lo step Identità</strong>, con il confronto con me.
+  </>,
+  <>
+    <strong className="font-semibold text-ink">La tua strategia completa di comunicazione</strong>,
+    costruita dal mio team sul tuo progetto: macro topic, banca idee personalizzata, struttura dei
+    contenuti, direzione comunicativa.
+  </>,
+  <>
+    <strong className="font-semibold text-ink">La call finale con me e con il mio team</strong>.
+  </>,
+];
+
+const mentorshipExtraFeatures: React.ReactNode[] = [
+  <>
+    <strong className="font-semibold text-ink">Più di 20 call in 4 mesi</strong>, contro le 4 del
+    Program.
+  </>,
+  <>
+    <strong className="font-semibold text-ink">
+      Una call individuale di 30 minuti ogni settimana con il mio team
+    </strong>
+    , a giorno fisso per tutti i 4 mesi.
+  </>,
+  <>
+    <strong className="font-semibold text-ink">Una call al mese con me per 4 mesi</strong>, per
+    lavorare sulla tua evoluzione.
+  </>,
+  <>
+    <strong className="font-semibold text-ink">Un confronto settimanale su tutto</strong>: dubbi,
+    contenuti, scelte comunicative, difficoltà e nuove idee, senza aspettare la fine di uno step.
+  </>,
+  <>
+    <strong className="font-semibold text-ink">Un affiancamento continuo mentre applichi</strong>:
+    lavoriamo sulla strategia mentre la pubblichi.
+  </>,
+  <>
+    <strong className="font-semibold text-ink">
+      La strategia analizzata e corretta passo dopo passo
+    </strong>{" "}
+    durante il percorso, finché sai farla evolvere da sola.
+  </>,
 ];
 
 // Stessa sezione "video testimonianze" di Rule the Rules (src/routes/index.tsx,
@@ -2876,106 +2944,262 @@ function CandidaturaAmbiziosa() {
         </div>
       </section>
 
-      {/* 11. Presentazione dei 2 livelli */}
+      {/* 11. Due percorsi, due livelli di accompagnamento */}
       <section id="prezzi" className="bg-background">
-        <div className="mx-auto max-w-5xl px-5 py-20">
+        <div className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
-            <h2 className="text-center text-3xl text-foreground sm:text-4xl">
-              Scegli il tuo <Highlight>livello di accompagnamento</Highlight>
-            </h2>
-            {/* LOREM - sezione 11, intro card prezzi, sostituire con copy reale */}
-            <p className="mx-auto mt-3 max-w-xl text-center text-base text-foreground/75 sm:text-lg">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore.
-            </p>
+            <div className="mx-auto max-w-3xl text-center">
+              <h2 className="text-3xl text-foreground sm:text-4xl">
+                Due percorsi, <Highlight>due livelli di accompagnamento</Highlight>.
+              </h2>
+              <p className="mt-5 text-base leading-relaxed text-foreground/85 sm:text-lg">
+                Il Program ti dà{" "}
+                <strong className="font-semibold text-foreground">
+                  il metodo e 4 call nei momenti chiave
+                </strong>
+                . La Mentorship{" "}
+                <strong className="font-semibold text-foreground">
+                  ti affianca ogni settimana per tutti i 4 mesi, con più di 20 call
+                </strong>
+                .
+              </p>
+              <div
+                className="mt-7 inline-flex flex-col items-center gap-2 rounded-2xl bg-secondary px-5 py-3 sm:flex-row sm:gap-4 sm:rounded-full sm:px-7"
+                style={
+                  {
+                    "--foreground": "var(--secondary-foreground)",
+                    "--muted-foreground": "oklch(0.85 0.03 40)",
+                  } as React.CSSProperties
+                }
+              >
+                <span className="font-condensed text-[10px] uppercase tracking-[0.15em] text-muted-foreground sm:text-xs">
+                  Le candidature chiudono tra
+                </span>
+                <Countdown compact target={APPLICATIONS_DEADLINE_MS} />
+              </div>
+            </div>
           </Reveal>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {pricingTiers.map((tier) => (
-              <Reveal key={tier.id} delay={tier.recommended ? 0 : 80}>
-                <div
-                  className={`relative flex h-full flex-col p-7 ${
-                    tier.recommended ? "surface-cream" : "surface-card"
-                  }`}
-                  style={tier.recommended ? { borderRadius: "1.75rem" } : undefined}
+          <div className="mt-14 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            {/* Ambiziosa Program */}
+            <Reveal className="order-2 lg:order-1 lg:mt-10">
+              <div className="surface-card flex h-full flex-col p-7 sm:p-9">
+                <p className="font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
+                  Ambiziosa Program
+                </p>
+                <p className="mt-3 flex items-baseline gap-2">
+                  {/* DA CONFERMARE: IVA inclusa o esclusa */}
+                  <span className="font-display text-5xl text-foreground">{PROGRAM_PRICE}</span>
+                  <span className="text-sm text-foreground/70">· 4 mesi</span>
+                </p>
+                <p className="mt-3 text-base leading-relaxed text-foreground/85">
+                  Il metodo Ambiziosa con{" "}
+                  <strong className="font-semibold text-foreground">
+                    4 call nei momenti chiave
+                  </strong>
+                  .
+                </p>
+
+                <p className="mt-7 font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
+                  Cosa hai
+                </p>
+                <ul className="mt-3 flex-1 space-y-3">
+                  {programFeatures.map((f, i) => (
+                    <li key={i} className="flex gap-3 text-sm leading-relaxed text-foreground/85">
+                      <Check className="mt-1 size-4 shrink-0 text-secondary" />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-8">
+                  <AmbiziosaCtaButton
+                    variant="hero"
+                    label="Candidati ad Ambiziosa Program"
+                    tier="program"
+                  />
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Ambiziosa Mentorship, in evidenza */}
+            <Reveal className="order-1 lg:order-2">
+              <div className="ticket-border-glow relative mt-4 rounded-[1.75rem]">
+                <span
+                  className="absolute -top-4 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full px-5 py-2 font-condensed text-xs uppercase tracking-[0.2em] text-primary-foreground sm:text-sm"
+                  style={{
+                    backgroundImage: "var(--gradient-gold)",
+                    boxShadow: "var(--shadow-gold)",
+                  }}
                 >
-                  {tier.recommended ? (
-                    <span
-                      className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
-                      style={{
-                        backgroundImage: "var(--gradient-gold)",
-                        boxShadow: "var(--shadow-gold)",
-                      }}
-                    >
-                      Consigliato
-                    </span>
-                  ) : null}
-                  <p
-                    className={`font-condensed text-xs uppercase tracking-[0.2em] ${
-                      tier.recommended ? "text-primary" : "text-secondary"
-                    }`}
-                  >
-                    {tier.name}
+                  Il percorso più completo
+                </span>
+                <div
+                  className="surface-cream relative flex flex-col p-7 pt-10 sm:p-10 sm:pt-12"
+                  style={{
+                    borderRadius: "1.75rem",
+                    border: "2px solid var(--primary)",
+                    boxShadow:
+                      "var(--shadow-gold), 0 60px 100px -30px color-mix(in oklab, var(--primary) 45%, transparent)",
+                  }}
+                >
+                  <p className="font-condensed text-xs uppercase tracking-[0.2em] text-primary">
+                    Ambiziosa Mentorship
                   </p>
-                  <p
-                    className={`mt-2 text-lg font-semibold sm:text-xl ${
-                      tier.recommended ? "text-ink" : "text-foreground"
-                    }`}
-                  >
-                    {tier.payoff}
+                  <p className="mt-3 flex items-baseline gap-2">
+                    {/* DA CONFERMARE: IVA inclusa o esclusa */}
+                    <span className="font-display text-6xl text-ink">{MENTORSHIP_PRICE}</span>
+                    <span className="text-sm text-ink-muted">· 4 mesi</span>
                   </p>
-                  <div className="mt-4 flex items-baseline gap-2">
-                    <span
-                      className={`font-display text-5xl ${
-                        tier.recommended ? "text-ink" : "text-foreground"
-                      }`}
-                    >
-                      {tier.price}
-                    </span>
-                    <span
-                      className={`text-xs ${
-                        tier.recommended ? "text-ink-muted" : "text-muted-foreground"
-                      }`}
-                    >
-                      {tier.priceNote}
-                    </span>
-                  </div>
-                  <p
-                    className={`mt-1 text-sm ${
-                      tier.recommended ? "text-ink-muted" : "text-foreground/75"
-                    }`}
-                  >
-                    {tier.duration}
+                  <p className="mt-3 text-base leading-relaxed text-ink-muted sm:text-lg">
+                    Tutto il percorso del Program, con in più{" "}
+                    <strong className="font-semibold text-ink">
+                      un accompagnamento continuo per tutti i 4 mesi
+                    </strong>
+                    : ogni settimana con il mio team e ogni mese con me.
                   </p>
 
-                  <ul className="mt-6 flex-1 space-y-4">
-                    {tier.features.map((f) => (
-                      <li
-                        key={f}
-                        className={`flex gap-3 text-sm leading-relaxed ${
-                          tier.recommended ? "text-ink-muted" : "text-foreground/85"
-                        }`}
-                      >
-                        {tier.recommended ? (
-                          <Check
-                            className="mt-1 size-4 shrink-0"
-                            style={{ color: "var(--gold-deep)" }}
-                          />
-                        ) : (
-                          <Check className="mt-1 size-4 shrink-0 text-secondary" />
-                        )}
+                  <p className="mt-7 font-condensed text-xs uppercase tracking-[0.2em] text-primary">
+                    Tutto quello che c'è nel Program
+                  </p>
+                  <ul className="mt-3 space-y-3">
+                    {mentorshipBaseFeatures.map((f, i) => (
+                      <li key={i} className="flex gap-3 text-sm leading-relaxed text-ink-muted">
+                        <Check className="mt-1 size-4 shrink-0 text-ink-muted/60" />
                         <span>{f}</span>
                       </li>
                     ))}
                   </ul>
 
+                  <div
+                    className="mt-7 rounded-2xl p-5 sm:p-6"
+                    style={{
+                      backgroundColor: "color-mix(in oklab, var(--primary) 12%, transparent)",
+                      border: "1px solid color-mix(in oklab, var(--primary) 40%, transparent)",
+                    }}
+                  >
+                    <p className="font-display text-xl text-ink sm:text-2xl">
+                      E in più, <Highlight dark>solo con la Mentorship</Highlight>:
+                    </p>
+                    <ul className="mt-4 space-y-3">
+                      {mentorshipExtraFeatures.map((f, i) => (
+                        <li
+                          key={i}
+                          className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
+                        >
+                          <Check
+                            className="mt-1 size-4 shrink-0"
+                            style={{ color: "var(--gold-deep)" }}
+                          />
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
                   <div className="mt-8">
-                    <AmbiziosaCtaButton variant="hero" label={`Candidati per ${tier.name}`} />
+                    <AmbiziosaCtaButton
+                      variant="hero"
+                      label="Candidati ad Ambiziosa Mentorship"
+                      tier="mentorship"
+                    />
                   </div>
                 </div>
-              </Reveal>
-            ))}
+              </div>
+            </Reveal>
           </div>
+
+          {/* Dubbi prima di prenotare + scadenza vera, in un unico riquadro */}
+          <Reveal>
+            <div
+              className="surface-cream mt-16 overflow-hidden px-6 py-10 sm:px-10 sm:py-14"
+              style={{ borderRadius: "1.75rem" }}
+            >
+              <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+                <div className="relative mx-auto w-full max-w-sm pb-10 lg:pb-12">
+                  <img
+                    src={carlottaLookingWideImg}
+                    alt="Carlotta Sgarra"
+                    loading="lazy"
+                    className="aspect-[4/5] w-[78%] rounded-2xl object-cover shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)]"
+                    style={{ objectPosition: "50% 25%" }}
+                  />
+                  <img
+                    src={sharonConvertinoImg}
+                    alt="Sharon Convertino"
+                    loading="lazy"
+                    className="absolute bottom-0 right-0 aspect-square w-[50%] rounded-2xl object-cover shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)]"
+                    style={{ border: "4px solid var(--secondary)" }}
+                  />
+                  <span
+                    className="absolute left-3 top-3 rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary-foreground sm:text-xs"
+                    style={{ backgroundImage: "var(--gradient-gold)" }}
+                  >
+                    Carlotta e Sharon
+                  </span>
+                </div>
+
+                <div>
+                  <h3 className="text-3xl text-ink sm:text-4xl">
+                    Hai un dubbio <Highlight dark>prima di prenotare</Highlight>?
+                  </h3>
+                  <div className="mt-5 space-y-4 text-base leading-relaxed text-ink-muted sm:text-lg">
+                    <p>
+                      Qualsiasi dubbio puoi chiarirlo{" "}
+                      <strong className="font-semibold text-ink">
+                        nella call conoscitiva di candidatura
+                      </strong>
+                      . Non ti impegna a iscriverti: ti spiego come Ambiziosa può funzionare{" "}
+                      <strong className="font-semibold text-ink">
+                        sul tuo profilo e sul tuo progetto
+                      </strong>
+                      , e se è adatta a te.
+                    </p>
+                    {WHATSAPP_URL ? (
+                      <p>
+                        Altrimenti puoi scrivermi{" "}
+                        <strong className="font-semibold text-ink">sul mio numero WhatsApp</strong>{" "}
+                        <a
+                          href={WHATSAPP_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-semibold underline underline-offset-4"
+                          style={{ color: "var(--gold-deep)" }}
+                        >
+                          cliccando qui
+                        </a>
+                        .
+                      </p>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className="mt-12 border-t pt-10 text-center"
+                style={{ borderColor: "color-mix(in oklab, var(--background) 14%, transparent)" }}
+              >
+                <p className="font-condensed text-xs uppercase tracking-[0.2em] text-primary">
+                  La scadenza
+                </p>
+                <h3 className="mx-auto mt-4 max-w-3xl text-3xl text-ink sm:text-4xl">
+                  Le candidature chiudono <Highlight dark>a mezzanotte del 16 ottobre</Highlight>.
+                </h3>
+                <div className="mx-auto mt-5 max-w-2xl space-y-3 text-base leading-relaxed text-ink-muted sm:text-lg">
+                  <p>
+                    <strong className="font-semibold text-ink">Questa scadenza è vera.</strong> Dopo
+                    la mezzanotte del 16 ottobre il calendario per prenotare la call conoscitiva si
+                    chiude e non ci si può più prenotare.
+                  </p>
+                  <p>
+                    <strong className="font-semibold text-ink">
+                      Le call già prenotate si fanno anche dopo.
+                    </strong>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -3061,7 +3285,7 @@ function CandidaturaAmbiziosa() {
               <p className="shrink-0 text-2xl font-bold sm:text-3xl">6.100€+</p>
             </div>
             <p className="mt-3 text-center text-xs text-muted-foreground">
-              Con Ambiziosa Program, tutto questo è incluso a partire da 5.000€.
+              Con Ambiziosa Program, tutto questo è incluso a partire da {PROGRAM_PRICE}.
             </p>
           </Reveal>
         </div>
@@ -3178,9 +3402,9 @@ function CandidaturaAmbiziosa() {
               Invia la tua candidatura
             </h2>
             <p className="mx-auto mt-3 max-w-md text-center text-sm text-muted-foreground sm:text-base">
-              Due opzioni disponibili: Ambiziosa Program (5.000€) e Ambiziosa Mentorship (7.000€).
-              Compilando il form riceverai una risposta entro 48 ore, senza nessun impegno. Le
-              candidature chiudono{" "}
+              Due opzioni disponibili: Ambiziosa Program ({PROGRAM_PRICE}) e Ambiziosa Mentorship (
+              {MENTORSHIP_PRICE}). Compilando il form riceverai una risposta entro 48 ore, senza
+              nessun impegno. Le candidature chiudono{" "}
               <strong className="font-semibold text-foreground">venerdì 16 ottobre</strong> e si
               parte <strong className="font-semibold text-foreground">martedì 20 ottobre</strong>.
             </p>
@@ -3201,6 +3425,16 @@ function ApplicationForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [tier, setTier] = useState<"program" | "mentorship" | "unsure">("unsure");
+
+  // I bottoni delle card prezzi preselezionano la versione scelta.
+  useEffect(() => {
+    const onTier = (e: Event) => {
+      const detail = (e as CustomEvent<"program" | "mentorship">).detail;
+      if (detail === "program" || detail === "mentorship") setTier(detail);
+    };
+    window.addEventListener(TIER_EVENT, onTier);
+    return () => window.removeEventListener(TIER_EVENT, onTier);
+  }, []);
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "sent" | "error">("idle");
 
@@ -3257,8 +3491,8 @@ function ApplicationForm() {
         </legend>
         {(
           [
-            { id: "program", label: "Ambiziosa Program (5.000€)" },
-            { id: "mentorship", label: "Ambiziosa Mentorship (7.000€)" },
+            { id: "program", label: `Ambiziosa Program (${PROGRAM_PRICE})` },
+            { id: "mentorship", label: `Ambiziosa Mentorship (${MENTORSHIP_PRICE})` },
             { id: "unsure", label: "Non sono sicura, vorrei un consiglio" },
           ] as const
         ).map((opt) => (

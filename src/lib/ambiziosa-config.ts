@@ -17,6 +17,16 @@ export const WAITLIST_URL = "";
 // TODO: valorizzare quando Carlotta fornisce il link Calendly.
 export const CALENDLY_URL = "";
 
+// TODO: valorizzare con il link WhatsApp personale di Carlotta (es.
+// https://wa.me/39XXXXXXXXXX). Finché è vuoto, la frase "scrivimi su
+// WhatsApp" nel riquadro dei dubbi non viene mostrata.
+export const WHATSAPP_URL = "";
+
+// Prezzi delle due versioni.
+// DA CONFERMARE: IVA inclusa o esclusa (per ora non indicata in pagina).
+export const PROGRAM_PRICE = "4.500€";
+export const MENTORSHIP_PRICE = "7.000€";
+
 // TODO: valorizzare con l'URL del video di presentazione di Carlotta
 // (YouTube, Vimeo, o un file video) quando sarà registrato.
 export const HERO_VIDEO_URL = "";
