@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   IdCard,
   CalendarDays,
-  CheckCircle2,
   Check,
   Sparkles,
   Users,
-  Video,
   ShieldCheck,
   Star,
   ChevronDown,
@@ -23,12 +21,11 @@ import {
 } from "@/components/landing/AmbiziosaPillarVisual";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { AmbiziosaTopbar } from "@/components/landing/AmbiziosaTopbar";
-import { AmbiziosaCtaButton, TIER_EVENT } from "@/components/landing/AmbiziosaCtaButton";
+import { AmbiziosaCtaButton } from "@/components/landing/AmbiziosaCtaButton";
 import { Countdown } from "@/components/landing/Countdown";
 import { AmbiziosaHeroVideo } from "@/components/landing/AmbiziosaHeroVideo";
 import { ProfileBeforeAfter, ResultsCards } from "@/components/landing/AmbiziosaProofCards";
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
-import { submitAmbiziosaApplication } from "@/lib/ambiziosa-application";
 import {
   APPLICATIONS_DEADLINE,
   MENTORSHIP_PRICE,
@@ -1361,9 +1358,6 @@ const ambiziosaBonuses: {
     ],
   },
 ];
-
-const inputClassName =
-  "w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-card-foreground outline-none placeholder:text-card-foreground/50 focus:border-primary";
 
 // ---------------------------------------------------------------------------
 
@@ -2961,11 +2955,7 @@ function CandidaturaAmbiziosa() {
                 </ul>
 
                 <div className="mt-8">
-                  <AmbiziosaCtaButton
-                    variant="hero"
-                    label="Candidati ad Ambiziosa Program"
-                    tier="program"
-                  />
+                  <AmbiziosaCtaButton variant="hero" label="Candidati ad Ambiziosa Program" />
                 </div>
               </div>
             </Reveal>
@@ -3053,11 +3043,7 @@ function CandidaturaAmbiziosa() {
                   </div>
 
                   <div className="mt-8">
-                    <AmbiziosaCtaButton
-                      variant="hero"
-                      label="Candidati ad Ambiziosa Mentorship"
-                      tier="mentorship"
-                    />
+                    <AmbiziosaCtaButton variant="hero" label="Candidati ad Ambiziosa Mentorship" />
                   </div>
                 </div>
               </div>
@@ -3153,156 +3139,7 @@ function CandidaturaAmbiziosa() {
       {/* Box CTA dopo prezzi, dubbi e scadenza */}
       <CtaBox />
 
-      {/* 19. Form di candidatura + chiusura finale */}
-      <section id="candidatura" className="bg-background px-4 py-16 sm:px-8 sm:py-24">
-        <div className="mx-auto max-w-xl">
-          <Reveal>
-            <div className="flex items-center justify-center gap-2 text-secondary">
-              <Users className="size-5" />
-              <Video className="size-5" />
-            </div>
-            <h2 className="mt-4 text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Invia la tua candidatura
-            </h2>
-            <p className="mx-auto mt-3 max-w-md text-center text-sm text-muted-foreground sm:text-base">
-              Due opzioni disponibili: Ambiziosa Program ({PROGRAM_PRICE}) e Ambiziosa Mentorship (
-              {MENTORSHIP_PRICE}). Compilando il form riceverai una risposta entro 48 ore, senza
-              nessun impegno. Le candidature chiudono{" "}
-              <strong className="font-semibold text-foreground">venerdì 16 ottobre</strong> e si
-              parte <strong className="font-semibold text-foreground">martedì 20 ottobre</strong>.
-            </p>
-
-            <div className="mt-8">
-              <ApplicationForm />
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       <SiteFooter showRefundGuarantee={false} />
     </div>
-  );
-}
-
-function ApplicationForm() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [tier, setTier] = useState<"program" | "mentorship" | "unsure">("unsure");
-
-  // I bottoni delle card prezzi preselezionano la versione scelta.
-  useEffect(() => {
-    const onTier = (e: Event) => {
-      const detail = (e as CustomEvent<"program" | "mentorship">).detail;
-      if (detail === "program" || detail === "mentorship") setTier(detail);
-    };
-    window.addEventListener(TIER_EVENT, onTier);
-    return () => window.removeEventListener(TIER_EVENT, onTier);
-  }, []);
-  const [message, setMessage] = useState("");
-  const [status, setStatus] = useState<"idle" | "submitting" | "sent" | "error">("idle");
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus("submitting");
-    try {
-      const result = await submitAmbiziosaApplication({ data: { name, email, tier, message } });
-      setStatus(result.ok ? "sent" : "error");
-    } catch {
-      setStatus("error");
-    }
-  }
-
-  if (status === "sent") {
-    return (
-      <div className="surface-cream flex flex-col items-center gap-3 p-8 text-center">
-        <CheckCircle2 className="size-10 text-primary" />
-        {/* LOREM - sezione 19, messaggio di conferma, sostituire con copy reale */}
-        <p className="text-lg font-semibold">Candidatura inviata!</p>
-        <p className="text-sm leading-relaxed text-ink-muted">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit: abbiamo ricevuto la tua
-          candidatura e ti risponderemo entro 48 ore lavorative con i prossimi passi. Nessun
-          pagamento è stato richiesto o effettuato in questa fase.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <input
-        type="text"
-        name="name"
-        placeholder="Nome e cognome"
-        required
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className={inputClassName}
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="La tua email"
-        required
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className={inputClassName}
-      />
-
-      <fieldset className="space-y-2 rounded-lg border border-input p-4">
-        <legend className="px-1 text-xs font-semibold uppercase tracking-[0.04em] text-muted-foreground">
-          Quale livello ti interessa?
-        </legend>
-        {(
-          [
-            { id: "program", label: `Ambiziosa Program (${PROGRAM_PRICE})` },
-            { id: "mentorship", label: `Ambiziosa Mentorship (${MENTORSHIP_PRICE})` },
-            { id: "unsure", label: "Non sono sicura, vorrei un consiglio" },
-          ] as const
-        ).map((opt) => (
-          <label key={opt.id} className="flex items-center gap-2 text-sm text-card-foreground">
-            <input
-              type="radio"
-              name="tier"
-              value={opt.id}
-              checked={tier === opt.id}
-              onChange={() => setTier(opt.id)}
-              className="accent-[var(--primary)]"
-            />
-            {opt.label}
-          </label>
-        ))}
-      </fieldset>
-
-      <textarea
-        name="message"
-        placeholder="Raccontami a che punto sei con il tuo business e cosa vorresti ottenere da questo percorso"
-        required
-        rows={4}
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        className={inputClassName}
-      />
-
-      {status === "error" ? (
-        <p className="text-center text-sm text-destructive">
-          Qualcosa è andato storto, riprova tra poco.
-        </p>
-      ) : null}
-
-      <button
-        type="submit"
-        disabled={status === "submitting"}
-        className="flex w-full flex-col items-center rounded-xl px-6 py-4 transition-transform hover:-translate-y-0.5 disabled:pointer-events-none disabled:opacity-60"
-        style={{
-          backgroundImage: "var(--gradient-gold)",
-          color: "var(--primary-foreground)",
-          boxShadow: "var(--shadow-gold)",
-        }}
-      >
-        <span className="font-condensed text-base uppercase tracking-[0.1em] sm:text-lg sm:tracking-[0.14em]">
-          {status === "submitting" ? "Invio in corso…" : "Invia la tua candidatura"}
-        </span>
-      </button>
-    </form>
   );
 }

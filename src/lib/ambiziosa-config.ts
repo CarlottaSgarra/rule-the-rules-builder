@@ -14,8 +14,10 @@ export const APPLICATIONS_OPEN_AT = "2026-10-06T20:30:00+02:00";
 // TODO: valorizzare quando Carlotta fornisce il link della lista d'attesa.
 export const WAITLIST_URL = "";
 
-// TODO: valorizzare quando Carlotta fornisce il link Calendly.
-export const CALENDLY_URL = "";
+// TODO: valorizzare con il link a cui porta il pulsante di candidatura
+// (es. il calendario per prenotare la call conoscitiva). Finché è vuoto, i
+// pulsanti "Candidati" portano alla sezione prezzi (#prezzi).
+export const APPLICATION_URL = "";
 
 // TODO: valorizzare con il link WhatsApp personale di Carlotta (es.
 // https://wa.me/39XXXXXXXXXX). Finché è vuoto, la frase "scrivimi su
