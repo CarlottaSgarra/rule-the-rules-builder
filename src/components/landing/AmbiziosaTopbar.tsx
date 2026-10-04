@@ -18,7 +18,7 @@ function isProductionHost() {
 const MENU_ITEMS = [
   { id: "programma", label: "Il programma" },
   { id: "testimonianze", label: "Testimonianze" },
-  { id: "prezzi", label: "Prezzi" },
+  { id: "faq", label: "FAQ" },
 ];
 
 // Scorrimento morbido all'ancora; se la sezione non esiste ancora (verrà

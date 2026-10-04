@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   IdCard,
   CalendarDays,
   Check,
@@ -726,6 +732,102 @@ const videoTestimonials = [
     ),
     youtubeId: "lFtIzpBgW9c",
     photo: martinaFerrariImg,
+  },
+];
+
+// Domande frequenti finali: risposte costruite solo su informazioni già
+// presenti nella pagina (date, versioni, supporto, rate).
+const faqs: { q: string; a: React.ReactNode }[] = [
+  {
+    q: "Quando inizia Ambiziosa e quanto dura?",
+    a: (
+      <>
+        Si parte <strong className="font-semibold text-foreground">martedì 20 ottobre</strong> e il
+        percorso dura 4 mesi, quindi si arriva a febbraio. Le candidature chiudono a mezzanotte di
+        venerdì 16 ottobre: così hai qualche giorno per prepararti e iniziare lucida.
+      </>
+    ),
+  },
+  {
+    q: "Come funziona la candidatura?",
+    a: (
+      <>
+        Clicchi sul pulsante di candidatura e prenoti la{" "}
+        <strong className="font-semibold text-foreground">call conoscitiva</strong>. Non ti impegna
+        a iscriverti: ti spiego come Ambiziosa può funzionare sul tuo profilo e sul tuo progetto, e
+        capiamo insieme se è adatta a te.
+      </>
+    ),
+  },
+  {
+    q: "Qual è la differenza tra Program e Mentorship?",
+    a: (
+      <>
+        Il metodo e i 4 step sono gli stessi. Il Program ti dà{" "}
+        <strong className="font-semibold text-foreground">4 call nei momenti chiave</strong>. La
+        Mentorship ti affianca per tutti i 4 mesi con{" "}
+        <strong className="font-semibold text-foreground">più di 20 call</strong>: una call
+        individuale ogni settimana con il mio team e una call al mese con me.
+      </>
+    ),
+  },
+  {
+    q: "Posso pagare a rate?",
+    a: (
+      <>
+        Sì, <strong className="font-semibold text-foreground">il pagamento è rateizzabile</strong>{" "}
+        sia nel Program sia nella Mentorship. Ne parliamo nel dettaglio durante la call conoscitiva.
+      </>
+    ),
+  },
+  {
+    q: "Devo seguire un calendario fisso?",
+    a: (
+      <>
+        No, non c'è un calendario mese per mese:{" "}
+        <strong className="font-semibold text-foreground">ognuna va con il suo ritmo</strong>.
+        L'ordine dei 4 step però è lo stesso per tutte: radica chi sei, progetta i contenuti, attiva
+        i contenuti, chiudi e scala.
+      </>
+    ),
+  },
+  {
+    q: "Che supporto ho tra una call e l'altra?",
+    a: (
+      <>
+        Su Slack hai{" "}
+        <strong className="font-semibold text-foreground">
+          il supporto diretto con me e con Sharon
+        </strong>
+        , dal lunedì al giovedì dalle 10:00 alle 16:00, con risposta entro 24 ore. In più hai Notion
+        con audio, esercizi e piano di lavoro, la community e il tuo GPT Alterego per i contenuti.
+      </>
+    ),
+  },
+  {
+    q: "Funziona anche nel mio settore?",
+    a: (
+      <>
+        Sì, perché il metodo parte da te e non da un modello uguale per tutte. Ha già funzionato per{" "}
+        <strong className="font-semibold text-foreground">
+          coach, nutrizioniste, tatuatrici, make-up artist, wedding planner, copywriter e brand
+          strategist
+        </strong>
+        : nelle video testimonianze trovi le loro storie.
+      </>
+    ),
+  },
+  {
+    q: "Cosa succede alla fine dei 4 mesi?",
+    a: (
+      <>
+        Nella call finale definiamo insieme come continuare in autonomia. L'obiettivo è che tu abbia{" "}
+        <strong className="font-semibold text-foreground">
+          una strategia che hai già messo in pratica e sai far evolvere da sola
+        </strong>
+        .
+      </>
+    ),
   },
 ];
 
@@ -3050,10 +3152,11 @@ function CandidaturaAmbiziosa() {
             </Reveal>
           </div>
 
-          {/* Dubbi prima di prenotare + scadenza vera, in un unico riquadro compatto */}
+          {/* Dubbi prima di prenotare + scadenza vera, in un unico riquadro largo
+              quanto le card dei prezzi */}
           <Reveal>
             <div
-              className="surface-cream mx-auto mt-16 max-w-3xl px-6 py-8 sm:px-10 sm:py-10"
+              className="surface-cream mt-16 px-6 py-8 sm:px-10 sm:py-10"
               style={{ borderRadius: "1.75rem" }}
             >
               <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:text-left">
@@ -3119,9 +3222,9 @@ function CandidaturaAmbiziosa() {
                 className="mt-8 border-t pt-8"
                 style={{ borderColor: "color-mix(in oklab, var(--background) 14%, transparent)" }}
               >
-                <p className="text-xl leading-snug text-ink sm:text-2xl">
+                <h3 className="text-2xl text-ink sm:text-3xl">
                   Le candidature chiudono <Highlight dark>a mezzanotte del 16 ottobre</Highlight>.
-                </p>
+                </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
                   <strong className="font-semibold text-ink">Questa scadenza è vera.</strong> Dopo
                   la mezzanotte del 16 ottobre il calendario per prenotare la call conoscitiva si
@@ -3136,8 +3239,49 @@ function CandidaturaAmbiziosa() {
         </div>
       </section>
 
-      {/* Box CTA dopo prezzi, dubbi e scadenza */}
-      <CtaBox />
+      {/* FAQ finali, stessa sezione di Rule The Rules (src/routes/index.tsx) */}
+      <section
+        id="faq"
+        className="bg-secondary px-4 py-14 sm:px-8 sm:py-20"
+        style={
+          {
+            color: "var(--secondary-foreground)",
+            "--foreground": "var(--secondary-foreground)",
+            "--muted-foreground": "oklch(0.85 0.03 40)",
+            "--border": "color-mix(in oklab, var(--background) 14%, transparent)",
+          } as React.CSSProperties
+        }
+      >
+        <div className="mx-auto max-w-3xl">
+          <Reveal>
+            <h2 className="text-3xl text-foreground sm:text-4xl">
+              Domande <Highlight dark>frequenti</Highlight>
+            </h2>
+            <p className="mt-3 text-sm text-muted-foreground">
+              Hai bisogno di supporto? Scrivi a{" "}
+              <a
+                href="mailto:info@carlottasgarra.it"
+                className="underline"
+                style={{ color: "var(--gold-deep)" }}
+              >
+                info@carlottasgarra.it
+              </a>
+            </p>
+            <Accordion type="single" collapsible className="mt-8">
+              {faqs.map((f) => (
+                <AccordionItem key={f.q} value={f.q} className="border-border/70">
+                  <AccordionTrigger className="text-left text-base text-foreground">
+                    {f.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
+                    {f.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </Reveal>
+        </div>
+      </section>
 
       <SiteFooter showRefundGuarantee={false} />
     </div>
