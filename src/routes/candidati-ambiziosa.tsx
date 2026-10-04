@@ -20,6 +20,7 @@ import {
   ChevronDown,
   ImageIcon,
   Wallet,
+  MessageCircle,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -44,6 +45,8 @@ import {
   WHATSAPP_URL,
 } from "@/lib/ambiziosa-config";
 import carlottaLookingImg from "@/assets/carlotta-looking-2.jpg";
+import carlottaAvatarImg from "@/assets/carlotta-avatar.jpg";
+import sharonAvatarImg from "@/assets/sharon-avatar.jpg";
 import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
 import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
 import carlottaLeftImg from "@/assets/Carlotta bianco e nerco che guarda a sinistra.jpg";
@@ -3121,94 +3124,86 @@ function CandidaturaAmbiziosa() {
             </Reveal>
           </div>
 
-          {/* Dubbi prima di prenotare + scadenza vera, in un unico riquadro */}
+          {/* Dubbi prima di prenotare + scadenza vera, in un unico riquadro compatto */}
           <Reveal>
             <div
-              className="surface-cream mt-16 overflow-hidden px-6 py-10 sm:px-10 sm:py-14"
+              className="surface-cream mx-auto mt-16 max-w-3xl px-6 py-8 sm:px-10 sm:py-10"
               style={{ borderRadius: "1.75rem" }}
             >
-              <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-                <div className="relative mx-auto w-full max-w-sm pb-10 lg:pb-12">
-                  <img
-                    src={carlottaLookingWideImg}
-                    alt="Carlotta Sgarra"
-                    loading="lazy"
-                    className="aspect-[4/5] w-[78%] rounded-2xl object-cover shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)]"
-                    style={{ objectPosition: "50% 25%" }}
-                  />
-                  <img
-                    src={sharonConvertinoImg}
-                    alt="Sharon Convertino"
-                    loading="lazy"
-                    className="absolute bottom-0 right-0 aspect-square w-[50%] rounded-2xl object-cover shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)]"
-                    style={{ border: "4px solid var(--secondary)" }}
-                  />
+              <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:text-left">
+                <div className="flex shrink-0 -space-x-4">
+                  {[
+                    { src: carlottaAvatarImg, alt: "Carlotta Sgarra" },
+                    { src: sharonAvatarImg, alt: "Sharon Convertino" },
+                  ].map((a) => (
+                    <img
+                      key={a.alt}
+                      src={a.src}
+                      alt={a.alt}
+                      loading="lazy"
+                      className="size-16 rounded-full object-cover sm:size-20"
+                      style={{ border: "3px solid var(--primary)" }}
+                    />
+                  ))}
+                </div>
+                <div>
                   <span
-                    className="absolute left-3 top-3 rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary-foreground sm:text-xs"
+                    className="inline-flex rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary-foreground sm:text-xs"
                     style={{ backgroundImage: "var(--gradient-gold)" }}
                   >
-                    Carlotta e Sharon
+                    Ti rispondiamo entro poche ore
                   </span>
-                </div>
-
-                <div>
-                  <h3 className="text-3xl text-ink sm:text-4xl">
+                  <h3 className="mt-3 text-2xl text-ink sm:text-3xl">
                     Hai un dubbio <Highlight dark>prima di prenotare</Highlight>?
                   </h3>
-                  <div className="mt-5 space-y-4 text-base leading-relaxed text-ink-muted sm:text-lg">
-                    <p>
-                      Qualsiasi dubbio puoi chiarirlo{" "}
-                      <strong className="font-semibold text-ink">
-                        nella call conoscitiva di candidatura
-                      </strong>
-                      . Non ti impegna a iscriverti: ti spiego come Ambiziosa può funzionare{" "}
-                      <strong className="font-semibold text-ink">
-                        sul tuo profilo e sul tuo progetto
-                      </strong>
-                      , e se è adatta a te.
-                    </p>
-                    {WHATSAPP_URL ? (
-                      <p>
-                        Altrimenti puoi scrivermi{" "}
-                        <strong className="font-semibold text-ink">sul mio numero WhatsApp</strong>{" "}
-                        <a
-                          href={WHATSAPP_URL}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="font-semibold underline underline-offset-4"
-                          style={{ color: "var(--gold-deep)" }}
-                        >
-                          cliccando qui
-                        </a>
-                        .
-                      </p>
-                    ) : null}
-                  </div>
                 </div>
               </div>
 
+              <p className="mt-5 text-base leading-relaxed text-ink-muted">
+                Qualsiasi dubbio puoi chiarirlo{" "}
+                <strong className="font-semibold text-ink">
+                  nella call conoscitiva di candidatura
+                </strong>
+                : non ti impegna a iscriverti, ma ti spiego come Ambiziosa può funzionare{" "}
+                <strong className="font-semibold text-ink">
+                  sul tuo profilo e sul tuo progetto
+                </strong>
+                , e se è adatta a te. Altrimenti puoi scrivermi su WhatsApp.
+              </p>
+
+              {/* TODO: il bottone diventa cliccabile quando WHATSAPP_URL è valorizzato
+                  in src/lib/ambiziosa-config.ts */}
+              <a
+                href={WHATSAPP_URL || undefined}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-disabled={!WHATSAPP_URL || undefined}
+                className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl px-6 py-4 font-condensed text-sm uppercase tracking-[0.12em] text-ink transition-transform duration-200 hover:-translate-y-0.5 sm:text-base"
+                style={{
+                  backgroundColor: "color-mix(in oklab, var(--primary) 14%, transparent)",
+                  border: "1px solid color-mix(in oklab, var(--primary) 55%, transparent)",
+                }}
+              >
+                <MessageCircle className="size-5 shrink-0" style={{ color: "var(--gold-deep)" }} />
+                <span className="sm:hidden">Scrivimi su WhatsApp</span>
+                <span className="hidden sm:inline">Clicca qui per scrivermi su WhatsApp</span>
+              </a>
+
               <div
-                className="mt-12 border-t pt-10 text-center"
+                className="mt-8 border-t pt-8"
                 style={{ borderColor: "color-mix(in oklab, var(--background) 14%, transparent)" }}
               >
-                <p className="font-condensed text-xs uppercase tracking-[0.2em] text-primary">
-                  La scadenza
-                </p>
-                <h3 className="mx-auto mt-4 max-w-3xl text-3xl text-ink sm:text-4xl">
+                <p className="text-xl leading-snug text-ink sm:text-2xl">
                   Le candidature chiudono <Highlight dark>a mezzanotte del 16 ottobre</Highlight>.
-                </h3>
-                <div className="mx-auto mt-5 max-w-2xl space-y-3 text-base leading-relaxed text-ink-muted sm:text-lg">
-                  <p>
-                    <strong className="font-semibold text-ink">Questa scadenza è vera.</strong> Dopo
-                    la mezzanotte del 16 ottobre il calendario per prenotare la call conoscitiva si
-                    chiude e non ci si può più prenotare.
-                  </p>
-                  <p>
-                    <strong className="font-semibold text-ink">
-                      Le call già prenotate si fanno anche dopo.
-                    </strong>
-                  </p>
-                </div>
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
+                  <strong className="font-semibold text-ink">Questa scadenza è vera.</strong> Dopo
+                  la mezzanotte del 16 ottobre il calendario per prenotare la call conoscitiva si
+                  chiude e non ci si può più prenotare.{" "}
+                  <strong className="font-semibold text-ink">
+                    Le call già prenotate si fanno anche dopo.
+                  </strong>
+                </p>
               </div>
             </div>
           </Reveal>
