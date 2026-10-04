@@ -1182,25 +1182,16 @@ const communicationPillars: {
   },
 ];
 
-// Le call di ogni versione e con chi si fanno, mostrate nella sezione
-// "Ambiziosa ha due versioni" come riquadri con la foto di Carlotta e/o di
-// Sharon. Il totale (5 e 22) si ricava sommando `count`.
+// Le call di ogni versione e con chi si fanno. Ogni call è un piccolo
+// riquadro con la foto di Carlotta e/o di Sharon, mostrato sotto il passo
+// della sezione "Ambiziosa ha due versioni" in cui viene citata. Il totale
+// (5 e 22) si ricava sommando `count` delle call di tutti i passi.
 type CallWho = "carlotta" | "sharon" | "both";
 type CallBox = { title: string; count: number; who: CallWho; highlight?: boolean };
 
-const programCalls: CallBox[] = [
+const KICKOFF_CALLS: CallBox[] = [
   { title: "Kick off call con Carlotta", count: 1, who: "carlotta" },
   { title: "Kick off call con Sharon", count: 1, who: "sharon" },
-  { title: "1 call Identità con Carlotta", count: 1, who: "carlotta" },
-  { title: "1 call Strategia contenuti con Sharon", count: 1, who: "sharon" },
-  { title: "Call finale con Carlotta e Sharon", count: 1, who: "both" },
-];
-
-const mentorshipCalls: CallBox[] = [
-  { title: "Kick off call con Carlotta", count: 1, who: "carlotta" },
-  { title: "Kick off call con Sharon", count: 1, who: "sharon" },
-  { title: "1 call ogni settimana con Sharon", count: 16, who: "sharon", highlight: true },
-  { title: "1 call al mese con Carlotta", count: 4, who: "carlotta" },
 ];
 
 const CALL_PEOPLE: Record<CallWho, { name: string; photos: { src: string; alt: string }[] }> = {
@@ -1221,104 +1212,95 @@ const CALL_PEOPLE: Record<CallWho, { name: string; photos: { src: string; alt: s
   },
 };
 
-function CallBreakdown({ calls, dark = false }: { calls: CallBox[]; dark?: boolean }) {
-  const total = calls.reduce((sum, c) => sum + c.count, 0);
-  const hasMulti = calls.some((c) => c.count > 1);
+function CallChip({ call, dark = false }: { call: CallBox; dark?: boolean }) {
+  const person = CALL_PEOPLE[call.who];
   return (
-    <div className="mt-8">
-      <p
-        className={`font-condensed text-xs uppercase tracking-[0.2em] ${dark ? "text-primary" : "text-secondary"}`}
-      >
-        Le tue call e con chi le fai
-      </p>
-      <ul className="mt-4 space-y-2.5">
-        {calls.map((c) => {
-          const person = CALL_PEOPLE[c.who];
-          return (
-            <li
-              key={c.title}
-              className="flex items-center gap-3 rounded-xl border p-2.5 pr-4"
-              style={
-                dark
-                  ? {
-                      backgroundColor: c.highlight
-                        ? "color-mix(in oklab, var(--primary) 14%, transparent)"
-                        : "color-mix(in oklab, var(--background) 6%, transparent)",
-                      borderColor: c.highlight
-                        ? "var(--primary)"
-                        : "color-mix(in oklab, var(--background) 14%, transparent)",
-                    }
-                  : {
-                      backgroundColor: "var(--background)",
-                      borderColor: "color-mix(in oklab, var(--secondary) 25%, transparent)",
-                    }
-              }
-            >
-              <div className="flex shrink-0 -space-x-3">
-                {person.photos.map((ph) => (
-                  <img
-                    key={ph.alt}
-                    src={ph.src}
-                    alt={ph.alt}
-                    loading="lazy"
-                    className="size-12 rounded-lg object-cover"
-                    style={
-                      person.photos.length > 1
-                        ? { border: `2px solid ${dark ? "var(--secondary)" : "var(--background)"}` }
-                        : undefined
-                    }
-                  />
-                ))}
-              </div>
-              <div className="min-w-0 flex-1">
-                <p
-                  className={`text-sm font-semibold leading-snug sm:text-base ${
-                    dark ? (c.highlight ? "text-primary" : "text-ink") : "text-foreground"
-                  }`}
-                >
-                  {c.title}
-                </p>
-                <p className={`text-xs ${dark ? "text-ink-muted" : "text-foreground/70"}`}>
-                  {c.count === 1
-                    ? `Questa call la fai con ${person.name}`
-                    : `Queste ${c.count} call le fai con ${person.name}`}
-                </p>
-              </div>
-              <span
-                className={`shrink-0 font-display text-2xl leading-none ${
-                  dark ? "text-primary" : "text-secondary"
-                }`}
-              >
-                {c.count}
-              </span>
-            </li>
-          );
-        })}
-      </ul>
-      <p className="mt-5 flex flex-wrap items-baseline gap-x-3">
-        <span
-          className={`font-display text-5xl leading-none ${dark ? "text-primary" : "text-foreground"}`}
+    <div
+      className="flex items-center gap-2.5 rounded-lg border p-2 pr-3"
+      style={
+        dark
+          ? {
+              backgroundColor: call.highlight
+                ? "color-mix(in oklab, var(--primary) 14%, transparent)"
+                : "color-mix(in oklab, var(--background) 6%, transparent)",
+              borderColor: call.highlight
+                ? "var(--primary)"
+                : "color-mix(in oklab, var(--background) 14%, transparent)",
+            }
+          : {
+              backgroundColor: "var(--background)",
+              borderColor: "color-mix(in oklab, var(--secondary) 25%, transparent)",
+            }
+      }
+    >
+      <div className="flex shrink-0 -space-x-2.5">
+        {person.photos.map((ph) => (
+          <img
+            key={ph.alt}
+            src={ph.src}
+            alt={ph.alt}
+            loading="lazy"
+            className="size-9 rounded-md object-cover"
+            style={
+              person.photos.length > 1
+                ? { border: `2px solid ${dark ? "var(--secondary)" : "var(--background)"}` }
+                : undefined
+            }
+          />
+        ))}
+      </div>
+      <div className="min-w-0 flex-1">
+        <p
+          className={`text-sm font-semibold leading-snug ${
+            dark ? (call.highlight ? "text-primary" : "text-ink") : "text-foreground"
+          }`}
         >
-          {total} call
-        </span>
-        {hasMulti ? (
-          <span
-            className={`text-sm font-semibold ${dark ? "text-ink-muted" : "text-foreground/70"}`}
-          >
-            {calls.map((c) => c.count).join(" + ")}
-          </span>
-        ) : null}
-      </p>
+          {call.title}
+        </p>
+        <p className={`text-[11px] leading-snug ${dark ? "text-ink-muted" : "text-foreground/70"}`}>
+          {call.count === 1
+            ? `Questa call la fai con ${person.name}`
+            : `Queste ${call.count} call le fai con ${person.name}`}
+        </p>
+      </div>
+      <span
+        className={`shrink-0 font-display text-xl leading-none ${
+          dark ? "text-primary" : "text-secondary"
+        }`}
+      >
+        {call.count}
+      </span>
     </div>
   );
 }
 
+function CallTotal({ steps, dark = false }: { steps: VersionStep[]; dark?: boolean }) {
+  const calls = steps.flatMap((s) => s.calls ?? []);
+  const total = calls.reduce((sum, c) => sum + c.count, 0);
+  const hasMulti = calls.some((c) => c.count > 1);
+  return (
+    <p className="mt-8 flex flex-wrap items-baseline gap-x-3">
+      <span
+        className={`font-display text-5xl leading-none ${dark ? "text-primary" : "text-foreground"}`}
+      >
+        {total} call
+      </span>
+      {hasMulti ? (
+        <span className={`text-sm font-semibold ${dark ? "text-ink-muted" : "text-foreground/70"}`}>
+          {calls.map((c) => c.count).join(" + ")}
+        </span>
+      ) : null}
+    </p>
+  );
+}
+
 // Le due versioni di Ambiziosa: numeri chiave (badge) e passi numerati.
-type VersionStep = { title: string; text: React.ReactNode };
+type VersionStep = { title: string; text: React.ReactNode; calls?: CallBox[] };
 
 const programSteps: VersionStep[] = [
   {
     title: "Le due kick off call",
+    calls: KICKOFF_CALLS,
     text: (
       <>
         Una con me e una con Sharon: guardiamo la tua situazione attuale, definiamo gli obiettivi e{" "}
@@ -1341,6 +1323,7 @@ const programSteps: VersionStep[] = [
   },
   {
     title: "Lo step sull'identità",
+    calls: [{ title: "1 call Identità con Carlotta", count: 1, who: "carlotta" }],
     text: (
       <>
         Il primo grande lavoro è l'identità: chi sei come professionista e cosa vuoi comunicare. A
@@ -1382,6 +1365,7 @@ const programSteps: VersionStep[] = [
   },
   {
     title: "La call Strategia contenuti con Sharon",
+    calls: [{ title: "1 call Strategia contenuti con Sharon", count: 1, who: "sharon" }],
     text: (
       <>
         Durante il percorso hai una{" "}
@@ -1393,6 +1377,7 @@ const programSteps: VersionStep[] = [
   },
   {
     title: "La call finale",
+    calls: [{ title: "Call finale con Carlotta e Sharon", count: 1, who: "both" }],
     text: (
       <>
         I 4 mesi finiscono con una call con me e con Sharon: rileggiamo il percorso, guardiamo cosa
@@ -1408,6 +1393,7 @@ const programSteps: VersionStep[] = [
 const mentorshipSteps: VersionStep[] = [
   {
     title: "Le due kick off call",
+    calls: KICKOFF_CALLS,
     text: (
       <>
         Una con me e una con Sharon: guardiamo il tuo punto di partenza, gli obiettivi, le priorità
@@ -1454,16 +1440,10 @@ const mentorshipSteps: VersionStep[] = [
     ),
   },
   {
-    title: "Una call al mese con me",
-    text: (
-      <>
-        Per 4 mesi hai <strong className="font-semibold text-ink">una call al mese con me</strong>,
-        4 in tutto: lavoriamo sulla tua evoluzione e sui temi che emergono lungo il percorso.
-      </>
-    ),
-  },
-  {
     title: "Una call a settimana con Sharon",
+    calls: [
+      { title: "1 call ogni settimana con Sharon", count: 16, who: "sharon", highlight: true },
+    ],
     text: (
       <>
         Ogni settimana hai una{" "}
@@ -1471,6 +1451,16 @@ const mentorshipSteps: VersionStep[] = [
         . Il giorno lo fissiamo nelle kick off call e diventa un appuntamento fisso per tutta la
         Mentorship. Dubbi, contenuti, scelte comunicative, difficoltà e nuove idee: li porti lì,{" "}
         <strong className="font-semibold text-ink">senza aspettare la fine di uno step.</strong>
+      </>
+    ),
+  },
+  {
+    title: "Una call al mese con me",
+    calls: [{ title: "1 call al mese con Carlotta", count: 4, who: "carlotta" }],
+    text: (
+      <>
+        Per 4 mesi hai <strong className="font-semibold text-ink">una call al mese con me</strong>,
+        4 in tutto: lavoriamo sulla tua evoluzione e sui temi che emergono lungo il percorso.
       </>
     ),
   },
@@ -2724,7 +2714,6 @@ function CandidaturaAmbiziosa() {
                     .
                   </p>
                 </div>
-                <CallBreakdown calls={programCalls} />
                 <ol className="mt-8 space-y-5 border-t border-border/70 pt-8">
                   {programSteps.map((step, i) => (
                     <li key={step.title} className="flex gap-4">
@@ -2738,10 +2727,18 @@ function CandidaturaAmbiziosa() {
                         <p className="mt-1 text-sm leading-relaxed text-foreground/85 sm:text-base">
                           {step.text}
                         </p>
+                        {step.calls ? (
+                          <div className="mt-3 space-y-2">
+                            {step.calls.map((c) => (
+                              <CallChip key={c.title} call={c} />
+                            ))}
+                          </div>
+                        ) : null}
                       </div>
                     </li>
                   ))}
                 </ol>
+                <CallTotal steps={programSteps} />
               </div>
             </Reveal>
 
@@ -2785,7 +2782,6 @@ function CandidaturaAmbiziosa() {
                       <strong className="font-semibold text-ink">22 call in totale</strong>.
                     </p>
                   </div>
-                  <CallBreakdown calls={mentorshipCalls} dark />
                   <ol
                     className="mt-8 space-y-5 border-t pt-8"
                     style={{ borderColor: "color-mix(in oklab, var(--primary) 30%, transparent)" }}
@@ -2802,10 +2798,18 @@ function CandidaturaAmbiziosa() {
                           <p className="mt-1 text-sm leading-relaxed text-ink-muted sm:text-base">
                             {step.text}
                           </p>
+                          {step.calls ? (
+                            <div className="mt-3 space-y-2">
+                              {step.calls.map((c) => (
+                                <CallChip key={c.title} call={c} dark />
+                              ))}
+                            </div>
+                          ) : null}
                         </div>
                       </li>
                     ))}
                   </ol>
+                  <CallTotal steps={mentorshipSteps} dark />
                 </div>
               </div>
             </Reveal>
