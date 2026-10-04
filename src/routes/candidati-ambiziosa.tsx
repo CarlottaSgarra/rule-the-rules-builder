@@ -735,9 +735,22 @@ const videoTestimonials = [
   },
 ];
 
-// Domande frequenti finali: risposte costruite solo su informazioni già
-// presenti nella pagina (date, versioni, supporto, rate).
+// Domande frequenti finali. Le domande ancora da confermare (cosa succede
+// dopo la call, ore a settimana, durata e costo della call conoscitiva) non
+// sono in pagina finché Carlotta non dà le risposte.
 const faqs: { q: string; a: React.ReactNode }[] = [
+  {
+    q: "Come funziona la call conoscitiva?",
+    a: (
+      <>
+        Clicchi su uno dei pulsanti di candidatura e si apre un calendario:{" "}
+        <strong className="font-semibold text-foreground">
+          scegli il momento e prenoti una call con me e con il mio team
+        </strong>
+        . Nessun questionario da compilare.
+      </>
+    ),
+  },
   {
     q: "Quando inizia Ambiziosa e quanto dura?",
     a: (
@@ -749,34 +762,106 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     ),
   },
   {
-    q: "Come funziona la candidatura?",
+    q: "Che differenza c'è tra Ambiziosa Program e Ambiziosa Mentorship?",
     a: (
       <>
-        Clicchi sul pulsante di candidatura e prenoti la{" "}
-        <strong className="font-semibold text-foreground">call conoscitiva</strong>. Non ti impegna
-        a iscriverti: ti spiego come Ambiziosa può funzionare sul tuo profilo e sul tuo progetto, e
-        capiamo insieme se è adatta a te.
+        La Mentorship comprende tutto il Program e in più ti accompagna per tutti i 4 mesi. Nel
+        Program hai 4 call: la iniziale con me e con il mio team, una sull'identità con me, una
+        sulla strategia con il mio team e la finale. Nella Mentorship hai{" "}
+        <strong className="font-semibold text-foreground">più di 20 call</strong>: la iniziale e la
+        finale,{" "}
+        <strong className="font-semibold text-foreground">
+          una call individuale di 30 minuti ogni settimana con il mio team
+        </strong>{" "}
+        e <strong className="font-semibold text-foreground">una call al mese con me</strong>. La
+        strategia viene{" "}
+        <strong className="font-semibold text-foreground">
+          affinata insieme a noi durante tutto il percorso
+        </strong>
+        .
       </>
     ),
   },
   {
-    q: "Qual è la differenza tra Program e Mentorship?",
+    q: "Quanto costa e posso pagare a rate?",
     a: (
       <>
-        Il metodo e i 4 step sono gli stessi. Il Program ti dà{" "}
-        <strong className="font-semibold text-foreground">4 call nei momenti chiave</strong>. La
-        Mentorship ti affianca per tutti i 4 mesi con{" "}
-        <strong className="font-semibold text-foreground">più di 20 call</strong>: una call
-        individuale ogni settimana con il mio team e una call al mese con me.
+        Ambiziosa Program costa{" "}
+        <strong className="font-semibold text-foreground">{PROGRAM_PRICE}</strong> e Ambiziosa
+        Mentorship <strong className="font-semibold text-foreground">{MENTORSHIP_PRICE}</strong>. In
+        entrambe le versioni il pagamento è rateizzabile.
       </>
     ),
   },
   {
-    q: "Posso pagare a rate?",
+    q: "Ho comprato la call di implementazione durante Rule The Rules: posso scalare l'importo dal percorso?",
     a: (
       <>
-        Sì, <strong className="font-semibold text-foreground">il pagamento è rateizzabile</strong>{" "}
-        sia nel Program sia nella Mentorship. Ne parliamo nel dettaglio durante la call conoscitiva.
+        Sì: se durante Rule The Rules hai comprato la call di implementazione 1:1,{" "}
+        <strong className="font-semibold text-foreground">
+          puoi scalare quell'importo dal percorso
+        </strong>
+        .
+      </>
+    ),
+  },
+  {
+    q: "E se non so bene chi sono?",
+    a: (
+      <>
+        È normale: è proprio da qui che si parte.{" "}
+        <strong className="font-semibold text-foreground">Non serve saperlo già.</strong> Nello step
+        sull'identità lavori in modo guidato su chi sei e cosa vuoi comunicare, con il confronto con
+        me per mettere a fuoco quello che è emerso.
+      </>
+    ),
+  },
+  {
+    q: "Non so cosa comunicare: posso partire lo stesso?",
+    a: (
+      <>
+        Sì, non devi avere già le idee chiare. Lavori sulla tua identità e{" "}
+        <strong className="font-semibold text-foreground">
+          il mio team costruisce la strategia sul tuo progetto
+        </strong>
+        , così puoi iniziare a pubblicare senza aspettare di aver finito la formazione.
+      </>
+    ),
+  },
+  {
+    q: "Sto già facendo altri corsi e non voglio un altro metodo da seguire.",
+    a: (
+      <>
+        Quello che hai già studiato resta valido: in Ambiziosa lo applichi finalmente a te. Ricevi
+        una strategia su misura,{" "}
+        <strong className="font-semibold text-foreground">
+          costruita dal mio team sul tuo progetto
+        </strong>
+        , e ti seguo con call dedicate durante i 4 mesi.
+      </>
+    ),
+  },
+  {
+    q: "Il mio settore è molto tecnico o di nicchia: funziona lo stesso?",
+    a: (
+      <>
+        Il metodo parte da te:{" "}
+        <strong className="font-semibold text-foreground">
+          ha funzionato anche per una tatuatrice, una nutrizionista e una wedding planner
+        </strong>
+        . Guarda le storie di chi ha lavorato con me e trova quella più vicina alla tua.
+      </>
+    ),
+  },
+  {
+    q: "Se cambio il mio modo di comunicare, i contenuti smettono di funzionare?",
+    a: (
+      <>
+        Quello che oggi funziona lo teniamo.{" "}
+        <strong className="font-semibold text-foreground">
+          Prima costruiamo la tua identità, poi la strategia attorno a te
+        </strong>
+        : i tuoi contenuti hanno una struttura solida e finalmente ti somigliano.
       </>
     ),
   },
@@ -805,27 +890,28 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     ),
   },
   {
-    q: "Funziona anche nel mio settore?",
+    q: "Dopo i 4 mesi resto da sola?",
     a: (
       <>
-        Sì, perché il metodo parte da te e non da un modello uguale per tutte. Ha già funzionato per{" "}
+        Alla fine arrivi con{" "}
         <strong className="font-semibold text-foreground">
-          coach, nutrizioniste, tatuatrici, make-up artist, wedding planner, copywriter e brand
-          strategist
+          una strategia completa che sai far evolvere da sola
         </strong>
-        : nelle video testimonianze trovi le loro storie.
+        . Nella call finale con me e con il mio team guardiamo cosa è cambiato e definiamo la
+        direzione con cui continuare a lavorare in autonomia.
       </>
     ),
   },
   {
-    q: "Cosa succede alla fine dei 4 mesi?",
+    q: "Cosa succede dopo il 16 ottobre?",
     a: (
       <>
-        Nella call finale definiamo insieme come continuare in autonomia. L'obiettivo è che tu abbia{" "}
+        Il calendario per prenotare la call conoscitiva{" "}
         <strong className="font-semibold text-foreground">
-          una strategia che hai già messo in pratica e sai far evolvere da sola
+          si chiude a mezzanotte del 16 ottobre
         </strong>
-        .
+        . Le call già prenotate si fanno anche dopo. La pagina resta online con l'iscrizione alla
+        lista d'attesa per la prossima riapertura.
       </>
     ),
   },
@@ -3155,10 +3241,7 @@ function CandidaturaAmbiziosa() {
           {/* Dubbi prima di prenotare + scadenza vera, in un unico riquadro largo
               quanto le card dei prezzi */}
           <Reveal>
-            <div
-              className="surface-cream mt-16 px-6 py-8 sm:px-10 sm:py-10"
-              style={{ borderRadius: "1.75rem" }}
-            >
+            <div className="mt-16 rounded-[1.75rem] border border-secondary/40 bg-transparent px-6 py-8 sm:px-10 sm:py-10">
               <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:text-left">
                 <div className="flex shrink-0 -space-x-4">
                   {[
@@ -3171,7 +3254,7 @@ function CandidaturaAmbiziosa() {
                       alt={a.alt}
                       loading="lazy"
                       className="size-16 rounded-full object-cover sm:size-20"
-                      style={{ border: "3px solid var(--primary)" }}
+                      style={{ border: "3px solid var(--secondary)" }}
                     />
                   ))}
                 </div>
@@ -3182,19 +3265,19 @@ function CandidaturaAmbiziosa() {
                   >
                     Ti rispondiamo entro poche ore
                   </span>
-                  <h3 className="mt-3 text-2xl text-ink sm:text-3xl">
-                    Hai un dubbio <Highlight dark>prima di prenotare</Highlight>?
+                  <h3 className="mt-3 text-2xl text-foreground sm:text-3xl">
+                    Hai un dubbio <Highlight>prima di prenotare</Highlight>?
                   </h3>
                 </div>
               </div>
 
-              <p className="mt-5 text-base leading-relaxed text-ink-muted">
+              <p className="mt-5 text-base leading-relaxed text-foreground/85">
                 Qualsiasi dubbio puoi chiarirlo{" "}
-                <strong className="font-semibold text-ink">
+                <strong className="font-semibold text-foreground">
                   nella call conoscitiva di candidatura
                 </strong>
                 : non ti impegna a iscriverti, ma ti spiego come Ambiziosa può funzionare{" "}
-                <strong className="font-semibold text-ink">
+                <strong className="font-semibold text-foreground">
                   sul tuo profilo e sul tuo progetto
                 </strong>
                 , e se è adatta a te. Altrimenti puoi scrivermi su WhatsApp.
@@ -3207,29 +3290,29 @@ function CandidaturaAmbiziosa() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-disabled={!WHATSAPP_URL || undefined}
-                className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl px-6 py-4 font-condensed text-sm uppercase tracking-[0.12em] text-ink transition-transform duration-200 hover:-translate-y-0.5 sm:text-base"
+                className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl px-6 py-4 font-condensed text-sm uppercase tracking-[0.12em] text-foreground transition-transform duration-200 hover:-translate-y-0.5 sm:text-base"
                 style={{
-                  backgroundColor: "color-mix(in oklab, var(--primary) 14%, transparent)",
-                  border: "1px solid color-mix(in oklab, var(--primary) 55%, transparent)",
+                  backgroundColor: "color-mix(in oklab, var(--secondary) 6%, transparent)",
+                  border: "1px solid color-mix(in oklab, var(--secondary) 45%, transparent)",
                 }}
               >
-                <MessageCircle className="size-5 shrink-0" style={{ color: "var(--gold-deep)" }} />
+                <MessageCircle className="size-5 shrink-0 text-secondary" />
                 <span className="sm:hidden">Scrivimi su WhatsApp</span>
                 <span className="hidden sm:inline">Clicca qui per scrivermi su WhatsApp</span>
               </a>
 
               <div
                 className="mt-8 border-t pt-8"
-                style={{ borderColor: "color-mix(in oklab, var(--background) 14%, transparent)" }}
+                style={{ borderColor: "color-mix(in oklab, var(--secondary) 20%, transparent)" }}
               >
-                <h3 className="text-2xl text-ink sm:text-3xl">
-                  Le candidature chiudono <Highlight dark>a mezzanotte del 16 ottobre</Highlight>.
+                <h3 className="text-2xl text-foreground sm:text-3xl">
+                  Le candidature chiudono <Highlight>a mezzanotte del 16 ottobre</Highlight>.
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
-                  <strong className="font-semibold text-ink">Questa scadenza è vera.</strong> Dopo
-                  la mezzanotte del 16 ottobre il calendario per prenotare la call conoscitiva si
-                  chiude e non ci si può più prenotare.{" "}
-                  <strong className="font-semibold text-ink">
+                <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
+                  <strong className="font-semibold text-foreground">Questa scadenza è vera.</strong>{" "}
+                  Dopo la mezzanotte del 16 ottobre il calendario per prenotare la call conoscitiva
+                  si chiude e non ci si può più prenotare.{" "}
+                  <strong className="font-semibold text-foreground">
                     Le call già prenotate si fanno anche dopo.
                   </strong>
                 </p>
