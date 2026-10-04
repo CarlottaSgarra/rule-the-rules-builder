@@ -2730,6 +2730,135 @@ function CandidaturaAmbiziosa() {
 
       <CtaBox />
 
+      {/* 7i. Cosa trovi dentro Ambiziosa: i 4 bonus */}
+      <section
+        id="bonus"
+        className="overflow-x-clip bg-secondary"
+        style={{ color: "var(--secondary-foreground)" }}
+      >
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <Reveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="font-condensed text-xs uppercase tracking-[0.2em] text-primary">
+                Cosa trovi dentro Ambiziosa
+              </p>
+              <h2 className="mt-4 text-3xl sm:text-4xl">
+                Le call sono solo l'inizio: dentro Ambiziosa hai{" "}
+                <Highlight dark>tutto quello che ti serve per non fermarti mai</Highlight>.
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-ink-muted sm:text-lg">
+                Il lavoro vero succede tra una call e l'altra. Per questo, oltre alle call, hai{" "}
+                <strong className="font-semibold text-ink">
+                  4 strumenti che ti accompagnano ogni giorno
+                </strong>
+                , così non resti mai sola e non perdi mai il ritmo.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {ambiziosaBonuses.map((b, i) => (
+              <Reveal key={b.title} delay={(i % 2) * 100}>
+                <div
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--background)_14%,transparent)] transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)]"
+                  style={{
+                    backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
+                  }}
+                >
+                  {/* SEGNAPOSTO: sostituire con l'immagine del bonus fornita da Carlotta */}
+                  <div
+                    className="m-4 mb-0 flex aspect-[16/9] flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed sm:m-5 sm:mb-0"
+                    style={{
+                      backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
+                      borderColor: "color-mix(in oklab, var(--primary) 35%, transparent)",
+                    }}
+                  >
+                    <ImageIcon className="size-8 text-primary/60" />
+                    <span className="font-condensed text-[10px] uppercase tracking-[0.2em] text-ink-muted">
+                      Immagine in arrivo
+                    </span>
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-6 sm:p-8">
+                    <div className="flex flex-wrap gap-2">
+                      <span
+                        className="rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary-foreground sm:text-xs"
+                        style={{
+                          backgroundImage: "var(--gradient-gold)",
+                          boxShadow: "var(--shadow-gold)",
+                        }}
+                      >
+                        {b.badges[0]}
+                      </span>
+                      <span
+                        className="rounded-full border px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary sm:text-xs"
+                        style={{
+                          borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)",
+                        }}
+                      >
+                        {b.badges[1]}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-5 flex items-baseline gap-2 text-2xl text-ink sm:text-3xl">
+                      <span className="text-primary" aria-hidden>
+                        ✹
+                      </span>
+                      {b.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
+                      {b.intro}
+                    </p>
+
+                    {b.details ? (
+                      <dl
+                        className="mt-5 space-y-2 rounded-xl p-4 text-sm sm:text-base"
+                        style={{
+                          backgroundColor: "color-mix(in oklab, var(--background) 8%, transparent)",
+                        }}
+                      >
+                        {b.details.map((d) => (
+                          <div key={d.label} className="flex flex-wrap gap-x-2">
+                            <dt className="font-semibold text-ink">{d.label}:</dt>
+                            <dd className="text-ink-muted">{d.text}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    ) : null}
+
+                    {b.bulletsTitle ? (
+                      <p className="mt-5 font-condensed text-xs uppercase tracking-[0.2em] text-primary">
+                        {b.bulletsTitle}
+                      </p>
+                    ) : null}
+                    <ul className="mt-3 space-y-2.5">
+                      {b.bullets.map((item, bi) => (
+                        <li
+                          key={bi}
+                          className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
+                        >
+                          <Check
+                            className="mt-1 size-4 shrink-0"
+                            style={{ color: "var(--gold-deep)" }}
+                          />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {b.closing ? (
+                      <p className="mt-6 font-display text-xl leading-snug text-ink-muted sm:text-2xl">
+                        {b.closing}
+                      </p>
+                    ) : null}
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 7f. Il team di Ambiziosa */}
       <section className="bg-secondary" style={{ color: "var(--secondary-foreground)" }}>
         <div className="mx-auto max-w-5xl px-5 py-20">
@@ -2937,135 +3066,6 @@ function CandidaturaAmbiziosa() {
                 </span>
               </div>
             </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* 7i. Cosa trovi dentro Ambiziosa: i 4 bonus */}
-      <section
-        id="bonus"
-        className="overflow-x-clip bg-secondary"
-        style={{ color: "var(--secondary-foreground)" }}
-      >
-        <div className="mx-auto max-w-6xl px-5 py-20">
-          <Reveal>
-            <div className="mx-auto max-w-3xl text-center">
-              <p className="font-condensed text-xs uppercase tracking-[0.2em] text-primary">
-                Cosa trovi dentro Ambiziosa
-              </p>
-              <h2 className="mt-4 text-3xl sm:text-4xl">
-                Le call sono solo l'inizio: dentro Ambiziosa hai{" "}
-                <Highlight dark>tutto quello che ti serve per non fermarti mai</Highlight>.
-              </h2>
-              <p className="mt-6 text-base leading-relaxed text-ink-muted sm:text-lg">
-                Il lavoro vero succede tra una call e l'altra. Per questo, oltre alle call, hai{" "}
-                <strong className="font-semibold text-ink">
-                  4 strumenti che ti accompagnano ogni giorno
-                </strong>
-                , così non resti mai sola e non perdi mai il ritmo.
-              </p>
-            </div>
-          </Reveal>
-
-          <div className="mt-14 grid gap-6 md:grid-cols-2">
-            {ambiziosaBonuses.map((b, i) => (
-              <Reveal key={b.title} delay={(i % 2) * 100}>
-                <div
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--background)_14%,transparent)] transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)]"
-                  style={{
-                    backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
-                  }}
-                >
-                  {/* SEGNAPOSTO: sostituire con l'immagine del bonus fornita da Carlotta */}
-                  <div
-                    className="m-4 mb-0 flex aspect-[16/9] flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed sm:m-5 sm:mb-0"
-                    style={{
-                      backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
-                      borderColor: "color-mix(in oklab, var(--primary) 35%, transparent)",
-                    }}
-                  >
-                    <ImageIcon className="size-8 text-primary/60" />
-                    <span className="font-condensed text-[10px] uppercase tracking-[0.2em] text-ink-muted">
-                      Immagine in arrivo
-                    </span>
-                  </div>
-
-                  <div className="flex flex-1 flex-col p-6 sm:p-8">
-                    <div className="flex flex-wrap gap-2">
-                      <span
-                        className="rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary-foreground sm:text-xs"
-                        style={{
-                          backgroundImage: "var(--gradient-gold)",
-                          boxShadow: "var(--shadow-gold)",
-                        }}
-                      >
-                        {b.badges[0]}
-                      </span>
-                      <span
-                        className="rounded-full border px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary sm:text-xs"
-                        style={{
-                          borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)",
-                        }}
-                      >
-                        {b.badges[1]}
-                      </span>
-                    </div>
-
-                    <h3 className="mt-5 flex items-baseline gap-2 text-2xl text-ink sm:text-3xl">
-                      <span className="text-primary" aria-hidden>
-                        ✹
-                      </span>
-                      {b.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
-                      {b.intro}
-                    </p>
-
-                    {b.details ? (
-                      <dl
-                        className="mt-5 space-y-2 rounded-xl p-4 text-sm sm:text-base"
-                        style={{
-                          backgroundColor: "color-mix(in oklab, var(--background) 8%, transparent)",
-                        }}
-                      >
-                        {b.details.map((d) => (
-                          <div key={d.label} className="flex flex-wrap gap-x-2">
-                            <dt className="font-semibold text-ink">{d.label}:</dt>
-                            <dd className="text-ink-muted">{d.text}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                    ) : null}
-
-                    {b.bulletsTitle ? (
-                      <p className="mt-5 font-condensed text-xs uppercase tracking-[0.2em] text-primary">
-                        {b.bulletsTitle}
-                      </p>
-                    ) : null}
-                    <ul className="mt-3 space-y-2.5">
-                      {b.bullets.map((item, bi) => (
-                        <li
-                          key={bi}
-                          className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
-                        >
-                          <Check
-                            className="mt-1 size-4 shrink-0"
-                            style={{ color: "var(--gold-deep)" }}
-                          />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {b.closing ? (
-                      <p className="mt-6 font-display text-xl leading-snug text-ink-muted sm:text-2xl">
-                        {b.closing}
-                      </p>
-                    ) : null}
-                  </div>
-                </div>
-              </Reveal>
-            ))}
           </div>
         </div>
       </section>
