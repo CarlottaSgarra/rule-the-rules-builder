@@ -16,9 +16,9 @@ import {
   Users,
   Video,
   ShieldCheck,
-  Gift,
   Star,
   ChevronDown,
+  ImageIcon,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -1186,6 +1186,144 @@ const beforeAfterRows = [
   {
     before: "“Ogni volta mi serve qualcuno che mi dica cosa comunicare.”",
     after: "“So come far evolvere da sola la mia strategia di comunicazione.”",
+  },
+];
+
+// Cosa trovi dentro Ambiziosa: i 4 strumenti/bonus del percorso. Ogni card
+// ha un'immagine (segnaposto finché Carlotta non la fornisce), due badge di
+// valore, descrizione, dettagli e, dove serve, una chiusura in evidenza.
+const ambiziosaBonuses: {
+  title: string;
+  badges: [string, string];
+  intro: React.ReactNode;
+  details?: { label: string; text: React.ReactNode }[];
+  bulletsTitle?: string;
+  bullets: React.ReactNode[];
+  closing?: React.ReactNode;
+}[] = [
+  {
+    title: "Il tuo HQ: Notion",
+    badges: ["Tutto in un unico posto", "Piano step by step"],
+    intro: (
+      <>
+        Notion è il tuo centro operativo, il posto dove costruisci:{" "}
+        <strong className="font-semibold text-ink">
+          tutto il percorso in un unico spazio ordinato
+        </strong>
+        , così sai sempre a che punto sei e cosa viene dopo.
+      </>
+    ),
+    bulletsTitle: "Dentro trovi",
+    bullets: [
+      <>
+        <strong className="font-semibold text-ink">Tutti gli audio formativi</strong>, da ascoltare
+        quando vuoi.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Gli esercizi da svolgere</strong>, uno dopo
+        l'altro.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Il tuo piano di lavoro step by step</strong>,
+        costruito sul tuo progetto.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Il calendario con tutte le call</strong>, per non
+        perderne nemmeno una.
+      </>,
+    ],
+  },
+  {
+    title: "Supporto diretto su Slack",
+    badges: ["Risposta entro 24 ore", "Lun-gio · 10-16"],
+    intro: (
+      <>
+        Hai accesso al{" "}
+        <strong className="font-semibold text-ink">supporto diretto con me e con Sharon</strong>:
+        quando ti blocchi non devi aspettare la call successiva.
+      </>
+    ),
+    details: [
+      { label: "Quando", text: "dal lunedì al giovedì, dalle 10:00 alle 16:00" },
+      { label: "Tempo di risposta", text: "entro 24 ore" },
+      { label: "Puoi scrivere", text: "a me e a Sharon" },
+    ],
+    bulletsTitle: "Per",
+    bullets: [
+      <>
+        <strong className="font-semibold text-ink">Dubbi</strong> su quello che stai facendo.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Blocchi</strong> che ti fermano.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Feedback</strong> sui tuoi contenuti e sul tuo
+        lavoro.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Direzione</strong>, quando non sai quale sia il
+        prossimo passo.
+      </>,
+    ],
+  },
+  {
+    title: "Community e confronto",
+    badges: ["Mai più da sola", "Professioniste come te"],
+    intro: (
+      <>
+        Slack serve anche per questo: è lo spazio dove{" "}
+        <strong className="font-semibold text-ink">
+          ti confronti con altre professioniste che fanno il tuo stesso percorso
+        </strong>
+        .
+      </>
+    ),
+    bulletsTitle: "Hai uno spazio per",
+    bullets: [
+      <>
+        <strong className="font-semibold text-ink">Fare domande</strong>, senza sentirti mai fuori
+        luogo.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Condividere i tuoi progressi</strong> e
+        festeggiare le tue wins.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Confrontarti con altre donne come te</strong>,
+        ambiziose e con i tuoi stessi obiettivi.
+      </>,
+    ],
+    closing: (
+      <>
+        Perché crescere da sola è lento.{" "}
+        <strong className="font-semibold text-ink">Crescere insieme è un'altra cosa.</strong>
+      </>
+    ),
+  },
+  {
+    title: "Il tuo GPT Alterego per i contenuti",
+    badges: ["Contenuti più veloci", "La tua voce, sempre"],
+    intro: (
+      <>
+        Hai accesso a <strong className="font-semibold text-ink">un GPT costruito per te</strong>,
+        il tuo alter ego quando devi creare i contenuti.
+      </>
+    ),
+    bulletsTitle: "Ti aiuta a",
+    bullets: [
+      <>
+        <strong className="font-semibold text-ink">Velocizzare</strong> la scrittura dei tuoi
+        contenuti.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Strutturare</strong> ogni contenuto in modo
+        chiaro.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Mantenere la tua identità</strong> in tutto
+        quello che pubblichi.
+      </>,
+    ],
   },
 ];
 
@@ -2609,6 +2747,135 @@ function CandidaturaAmbiziosa() {
         </div>
       </section>
 
+      {/* 7i. Cosa trovi dentro Ambiziosa: i 4 bonus */}
+      <section
+        id="bonus"
+        className="overflow-x-clip bg-secondary"
+        style={{ color: "var(--secondary-foreground)" }}
+      >
+        <div className="mx-auto max-w-6xl px-5 py-20">
+          <Reveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="font-condensed text-xs uppercase tracking-[0.2em] text-primary">
+                Cosa trovi dentro Ambiziosa
+              </p>
+              <h2 className="mt-4 text-3xl sm:text-4xl">
+                Le call sono solo l'inizio: dentro Ambiziosa hai{" "}
+                <Highlight dark>tutto quello che ti serve per non fermarti mai</Highlight>.
+              </h2>
+              <p className="mt-6 text-base leading-relaxed text-ink-muted sm:text-lg">
+                Il lavoro vero succede tra una call e l'altra. Per questo, oltre alle call, hai{" "}
+                <strong className="font-semibold text-ink">
+                  4 strumenti che ti accompagnano ogni giorno
+                </strong>
+                , così non resti mai sola e non perdi mai il ritmo.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
+            {ambiziosaBonuses.map((b, i) => (
+              <Reveal key={b.title} delay={(i % 2) * 100}>
+                <div
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[color-mix(in_oklab,var(--background)_14%,transparent)] transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.55)]"
+                  style={{
+                    backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
+                  }}
+                >
+                  {/* SEGNAPOSTO: sostituire con l'immagine del bonus fornita da Carlotta */}
+                  <div
+                    className="m-4 mb-0 flex aspect-[16/9] flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed sm:m-5 sm:mb-0"
+                    style={{
+                      backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
+                      borderColor: "color-mix(in oklab, var(--primary) 35%, transparent)",
+                    }}
+                  >
+                    <ImageIcon className="size-8 text-primary/60" />
+                    <span className="font-condensed text-[10px] uppercase tracking-[0.2em] text-ink-muted">
+                      Immagine in arrivo
+                    </span>
+                  </div>
+
+                  <div className="flex flex-1 flex-col p-6 sm:p-8">
+                    <div className="flex flex-wrap gap-2">
+                      <span
+                        className="rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary-foreground sm:text-xs"
+                        style={{
+                          backgroundImage: "var(--gradient-gold)",
+                          boxShadow: "var(--shadow-gold)",
+                        }}
+                      >
+                        {b.badges[0]}
+                      </span>
+                      <span
+                        className="rounded-full border px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary sm:text-xs"
+                        style={{
+                          borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)",
+                        }}
+                      >
+                        {b.badges[1]}
+                      </span>
+                    </div>
+
+                    <h3 className="mt-5 flex items-baseline gap-2 text-2xl text-ink sm:text-3xl">
+                      <span className="text-primary" aria-hidden>
+                        ✹
+                      </span>
+                      {b.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
+                      {b.intro}
+                    </p>
+
+                    {b.details ? (
+                      <dl
+                        className="mt-5 space-y-2 rounded-xl p-4 text-sm sm:text-base"
+                        style={{
+                          backgroundColor: "color-mix(in oklab, var(--background) 8%, transparent)",
+                        }}
+                      >
+                        {b.details.map((d) => (
+                          <div key={d.label} className="flex flex-wrap gap-x-2">
+                            <dt className="font-semibold text-ink">{d.label}:</dt>
+                            <dd className="text-ink-muted">{d.text}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    ) : null}
+
+                    {b.bulletsTitle ? (
+                      <p className="mt-5 font-condensed text-xs uppercase tracking-[0.2em] text-primary">
+                        {b.bulletsTitle}
+                      </p>
+                    ) : null}
+                    <ul className="mt-3 space-y-2.5">
+                      {b.bullets.map((item, bi) => (
+                        <li
+                          key={bi}
+                          className="flex gap-3 text-sm leading-relaxed text-ink-muted sm:text-base"
+                        >
+                          <Check
+                            className="mt-1 size-4 shrink-0"
+                            style={{ color: "var(--gold-deep)" }}
+                          />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {b.closing ? (
+                      <p className="mt-6 font-display text-xl leading-snug text-ink-muted sm:text-2xl">
+                        {b.closing}
+                      </p>
+                    ) : null}
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 11. Presentazione dei 2 livelli */}
       <section id="prezzi" className="bg-background">
         <div className="mx-auto max-w-5xl px-5 py-20">
@@ -2759,47 +3026,6 @@ function CandidaturaAmbiziosa() {
             <p className="mt-2 text-center text-[11px] text-muted-foreground">
               *5 call su Ambiziosa Program, illimitate su Ambiziosa Mentorship.
             </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 14. Bonus */}
-      {/* BONUS DA CONFERMARE CON ANDREA - griglia pronta, contenuto e valori non ancora decisi */}
-      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-4xl">
-          <Reveal>
-            <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              I bonus del percorso
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-center text-sm text-muted-foreground sm:text-base">
-              Griglia pronta per i bonus di Ambiziosa — titoli e valori da confermare con Andrea
-              prima della pubblicazione.
-            </p>
-          </Reveal>
-          <div className="mt-8 grid gap-5 sm:grid-cols-3">
-            {["01", "02", "03"].map((n, i) => (
-              <Reveal key={n} delay={i * 60}>
-                <div className="surface-card h-full border-2 border-dashed border-primary/40 p-6 text-center">
-                  <Gift className="mx-auto size-6 text-primary/60" />
-                  <p className="mt-3 font-condensed text-xs uppercase tracking-[0.15em] text-primary/70">
-                    Bonus {n}
-                  </p>
-                  <p className="mt-2 text-sm font-semibold text-foreground">Titolo da confermare</p>
-                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                    Descrizione da confermare con Andrea.
-                  </p>
-                  <p className="mt-3 text-xs font-semibold text-secondary">Valore: da confermare</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal delay={200}>
-            <div className="surface-card mt-6 flex items-center justify-between gap-4 border-2 border-dashed border-primary/40 p-5 text-center sm:p-6">
-              <p className="text-sm font-semibold text-foreground sm:text-base">
-                Valore totale dei bonus
-              </p>
-              <p className="shrink-0 text-lg font-bold text-secondary sm:text-xl">Da confermare</p>
-            </div>
           </Reveal>
         </div>
       </section>
