@@ -60,7 +60,7 @@ export function AmbiziosaCtaButton({
       <span className="font-condensed text-sm font-bold uppercase tracking-[0.04em] sm:text-base sm:tracking-[0.04em]">
         {label}
       </span>
-      <span className="mt-1 whitespace-nowrap text-[9px] font-medium opacity-80 sm:text-sm">
+      <span className="mt-1 text-balance text-[9px] font-medium opacity-80 sm:text-sm">
         {sub}
       </span>
     </a>

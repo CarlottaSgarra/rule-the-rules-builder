@@ -1,18 +1,11 @@
 import { useEffect, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
   IdCard,
   CalendarDays,
   CheckCircle2,
   Check,
   Sparkles,
-  LayoutDashboard,
   Users,
   Video,
   ShieldCheck,
@@ -46,6 +39,8 @@ import {
 } from "@/lib/ambiziosa-config";
 import carlottaLookingImg from "@/assets/carlotta-looking-2.jpg";
 import carlottaAvatarImg from "@/assets/carlotta-avatar.jpg";
+import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
+import sharonSpeakingImg from "@/assets/sharon-speaking.jpg";
 import sharonAvatarImg from "@/assets/sharon-avatar.jpg";
 import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
 import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
@@ -100,7 +95,6 @@ import client5Img from "@/assets/client-5.png";
 // Microcopy condiviso — l'hero (sezione 2) e ogni box CTA ricorrente
 // (sezione 5) devono usare esattamente questo stesso testo, senza varianti.
 // ---------------------------------------------------------------------------
-const ANCHOR = "#candidatura";
 const APPLICATIONS_DEADLINE_MS = new Date(APPLICATIONS_DEADLINE).getTime();
 const CTA_LABEL = "Voglio candidarmi ad Ambiziosa";
 
@@ -738,37 +732,6 @@ const videoTestimonials = [
   },
 ];
 
-const faqs = [
-  {
-    q: "Come funziona la candidatura, cosa succede dopo che la invio?",
-    a: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, riceverai una risposta entro 48 ore lavorative con i prossimi passi.",
-  },
-  {
-    q: "Qual è la differenza tra Program e Mentorship?",
-    a: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat: l'impianto è identico, cambia solo la modalità delle call di accompagnamento.",
-  },
-  {
-    q: "Devo aver già seguito Rule the Rules per candidarmi?",
-    a: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.",
-  },
-  {
-    q: "Quali sono le modalità di pagamento?",
-    a: "Curabitur pretium tincidunt lacus, ut interdum tellus elit sed risus, maecenas eget condimentum velit, sit amet feugiat lectus, ne parliamo nel dettaglio durante la call di candidatura.",
-  },
-  {
-    q: "Quanto tempo a settimana richiede il percorso?",
-    a: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas, vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante donec eu libero.",
-  },
-  {
-    q: "Funziona anche se il mio settore è molto tecnico/di nicchia?",
-    a: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae.",
-  },
-  {
-    q: "Cosa succede se dopo la candidatura non vengo selezionata / decido di non proseguire?",
-    a: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt, neque porro quisquam est.",
-  },
-];
-
 const forWhoCards = [
   {
     n: "01",
@@ -1396,29 +1359,6 @@ const ambiziosaBonuses: {
         quello che pubblichi.
       </>,
     ],
-  },
-];
-
-const marketBreakdown = [
-  {
-    label: "Una consulenza 1:1 su identità e posizionamento",
-    value: "1.500€",
-    unit: "una tantum",
-  },
-  {
-    label: "Un percorso di content strategy dedicato",
-    value: "2.200€",
-    unit: "/ 3 mesi",
-  },
-  {
-    label: "Accesso a una community di professioniste ambiziose",
-    value: "600€",
-    unit: "/ anno",
-  },
-  {
-    label: "Accompagnamento diretto su vendita e chiusura clienti",
-    value: "1.800€",
-    unit: "/ 3 mesi",
   },
 ];
 
@@ -2629,11 +2569,11 @@ function CandidaturaAmbiziosa() {
             <Reveal>
               <div className="surface-card grid gap-6 p-6 sm:grid-cols-[220px_1fr] sm:p-8">
                 <img
-                  src={carlottaLookingWideImg}
+                  src={carlottaPresentingImg}
                   alt="Carlotta Sgarra"
                   loading="lazy"
                   className="aspect-[4/5] w-full max-w-[220px] rounded-2xl object-cover"
-                  style={{ objectPosition: "62% 30%" }}
+                  style={{ objectPosition: "38% 30%" }}
                 />
                 <div>
                   <h3 className="text-2xl text-foreground sm:text-3xl">Carlotta Sgarra</h3>
@@ -2664,11 +2604,11 @@ function CandidaturaAmbiziosa() {
             <Reveal delay={80}>
               <div className="surface-card grid gap-6 p-6 sm:grid-cols-[220px_1fr] sm:p-8">
                 <img
-                  src={sharonConvertinoImg}
+                  src={sharonSpeakingImg}
                   alt="Sharon Convertino"
                   loading="lazy"
                   className="aspect-[4/5] w-full max-w-[220px] rounded-2xl object-cover"
-                  style={{ objectPosition: "50% 30%" }}
+                  style={{ objectPosition: "47% 30%" }}
                 />
                 <div>
                   <h3 className="text-2xl text-foreground sm:text-3xl">Sharon Convertino</h3>
@@ -2984,7 +2924,7 @@ function CandidaturaAmbiziosa() {
             </div>
           </Reveal>
 
-          <div className="mt-14 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div className="mt-14 grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-start">
             {/* Ambiziosa Program */}
             <Reveal className="order-2 lg:order-1 lg:mt-10">
               <div className="surface-card flex h-full flex-col p-7 sm:p-9">
@@ -3210,191 +3150,7 @@ function CandidaturaAmbiziosa() {
         </div>
       </section>
 
-      {/* 6. → CtaBox #2, dopo il reframe (sezione 6) */}
-      <CtaBox />
-
-      {/* 13. Anteprima della piattaforma/area riservata */}
-      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-4xl">
-          <Reveal>
-            <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              La tua area dedicata durante i 4 mesi
-            </h2>
-          </Reveal>
-          <Reveal delay={60}>
-            {/* placeholder: sostituire con uno screenshot reale dell'area Notion/Slack */}
-            <div
-              className="surface-card mt-8 flex aspect-video w-full flex-col items-center justify-center gap-3 border-2 border-dashed border-primary/40 p-6"
-              style={{ borderRadius: "1.5rem" }}
-            >
-              <LayoutDashboard className="size-10 text-primary/60" />
-              <p className="text-center text-sm text-muted-foreground">
-                Mockup illustrativo dell'area riservata — da sostituire con uno screenshot reale
-              </p>
-            </div>
-          </Reveal>
-          <Reveal delay={100}>
-            <div className="mt-6 grid grid-cols-3 gap-4 text-center">
-              <div className="surface-card p-4">
-                <p className="font-condensed text-2xl font-bold text-secondary">4</p>
-                <p className="mt-1 text-xs uppercase tracking-[0.06em] text-muted-foreground">
-                  Mesi
-                </p>
-              </div>
-              <div className="surface-card p-4">
-                <p className="font-condensed text-2xl font-bold text-secondary">5</p>
-                <p className="mt-1 text-xs uppercase tracking-[0.06em] text-muted-foreground">
-                  Call*
-                </p>
-              </div>
-              <div className="surface-card p-4">
-                <p className="font-condensed text-2xl font-bold text-secondary">4</p>
-                <p className="mt-1 text-xs uppercase tracking-[0.06em] text-muted-foreground">
-                  Step
-                </p>
-              </div>
-            </div>
-            <p className="mt-2 text-center text-[11px] text-muted-foreground">
-              *5 call su Ambiziosa Program, illimitate su Ambiziosa Mentorship.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 15. Scomposizione del valore per componenti di mercato */}
-      <section className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-3xl">
-          <Reveal>
-            <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Quanto varrebbe tutto questo, separatamente?
-            </h2>
-          </Reveal>
-          <div className="mt-8 space-y-3">
-            {marketBreakdown.map((row) => (
-              <Reveal key={row.label} delay={40}>
-                <div className="surface-card flex items-center justify-between gap-4 p-4 sm:p-5">
-                  <p className="text-sm text-foreground sm:text-base">{row.label}</p>
-                  <p className="shrink-0 whitespace-nowrap text-sm font-semibold text-secondary sm:text-base">
-                    {row.value} <span className="font-normal opacity-70">{row.unit}</span>
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal delay={120}>
-            <div
-              className="surface-cream mt-6 flex items-center justify-between gap-4 p-5 sm:p-6"
-              style={{ boxShadow: "var(--shadow-gold)" }}
-            >
-              <p className="text-sm font-semibold sm:text-base">
-                Valore totale se acquistato separatamente
-              </p>
-              <p className="shrink-0 text-2xl font-bold sm:text-3xl">6.100€+</p>
-            </div>
-            <p className="mt-3 text-center text-xs text-muted-foreground">
-              Con Ambiziosa Program, tutto questo è incluso a partire da {PROGRAM_PRICE}.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 17. Storia/autorità di Carlotta */}
-      <section className="bg-background">
-        <img
-          src={carlottaLookingImg}
-          alt="Carlotta Sgarra"
-          loading="lazy"
-          className="aspect-[21/9] w-full object-cover"
-          style={{ objectPosition: "50% 30%" }}
-        />
-        <div className="mx-auto max-w-2xl px-4 py-14 sm:px-8 sm:py-20">
-          <Reveal>
-            {/* LOREM - sezione 17, storia di Carlotta, sostituire con copy reale */}
-            <div className="space-y-5 text-base leading-relaxed text-foreground/85 sm:text-lg">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <div className="grid grid-cols-2 gap-4 py-2 sm:grid-cols-3">
-                <div className="surface-card p-4 text-center">
-                  <p className="font-condensed text-2xl font-bold text-secondary">1.500+</p>
-                  <p className="mt-1 text-[11px] uppercase tracking-[0.06em] text-muted-foreground">
-                    Professioniste guidate
-                  </p>
-                </div>
-                <div className="surface-card p-4 text-center">
-                  {/* NUMERO DA CONFERMARE CON ANDREA */}
-                  <p className="font-condensed text-2xl font-bold text-secondary">XX</p>
-                  <p className="mt-1 text-[11px] uppercase tracking-[0.06em] text-muted-foreground">
-                    Lorem ipsum
-                  </p>
-                </div>
-                <div className="surface-card p-4 text-center">
-                  {/* NUMERO DA CONFERMARE CON ANDREA */}
-                  <p className="font-condensed text-2xl font-bold text-secondary">XX</p>
-                  <p className="mt-1 text-[11px] uppercase tracking-[0.06em] text-muted-foreground">
-                    Lorem ipsum
-                  </p>
-                </div>
-              </div>
-              <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* → CtaBox #3, dopo storytelling/autorità (sezione 17) */}
-      <CtaBox />
-
-      {/* 17b. Rassicurazione sulla candidatura, sezione dedicata */}
-      <section
-        className="px-4 py-14 text-center sm:px-8 sm:py-20"
-        style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
-      >
-        <Reveal>
-          <ShieldCheck className="mx-auto size-10 text-primary" />
-          <h2 className="mx-auto mt-4 max-w-xl text-2xl sm:text-3xl">
-            Candidarti non ti impegna a <Highlight dark>nulla</Highlight>
-          </h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-ink-muted sm:text-base">
-            La candidatura è gratuita e non richiede nessun pagamento: leggiamo ogni candidatura
-            personalmente e ti rispondiamo entro 48 ore lavorative con i prossimi passi. Deciderai
-            solo dopo aver parlato con noi se procedere o meno.
-          </p>
-        </Reveal>
-      </section>
-
-      {/* 18. FAQ */}
-      <section id="faq" className="bg-background px-4 py-14 sm:px-8 sm:py-20">
-        <div className="mx-auto max-w-3xl">
-          <Reveal>
-            <h2 className="text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Domande frequenti
-            </h2>
-          </Reveal>
-          <Reveal delay={60}>
-            <Accordion type="single" collapsible className="mt-8">
-              {faqs.map((f) => (
-                <AccordionItem key={f.q} value={f.q} className="border-border/70">
-                  <AccordionTrigger className="text-left text-base text-foreground">
-                    {f.q}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
-                    {f.a}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* → CtaBox #4, prima del form finale */}
+      {/* Box CTA dopo prezzi, dubbi e scadenza */}
       <CtaBox />
 
       {/* 19. Form di candidatura + chiusura finale */}
