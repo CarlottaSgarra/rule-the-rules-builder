@@ -38,6 +38,8 @@ import {
   MENTORSHIP_STATS as mentorshipStats,
   PROGRAM_PRICE,
   PROGRAM_STATS as programStats,
+  INSTALLMENT_MONTHS,
+  UPGRADE_DIFFERENCE,
   WHATSAPP_URL,
 } from "@/lib/ambiziosa-config";
 import carlottaLookingImg from "@/assets/carlotta-looking-2.jpg";
@@ -281,7 +283,7 @@ const JOURNEY_STEPS = [
 const programFeatures: React.ReactNode[] = [
   <>
     <strong className="font-semibold text-foreground">
-      Call iniziale con me e con il mio team
+      Due kick off call, una con me e una con Sharon
     </strong>
     : partiamo dalla tua situazione e fissiamo la direzione dei 4 mesi.
   </>,
@@ -309,21 +311,30 @@ const programFeatures: React.ReactNode[] = [
     mentre la metti in pratica.
   </>,
   <>
-    <strong className="font-semibold text-foreground">Una call individuale con il mio team</strong>{" "}
-    sulla strategia.
+    <strong className="font-semibold text-foreground">
+      Una call Strategia contenuti con Sharon
+    </strong>
+    .
+  </>,
+  <>
+    <strong className="font-semibold text-foreground">La call finale con me e con Sharon</strong>{" "}
+    per definire come continuare in autonomia.
   </>,
   <>
     <strong className="font-semibold text-foreground">
-      La call finale con me e con il mio team
-    </strong>{" "}
-    per definire come continuare in autonomia.
+      Puoi passare alla Mentorship entro il primo mese
+    </strong>
+    : paghi solo la differenza di {UPGRADE_DIFFERENCE}, senza interessi e senza sovrapprezzo, e fai
+    5 mesi invece di 4, perché il primo mese te lo regaliamo noi.
   </>,
 ];
 
 const mentorshipBaseFeatures: React.ReactNode[] = [
   <>
-    <strong className="font-semibold text-ink">Call iniziale con me e con il mio team</strong>:
-    definiamo punto di partenza, obiettivi, priorità e il giorno della tua call settimanale.
+    <strong className="font-semibold text-ink">
+      Due kick off call, una con me e una con Sharon
+    </strong>
+    : definiamo punto di partenza, obiettivi, priorità e il giorno della tua call settimanale.
   </>,
   <>
     <strong className="font-semibold text-ink">La parte introduttiva</strong> per entrare nel metodo
@@ -340,9 +351,6 @@ const mentorshipBaseFeatures: React.ReactNode[] = [
     <strong className="font-semibold text-ink">La tua strategia completa di comunicazione</strong>,
     costruita dal mio team sul tuo progetto: macro topic, banca idee personalizzata, struttura dei
     contenuti, direzione comunicativa.
-  </>,
-  <>
-    <strong className="font-semibold text-ink">La call finale con me e con il mio team</strong>.
   </>,
 ];
 
@@ -768,13 +776,38 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     ),
   },
   {
-    q: "Quanto costa e posso pagare a rate?",
+    q: "Quanto costa Ambiziosa?",
     a: (
       <>
         Ambiziosa Program costa{" "}
         <strong className="font-semibold text-foreground">{PROGRAM_PRICE}</strong> e Ambiziosa
-        Mentorship <strong className="font-semibold text-foreground">{MENTORSHIP_PRICE}</strong>. In
-        entrambe le versioni il pagamento è rateizzabile.
+        Mentorship <strong className="font-semibold text-foreground">{MENTORSHIP_PRICE}</strong>.
+      </>
+    ),
+  },
+  {
+    q: "Posso rateizzare il pagamento?",
+    a: (
+      <>
+        Sì,{" "}
+        <strong className="font-semibold text-foreground">
+          puoi rateizzare fino a {INSTALLMENT_MONTHS} mesi
+        </strong>
+        , sia per il Program sia per la Mentorship.
+      </>
+    ),
+  },
+  {
+    q: "Posso iniziare dal Program e passare alla Mentorship?",
+    a: (
+      <>
+        Sì: inizia dal Program, hai un mese per salire. Non devi decidere tutto subito.{" "}
+        <strong className="font-semibold text-foreground">
+          Entro il primo mese puoi passare alla Mentorship pagando solo la differenza di{" "}
+          {UPGRADE_DIFFERENCE}
+        </strong>
+        , senza interessi e senza sovrapprezzo. E fai 5 mesi invece di 4: il primo mese te lo
+        regaliamo noi.
       </>
     ),
   },
@@ -1285,10 +1318,10 @@ type VersionStep = { title: string; text: React.ReactNode };
 
 const programSteps: VersionStep[] = [
   {
-    title: "La call iniziale",
+    title: "Le due kick off call",
     text: (
       <>
-        Con me e con il mio team guardiamo la tua situazione attuale, definiamo gli obiettivi e{" "}
+        Una con me e una con Sharon: guardiamo la tua situazione attuale, definiamo gli obiettivi e{" "}
         <strong className="font-semibold text-foreground">costruiamo una prima direzione</strong>{" "}
         per il lavoro dei 4 mesi.
       </>
@@ -1348,12 +1381,12 @@ const programSteps: VersionStep[] = [
     ),
   },
   {
-    title: "La call con il mio team sulla strategia",
+    title: "La call Strategia contenuti con Sharon",
     text: (
       <>
         Durante il percorso hai una{" "}
-        <strong className="font-semibold text-foreground">call individuale con il mio team</strong>:
-        ti confronti con noi sul lavoro fatto, su come stai applicando la strategia e su come farla
+        <strong className="font-semibold text-foreground">call individuale con Sharon</strong>: ti
+        confronti con noi sul lavoro fatto, su come stai applicando la strategia e su come farla
         evolvere con quello che impari.
       </>
     ),
@@ -1362,8 +1395,8 @@ const programSteps: VersionStep[] = [
     title: "La call finale",
     text: (
       <>
-        I 4 mesi finiscono con una call con me e con il mio team: rileggiamo il percorso, guardiamo
-        cosa è cambiato e{" "}
+        I 4 mesi finiscono con una call con me e con Sharon: rileggiamo il percorso, guardiamo cosa
+        è cambiato e{" "}
         <strong className="font-semibold text-foreground">
           definiamo la direzione con cui continuare a lavorare in autonomia.
         </strong>
@@ -1374,13 +1407,13 @@ const programSteps: VersionStep[] = [
 
 const mentorshipSteps: VersionStep[] = [
   {
-    title: "La call iniziale",
+    title: "Le due kick off call",
     text: (
       <>
-        Con me e con il mio team guardiamo il tuo punto di partenza, gli obiettivi, le priorità e la
-        direzione dei 4 mesi. In quella call{" "}
+        Una con me e una con Sharon: guardiamo il tuo punto di partenza, gli obiettivi, le priorità
+        e la direzione dei 4 mesi. Lì{" "}
         <strong className="font-semibold text-ink">
-          fissiamo anche il giorno della tua call settimanale con il mio team.
+          fissiamo anche il giorno della tua call settimanale con Sharon.
         </strong>
       </>
     ),
@@ -1430,28 +1463,14 @@ const mentorshipSteps: VersionStep[] = [
     ),
   },
   {
-    title: "Una call a settimana con il mio team",
+    title: "Una call a settimana con Sharon",
     text: (
       <>
         Ogni settimana hai una{" "}
-        <strong className="font-semibold text-ink">
-          call individuale di 30 minuti con il mio team
-        </strong>
-        . Il giorno lo fissiamo nella call iniziale e diventa un appuntamento fisso per tutta la
+        <strong className="font-semibold text-ink">call individuale di 30 minuti con Sharon</strong>
+        . Il giorno lo fissiamo nelle kick off call e diventa un appuntamento fisso per tutta la
         Mentorship. Dubbi, contenuti, scelte comunicative, difficoltà e nuove idee: li porti lì,{" "}
         <strong className="font-semibold text-ink">senza aspettare la fine di uno step.</strong>
-      </>
-    ),
-  },
-  {
-    title: "La call finale",
-    text: (
-      <>
-        L'ultima call è con me e con il mio team: guardiamo il lavoro dei 4 mesi, quello che è
-        cambiato e soprattutto{" "}
-        <strong className="font-semibold text-ink">
-          quello che ora sai portare avanti da sola.
-        </strong>
       </>
     ),
   },
@@ -1765,17 +1784,17 @@ function CandidaturaAmbiziosa() {
             </Reveal>
 
             <Reveal delay={120}>
-              <ul className="mt-6 flex flex-wrap gap-2">
+              <ul className="mt-5 flex flex-wrap gap-1.5 sm:gap-2">
                 {heroValuePoints.map(({ icon: Icon, text }) => (
                   <li
                     key={text}
-                    className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-semibold text-ink sm:text-base"
+                    className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold text-ink sm:text-sm"
                     style={{
                       backgroundColor: "color-mix(in oklab, var(--secondary) 35%, transparent)",
                       border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
                     }}
                   >
-                    <Icon className="size-4 shrink-0" style={{ color: "var(--gold-deep)" }} />
+                    <Icon className="size-3.5 shrink-0" style={{ color: "var(--gold-deep)" }} />
                     {text}
                   </li>
                 ))}
@@ -2977,11 +2996,11 @@ function CandidaturaAmbiziosa() {
                       funzionato per me e per centinaia di professioniste italiane.
                     </p>
                     <p>
-                      In Ambiziosa ci sono io{" "}
+                      Nel Program ci sono io{" "}
                       <strong className="font-semibold text-foreground">
-                        nella call iniziale, nel lavoro sull'identità e nella call finale
+                        nella kick off call, nella call sull'identità e nella call finale
                       </strong>
-                      . Nella Mentorship ti seguo anche una volta al mese.
+                      . Nella Mentorship, oltre alla kick off call, ti seguo con una call al mese.
                     </p>
                   </div>
                 </div>
@@ -3015,8 +3034,9 @@ function CandidaturaAmbiziosa() {
                       dall'identità emersa con me.
                     </p>
                     <p>
-                      Nel Program ti segue nella call individuale sulla strategia. Nella Mentorship
-                      hai con lei una call individuale di 30 minuti ogni settimana:{" "}
+                      Con lei fai la kick off call. Nel Program ti segue nella call sulla strategia
+                      dei contenuti e nella call finale; nella Mentorship hai con lei una call
+                      individuale di 30 minuti ogni settimana:{" "}
                       <strong className="font-semibold text-foreground">
                         porti dubbi, contenuti e scelte comunicative, senza aspettare la fine di uno
                         step.
@@ -3196,7 +3216,7 @@ function CandidaturaAmbiziosa() {
                 </p>
                 <span className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-secondary/40 px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-secondary sm:text-xs">
                   <Wallet className="size-3.5 shrink-0" />
-                  Pagamento rateizzabile
+                  Rateizzabile fino a {INSTALLMENT_MONTHS} mesi
                 </span>
                 <p className="mt-3 text-base leading-relaxed text-foreground/85">
                   Il metodo Ambiziosa con{" "}
@@ -3258,7 +3278,7 @@ function CandidaturaAmbiziosa() {
                     style={{ borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)" }}
                   >
                     <Wallet className="size-3.5 shrink-0" />
-                    Pagamento rateizzabile
+                    Rateizzabile fino a {INSTALLMENT_MONTHS} mesi
                   </span>
                   <p className="mt-3 text-base leading-relaxed text-ink-muted sm:text-lg">
                     Tutto il percorso del Program, con in più{" "}

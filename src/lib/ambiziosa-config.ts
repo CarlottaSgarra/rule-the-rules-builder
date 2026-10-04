@@ -29,6 +29,13 @@ export const WHATSAPP_URL = "";
 export const PROGRAM_PRICE = "4.500€";
 export const MENTORSHIP_PRICE = "7.000€";
 
+// Passaggio dal Program alla Mentorship entro il primo mese: si paga solo la
+// differenza tra i due prezzi, senza interessi e senza sovrapprezzo.
+export const UPGRADE_DIFFERENCE = "2.500€";
+
+// Rateizzazione disponibile per entrambe le versioni.
+export const INSTALLMENT_MONTHS = 4;
+
 // TODO: valorizzare con l'URL del video di presentazione di Carlotta
 // (YouTube, Vimeo, o un file video) quando sarà registrato.
 export const HERO_VIDEO_URL = "";
@@ -43,13 +50,13 @@ export const CTA_SUB = "Le candidature chiudono venerdì 16 ottobre";
 export const PROGRAM_STATS = [
   { n: "4", label: "mesi" },
   { n: "5", label: "call in totale" },
-  { n: "1", label: "call individuale con me" },
-  { n: "1", label: "call individuale con il mio team" },
+  { n: "1", label: "call Identità con me" },
+  { n: "1", label: "call Strategia contenuti con Sharon" },
 ];
 
 export const MENTORSHIP_STATS = [
   { n: "4", label: "mesi" },
   { n: "22", label: "call in totale" },
-  { n: "1", label: "call a settimana con il mio team" },
+  { n: "1", label: "call a settimana con Sharon" },
   { n: "4", label: "call con me, una al mese" },
 ];
