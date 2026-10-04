@@ -46,25 +46,20 @@ const recordings = [
   },
 ];
 
-// I 6 punti su cui lavoriamo in Ambiziosa, in sintesi (dalla pagina di vendita).
+// I 4 step di Ambiziosa, in sintesi (dalla pagina di vendita).
 const ambiziosaPillars = [
-  { title: "La tua identità", text: "La base su cui costruiamo tutto il lavoro successivo." },
+  { title: "1. Radica chi sei", text: "Identità e sistema di offerte, con me." },
   {
-    title: "I tuoi macro topic",
-    text: "I temi grandi su cui costruisci tutto quello che pubblichi.",
+    title: "2. Progetta i contenuti",
+    text: "Strategia e piano editoriale su misura, con Sharon.",
   },
   {
-    title: "La tua banca idee personalizzata",
-    text: "Quando ti chiedi cosa pubblicare oggi, hai già dove guardare.",
-  },
-  { title: "La struttura dei tuoi contenuti", text: "Sai perché pubblichi quello che pubblichi." },
-  {
-    title: "La tua direzione comunicativa",
-    text: "Una direzione precisa fin dai primi contenuti.",
+    title: "3. Attiva i contenuti",
+    text: "Si pubblica, editing identitario e strategie per vendere.",
   },
   {
-    title: "La tua strategia completa",
-    text: "Sai cosa pubblicare, perché lo pubblichi e dove stai andando.",
+    title: "4. Chiudi e scala",
+    text: "Da follower a cliente, messaggi privati e call conoscitiva.",
   },
 ];
 
@@ -268,8 +263,10 @@ function Registrazioni() {
                 <p>
                   Ho aperto le candidature ad{" "}
                   <strong className="font-semibold text-foreground">Ambiziosa</strong>, il mio
-                  percorso esclusivo di 4 mesi: io e il mio team lavoriamo con te sulla tua
-                  identità, la tua comunicazione, i tuoi contenuti e la tua strategia.
+                  percorso esclusivo di 4 mesi che parte{" "}
+                  <strong className="font-semibold text-foreground">martedì 20 ottobre</strong>: io
+                  e il mio team lavoriamo con te sulla tua identità, la tua comunicazione, i tuoi
+                  contenuti e la tua strategia.
                 </p>
                 <p>
                   Non è un corso registrato da guardare quando capita:{" "}
@@ -285,10 +282,10 @@ function Registrazioni() {
 
           <Reveal>
             <p className="mt-14 text-center font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
-              Nei 4 mesi lavoriamo su tutti questi punti
+              Nei 4 mesi lavoriamo in 4 step, sempre in questo ordine
             </p>
           </Reveal>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {ambiziosaPillars.map((p, i) => (
               <Reveal key={p.title} delay={i * 60}>
                 <div className="flex h-full gap-3 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary">

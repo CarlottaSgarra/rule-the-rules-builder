@@ -9,12 +9,8 @@ import {
 import {
   IdCard,
   CalendarDays,
-  Heart,
-  MessageCircle,
-  PhoneCall,
   CheckCircle2,
   Check,
-  XCircle,
   Sparkles,
   LayoutDashboard,
   Users,
@@ -23,10 +19,6 @@ import {
   Gift,
   Star,
   ChevronDown,
-  Lightbulb,
-  LayoutTemplate,
-  Compass,
-  Target,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -93,7 +85,7 @@ const REASSURANCE = "Ti rispondo entro 48 ore.";
 function CtaBoxContext({ dark = false }: { dark?: boolean }) {
   return (
     <>
-      4 mesi con me e il mio team:{" "}
+      4 mesi con me e il mio team, a partire da martedì 20 ottobre:{" "}
       <Highlight dark={dark}>una strategia di comunicazione completa che parte da te</Highlight>,
       messa in pratica fin dalle prime call.
     </>
@@ -811,159 +803,137 @@ const forWhoCards = [
   },
 ];
 
-// I 6 punti del percorso, costruiti come le "3 serate" di Rule The Rules:
-// illustrazione React del punto + titolo + intro a sinistra, checklist a
-// destra, titolo del punto nel badge oro.
+// Le frasette di valore sotto il titolo dell'hero.
+const heroValuePoints = [
+  { icon: Sparkles, text: "Percorso esclusivo di 4 mesi" },
+  { icon: CalendarDays, text: "Inizia martedì 20 ottobre" },
+  { icon: Users, text: "Lavori con me e Sharon" },
+];
+
+// I 4 step del percorso, costruiti come le "3 serate" di Rule The Rules:
+// illustrazione React dello step + intro a sinistra, checklist a destra,
+// titolo dello step nel badge oro. Nessuna scansione mese per mese: ognuna va
+// con il suo ritmo, ma l'ordine è lo stesso per tutte.
 const communicationPillars: {
   n: string;
   title: string;
+  subtitle: string;
   visual: PillarVisualVariant;
   intro: React.ReactNode;
   bullets: React.ReactNode[];
 }[] = [
   {
     n: "1",
-    title: "La tua identità",
-    visual: "identity",
+    title: "Radica chi sei",
+    subtitle: "Identità e sistema di offerte, con me",
+    visual: "radica",
     intro: (
       <>
-        È il primo passo, e{" "}
+        È il punto di partenza e lo facciamo insieme, io e te, perché{" "}
         <strong className="font-semibold text-ink">
-          la base su cui costruiamo tutto il lavoro successivo
+          tutto quello che viene dopo si regge su questo
         </strong>
         .
       </>
     ),
     bullets: [
       <>
-        <strong className="font-semibold text-ink">Chi sei come professionista</strong>: cosa vuoi
-        rappresentare e quali sono i valori che guidano il tuo lavoro.
+        <strong className="font-semibold text-ink">Chi sei come professionista</strong>: i valori
+        che guidano il tuo lavoro, cosa vuoi rappresentare e come vuoi essere percepita.
       </>,
       <>
-        <strong className="font-semibold text-ink">Cosa vuoi comunicare</strong>: il messaggio che
-        deve arrivare a chi ti segue, senza copiare quello che fanno le altre.
+        <strong className="font-semibold text-ink">Il tuo sistema di offerte</strong>: cosa vendi, a
+        chi e in che ordine, così ogni contenuto ha una direzione precisa verso cui portare.
       </>,
       <>
-        <strong className="font-semibold text-ink">La percezione che vuoi costruire</strong>: come
-        vuoi che ti vedano le persone che ti scelgono.
+        <strong className="font-semibold text-ink">Un posizionamento che è solo tuo</strong>: smetti
+        di somigliare alle altre del tuo settore e inizi a farti riconoscere.
       </>,
     ],
   },
   {
     n: "2",
-    title: "I tuoi macro topic",
-    visual: "macro-topics",
+    title: "Progetta i contenuti",
+    subtitle: "Strategia e piano editoriale su misura, con Sharon",
+    visual: "progetta",
     intro: (
       <>
-        Il mio team prende tutto il lavoro emerso sull'identità e{" "}
-        <strong className="font-semibold text-ink">lo trasforma nella tua strategia</strong>.
+        Con{" "}
+        <strong className="font-semibold text-ink">
+          Sharon, che nel mio team segue i contenuti
+        </strong>
+        , trasformiamo la tua identità in un piano concreto.
       </>
     ),
     bullets: [
       <>
-        <strong className="font-semibold text-ink">I temi grandi della tua comunicazione</strong>: i
-        macro topic su cui costruisci tutto quello che pubblichi.
+        <strong className="font-semibold text-ink">I tuoi macro topic</strong>: i temi grandi su cui
+        costruisci tutto quello che pubblichi, nati dalla tua identità e non da un modello uguale
+        per tutte.
       </>,
       <>
-        <strong className="font-semibold text-ink">Una base che parte da te</strong>: ogni tema
-        nasce da quello che è emerso sulla tua identità, non da un modello uguale per tutte.
+        <strong className="font-semibold text-ink">La tua strategia di contenuti</strong>: ogni
+        contenuto ha un ruolo preciso, basta pubblicare tanto per esserci.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Un piano editoriale su misura</strong>: sai cosa
+        pubblicare e perché, e quando ti chiedi cosa postare oggi hai già la risposta.
       </>,
     ],
   },
   {
     n: "3",
-    title: "La tua banca idee personalizzata",
-    visual: "idea-bank",
+    title: "Attiva i contenuti",
+    subtitle: "Si pubblica, editing identitario e strategie per vendere",
+    visual: "attiva",
     intro: (
       <>
-        Idee di contenuti{" "}
-        <strong className="font-semibold text-ink">pensate per te e per il tuo progetto</strong>.
+        Qui <strong className="font-semibold text-ink">si inizia a pubblicare davvero</strong>: il
+        piano smette di restare sulla carta e diventa contenuti online.
       </>
     ),
     bullets: [
       <>
-        <strong className="font-semibold text-ink">Mai più pagina bianca</strong>: quando ti chiedi
-        cosa pubblicare oggi, hai già dove guardare.
+        <strong className="font-semibold text-ink">Si pubblica</strong>: metti online i contenuti
+        del tuo piano, con un ritmo sostenibile per te.
       </>,
       <>
-        <strong className="font-semibold text-ink">Idee su misura</strong>: nascono dai tuoi macro
-        topic, non sono prese in prestito da chi fa un altro lavoro.
+        <strong className="font-semibold text-ink">Editing identitario</strong>: uno stile e un
+        montaggio che ti rendono riconoscibile fin dai primi secondi.
+      </>,
+      <>
+        <strong className="font-semibold text-ink">Strategie per vendere</strong>: i contenuti che
+        portano chi ti segue verso le tue offerte, senza sembrare una televendita.
       </>,
     ],
   },
   {
     n: "4",
-    title: "La struttura dei tuoi contenuti",
-    visual: "structure",
+    title: "Chiudi e scala",
+    subtitle: "Da follower a cliente, messaggi privati e call conoscitiva",
+    visual: "chiudi",
     intro: (
       <>
-        La struttura strategica che{" "}
-        <strong className="font-semibold text-ink">tiene insieme quello che pubblichi</strong>,
-        costruita sul tuo progetto.
+        L'ultimo step è quello che{" "}
+        <strong className="font-semibold text-ink">trasforma la tua visibilità in clienti</strong>.
       </>
     ),
     bullets: [
       <>
-        <strong className="font-semibold text-ink">
-          Sai perché pubblichi quello che pubblichi
-        </strong>
-        : ogni contenuto ha un ruolo preciso.
+        <strong className="font-semibold text-ink">Da follower a cliente</strong>: il percorso che
+        porta chi ti segue a sceglierti, passo dopo passo.
       </>,
       <>
-        <strong className="font-semibold text-ink">Basta contenuti a caso</strong>: smetti di
-        pubblicare tanto per esserci.
-      </>,
-    ],
-  },
-  {
-    n: "5",
-    title: "La tua direzione comunicativa",
-    visual: "direction",
-    intro: (
-      <>
-        Dove vuoi portare la tua comunicazione,{" "}
-        <strong className="font-semibold text-ink">
-          costruita sulla tua identità e sui tuoi obiettivi
-        </strong>
-        .
-      </>
-    ),
-    bullets: [
-      <>
-        <strong className="font-semibold text-ink">Una direzione precisa</strong>: sai dove stai
-        andando fin dai primi contenuti.
+        <strong className="font-semibold text-ink">I messaggi privati</strong>: come aprire e
+        gestire le conversazioni senza essere invadente.
       </>,
       <>
-        <strong className="font-semibold text-ink">Obiettivi tuoi</strong>: la rotta parte da quello
-        che vuoi ottenere tu, non da quello che funziona per le altre.
-      </>,
-    ],
-  },
-  {
-    n: "6",
-    title: "La tua strategia completa di comunicazione",
-    visual: "strategy",
-    intro: (
-      <>
-        Tutti i pezzi si uniscono in{" "}
-        <strong className="font-semibold text-ink">una strategia completa che parte da te</strong>.
-      </>
-    ),
-    bullets: [
-      <>
-        <strong className="font-semibold text-ink">
-          Sai cosa pubblicare, perché lo pubblichi e dove stai andando
-        </strong>
-        : hai il quadro completo della tua comunicazione.
+        <strong className="font-semibold text-ink">La call conoscitiva</strong>: come condurla per
+        chiudere con naturalezza, senza sentirti una venditrice.
       </>,
       <>
-        <strong className="font-semibold text-ink">La applichi già durante il percorso</strong>: la
-        affiniamo insieme, così a fine percorso sai farla evolvere anche da sola.
-      </>,
-      <>
-        <strong className="font-semibold text-ink">Mentorship e Program</strong>: nella Mentorship
-        ci lavori ogni settimana con il mio team e 4 volte con me, nel Program attraverso gli step e
-        i momenti di confronto previsti.
+        <strong className="font-semibold text-ink">Un sistema che scala</strong>: continua a
+        funzionare anche dopo la fine del percorso.
       </>,
     ],
   },
@@ -1339,6 +1309,24 @@ function CandidaturaAmbiziosa() {
                   Percorso di 4 mesi
                 </span>
               </div>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {heroValuePoints.map(({ icon: Icon, text }) => (
+                  <li
+                    key={text}
+                    className="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-sm font-semibold text-ink sm:text-base"
+                    style={{
+                      backgroundColor: "color-mix(in oklab, var(--secondary) 35%, transparent)",
+                      border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
+                    }}
+                  >
+                    <Icon className="size-4 shrink-0" style={{ color: "var(--gold-deep)" }} />
+                    {text}
+                  </li>
+                ))}
+              </ul>
             </Reveal>
 
             <Reveal delay={150}>
@@ -1925,7 +1913,7 @@ function CandidaturaAmbiziosa() {
       {/* 5. Box CTA isolato ricorrente #1 */}
       <CtaBox />
 
-      {/* 7. I punti su cui lavoriamo nei 4 mesi */}
+      {/* 7. I 4 step su cui lavoriamo nei 4 mesi */}
       <section
         id="programma"
         className="overflow-x-clip bg-secondary"
@@ -1934,7 +1922,7 @@ function CandidaturaAmbiziosa() {
         <div className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl">
-              Nei 4 mesi di Ambiziosa lavoriamo su <Highlight dark>tutti questi punti</Highlight>.
+              Nei 4 mesi di Ambiziosa lavoriamo <Highlight dark>in 4 step</Highlight>.
             </h2>
             <div className="mt-6 max-w-3xl space-y-5 text-base leading-relaxed text-ink-muted">
               <p>
@@ -1954,7 +1942,9 @@ function CandidaturaAmbiziosa() {
                 <strong className="font-semibold text-ink">
                   dalle prime call mettiamo in pratica tutto sul tuo progetto
                 </strong>
-                .
+                , seguendo 4 step. Non ti do un calendario mese per mese, perché ognuna va con il
+                suo ritmo, ma{" "}
+                <strong className="font-semibold text-ink">l'ordine è lo stesso per tutte</strong>.
               </p>
             </div>
           </Reveal>
@@ -1985,8 +1975,11 @@ function CandidaturaAmbiziosa() {
                     </div>
 
                     <div className="relative">
-                      <p className="text-lg font-semibold text-ink sm:text-xl">
-                        Che cosa costruiamo insieme in questo passaggio?
+                      <p className="font-display text-xl leading-snug text-ink sm:text-2xl">
+                        {p.subtitle}
+                      </p>
+                      <p className="mt-6 text-lg font-semibold text-ink sm:text-xl">
+                        Che cosa costruiamo insieme in questo step?
                       </p>
                       <ul className="mt-3 space-y-3">
                         {p.bullets.map((b, bi) => (
@@ -2176,8 +2169,8 @@ function CandidaturaAmbiziosa() {
                   Ambiziosa ha due versioni: <Highlight dark>Program o Mentorship</Highlight>.
                 </h2>
                 <p className="mt-4 text-base leading-relaxed text-ink-muted sm:text-lg">
-                  Puoi scegliere quella che preferisci. La durata resta sempre di 4 mesi e in
-                  entrambe hai{" "}
+                  Puoi scegliere quella che preferisci. La durata resta sempre di 4 mesi, si parte
+                  martedì 20 ottobre e in entrambe hai{" "}
                   <strong className="font-semibold text-ink">me e il mio team con te.</strong>
                 </p>
               </div>
@@ -2890,7 +2883,10 @@ function CandidaturaAmbiziosa() {
             </h2>
             <p className="mx-auto mt-3 max-w-md text-center text-sm text-muted-foreground sm:text-base">
               Due opzioni disponibili: Ambiziosa Program (5.000€) e Ambiziosa Mentorship (7.000€).
-              Compilando il form riceverai una risposta entro 48 ore, senza nessun impegno.
+              Compilando il form riceverai una risposta entro 48 ore, senza nessun impegno. Le
+              candidature chiudono{" "}
+              <strong className="font-semibold text-foreground">venerdì 16 ottobre</strong> e si
+              parte <strong className="font-semibold text-foreground">martedì 20 ottobre</strong>.
             </p>
 
             <div className="mt-8">

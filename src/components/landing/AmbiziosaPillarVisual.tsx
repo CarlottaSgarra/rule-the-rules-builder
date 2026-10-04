@@ -1,28 +1,27 @@
 import {
+  CalendarCheck,
   Check,
-  ChevronDown,
-  Compass,
-  Flag,
   IdCard,
-  LayoutDashboard,
-  LayoutTemplate,
-  Lightbulb,
+  Layers,
   MessageCircle,
-  Target,
+  Play,
+  Scissors,
+  Send,
+  Sparkles,
+  TrendingUp,
 } from "lucide-react";
 
-// Illustrazioni dei 6 punti della sezione "Nei 4 mesi di Ambiziosa lavoriamo
-// su tutti questi punti": stesso linguaggio grafico di SessionHighlight (card
-// bianche, etichette condensed, chip oro/viola), ma ognuna rappresenta le
-// righe della checklist del proprio punto.
+// Illustrazioni dei 4 step della sezione "#programma": stesso linguaggio
+// grafico di SessionHighlight (card bianche, etichette condensed, chip
+// oro/viola), ma ognuna rappresenta le righe della checklist del proprio step.
 
-export type PillarVisualVariant =
-  "identity" | "macro-topics" | "idea-bank" | "structure" | "direction" | "strategy";
+export type PillarVisualVariant = "radica" | "progetta" | "attiva" | "chiudi";
 
 const card = "rounded-xl bg-white shadow-[0_20px_45px_-15px_rgba(0,0,0,0.45)] ring-1 ring-black/5";
 const label = "font-condensed text-[9px] uppercase tracking-[0.15em] text-muted-foreground";
 const strong = "text-[11px] font-semibold leading-tight text-foreground";
 const gold = { backgroundImage: "var(--gradient-gold)" };
+const mulberry = { backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" };
 
 function CardHeader({ title, icon: Icon }: { title: string; icon: typeof IdCard }) {
   return (
@@ -37,138 +36,249 @@ function Bar({ className = "w-full" }: { className?: string }) {
   return <span className={`block h-1.5 rounded-full bg-foreground/15 ${className}`} />;
 }
 
-// 1 · Chi sei, cosa vuoi comunicare, come vuoi essere percepita.
-function Identity() {
+function Chip({ children, variant }: { children: React.ReactNode; variant: "gold" | "mulberry" }) {
   return (
-    <div className={`${card} w-full max-w-[290px] -rotate-2 p-4`}>
-      <CardHeader title="Carta identitaria" icon={IdCard} />
-      <div className="mt-3 flex items-center gap-3">
-        <span className="size-10 shrink-0 rounded-full" style={gold} />
-        <div className="flex-1 space-y-1.5">
-          <p className={strong}>Chi sei come professionista</p>
-          <Bar className="w-4/5" />
-        </div>
-      </div>
-
-      <p className={`${label} mt-4`}>I tuoi valori</p>
-      <div className="mt-1.5 flex flex-wrap gap-1">
-        {["Autenticità", "Competenza", "Ambizione"].map((v, i) => (
-          <span
-            key={v}
-            className="rounded-full px-2 py-0.5 text-[9px] font-semibold"
-            style={
-              i === 1
-                ? { backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }
-                : { ...gold, color: "var(--primary-foreground)" }
-            }
-          >
-            {v}
-          </span>
-        ))}
-      </div>
-
-      <p className={`${label} mt-4`}>Cosa vuoi comunicare</p>
-      <div className="mt-1.5 flex items-start gap-1.5">
-        <MessageCircle className="mt-0.5 size-3 shrink-0 text-secondary" />
-        <div className="flex-1 space-y-1 rounded-lg rounded-tl-sm bg-foreground/[0.06] p-2">
-          <Bar />
-          <Bar className="w-3/5" />
-        </div>
-      </div>
-
-      <p className={`${label} mt-4`}>La percezione che vuoi costruire</p>
-      <div className="relative mt-2.5">
-        <Bar />
-        <span className="absolute inset-y-0 left-0 block w-[78%] rounded-full" style={gold} />
-        <span
-          className="absolute top-1/2 size-3 -translate-y-1/2 rounded-full ring-2 ring-white"
-          style={{ left: "calc(78% - 6px)", backgroundColor: "var(--secondary)" }}
-        />
-      </div>
-    </div>
+    <span
+      className={`rounded-full px-2 py-0.5 text-[9px] font-semibold ${variant === "gold" ? "text-primary-foreground" : ""}`}
+      style={variant === "gold" ? gold : mulberry}
+    >
+      {children}
+    </span>
   );
 }
 
-// 2 · I temi grandi della comunicazione, che nascono dall'identità.
-function MacroTopics() {
-  const topics = [
-    { n: 1, c: "var(--primary)" },
-    { n: 2, c: "var(--secondary)" },
-    { n: 3, c: "var(--secondary)" },
-    { n: 4, c: "var(--primary)" },
+// 1 · Radica chi sei: identità e sistema di offerte, con Carlotta.
+function Radica() {
+  const offers = [
+    { name: "Offerta d'ingresso", w: "w-[55%]" },
+    { name: "Il tuo percorso", w: "w-[75%]" },
+    { name: "Offerta premium", w: "w-full" },
   ];
   return (
-    <div className="flex w-full max-w-[300px] flex-col items-center">
-      <div className={`${card} flex items-center gap-2 px-3 py-2`}>
-        <IdCard className="size-3.5 text-secondary" />
-        <span className={strong}>La tua identità</span>
-      </div>
-      <ChevronDown className="my-1 size-5 text-primary" />
-      <div className="grid w-full grid-cols-2 gap-2">
-        {topics.map((t, i) => (
-          <div key={t.n} className={`${card} p-2.5 ${i % 2 === 0 ? "-rotate-1" : "rotate-1"}`}>
-            <div className="flex items-center gap-1.5">
-              <span className="size-2.5 shrink-0 rounded-full" style={{ backgroundColor: t.c }} />
-              <span className={strong}>Macro topic {t.n}</span>
-            </div>
-            <div className="mt-2 space-y-1">
-              <Bar />
-              <Bar className="w-2/3" />
-            </div>
+    <div className="relative w-full max-w-[290px] pb-2">
+      <div className={`${card} -rotate-2 p-4`}>
+        <CardHeader title="La tua identità" icon={IdCard} />
+        <div className="mt-3 flex items-center gap-3">
+          <span className="size-9 shrink-0 rounded-full" style={gold} />
+          <div className="flex-1 space-y-1.5">
+            <p className={strong}>Chi sei come professionista</p>
+            <Bar className="w-4/5" />
           </div>
-        ))}
+        </div>
+        <div className="mt-3 flex flex-wrap gap-1">
+          <Chip variant="gold">Valori</Chip>
+          <Chip variant="mulberry">Posizionamento</Chip>
+          <Chip variant="gold">Percezione</Chip>
+        </div>
       </div>
-      <p className="mt-3 font-condensed text-[10px] uppercase tracking-[0.15em] text-ink-muted">
-        I temi su cui costruisci tutto
-      </p>
+
+      <div className={`${card} relative -mt-2 ml-6 rotate-1 p-4`}>
+        <CardHeader title="Il tuo sistema di offerte" icon={Layers} />
+        <div className="mt-3 space-y-1.5">
+          {offers.map((o, i) => (
+            <div key={o.name} className={`${o.w} ml-auto`}>
+              <div
+                className="flex items-center justify-between gap-2 rounded-md px-2 py-1.5"
+                style={
+                  i === offers.length - 1
+                    ? gold
+                    : { backgroundColor: "color-mix(in oklab, var(--secondary) 12%, white)" }
+                }
+              >
+                <span
+                  className={`text-[9px] font-semibold ${i === offers.length - 1 ? "text-primary-foreground" : "text-foreground"}`}
+                >
+                  {o.name}
+                </span>
+                <TrendingUp
+                  className={`size-3 shrink-0 ${i === offers.length - 1 ? "text-primary-foreground" : "text-secondary"}`}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <span
+        className="absolute -right-2 -top-3 rotate-6 rounded-full px-2.5 py-1 font-condensed text-[9px] uppercase tracking-[0.12em] shadow-md"
+        style={mulberry}
+      >
+        Con Carlotta
+      </span>
     </div>
   );
 }
 
-// 3 · Quando ti chiedi cosa pubblicare oggi hai già dove guardare;
-//     idee su misura, nate dai tuoi macro topic.
-function IdeaBank() {
-  const ideas = [
-    { topic: 1, c: "var(--primary)", today: true },
-    { topic: 2, c: "var(--secondary)", today: false },
-    { topic: 4, c: "var(--primary)", today: false },
-    { topic: 3, c: "var(--secondary)", today: false },
+// 2 · Progetta i contenuti: strategia e piano editoriale su misura, con Sharon.
+function Progetta() {
+  const days = ["Lun", "Mar", "Mer", "Gio", "Ven"];
+  const plan: ({ role: string; topic: number } | null)[] = [
+    { role: "Attira", topic: 1 },
+    null,
+    { role: "Educa", topic: 2 },
+    { role: "Attira", topic: 3 },
+    { role: "Vende", topic: 1 },
+  ];
+  const roleStyle: Record<string, React.CSSProperties> = {
+    Attira: {
+      backgroundColor: "color-mix(in oklab, var(--primary) 55%, white)",
+      color: "var(--foreground)",
+    },
+    Educa: {
+      backgroundColor: "color-mix(in oklab, var(--secondary) 18%, white)",
+      color: "var(--foreground)",
+    },
+    Vende: mulberry,
+  };
+  return (
+    <div className="relative w-full max-w-[290px]">
+      <div className={`${card} rotate-1 p-4`}>
+        <CardHeader title="Il tuo piano editoriale" icon={CalendarCheck} />
+        <div className="mt-3 flex flex-wrap gap-1">
+          {[1, 2, 3].map((t) => (
+            <span
+              key={t}
+              className="flex items-center gap-1 rounded-full bg-foreground/[0.06] px-1.5 py-0.5"
+            >
+              <span
+                className="size-1.5 rounded-full"
+                style={{ backgroundColor: t === 2 ? "var(--secondary)" : "var(--primary)" }}
+              />
+              <span className="text-[8px] font-semibold text-foreground/70">Macro topic {t}</span>
+            </span>
+          ))}
+        </div>
+        <div className="mt-3 grid grid-cols-5 gap-1">
+          {days.map((d, i) => {
+            const slot = plan[i];
+            return (
+              <div key={d} className="flex flex-col items-center gap-1">
+                <span className="text-[8px] font-semibold text-muted-foreground">{d}</span>
+                {slot ? (
+                  <div
+                    className="flex h-14 w-full flex-col justify-between rounded-md p-1"
+                    style={roleStyle[slot.role]}
+                  >
+                    <span className="text-[7px] font-semibold opacity-70">T{slot.topic}</span>
+                    <span className="font-condensed text-[7.5px] uppercase tracking-[0.04em]">
+                      {slot.role}
+                    </span>
+                  </div>
+                ) : (
+                  <div className="h-14 w-full rounded-md border border-dashed border-foreground/15" />
+                )}
+              </div>
+            );
+          })}
+        </div>
+        <div className="mt-3 flex items-center gap-1.5">
+          <Check className="size-3.5 shrink-0 text-secondary" />
+          <span className={strong}>Ogni contenuto ha un ruolo</span>
+        </div>
+      </div>
+      <span
+        className="absolute -left-2 -top-3 -rotate-6 rounded-full px-2.5 py-1 font-condensed text-[9px] uppercase tracking-[0.12em] text-primary-foreground shadow-md"
+        style={gold}
+      >
+        Con Sharon
+      </span>
+    </div>
+  );
+}
+
+// 3 · Attiva i contenuti: si pubblica, editing identitario, strategie per vendere.
+function Attiva() {
+  const clips = [
+    "color-mix(in oklab, var(--secondary) 75%, white)",
+    "color-mix(in oklab, var(--primary) 70%, white)",
+    "color-mix(in oklab, var(--secondary) 40%, white)",
+    "color-mix(in oklab, var(--primary) 45%, white)",
   ];
   return (
-    <div className="relative w-full max-w-[290px] pt-7">
-      <span
-        className={`${card} absolute left-0 top-0 z-10 -rotate-3 rounded-2xl rounded-bl-sm px-3 py-1.5 ${strong}`}
-      >
-        Cosa pubblico oggi?
-      </span>
-      <div className={`${card} rotate-1 p-4`}>
-        <CardHeader title="La tua banca idee" icon={Lightbulb} />
-        <div className="mt-3 space-y-1.5">
-          {ideas.map((idea, i) => (
-            <div
+    <div className="relative w-full max-w-[290px] pt-4">
+      <div className={`${card} -rotate-1 p-4`}>
+        <CardHeader title="Il tuo editing identitario" icon={Scissors} />
+        <div
+          className="relative mt-3 flex aspect-[16/8] items-center justify-center rounded-lg"
+          style={{ backgroundImage: "var(--gradient-night)" }}
+        >
+          <span className="flex size-8 items-center justify-center rounded-full" style={gold}>
+            <Play className="ml-0.5 size-3.5 text-primary-foreground" fill="currentColor" />
+          </span>
+          <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 rounded bg-white/90 px-1.5 py-0.5 text-[8px] font-semibold text-foreground">
+            Il tuo stile, riconoscibile
+          </span>
+        </div>
+        <div className="mt-2 flex gap-0.5">
+          {clips.map((c, i) => (
+            <span
               key={i}
-              className="flex items-center gap-2 rounded-lg px-2 py-1.5"
-              style={
-                idea.today
-                  ? { backgroundColor: "color-mix(in oklab, var(--primary) 45%, transparent)" }
-                  : undefined
-              }
-            >
-              <Lightbulb className="size-3 shrink-0 text-secondary" />
-              <Bar className={i === 2 ? "w-1/2" : "flex-1"} />
-              <span className="flex shrink-0 items-center gap-1 rounded-full bg-foreground/[0.06] px-1.5 py-0.5">
-                <span className="size-1.5 rounded-full" style={{ backgroundColor: idea.c }} />
-                <span className="text-[8px] font-semibold text-foreground/70">
-                  Topic {idea.topic}
-                </span>
+              className={`h-3 rounded-sm ${i === 1 ? "flex-[2]" : "flex-1"}`}
+              style={{ backgroundColor: c }}
+            />
+          ))}
+        </div>
+        <div className="mt-3 flex items-center gap-2 rounded-lg bg-foreground/[0.06] px-2 py-1.5">
+          <Sparkles className="size-3 shrink-0 text-secondary" />
+          <span className="flex-1 text-[9px] font-semibold text-foreground">
+            Strategia di vendita nel contenuto
+          </span>
+          <Chip variant="mulberry">Vende</Chip>
+        </div>
+      </div>
+      <span
+        className={`${card} absolute -right-2 top-0 flex rotate-3 items-center gap-1.5 rounded-full px-2.5 py-1`}
+      >
+        <span className="flex size-3.5 items-center justify-center rounded-full" style={gold}>
+          <Check className="size-2.5 text-primary-foreground" strokeWidth={3} />
+        </span>
+        <span className="text-[9px] font-semibold text-foreground">Pubblicato</span>
+      </span>
+    </div>
+  );
+}
+
+// 4 · Chiudi e scala: da follower a cliente, messaggi privati, call conoscitiva.
+function Chiudi() {
+  const funnel = ["Follower", "Messaggio", "Call", "Cliente"];
+  return (
+    <div className="w-full max-w-[290px] space-y-2">
+      <div className={`${card} rotate-1 p-4`}>
+        <CardHeader title="Messaggi privati" icon={MessageCircle} />
+        <div className="mt-3 space-y-1.5">
+          <div className="max-w-[80%] rounded-xl rounded-bl-sm bg-foreground/[0.06] px-2.5 py-1.5 text-[9px] text-foreground">
+            Ciao! Il tuo ultimo reel mi ha colpita, come posso lavorare con te?
+          </div>
+          <div
+            className="ml-auto max-w-[80%] rounded-xl rounded-br-sm px-2.5 py-1.5 text-[9px]"
+            style={mulberry}
+          >
+            Che bello! Ti va una call conoscitiva?
+          </div>
+        </div>
+        <div
+          className="mt-3 flex items-center gap-2 rounded-lg px-2 py-1.5"
+          style={{ backgroundColor: "color-mix(in oklab, var(--primary) 30%, white)" }}
+        >
+          <CalendarCheck className="size-3.5 shrink-0 text-secondary" />
+          <span className="flex-1 text-[9px] font-semibold text-foreground">
+            Call conoscitiva · confermata
+          </span>
+          <Send className="size-3 shrink-0 text-secondary" />
+        </div>
+      </div>
+      <div className={`${card} -rotate-1 px-3 py-2.5`}>
+        <div className="flex items-center justify-between gap-1">
+          {funnel.map((f, i) => (
+            <div key={f} className="flex items-center gap-1">
+              <span
+                className={`rounded-full px-1.5 py-0.5 text-[8px] font-semibold ${i === funnel.length - 1 ? "text-primary-foreground" : "bg-foreground/[0.06] text-foreground"}`}
+                style={i === funnel.length - 1 ? gold : undefined}
+              >
+                {f}
               </span>
-              {idea.today ? (
-                <span
-                  className="shrink-0 rounded-full px-1.5 py-0.5 font-condensed text-[8px] uppercase tracking-[0.1em] text-primary-foreground"
-                  style={gold}
-                >
-                  Oggi
-                </span>
+              {i < funnel.length - 1 ? (
+                <span className="text-[9px] text-muted-foreground">›</span>
               ) : null}
             </div>
           ))}
@@ -178,149 +288,11 @@ function IdeaBank() {
   );
 }
 
-// 4 · Ogni contenuto ha un ruolo preciso: basta contenuti a caso.
-function Structure() {
-  const tiles = [
-    { role: "Attira", bg: "var(--secondary)" },
-    { role: "Educa", bg: "color-mix(in oklab, var(--primary) 70%, transparent)" },
-    { role: "Vende", bg: "color-mix(in oklab, var(--foreground) 14%, transparent)" },
-    { role: "Educa", bg: "color-mix(in oklab, var(--foreground) 14%, transparent)" },
-    { role: "Vende", bg: "var(--secondary)" },
-    { role: "Attira", bg: "color-mix(in oklab, var(--primary) 70%, transparent)" },
-  ];
-  return (
-    <div className={`${card} w-full max-w-[290px] rotate-2 p-4`}>
-      <CardHeader title="La struttura dei tuoi contenuti" icon={LayoutTemplate} />
-      <div className="mt-3 grid grid-cols-3 gap-1.5">
-        {tiles.map((t, i) => (
-          <div
-            key={i}
-            className="relative aspect-square rounded-md"
-            style={{ backgroundColor: t.bg }}
-          >
-            <span className="absolute bottom-1 left-1 rounded-full bg-white/95 px-1.5 py-0.5 font-condensed text-[8px] uppercase tracking-[0.08em] text-foreground">
-              {t.role}
-            </span>
-          </div>
-        ))}
-      </div>
-      <div className="mt-3 flex items-center gap-1.5">
-        <Check className="size-3.5 shrink-0 text-secondary" />
-        <span className={strong}>Ogni contenuto ha un ruolo</span>
-      </div>
-    </div>
-  );
-}
-
-// 5 · Una direzione precisa fin dai primi contenuti, verso i tuoi obiettivi.
-function Direction() {
-  const steps = ["Oggi", "Primi contenuti", "I tuoi obiettivi"];
-  return (
-    <div className={`${card} w-full max-w-[290px] -rotate-2 p-4`}>
-      <CardHeader title="La tua direzione" icon={Compass} />
-      <div className="relative mt-5 px-2">
-        <Bar />
-        <span className="absolute inset-y-0 left-2 block w-[55%] rounded-full" style={gold} />
-        <div className="absolute inset-x-2 top-1/2 flex -translate-y-1/2 justify-between">
-          {steps.map((s, i) =>
-            i === steps.length - 1 ? (
-              <span
-                key={s}
-                className="flex size-6 items-center justify-center rounded-full ring-2 ring-white"
-                style={gold}
-              >
-                <Flag className="size-3 text-primary-foreground" />
-              </span>
-            ) : (
-              <span
-                key={s}
-                className="size-3 rounded-full ring-2 ring-white"
-                style={{ backgroundColor: "var(--secondary)" }}
-              />
-            ),
-          )}
-        </div>
-      </div>
-      <div className="mt-4 flex justify-between">
-        {steps.map((s) => (
-          <span
-            key={s}
-            className="max-w-[5.5rem] text-center text-[9px] font-semibold text-foreground"
-          >
-            {s}
-          </span>
-        ))}
-      </div>
-      <div className="mt-4 rounded-lg bg-foreground/[0.06] p-2.5">
-        <div className="flex items-center gap-1.5">
-          <Target className="size-3.5 shrink-0 text-secondary" />
-          <span className={strong}>Obiettivi tuoi, non delle altre</span>
-        </div>
-        <div className="mt-2 space-y-1">
-          <Bar />
-          <Bar className="w-2/3" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// 6 · Cosa pubblicare, perché e dove stai andando; applicata già durante il
-//     percorso; Mentorship e Program.
-function Strategy() {
-  const rows = ["Cosa pubblicare", "Perché lo pubblichi", "Dove stai andando"];
-  return (
-    <div className={`${card} w-full max-w-[290px] rotate-1 p-4`}>
-      <CardHeader title="La tua strategia completa" icon={LayoutDashboard} />
-      <div className="mt-3 space-y-1.5">
-        {rows.map((r) => (
-          <div
-            key={r}
-            className="flex items-center gap-2 rounded-lg bg-foreground/[0.06] px-2 py-1.5"
-          >
-            <span
-              className="flex size-4 shrink-0 items-center justify-center rounded-full"
-              style={gold}
-            >
-              <Check className="size-2.5 text-primary-foreground" strokeWidth={3} />
-            </span>
-            <span className={strong}>{r}</span>
-          </div>
-        ))}
-      </div>
-      <div className="mt-4 flex items-center justify-between">
-        <span className={label}>Applicata nel percorso</span>
-        <span className="text-[9px] font-semibold text-foreground">80%</span>
-      </div>
-      <div className="relative mt-1.5">
-        <Bar />
-        <span className="absolute inset-y-0 left-0 block w-4/5 rounded-full" style={gold} />
-      </div>
-      <div className="mt-4 flex gap-1.5">
-        <span
-          className="rounded-full px-2 py-0.5 text-[9px] font-semibold"
-          style={{ backgroundColor: "var(--secondary)", color: "var(--secondary-foreground)" }}
-        >
-          Mentorship
-        </span>
-        <span
-          className="rounded-full px-2 py-0.5 text-[9px] font-semibold text-primary-foreground"
-          style={gold}
-        >
-          Program
-        </span>
-      </div>
-    </div>
-  );
-}
-
 const VARIANTS: Record<PillarVisualVariant, () => React.JSX.Element> = {
-  identity: Identity,
-  "macro-topics": MacroTopics,
-  "idea-bank": IdeaBank,
-  structure: Structure,
-  direction: Direction,
-  strategy: Strategy,
+  radica: Radica,
+  progetta: Progetta,
+  attiva: Attiva,
+  chiudi: Chiudi,
 };
 
 export function AmbiziosaPillarVisual({ variant }: { variant: PillarVisualVariant }) {
