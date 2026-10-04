@@ -19,6 +19,7 @@ import {
   Star,
   ChevronDown,
   ImageIcon,
+  Wallet,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
 import { Highlight } from "@/components/landing/Highlight";
@@ -2992,6 +2993,10 @@ function CandidaturaAmbiziosa() {
                   <span className="font-display text-5xl text-foreground">{PROGRAM_PRICE}</span>
                   <span className="text-sm text-foreground/70">· 4 mesi</span>
                 </p>
+                <span className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full border border-secondary/40 px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-secondary sm:text-xs">
+                  <Wallet className="size-3.5 shrink-0" />
+                  Pagamento rateizzabile
+                </span>
                 <p className="mt-3 text-base leading-relaxed text-foreground/85">
                   Il metodo Ambiziosa con{" "}
                   <strong className="font-semibold text-foreground">
@@ -3051,6 +3056,13 @@ function CandidaturaAmbiziosa() {
                     <span className="font-display text-6xl text-ink">{MENTORSHIP_PRICE}</span>
                     <span className="text-sm text-ink-muted">· 4 mesi</span>
                   </p>
+                  <span
+                    className="mt-3 inline-flex w-fit items-center gap-1.5 rounded-full border px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary sm:text-xs"
+                    style={{ borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)" }}
+                  >
+                    <Wallet className="size-3.5 shrink-0" />
+                    Pagamento rateizzabile
+                  </span>
                   <p className="mt-3 text-base leading-relaxed text-ink-muted sm:text-lg">
                     Tutto il percorso del Program, con in più{" "}
                     <strong className="font-semibold text-ink">
