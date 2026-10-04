@@ -41,6 +41,10 @@ import { AmbiziosaHeroVideo } from "@/components/landing/AmbiziosaHeroVideo";
 import { ProfileBeforeAfter, ResultsCards } from "@/components/landing/AmbiziosaProofCards";
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
 import { submitAmbiziosaApplication } from "@/lib/ambiziosa-application";
+import {
+  MENTORSHIP_STATS as mentorshipStats,
+  PROGRAM_STATS as programStats,
+} from "@/lib/ambiziosa-config";
 import carlottaLookingImg from "@/assets/carlotta-looking-2.jpg";
 import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
 import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
@@ -943,20 +947,6 @@ const communicationPillars: {
 
 // Le due versioni di Ambiziosa: numeri chiave (badge) e passi numerati.
 type VersionStep = { title: string; text: React.ReactNode };
-
-const programStats = [
-  { n: "4", label: "mesi" },
-  { n: "4", label: "call in totale" },
-  { n: "1", label: "call individuale con me" },
-  { n: "1", label: "call individuale con il mio team" },
-];
-
-const mentorshipStats = [
-  { n: "4", label: "mesi" },
-  { n: "20+", label: "call in totale" },
-  { n: "1", label: "call a settimana con il mio team" },
-  { n: "4", label: "call con me, una al mese" },
-];
 
 const programSteps: VersionStep[] = [
   {

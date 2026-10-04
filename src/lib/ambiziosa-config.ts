@@ -20,3 +20,19 @@ export const CTA_LABEL = "Candidati ora";
 
 // Riga piccola sotto l'etichetta del bottone grande, come il "sub" di CtaButton.
 export const CTA_SUB = "Ti rispondo entro 48 ore";
+
+// Numeri chiave delle due versioni di Ambiziosa, usati come badge nella
+// pagina di vendita e nella pagina delle registrazioni.
+export const PROGRAM_STATS = [
+  { n: "4", label: "mesi" },
+  { n: "4", label: "call in totale" },
+  { n: "1", label: "call individuale con me" },
+  { n: "1", label: "call individuale con il mio team" },
+];
+
+export const MENTORSHIP_STATS = [
+  { n: "4", label: "mesi" },
+  { n: "20+", label: "call in totale" },
+  { n: "1", label: "call a settimana con il mio team" },
+  { n: "4", label: "call con me, una al mese" },
+];
