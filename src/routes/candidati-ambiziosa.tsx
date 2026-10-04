@@ -740,18 +740,6 @@ const videoTestimonials = [
 // sono in pagina finché Carlotta non dà le risposte.
 const faqs: { q: string; a: React.ReactNode }[] = [
   {
-    q: "Come funziona la call conoscitiva?",
-    a: (
-      <>
-        Clicchi su uno dei pulsanti di candidatura e si apre un calendario:{" "}
-        <strong className="font-semibold text-foreground">
-          scegli il momento e prenoti una call con me e con il mio team
-        </strong>
-        . Nessun questionario da compilare.
-      </>
-    ),
-  },
-  {
     q: "Quando inizia Ambiziosa e quanto dura?",
     a: (
       <>
@@ -806,17 +794,6 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     ),
   },
   {
-    q: "E se non so bene chi sono?",
-    a: (
-      <>
-        È normale: è proprio da qui che si parte.{" "}
-        <strong className="font-semibold text-foreground">Non serve saperlo già.</strong> Nello step
-        sull'identità lavori in modo guidato su chi sei e cosa vuoi comunicare, con il confronto con
-        me per mettere a fuoco quello che è emerso.
-      </>
-    ),
-  },
-  {
     q: "Non so cosa comunicare: posso partire lo stesso?",
     a: (
       <>
@@ -825,19 +802,6 @@ const faqs: { q: string; a: React.ReactNode }[] = [
           il mio team costruisce la strategia sul tuo progetto
         </strong>
         , così puoi iniziare a pubblicare senza aspettare di aver finito la formazione.
-      </>
-    ),
-  },
-  {
-    q: "Sto già facendo altri corsi e non voglio un altro metodo da seguire.",
-    a: (
-      <>
-        Quello che hai già studiato resta valido: in Ambiziosa lo applichi finalmente a te. Ricevi
-        una strategia su misura,{" "}
-        <strong className="font-semibold text-foreground">
-          costruita dal mio team sul tuo progetto
-        </strong>
-        , e ti seguo con call dedicate durante i 4 mesi.
       </>
     ),
   },
@@ -886,19 +850,6 @@ const faqs: { q: string; a: React.ReactNode }[] = [
         </strong>
         , dal lunedì al giovedì dalle 10:00 alle 16:00, con risposta entro 24 ore. In più hai Notion
         con audio, esercizi e piano di lavoro, la community e il tuo GPT Alterego per i contenuti.
-      </>
-    ),
-  },
-  {
-    q: "Dopo i 4 mesi resto da sola?",
-    a: (
-      <>
-        Alla fine arrivi con{" "}
-        <strong className="font-semibold text-foreground">
-          una strategia completa che sai far evolvere da sola
-        </strong>
-        . Nella call finale con me e con il mio team guardiamo cosa è cambiato e definiamo la
-        direzione con cui continuare a lavorare in autonomia.
       </>
     ),
   },
