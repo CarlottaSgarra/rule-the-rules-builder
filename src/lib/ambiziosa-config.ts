@@ -6,6 +6,11 @@
 // stesso momento per tutti i visitatori, ovunque si trovino.
 export const APPLICATIONS_DEADLINE = "2026-10-16T23:59:59+02:00";
 
+// Le candidature si aprono alla fine della seconda serata di Rule The Rules
+// (martedì 6 ottobre, 19:30-20:30): fino a questo istante la pagina delle
+// registrazioni non mostra niente di Ambiziosa, poi tutto compare da solo.
+export const APPLICATIONS_OPEN_AT = "2026-10-06T20:30:00+02:00";
+
 // TODO: valorizzare quando Carlotta fornisce il link della lista d'attesa.
 export const WAITLIST_URL = "";
 

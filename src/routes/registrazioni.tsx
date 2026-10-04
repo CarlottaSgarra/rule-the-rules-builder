@@ -8,7 +8,12 @@ import { CtaButton } from "@/components/landing/CtaButton";
 import { Countdown } from "@/components/landing/Countdown";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { checkRegistrazioniToken, REGISTRAZIONI_TOKEN_KEY } from "@/lib/registrazioni-auth";
-import { APPLICATIONS_DEADLINE, MENTORSHIP_STATS, PROGRAM_STATS } from "@/lib/ambiziosa-config";
+import {
+  APPLICATIONS_DEADLINE,
+  APPLICATIONS_OPEN_AT,
+  MENTORSHIP_STATS,
+  PROGRAM_STATS,
+} from "@/lib/ambiziosa-config";
 import goldTexture from "@/assets/texture-gold.jpg";
 import togliIlCostumeImg from "@/assets/togli-il-costume.jpg";
 import licenziaLeRegoleImg from "@/assets/licenzia-le-regole.jpg";
@@ -18,6 +23,21 @@ import costruisciSistemaImg from "@/assets/costruisci-un-sistema-che-non-ti-coma
 // pagina di Ambiziosa si aprono nella finestra principale, non nell'iframe.
 const AMBIZIOSA_HREF = "/candidati-ambiziosa";
 const REGISTRAZIONI_DEADLINE = new Date(APPLICATIONS_DEADLINE).getTime();
+const AMBIZIOSA_OPEN_MS = new Date(APPLICATIONS_OPEN_AT).getTime();
+
+// true dall'apertura delle candidature in poi. Ricontrolla ogni 30 secondi,
+// così chi ha la pagina aperta vede comparire Ambiziosa senza ricaricare.
+function useAmbiziosaOpen() {
+  const [open, setOpen] = useState(() => Date.now() >= AMBIZIOSA_OPEN_MS);
+  useEffect(() => {
+    if (open) return;
+    const id = setInterval(() => {
+      if (Date.now() >= AMBIZIOSA_OPEN_MS) setOpen(true);
+    }, 30_000);
+    return () => clearInterval(id);
+  }, [open]);
+  return open;
+}
 
 const recordings = [
   {
@@ -92,7 +112,29 @@ function CandidatiButton({ className = "" }: { className?: string }) {
 
 // Topbar con le stesse ricette di SiteTopbar: in primo piano le candidature
 // ad Ambiziosa, in secondo piano il countdown delle registrazioni.
-function RegistrazioniTopbar() {
+function RegistrazioniTopbar({ ambiziosaOpen }: { ambiziosaOpen: boolean }) {
+  if (!ambiziosaOpen) {
+    return (
+      <div
+        className="sticky top-0 z-50 border-b border-border/60 backdrop-blur"
+        style={
+          {
+            backgroundColor: "color-mix(in oklab, var(--secondary) 95%, transparent)",
+            "--foreground": "var(--secondary-foreground)",
+            "--muted-foreground": "oklch(0.85 0.03 40)",
+          } as React.CSSProperties
+        }
+      >
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-center gap-1.5 px-4 py-2 sm:flex-row sm:gap-4 sm:px-5 lg:py-4">
+          <span className="font-condensed text-[10px] uppercase tracking-[0.15em] text-muted-foreground sm:text-xs">
+            Registrazioni disponibili ancora per
+          </span>
+          <Countdown compact target={REGISTRAZIONI_DEADLINE} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div
       className="sticky top-0 z-50 border-b border-border/60 backdrop-blur"
@@ -130,6 +172,7 @@ function RegistrazioniTopbar() {
 function Registrazioni() {
   const navigate = useNavigate();
   const [status, setStatus] = useState<"checking" | "granted" | "denied">("checking");
+  const ambiziosaOpen = useAmbiziosaOpen();
 
   useEffect(() => {
     let cancelled = false;
@@ -163,7 +206,7 @@ function Registrazioni() {
 
   return (
     <div className="bg-background">
-      <RegistrazioniTopbar />
+      <RegistrazioniTopbar ambiziosaOpen={ambiziosaOpen} />
 
       {/* Hero */}
       <header
@@ -245,161 +288,166 @@ function Registrazioni() {
         </div>
       </section>
 
-      {/* Il prossimo passo: Ambiziosa */}
-      <section className="bg-background">
-        <div className="mx-auto max-w-5xl px-5 py-20">
-          <Reveal>
-            <div className="flex flex-col items-center text-center">
-              <span
-                className="inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
-                style={{ backgroundImage: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
-              >
-                Il prossimo passo · Candidature aperte
-              </span>
-              <h2 className="mt-4 text-3xl text-foreground sm:text-4xl">
-                Sei <Highlight>Ambiziosa</Highlight> ma non vedi la luce su Instagram?
-              </h2>
-              <div className="mx-auto mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-foreground/85 sm:text-lg">
-                <p>
-                  Ho aperto le candidature ad{" "}
-                  <strong className="font-semibold text-foreground">Ambiziosa</strong>, il mio
-                  percorso esclusivo di 4 mesi che parte{" "}
-                  <strong className="font-semibold text-foreground">martedì 20 ottobre</strong>: io
-                  e il mio team lavoriamo con te sulla tua identità, la tua comunicazione, i tuoi
-                  contenuti e la tua strategia.
-                </p>
-                <p>
-                  Non è un corso registrato da guardare quando capita:{" "}
-                  <strong className="font-semibold text-foreground">
-                    dalle prime call mettiamo in pratica tutto sul tuo progetto
-                  </strong>
-                  , e ha già funzionato con centinaia di professioniste in settori completamente
-                  diversi.
-                </p>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <p className="mt-14 text-center font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
-              Nei 4 mesi lavoriamo in 4 step, sempre in questo ordine
-            </p>
-          </Reveal>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {ambiziosaPillars.map((p, i) => (
-              <Reveal key={p.title} delay={i * 60}>
-                <div className="flex h-full gap-3 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary">
-                  <Check className="mt-1 size-4 shrink-0 text-secondary" />
-                  <div>
-                    <p className="text-base font-semibold text-foreground">{p.title}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-foreground/85">{p.text}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal>
-            <h3 className="mt-16 text-center text-2xl font-semibold text-foreground sm:text-3xl">
-              Due versioni, <Highlight>stessi 4 mesi</Highlight> con me e il mio team
-            </h3>
-          </Reveal>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
+      {/* Il prossimo passo: Ambiziosa (visibile dall'apertura delle candidature) */}
+      {ambiziosaOpen ? (
+        <section className="bg-background">
+          <div className="mx-auto max-w-5xl px-5 py-20">
             <Reveal>
-              <div className="flex h-full flex-col rounded-2xl border border-border/70 bg-card/50 p-6 sm:p-8">
-                <p className="font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
-                  Le call nei momenti chiave
-                </p>
-                <p className="mt-2 font-display text-2xl text-foreground sm:text-3xl">
-                  Ambiziosa Program
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {PROGRAM_STATS.map((s) => (
-                    <span
-                      key={s.label}
-                      className="inline-flex items-baseline gap-1.5 rounded-full border border-border/70 bg-background px-3 py-1.5 text-xs text-foreground/85 sm:text-sm"
-                    >
-                      <span className="font-display text-lg leading-none text-secondary">
-                        {s.n}
-                      </span>
-                      {s.label}
-                    </span>
-                  ))}
-                </div>
-                <p className="mt-5 text-sm leading-relaxed text-foreground/85 sm:text-base">
-                  Il metodo Ambiziosa con le call nei momenti chiave:{" "}
-                  <strong className="font-semibold text-foreground">
-                    definisci la tua identità e ricevi una strategia di comunicazione costruita sul
-                    tuo progetto
-                  </strong>
-                  .
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={80}>
-              <div className="ticket-border-glow relative h-full rounded-[1.75rem]">
-                <div
-                  className="surface-cream flex h-full flex-col p-6 sm:p-8"
+              <div className="flex flex-col items-center text-center">
+                <span
+                  className="inline-block rounded-full px-4 py-1.5 font-condensed text-[10px] uppercase tracking-[0.2em] text-primary-foreground sm:text-xs"
                   style={{
-                    borderRadius: "1.75rem",
-                    border: "2px solid var(--primary)",
+                    backgroundImage: "var(--gradient-gold)",
                     boxShadow: "var(--shadow-gold)",
                   }}
                 >
-                  <p className="font-condensed text-xs uppercase tracking-[0.2em] text-primary">
-                    Accompagnamento continuo per 4 mesi
+                  Il prossimo passo · Candidature aperte
+                </span>
+                <h2 className="mt-4 text-3xl text-foreground sm:text-4xl">
+                  Sei <Highlight>Ambiziosa</Highlight> ma non vedi la luce su Instagram?
+                </h2>
+                <div className="mx-auto mt-6 max-w-3xl space-y-4 text-base leading-relaxed text-foreground/85 sm:text-lg">
+                  <p>
+                    Ho aperto le candidature ad{" "}
+                    <strong className="font-semibold text-foreground">Ambiziosa</strong>, il mio
+                    percorso esclusivo di 4 mesi che parte{" "}
+                    <strong className="font-semibold text-foreground">martedì 20 ottobre</strong>:
+                    io e il mio team lavoriamo con te sulla tua identità, la tua comunicazione, i
+                    tuoi contenuti e la tua strategia.
                   </p>
-                  <p className="mt-2 font-display text-2xl text-ink sm:text-3xl">
-                    Ambiziosa Mentorship
+                  <p>
+                    Non è un corso registrato da guardare quando capita:{" "}
+                    <strong className="font-semibold text-foreground">
+                      dalle prime call mettiamo in pratica tutto sul tuo progetto
+                    </strong>
+                    , e ha già funzionato con centinaia di professioniste in settori completamente
+                    diversi.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <p className="mt-14 text-center font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
+                Nei 4 mesi lavoriamo in 4 step, sempre in questo ordine
+              </p>
+            </Reveal>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              {ambiziosaPillars.map((p, i) => (
+                <Reveal key={p.title} delay={i * 60}>
+                  <div className="flex h-full gap-3 rounded-xl border border-border/70 bg-card/50 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-secondary">
+                    <Check className="mt-1 size-4 shrink-0 text-secondary" />
+                    <div>
+                      <p className="text-base font-semibold text-foreground">{p.title}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-foreground/85">{p.text}</p>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+
+            <Reveal>
+              <h3 className="mt-16 text-center text-2xl font-semibold text-foreground sm:text-3xl">
+                Due versioni, <Highlight>stessi 4 mesi</Highlight> con me e il mio team
+              </h3>
+            </Reveal>
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              <Reveal>
+                <div className="flex h-full flex-col rounded-2xl border border-border/70 bg-card/50 p-6 sm:p-8">
+                  <p className="font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
+                    Le call nei momenti chiave
+                  </p>
+                  <p className="mt-2 font-display text-2xl text-foreground sm:text-3xl">
+                    Ambiziosa Program
                   </p>
                   <div className="mt-5 flex flex-wrap gap-2">
-                    {MENTORSHIP_STATS.map((s) => (
+                    {PROGRAM_STATS.map((s) => (
                       <span
                         key={s.label}
-                        className="inline-flex items-baseline gap-1.5 rounded-full px-3 py-1.5 text-xs text-primary-foreground sm:text-sm"
-                        style={{
-                          backgroundImage: "var(--gradient-gold)",
-                          boxShadow: "var(--shadow-gold)",
-                        }}
+                        className="inline-flex items-baseline gap-1.5 rounded-full border border-border/70 bg-background px-3 py-1.5 text-xs text-foreground/85 sm:text-sm"
                       >
-                        <span className="font-display text-lg font-bold leading-none">{s.n}</span>
+                        <span className="font-display text-lg leading-none text-secondary">
+                          {s.n}
+                        </span>
                         {s.label}
                       </span>
                     ))}
                   </div>
-                  <p className="mt-5 text-sm leading-relaxed text-ink-muted sm:text-base">
-                    Tutto il Program con in più{" "}
-                    <strong className="font-semibold text-ink">
-                      un accompagnamento continuo per tutti i 4 mesi
+                  <p className="mt-5 text-sm leading-relaxed text-foreground/85 sm:text-base">
+                    Il metodo Ambiziosa con le call nei momenti chiave:{" "}
+                    <strong className="font-semibold text-foreground">
+                      definisci la tua identità e ricevi una strategia di comunicazione costruita
+                      sul tuo progetto
                     </strong>
-                    : una call a settimana con il mio team e una al mese con me.
+                    .
                   </p>
+                </div>
+              </Reveal>
+              <Reveal delay={80}>
+                <div className="ticket-border-glow relative h-full rounded-[1.75rem]">
+                  <div
+                    className="surface-cream flex h-full flex-col p-6 sm:p-8"
+                    style={{
+                      borderRadius: "1.75rem",
+                      border: "2px solid var(--primary)",
+                      boxShadow: "var(--shadow-gold)",
+                    }}
+                  >
+                    <p className="font-condensed text-xs uppercase tracking-[0.2em] text-primary">
+                      Accompagnamento continuo per 4 mesi
+                    </p>
+                    <p className="mt-2 font-display text-2xl text-ink sm:text-3xl">
+                      Ambiziosa Mentorship
+                    </p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {MENTORSHIP_STATS.map((s) => (
+                        <span
+                          key={s.label}
+                          className="inline-flex items-baseline gap-1.5 rounded-full px-3 py-1.5 text-xs text-primary-foreground sm:text-sm"
+                          style={{
+                            backgroundImage: "var(--gradient-gold)",
+                            boxShadow: "var(--shadow-gold)",
+                          }}
+                        >
+                          <span className="font-display text-lg font-bold leading-none">{s.n}</span>
+                          {s.label}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="mt-5 text-sm leading-relaxed text-ink-muted sm:text-base">
+                      Tutto il Program con in più{" "}
+                      <strong className="font-semibold text-ink">
+                        un accompagnamento continuo per tutti i 4 mesi
+                      </strong>
+                      : una call a settimana con il mio team e una al mese con me.
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal>
+              <div className="mt-14 flex flex-col items-center text-center">
+                <p className="max-w-2xl text-base leading-relaxed text-foreground/85 sm:text-lg">
+                  In entrambi i casi arrivi alla fine dei 4 mesi con{" "}
+                  <strong className="font-semibold text-foreground">
+                    una strategia completa che hai già messo in pratica
+                  </strong>{" "}
+                  e sai come farla evolvere da sola.
+                </p>
+                <div className="mt-8 flex w-full justify-center">
+                  <CtaButton
+                    label="Candidati ad Ambiziosa"
+                    sub="Le candidature chiudono venerdì 16 ottobre"
+                    href={AMBIZIOSA_HREF}
+                    target="_top"
+                  />
                 </div>
               </div>
             </Reveal>
           </div>
-
-          <Reveal>
-            <div className="mt-14 flex flex-col items-center text-center">
-              <p className="max-w-2xl text-base leading-relaxed text-foreground/85 sm:text-lg">
-                In entrambi i casi arrivi alla fine dei 4 mesi con{" "}
-                <strong className="font-semibold text-foreground">
-                  una strategia completa che hai già messo in pratica
-                </strong>{" "}
-                e sai come farla evolvere da sola.
-              </p>
-              <div className="mt-8 flex w-full justify-center">
-                <CtaButton
-                  label="Candidati ad Ambiziosa"
-                  sub="Le candidature chiudono venerdì 16 ottobre"
-                  href={AMBIZIOSA_HREF}
-                  target="_top"
-                />
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <SiteFooter showRefundGuarantee={false} />
     </div>
