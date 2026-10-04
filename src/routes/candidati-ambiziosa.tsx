@@ -41,7 +41,23 @@ import carlottaLookingImg from "@/assets/carlotta-looking-2.jpg";
 import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
 import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
 import carlottaLeftImg from "@/assets/Carlotta bianco e nerco che guarda a sinistra.jpg";
-import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
+import winScreenshot1Img from "@/assets/screenshot 1.jpg";
+import winScreenshot2Img from "@/assets/screenshot 2.png";
+import winScreenshot3Img from "@/assets/screenshot 3.png";
+import winScreenshot4Img from "@/assets/screenshot 4.jpg";
+import winScreenshot5Img from "@/assets/screenshot 5.jpg";
+import winScreenshot6Img from "@/assets/screenshot 6.png";
+import winScreenshot7Img from "@/assets/screenshot 7.png";
+import winScreenshot9Img from "@/assets/screenshot 9.jpg";
+import winScreenshot10Img from "@/assets/screenshot 10.png";
+import winScreenshot12Img from "@/assets/screenshot 12.png";
+import winScreenshot13Img from "@/assets/screenshot 13.png";
+import winScreenshot15Img from "@/assets/screenshot 15.png";
+import winScreenshot16Img from "@/assets/screenshot 16.png";
+import winScreenshot18Img from "@/assets/screenshot 18.png";
+import winScreenshot19Img from "@/assets/screenshot 19.png";
+import winScreenshot116Img from "@/assets/screenshot 116.png";
+import winScreenshot117Img from "@/assets/screenshot 117.png";
 import carlottaAlLavoroImg from "@/assets/method-bg.jpg";
 import hoCreatoUnaziendaImg from "@/assets/ho-creato-unazienda-identita-riconoscibile.jpg";
 import elenaRosaImg from "@/assets/elena-rosa.jpg";
@@ -801,6 +817,33 @@ const forWhoCards = [
       "Consulente di web marketing",
     ],
   },
+];
+
+// Screenshot dei messaggi "wins" delle clienti, divisi in due colonne che
+// scorrono in direzioni opposte nella sezione "Quello che succede dopo
+// Ambiziosa". w/h servono a riservare lo spazio prima del caricamento.
+const WIN_SCREENSHOTS = [
+  { src: winScreenshot1Img, w: 1178, h: 1350 },
+  { src: winScreenshot2Img, w: 662, h: 914 },
+  { src: winScreenshot3Img, w: 606, h: 312 },
+  { src: winScreenshot4Img, w: 1179, h: 803 },
+  { src: winScreenshot5Img, w: 1179, h: 1510 },
+  { src: winScreenshot6Img, w: 692, h: 732 },
+  { src: winScreenshot7Img, w: 708, h: 432 },
+  { src: winScreenshot9Img, w: 1179, h: 652 },
+  { src: winScreenshot10Img, w: 990, h: 558 },
+  { src: winScreenshot12Img, w: 1158, h: 320 },
+  { src: winScreenshot13Img, w: 786, h: 336 },
+  { src: winScreenshot15Img, w: 920, h: 416 },
+  { src: winScreenshot16Img, w: 592, h: 730 },
+  { src: winScreenshot18Img, w: 1420, h: 300 },
+  { src: winScreenshot19Img, w: 638, h: 752 },
+  { src: winScreenshot116Img, w: 898, h: 374 },
+  { src: winScreenshot117Img, w: 742, h: 338 },
+];
+const WIN_COLUMNS = [
+  WIN_SCREENSHOTS.filter((_, i) => i % 2 === 0),
+  WIN_SCREENSHOTS.filter((_, i) => i % 2 === 1),
 ];
 
 // Le frasette di valore sotto il titolo dell'hero.
@@ -1665,7 +1708,7 @@ function CandidaturaAmbiziosa() {
 
       {/* 3c. Quello che succede dopo Ambiziosa: giornata tipo a riquadri */}
       <section className="bg-background">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 lg:grid-cols-2">
           <div>
             <Reveal>
               <h2 className="text-3xl text-foreground sm:text-4xl">
@@ -1717,13 +1760,41 @@ function CandidaturaAmbiziosa() {
             </p>
           </div>
 
-          <div className="aspect-[4/5] overflow-hidden rounded-2xl lg:sticky lg:top-24">
-            <img
-              src={carlottaTalkingImg}
-              alt="Carlotta Sgarra"
-              loading="lazy"
-              className="h-full w-full object-cover"
-              style={{ objectPosition: "58% 35%" }}
+          <div className="relative h-[36rem] overflow-hidden lg:h-auto">
+            <div className="absolute inset-0 grid grid-cols-2 gap-3 sm:gap-4">
+              {WIN_COLUMNS.map((col, ci) => (
+                <div key={ci} className="overflow-hidden">
+                  <div
+                    className={`flex flex-col gap-3 hover:[animation-play-state:paused] sm:gap-4 ${
+                      ci === 0 ? "animate-marquee-up" : "animate-marquee-down"
+                    }`}
+                    style={{ animationDuration: `${ci === 0 ? 70 : 80}s` }}
+                  >
+                    {[...col, ...col].map((shot, ii) => (
+                      <img
+                        key={ii}
+                        src={shot.src}
+                        width={shot.w}
+                        height={shot.h}
+                        alt={ii < col.length ? "Messaggio di una cliente di Carlotta" : ""}
+                        aria-hidden={ii >= col.length || undefined}
+                        loading="lazy"
+                        className="h-auto w-full rounded-xl bg-white shadow-[0_20px_45px_-25px_rgba(0,0,0,0.45)] ring-1 ring-black/5"
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div
+              className="pointer-events-none absolute inset-x-0 top-0 h-28 sm:h-36"
+              style={{ backgroundImage: "linear-gradient(180deg, var(--background), transparent)" }}
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute inset-x-0 bottom-0 h-28 sm:h-36"
+              style={{ backgroundImage: "linear-gradient(0deg, var(--background), transparent)" }}
+              aria-hidden
             />
           </div>
         </div>
