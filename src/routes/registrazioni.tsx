@@ -9,6 +9,8 @@ import { Countdown } from "@/components/landing/Countdown";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { checkRegistrazioniToken, REGISTRAZIONI_TOKEN_KEY } from "@/lib/registrazioni-auth";
 import {
+  CTA_SUB,
+  MAX_SEATS,
   PRICE_LOCK_DEADLINE,
   APPLICATIONS_OPEN_AT,
   MENTORSHIP_STATS,
@@ -303,7 +305,7 @@ function Registrazioni() {
                     boxShadow: "var(--shadow-gold)",
                   }}
                 >
-                  Il prossimo passo · Candidature aperte
+                  Il prossimo passo · Candidature aperte · {MAX_SEATS} posti
                 </span>
                 <h2 className="mt-4 text-3xl text-foreground sm:text-4xl">
                   Sei <Highlight>Ambiziosa</Highlight> ma non vedi la luce su Instagram?
@@ -324,6 +326,12 @@ function Registrazioni() {
                     </strong>
                     , e ha già funzionato con centinaia di professioniste in settori completamente
                     diversi.
+                  </p>
+                  <p>
+                    <strong className="font-semibold text-foreground">
+                      I posti sono {MAX_SEATS} in tutto
+                    </strong>{" "}
+                    e i prezzi di oggi restano bloccati fino al 16 ottobre: dopo salgono.
                   </p>
                 </div>
               </div>
@@ -440,7 +448,7 @@ function Registrazioni() {
                 <div className="mt-8 flex w-full justify-center">
                   <CtaButton
                     label="Candidati ad Ambiziosa"
-                    sub="Prezzo bloccato fino al 16 ottobre"
+                    sub={CTA_SUB}
                     href={AMBIZIOSA_HREF}
                     target="_top"
                   />
