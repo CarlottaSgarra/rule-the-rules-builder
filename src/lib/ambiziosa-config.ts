@@ -24,7 +24,7 @@ export const HERO_VIDEO_URL = "";
 export const CTA_LABEL = "Candidati ora";
 
 // Riga piccola sotto l'etichetta del bottone grande, come il "sub" di CtaButton.
-export const CTA_SUB = "Ti rispondo entro 48 ore";
+export const CTA_SUB = "Le candidature chiudono venerdì 16 ottobre";
 
 // Numeri chiave delle due versioni di Ambiziosa, usati come badge nella
 // pagina di vendita e nella pagina delle registrazioni.

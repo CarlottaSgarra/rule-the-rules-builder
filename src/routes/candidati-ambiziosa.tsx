@@ -93,7 +93,6 @@ import client5Img from "@/assets/client-5.png";
 // ---------------------------------------------------------------------------
 const ANCHOR = "#candidatura";
 const CTA_LABEL = "Voglio candidarmi ad Ambiziosa";
-const REASSURANCE = "Ti rispondo entro 48 ore.";
 
 // Testo del box CTA ricorrente (CtaBox): stesso identico testo in ogni
 // sezione che lo richiama, come da indicazione esplicita. `dark` sceglie la
