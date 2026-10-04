@@ -42,14 +42,14 @@ export const CTA_SUB = "Le candidature chiudono venerdì 16 ottobre";
 // pagina di vendita e nella pagina delle registrazioni.
 export const PROGRAM_STATS = [
   { n: "4", label: "mesi" },
-  { n: "4", label: "call in totale" },
+  { n: "5", label: "call in totale" },
   { n: "1", label: "call individuale con me" },
   { n: "1", label: "call individuale con il mio team" },
 ];
 
 export const MENTORSHIP_STATS = [
   { n: "4", label: "mesi" },
-  { n: "20+", label: "call in totale" },
+  { n: "22", label: "call in totale" },
   { n: "1", label: "call a settimana con il mio team" },
   { n: "4", label: "call con me, una al mese" },
 ];
