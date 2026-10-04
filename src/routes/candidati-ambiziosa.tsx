@@ -792,11 +792,11 @@ const forWhoCards = [
     n: "04",
     role: "Social media manager",
     story: {
-      name: "Sharon Convertino",
-      role: "social media manager",
-      photo: sharonConvertinoImg,
-      from: "burnout e clienti tossici",
-      to: "scegliere lei i propri clienti",
+      name: "Mariella Tauriello",
+      role: "Instagram e visual coach",
+      photo: mariannaTaurielloImg,
+      from: "sentirsi sopraffatta da troppe idee",
+      to: "fare sold out con il suo programma",
     },
     paragraphs: [
       <>
