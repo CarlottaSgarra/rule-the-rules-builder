@@ -1,18 +1,20 @@
 // Costanti condivise della pagina /candidati-ambiziosa. Unica fonte di
-// verità per scadenza candidature, link esterni ancora da fornire e il
+// verità per data del prezzo bloccato, posti, link esterni ancora da fornire e il
 // copy del bottone "Candidati ora" (identico in tutta la pagina).
 
-// Istante assoluto di chiusura delle candidature, con fuso orario: è lo
-// stesso momento per tutti i visitatori, ovunque si trovino.
-export const APPLICATIONS_DEADLINE = "2026-10-16T23:59:59+02:00";
+// Fino a questo istante i prezzi di Program e Mentorship sono bloccati, poi
+// salgono. Le candidature invece restano aperte anche dopo. Con fuso orario:
+// è lo stesso momento per tutti i visitatori, ovunque si trovino.
+export const PRICE_LOCK_DEADLINE = "2026-10-16T23:59:59+02:00";
+
+// Posti disponibili in tutto: una call a settimana per ogni cliente, più di
+// nove non si riescono a seguire come si deve.
+export const MAX_SEATS = 9;
 
 // Le candidature si aprono alla fine della seconda serata di Rule The Rules
 // (martedì 6 ottobre, 19:30-20:30): fino a questo istante la pagina delle
 // registrazioni non mostra niente di Ambiziosa, poi tutto compare da solo.
 export const APPLICATIONS_OPEN_AT = "2026-10-06T20:30:00+02:00";
-
-// TODO: valorizzare quando Carlotta fornisce il link della lista d'attesa.
-export const WAITLIST_URL = "";
 
 // TODO: valorizzare con il link a cui porta il pulsante di candidatura
 // (es. il calendario per prenotare la call conoscitiva). Finché è vuoto, i
@@ -43,7 +45,7 @@ export const HERO_VIDEO_URL = "";
 export const CTA_LABEL = "Candidati ora";
 
 // Riga piccola sotto l'etichetta del bottone grande, come il "sub" di CtaButton.
-export const CTA_SUB = "Le candidature chiudono venerdì 16 ottobre";
+export const CTA_SUB = "Prezzo bloccato fino al 16 ottobre";
 
 // Numeri chiave delle due versioni di Ambiziosa, usati come badge nella
 // pagina di vendita e nella pagina delle registrazioni.

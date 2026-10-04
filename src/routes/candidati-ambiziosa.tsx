@@ -33,12 +33,13 @@ import { AmbiziosaHeroVideo } from "@/components/landing/AmbiziosaHeroVideo";
 import { ProfileBeforeAfter, ResultsCards } from "@/components/landing/AmbiziosaProofCards";
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
 import {
-  APPLICATIONS_DEADLINE,
+  PRICE_LOCK_DEADLINE,
   MENTORSHIP_PRICE,
   MENTORSHIP_STATS as mentorshipStats,
   PROGRAM_PRICE,
   PROGRAM_STATS as programStats,
   INSTALLMENT_MONTHS,
+  MAX_SEATS,
   UPGRADE_DIFFERENCE,
   WHATSAPP_URL,
 } from "@/lib/ambiziosa-config";
@@ -99,7 +100,7 @@ import client5Img from "@/assets/client-5.png";
 // Microcopy condiviso — l'hero (sezione 2) e ogni box CTA ricorrente
 // (sezione 5) devono usare esattamente questo stesso testo, senza varianti.
 // ---------------------------------------------------------------------------
-const APPLICATIONS_DEADLINE_MS = new Date(APPLICATIONS_DEADLINE).getTime();
+const PRICE_LOCK_MS = new Date(PRICE_LOCK_DEADLINE).getTime();
 const CTA_LABEL = "Voglio candidarmi ad Ambiziosa";
 
 // Testo del box CTA ricorrente (CtaBox): stesso identico testo in ogni
@@ -750,8 +751,8 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     a: (
       <>
         Si parte <strong className="font-semibold text-foreground">martedì 20 ottobre</strong> e il
-        percorso dura 4 mesi, quindi si arriva a febbraio. Le candidature chiudono a mezzanotte di
-        venerdì 16 ottobre: così hai qualche giorno per prepararti e iniziare lucida.
+        percorso dura 4 mesi, quindi si arriva a febbraio. I posti sono {MAX_SEATS} in tutto e i
+        prezzi di oggi restano bloccati fino al 16 ottobre.
       </>
     ),
   },
@@ -884,15 +885,24 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     ),
   },
   {
+    q: "Perché i posti sono solo 9?",
+    a: (
+      <>
+        Perché ogni cliente ha una call a settimana:{" "}
+        <strong className="font-semibold text-foreground">
+          più di nove non riusciamo a seguirne come vogliamo
+        </strong>
+        . Quando i {MAX_SEATS} posti sono occupati, non ne apriamo altri.
+      </>
+    ),
+  },
+  {
     q: "Cosa succede dopo il 16 ottobre?",
     a: (
       <>
-        Il calendario per prenotare la call conoscitiva{" "}
-        <strong className="font-semibold text-foreground">
-          si chiude a mezzanotte del 16 ottobre
-        </strong>
-        . Le call già prenotate si fanno anche dopo. La pagina resta online con l'iscrizione alla
-        lista d'attesa per la prossima riapertura.
+        <strong className="font-semibold text-foreground">I prezzi salgono.</strong> Fino al 16
+        ottobre Ambiziosa Program resta bloccato a {PROGRAM_PRICE} e Ambiziosa Mentorship a{" "}
+        {MENTORSHIP_PRICE}.
       </>
     ),
   },
@@ -1051,6 +1061,7 @@ const heroValuePoints = [
   { icon: Sparkles, text: "Percorso esclusivo di 4 mesi" },
   { icon: CalendarDays, text: "Inizia martedì 20 ottobre" },
   { icon: Users, text: "Lavori con me e Sharon" },
+  { icon: Star, text: `Solo ${MAX_SEATS} posti in tutto` },
 ];
 
 // I 4 step del percorso, costruiti come le "3 serate" di Rule The Rules:
@@ -3199,9 +3210,9 @@ function CandidaturaAmbiziosa() {
                 }
               >
                 <span className="font-condensed text-[10px] uppercase tracking-[0.15em] text-muted-foreground sm:text-xs">
-                  Le candidature chiudono tra
+                  Il prezzo resta bloccato ancora per
                 </span>
-                <Countdown compact target={APPLICATIONS_DEADLINE_MS} />
+                <Countdown compact target={PRICE_LOCK_MS} />
               </div>
             </div>
           </Reveal>
@@ -3338,7 +3349,7 @@ function CandidaturaAmbiziosa() {
             </Reveal>
           </div>
 
-          {/* Dubbi prima di prenotare + scadenza vera: foto di Carlotta e Sharon
+          {/* Dubbi prima di prenotare + perché adesso (posti e prezzo bloccato): foto di Carlotta e Sharon
               a sinistra, testo a destra, largo quanto le card dei prezzi */}
           <Reveal>
             <div className="mt-16 grid gap-6 rounded-[1.75rem] border border-secondary/40 bg-transparent p-6 sm:p-8 lg:grid-cols-[minmax(0,0.3fr)_minmax(0,1fr)] lg:gap-10 lg:p-10">
@@ -3400,18 +3411,45 @@ function CandidaturaAmbiziosa() {
                   style={{ borderColor: "color-mix(in oklab, var(--secondary) 20%, transparent)" }}
                 >
                   <h3 className="text-2xl text-foreground sm:text-3xl">
-                    Le candidature chiudono <Highlight>a mezzanotte del 16 ottobre</Highlight>.
+                    Perché <Highlight>adesso</Highlight>
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
-                    <strong className="font-semibold text-foreground">
-                      Questa scadenza è vera.
-                    </strong>{" "}
-                    Dopo la mezzanotte del 16 ottobre il calendario per prenotare la call
-                    conoscitiva si chiude e non ci si può più prenotare.{" "}
-                    <strong className="font-semibold text-foreground">
-                      Le call già prenotate si fanno anche dopo.
-                    </strong>
-                  </p>
+                  <div className="mt-6 grid gap-6 sm:grid-cols-2 sm:gap-8">
+                    <div>
+                      <p className="flex items-end gap-3">
+                        <span className="font-display text-6xl leading-[0.8] text-secondary">
+                          {MAX_SEATS}
+                        </span>
+                        <span className="font-condensed text-sm uppercase leading-tight tracking-[0.15em] text-foreground">
+                          Posti
+                          <br />
+                          in tutto
+                        </span>
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
+                        Una call a settimana per ogni cliente:{" "}
+                        <strong className="font-semibold text-foreground">
+                          più di nove non riusciamo a seguirne come vogliamo
+                        </strong>
+                        .
+                      </p>
+                    </div>
+                    <div>
+                      <p className="flex items-end gap-3">
+                        <span className="font-display text-6xl leading-[0.8] text-secondary">
+                          16
+                        </span>
+                        <span className="font-condensed text-sm uppercase leading-tight tracking-[0.15em] text-foreground">
+                          Ottobre
+                          <br />
+                          prezzo bloccato
+                        </span>
+                      </p>
+                      <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
+                        Questi prezzi valgono fino al 16 ottobre.{" "}
+                        <strong className="font-semibold text-foreground">Poi salgono.</strong>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

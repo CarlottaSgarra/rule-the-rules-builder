@@ -9,7 +9,7 @@ import { Countdown } from "@/components/landing/Countdown";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { checkRegistrazioniToken, REGISTRAZIONI_TOKEN_KEY } from "@/lib/registrazioni-auth";
 import {
-  APPLICATIONS_DEADLINE,
+  PRICE_LOCK_DEADLINE,
   APPLICATIONS_OPEN_AT,
   MENTORSHIP_STATS,
   PROGRAM_STATS,
@@ -22,7 +22,9 @@ import costruisciSistemaImg from "@/assets/costruisci-un-sistema-che-non-ti-coma
 // La pagina può essere incorporata in un iframe (systeme.io): i link verso la
 // pagina di Ambiziosa si aprono nella finestra principale, non nell'iframe.
 const AMBIZIOSA_HREF = "/candidati-ambiziosa";
-const REGISTRAZIONI_DEADLINE = new Date(APPLICATIONS_DEADLINE).getTime();
+// Le registrazioni restano disponibili fino al 16 ottobre, lo stesso giorno in
+// cui scade il prezzo bloccato di Ambiziosa.
+const REGISTRAZIONI_DEADLINE = new Date(PRICE_LOCK_DEADLINE).getTime();
 const AMBIZIOSA_OPEN_MS = new Date(APPLICATIONS_OPEN_AT).getTime();
 
 // true dall'apertura delle candidature in poi. Ricontrolla ogni 30 secondi,
@@ -438,7 +440,7 @@ function Registrazioni() {
                 <div className="mt-8 flex w-full justify-center">
                   <CtaButton
                     label="Candidati ad Ambiziosa"
-                    sub="Le candidature chiudono venerdì 16 ottobre"
+                    sub="Prezzo bloccato fino al 16 ottobre"
                     href={AMBIZIOSA_HREF}
                     target="_top"
                   />

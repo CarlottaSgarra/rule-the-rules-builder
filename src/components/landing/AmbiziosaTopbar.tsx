@@ -2,18 +2,9 @@ import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { AmbiziosaCtaButton } from "@/components/landing/AmbiziosaCtaButton";
 import { Countdown } from "@/components/landing/Countdown";
-import { APPLICATIONS_DEADLINE, WAITLIST_URL } from "@/lib/ambiziosa-config";
+import { MAX_SEATS, PRICE_LOCK_DEADLINE } from "@/lib/ambiziosa-config";
 
-const DEADLINE_MS = new Date(APPLICATIONS_DEADLINE).getTime();
-
-// Domini di produzione: altrove (preview Vercel, dominio locale, ecc.) il
-// parametro di debug ?stato= resta attivo. Controllo puramente lato client,
-// nessuna variabile d'ambiente/config di build coinvolta.
-const PRODUCTION_HOSTNAMES = ["rule-the-rules.vercel.app", "rules.carlottasgarra.it"];
-
-function isProductionHost() {
-  return PRODUCTION_HOSTNAMES.includes(window.location.hostname);
-}
+const PRICE_LOCK_MS = new Date(PRICE_LOCK_DEADLINE).getTime();
 
 const MENU_ITEMS = [
   { id: "programma", label: "Il programma" },
@@ -34,46 +25,32 @@ function handleAnchorClick(id: string) {
   };
 }
 
-function Badge({ isClosed }: { isClosed: boolean }) {
+function Badge() {
   return (
     <span
       className="inline-flex min-w-0 items-center rounded-full px-3 py-1 font-condensed text-[10px] uppercase leading-tight tracking-[0.15em] text-primary-foreground sm:text-xs lg:shrink-0"
       style={{ backgroundImage: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
     >
-      {isClosed ? "Iscriviti alla lista d'attesa per la prossima riapertura" : "Candidature aperte"}
+      {/* Su desktop la riga ospita anche countdown, menu e bottone: lì il badge si
+          accorcia a "Solo 9 posti" per non far scorrere la pagina in orizzontale. */}
+      <span className="lg:hidden">Candidature aperte · </span>
+      <span className="hidden lg:inline">Solo </span>
+      {MAX_SEATS} posti
     </span>
   );
 }
 
-function WaitlistButton({ className = "" }: { className?: string }) {
-  // TODO: valorizzare WAITLIST_URL in src/lib/ambiziosa-config.ts quando
-  // Carlotta fornisce il link della lista d'attesa.
-  const hasUrl = Boolean(WAITLIST_URL);
-  return (
-    <a
-      href={hasUrl ? WAITLIST_URL : "#"}
-      target={hasUrl ? "_blank" : undefined}
-      rel={hasUrl ? "noopener" : undefined}
-      onClick={(e) => {
-        if (!hasUrl) e.preventDefault();
-      }}
-      className={`min-w-0 shrink-0 rounded-md px-2 py-1.5 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.03em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.12em] ${className}`}
-      style={{ backgroundImage: "var(--gradient-gold)", color: "var(--primary-foreground)" }}
-    >
-      Iscriviti
-    </a>
-  );
-}
-
-function DeadlineCountdown({ labelClassName = "hidden sm:inline" }: { labelClassName?: string }) {
+// Countdown al 16 ottobre, quando i prezzi salgono. Le candidature restano
+// aperte anche dopo: passata la data il countdown semplicemente sparisce.
+function PriceCountdown({ labelClassName = "hidden sm:inline" }: { labelClassName?: string }) {
   return (
     <div className="flex items-center gap-1 sm:gap-x-4">
       <span
         className={`font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground ${labelClassName}`}
       >
-        Chiudono tra
+        Prezzo bloccato per
       </span>
-      <Countdown compact target={DEADLINE_MS} />
+      <Countdown compact target={PRICE_LOCK_MS} />
     </div>
   );
 }
@@ -137,31 +114,18 @@ function CompressedMenu() {
 export function AmbiziosaTopbar() {
   const [mounted, setMounted] = useState(false);
   const [remainingMs, setRemainingMs] = useState(0);
-  const [forcedState, setForcedState] = useState<"aperto" | "chiuso" | null>(null);
 
   useEffect(() => {
     setMounted(true);
-
-    // Permette di forzare lo stato con ?stato=aperto / ?stato=chiuso, solo
-    // fuori produzione, per poter verificare lo stato "chiuso" in anteprima
-    // senza aspettare il 16 ottobre.
-    if (!isProductionHost()) {
-      const params = new URLSearchParams(window.location.search);
-      const stato = params.get("stato");
-      if (stato === "aperto" || stato === "chiuso") setForcedState(stato);
-    }
-
-    const tick = () => setRemainingMs(DEADLINE_MS - Date.now());
+    const tick = () => setRemainingMs(PRICE_LOCK_MS - Date.now());
     tick();
     const interval = setInterval(tick, 1000);
     return () => clearInterval(interval);
   }, []);
 
-  // Prima del montaggio mostra sempre lo stato "aperto": stesso output lato
-  // server e lato client, nessun mismatch di hydration. Lo stato reale
-  // (compreso "chiuso" per chi apre la pagina dopo la scadenza) viene deciso
-  // subito dopo, al primo effetto.
-  const isClosed = mounted && (forcedState ? forcedState === "chiuso" : remainingMs <= 0);
+  // Prima del montaggio il countdown c'è sempre: stesso output lato server e
+  // lato client, nessun mismatch di hydration.
+  const priceLocked = !mounted || remainingMs > 0;
 
   return (
     <header
@@ -178,42 +142,30 @@ export function AmbiziosaTopbar() {
         {/* Desktop (da 1024px): una sola riga */}
         <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-4 lg:py-4">
           <div className="flex shrink-0 items-center gap-4">
-            <Badge isClosed={isClosed} />
-            {!isClosed ? <DeadlineCountdown labelClassName="hidden 2xl:inline" /> : null}
+            <Badge />
+            {priceLocked ? <PriceCountdown labelClassName="hidden 2xl:inline" /> : null}
           </div>
-          {!isClosed ? (
-            <div className="hidden xl:block">
-              <DesktopMenu />
-            </div>
-          ) : (
-            <span />
-          )}
+          <div className="hidden xl:block">
+            <DesktopMenu />
+          </div>
           <div className="flex shrink-0 items-center gap-2">
-            {!isClosed ? (
-              <div className="xl:hidden">
-                <CompressedMenu />
-              </div>
-            ) : null}
-            {isClosed ? <WaitlistButton /> : <AmbiziosaCtaButton variant="topbar" />}
+            <div className="xl:hidden">
+              <CompressedMenu />
+            </div>
+            <AmbiziosaCtaButton variant="topbar" />
           </div>
         </div>
 
         {/* Tablet e mobile (sotto 1024px): due righe, menu compresso */}
         <div className="flex flex-col gap-1.5 py-2 lg:hidden">
           <div className="flex items-center justify-between gap-2">
-            <Badge isClosed={isClosed} />
-            {isClosed ? (
-              <WaitlistButton className="shrink-0" />
-            ) : (
-              <AmbiziosaCtaButton variant="topbar" className="shrink-0" />
-            )}
+            <Badge />
+            <AmbiziosaCtaButton variant="topbar" className="shrink-0" />
           </div>
-          {!isClosed ? (
-            <div className="flex items-center justify-between gap-2">
-              <DeadlineCountdown />
-              <CompressedMenu />
-            </div>
-          ) : null}
+          <div className="flex items-center justify-between gap-2">
+            {priceLocked ? <PriceCountdown /> : <span />}
+            <CompressedMenu />
+          </div>
         </div>
       </div>
     </header>
