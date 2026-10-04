@@ -694,7 +694,13 @@ const forWhoCards = [
   {
     n: "01",
     role: "Coach e mentor",
-    photo: francescaSolignaniImg,
+    story: {
+      name: "Elisabetta Bettonte",
+      role: "parent coach",
+      photo: elisabettaBettonteImg,
+      from: "-10.000€ investiti in corsi senza risultati",
+      to: "6.000€ al mese",
+    },
     paragraphs: [
       <>Hai passato la settimana tra sessioni, messaggi e contenuti da preparare.</>,
       <>
@@ -714,7 +720,13 @@ const forWhoCards = [
   {
     n: "02",
     role: "Consulenti e strategist",
-    photo: valeriaSalussoliImg,
+    story: {
+      name: "Mariangela Simioli",
+      role: "marketing strategist",
+      photo: mariangelaSimioliImg,
+      from: "500€ sul conto dopo essersi licenziata",
+      to: "superare il regime forfettario in 4 mesi",
+    },
     paragraphs: [
       <>Mandi un preventivo e aspetti.</>,
       <>
@@ -746,7 +758,13 @@ const forWhoCards = [
   {
     n: "03",
     role: "Professioniste della bellezza e del benessere",
-    photo: silviaBedinImg,
+    story: {
+      name: "Valeria Salussolia",
+      role: "titolare di un centro benessere",
+      photo: valeriaSalussoliImg,
+      from: "contratti instabili da estetista",
+      to: "fatturare in una settimana quello che guadagnava in un mese",
+    },
     paragraphs: [
       <>Hai anni di esperienza e un lavoro che sai fare benissimo.</>,
       <>
@@ -765,7 +783,13 @@ const forWhoCards = [
   {
     n: "04",
     role: "Social media manager",
-    photo: valentinaGiuriatoImg,
+    story: {
+      name: "Sharon Convertino",
+      role: "social media manager",
+      photo: sharonConvertinoImg,
+      from: "burnout e clienti tossici",
+      to: "scegliere lei i propri clienti",
+    },
     paragraphs: [
       <>
         Passi le giornate a curare la comunicazione dei tuoi clienti e per la tua non resta mai
@@ -1811,25 +1835,11 @@ function CandidaturaAmbiziosa() {
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {forWhoCards.map((c, i) => (
               <Reveal key={c.role} delay={i * 60}>
-                <div className="relative flex h-full min-h-[440px] flex-col overflow-hidden rounded-2xl">
-                  <img
-                    src={c.photo}
-                    alt=""
-                    aria-hidden
-                    loading="lazy"
-                    className="pointer-events-none absolute inset-0 h-full w-full object-cover"
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-0"
-                    style={{
-                      backgroundImage:
-                        "linear-gradient(180deg, color-mix(in oklab, var(--secondary) 82%, transparent), color-mix(in oklab, var(--secondary) 90%, transparent) 40%, var(--secondary) 100%)",
-                    }}
-                  />
-                  <div
-                    className="relative flex h-full flex-col p-6 sm:p-7"
-                    style={{ color: "var(--secondary-foreground)" }}
-                  >
+                <div
+                  className="surface-cream flex h-full flex-col"
+                  style={{ borderRadius: "1rem" }}
+                >
+                  <div className="flex h-full flex-col p-6 sm:p-7">
                     <span
                       className="self-start rounded-full px-4 py-1.5 font-condensed text-xs font-bold uppercase tracking-[0.08em] text-primary-foreground sm:text-sm"
                       style={{
@@ -1845,6 +1855,29 @@ function CandidaturaAmbiziosa() {
                           {p}
                         </p>
                       ))}
+                    </div>
+                    <div
+                      className="mt-6 flex items-center gap-4 rounded-xl px-4 py-4"
+                      style={{
+                        backgroundColor: "color-mix(in oklab, var(--secondary) 35%, transparent)",
+                        border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
+                      }}
+                    >
+                      <img
+                        src={c.story.photo}
+                        alt={c.story.name}
+                        loading="lazy"
+                        className="size-14 shrink-0 rounded-full border border-dashed object-cover"
+                        style={{
+                          borderColor: "color-mix(in oklab, var(--primary) 45%, transparent)",
+                        }}
+                      />
+                      <p className="text-sm leading-relaxed text-ink-muted">
+                        Come è successo a{" "}
+                        <span className="font-semibold text-ink">{c.story.name}</span>,{" "}
+                        {c.story.role}, che è passata da {c.story.from} a{" "}
+                        <strong className="font-semibold text-ink">{c.story.to}</strong>.
+                      </p>
                     </div>
                     <div className="mt-auto flex flex-wrap gap-2 pt-6">
                       {c.examples.map((ex) => (
