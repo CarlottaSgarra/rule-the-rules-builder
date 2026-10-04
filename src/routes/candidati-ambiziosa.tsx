@@ -2867,7 +2867,7 @@ function CandidaturaAmbiziosa() {
         </div>
       </section>
 
-      <SiteFooter />
+      <SiteFooter showRefundGuarantee={false} />
     </div>
   );
 }

@@ -1,4 +1,7 @@
-export function SiteFooter() {
+// showRefundGuarantee=false toglie la frase sulla garanzia di rimborso al 100%
+// entro 30 giorni, che vale per i prodotti venduti (es. il biglietto di Rule
+// The Rules) ma non per le pagine di Ambiziosa e delle registrazioni.
+export function SiteFooter({ showRefundGuarantee = true }: { showRefundGuarantee?: boolean }) {
   return (
     <footer
       className="bg-secondary"
@@ -19,21 +22,21 @@ export function SiteFooter() {
         </p>
         <p>
           Non possiamo e non garantiamo in alcun modo la tua capacità di ottenere risultati o
-          guadagnare denaro con le nostre idee, informazioni, strumenti o strategie. Ciò che
-          possiamo garantire è la tua soddisfazione con la nostra formazione. Offriamo una garanzia
-          di soddisfazione al 100% per 30 giorni sui prodotti che vendiamo, quindi se non sei
-          soddisfatto per qualsiasi motivo della qualità della nostra formazione, richiedi
-          semplicemente il rimborso. Dovresti sapere che tutti i prodotti e servizi della nostra
-          azienda sono solo a scopo educativo e informativo. Nulla in questa pagina, in nessuno dei
-          nostri siti web o in qualsiasi nostro contenuto o curriculum costituisce una promessa o
-          una garanzia di risultati o guadagni futuri, e non offriamo alcun consiglio legale,
-          medico, fiscale o di altro tipo. Qualsiasi numero finanziario menzionato qui o in uno dei
-          nostri siti è solo illustrativo di concetti e non deve essere considerato come guadagni
-          medi, guadagni esatti o promesse di prestazioni attuali o future. Usa cautela e consulta
-          sempre il tuo commercialista, avvocato o consulente professionale prima di agire su queste
-          informazioni o su qualsiasi informazione relativa a un cambiamento di stile di vita, alla
-          tua attività o alle tue finanze. Sei solo tu il responsabile delle tue decisioni, azioni e
-          risultati nella vita, e con la tua registrazione qui accetti di non tentare di ritenerci
+          guadagnare denaro con le nostre idee, informazioni, strumenti o strategie.{" "}
+          {showRefundGuarantee
+            ? "Ciò che possiamo garantire è la tua soddisfazione con la nostra formazione. Offriamo una garanzia di soddisfazione al 100% per 30 giorni sui prodotti che vendiamo, quindi se non sei soddisfatto per qualsiasi motivo della qualità della nostra formazione, richiedi semplicemente il rimborso. "
+            : null}
+          Dovresti sapere che tutti i prodotti e servizi della nostra azienda sono solo a scopo
+          educativo e informativo. Nulla in questa pagina, in nessuno dei nostri siti web o in
+          qualsiasi nostro contenuto o curriculum costituisce una promessa o una garanzia di
+          risultati o guadagni futuri, e non offriamo alcun consiglio legale, medico, fiscale o di
+          altro tipo. Qualsiasi numero finanziario menzionato qui o in uno dei nostri siti è solo
+          illustrativo di concetti e non deve essere considerato come guadagni medi, guadagni esatti
+          o promesse di prestazioni attuali o future. Usa cautela e consulta sempre il tuo
+          commercialista, avvocato o consulente professionale prima di agire su queste informazioni
+          o su qualsiasi informazione relativa a un cambiamento di stile di vita, alla tua attività
+          o alle tue finanze. Sei solo tu il responsabile delle tue decisioni, azioni e risultati
+          nella vita, e con la tua registrazione qui accetti di non tentare di ritenerci
           responsabili per le tue decisioni, azioni o risultati, in qualsiasi momento e sotto
           qualsiasi circostanza.
         </p>

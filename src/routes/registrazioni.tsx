@@ -404,7 +404,7 @@ function Registrazioni() {
         </div>
       </section>
 
-      <SiteFooter />
+      <SiteFooter showRefundGuarantee={false} />
     </div>
   );
 }

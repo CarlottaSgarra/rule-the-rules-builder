@@ -150,7 +150,7 @@ function AccediRegistrazioni() {
         </div>
       </header>
 
-      <SiteFooter />
+      <SiteFooter showRefundGuarantee={false} />
     </div>
   );
 }
