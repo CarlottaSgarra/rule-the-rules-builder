@@ -27,6 +27,7 @@ import { SiteFooter } from "@/components/landing/SiteFooter";
 import { AmbiziosaTopbar } from "@/components/landing/AmbiziosaTopbar";
 import { AmbiziosaCtaButton } from "@/components/landing/AmbiziosaCtaButton";
 import { WhatsAppIcon } from "@/components/landing/WhatsAppIcon";
+import { AmbiziosaJourney } from "@/components/landing/AmbiziosaJourney";
 import { ShineSweep } from "@/components/landing/ShineSweep";
 import { Countdown } from "@/components/landing/Countdown";
 import { AmbiziosaHeroVideo } from "@/components/landing/AmbiziosaHeroVideo";
@@ -2681,6 +2682,9 @@ function CandidaturaAmbiziosa() {
           </div>
         </div>
       </section>
+
+      {/* 7d-bis. Prima e dopo Ambiziosa: grafico che si disegna con lo scroll */}
+      <AmbiziosaJourney />
 
       {/* 7e. Le due versioni: Program e Mentorship */}
       <section id="versioni" className="bg-background">
