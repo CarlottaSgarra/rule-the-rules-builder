@@ -28,6 +28,7 @@ import { SiteFooter } from "@/components/landing/SiteFooter";
 import { AmbiziosaTopbar } from "@/components/landing/AmbiziosaTopbar";
 import { AmbiziosaCtaButton } from "@/components/landing/AmbiziosaCtaButton";
 import { WhatsAppIcon } from "@/components/landing/WhatsAppIcon";
+import { ShineSweep } from "@/components/landing/ShineSweep";
 import { Countdown } from "@/components/landing/Countdown";
 import { AmbiziosaHeroVideo } from "@/components/landing/AmbiziosaHeroVideo";
 import { ProfileBeforeAfter, ResultsCards } from "@/components/landing/AmbiziosaProofCards";
@@ -3418,11 +3419,14 @@ function CandidaturaAmbiziosa() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-disabled={!WHATSAPP_URL || undefined}
-                  className="mt-6 flex w-full items-center justify-center gap-2.5 rounded-xl bg-[#25D366] px-6 py-4 font-condensed text-sm uppercase tracking-[0.12em] text-white shadow-[0_12px_30px_-12px_rgba(37,211,102,0.7)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#1EBE5D] sm:text-base"
+                  className="relative mt-6 flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-[#25D366] px-6 py-4 font-condensed text-sm uppercase tracking-[0.12em] text-white shadow-[0_12px_30px_-12px_rgba(37,211,102,0.7)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#1EBE5D] sm:text-base"
                 >
-                  <WhatsAppIcon className="size-5 shrink-0" />
-                  <span className="sm:hidden">Scrivimi su WhatsApp</span>
-                  <span className="hidden sm:inline">Clicca qui per scrivermi su WhatsApp</span>
+                  <ShineSweep />
+                  <WhatsAppIcon className="relative size-5 shrink-0" />
+                  <span className="relative sm:hidden">Scrivimi su WhatsApp</span>
+                  <span className="relative hidden sm:inline">
+                    Clicca qui per scrivermi su WhatsApp
+                  </span>
                 </a>
 
                 <div
