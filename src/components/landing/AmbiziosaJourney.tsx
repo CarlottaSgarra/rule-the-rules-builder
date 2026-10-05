@@ -219,6 +219,11 @@ export function AmbiziosaJourney() {
         <div className="sticky top-0 flex h-[100svh] flex-col overflow-hidden pt-28 sm:pt-32">
           <div className="px-5">
             <JourneyTitle />
+            <div className="mt-4 flex justify-center gap-6 font-condensed text-xs uppercase tracking-[0.2em] sm:text-sm">
+              <span style={{ color: PAIN_COLOR }}>Prima</span>
+              <span className="text-ink-muted">→</span>
+              <span className="text-primary">Dopo Ambiziosa</span>
+            </div>
           </div>
 
           <div className="relative mt-6 flex-1">
@@ -360,12 +365,6 @@ export function AmbiziosaJourney() {
                 </div>
               ))}
             </div>
-          </div>
-
-          <div className="flex justify-center gap-6 pb-8 font-condensed text-[10px] uppercase tracking-[0.2em] sm:text-xs">
-            <span style={{ color: PAIN_COLOR }}>Prima</span>
-            <span className="text-ink-muted">→</span>
-            <span className="text-primary">Dopo Ambiziosa</span>
           </div>
         </div>
       </div>
