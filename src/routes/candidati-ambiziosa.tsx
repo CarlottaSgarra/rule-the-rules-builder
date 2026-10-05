@@ -15,7 +15,6 @@ import {
   ShieldCheck,
   Star,
   ChevronDown,
-  ImageIcon,
   Wallet,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/Reveal";
@@ -48,6 +47,7 @@ import carlottaSquareImg from "@/assets/carlotta-square.jpg";
 import bonusNotionImg from "@/assets/dashboard notion.png";
 import bonusSlackDmImg from "@/assets/dm diretto.png";
 import bonusCommunityImg from "@/assets/community.png";
+import bonusGptImg from "@/assets/Chat Assistant Carousel in Soft Pink (1).png";
 import carlottaCallAvatarImg from "@/assets/carlotta-call-avatar.jpg";
 import sharonCallAvatarImg from "@/assets/sharon-call-avatar.jpg";
 import carlottaManiInTascaImg from "@/assets/Carlotta mani in tasca che guarda a sinistra.jpg";
@@ -1532,12 +1532,11 @@ const beforeAfterRows = [
 ];
 
 // Cosa trovi dentro Ambiziosa: i 4 strumenti/bonus del percorso. Ogni card
-// ha un'immagine (segnaposto finché Carlotta non la fornisce), due badge di
+// ha uno screenshot del bonus, due badge di
 // valore, descrizione, dettagli e, dove serve, una chiusura in evidenza.
 const ambiziosaBonuses: {
   title: string;
-  // Screenshot del bonus; senza immagine la card mostra il segnaposto.
-  image?: { src: string; alt: string };
+  image: { src: string; alt: string };
   badges: [string, string];
   intro: React.ReactNode;
   details?: { label: string; text: React.ReactNode }[];
@@ -1649,6 +1648,10 @@ const ambiziosaBonuses: {
   },
   {
     title: "Il tuo GPT Alterego per i contenuti",
+    image: {
+      src: bonusGptImg,
+      alt: "Una chat con il GPT Alterego che trasforma una call in un carosello per Instagram",
+    },
     badges: ["Contenuti più veloci", "La tua voce, sempre"],
     intro: (
       <>
@@ -2903,28 +2906,12 @@ function CandidaturaAmbiziosa() {
                     backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
                   }}
                 >
-                  {b.image ? (
-                    <img
-                      src={b.image.src}
-                      alt={b.image.alt}
-                      loading="lazy"
-                      className="m-4 mb-0 aspect-[16/9] rounded-xl bg-white object-cover object-top shadow-[0_20px_45px_-20px_rgba(0,0,0,0.6)] sm:m-5 sm:mb-0"
-                    />
-                  ) : (
-                    // SEGNAPOSTO: sostituire con l'immagine del bonus fornita da Carlotta
-                    <div
-                      className="m-4 mb-0 flex aspect-[16/9] flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed sm:m-5 sm:mb-0"
-                      style={{
-                        backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
-                        borderColor: "color-mix(in oklab, var(--primary) 35%, transparent)",
-                      }}
-                    >
-                      <ImageIcon className="size-8 text-primary/60" />
-                      <span className="font-condensed text-[10px] uppercase tracking-[0.2em] text-ink-muted">
-                        Immagine in arrivo
-                      </span>
-                    </div>
-                  )}
+                  <img
+                    src={b.image.src}
+                    alt={b.image.alt}
+                    loading="lazy"
+                    className="m-4 mb-0 aspect-[16/9] rounded-xl bg-white object-cover object-top shadow-[0_20px_45px_-20px_rgba(0,0,0,0.6)] sm:m-5 sm:mb-0"
+                  />
 
                   <div className="flex flex-1 flex-col p-6 sm:p-8">
                     <div className="flex flex-wrap gap-2">
