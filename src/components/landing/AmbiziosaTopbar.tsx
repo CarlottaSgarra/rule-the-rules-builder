@@ -33,9 +33,13 @@ function Badge() {
     >
       {/* Su desktop la riga ospita anche countdown, menu e bottone: lì il badge si
           accorcia a "Solo 9 posti" per non far scorrere la pagina in orizzontale. */}
-      <span className="lg:hidden">Candidature aperte · </span>
-      <span className="hidden lg:inline">Solo </span>
-      {MAX_SEATS} posti
+      {/* Un unico span: nel badge inline-flex ogni pezzo di testo sarebbe un
+          elemento a sé e lo spazio prima del numero verrebbe tagliato. */}
+      <span>
+        <span className="lg:hidden">Candidature aperte · </span>
+        <span className="hidden lg:inline">Solo </span>
+        {MAX_SEATS} posti
+      </span>
     </span>
   );
 }

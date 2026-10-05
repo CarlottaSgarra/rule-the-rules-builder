@@ -1287,23 +1287,40 @@ function CallChip({ call, dark = false }: { call: CallBox; dark?: boolean }) {
   );
 }
 
+// Totale delle call in fondo alla card (mt-auto): con le due card alte uguali
+// la riga "Call totali" del Program e della Mentorship è sulla stessa linea.
 function CallTotal({ steps, dark = false }: { steps: VersionStep[]; dark?: boolean }) {
   const calls = steps.flatMap((s) => s.calls ?? []);
   const total = calls.reduce((sum, c) => sum + c.count, 0);
-  const hasMulti = calls.some((c) => c.count > 1);
   return (
-    <p className="mt-8 flex flex-wrap items-baseline gap-x-3">
-      <span
-        className={`font-display text-5xl leading-none ${dark ? "text-primary" : "text-foreground"}`}
+    <div className="mt-auto pt-8">
+      <div
+        className="border-t pt-6"
+        style={{
+          borderColor: dark
+            ? "color-mix(in oklab, var(--primary) 30%, transparent)"
+            : "color-mix(in oklab, var(--secondary) 20%, transparent)",
+        }}
       >
-        {total} call
-      </span>
-      {hasMulti ? (
-        <span className={`text-sm font-semibold ${dark ? "text-ink-muted" : "text-foreground/70"}`}>
+        <p
+          className={`font-condensed text-xs uppercase tracking-[0.2em] ${
+            dark ? "text-primary" : "text-secondary"
+          }`}
+        >
+          Call totali
+        </p>
+        <p
+          className={`mt-2 font-display text-5xl leading-none ${dark ? "text-primary" : "text-foreground"}`}
+        >
+          {total} call
+        </p>
+        <p
+          className={`mt-2 text-sm font-semibold ${dark ? "text-ink-muted" : "text-foreground/70"}`}
+        >
           {calls.map((c) => c.count).join(" + ")}
-        </span>
-      ) : null}
-    </p>
+        </p>
+      </div>
+    </div>
   );
 }
 
@@ -2698,7 +2715,7 @@ function CandidaturaAmbiziosa() {
           </svg>
 
           <div className="mt-12 grid gap-10 md:mt-4 md:grid-cols-2 md:items-stretch md:gap-6">
-            <Reveal>
+            <Reveal className="h-full">
               <div className="flex h-full flex-col rounded-2xl border border-border/70 bg-card/50 p-6 sm:p-8">
                 <p className="font-condensed text-xs uppercase tracking-[0.2em] text-secondary">
                   Le call nei momenti chiave
@@ -2755,7 +2772,7 @@ function CandidaturaAmbiziosa() {
               </div>
             </Reveal>
 
-            <Reveal delay={80}>
+            <Reveal delay={80} className="h-full">
               <div className="ticket-border-glow relative h-full rounded-[1.75rem]">
                 <div
                   className="surface-cream flex h-full flex-col p-6 sm:p-8"
