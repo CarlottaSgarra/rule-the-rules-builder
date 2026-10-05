@@ -891,10 +891,10 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     ),
   },
   {
-    q: "Perché i posti sono solo 9?",
+    q: "Perché i posti sono limitati a 9?",
     a: (
       <>
-        Perché{" "}
+        I posti sono limitati perché{" "}
         <strong className="font-semibold text-foreground">
           io e Sharon lavoriamo a stretto contatto con ogni professionista
         </strong>
