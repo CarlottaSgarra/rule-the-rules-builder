@@ -13,6 +13,7 @@ import { VideoFrame } from "@/components/landing/VideoFrame";
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
 import { Reveal } from "@/components/landing/Reveal";
 import { SignupForm } from "@/components/landing/SignupForm";
+import { SignupGate } from "@/components/landing/SignupWindow";
 import { Workbook } from "@/components/landing/Workbook";
 import { SessionHighlight } from "@/components/landing/SessionHighlight";
 import { TakeawayVisual } from "@/components/landing/TakeawayVisual";
@@ -1019,7 +1020,7 @@ function Index() {
 
   return (
     <div className="bg-background">
-      <SiteTopbar ctaHref={SIGNUP_HREF} />
+      <SiteTopbar ctaHref={SIGNUP_HREF} signupWindow />
 
       {/* Hero */}
       <header
@@ -1161,10 +1162,12 @@ function Index() {
                           Live su Zoom · 5-6-7 ottobre
                         </span>
                       </div>
-                      <SignupForm
-                        className="mt-6"
-                        submitSub="Soli €27 · 5-6-7 ottobre · Garanzia di rimborso"
-                      />
+                      <SignupGate>
+                        <SignupForm
+                          className="mt-6"
+                          submitSub="Soli €27 · 5-6-7 ottobre · Garanzia di rimborso"
+                        />
+                      </SignupGate>
                       <div className="mt-4 flex justify-center">
                         <div
                           className="inline-flex flex-col items-center gap-1.5 rounded-xl px-4 py-2.5 sm:flex-row sm:items-center sm:gap-3"

@@ -1,11 +1,28 @@
 import { Countdown } from "@/components/landing/Countdown";
+import { getSignupCountdownTarget, useSignupPhase } from "@/lib/signup-window";
 
 type Props = {
   ctaHref?: string;
   ctaLabel?: string;
+  // Solo pagine A (/) e B (/b): countdown e bottone seguono le finestre di
+  // iscrizione di SignupWindow (aperte, chiuse, ultimissima possibilità).
+  signupWindow?: boolean;
 };
 
-export function SiteTopbar({ ctaHref = "#iscriviti", ctaLabel = "Prendi il biglietto" }: Props) {
+export function SiteTopbar({
+  ctaHref = "#iscriviti",
+  ctaLabel = "Prendi il biglietto",
+  signupWindow = false,
+}: Props) {
+  const phase = useSignupPhase();
+  const windowTarget = signupWindow ? getSignupCountdownTarget(phase) : null;
+  const signupClosed = signupWindow && phase === "closed";
+  const countdownLabel = !signupWindow
+    ? "L’evento inizia tra"
+    : phase === "lastChance"
+      ? "Ultima possibilità, ancora per"
+      : "Iscrizioni aperte ancora per";
+
   return (
     <div
       className="sticky top-0 z-50 border-b border-border/60 backdrop-blur"
@@ -25,14 +42,28 @@ export function SiteTopbar({ ctaHref = "#iscriviti", ctaLabel = "Prendi il bigli
           <span className="whitespace-nowrap sm:block">5-6-7 Ottobre</span>
         </p>
         <div className="flex flex-1 items-center justify-center gap-1 sm:flex-none sm:flex-wrap sm:gap-x-4 sm:gap-y-2 sm:justify-self-center">
-          <span className="hidden font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground sm:inline">
-            L’evento inizia tra
-          </span>
-          <Countdown compact />
+          {signupClosed ? (
+            <span className="font-condensed text-[10px] uppercase tracking-[0.15em] text-foreground sm:text-sm">
+              Iscrizioni chiuse
+            </span>
+          ) : (
+            <>
+              <span className="hidden font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground sm:inline">
+                {countdownLabel}
+              </span>
+              {windowTarget !== null ? (
+                <Countdown compact target={windowTarget} />
+              ) : (
+                <Countdown compact />
+              )}
+            </>
+          )}
         </div>
         <a
           href={ctaHref}
-          className="min-w-0 shrink-0 rounded-md px-2 py-1.5 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.03em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.12em] sm:justify-self-end"
+          aria-hidden={signupClosed || undefined}
+          tabIndex={signupClosed ? -1 : undefined}
+          className={`${signupClosed ? "invisible" : ""} min-w-0 shrink-0 rounded-md px-2 py-1.5 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.03em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.12em] sm:justify-self-end`}
           style={{
             backgroundImage: "var(--gradient-gold)",
             color: "var(--primary-foreground)",
