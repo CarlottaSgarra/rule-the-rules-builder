@@ -43,7 +43,7 @@ import {
   UPGRADE_DIFFERENCE,
   WHATSAPP_URL,
 } from "@/lib/ambiziosa-config";
-import carlottaSquareImg from "@/assets/carlotta-square.jpg";
+import matildeImg from "@/assets/matilde sgarra.jpeg";
 import bonusNotionImg from "@/assets/dashboard notion.png";
 import bonusSlackDmImg from "@/assets/dm diretto.png";
 import bonusCommunityImg from "@/assets/community.png";
@@ -894,11 +894,12 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     q: "Perché i posti sono solo 9?",
     a: (
       <>
-        Perché ogni cliente ha una call a settimana:{" "}
+        Perché{" "}
         <strong className="font-semibold text-foreground">
-          più di nove non riusciamo a seguirne come vogliamo
+          io e Sharon lavoriamo a stretto contatto con ogni professionista
         </strong>
-        . Quando i {MAX_SEATS} posti sono occupati, non ne apriamo altri.
+        : più di nove non riusciamo a seguirle come vogliamo. Quando i {MAX_SEATS} posti sono
+        occupati, non ne apriamo altri.
       </>
     ),
   },
@@ -3373,25 +3374,18 @@ function CandidaturaAmbiziosa() {
             </Reveal>
           </div>
 
-          {/* Dubbi prima di prenotare + perché adesso (posti e prezzo bloccato): foto di Carlotta e Sharon
-              a sinistra, testo a destra, largo quanto le card dei prezzi */}
+          {/* Dubbi prima di prenotare + perché adesso (posti e prezzo bloccato): foto di Matilde
+              (supporto clienti) a sinistra, testo a destra, largo quanto le card dei prezzi */}
           <Reveal>
             <div className="mt-16 grid gap-6 rounded-[1.75rem] border border-secondary/40 bg-transparent p-6 sm:p-8 lg:grid-cols-[minmax(0,0.3fr)_minmax(0,1fr)] lg:gap-10 lg:p-10">
               <div className="relative">
-                <div className="grid grid-cols-2 gap-3 lg:absolute lg:inset-0 lg:grid-cols-1 lg:grid-rows-2">
-                  {[
-                    { src: carlottaSquareImg, alt: "Carlotta Sgarra" },
-                    { src: sharonConvertinoImg, alt: "Sharon Convertino" },
-                  ].map((a) => (
-                    <img
-                      key={a.alt}
-                      src={a.src}
-                      alt={a.alt}
-                      loading="lazy"
-                      className="aspect-square h-full w-full rounded-2xl object-cover lg:aspect-auto"
-                    />
-                  ))}
-                </div>
+                <img
+                  src={matildeImg}
+                  alt="Matilde, che si occupa del supporto clienti"
+                  loading="lazy"
+                  className="mx-auto aspect-square w-full max-w-xs rounded-2xl object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full lg:max-w-none"
+                  style={{ objectPosition: "30% 35%" }}
+                />
               </div>
 
               <div>
@@ -3413,23 +3407,23 @@ function CandidaturaAmbiziosa() {
                   <strong className="font-semibold text-foreground">
                     sul tuo profilo e sul tuo progetto
                   </strong>
-                  , e se è adatta a te. Altrimenti puoi scrivermi su WhatsApp.
+                  , e se è adatta a te. Altrimenti puoi scrivere su WhatsApp a{" "}
+                  <strong className="font-semibold text-foreground">Matilde</strong>, che si occupa
+                  del supporto clienti.
                 </p>
 
-                {/* TODO: il bottone diventa cliccabile quando WHATSAPP_URL è valorizzato
-                    in src/lib/ambiziosa-config.ts */}
+                {/* Apre WhatsApp con Matilde e un messaggio già scritto (WHATSAPP_URL) */}
                 <a
-                  href={WHATSAPP_URL || undefined}
+                  href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-disabled={!WHATSAPP_URL || undefined}
                   className="relative mt-6 flex w-full items-center justify-center gap-2.5 overflow-hidden rounded-xl bg-[#25D366] px-6 py-4 font-condensed text-sm uppercase tracking-[0.12em] text-white shadow-[0_12px_30px_-12px_rgba(37,211,102,0.7)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#1EBE5D] sm:text-base"
                 >
                   <ShineSweep />
                   <WhatsAppIcon className="relative size-5 shrink-0" />
-                  <span className="relative sm:hidden">Scrivimi su WhatsApp</span>
+                  <span className="relative sm:hidden">Scrivi a Matilde su WhatsApp</span>
                   <span className="relative hidden sm:inline">
-                    Clicca qui per scrivermi su WhatsApp
+                    Clicca qui per scrivere a Matilde su WhatsApp
                   </span>
                 </a>
 
@@ -3438,7 +3432,7 @@ function CandidaturaAmbiziosa() {
                   style={{ borderColor: "color-mix(in oklab, var(--secondary) 20%, transparent)" }}
                 >
                   <h3 className="text-2xl text-foreground sm:text-3xl">
-                    Perché <Highlight>adesso</Highlight>
+                    Perché adesso è <Highlight>il momento giusto</Highlight>?
                   </h3>
                   <div className="mt-6 grid gap-6 sm:grid-cols-2 sm:gap-8">
                     <div>
@@ -3453,11 +3447,11 @@ function CandidaturaAmbiziosa() {
                         </span>
                       </p>
                       <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
-                        Una call a settimana per ogni cliente:{" "}
+                        I posti sono limitati perché{" "}
                         <strong className="font-semibold text-foreground">
-                          più di nove non riusciamo a seguirne come vogliamo
+                          io e Sharon lavoriamo a stretto contatto con ogni professionista
                         </strong>
-                        .
+                        : più di nove non riusciamo a seguirle come vogliamo.
                       </p>
                     </div>
                     <div>

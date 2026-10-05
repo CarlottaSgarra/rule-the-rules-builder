@@ -7,8 +7,8 @@
 // è lo stesso momento per tutti i visitatori, ovunque si trovino.
 export const PRICE_LOCK_DEADLINE = "2026-10-16T23:59:59+02:00";
 
-// Posti disponibili in tutto: una call a settimana per ogni cliente, più di
-// nove non si riescono a seguire come si deve.
+// Posti disponibili in tutto: Carlotta e Sharon lavorano a stretto contatto con
+// ogni professionista, più di nove non si riescono a seguire come si deve.
 export const MAX_SEATS = 9;
 
 // Le candidature si aprono alla fine della seconda serata di Rule The Rules
@@ -21,10 +21,12 @@ export const APPLICATIONS_OPEN_AT = "2026-10-06T20:30:00+02:00";
 // pulsanti "Candidati" portano alla sezione prezzi (#prezzi).
 export const APPLICATION_URL = "";
 
-// TODO: valorizzare con il link WhatsApp personale di Carlotta (es.
-// https://wa.me/39XXXXXXXXXX). Finché è vuoto, la frase "scrivimi su
-// WhatsApp" nel riquadro dei dubbi non viene mostrata.
-export const WHATSAPP_URL = "";
+// WhatsApp del supporto clienti (risponde Matilde), con un messaggio già
+// scritto che la persona può modificare prima di inviarlo.
+const WHATSAPP_NUMBER = "393513728127";
+const WHATSAPP_MESSAGE =
+  "Ciao, sono interessata ad Ambiziosa (Program o Mentorship) ma ho una domanda.";
+export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
 // Prezzi delle due versioni.
 // DA CONFERMARE: IVA inclusa o esclusa (per ora non indicata in pagina).
