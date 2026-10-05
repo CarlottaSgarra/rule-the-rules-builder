@@ -3225,19 +3225,32 @@ function CandidaturaAmbiziosa() {
                 </strong>
                 .
               </p>
-              <div
-                className="mt-7 inline-flex flex-col items-center gap-2 rounded-2xl bg-secondary px-5 py-3 sm:flex-row sm:gap-4 sm:rounded-full sm:px-7"
-                style={
-                  {
-                    "--foreground": "var(--secondary-foreground)",
-                    "--muted-foreground": "oklch(0.85 0.03 40)",
-                  } as React.CSSProperties
-                }
-              >
-                <span className="font-condensed text-[10px] uppercase tracking-[0.15em] text-muted-foreground sm:text-xs">
-                  Il prezzo resta bloccato ancora per
+              {/* Posti disponibili e prezzo bloccato, uno accanto all'altro */}
+              <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+                <span
+                  className="inline-flex items-center gap-2 rounded-full px-5 py-3 font-condensed text-xs uppercase tracking-[0.15em] text-primary-foreground sm:text-sm"
+                  style={{
+                    backgroundImage: "var(--gradient-gold)",
+                    boxShadow: "var(--shadow-gold)",
+                  }}
+                >
+                  <Users className="size-4 shrink-0" />
+                  Solo {MAX_SEATS} posti disponibili
                 </span>
-                <Countdown compact target={PRICE_LOCK_MS} />
+                <div
+                  className="inline-flex flex-col items-center gap-2 rounded-2xl bg-secondary px-5 py-3 sm:flex-row sm:gap-4 sm:rounded-full sm:px-7"
+                  style={
+                    {
+                      "--foreground": "var(--secondary-foreground)",
+                      "--muted-foreground": "oklch(0.85 0.03 40)",
+                    } as React.CSSProperties
+                  }
+                >
+                  <span className="font-condensed text-[10px] uppercase tracking-[0.15em] text-muted-foreground sm:text-xs">
+                    Il prezzo resta bloccato ancora per
+                  </span>
+                  <Countdown compact target={PRICE_LOCK_MS} />
+                </div>
               </div>
             </div>
           </Reveal>
