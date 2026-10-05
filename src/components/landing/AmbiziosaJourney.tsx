@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import {
+  BadgeEuro,
   CircleArrowRight,
   Compass,
   Crown,
-  Frown,
+  HeartHandshake,
   Lock,
-  MessagesSquare,
-  Palette,
   Puzzle,
   Shirt,
-  Tornado,
+  TrendingDown,
+  UserX,
 } from "lucide-react";
 import { Highlight } from "@/components/landing/Highlight";
 
@@ -21,22 +21,25 @@ import { Highlight } from "@/components/landing/Highlight";
 // diventa verde (i risultati dopo Ambiziosa). Con prefers-reduced-motion
 // si vede una versione statica a due colonne.
 
-type JourneyPoint = { text: string; icon: typeof Frown };
+type JourneyPoint = { text: string; icon: typeof Lock };
 
+// Prima e dopo, a coppie speculari. Gli ultimi due fumetti di ciascun lato
+// parlano di vendite e clienti: l'ultimo fumetto della sezione (i clienti) è
+// quello che resta più impresso.
 const PAIN_POINTS: JourneyPoint[] = [
   { text: "Ti senti fuori posto online", icon: Puzzle },
   { text: "Cambi stile ogni settimana", icon: Shirt },
-  { text: "Ti vergogni un po' di quello che pubblichi", icon: Frown },
   { text: "Ti blocchi, rimandi, molli", icon: Lock },
-  { text: "Creare = stress", icon: Tornado },
+  { text: "Ti svaluti quando vendi i tuoi percorsi", icon: TrendingDown },
+  { text: "Fai fatica a trovare clienti", icon: UserX },
 ];
 
 const WIN_POINTS: JourneyPoint[] = [
   { text: "Ti senti centrata nel tuo mercato", icon: Compass },
   { text: "Valorizzi la tua identità", icon: Crown },
-  { text: "Pubblicare è naturale", icon: MessagesSquare },
   { text: "Vai avanti con costanza", icon: CircleArrowRight },
-  { text: "Creare = piacere", icon: Palette },
+  { text: "Vendi i tuoi percorsi al giusto prezzo", icon: BadgeEuro },
+  { text: "I clienti giusti arrivano e scelgono te", icon: HeartHandshake },
 ];
 
 // Colori della linea: viola chiaro (leggibile sul fondo Mulberry) e verde
@@ -177,7 +180,7 @@ export function AmbiziosaJourney() {
   const spacing = Math.min(400, Math.max(210, viewport.w * 0.3));
   const chartH = Math.min(600, Math.max(320, viewport.h * 0.58));
   const yFlat = chartH * 0.82;
-  const yTop = chartH * 0.12;
+  const yTop = chartH * 0.2;
   const xRiseStart = spacing * (PAIN_POINTS.length + 0.5);
   const nodes = [
     ...PAIN_POINTS.map((point, i) => ({ point, win: false, x: spacing * (i + 1) })),
