@@ -1,5 +1,6 @@
 import { Play, TrendingUp } from "lucide-react";
 import profiloIgCarlottaImg from "@/assets/profilo-ig-carlotta.png";
+import carlottaMuroImg from "@/assets/carlotta appoggiata a muro che guarda.jpg";
 
 // Card inclinate e sovrapposte per la sezione "Il principio mancante":
 // stessa ricetta degli screenshot WhatsApp di Rule The Rules (bordo,
@@ -23,37 +24,25 @@ function Pill({ children, gold = false }: { children: React.ReactNode; gold?: bo
   );
 }
 
-// Il profilo Instagram di Carlotta: prima (piano editoriale scritto da altri,
-// contenuti tutti uguali) e oggi (screenshot reale).
+// Una foto di Carlotta e, sovrapposto, il suo profilo Instagram oggi
+// (screenshot reale).
 export function ProfileBeforeAfter() {
   return (
     <div className="relative mx-auto w-full max-w-[320px] pb-28">
       <div
-        className={`${cardClass} w-[88%] p-4`}
+        className={`${cardClass} w-[88%] overflow-hidden`}
         style={{
           transform: "rotate(-5deg)",
           borderColor: "color-mix(in oklab, var(--foreground) 25%, transparent)",
         }}
       >
-        <div className="flex items-center justify-between">
-          <Pill>Prima</Pill>
-          <span className={label}>Il mio profilo</span>
-        </div>
-        <p className="mt-2.5 text-[10px] font-semibold text-foreground/60">
-          Piano editoriale scritto da altri
-        </p>
-        <div className="mt-3 flex items-center gap-3">
-          <span className="size-10 shrink-0 rounded-full bg-foreground/15" />
-          <div className="flex-1 space-y-1.5">
-            <span className="block h-1.5 w-3/4 rounded-full bg-foreground/20" />
-            <span className="block h-1.5 w-1/2 rounded-full bg-foreground/10" />
-          </div>
-        </div>
-        <div className="mt-3 grid grid-cols-3 gap-1">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <span key={i} className="aspect-square rounded-[3px] bg-foreground/10" />
-          ))}
-        </div>
+        <img
+          src={carlottaMuroImg}
+          alt="Carlotta Sgarra appoggiata a un muro, guarda in camera"
+          loading="lazy"
+          className="aspect-[4/5] w-full object-cover"
+          style={{ objectPosition: "33% 40%" }}
+        />
       </div>
 
       <div

@@ -49,10 +49,12 @@ function Chip({ children, variant }: { children: React.ReactNode; variant: "gold
 
 // 1 · Radica chi sei: identità e sistema di offerte, con Carlotta.
 function Radica() {
+  // Una scala vista dall'alto: l'offerta premium è il gradino più alto (e
+  // l'unico colorato), l'offerta d'ingresso è la base.
   const offers = [
-    { name: "Offerta d'ingresso", w: "w-[55%]" },
-    { name: "Il tuo percorso", w: "w-[75%]" },
-    { name: "Offerta premium", w: "w-full" },
+    { name: "Offerta premium", w: "w-[55%]" },
+    { name: "Percorso mid ticket", w: "w-[75%]" },
+    { name: "Offerta d'ingresso", w: "w-full" },
   ];
   return (
     <div className="relative w-full max-w-[290px] pb-2">
@@ -80,18 +82,18 @@ function Radica() {
               <div
                 className="flex items-center justify-between gap-2 rounded-md px-2 py-1.5"
                 style={
-                  i === offers.length - 1
+                  i === 0
                     ? gold
                     : { backgroundColor: "color-mix(in oklab, var(--secondary) 12%, white)" }
                 }
               >
                 <span
-                  className={`text-[9px] font-semibold ${i === offers.length - 1 ? "text-primary-foreground" : "text-foreground"}`}
+                  className={`text-[9px] font-semibold ${i === 0 ? "text-primary-foreground" : "text-foreground"}`}
                 >
                   {o.name}
                 </span>
                 <TrendingUp
-                  className={`size-3 shrink-0 ${i === offers.length - 1 ? "text-primary-foreground" : "text-secondary"}`}
+                  className={`size-3 shrink-0 ${i === 0 ? "text-primary-foreground" : "text-secondary"}`}
                 />
               </div>
             </div>

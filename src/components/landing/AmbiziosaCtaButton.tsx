@@ -36,10 +36,19 @@ export function AmbiziosaCtaButton({
     return (
       <a
         {...linkProps}
-        className={`min-w-0 shrink-0 rounded-md px-2 py-1.5 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.03em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.12em] ${className}`}
+        className={`relative min-w-0 shrink-0 overflow-hidden rounded-md px-2 py-1.5 text-center font-condensed text-[10px] uppercase leading-tight tracking-[0.03em] transition-transform duration-200 hover:-translate-y-0.5 sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.12em] ${className}`}
         style={{ backgroundImage: "var(--gradient-gold)", color: "var(--primary-foreground)" }}
       >
-        {label}
+        {/* Riflesso di luce interno che scorre da sinistra a destra, in loop */}
+        <span
+          aria-hidden
+          className="animate-shine-sweep pointer-events-none absolute inset-y-0 left-0 w-1/3"
+          style={{
+            backgroundImage:
+              "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent)",
+          }}
+        />
+        <span className="relative">{label}</span>
       </a>
     );
   }

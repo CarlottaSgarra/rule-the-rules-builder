@@ -400,3 +400,26 @@
     animation: none;
   }
 }
+
+/* Riflesso di luce che attraversa un bottone da sinistra a destra e
+   ricomincia (bottone "Candidati ora" nella topbar di Ambiziosa). */
+@keyframes shine-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  60%,
+  100% {
+    transform: translateX(450%) skewX(-20deg);
+  }
+}
+
+@utility animate-shine-sweep {
+  animation: shine-sweep 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-shine-sweep {
+    animation: none;
+    opacity: 0;
+  }
+}
