@@ -29,6 +29,7 @@ import { AmbiziosaCtaButton } from "@/components/landing/AmbiziosaCtaButton";
 import { WhatsAppIcon } from "@/components/landing/WhatsAppIcon";
 import { AmbiziosaJourney } from "@/components/landing/AmbiziosaJourney";
 import { ShineSweep } from "@/components/landing/ShineSweep";
+import { SectionPhoto } from "@/components/landing/SectionPhoto";
 import { Countdown } from "@/components/landing/Countdown";
 import { AmbiziosaHeroVideo } from "@/components/landing/AmbiziosaHeroVideo";
 import { ProfileBeforeAfter, ResultsCards } from "@/components/landing/AmbiziosaProofCards";
@@ -45,6 +46,10 @@ import {
   WHATSAPP_URL,
 } from "@/lib/ambiziosa-config";
 import matildeImg from "@/assets/matilde sgarra.jpeg";
+import carlottaWalkingImg from "@/assets/carlotta-walking.jpg";
+import carlottaTalkingImg from "@/assets/carlotta-talking.jpg";
+import carlottaHugImg from "@/assets/carlotta-hug.jpg";
+import carlottaCameraImg from "@/assets/Carlotta spostata a sinistra che guarda verso la camera.jpg";
 import bonusNotionImg from "@/assets/dashboard notion.png";
 import bonusSlackDmImg from "@/assets/dm diretto.png";
 import bonusCommunityImg from "@/assets/community.png";
@@ -2450,10 +2455,19 @@ function CandidaturaAmbiziosa() {
       {/* 7. I 4 step su cui lavoriamo nei 4 mesi */}
       <section
         id="programma"
-        className="overflow-x-clip bg-secondary"
+        className="relative overflow-x-clip bg-secondary"
         style={{ color: "var(--secondary-foreground)" }}
       >
-        <div className="mx-auto max-w-6xl px-5 py-20">
+        {/* Sfondo: Carlotta che parla a un evento, dietro l'introduzione */}
+        <SectionPhoto
+          src={carlottaTalkingImg}
+          side="right"
+          className="top-0 hidden h-[640px] w-[55%] md:block"
+          opacity={0.3}
+          objectPosition="40% 30%"
+          blend="luminosity"
+        />
+        <div className="relative mx-auto max-w-6xl px-5 py-20">
           <Reveal>
             <h2 className="text-3xl sm:text-4xl">
               Nei 4 mesi di Ambiziosa lavoriamo <Highlight dark>in 4 step</Highlight>.
@@ -2612,8 +2626,17 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 7d. Il principio mancante, raccontato in prima persona */}
-      <section className="overflow-x-clip bg-background">
-        <div className="mx-auto max-w-5xl px-5 pb-12 pt-20 text-center">
+      <section className="relative overflow-hidden bg-background">
+        {/* Sfondo: Carlotta che cammina, nello spazio libero in basso a sinistra */}
+        <SectionPhoto
+          src={carlottaWalkingImg}
+          side="left"
+          className="bottom-0 hidden h-[55%] w-[35%] lg:block"
+          opacity={0.28}
+          objectPosition="50% 20%"
+          blend="multiply"
+        />
+        <div className="relative mx-auto max-w-5xl px-5 pb-12 pt-20 text-center">
           <Reveal>
             <h2 className="text-3xl text-foreground sm:text-4xl">
               <Highlight>Il principio mancante</Highlight>
@@ -2621,7 +2644,7 @@ function CandidaturaAmbiziosa() {
             </h2>
           </Reveal>
         </div>
-        <div className="mx-auto max-w-6xl px-5 pb-20 pt-4">
+        <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-4">
           <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr_0.9fr] lg:items-start lg:gap-10">
             <Reveal>
               <ProfileBeforeAfter />
@@ -3211,8 +3234,17 @@ function CandidaturaAmbiziosa() {
       </section>
 
       {/* 11. Due percorsi, due livelli di accompagnamento */}
-      <section id="prezzi" className="bg-background">
-        <div className="mx-auto max-w-6xl px-5 py-20">
+      <section id="prezzi" className="relative overflow-x-clip bg-background">
+        {/* Sfondo: Carlotta che guarda verso la camera, a destra del titolo */}
+        <SectionPhoto
+          src={carlottaCameraImg}
+          side="right"
+          className="top-0 hidden h-[560px] w-[34%] lg:block"
+          opacity={0.3}
+          objectPosition="62% 15%"
+          blend="multiply"
+        />
+        <div className="relative mx-auto max-w-6xl px-5 py-20">
           <Reveal>
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="text-3xl text-foreground sm:text-4xl">
@@ -3452,7 +3484,7 @@ function CandidaturaAmbiziosa() {
       {/* FAQ finali, stessa sezione di Rule The Rules (src/routes/index.tsx) */}
       <section
         id="faq"
-        className="bg-secondary px-4 py-14 sm:px-8 sm:py-20"
+        className="relative overflow-hidden bg-secondary px-4 py-14 sm:px-8 sm:py-20"
         style={
           {
             color: "var(--secondary-foreground)",
@@ -3462,7 +3494,16 @@ function CandidaturaAmbiziosa() {
           } as React.CSSProperties
         }
       >
-        <div className="mx-auto max-w-3xl">
+        {/* Sfondo: Carlotta che abbraccia una partecipante, a destra */}
+        <SectionPhoto
+          src={carlottaHugImg}
+          side="right"
+          className="inset-y-0 hidden w-[32%] lg:block"
+          opacity={0.25}
+          objectPosition="50% 20%"
+          blend="luminosity"
+        />
+        <div className="relative mx-auto max-w-3xl">
           <Reveal>
             <h2 className="text-3xl text-foreground sm:text-4xl">
               Domande <Highlight dark>frequenti</Highlight>

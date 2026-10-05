@@ -12,6 +12,8 @@ import {
   UserX,
 } from "lucide-react";
 import { Highlight } from "@/components/landing/Highlight";
+import { SectionPhoto } from "@/components/landing/SectionPhoto";
+import carlottaMuroDestraImg from "@/assets/Carlotta che guarda a destra appoggiata al muro.jpg";
 
 // "Ecco cosa succede quando scegli Ambiziosa": un grafico che si disegna
 // mentre si scorre la pagina. La sezione resta ferma sullo schermo (sticky)
@@ -220,7 +222,16 @@ export function AmbiziosaJourney() {
     >
       <div ref={containerRef} className="relative" style={{ height: "380vh" }}>
         <div className="sticky top-0 flex h-[100svh] flex-col overflow-hidden pt-28 sm:pt-32">
-          <div className="px-5">
+          {/* Carlotta guarda verso il grafico, sullo sfondo a sinistra */}
+          <SectionPhoto
+            src={carlottaMuroDestraImg}
+            side="left"
+            className="inset-y-0 w-[75%] sm:w-[45%]"
+            opacity={0.25}
+            objectPosition="30% 20%"
+            blend="luminosity"
+          />
+          <div className="relative z-10 px-5">
             <JourneyTitle />
             <div className="mt-4 flex justify-center gap-6 font-condensed text-xs uppercase tracking-[0.2em] sm:text-sm">
               <span style={{ color: PAIN_COLOR }}>Prima</span>
@@ -229,7 +240,7 @@ export function AmbiziosaJourney() {
             </div>
           </div>
 
-          <div className="relative mt-6 flex-1">
+          <div className="relative z-10 mt-6 flex-1">
             <div
               className="absolute left-0 top-1/2"
               style={{
