@@ -43,8 +43,10 @@ import {
   UPGRADE_DIFFERENCE,
   WHATSAPP_URL,
 } from "@/lib/ambiziosa-config";
-import carlottaLookingImg from "@/assets/carlotta-looking-2.jpg";
 import carlottaSquareImg from "@/assets/carlotta-square.jpg";
+import carlottaCallAvatarImg from "@/assets/carlotta-call-avatar.jpg";
+import sharonCallAvatarImg from "@/assets/sharon-call-avatar.jpg";
+import carlottaManiInTascaImg from "@/assets/Carlotta mani in tasca che guarda a sinistra.jpg";
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import sharonSpeakingImg from "@/assets/sharon-speaking.jpg";
 import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
@@ -1208,17 +1210,17 @@ const KICKOFF_CALLS: CallBox[] = [
 const CALL_PEOPLE: Record<CallWho, { name: string; photos: { src: string; alt: string }[] }> = {
   carlotta: {
     name: "Carlotta",
-    photos: [{ src: carlottaSquareImg, alt: "Carlotta Sgarra" }],
+    photos: [{ src: carlottaCallAvatarImg, alt: "Carlotta Sgarra" }],
   },
   sharon: {
     name: "Sharon",
-    photos: [{ src: sharonConvertinoImg, alt: "Sharon Convertino" }],
+    photos: [{ src: sharonCallAvatarImg, alt: "Sharon Convertino" }],
   },
   both: {
     name: "Carlotta e Sharon",
     photos: [
-      { src: carlottaSquareImg, alt: "Carlotta Sgarra" },
-      { src: sharonConvertinoImg, alt: "Sharon Convertino" },
+      { src: carlottaCallAvatarImg, alt: "Carlotta Sgarra" },
+      { src: sharonCallAvatarImg, alt: "Sharon Convertino" },
     ],
   },
 };
@@ -2659,11 +2661,11 @@ function CandidaturaAmbiziosa() {
               style={{ borderRadius: "1.75rem" }}
             >
               <img
-                src={carlottaLookingImg}
-                alt="Carlotta Sgarra"
+                src={carlottaManiInTascaImg}
+                alt="Carlotta Sgarra con le mani in tasca"
                 loading="lazy"
                 className="aspect-[4/3] h-full w-full object-cover md:order-2 md:aspect-auto"
-                style={{ objectPosition: "60% 30%" }}
+                style={{ objectPosition: "50% 22%" }}
               />
               <div className="flex flex-col justify-center px-6 py-10 sm:px-10 sm:py-12 md:order-1">
                 <h2 className="text-3xl text-ink sm:text-4xl">
