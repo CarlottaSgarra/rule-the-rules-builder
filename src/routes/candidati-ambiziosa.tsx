@@ -1869,7 +1869,7 @@ function CandidaturaAmbiziosa() {
 
               <div className="mt-4">
                 <div
-                  className="inline-flex flex-col items-center gap-1.5 rounded-xl px-4 py-2.5 sm:flex-row sm:items-center sm:gap-3"
+                  className="flex w-full flex-col items-center gap-1.5 rounded-xl px-4 py-2.5 sm:inline-flex sm:w-auto sm:flex-row sm:items-center sm:gap-3"
                   style={{
                     backgroundColor: "color-mix(in oklab, var(--secondary) 35%, transparent)",
                     border: "1px solid color-mix(in oklab, var(--primary) 30%, transparent)",
@@ -3022,7 +3022,7 @@ function CandidaturaAmbiziosa() {
                   src={carlottaPresentingImg}
                   alt="Carlotta Sgarra"
                   loading="lazy"
-                  className="aspect-[4/5] w-full max-w-[220px] rounded-2xl object-cover"
+                  className="aspect-[4/3] w-full rounded-2xl object-cover sm:aspect-[4/5] sm:max-w-[220px]"
                   style={{ objectPosition: "38% 30%" }}
                 />
                 <div>
@@ -3057,7 +3057,7 @@ function CandidaturaAmbiziosa() {
                   src={sharonSpeakingImg}
                   alt="Sharon Convertino"
                   loading="lazy"
-                  className="aspect-[4/5] w-full max-w-[220px] rounded-2xl object-cover"
+                  className="aspect-[4/3] w-full rounded-2xl object-cover sm:aspect-[4/5] sm:max-w-[220px]"
                   style={{ objectPosition: "47% 30%" }}
                 />
                 <div>
@@ -3232,7 +3232,7 @@ function CandidaturaAmbiziosa() {
               {/* Posti disponibili e prezzo bloccato, uno accanto all'altro */}
               <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
                 <span
-                  className="inline-flex items-center gap-2 rounded-full px-5 py-3 font-condensed text-xs uppercase tracking-[0.15em] text-primary-foreground sm:text-sm"
+                  className="flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 font-condensed text-xs uppercase tracking-[0.15em] text-primary-foreground sm:inline-flex sm:w-auto sm:text-sm"
                   style={{
                     backgroundImage: "var(--gradient-gold)",
                     boxShadow: "var(--shadow-gold)",
@@ -3242,7 +3242,7 @@ function CandidaturaAmbiziosa() {
                   Solo {MAX_SEATS} posti disponibili
                 </span>
                 <div
-                  className="inline-flex flex-col items-center gap-2 rounded-2xl bg-secondary px-5 py-3 sm:flex-row sm:gap-4 sm:rounded-full sm:px-7"
+                  className="flex w-full flex-col items-center gap-2 rounded-2xl bg-secondary px-5 py-3 sm:inline-flex sm:w-auto sm:flex-row sm:gap-4 sm:rounded-full sm:px-7"
                   style={
                     {
                       "--foreground": "var(--secondary-foreground)",
