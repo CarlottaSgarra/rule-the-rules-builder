@@ -3374,8 +3374,8 @@ function CandidaturaAmbiziosa() {
             </Reveal>
           </div>
 
-          {/* Dubbi prima di prenotare + perché adesso (posti e prezzo bloccato): foto di Matilde
-              (supporto clienti) a sinistra, testo a destra, largo quanto le card dei prezzi */}
+          {/* Dubbi prima di prenotare: foto di Matilde (supporto clienti) a sinistra, testo e
+              bottone WhatsApp a destra, largo quanto le card dei prezzi */}
           <Reveal>
             <div className="mt-16 grid gap-6 rounded-[1.75rem] border border-secondary/40 bg-transparent p-6 sm:p-8 lg:grid-cols-[minmax(0,0.3fr)_minmax(0,1fr)] lg:gap-10 lg:p-10">
               <div className="relative">
@@ -3383,17 +3383,17 @@ function CandidaturaAmbiziosa() {
                   src={matildeImg}
                   alt="Matilde, che si occupa del supporto clienti"
                   loading="lazy"
-                  className="mx-auto aspect-square w-full max-w-xs rounded-2xl object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full lg:max-w-none"
+                  className="mx-auto aspect-square w-full max-w-[200px] rounded-2xl object-cover lg:absolute lg:inset-0 lg:aspect-auto lg:h-full lg:max-w-none"
                   style={{ objectPosition: "30% 35%" }}
                 />
               </div>
 
               <div>
                 <span
-                  className="inline-flex rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary-foreground sm:text-xs"
+                  className="inline-flex rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.08em] text-primary-foreground sm:text-xs sm:tracking-[0.15em]"
                   style={{ backgroundImage: "var(--gradient-gold)" }}
                 >
-                  Ti rispondiamo entro poche ore
+                  Matilde ti risponde entro poche ore
                 </span>
                 <h3 className="mt-3 text-2xl text-foreground sm:text-3xl">
                   Hai un dubbio <Highlight>prima di prenotare</Highlight>?
@@ -3426,52 +3426,6 @@ function CandidaturaAmbiziosa() {
                     Clicca qui per scrivere a Matilde su WhatsApp
                   </span>
                 </a>
-
-                <div
-                  className="mt-8 border-t pt-8"
-                  style={{ borderColor: "color-mix(in oklab, var(--secondary) 20%, transparent)" }}
-                >
-                  <h3 className="text-2xl text-foreground sm:text-3xl">
-                    Perché adesso è <Highlight>il momento giusto</Highlight>?
-                  </h3>
-                  <div className="mt-6 grid gap-6 sm:grid-cols-2 sm:gap-8">
-                    <div>
-                      <p className="flex items-end gap-3">
-                        <span className="font-display text-6xl leading-[0.8] text-secondary">
-                          {MAX_SEATS}
-                        </span>
-                        <span className="font-condensed text-sm uppercase leading-tight tracking-[0.15em] text-foreground">
-                          Posti
-                          <br />
-                          in tutto
-                        </span>
-                      </p>
-                      <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
-                        I posti sono limitati perché{" "}
-                        <strong className="font-semibold text-foreground">
-                          io e Sharon lavoriamo a stretto contatto con ogni professionista
-                        </strong>
-                        : più di nove non riusciamo a seguirle come vogliamo.
-                      </p>
-                    </div>
-                    <div>
-                      <p className="flex items-end gap-3">
-                        <span className="font-display text-6xl leading-[0.8] text-secondary">
-                          16
-                        </span>
-                        <span className="font-condensed text-sm uppercase leading-tight tracking-[0.15em] text-foreground">
-                          Ottobre
-                          <br />
-                          prezzo bloccato
-                        </span>
-                      </p>
-                      <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
-                        Questi prezzi valgono fino al 16 ottobre.{" "}
-                        <strong className="font-semibold text-foreground">Poi salgono.</strong>
-                      </p>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </Reveal>
