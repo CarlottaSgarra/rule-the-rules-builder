@@ -45,6 +45,9 @@ import {
   WHATSAPP_URL,
 } from "@/lib/ambiziosa-config";
 import carlottaSquareImg from "@/assets/carlotta-square.jpg";
+import bonusNotionImg from "@/assets/dashboard notion.png";
+import bonusSlackDmImg from "@/assets/dm diretto.png";
+import bonusCommunityImg from "@/assets/community.png";
 import carlottaCallAvatarImg from "@/assets/carlotta-call-avatar.jpg";
 import sharonCallAvatarImg from "@/assets/sharon-call-avatar.jpg";
 import carlottaManiInTascaImg from "@/assets/Carlotta mani in tasca che guarda a sinistra.jpg";
@@ -1533,6 +1536,8 @@ const beforeAfterRows = [
 // valore, descrizione, dettagli e, dove serve, una chiusura in evidenza.
 const ambiziosaBonuses: {
   title: string;
+  // Screenshot del bonus; senza immagine la card mostra il segnaposto.
+  image?: { src: string; alt: string };
   badges: [string, string];
   intro: React.ReactNode;
   details?: { label: string; text: React.ReactNode }[];
@@ -1542,6 +1547,7 @@ const ambiziosaBonuses: {
 }[] = [
   {
     title: "Il tuo HQ: Notion",
+    image: { src: bonusNotionImg, alt: "La dashboard Notion di Ambiziosa Mentorship" },
     badges: ["Tutto in un unico posto", "Piano step by step"],
     intro: (
       <>
@@ -1574,6 +1580,7 @@ const ambiziosaBonuses: {
   },
   {
     title: "Supporto diretto su Slack",
+    image: { src: bonusSlackDmImg, alt: "Messaggi diretti con Carlotta su Slack" },
     badges: ["Risposta entro 24 ore", "Lun-gio · 10-16"],
     intro: (
       <>
@@ -1607,6 +1614,7 @@ const ambiziosaBonuses: {
   },
   {
     title: "Community e confronto",
+    image: { src: bonusCommunityImg, alt: "Il canale #wins della community su Slack" },
     badges: ["Mai più da sola", "Professioniste come te"],
     intro: (
       <>
@@ -2895,19 +2903,28 @@ function CandidaturaAmbiziosa() {
                     backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
                   }}
                 >
-                  {/* SEGNAPOSTO: sostituire con l'immagine del bonus fornita da Carlotta */}
-                  <div
-                    className="m-4 mb-0 flex aspect-[16/9] flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed sm:m-5 sm:mb-0"
-                    style={{
-                      backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
-                      borderColor: "color-mix(in oklab, var(--primary) 35%, transparent)",
-                    }}
-                  >
-                    <ImageIcon className="size-8 text-primary/60" />
-                    <span className="font-condensed text-[10px] uppercase tracking-[0.2em] text-ink-muted">
-                      Immagine in arrivo
-                    </span>
-                  </div>
+                  {b.image ? (
+                    <img
+                      src={b.image.src}
+                      alt={b.image.alt}
+                      loading="lazy"
+                      className="m-4 mb-0 aspect-[16/9] rounded-xl bg-white object-cover object-top shadow-[0_20px_45px_-20px_rgba(0,0,0,0.6)] sm:m-5 sm:mb-0"
+                    />
+                  ) : (
+                    // SEGNAPOSTO: sostituire con l'immagine del bonus fornita da Carlotta
+                    <div
+                      className="m-4 mb-0 flex aspect-[16/9] flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed sm:m-5 sm:mb-0"
+                      style={{
+                        backgroundColor: "color-mix(in oklab, var(--background) 6%, transparent)",
+                        borderColor: "color-mix(in oklab, var(--primary) 35%, transparent)",
+                      }}
+                    >
+                      <ImageIcon className="size-8 text-primary/60" />
+                      <span className="font-condensed text-[10px] uppercase tracking-[0.2em] text-ink-muted">
+                        Immagine in arrivo
+                      </span>
+                    </div>
+                  )}
 
                   <div className="flex flex-1 flex-col p-6 sm:p-8">
                     <div className="flex flex-wrap gap-2">
