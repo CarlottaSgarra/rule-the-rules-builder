@@ -5,9 +5,11 @@ import { APPLICATION_URL, CTA_LABEL, CTA_SUB } from "@/lib/ambiziosa-config";
 // grafiche della pagina Rule The Rules: "topbar" = pulsante di SiteTopbar,
 // "hero" = CtaButton (etichetta + riga piccola sotto). Apre APPLICATION_URL
 // (il link di candidatura) in una nuova scheda; finché non è valorizzato fa
-// scroll morbido all'ancora `targetId` (di default "prezzi").
+// scroll morbido all'ancora `targetId` (di default "prezzi"). Con `href`
+// apre quel link specifico al posto di APPLICATION_URL.
 type Props = {
   variant: "topbar" | "hero";
+  href?: string;
   label?: string;
   sub?: string;
   targetId?: string;
@@ -16,13 +18,14 @@ type Props = {
 
 export function AmbiziosaCtaButton({
   variant,
+  href = APPLICATION_URL,
   label = CTA_LABEL,
   sub = CTA_SUB,
   targetId = "prezzi",
   className = "",
 }: Props) {
-  const linkProps = APPLICATION_URL
-    ? { href: APPLICATION_URL, target: "_blank", rel: "noopener noreferrer" }
+  const linkProps = href
+    ? { href, target: "_blank", rel: "noopener noreferrer" }
     : { href: `#${targetId}`, onClick: handleClick };
 
   function handleClick(e: React.MouseEvent<HTMLAnchorElement>) {

@@ -36,6 +36,7 @@ import { ProfileBeforeAfter, ResultsCards } from "@/components/landing/Ambiziosa
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
 import {
   PRICE_LOCK_DEADLINE,
+  EVALUATION_CALL_URL,
   MENTORSHIP_PRICE,
   MENTORSHIP_STATS as mentorshipStats,
   PROGRAM_PRICE,
@@ -3336,7 +3337,11 @@ function CandidaturaAmbiziosa() {
                 </ul>
 
                 <div className="mt-8">
-                  <AmbiziosaCtaButton variant="hero" label="Candidati ad Ambiziosa Program" />
+                  <AmbiziosaCtaButton
+                    variant="hero"
+                    href={EVALUATION_CALL_URL}
+                    label="Candidati ad Ambiziosa Program"
+                  />
                 </div>
               </div>
             </Reveal>
@@ -3424,7 +3429,11 @@ function CandidaturaAmbiziosa() {
                   </div>
 
                   <div className="mt-8">
-                    <AmbiziosaCtaButton variant="hero" label="Candidati ad Ambiziosa Mentorship" />
+                    <AmbiziosaCtaButton
+                      variant="hero"
+                      href={EVALUATION_CALL_URL}
+                      label="Candidati ad Ambiziosa Mentorship"
+                    />
                   </div>
                 </div>
               </div>

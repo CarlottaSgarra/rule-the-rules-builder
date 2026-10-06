@@ -21,6 +21,10 @@ export const APPLICATIONS_OPEN_AT = "2026-10-06T20:30:00+02:00";
 // pulsanti "Candidati" portano alla sezione prezzi (#prezzi).
 export const APPLICATION_URL = "";
 
+// Calendario per prenotare la call valutativa (gestito da Matilde): lo
+// aprono i pulsanti "Candidati" dentro le card dei prezzi (#prezzi).
+export const EVALUATION_CALL_URL = "https://tidycal.com/matildesgarra/call-valutativa-ruletherules";
+
 // WhatsApp del supporto clienti (risponde Matilde), con un messaggio già
 // scritto che la persona può modificare prima di inviarlo.
 const WHATSAPP_NUMBER = "393513728127";
