@@ -3270,28 +3270,26 @@ function CandidaturaAmbiziosa() {
                 </strong>
                 .
               </p>
-              {/* Posti disponibili e prezzo bloccato, uno accanto all'altro */}
-              <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+              {/* Un unico banner: a sinistra i posti (pill oro interna), a
+                  destra il prezzo bloccato con il countdown */}
+              <div
+                className="mx-auto mt-7 flex w-full flex-col items-center gap-3 rounded-2xl bg-secondary p-2 pb-4 sm:w-fit sm:rounded-3xl xl:relative xl:left-1/2 xl:mx-0 xl:w-max xl:-translate-x-1/2 xl:flex-row xl:gap-5 xl:rounded-full xl:pb-2 xl:pr-7"
+                style={
+                  {
+                    "--foreground": "var(--secondary-foreground)",
+                    "--muted-foreground": "oklch(0.85 0.03 40)",
+                  } as React.CSSProperties
+                }
+              >
                 <span
-                  className="flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 font-condensed text-xs uppercase tracking-[0.15em] text-primary-foreground sm:inline-flex sm:w-auto sm:text-sm"
-                  style={{
-                    backgroundImage: "var(--gradient-gold)",
-                    boxShadow: "var(--shadow-gold)",
-                  }}
+                  className="flex w-full shrink-0 items-center justify-center gap-2 rounded-xl px-5 py-3 font-condensed text-xs uppercase tracking-[0.15em] text-primary-foreground sm:rounded-full sm:text-sm xl:w-auto"
+                  style={{ backgroundImage: "var(--gradient-gold)" }}
                 >
                   <Users className="size-4 shrink-0" />
                   Solo {MAX_SEATS} posti disponibili
                 </span>
-                <div
-                  className="flex w-full flex-col items-center gap-2 rounded-2xl bg-secondary px-5 py-3 sm:inline-flex sm:w-auto sm:flex-row sm:gap-4 sm:rounded-full sm:px-7"
-                  style={
-                    {
-                      "--foreground": "var(--secondary-foreground)",
-                      "--muted-foreground": "oklch(0.85 0.03 40)",
-                    } as React.CSSProperties
-                  }
-                >
-                  <span className="font-condensed text-[10px] uppercase tracking-[0.15em] text-muted-foreground sm:text-xs">
+                <div className="flex flex-col items-center gap-2 px-3 lg:flex-row lg:gap-4">
+                  <span className="font-condensed text-[10px] uppercase tracking-[0.15em] text-muted-foreground sm:text-xs lg:whitespace-nowrap">
                     Il prezzo resta bloccato ancora per
                   </span>
                   <Countdown compact target={PRICE_LOCK_MS} />
