@@ -1853,8 +1853,8 @@ function CandidaturaAmbiziosa() {
                   <strong className="font-semibold text-ink">
                     Ambiziosa è il mio percorso esclusivo, di 4 mesi
                   </strong>
-                  , dove io e te lavoriamo insieme sulla tua identità, la tua comunicazione, i tuoi
-                  contenuti e la tua strategia.
+                  , dove io, Sharon e te lavoriamo insieme sulla tua identità, la tua comunicazione,
+                  i tuoi contenuti e la tua strategia.
                 </p>
                 <p>
                   Non è un corso registrato da guardare quando capita, ma un percorso in cui

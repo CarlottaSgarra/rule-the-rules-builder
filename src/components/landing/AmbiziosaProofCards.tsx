@@ -1,12 +1,12 @@
-import { Play, TrendingUp } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 import profiloIgCarlottaImg from "@/assets/profilo-ig-carlotta.png";
+import insightPanoramicaImg from "@/assets/insight-panoramica.jpg";
+import insightInterazioneImg from "@/assets/insight-interazione.jpg";
 import carlottaMuroImg from "@/assets/carlotta appoggiata a muro che guarda.jpg";
 
 // Card inclinate e sovrapposte per la sezione "Il principio mancante":
 // stessa ricetta degli screenshot WhatsApp di Rule The Rules (bordo,
 // ombra, rotazione ±5°), con il bordo colorato richiesto dal riferimento.
-// TODO: quando Carlotta fornisce gli screenshot reali (profilo prima/dopo,
-// statistiche del Reel non scriptato) sostituire le card illustrate.
 
 const cardClass = "rounded-xl border-2 bg-white shadow-[0_20px_40px_-12px_rgba(0,0,0,0.45)]";
 const label = "font-condensed text-[9px] uppercase tracking-[0.15em] text-muted-foreground";
@@ -67,10 +67,9 @@ export function ProfileBeforeAfter() {
 // I risultati di Carlotta: il Reel non scriptato oltre 130.000 visualizzazioni
 // e l'azienda da 500.000€ in 3 anni (dato già presente su Rule The Rules).
 export function ResultsCards() {
-  const reelBars = [18, 22, 20, 30, 26, 38, 52, 70, 64, 82, 90, 100];
   const revenueBars = [20, 34, 52, 74, 100];
   return (
-    <div className="relative mx-auto w-full max-w-[320px] pb-44">
+    <div className="relative mx-auto w-full max-w-[320px] pb-36">
       <div
         className={`${cardClass} w-[88%] p-4`}
         style={{
@@ -101,31 +100,42 @@ export function ResultsCards() {
         </div>
       </div>
 
-      <div
-        className={`${cardClass} absolute bottom-0 right-0 w-[88%] p-4`}
-        style={{ transform: "rotate(4deg)", borderColor: "var(--secondary)" }}
-      >
-        <div className="flex items-center justify-between">
-          <Pill gold>Reel non scriptato</Pill>
-          <Play className="size-3.5 fill-current text-secondary" />
-        </div>
-        <p className={`${label} mt-3`}>Visualizzazioni</p>
-        <p className="mt-1 font-display text-3xl leading-none text-foreground">130.000+</p>
-        <div className="mt-3 flex h-14 items-end gap-1">
-          {reelBars.map((h, i) => (
-            <span
-              key={i}
-              className="flex-1 rounded-t-[2px]"
-              style={{
-                height: `${h}%`,
-                backgroundImage: i >= reelBars.length - 4 ? "var(--gradient-gold)" : undefined,
-                backgroundColor:
-                  i >= reelBars.length - 4
-                    ? undefined
-                    : "color-mix(in oklab, var(--secondary) 35%, transparent)",
-              }}
+      {/* Gli insight reali di Instagram: panoramica (visualizzazioni e curva)
+          e interazione (visite al profilo, follow, clic) */}
+      <div className="relative mt-10">
+        <div className="relative ml-auto w-[90%]" style={{ transform: "rotate(3deg)" }}>
+          <div
+            className={`${cardClass} overflow-hidden`}
+            style={{ borderColor: "var(--secondary)" }}
+          >
+            <img
+              src={insightPanoramicaImg}
+              alt="Insight di un reel: 161.636 visualizzazioni, 188 follow e la curva delle visualizzazioni"
+              loading="lazy"
+              className="w-full"
             />
-          ))}
+          </div>
+          {/* Il badge sta a cavallo del bordo superiore per non coprire i dati */}
+          <span
+            className="absolute inset-x-3 -top-5 rounded-xl px-3 py-1.5 text-center font-condensed text-[10px] uppercase leading-snug tracking-[0.1em] text-primary-foreground shadow-md sm:text-xs"
+            style={{ backgroundImage: "var(--gradient-gold)" }}
+          >
+            Dati da un reel non scriptato e che non seguiva le "regole"
+          </span>
+        </div>
+        <div
+          className={`${cardClass} absolute -bottom-32 left-0 w-[58%] overflow-hidden`}
+          style={{
+            transform: "rotate(-5deg)",
+            borderColor: "color-mix(in oklab, var(--foreground) 25%, transparent)",
+          }}
+        >
+          <img
+            src={insightInterazioneImg}
+            alt="Insight di un reel: 638 visite al profilo, 44 follow, 18 clic sul link della biografia"
+            loading="lazy"
+            className="w-full"
+          />
         </div>
       </div>
     </div>
