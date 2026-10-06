@@ -1785,8 +1785,7 @@ function CandidaturaAmbiziosa() {
             alt=""
             aria-hidden
             loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover lg:left-auto lg:w-[58%]"
-            style={{ objectPosition: "center 18%" }}
+            className="absolute inset-0 h-full w-full object-cover object-[8%_18%] lg:left-auto lg:w-[58%] lg:object-[50%_18%]"
           />
           <div
             aria-hidden
@@ -1816,18 +1815,15 @@ function CandidaturaAmbiziosa() {
                 <h1 className="font-display text-6xl uppercase leading-[0.95] tracking-tight text-ink sm:text-8xl">
                   Ambiziosa
                 </h1>
-                {/* Bagliore verde che attraversa le lettere: uno strato
-                    sfocato per l'alone e uno nitido che le colora. Stanno
-                    fuori dall'h1 così il titolo resta "Ambiziosa" una volta. */}
-                {["blur-md", ""].map((extra) => (
-                  <span
-                    key={extra || "sharp"}
-                    aria-hidden
-                    className={`animate-glow-sweep pointer-events-none absolute inset-0 select-none font-display text-6xl uppercase leading-[0.95] tracking-tight sm:text-8xl ${extra}`}
-                  >
-                    Ambiziosa
-                  </span>
-                ))}
+                {/* Le lettere si colorano di verde da sinistra a destra con un
+                    bordo morbido. Sta fuori dall'h1 così il titolo resta
+                    "Ambiziosa" una volta. */}
+                <span
+                  aria-hidden
+                  className="animate-glow-sweep pointer-events-none absolute inset-0 select-none font-display text-6xl uppercase leading-[0.95] tracking-tight sm:text-8xl"
+                >
+                  Ambiziosa
+                </span>
                 <span
                   className="absolute select-none whitespace-nowrap rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary-foreground sm:text-xs"
                   style={{
