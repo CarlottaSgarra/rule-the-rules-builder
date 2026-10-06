@@ -1816,6 +1816,18 @@ function CandidaturaAmbiziosa() {
                 <h1 className="font-display text-6xl uppercase leading-[0.95] tracking-tight text-ink sm:text-8xl">
                   Ambiziosa
                 </h1>
+                {/* Bagliore verde che attraversa le lettere: uno strato
+                    sfocato per l'alone e uno nitido che le colora. Stanno
+                    fuori dall'h1 così il titolo resta "Ambiziosa" una volta. */}
+                {["blur-md", ""].map((extra) => (
+                  <span
+                    key={extra || "sharp"}
+                    aria-hidden
+                    className={`animate-glow-sweep pointer-events-none absolute inset-0 select-none font-display text-6xl uppercase leading-[0.95] tracking-tight sm:text-8xl ${extra}`}
+                  >
+                    Ambiziosa
+                  </span>
+                ))}
                 <span
                   className="absolute select-none whitespace-nowrap rounded-full px-3 py-1 font-condensed text-[10px] uppercase tracking-[0.15em] text-primary-foreground sm:text-xs"
                   style={{

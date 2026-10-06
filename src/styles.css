@@ -417,6 +417,42 @@
   animation: shine-sweep 2.6s ease-in-out infinite;
 }
 
+/* Bagliore verde che scorre sulle lettere da sinistra a destra (titolo
+   AMBIZIOSA): una fascia di --primary ritagliata sul testo, che si sposta
+   animando la posizione dello sfondo. */
+@keyframes glow-sweep {
+  0% {
+    background-position: 100% 0;
+  }
+  55%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+@utility animate-glow-sweep {
+  background-image: linear-gradient(
+    90deg,
+    transparent 38%,
+    var(--primary) 47%,
+    var(--primary) 53%,
+    transparent 62%
+  );
+  background-size: 300% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: glow-sweep 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-glow-sweep {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-shine-sweep {
     animation: none;
