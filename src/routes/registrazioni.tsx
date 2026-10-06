@@ -43,11 +43,21 @@ function useAmbiziosaOpen() {
   return open;
 }
 
-const recordings = [
+// Registrazioni delle 3 serate: con `vimeo` mostra il video (link privato di
+// Vimeo: id + codice), senza mostra la copertina con "Video in arrivo".
+const recordings: {
+  n: string;
+  date: string;
+  title: string;
+  description: string;
+  poster: string;
+  vimeo?: { id: string; hash: string };
+}[] = [
   {
     n: "1",
     date: "5 ottobre",
     title: "Togli il Costume",
+    vimeo: { id: "1233267799", hash: "1024f98f77" },
     description:
       "Prima di capire cosa pubblicare, abbiamo capito chi è rimasto sotto tutto quello che hai imparato a fare “bene”: identity excavation, il tuo DNA comunicativo e le tue Carte Identitarie.",
     poster: togliIlCostumeImg,
@@ -270,7 +280,16 @@ function Registrazioni() {
                       {r.n}
                     </span>
                     <div className="relative">
-                      <VideoFrame label={r.title} poster={r.poster} duration="Video in arrivo" />
+                      {r.vimeo ? (
+                        <VideoFrame
+                          label={r.title}
+                          vimeoId={r.vimeo.id}
+                          vimeoHash={r.vimeo.hash}
+                          autoplay={false}
+                        />
+                      ) : (
+                        <VideoFrame label={r.title} poster={r.poster} duration="Video in arrivo" />
+                      )}
                     </div>
                     <div className="relative">
                       <h2 className="text-2xl text-ink sm:text-3xl">{r.title}</h2>

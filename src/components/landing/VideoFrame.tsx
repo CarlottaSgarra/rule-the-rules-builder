@@ -6,14 +6,34 @@ type Props = {
   poster?: string;
   youtubeId?: string;
   vimeoId?: string;
+  // Codice dei video Vimeo privati/non in elenco (la parte dopo l'ID nel link
+  // di condivisione, es. vimeo.com/1233267799/1024f98f77).
+  vimeoHash?: string;
+  // Di default il video Vimeo parte da solo, senza audio; false per farlo
+  // partire solo quando la persona preme play (es. le registrazioni).
+  autoplay?: boolean;
 };
 
-export function VideoFrame({ label, duration, poster, youtubeId, vimeoId }: Props) {
+export function VideoFrame({
+  label,
+  duration,
+  poster,
+  youtubeId,
+  vimeoId,
+  vimeoHash,
+  autoplay = true,
+}: Props) {
   if (vimeoId) {
+    const params = new URLSearchParams({ title: "0", byline: "0", portrait: "0" });
+    if (vimeoHash) params.set("h", vimeoHash);
+    if (autoplay) {
+      params.set("autoplay", "1");
+      params.set("muted", "1");
+    }
     return (
       <div className="aspect-video w-full overflow-hidden rounded-2xl border border-primary/25">
         <iframe
-          src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=1&title=0&byline=0&portrait=0`}
+          src={`https://player.vimeo.com/video/${vimeoId}?${params.toString()}`}
           title={label}
           className="h-full w-full"
           allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
