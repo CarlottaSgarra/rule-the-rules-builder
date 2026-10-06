@@ -37,6 +37,7 @@ import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer"
 import {
   PRICE_LOCK_DEADLINE,
   EVALUATION_CALL_URL,
+  HERO_VIDEO_URL,
   MENTORSHIP_PRICE,
   MENTORSHIP_STATS as mentorshipStats,
   PROGRAM_PRICE,
@@ -1930,9 +1931,14 @@ function CandidaturaAmbiziosa() {
           </div>
         </div>
 
-        <div className="mx-auto max-w-5xl px-5 pt-10">
-          <AmbiziosaHeroVideo />
-        </div>
+        {/* Il video di presentazione compare solo quando HERO_VIDEO_URL
+            (src/lib/ambiziosa-config.ts) ha un link: finché è vuoto la
+            sezione resta nascosta. */}
+        {HERO_VIDEO_URL ? (
+          <div className="mx-auto max-w-5xl px-5 pt-10">
+            <AmbiziosaHeroVideo />
+          </div>
+        ) : null}
 
         <div className="mx-auto max-w-6xl px-5 pb-10 pt-20">
           <div className="relative overflow-hidden" style={{ borderRadius: "1.75rem" }}>
