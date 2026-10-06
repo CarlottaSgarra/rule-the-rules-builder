@@ -1,4 +1,3 @@
-import { TrendingUp } from "lucide-react";
 import profiloIgCarlottaImg from "@/assets/profilo-ig-carlotta.png";
 import insightPanoramicaImg from "@/assets/insight-panoramica.jpg";
 import insightInterazioneImg from "@/assets/insight-interazione.jpg";
@@ -65,45 +64,14 @@ export function ProfileBeforeAfter() {
   );
 }
 
-// I risultati di Carlotta: il Reel non scriptato oltre 130.000 visualizzazioni
-// e l'azienda da 300.000€ in 3 anni (dato già presente su Rule The Rules).
+// I risultati di Carlotta: gli insight reali del Reel non scriptato e il
+// fatturato 2024–2026.
 export function ResultsCards() {
-  const revenueBars = [20, 34, 52, 74, 100];
   return (
     <div className="relative mx-auto w-full max-w-[320px] pb-8">
-      <div
-        className={`${cardClass} w-[88%] p-4`}
-        style={{
-          transform: "rotate(-4deg)",
-          borderColor: "color-mix(in oklab, var(--foreground) 25%, transparent)",
-        }}
-      >
-        <div className="flex items-center justify-between">
-          <span className={label}>La mia azienda</span>
-          <TrendingUp className="size-3.5 text-secondary" />
-        </div>
-        <p className="mt-2 font-display text-3xl leading-none text-foreground">300.000€</p>
-        <p className="mt-1 text-[10px] font-semibold text-foreground/60">di fatturato in 3 anni</p>
-        <div className="mt-3 flex h-12 items-end gap-1.5">
-          {revenueBars.map((h, i) => (
-            <span
-              key={i}
-              className="flex-1 rounded-t-[3px]"
-              style={{
-                height: `${h}%`,
-                backgroundColor:
-                  i === revenueBars.length - 1
-                    ? "var(--secondary)"
-                    : "color-mix(in oklab, var(--foreground) 15%, transparent)",
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
       {/* Gli insight reali di Instagram: panoramica (visualizzazioni e curva)
           e interazione (visite al profilo, follow, clic) */}
-      <div className="relative mt-10">
+      <div className="relative pt-5">
         <div className="relative ml-auto w-[90%]" style={{ transform: "rotate(3deg)" }}>
           <div
             className={`${cardClass} overflow-hidden`}

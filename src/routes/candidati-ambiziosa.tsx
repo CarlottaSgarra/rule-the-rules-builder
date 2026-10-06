@@ -60,7 +60,8 @@ import carlottaManiInTascaImg from "@/assets/Carlotta mani in tasca che guarda a
 import carlottaPresentingImg from "@/assets/carlotta-presenting.jpg";
 import sharonSpeakingImg from "@/assets/sharon-speaking.jpg";
 import carlottaLookingWideImg from "@/assets/carlotta-looking.jpg";
-import carlottaHeroBgImg from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
+// Prova: Sharon e Carlotta come sfondo dell'hero (prima: "Carlotta bianco e nero che guarda in camera.jpg")
+import heroBgImg from "@/assets/Sharon e Carlotta che ridono.jpg";
 import carlottaLeftImg from "@/assets/Carlotta bianco e nerco che guarda a sinistra.jpg";
 import winScreenshot1Img from "@/assets/screenshot 1.jpg";
 import winScreenshot2Img from "@/assets/screenshot 2.png";
@@ -1775,14 +1776,21 @@ function CandidaturaAmbiziosa() {
 
       {/* 2. Hero */}
       <section className="bg-background">
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-hidden" style={{ backgroundColor: "var(--secondary)" }}>
+          {/* Da desktop la foto occupa la metà destra, così i volti restano
+              accanto al testo invece che dietro al titolo */}
           <img
-            src={carlottaHeroBgImg}
+            src={heroBgImg}
             alt=""
             aria-hidden
             loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover lg:left-auto lg:w-[58%]"
             style={{ objectPosition: "center 18%" }}
+          />
+          <div
+            aria-hidden
+            className="absolute inset-y-0 left-[42%] hidden w-[18%] lg:block"
+            style={{ background: "linear-gradient(to right, var(--secondary), transparent)" }}
           />
           <div
             className="absolute inset-0"
@@ -2698,7 +2706,7 @@ function CandidaturaAmbiziosa() {
               </div>
             </Reveal>
             <Reveal delay={160}>
-              <div className="lg:mt-56">
+              <div className="lg:mt-4">
                 <ResultsCards />
               </div>
             </Reveal>
