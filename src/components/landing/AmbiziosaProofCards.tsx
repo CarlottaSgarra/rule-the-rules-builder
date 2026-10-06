@@ -2,6 +2,7 @@ import { TrendingUp } from "lucide-react";
 import profiloIgCarlottaImg from "@/assets/profilo-ig-carlotta.png";
 import insightPanoramicaImg from "@/assets/insight-panoramica.jpg";
 import insightInterazioneImg from "@/assets/insight-interazione.jpg";
+import fatturatoImg from "@/assets/fatturato-2024-2026.jpg";
 import carlottaMuroImg from "@/assets/carlotta appoggiata a muro che guarda.jpg";
 
 // Card inclinate e sovrapposte per la sezione "Il principio mancante":
@@ -69,7 +70,7 @@ export function ProfileBeforeAfter() {
 export function ResultsCards() {
   const revenueBars = [20, 34, 52, 74, 100];
   return (
-    <div className="relative mx-auto w-full max-w-[320px] pb-36">
+    <div className="relative mx-auto w-full max-w-[320px] pb-8">
       <div
         className={`${cardClass} w-[88%] p-4`}
         style={{
@@ -137,6 +138,27 @@ export function ResultsCards() {
             className="w-full"
           />
         </div>
+      </div>
+
+      {/* Il fatturato reale 2024–2026, a destra sotto gli insight */}
+      <div className="relative ml-auto mt-40 w-[88%]" style={{ transform: "rotate(2deg)" }}>
+        <div
+          className={`${cardClass} overflow-hidden`}
+          style={{ borderColor: "var(--secondary)" }}
+        >
+          <img
+            src={fatturatoImg}
+            alt="Fatturato 2024–2026: totale 272.859,77€"
+            loading="lazy"
+            className="w-full"
+          />
+        </div>
+        <span
+          className="absolute inset-x-6 -top-8 rounded-xl px-3 py-1.5 text-center font-condensed text-[10px] uppercase leading-snug tracking-[0.1em] text-primary-foreground shadow-md sm:text-xs"
+          style={{ backgroundImage: "var(--gradient-gold)" }}
+        >
+          Il mio fatturato degli ultimi due anni
+        </span>
       </div>
     </div>
   );

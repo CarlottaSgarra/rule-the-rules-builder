@@ -30,7 +30,7 @@ type JourneyPoint = { text: string; icon: typeof Lock };
 // quello che resta più impresso.
 const PAIN_POINTS: JourneyPoint[] = [
   { text: "Ti senti fuori posto online", icon: Puzzle },
-  { text: "Cambi stile ogni settimana", icon: Shirt },
+  { text: "Cambi identità ogni settimana", icon: Shirt },
   { text: "Ti blocchi, rimandi, molli", icon: Lock },
   { text: "Ti svaluti quando vendi i tuoi percorsi", icon: TrendingDown },
   { text: "Fai fatica a trovare clienti", icon: UserX },
