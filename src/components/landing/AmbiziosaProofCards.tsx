@@ -66,7 +66,7 @@ export function ProfileBeforeAfter() {
 }
 
 // I risultati di Carlotta: il Reel non scriptato oltre 130.000 visualizzazioni
-// e l'azienda da 500.000€ in 3 anni (dato già presente su Rule The Rules).
+// e l'azienda da 300.000€ in 3 anni (dato già presente su Rule The Rules).
 export function ResultsCards() {
   const revenueBars = [20, 34, 52, 74, 100];
   return (
@@ -82,7 +82,7 @@ export function ResultsCards() {
           <span className={label}>La mia azienda</span>
           <TrendingUp className="size-3.5 text-secondary" />
         </div>
-        <p className="mt-2 font-display text-3xl leading-none text-foreground">500.000€</p>
+        <p className="mt-2 font-display text-3xl leading-none text-foreground">300.000€</p>
         <p className="mt-1 text-[10px] font-semibold text-foreground/60">di fatturato in 3 anni</p>
         <div className="mt-3 flex h-12 items-end gap-1.5">
           {revenueBars.map((h, i) => (

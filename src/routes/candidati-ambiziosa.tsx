@@ -3163,7 +3163,7 @@ function CandidaturaAmbiziosa() {
         >
           <Reveal>
             <h2 className="text-3xl text-ink sm:text-4xl">
-              Ho creato un’azienda da 500.000€ di fatturato in 3 anni grazie a{" "}
+              Ho creato un’azienda da 300.000€ di fatturato in 3 anni grazie a{" "}
               <Highlight dark>un’identità riconoscibile</Highlight>
             </h2>
           </Reveal>
