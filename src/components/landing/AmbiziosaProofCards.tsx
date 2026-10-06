@@ -64,36 +64,43 @@ export function ProfileBeforeAfter() {
   );
 }
 
+function ProofBadge({ children }: { children: React.ReactNode }) {
+  return (
+    <span
+      className="block rounded-lg px-3 py-1.5 text-center font-condensed text-[10px] uppercase leading-snug tracking-[0.1em] text-primary-foreground shadow-sm sm:text-xs"
+      style={{ backgroundImage: "var(--gradient-gold)" }}
+    >
+      {children}
+    </span>
+  );
+}
+
 // I risultati di Carlotta: gli insight reali del Reel non scriptato e il
 // fatturato 2024–2026.
 export function ResultsCards() {
   return (
-    <div className="relative mx-auto w-full max-w-[320px] pb-8">
+    <div className="relative mx-auto w-full max-w-[320px]">
       {/* Gli insight reali di Instagram: panoramica (visualizzazioni e curva)
           e interazione (visite al profilo, follow, clic) */}
-      <div className="relative pt-5">
-        <div className="relative ml-auto w-[90%]" style={{ transform: "rotate(3deg)" }}>
-          <div
-            className={`${cardClass} overflow-hidden`}
-            style={{ borderColor: "var(--secondary)" }}
-          >
-            <img
-              src={insightPanoramicaImg}
-              alt="Insight di un reel: 161.636 visualizzazioni, 188 follow e la curva delle visualizzazioni"
-              loading="lazy"
-              className="w-full"
-            />
+      <div className="relative">
+        <div
+          className={`${cardClass} relative ml-auto w-[90%] overflow-hidden`}
+          style={{ transform: "rotate(3deg)", borderColor: "var(--secondary)" }}
+        >
+          {/* Il badge sta dentro il riquadro, in una fascia sopra lo
+              screenshot, così non copre i dati */}
+          <div className="px-2 pt-2">
+            <ProofBadge>Dati da un reel non scriptato e che non seguiva le "regole"</ProofBadge>
           </div>
-          {/* Il badge sta a cavallo del bordo superiore per non coprire i dati */}
-          <span
-            className="absolute inset-x-3 -top-5 rounded-xl px-3 py-1.5 text-center font-condensed text-[10px] uppercase leading-snug tracking-[0.1em] text-primary-foreground shadow-md sm:text-xs"
-            style={{ backgroundImage: "var(--gradient-gold)" }}
-          >
-            Dati da un reel non scriptato e che non seguiva le "regole"
-          </span>
+          <img
+            src={insightPanoramicaImg}
+            alt="Insight di un reel: 161.636 visualizzazioni, 188 follow e la curva delle visualizzazioni"
+            loading="lazy"
+            className="w-full"
+          />
         </div>
         <div
-          className={`${cardClass} absolute -bottom-32 left-0 w-[58%] overflow-hidden`}
+          className={`${cardClass} absolute -bottom-28 left-0 w-[58%] overflow-hidden`}
           style={{
             transform: "rotate(-5deg)",
             borderColor: "color-mix(in oklab, var(--foreground) 25%, transparent)",
@@ -109,24 +116,19 @@ export function ResultsCards() {
       </div>
 
       {/* Il fatturato reale 2024–2026, a destra sotto gli insight */}
-      <div className="relative ml-auto mt-40 w-[88%]" style={{ transform: "rotate(2deg)" }}>
-        <div
-          className={`${cardClass} overflow-hidden`}
-          style={{ borderColor: "var(--secondary)" }}
-        >
-          <img
-            src={fatturatoImg}
-            alt="Fatturato 2024–2026: totale 272.859,77€"
-            loading="lazy"
-            className="w-full"
-          />
+      <div
+        className={`${cardClass} relative ml-auto mt-32 w-[88%] overflow-hidden`}
+        style={{ transform: "rotate(2deg)", borderColor: "var(--secondary)" }}
+      >
+        <div className="px-2 py-2">
+          <ProofBadge>Il mio fatturato degli ultimi due anni</ProofBadge>
         </div>
-        <span
-          className="absolute inset-x-6 -top-8 rounded-xl px-3 py-1.5 text-center font-condensed text-[10px] uppercase leading-snug tracking-[0.1em] text-primary-foreground shadow-md sm:text-xs"
-          style={{ backgroundImage: "var(--gradient-gold)" }}
-        >
-          Il mio fatturato degli ultimi due anni
-        </span>
+        <img
+          src={fatturatoImg}
+          alt="Fatturato 2024–2026: totale 272.859,77€"
+          loading="lazy"
+          className="w-full"
+        />
       </div>
     </div>
   );

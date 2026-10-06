@@ -2652,7 +2652,7 @@ function CandidaturaAmbiziosa() {
             </h2>
           </Reveal>
         </div>
-        <div className="relative mx-auto max-w-6xl px-5 pb-20 pt-4">
+        <div className="relative mx-auto max-w-6xl px-5 pb-12 pt-4">
           <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr_0.9fr] lg:items-start lg:gap-10">
             <Reveal>
               <ProfileBeforeAfter />
@@ -2706,7 +2706,7 @@ function CandidaturaAmbiziosa() {
               </div>
             </Reveal>
             <Reveal delay={160}>
-              <div className="lg:mt-4">
+              <div>
                 <ResultsCards />
               </div>
             </Reveal>
