@@ -14,8 +14,7 @@ export const Route = createFileRoute("/upsell-call")({
       { title: "Call di implementazione 1:1 | Rule The Rules 2026" },
       {
         name: "description",
-        content:
-          "Implementa con Carlotta e Sharon, in una call 1:1, tutto quello che impari durante Rule The Rules 2026. Solo 8 posti disponibili.",
+        content: `Implementa con Carlotta e Sharon, in una call 1:1, tutto quello che impari durante Rule The Rules 2026. Solo ${CALL_SEATS_LEFT} posti disponibili.`,
       },
       { name: "robots", content: "noindex" },
     ],
@@ -24,6 +23,10 @@ export const Route = createFileRoute("/upsell-call")({
 });
 
 const CALL_PRICE = 247;
+// Posti della call: i pallini sotto "Solo N posti disponibili" sono
+// CALL_SEATS_TOTAL, di cui CALL_SEATS_LEFT verdi (liberi) e gli altri rossi.
+const CALL_SEATS_TOTAL = 12;
+const CALL_SEATS_LEFT = 8;
 const CHECKOUT_HREF = "https://rules.carlottasgarra.it/checkout-call-implementazione";
 const DECLINE_HREF = "https://rules.carlottasgarra.it/grazie-iscrizione-standard";
 
@@ -49,7 +52,7 @@ function CallChoice() {
         href={CHECKOUT_HREF}
         target="_top"
         label={`Sì, voglio la call di implementazione a ${CALL_PRICE}€`}
-        sub="Solo 8 posti disponibili, adesso"
+        sub={`Solo ${CALL_SEATS_LEFT} posti disponibili, adesso`}
       />
       <a
         href={DECLINE_HREF}
@@ -95,14 +98,17 @@ function UpsellCall() {
               style={{ backgroundColor: "var(--secondary)", border: "2px solid var(--primary)" }}
             >
               <p className="font-condensed text-lg font-bold uppercase tracking-[0.1em] text-white">
-                Solo 8 posti disponibili
+                Solo {CALL_SEATS_LEFT} posti disponibili
               </p>
               <div className="mt-4 flex flex-wrap justify-center gap-2">
-                {Array.from({ length: 12 }).map((_, i) => (
+                {Array.from({ length: CALL_SEATS_TOTAL }).map((_, i) => (
                   <span
                     key={i}
                     className="size-3 rounded-full"
-                    style={{ backgroundColor: i < 2 ? "var(--destructive)" : "#22c55e" }}
+                    style={{
+                      backgroundColor:
+                        i < CALL_SEATS_TOTAL - CALL_SEATS_LEFT ? "var(--destructive)" : "#22c55e",
+                    }}
                   />
                 ))}
               </div>
