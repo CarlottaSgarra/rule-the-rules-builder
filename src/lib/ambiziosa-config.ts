@@ -16,14 +16,13 @@ export const MAX_SEATS = 9;
 // registrazioni non mostra niente di Ambiziosa, poi tutto compare da solo.
 export const APPLICATIONS_OPEN_AT = "2026-10-06T20:30:00+02:00";
 
-// TODO: valorizzare con il link a cui porta il pulsante di candidatura
-// (es. il calendario per prenotare la call conoscitiva). Finché è vuoto, i
-// pulsanti "Candidati" portano alla sezione prezzi (#prezzi).
-export const APPLICATION_URL = "";
-
-// Calendario per prenotare la call valutativa (gestito da Matilde): lo
-// aprono i pulsanti "Candidati" dentro le card dei prezzi (#prezzi).
+// Calendario per prenotare la call valutativa (gestito da Matilde).
 export const EVALUATION_CALL_URL = "https://tidycal.com/matildesgarra/call-valutativa-ruletherules";
+
+// Link a cui portano tutti i pulsanti "Candidati" della pagina (topbar,
+// hero, box CTA, card dei prezzi): la prenotazione della call valutativa.
+// Se torna vuoto, i pulsanti fanno scroll alla sezione prezzi (#prezzi).
+export const APPLICATION_URL = EVALUATION_CALL_URL;
 
 // WhatsApp del supporto clienti (risponde Matilde), con un messaggio già
 // scritto che la persona può modificare prima di inviarlo.
