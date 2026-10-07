@@ -43,15 +43,16 @@ function useAmbiziosaOpen() {
   return open;
 }
 
-// Registrazioni delle 3 serate: con `vimeo` mostra il video (link privato di
-// Vimeo: id + codice), senza mostra la copertina con "Video in arrivo".
+// Registrazioni delle 3 serate: con `vimeo` mostra il video (id di Vimeo, più
+// il codice `hash` se il link è privato), senza mostra la copertina con
+// "Video in arrivo".
 const recordings: {
   n: string;
   date: string;
   title: string;
   description: string;
   poster: string;
-  vimeo?: { id: string; hash: string };
+  vimeo?: { id: string; hash?: string };
 }[] = [
   {
     n: "1",
@@ -66,6 +67,7 @@ const recordings: {
     n: "2",
     date: "6 ottobre",
     title: "Licenzia le Regole",
+    vimeo: { id: "1233601301" },
     description:
       "Abbiamo messo sul banco degli imputati tutte le regole sui contenuti che segui per obbligo, per arrivare alle tue Anti-Regole personali e al tuo Content Lab.",
     poster: licenziaLeRegoleImg,
@@ -284,7 +286,7 @@ function Registrazioni() {
                         <VideoFrame
                           label={r.title}
                           vimeoId={r.vimeo.id}
-                          vimeoHash={r.vimeo.hash}
+                          {...(r.vimeo.hash ? { vimeoHash: r.vimeo.hash } : {})}
                           autoplay={false}
                         />
                       ) : (
