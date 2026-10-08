@@ -76,6 +76,7 @@ const recordings: {
     n: "3",
     date: "7 ottobre",
     title: "Costruisci un Sistema che non ti Comandi",
+    vimeo: { id: "1233872555" },
     description:
       "Abbiamo dato una struttura a tutto quello che avevi scoperto: i tuoi Signature Format, il piano editoriale al contrario e il Manifesto finale di Rule The Rules.",
     poster: costruisciSistemaImg,
