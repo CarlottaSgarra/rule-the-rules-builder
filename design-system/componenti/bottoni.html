@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bottoni · Design system Carlotta Sgarra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Oswald:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" />
+<link rel="stylesheet" href="../tokens.css" />
+<style>
+
+/* ---- Base dei file componente (solo per la pagina di esempio) ---- */
+.ds-icon { width: 1em; height: 1em; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+.ds-icon--fill { fill: currentColor; }
+.ds-page { padding: 0; }
+/* Come il preflight di Tailwind usato dal sito */
+img, svg, video, iframe { display: block; max-width: 100%; }
+img { height: auto; }
+.ds-icon { display: inline-block; }
+button, input, select { font: inherit; }
+.ds-doc { max-width: var(--container-6xl); margin: 0 auto; padding: var(--space-10) var(--page-gutter); }
+.ds-doc > h1 { font-size: var(--font-size-3xl); line-height: 1.2; margin: 0; }
+.ds-doc > p.ds-intro { overflow-wrap: anywhere; margin: var(--space-3) 0 0; max-width: var(--container-3xl); color: color-mix(in oklab, var(--color-foreground) 85%, transparent); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); }
+.ds-src { overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--color-muted-foreground); }
+.ds-block { margin-top: var(--space-8); }
+.ds-block-title { margin: 0 0 var(--space-3); font-family: var(--font-condensed); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--letter-spacing-eyebrow); color: var(--color-foreground); }
+.ds-stage { border-radius: var(--radius-2xl); padding: var(--space-8) var(--space-5); border: 1px dashed color-mix(in oklab, var(--color-foreground) 25%, transparent); }
+.ds-stage--light { background: var(--color-background); color: var(--color-foreground); }
+.ds-stage--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.ds-stage--flush { padding: 0; overflow: hidden; }
+.ds-row { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: flex-start; }
+.ds-col { display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start; }
+.ds-note { font-size: 12px; color: inherit; opacity: 0.75; margin: 0; }
+
+/* Contesto scuro: come nel sito (topbar, footer, FAQ, box) i colori "di testo" vengono
+   ridefiniti per lo sfondo Mulberry. */
+.on-dark {
+  --color-foreground: var(--color-secondary-foreground);
+  --color-muted-foreground: var(--color-muted-foreground-on-dark);
+  --color-border: var(--tint-card-border-on-dark);
+}
+
+/* Contenitori e sezioni */
+.section { position: relative; }
+.section--light { background: var(--color-background); color: var(--color-foreground); }
+.section--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.container { margin: 0 auto; padding: var(--section-padding-y) var(--page-gutter); }
+.container--3xl { max-width: var(--container-3xl); }
+.container--4xl { max-width: var(--container-4xl); }
+.container--5xl { max-width: var(--container-5xl); }
+.container--6xl { max-width: var(--container-6xl); }
+
+/* Titoli di sezione (h2 del sito: text-3xl sm:text-4xl, Fraunces 400) */
+.h2 { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-3xl); line-height: 1.2; letter-spacing: var(--letter-spacing-heading); }
+.h3-card { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+.h3-semibold { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-semibold); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+@media (min-width: 640px) {
+  .h2 { font-size: var(--font-size-4xl); line-height: 1.1111; }
+  .h3-card, .h3-semibold { font-size: var(--font-size-3xl); line-height: 1.2; }
+}
+.text-center { text-align: center; }
+p { margin: 0; }
+strong { font-weight: var(--font-weight-semibold); }
+
+/* ---- Bottoni: CSS del componente (solo variabili di tokens.css) ---- */
+
+.btn-cta {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: inline-flex; flex-direction: column; align-items: center;
+  width: 100%; max-width: var(--container-xl);
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-xl); border: 0;
+  text-align: center; text-decoration: none; cursor: pointer;
+  background-image: var(--gradient-gold); box-shadow: var(--shadow-gold); color: var(--color-primary-foreground);
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+.btn-cta:hover, .btn-cta.is-hover { transform: translateY(var(--hover-lift-sm)); }
+.btn-cta.is-focus { outline: 2px solid -webkit-focus-ring-color; outline: auto; outline-offset: 2px; }
+.btn-cta:disabled, .btn-cta.is-disabled { opacity: var(--opacity-disabled); pointer-events: none; }
+.btn-cta__label { position: relative; font-family: var(--font-condensed); font-weight: var(--font-weight-bold); font-size: var(--font-size-sm); line-height: 1.4286; text-transform: uppercase; letter-spacing: var(--letter-spacing-button); }
+.btn-cta__sub { position: relative; margin-top: var(--space-1); font-size: var(--font-size-9px); font-weight: var(--font-weight-medium); opacity: var(--opacity-cta-sub); white-space: nowrap; }
+.btn-cta__sub--balance { white-space: normal; text-wrap: balance; }
+@media (min-width: 640px) {
+  .btn-cta { padding: var(--space-5) var(--space-6); }
+  .btn-cta__label { font-size: var(--font-size-base); line-height: 1.5; }
+  .btn-cta__sub { font-size: var(--font-size-sm); }
+}
+/* Riflesso (ShineSweep) */
+.shine { position: absolute; top: 0; bottom: 0; left: 0; width: 33.333%; pointer-events: none; background-image: var(--shine-gradient); animation: shine-sweep var(--animation-shine) var(--ease-in-out) infinite; }
+@keyframes shine-sweep { 0% { transform: translateX(-150%) skewX(-20deg); } 60%, 100% { transform: translateX(450%) skewX(-20deg); } }
+@media (prefers-reduced-motion: reduce) { .shine { animation: none; opacity: 0; } }
+
+/* Bottone della topbar */
+.btn-topbar {
+  position: relative; overflow: hidden; display: inline-block; flex-shrink: 0; min-width: 0;
+  padding: var(--space-1-5) var(--space-2); border-radius: var(--radius-md);
+  font-family: var(--font-condensed); font-size: var(--font-size-10px); line-height: var(--line-height-tight);
+  text-transform: uppercase; letter-spacing: 0.03em; text-align: center; text-decoration: none;
+  background-image: var(--gradient-gold); color: var(--color-primary-foreground);
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+.btn-topbar span { position: relative; }
+.btn-topbar:hover, .btn-topbar.is-hover { transform: translateY(var(--hover-lift-sm)); }
+@media (min-width: 640px) { .btn-topbar { padding: var(--space-2) var(--space-4); font-size: var(--font-size-sm); letter-spacing: 0.12em; } }
+
+/* Submit del form */
+.btn-submit {
+  display: flex; flex-direction: column; align-items: center; width: 100%;
+  padding: var(--space-4) var(--space-6); border: 0; border-radius: var(--radius-xl); cursor: pointer;
+  background-image: var(--gradient-gold); color: var(--color-primary-foreground); box-shadow: var(--shadow-gold);
+  transition: transform var(--duration-default) var(--ease-default);
+}
+.btn-submit:hover, .btn-submit.is-hover { transform: translateY(var(--hover-lift-sm)); }
+.btn-submit:disabled, .btn-submit.is-disabled { opacity: var(--opacity-disabled); pointer-events: none; }
+.btn-submit__label { font-family: var(--font-condensed); font-size: var(--font-size-base); text-transform: uppercase; letter-spacing: 0.1em; }
+.btn-submit__sub { margin-top: var(--space-1); font-size: var(--font-size-10px); font-weight: var(--font-weight-medium); opacity: var(--opacity-cta-sub); white-space: nowrap; }
+@media (min-width: 640px) { .btn-submit__label { font-size: var(--font-size-lg); letter-spacing: 0.14em; } .btn-submit__sub { font-size: var(--font-size-xs); } }
+
+/* WhatsApp */
+.btn-whatsapp {
+  position: relative; overflow: hidden; display: flex; width: 100%; align-items: center; justify-content: center; gap: var(--space-2-5);
+  padding: var(--space-4) var(--space-6); border-radius: var(--radius-xl); text-decoration: none;
+  background: var(--color-whatsapp); color: var(--color-white); box-shadow: var(--shadow-whatsapp);
+  font-family: var(--font-condensed); font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: 0.12em;
+  transition: all var(--duration-fast) var(--ease-default);
+}
+.btn-whatsapp > :not(.shine) { position: relative; }
+.btn-whatsapp:hover, .btn-whatsapp.is-hover { transform: translateY(var(--hover-lift-sm)); background: var(--color-whatsapp-hover); }
+.btn-whatsapp .ds-icon { font-size: var(--space-5); }
+.btn-whatsapp__long { display: none; }
+@media (min-width: 640px) { .btn-whatsapp { font-size: var(--font-size-base); } .btn-whatsapp__short { display: none; } .btn-whatsapp__long { display: inline; } }
+
+/* Bottone oro piccolo (thank-you VIP) */
+.btn-gold-sm { display: inline-flex; align-items: center; justify-content: center; padding: var(--space-2-5) var(--space-4); border-radius: var(--radius-lg); font-family: var(--font-condensed); font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; background-image: var(--gradient-gold); box-shadow: var(--shadow-gold); color: var(--color-primary-foreground); transition: transform var(--duration-fast) var(--ease-default); }
+.btn-gold-sm:hover, .btn-gold-sm.is-hover { transform: translateY(var(--hover-lift-sm)); }
+
+/* Link testuali */
+.link-decline { font-size: var(--font-size-sm); color: color-mix(in oklab, var(--color-foreground) 60%, transparent); text-decoration: underline; text-underline-offset: 2px; transition: color var(--duration-default); }
+.link-decline:hover, .link-decline.is-hover { color: var(--color-foreground); }
+.link-gold { color: var(--color-gold-deep); text-decoration: underline; }
+.link-muted { font-size: var(--font-size-xs); color: var(--color-muted-foreground); text-decoration: underline; text-underline-offset: 2px; }
+.link-muted:hover, .link-muted.is-hover { color: var(--color-foreground); }
+.link-text-btn { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; font-size: var(--font-size-sm); color: var(--color-gold-deep); text-decoration: underline; text-align: left; }
+
+/* Bottoni di sistema (pagine 404 ed errore, stile shadcn) */
+.btn-system { display: inline-flex; align-items: center; justify-content: center; padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); text-decoration: none; transition: color var(--duration-default), background-color var(--duration-default); border: 1px solid transparent; cursor: pointer; font-family: var(--font-body); }
+.btn-system--primary { background: var(--color-primary); color: var(--color-primary-foreground); }
+.btn-system--primary:hover, .btn-system--primary.is-hover { background: color-mix(in oklab, var(--color-primary) 90%, transparent); }
+.btn-system--outline { background: var(--color-background); color: var(--color-foreground); border-color: var(--color-input); }
+.btn-system--outline:hover, .btn-system--outline.is-hover { background: var(--color-accent); color: var(--color-accent-foreground); }
+
+</style>
+</head>
+<body class="ds-page">
+<main class="ds-doc">
+  <h1>Bottoni</h1>
+  <p class="ds-intro">Il bottone principale del sito è sempre oro (gradient-gold) con testo Mulberry in Oswald maiuscolo e una riga piccola sotto. Non esiste un bottone &#x27;secondario&#x27; di brand: le alternative sono link sottolineati. Stato hover = sollevamento di 2px (200ms). Il sito non definisce uno stile di focus personalizzato (resta il contorno del browser) né uno stato &#x27;attivo&#x27;: qui sono mostrati come risultano.</p>
+  <p class="ds-src">Fonte nel codice: src/components/landing/CtaButton.tsx · AmbiziosaCtaButton.tsx · ShineSweep.tsx · SignupForm.tsx:130 · SiteTopbar.tsx:66 · src/routes/candidati-ambiziosa.tsx:3498 (WhatsApp) · src/routes/__root.tsx:17-75 (404/errore)</p>
+
+<div class="ds-block">
+  <p class="ds-block-title">CTA principale (CtaButton) · stati</p>
+  <div class="ds-stage ds-stage--light">
+    <div class="ds-row">
+      <div class="ds-col" style="flex:1 1 280px"><span class="ds-note">Normale</span>
+        <a class="btn-cta" href="#"><span class="btn-cta__label">Ok, voglio iscrivermi</span><span class="btn-cta__sub">5-6-7 ottobre · 27€ · Garanzia rimborso</span></a></div>
+      <div class="ds-col" style="flex:1 1 280px"><span class="ds-note">Hover (sale di 2px)</span>
+        <a class="btn-cta is-hover" href="#"><span class="btn-cta__label">Ok, voglio iscrivermi</span><span class="btn-cta__sub">5-6-7 ottobre · 27€ · Garanzia rimborso</span></a></div>
+      <div class="ds-col" style="flex:1 1 280px"><span class="ds-note">Focus da tastiera (contorno del browser, nessuno stile dedicato)</span>
+        <a class="btn-cta is-focus" href="#"><span class="btn-cta__label">Ok, voglio iscrivermi</span><span class="btn-cta__sub">5-6-7 ottobre · 27€ · Garanzia rimborso</span></a></div>
+      <div class="ds-col" style="flex:1 1 280px"><span class="ds-note">Disabilitato (solo bottoni di form: opacità 60%)</span>
+        <button class="btn-cta is-disabled" type="button"><span class="btn-cta__label">Verifica in corso…</span></button></div>
+    </div>
+    <p class="ds-note" style="margin-top:16px">Stato attivo (:active): non presente nel sito.</p>
+  </div>
+</div>
+
+<div class="ds-block">
+  <p class="ds-block-title">CTA con riflesso (AmbiziosaCtaButton "hero") · su chiaro e su scuro</p>
+  <div class="ds-row">
+    <div class="ds-stage ds-stage--light" style="flex:1 1 320px">
+      <a class="btn-cta" href="#"><span class="shine" aria-hidden="true"></span><span class="btn-cta__label">Candidati ora</span><span class="btn-cta__sub btn-cta__sub--balance">Prezzo bloccato fino al 16 ottobre</span></a>
+    </div>
+    <div class="ds-stage ds-stage--dark" style="flex:1 1 320px">
+      <a class="btn-cta" href="#"><span class="shine" aria-hidden="true"></span><span class="btn-cta__label">Candidati ad Ambiziosa Mentorship</span><span class="btn-cta__sub btn-cta__sub--balance">Prezzo bloccato fino al 16 ottobre</span></a>
+    </div>
+  </div>
+</div>
+
+<div class="ds-block">
+  <p class="ds-block-title">Bottone della topbar · normale, con riflesso (Ambiziosa), hover</p>
+  <div class="ds-stage ds-stage--dark">
+    <div class="ds-row" style="align-items:center">
+      <a class="btn-topbar" href="#"><span>Prendi il biglietto</span></a>
+      <a class="btn-topbar" href="#"><span class="shine" aria-hidden="true"></span><span>Candidati ora</span></a>
+      <a class="btn-topbar is-hover" href="#"><span>Prendi il biglietto</span></a>
+    </div>
+  </div>
+</div>
+
+<div class="ds-block">
+  <p class="ds-block-title">Submit del form · normale, hover, disabilitato</p>
+  <div class="ds-stage ds-stage--dark"><div class="ds-row">
+    <div style="flex:1 1 260px"><button class="btn-submit" type="button"><span class="btn-submit__label">Vai al pagamento</span><span class="btn-submit__sub">Soli €27 · 5-6-7 ottobre · Garanzia di rimborso</span></button></div>
+    <div style="flex:1 1 260px"><button class="btn-submit is-hover" type="button"><span class="btn-submit__label">Vai al pagamento</span></button></div>
+    <div style="flex:1 1 260px"><button class="btn-submit" type="button" disabled><span class="btn-submit__label">Verifica in corso…</span></button></div>
+  </div></div>
+</div>
+
+<div class="ds-block">
+  <p class="ds-block-title">Bottone WhatsApp (con icona) · normale e hover</p>
+  <div class="ds-stage ds-stage--light"><div class="ds-row">
+    <div style="flex:1 1 300px"><a class="btn-whatsapp" href="#"><span class="shine" aria-hidden="true"></span><svg class="ds-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span class="btn-whatsapp__short">Scrivi a Matilde su WhatsApp</span><span class="btn-whatsapp__long">Clicca qui per scrivere a Matilde su WhatsApp</span></a></div>
+    <div style="flex:1 1 300px"><a class="btn-whatsapp is-hover" href="#"><svg class="ds-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><span class="btn-whatsapp__short">Scrivi a Matilde su WhatsApp</span><span class="btn-whatsapp__long">Clicca qui per scrivere a Matilde su WhatsApp</span></a></div>
+  </div></div>
+</div>
+
+<div class="ds-block">
+  <p class="ds-block-title">Bottone oro piccolo (thank-you VIP) · CTA con link di rifiuto (upsell)</p>
+  <div class="ds-row">
+    <div class="ds-stage ds-stage--dark" style="flex:1 1 280px"><div class="ds-row"><a class="btn-gold-sm" href="#">Salva la data della live sul calendario</a><a class="btn-gold-sm is-hover" href="#">Hover</a></div></div>
+    <div class="ds-stage ds-stage--light" style="flex:1 1 360px"><div style="display:flex;flex-direction:column;align-items:center;gap:var(--space-3)"><a class="btn-cta" href="#"><span class="btn-cta__label">Sì, voglio la call di implementazione a 247€</span><span class="btn-cta__sub">Solo 8 posti disponibili, adesso</span></a><a class="link-decline" href="#">No, non mi interessa</a><a class="link-decline is-hover" href="#">No, non mi interessa (hover)</a></div></div>
+  </div>
+</div>
+
+<div class="ds-block">
+  <p class="ds-block-title">Link testuali (il sito non ha bottoni secondari: usa link sottolineati)</p>
+  <div class="ds-row">
+    <div class="ds-stage ds-stage--dark" style="flex:1 1 300px"><p class="on-dark" style="font-size:var(--font-size-sm)">Hai bisogno di supporto? Scrivi a <a class="link-gold" href="#">info@carlottasgarra.it</a></p><p style="margin-top:12px"><button class="link-text-btn" type="button">Guarda la sua video testimonianza</button></p></div>
+    <div class="ds-stage ds-stage--light" style="flex:1 1 300px"><a class="link-muted" href="#">Usi Apple Calendar o Outlook? Scarica il file con tutte e tre le date</a><br/><br/><a class="link-muted is-hover" href="#">Stesso link in hover</a></div>
+  </div>
+</div>
+
+<div class="ds-block">
+  <p class="ds-block-title">Bottoni di sistema (solo pagine 404 ed errore)</p>
+  <div class="ds-stage ds-stage--light"><div class="ds-row">
+    <a class="btn-system btn-system--primary" href="#">Go home</a>
+    <a class="btn-system btn-system--primary is-hover" href="#">Go home (hover)</a>
+    <a class="btn-system btn-system--outline" href="#">Go home</a>
+    <a class="btn-system btn-system--outline is-hover" href="#">Go home (hover)</a>
+  </div></div>
+</div>
+
+</main>
+
+</body>
+</html>

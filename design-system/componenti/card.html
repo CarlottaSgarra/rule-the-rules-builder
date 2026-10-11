@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Card e pannelli · Design system Carlotta Sgarra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Oswald:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" />
+<link rel="stylesheet" href="../tokens.css" />
+<style>
+
+/* ---- Base dei file componente (solo per la pagina di esempio) ---- */
+.ds-icon { width: 1em; height: 1em; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+.ds-icon--fill { fill: currentColor; }
+.ds-page { padding: 0; }
+/* Come il preflight di Tailwind usato dal sito */
+img, svg, video, iframe { display: block; max-width: 100%; }
+img { height: auto; }
+.ds-icon { display: inline-block; }
+button, input, select { font: inherit; }
+.ds-doc { max-width: var(--container-6xl); margin: 0 auto; padding: var(--space-10) var(--page-gutter); }
+.ds-doc > h1 { font-size: var(--font-size-3xl); line-height: 1.2; margin: 0; }
+.ds-doc > p.ds-intro { overflow-wrap: anywhere; margin: var(--space-3) 0 0; max-width: var(--container-3xl); color: color-mix(in oklab, var(--color-foreground) 85%, transparent); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); }
+.ds-src { overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--color-muted-foreground); }
+.ds-block { margin-top: var(--space-8); }
+.ds-block-title { margin: 0 0 var(--space-3); font-family: var(--font-condensed); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--letter-spacing-eyebrow); color: var(--color-foreground); }
+.ds-stage { border-radius: var(--radius-2xl); padding: var(--space-8) var(--space-5); border: 1px dashed color-mix(in oklab, var(--color-foreground) 25%, transparent); }
+.ds-stage--light { background: var(--color-background); color: var(--color-foreground); }
+.ds-stage--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.ds-stage--flush { padding: 0; overflow: hidden; }
+.ds-row { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: flex-start; }
+.ds-col { display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start; }
+.ds-note { font-size: 12px; color: inherit; opacity: 0.75; margin: 0; }
+
+/* Contesto scuro: come nel sito (topbar, footer, FAQ, box) i colori "di testo" vengono
+   ridefiniti per lo sfondo Mulberry. */
+.on-dark {
+  --color-foreground: var(--color-secondary-foreground);
+  --color-muted-foreground: var(--color-muted-foreground-on-dark);
+  --color-border: var(--tint-card-border-on-dark);
+}
+
+/* Contenitori e sezioni */
+.section { position: relative; }
+.section--light { background: var(--color-background); color: var(--color-foreground); }
+.section--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.container { margin: 0 auto; padding: var(--section-padding-y) var(--page-gutter); }
+.container--3xl { max-width: var(--container-3xl); }
+.container--4xl { max-width: var(--container-4xl); }
+.container--5xl { max-width: var(--container-5xl); }
+.container--6xl { max-width: var(--container-6xl); }
+
+/* Titoli di sezione (h2 del sito: text-3xl sm:text-4xl, Fraunces 400) */
+.h2 { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-3xl); line-height: 1.2; letter-spacing: var(--letter-spacing-heading); }
+.h3-card { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+.h3-semibold { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-semibold); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+@media (min-width: 640px) {
+  .h2 { font-size: var(--font-size-4xl); line-height: 1.1111; }
+  .h3-card, .h3-semibold { font-size: var(--font-size-3xl); line-height: 1.2; }
+}
+.text-center { text-align: center; }
+p { margin: 0; }
+strong { font-weight: var(--font-weight-semibold); }
+
+/* ---- da 'Badge, etichette e pillole' ---- */
+
+.badge {
+  display: inline-block; border-radius: var(--radius-full);
+  padding: var(--space-1-5) var(--space-4);
+  font-family: var(--font-condensed); font-size: var(--font-size-10px); line-height: 1.5;
+  text-transform: uppercase; letter-spacing: var(--letter-spacing-eyebrow);
+  background-image: var(--gradient-gold); box-shadow: var(--shadow-gold); color: var(--color-primary-foreground);
+}
+@media (min-width: 640px) { .badge { font-size: var(--font-size-xs); } }
+.badge--lg { padding: var(--space-2) var(--space-5); font-size: var(--font-size-xs); letter-spacing: var(--letter-spacing-badge-wide); }
+@media (min-width: 640px) { .badge--lg { font-size: var(--font-size-sm); } }
+.badge--sm { padding: var(--space-1) var(--space-3); letter-spacing: var(--letter-spacing-label); }
+.badge--bold { padding: var(--space-1-5) var(--space-4); font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); letter-spacing: var(--letter-spacing-tag); }
+.badge--flat { box-shadow: none; }
+.badge--outline { background: none; box-shadow: none; display: inline-flex; align-items: center; gap: var(--space-1-5); padding: var(--space-1) var(--space-3); letter-spacing: var(--letter-spacing-label); border: 1px solid var(--tint-avatar-border); color: var(--color-primary); }
+.badge--outline-light { background: none; box-shadow: none; display: inline-flex; align-items: center; gap: var(--space-1-5); padding: var(--space-1) var(--space-3); letter-spacing: var(--letter-spacing-label); border: 1px solid color-mix(in oklab, var(--color-secondary) 40%, transparent); color: var(--color-secondary); }
+.badge .ds-icon, .badge--outline .ds-icon, .badge--outline-light .ds-icon { font-size: 0.875rem; }
+
+/* Sticker ruotato sul titolo-logo */
+.title-sticker-wrap { position: relative; display: inline-block; }
+.title-sticker { position: absolute; top: -0.6rem; right: -0.5rem; transform: rotate(11deg); white-space: nowrap; user-select: none; border-radius: var(--radius-full); padding: var(--space-1) var(--space-3); font-family: var(--font-condensed); font-size: var(--font-size-10px); text-transform: uppercase; letter-spacing: var(--letter-spacing-label); background-image: var(--gradient-gold); box-shadow: var(--shadow-gold); color: var(--color-primary-foreground); }
+@media (min-width: 640px) { .title-sticker { font-size: var(--font-size-xs); } }
+
+/* Etichetta oro a cavallo del bordo (Serata 1 · …) */
+.session-tag { display: inline-block; white-space: nowrap; border-radius: var(--radius-2xl); padding: var(--space-2) var(--space-3); font-family: var(--font-condensed); font-weight: var(--font-weight-semibold); font-size: var(--font-size-10px); text-transform: uppercase; letter-spacing: 0.05em; background-image: var(--gradient-gold); box-shadow: var(--shadow-session-tag); color: var(--color-primary-foreground); }
+@media (min-width: 640px) { .session-tag { padding: var(--space-3) var(--space-5); font-size: var(--font-size-base); letter-spacing: var(--letter-spacing-label); } }
+@media (min-width: 768px) { .session-tag { padding-left: var(--space-6); padding-right: var(--space-6); } }
+
+/* Pill valore dell'hero (su fondo scuro) */
+.value-pill { display: inline-flex; align-items: center; gap: var(--space-1-5); border-radius: var(--radius-full); padding: var(--space-1) var(--space-3); font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); color: var(--color-ink); background: var(--tint-panel-on-dark); border: 1px solid var(--tint-panel-border-on-dark); }
+.value-pill .ds-icon { font-size: 0.875rem; color: var(--color-gold-deep); }
+@media (min-width: 640px) { .value-pill { font-size: var(--font-size-sm); } }
+
+/* Chip statistica (numero in Fraunces + etichetta) */
+.stat-chip { display: inline-flex; align-items: baseline; gap: var(--space-1-5); border-radius: var(--radius-full); padding: var(--space-1-5) var(--space-3); font-size: var(--font-size-xs); border: 1px solid color-mix(in oklab, var(--color-border) 70%, transparent); background: var(--color-background); color: color-mix(in oklab, var(--color-foreground) 85%, transparent); }
+.stat-chip b { font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-lg); line-height: 1; color: var(--color-secondary); }
+.stat-chip--gold { border: 0; background-image: var(--gradient-gold); box-shadow: var(--shadow-gold); color: var(--color-primary-foreground); }
+.stat-chip--gold b { font-weight: var(--font-weight-bold); color: inherit; }
+@media (min-width: 640px) { .stat-chip { font-size: var(--font-size-sm); } }
+
+/* Chip esempio (card 'per chi') */
+.example-chip { display: inline-block; border-radius: var(--radius-xl); padding: var(--space-1-5) var(--space-3); font-size: var(--font-size-xs); color: var(--color-ink); background: var(--tint-panel-on-dark); border: 1px solid var(--tint-panel-border-on-dark); }
+
+/* Cerchio icona oro */
+.icon-circle { display: inline-flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; border-radius: var(--radius-full); background-image: var(--gradient-gold); box-shadow: var(--shadow-gold); color: var(--color-primary-foreground); }
+.icon-circle .ds-icon { font-size: 1.5rem; }
+.icon-circle--lg { width: 3.5rem; height: 3.5rem; }
+.icon-circle--lg .ds-icon { font-size: 1.75rem; }
+
+/* Badge sopra una card (Il percorso più completo) */
+.badge-ribbon { display: inline-block; white-space: nowrap; border-radius: var(--radius-full); padding: var(--space-2) var(--space-5); font-family: var(--font-condensed); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--letter-spacing-eyebrow); background-image: var(--gradient-gold); box-shadow: var(--shadow-gold); color: var(--color-primary-foreground); }
+@media (min-width: 640px) { .badge-ribbon { font-size: var(--font-size-sm); } }
+
+/* Etichetta testo (eyebrow) */
+.eyebrow-text { font-family: var(--font-condensed); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--letter-spacing-eyebrow); color: var(--color-secondary); }
+.eyebrow-text--on-dark { color: var(--color-primary); }
+.kicker { font-family: var(--font-condensed); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--letter-spacing-kicker); color: var(--color-secondary); }
+.kicker--on-dark { color: var(--color-primary); }
+@media (min-width: 640px) { .kicker { font-size: var(--font-size-sm); } }
+
+/* ---- da 'Evidenziatore (Highlight)' ---- */
+
+.hl { border-radius: var(--radius-highlight); padding: 0 0.25rem; background-image: linear-gradient(var(--tint-highlight-light), var(--tint-highlight-light)); background-repeat: no-repeat; background-position: left center; background-size: 100% 100%; -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-size var(--duration-highlight) var(--ease-out); }
+.hl--dark { background-image: linear-gradient(var(--tint-highlight-dark), var(--tint-highlight-dark)); }
+.js-hl .hl:not(.is-visible) { background-size: 0% 100%; }
+
+/* ---- Card e pannelli: CSS del componente (solo variabili di tokens.css) ---- */
+
+.card-light { display: flex; align-items: flex-start; gap: var(--space-4); height: 100%; min-height: 9.5rem; padding: var(--space-5); border-radius: var(--radius-xl); border: 1px solid color-mix(in oklab, var(--color-border) 70%, transparent); background: color-mix(in oklab, var(--color-card) 50%, transparent); transition: all var(--duration-base) var(--ease-default); }
+.card-light:hover, .card-light.is-hover { transform: translateY(var(--hover-lift-md)); border-color: var(--color-secondary); }
+.card-light__emoji { margin-top: 0.125rem; flex-shrink: 0; font-size: var(--font-size-2xl); line-height: 1; }
+.card-light__t { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); color: var(--color-foreground); }
+.card-light__d { margin-top: var(--space-1); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); color: color-mix(in oklab, var(--color-foreground) 85%, transparent); }
+@media (min-width: 640px) { .card-light__t { font-size: var(--font-size-xl); } .card-light__d { font-size: var(--font-size-base); } }
+
+.surface-card { background: var(--color-card); border: 1px solid color-mix(in oklab, var(--color-primary) 22%, transparent); border-radius: var(--radius-xl); box-shadow: var(--shadow-deep); color: var(--color-foreground); }
+.surface-cream { background: var(--color-cream); color: var(--color-ink); border-radius: var(--radius-panel); }
+.panel { padding: var(--space-16) var(--space-6); max-width: var(--container-4xl); margin: 0 auto; }
+.panel p { color: var(--color-ink-muted); line-height: var(--line-height-relaxed); }
+@media (min-width: 640px) { .panel { padding: var(--space-20) var(--space-12); } }
+
+.card-dark { position: relative; overflow: hidden; border-radius: var(--radius-2xl); padding: var(--space-6); border: 1px solid var(--tint-card-border-on-dark); background: var(--tint-card-on-dark); transition: all var(--duration-base) var(--ease-default); }
+.card-dark:hover, .card-dark.is-hover { transform: translateY(var(--hover-lift-md)); border-color: var(--color-primary); box-shadow: var(--shadow-card-lift); }
+.card-dark__num { display: none; pointer-events: none; user-select: none; position: absolute; right: -1.5rem; top: 50%; transform: translateY(-50%); font-family: var(--font-display); font-weight: var(--font-weight-bold); font-size: var(--font-size-decor); line-height: 1; color: var(--tint-decor-number); }
+@media (min-width: 640px) { .card-dark { padding: var(--space-8); } }
+@media (min-width: 768px) { .card-dark__num { display: block; } }
+
+.card-glass { display: flex; gap: var(--space-6); padding: var(--space-6); border-radius: var(--radius-2xl); background: var(--tint-glass-step); -webkit-backdrop-filter: blur(var(--blur-glass)); backdrop-filter: blur(var(--blur-glass)); border: 1px solid var(--tint-glass-step-border); }
+.card-glass__n { flex-shrink: 0; font-family: var(--font-condensed); font-size: var(--font-size-4xl); color: var(--color-primary); }
+.card-glass__tag { font-family: var(--font-condensed); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--letter-spacing-eyebrow); color: var(--color-primary); }
+.card-glass__t { margin-top: var(--space-1); font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); color: var(--color-ink); }
+.card-glass__d { margin-top: var(--space-2); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); color: var(--color-ink-muted); }
+@media (min-width: 640px) { .card-glass__n { font-size: var(--font-size-5xl); } .card-glass__t { font-size: var(--font-size-xl); } .card-glass__d { font-size: var(--font-size-base); } }
+
+.card-row-dark { display: flex; gap: var(--space-4); padding: var(--space-5); border-radius: var(--radius-xl); border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); }
+.card-row-dark.is-active { border-color: color-mix(in oklab, var(--color-primary) 50%, transparent); background: rgba(255,255,255,0.1); }
+.card-row-dark .ds-icon { margin-top: var(--space-1); font-size: 1.25rem; color: var(--color-primary); }
+
+.info-box { display: grid; overflow: hidden; border-radius: var(--radius-2xl); border: 1px solid color-mix(in oklab, var(--color-border) 70%, transparent); background: color-mix(in oklab, var(--color-card) 50%, transparent); transition: all var(--duration-base) var(--ease-default); }
+.info-box:hover, .info-box.is-hover { transform: translateY(var(--hover-lift-md)); border-color: var(--color-secondary); box-shadow: var(--shadow-card-hover); }
+.info-box__media { position: relative; display: flex; align-items: center; justify-content: center; padding: var(--space-4); border-bottom: var(--border-width-strong) dashed var(--color-border); }
+.info-box__media img { max-height: 14rem; width: 100%; object-fit: contain; border-radius: var(--radius-lg); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); transition: transform var(--duration-base); }
+.info-box:hover .info-box__media img, .info-box.is-hover .info-box__media img { transform: rotate(-2deg); }
+.info-box__media .icon-circle { position: absolute; left: var(--space-4); bottom: var(--space-4); }
+.info-box__body { padding: var(--space-6); }
+.info-box__t { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); color: var(--color-foreground); }
+.info-box__d { margin-top: var(--space-4); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); color: color-mix(in oklab, var(--color-foreground) 80%, transparent); }
+@media (min-width: 640px) { .info-box { grid-template-columns: 2fr 3fr; } .info-box__media { border-bottom: 0; border-right: var(--border-width-strong) dashed var(--color-border); } .info-box__media img { max-height: 100%; } .info-box__body { padding: var(--space-8); } }
+
+.team-card { display: grid; gap: var(--space-6); padding: var(--space-6); }
+.team-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-2xl); }
+.team-card__role { margin-top: var(--space-1); font-family: var(--font-condensed); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--letter-spacing-label); color: var(--color-secondary); }
+.team-card__d { margin-top: var(--space-4); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); color: color-mix(in oklab, var(--color-foreground) 85%, transparent); }
+@media (min-width: 640px) { .team-card { grid-template-columns: 220px 1fr; padding: var(--space-8); } .team-card img { aspect-ratio: 4 / 5; max-width: 220px; } }
+
+.forwho-card { display: flex; flex-direction: column; height: 100%; padding: var(--space-6); border-radius: 1rem; background: var(--color-cream); color: var(--color-ink); }
+.forwho-card p { font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); color: var(--color-ink-muted); }
+.forwho-story { margin-top: var(--space-6); display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4); border-radius: var(--radius-xl); background: var(--tint-panel-on-dark); border: 1px solid var(--tint-panel-border-on-dark); }
+.forwho-story img { width: 3.5rem; height: 3.5rem; flex-shrink: 0; border-radius: var(--radius-full); border: 1px dashed var(--tint-avatar-border); object-fit: cover; }
+@media (min-width: 640px) { .forwho-card { padding: var(--space-7); } .forwho-card p { font-size: var(--font-size-base); } }
+
+.bonus-card { display: flex; flex-direction: column; height: 100%; overflow: hidden; border-radius: var(--radius-2xl); border: 1px solid var(--tint-card-border-on-dark); background: var(--tint-card-on-dark); transition: all var(--duration-base) var(--ease-default); }
+.bonus-card:hover, .bonus-card.is-hover { transform: translateY(var(--hover-lift-md)); border-color: var(--color-primary); box-shadow: var(--shadow-card-lift); }
+.bonus-card__img { margin: var(--space-4) var(--space-4) 0; aspect-ratio: 16 / 9; border-radius: var(--radius-xl); background: var(--color-white); object-fit: cover; object-position: top; box-shadow: var(--shadow-bonus-image); }
+.bonus-card__body { display: flex; flex: 1; flex-direction: column; padding: var(--space-6); }
+.bonus-card__t { margin-top: var(--space-5) !important; display: flex; align-items: baseline; gap: var(--space-2); color: var(--color-ink); }
+.bonus-card__t span { color: var(--color-primary); }
+.bonus-card__d { margin-top: var(--space-3); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); color: var(--color-ink-muted); }
+@media (min-width: 640px) { .bonus-card__img { margin: var(--space-5) var(--space-5) 0; } .bonus-card__body { padding: var(--space-8); } .bonus-card__d { font-size: var(--font-size-base); } }
+
+</style>
+</head>
+<body class="ds-page">
+<main class="ds-doc">
+  <h1>Card e pannelli</h1>
+  <p class="ds-intro">Famiglie di card del sito: card chiara (bg-card/50, bordo border/70, sale di 4px e bordo Mulberry in hover), surface-card (card piena con bordo lime 22% e ombra profonda), pannello surface-cream (Mulberry, raggio 1.75rem, dentro sezioni chiare), card su fondo scuro (fondo bianco 6%, bordo bianco 14%, hover lime con ombra), card vetro (Mulberry 82% + blur), box informativo con immagine e divisore tratteggiato, card team, card &#x27;per chi&#x27;, card bonus.</p>
+  <p class="ds-src">Fonte nel codice: src/routes/index.tsx:1370 (problema) · 1517 (metodo) · 1570 (serate) · 2058 (pannello) · src/styles.css (surface-card, surface-cream) · src/components/landing/InstagramFollowBox.tsx · src/routes/candidati-ambiziosa.tsx:2392 (per chi) · 2958 (bonus) · 3070 (team)</p>
+
+<div class="ds-block"><p class="ds-block-title">Card chiara (Problema) · normale e hover</p>
+<div class="ds-stage ds-stage--light"><div class="ds-row">
+  <div style="flex:1 1 300px"><div class="card-light"><span class="card-light__emoji" aria-hidden="true">✍️</span><div><p class="card-light__t">Scrivi, cancelli, riscrivi</p><span class="card-light__d" style="display:block">Ogni post ti costa ore perché cerchi la formula giusta invece della tua voce.</span></div></div></div>
+  <div style="flex:1 1 300px"><div class="card-light is-hover"><span class="card-light__emoji" aria-hidden="true">🪞</span><div><p class="card-light__t">Ti senti una fotocopia</p><span class="card-light__d" style="display:block">Testo di esempio: nel sito il contenuto viene da startingPointCards.</span></div></div></div>
+</div></div></div>
+
+<div class="ds-block"><p class="ds-block-title">Pannello surface-cream dentro una sezione chiara (Cos'è, Chi sono)</p>
+<div class="ds-stage ds-stage--light"><div class="surface-cream panel"><h2 class="h2" style="color:var(--color-ink)">Rule the Rules è il mio <span class="hl hl--dark">unico show live del 2026</span></h2><p style="margin-top:var(--space-6)">Parlo ogni giorno con decine di professioniste online, e quasi tutte mi dicono questa frase con parole diverse.</p></div></div></div>
+
+<div class="ds-block"><p class="ds-block-title">Card su fondo scuro (serate e step) · normale e hover, con numero gigante (da 768px)</p>
+<div class="ds-stage ds-stage--dark"><div class="ds-row">
+  <div style="flex:1 1 320px"><div class="card-dark"><span class="card-dark__num" aria-hidden="true">1</span><div style="position:relative"><p style="font-size:var(--font-size-lg);font-weight:600;color:var(--color-ink)">Che cosa ti porti a casa da questa serata?</p><p style="margin-top:8px;color:var(--color-ink-muted);font-size:var(--font-size-sm)">Fondo bianco al 6%, bordo bianco al 14%.</p></div></div></div>
+  <div style="flex:1 1 320px"><div class="card-dark is-hover"><span class="card-dark__num" aria-hidden="true">2</span><div style="position:relative"><p style="font-size:var(--font-size-lg);font-weight:600;color:var(--color-ink)">Hover</p><p style="margin-top:8px;color:var(--color-ink-muted);font-size:var(--font-size-sm)">Sale di 4px, bordo lime, ombra.</p></div></div></div>
+</div></div></div>
+
+<div class="ds-block"><p class="ds-block-title">Card vetro (Il metodo) · riga attiva/non attiva (Cosa ti porti a casa)</p>
+<div class="ds-stage ds-stage--dark"><div class="ds-row">
+  <div style="flex:1 1 320px"><div class="card-glass"><span class="card-glass__n">01</span><div><p class="card-glass__tag">Identità</p><p class="card-glass__t">Chi sei</p><p class="card-glass__d">Testo di esempio dello step (systemSteps nel sito).</p></div></div></div>
+  <div style="flex:1 1 320px;display:flex;flex-direction:column;gap:var(--space-4)"><div class="card-row-dark is-active"><svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 10h2"/><path d="M16 14h2"/><path d="M6.17 15a3 3 0 0 1 5.66 0"/><circle cx="9" cy="11" r="2"/><rect x="2" y="5" width="20" height="14" rx="2"/></svg><div><p style="font-size:var(--font-size-lg);font-weight:600;color:var(--color-ink)">Le tue Carte Identitarie</p></div></div><div class="card-row-dark"><svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg><div><p style="font-size:var(--font-size-lg);font-weight:600;color:var(--color-ink)">Il tuo piano editoriale</p></div></div></div>
+</div></div></div>
+
+<div class="ds-block"><p class="ds-block-title">Box informativo con immagine (thank-you) · normale e hover</p>
+<div class="ds-stage ds-stage--light" style="display:flex;flex-direction:column;gap:var(--space-6)">
+  <div class="info-box"><div class="info-box__media"><img src="../../src/assets/salva-evento-calendario.png" alt="" /><span class="icon-circle"><svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19h6"/><path d="M16 2v4"/><path d="M19 16v6"/><path d="M21 12.598V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8.5"/><path d="M3 10h18"/><path d="M8 2v4"/></svg></span></div><div class="info-box__body"><p class="info-box__t">Salvati le date delle tre serate</p><p class="info-box__d">So quanti impegni potresti avere durante la giornata, e non vorrei mai che ti perdessi le tre serate.</p></div></div>
+  <div class="info-box is-hover"><div class="info-box__media"><img src="../../src/assets/profilo-ig-carlotta.png" alt="" /><span class="icon-circle"><svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></span></div><div class="info-box__body"><p class="info-box__t">Seguimi su Instagram</p><p class="info-box__d">Stato hover: sale, bordo Mulberry, immagine ruotata di -2°.</p></div></div>
+</div></div>
+
+<div class="ds-block"><p class="ds-block-title">Card team (surface-card) · card 'per chi' · card bonus</p>
+<div class="ds-stage ds-stage--dark"><div class="surface-card team-card"><img src="../../src/assets/carlotta-presenting.jpg" alt="Carlotta Sgarra" style="object-position:38% 30%" /><div><h3 class="h3-card">Carlotta Sgarra</h3><p class="team-card__role">Fondatrice di Ambiziosa</p><p class="team-card__d">Sono Carlotta Sgarra e <strong style="color:var(--color-foreground)">ho costruito la mia azienda partendo dalla persona che sono</strong>.</p></div></div></div>
+<div class="ds-row" style="margin-top:var(--space-6)">
+  <div class="ds-stage ds-stage--light" style="flex:1 1 320px"><div class="forwho-card"><span class="badge badge--bold" style="align-self:flex-start">01 · Libera professionista</span><p style="margin-top:var(--space-5)">Testo della card (forWhoCards nel sito).</p><div class="forwho-story"><img src="../../src/assets/giulia-santelli.jpg" alt="" /><p style="font-size:var(--font-size-sm)">Come è successo a <strong style="color:var(--color-ink)">Giulia</strong>…</p></div><div style="margin-top:auto;padding-top:var(--space-6);display:flex;flex-wrap:wrap;gap:var(--space-2)"><span class="example-chip">Psicologa</span><span class="example-chip">Nutrizionista</span></div></div></div>
+  <div class="ds-stage ds-stage--dark" style="flex:1 1 320px"><div class="bonus-card"><img class="bonus-card__img" src="../../src/assets/dashboard%20notion.png" alt="" /><div class="bonus-card__body"><div style="display:flex;flex-wrap:wrap;gap:var(--space-2)"><span class="badge badge--sm">Mai più da sola</span><span class="badge badge--outline">Professioniste come te</span></div><h3 class="h3-card bonus-card__t"><span aria-hidden="true">✹</span>Community e confronto</h3><p class="bonus-card__d">Slack serve anche per questo: è lo spazio dove <strong style="color:var(--color-ink)">ti confronti con altre professioniste</strong>.</p></div></div></div>
+</div></div>
+
+</main>
+<script>
+
+(function () {
+  var els = document.querySelectorAll(".hl");
+  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.documentElement.classList.add("js-hl");
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); } });
+  }, { threshold: 0.6 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+
+</script>
+</body>
+</html>

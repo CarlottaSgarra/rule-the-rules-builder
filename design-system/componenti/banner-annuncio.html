@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Barra di annuncio (thank-you) · Design system Carlotta Sgarra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Oswald:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" />
+<link rel="stylesheet" href="../tokens.css" />
+<style>
+
+/* ---- Base dei file componente (solo per la pagina di esempio) ---- */
+.ds-icon { width: 1em; height: 1em; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+.ds-icon--fill { fill: currentColor; }
+.ds-page { padding: 0; }
+/* Come il preflight di Tailwind usato dal sito */
+img, svg, video, iframe { display: block; max-width: 100%; }
+img { height: auto; }
+.ds-icon { display: inline-block; }
+button, input, select { font: inherit; }
+.ds-doc { max-width: var(--container-6xl); margin: 0 auto; padding: var(--space-10) var(--page-gutter); }
+.ds-doc > h1 { font-size: var(--font-size-3xl); line-height: 1.2; margin: 0; }
+.ds-doc > p.ds-intro { overflow-wrap: anywhere; margin: var(--space-3) 0 0; max-width: var(--container-3xl); color: color-mix(in oklab, var(--color-foreground) 85%, transparent); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); }
+.ds-src { overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--color-muted-foreground); }
+.ds-block { margin-top: var(--space-8); }
+.ds-block-title { margin: 0 0 var(--space-3); font-family: var(--font-condensed); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--letter-spacing-eyebrow); color: var(--color-foreground); }
+.ds-stage { border-radius: var(--radius-2xl); padding: var(--space-8) var(--space-5); border: 1px dashed color-mix(in oklab, var(--color-foreground) 25%, transparent); }
+.ds-stage--light { background: var(--color-background); color: var(--color-foreground); }
+.ds-stage--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.ds-stage--flush { padding: 0; overflow: hidden; }
+.ds-row { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: flex-start; }
+.ds-col { display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start; }
+.ds-note { font-size: 12px; color: inherit; opacity: 0.75; margin: 0; }
+
+/* Contesto scuro: come nel sito (topbar, footer, FAQ, box) i colori "di testo" vengono
+   ridefiniti per lo sfondo Mulberry. */
+.on-dark {
+  --color-foreground: var(--color-secondary-foreground);
+  --color-muted-foreground: var(--color-muted-foreground-on-dark);
+  --color-border: var(--tint-card-border-on-dark);
+}
+
+/* Contenitori e sezioni */
+.section { position: relative; }
+.section--light { background: var(--color-background); color: var(--color-foreground); }
+.section--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.container { margin: 0 auto; padding: var(--section-padding-y) var(--page-gutter); }
+.container--3xl { max-width: var(--container-3xl); }
+.container--4xl { max-width: var(--container-4xl); }
+.container--5xl { max-width: var(--container-5xl); }
+.container--6xl { max-width: var(--container-6xl); }
+
+/* Titoli di sezione (h2 del sito: text-3xl sm:text-4xl, Fraunces 400) */
+.h2 { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-3xl); line-height: 1.2; letter-spacing: var(--letter-spacing-heading); }
+.h3-card { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+.h3-semibold { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-semibold); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+@media (min-width: 640px) {
+  .h2 { font-size: var(--font-size-4xl); line-height: 1.1111; }
+  .h3-card, .h3-semibold { font-size: var(--font-size-3xl); line-height: 1.2; }
+}
+.text-center { text-align: center; }
+p { margin: 0; }
+strong { font-weight: var(--font-weight-semibold); }
+
+/* ---- Barra di annuncio (thank-you): CSS del componente (solo variabili di tokens.css) ---- */
+
+.announce { padding: var(--space-3) var(--page-gutter-tight); text-align: center; font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); color: var(--color-white); background: var(--color-secondary); }
+@media (min-width: 640px) { .announce { font-size: var(--font-size-base); } }
+
+</style>
+</head>
+<body class="ds-page">
+<main class="ds-doc">
+  <h1>Barra di annuncio (thank-you)</h1>
+  <p class="ds-intro">Barra piena larghezza Mulberry con testo bianco semibold centrato, in cima alla thank-you. Non ci sono pop-up né modali nel sito.</p>
+  <p class="ds-src">Fonte nel codice: src/routes/thank-you.tsx:34-39</p>
+
+<div class="ds-block"><div class="ds-stage ds-stage--flush"><div class="announce">Leggi le istruzioni qui sotto per partecipare alle 3 serate</div></div></div>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FAQ e accordion · Design system Carlotta Sgarra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Oswald:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" />
+<link rel="stylesheet" href="../tokens.css" />
+<style>
+
+/* ---- Base dei file componente (solo per la pagina di esempio) ---- */
+.ds-icon { width: 1em; height: 1em; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+.ds-icon--fill { fill: currentColor; }
+.ds-page { padding: 0; }
+/* Come il preflight di Tailwind usato dal sito */
+img, svg, video, iframe { display: block; max-width: 100%; }
+img { height: auto; }
+.ds-icon { display: inline-block; }
+button, input, select { font: inherit; }
+.ds-doc { max-width: var(--container-6xl); margin: 0 auto; padding: var(--space-10) var(--page-gutter); }
+.ds-doc > h1 { font-size: var(--font-size-3xl); line-height: 1.2; margin: 0; }
+.ds-doc > p.ds-intro { overflow-wrap: anywhere; margin: var(--space-3) 0 0; max-width: var(--container-3xl); color: color-mix(in oklab, var(--color-foreground) 85%, transparent); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); }
+.ds-src { overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--color-muted-foreground); }
+.ds-block { margin-top: var(--space-8); }
+.ds-block-title { margin: 0 0 var(--space-3); font-family: var(--font-condensed); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--letter-spacing-eyebrow); color: var(--color-foreground); }
+.ds-stage { border-radius: var(--radius-2xl); padding: var(--space-8) var(--space-5); border: 1px dashed color-mix(in oklab, var(--color-foreground) 25%, transparent); }
+.ds-stage--light { background: var(--color-background); color: var(--color-foreground); }
+.ds-stage--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.ds-stage--flush { padding: 0; overflow: hidden; }
+.ds-row { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: flex-start; }
+.ds-col { display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start; }
+.ds-note { font-size: 12px; color: inherit; opacity: 0.75; margin: 0; }
+
+/* Contesto scuro: come nel sito (topbar, footer, FAQ, box) i colori "di testo" vengono
+   ridefiniti per lo sfondo Mulberry. */
+.on-dark {
+  --color-foreground: var(--color-secondary-foreground);
+  --color-muted-foreground: var(--color-muted-foreground-on-dark);
+  --color-border: var(--tint-card-border-on-dark);
+}
+
+/* Contenitori e sezioni */
+.section { position: relative; }
+.section--light { background: var(--color-background); color: var(--color-foreground); }
+.section--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.container { margin: 0 auto; padding: var(--section-padding-y) var(--page-gutter); }
+.container--3xl { max-width: var(--container-3xl); }
+.container--4xl { max-width: var(--container-4xl); }
+.container--5xl { max-width: var(--container-5xl); }
+.container--6xl { max-width: var(--container-6xl); }
+
+/* Titoli di sezione (h2 del sito: text-3xl sm:text-4xl, Fraunces 400) */
+.h2 { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-3xl); line-height: 1.2; letter-spacing: var(--letter-spacing-heading); }
+.h3-card { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+.h3-semibold { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-semibold); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+@media (min-width: 640px) {
+  .h2 { font-size: var(--font-size-4xl); line-height: 1.1111; }
+  .h3-card, .h3-semibold { font-size: var(--font-size-3xl); line-height: 1.2; }
+}
+.text-center { text-align: center; }
+p { margin: 0; }
+strong { font-weight: var(--font-weight-semibold); }
+
+/* ---- da 'Evidenziatore (Highlight)' ---- */
+
+.hl { border-radius: var(--radius-highlight); padding: 0 0.25rem; background-image: linear-gradient(var(--tint-highlight-light), var(--tint-highlight-light)); background-repeat: no-repeat; background-position: left center; background-size: 100% 100%; -webkit-box-decoration-break: clone; box-decoration-break: clone; transition: background-size var(--duration-highlight) var(--ease-out); }
+.hl--dark { background-image: linear-gradient(var(--tint-highlight-dark), var(--tint-highlight-dark)); }
+.js-hl .hl:not(.is-visible) { background-size: 0% 100%; }
+
+/* ---- da 'Bottoni' ---- */
+
+.btn-cta {
+  position: relative; overflow: hidden; isolation: isolate;
+  display: inline-flex; flex-direction: column; align-items: center;
+  width: 100%; max-width: var(--container-xl);
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-xl); border: 0;
+  text-align: center; text-decoration: none; cursor: pointer;
+  background-image: var(--gradient-gold); box-shadow: var(--shadow-gold); color: var(--color-primary-foreground);
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+.btn-cta:hover, .btn-cta.is-hover { transform: translateY(var(--hover-lift-sm)); }
+.btn-cta.is-focus { outline: 2px solid -webkit-focus-ring-color; outline: auto; outline-offset: 2px; }
+.btn-cta:disabled, .btn-cta.is-disabled { opacity: var(--opacity-disabled); pointer-events: none; }
+.btn-cta__label { position: relative; font-family: var(--font-condensed); font-weight: var(--font-weight-bold); font-size: var(--font-size-sm); line-height: 1.4286; text-transform: uppercase; letter-spacing: var(--letter-spacing-button); }
+.btn-cta__sub { position: relative; margin-top: var(--space-1); font-size: var(--font-size-9px); font-weight: var(--font-weight-medium); opacity: var(--opacity-cta-sub); white-space: nowrap; }
+.btn-cta__sub--balance { white-space: normal; text-wrap: balance; }
+@media (min-width: 640px) {
+  .btn-cta { padding: var(--space-5) var(--space-6); }
+  .btn-cta__label { font-size: var(--font-size-base); line-height: 1.5; }
+  .btn-cta__sub { font-size: var(--font-size-sm); }
+}
+/* Riflesso (ShineSweep) */
+.shine { position: absolute; top: 0; bottom: 0; left: 0; width: 33.333%; pointer-events: none; background-image: var(--shine-gradient); animation: shine-sweep var(--animation-shine) var(--ease-in-out) infinite; }
+@keyframes shine-sweep { 0% { transform: translateX(-150%) skewX(-20deg); } 60%, 100% { transform: translateX(450%) skewX(-20deg); } }
+@media (prefers-reduced-motion: reduce) { .shine { animation: none; opacity: 0; } }
+
+/* Bottone della topbar */
+.btn-topbar {
+  position: relative; overflow: hidden; display: inline-block; flex-shrink: 0; min-width: 0;
+  padding: var(--space-1-5) var(--space-2); border-radius: var(--radius-md);
+  font-family: var(--font-condensed); font-size: var(--font-size-10px); line-height: var(--line-height-tight);
+  text-transform: uppercase; letter-spacing: 0.03em; text-align: center; text-decoration: none;
+  background-image: var(--gradient-gold); color: var(--color-primary-foreground);
+  transition: transform var(--duration-fast) var(--ease-default);
+}
+.btn-topbar span { position: relative; }
+.btn-topbar:hover, .btn-topbar.is-hover { transform: translateY(var(--hover-lift-sm)); }
+@media (min-width: 640px) { .btn-topbar { padding: var(--space-2) var(--space-4); font-size: var(--font-size-sm); letter-spacing: 0.12em; } }
+
+/* Submit del form */
+.btn-submit {
+  display: flex; flex-direction: column; align-items: center; width: 100%;
+  padding: var(--space-4) var(--space-6); border: 0; border-radius: var(--radius-xl); cursor: pointer;
+  background-image: var(--gradient-gold); color: var(--color-primary-foreground); box-shadow: var(--shadow-gold);
+  transition: transform var(--duration-default) var(--ease-default);
+}
+.btn-submit:hover, .btn-submit.is-hover { transform: translateY(var(--hover-lift-sm)); }
+.btn-submit:disabled, .btn-submit.is-disabled { opacity: var(--opacity-disabled); pointer-events: none; }
+.btn-submit__label { font-family: var(--font-condensed); font-size: var(--font-size-base); text-transform: uppercase; letter-spacing: 0.1em; }
+.btn-submit__sub { margin-top: var(--space-1); font-size: var(--font-size-10px); font-weight: var(--font-weight-medium); opacity: var(--opacity-cta-sub); white-space: nowrap; }
+@media (min-width: 640px) { .btn-submit__label { font-size: var(--font-size-lg); letter-spacing: 0.14em; } .btn-submit__sub { font-size: var(--font-size-xs); } }
+
+/* WhatsApp */
+.btn-whatsapp {
+  position: relative; overflow: hidden; display: flex; width: 100%; align-items: center; justify-content: center; gap: var(--space-2-5);
+  padding: var(--space-4) var(--space-6); border-radius: var(--radius-xl); text-decoration: none;
+  background: var(--color-whatsapp); color: var(--color-white); box-shadow: var(--shadow-whatsapp);
+  font-family: var(--font-condensed); font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: 0.12em;
+  transition: all var(--duration-fast) var(--ease-default);
+}
+.btn-whatsapp > :not(.shine) { position: relative; }
+.btn-whatsapp:hover, .btn-whatsapp.is-hover { transform: translateY(var(--hover-lift-sm)); background: var(--color-whatsapp-hover); }
+.btn-whatsapp .ds-icon { font-size: var(--space-5); }
+.btn-whatsapp__long { display: none; }
+@media (min-width: 640px) { .btn-whatsapp { font-size: var(--font-size-base); } .btn-whatsapp__short { display: none; } .btn-whatsapp__long { display: inline; } }
+
+/* Bottone oro piccolo (thank-you VIP) */
+.btn-gold-sm { display: inline-flex; align-items: center; justify-content: center; padding: var(--space-2-5) var(--space-4); border-radius: var(--radius-lg); font-family: var(--font-condensed); font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; background-image: var(--gradient-gold); box-shadow: var(--shadow-gold); color: var(--color-primary-foreground); transition: transform var(--duration-fast) var(--ease-default); }
+.btn-gold-sm:hover, .btn-gold-sm.is-hover { transform: translateY(var(--hover-lift-sm)); }
+
+/* Link testuali */
+.link-decline { font-size: var(--font-size-sm); color: color-mix(in oklab, var(--color-foreground) 60%, transparent); text-decoration: underline; text-underline-offset: 2px; transition: color var(--duration-default); }
+.link-decline:hover, .link-decline.is-hover { color: var(--color-foreground); }
+.link-gold { color: var(--color-gold-deep); text-decoration: underline; }
+.link-muted { font-size: var(--font-size-xs); color: var(--color-muted-foreground); text-decoration: underline; text-underline-offset: 2px; }
+.link-muted:hover, .link-muted.is-hover { color: var(--color-foreground); }
+.link-text-btn { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; font-size: var(--font-size-sm); color: var(--color-gold-deep); text-decoration: underline; text-align: left; }
+
+/* Bottoni di sistema (pagine 404 ed errore, stile shadcn) */
+.btn-system { display: inline-flex; align-items: center; justify-content: center; padding: var(--space-2) var(--space-4); border-radius: var(--radius-md); font-size: var(--font-size-sm); font-weight: var(--font-weight-medium); text-decoration: none; transition: color var(--duration-default), background-color var(--duration-default); border: 1px solid transparent; cursor: pointer; font-family: var(--font-body); }
+.btn-system--primary { background: var(--color-primary); color: var(--color-primary-foreground); }
+.btn-system--primary:hover, .btn-system--primary.is-hover { background: color-mix(in oklab, var(--color-primary) 90%, transparent); }
+.btn-system--outline { background: var(--color-background); color: var(--color-foreground); border-color: var(--color-input); }
+.btn-system--outline:hover, .btn-system--outline.is-hover { background: var(--color-accent); color: var(--color-accent-foreground); }
+
+/* ---- FAQ e accordion: CSS del componente (solo variabili di tokens.css) ---- */
+
+.faq { max-width: var(--container-3xl); margin: 0 auto; }
+.faq__support { margin-top: var(--space-3); font-size: var(--font-size-sm); color: var(--color-muted-foreground); }
+.acc { margin-top: var(--space-8); }
+.acc__item { border-bottom: 1px solid color-mix(in oklab, var(--color-border) 70%, transparent); }
+.acc__trigger { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-4) 0; border: 0; background: none; cursor: pointer; text-align: left; font: inherit; font-size: var(--font-size-base); font-weight: var(--font-weight-medium); color: var(--color-foreground); transition: all var(--duration-default); }
+.acc__trigger:hover, .acc__trigger.is-hover { text-decoration: underline; }
+.acc__trigger .ds-icon { font-size: 1rem; color: var(--color-muted-foreground); transition: transform var(--duration-fast); }
+.acc__trigger[aria-expanded="true"] .ds-icon { transform: rotate(180deg); }
+.acc__panel { overflow: hidden; display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--duration-fast) var(--ease-out); }
+.acc__panel > div { min-height: 0; }
+.acc__panel.is-open { grid-template-rows: 1fr; }
+.acc__panel p { padding-bottom: var(--space-4); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); color: var(--color-muted-foreground); }
+@media (prefers-reduced-motion: reduce) { .acc__panel, .acc__trigger .ds-icon { transition: none; } }
+
+</style>
+</head>
+<body class="ds-page">
+<main class="ds-doc">
+  <h1>FAQ e accordion</h1>
+  <p class="ds-intro">Sezione FAQ sempre su fondo scuro: titolo con evidenziatore, riga di supporto con email lime, accordion a una voce aperta per volta (Radix). Domanda: testo base, chevron che ruota di 180° all&#x27;apertura, sottolineatura in hover. Risposta: text-sm, interlinea relaxed, colore muted. Animazione di apertura/chiusura dell&#x27;altezza in 200ms ease-out.</p>
+  <p class="ds-src">Fonte nel codice: src/routes/index.tsx:2325-2366 · src/routes/candidati-ambiziosa.tsx:3517-3568 · src/components/ui/accordion.tsx</p>
+
+<div class="ds-block"><div class="ds-stage ds-stage--dark on-dark"><div class="faq">
+  <h2 class="h2" style="color:var(--color-foreground)">Domande <span class="hl hl--dark">frequenti</span></h2>
+  <p class="faq__support">Hai bisogno di supporto? Scrivi a <a class="link-gold" href="#">info@carlottasgarra.it</a></p>
+  <div class="acc" data-acc>
+    <div class="acc__item"><button class="acc__trigger" type="button" aria-expanded="true">Quando iniziano le call?<svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="acc__panel is-open"><div><p>Risposta aperta (stato aperto). Nel sito i testi vengono dall'array faqs della pagina.</p></div></div></div>
+    <div class="acc__item"><button class="acc__trigger" type="button" aria-expanded="false">Posso pagare a rate?<svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="acc__panel"><div><p>Sì: entrambi i percorsi sono rateizzabili fino a 4 mesi.</p></div></div></div>
+    <div class="acc__item"><button class="acc__trigger is-hover" type="button" aria-expanded="false">Domanda in hover (sottolineata)<svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><div class="acc__panel"><div><p>Risposta.</p></div></div></div>
+  </div>
+</div></div></div>
+
+</main>
+<script>
+
+(function () {
+  var els = document.querySelectorAll(".hl");
+  if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.documentElement.classList.add("js-hl");
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); } });
+  }, { threshold: 0.6 });
+  els.forEach(function (el) { io.observe(el); });
+})();
+
+
+document.querySelectorAll("[data-acc]").forEach(function (acc) {
+  acc.querySelectorAll(".acc__trigger").forEach(function (t) {
+    t.addEventListener("click", function () {
+      var open = t.getAttribute("aria-expanded") === "true";
+      acc.querySelectorAll(".acc__trigger").forEach(function (o) { o.setAttribute("aria-expanded", "false"); o.nextElementSibling.classList.remove("is-open"); });
+      if (!open) { t.setAttribute("aria-expanded", "true"); t.nextElementSibling.classList.add("is-open"); }
+    });
+  });
+});
+
+</script>
+</body>
+</html>

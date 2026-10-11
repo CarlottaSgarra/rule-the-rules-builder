@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Liste, chip delle call e dati · Design system Carlotta Sgarra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Oswald:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" />
+<link rel="stylesheet" href="../tokens.css" />
+<style>
+
+/* ---- Base dei file componente (solo per la pagina di esempio) ---- */
+.ds-icon { width: 1em; height: 1em; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+.ds-icon--fill { fill: currentColor; }
+.ds-page { padding: 0; }
+/* Come il preflight di Tailwind usato dal sito */
+img, svg, video, iframe { display: block; max-width: 100%; }
+img { height: auto; }
+.ds-icon { display: inline-block; }
+button, input, select { font: inherit; }
+.ds-doc { max-width: var(--container-6xl); margin: 0 auto; padding: var(--space-10) var(--page-gutter); }
+.ds-doc > h1 { font-size: var(--font-size-3xl); line-height: 1.2; margin: 0; }
+.ds-doc > p.ds-intro { overflow-wrap: anywhere; margin: var(--space-3) 0 0; max-width: var(--container-3xl); color: color-mix(in oklab, var(--color-foreground) 85%, transparent); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); }
+.ds-src { overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--color-muted-foreground); }
+.ds-block { margin-top: var(--space-8); }
+.ds-block-title { margin: 0 0 var(--space-3); font-family: var(--font-condensed); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--letter-spacing-eyebrow); color: var(--color-foreground); }
+.ds-stage { border-radius: var(--radius-2xl); padding: var(--space-8) var(--space-5); border: 1px dashed color-mix(in oklab, var(--color-foreground) 25%, transparent); }
+.ds-stage--light { background: var(--color-background); color: var(--color-foreground); }
+.ds-stage--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.ds-stage--flush { padding: 0; overflow: hidden; }
+.ds-row { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: flex-start; }
+.ds-col { display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start; }
+.ds-note { font-size: 12px; color: inherit; opacity: 0.75; margin: 0; }
+
+/* Contesto scuro: come nel sito (topbar, footer, FAQ, box) i colori "di testo" vengono
+   ridefiniti per lo sfondo Mulberry. */
+.on-dark {
+  --color-foreground: var(--color-secondary-foreground);
+  --color-muted-foreground: var(--color-muted-foreground-on-dark);
+  --color-border: var(--tint-card-border-on-dark);
+}
+
+/* Contenitori e sezioni */
+.section { position: relative; }
+.section--light { background: var(--color-background); color: var(--color-foreground); }
+.section--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.container { margin: 0 auto; padding: var(--section-padding-y) var(--page-gutter); }
+.container--3xl { max-width: var(--container-3xl); }
+.container--4xl { max-width: var(--container-4xl); }
+.container--5xl { max-width: var(--container-5xl); }
+.container--6xl { max-width: var(--container-6xl); }
+
+/* Titoli di sezione (h2 del sito: text-3xl sm:text-4xl, Fraunces 400) */
+.h2 { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-3xl); line-height: 1.2; letter-spacing: var(--letter-spacing-heading); }
+.h3-card { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+.h3-semibold { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-semibold); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+@media (min-width: 640px) {
+  .h2 { font-size: var(--font-size-4xl); line-height: 1.1111; }
+  .h3-card, .h3-semibold { font-size: var(--font-size-3xl); line-height: 1.2; }
+}
+.text-center { text-align: center; }
+p { margin: 0; }
+strong { font-weight: var(--font-weight-semibold); }
+
+/* ---- Liste, chip delle call e dati: CSS del componente (solo variabili di tokens.css) ---- */
+
+.check-list { margin: var(--space-3) 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--space-3); }
+.check-list li { display: flex; gap: var(--space-3); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); color: color-mix(in oklab, var(--color-foreground) 85%, transparent); }
+.check-list .ds-icon { margin-top: var(--space-1); font-size: 1rem; color: var(--color-secondary); }
+.check-list--dark li { color: var(--color-ink-muted); }
+.check-list--dark .ds-icon { color: var(--color-gold-deep); }
+.check-list--muted li { color: var(--color-ink-muted); }
+.check-list--muted .ds-icon { color: color-mix(in oklab, var(--color-ink-muted) 60%, transparent); }
+.check-list--tight { gap: var(--space-2); }
+.check-list--tight li { gap: var(--space-2); font-size: var(--font-size-base); }
+@media (min-width: 640px) { .check-list--dark li { font-size: var(--font-size-base); } }
+.mark-list { margin: var(--space-5) 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: var(--space-4); }
+.mark-list li { display: flex; gap: var(--space-3); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); }
+.mark-list .mk { margin-top: 0.125rem; }
+.mark-list--yes li { color: color-mix(in oklab, var(--color-foreground) 85%, transparent); }
+.mark-list--yes .mk { color: var(--color-secondary); }
+.mark-list--no li { color: color-mix(in oklab, var(--color-ink-muted) 70%, transparent); }
+.mark-list--no .mk { color: color-mix(in oklab, var(--color-ink-muted) 50%, transparent); }
+.num-list { margin: var(--space-8) 0 0; padding: var(--space-8) 0 0; list-style: none; display: flex; flex-direction: column; gap: var(--space-5); border-top: 1px solid color-mix(in oklab, var(--color-border) 70%, transparent); }
+.num-list li { display: flex; gap: var(--space-4); }
+.num-list__n { width: 1.75rem; flex-shrink: 0; font-family: var(--font-condensed); font-size: var(--font-size-3xl); line-height: 1; color: var(--color-secondary); }
+.num-list__t { font-size: var(--font-size-base); font-weight: var(--font-weight-semibold); color: var(--color-foreground); }
+.num-list__d { margin-top: var(--space-1); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); color: color-mix(in oklab, var(--color-foreground) 85%, transparent); }
+.num-list--dark { border-top-color: var(--tint-panel-border-on-dark); }
+.num-list--dark .num-list__n { color: var(--color-primary); }
+.num-list--dark .num-list__t { color: var(--color-ink); }
+.num-list--dark .num-list__d { color: var(--color-ink-muted); }
+@media (min-width: 640px) { .num-list__t { font-size: var(--font-size-lg); } .num-list__d { font-size: var(--font-size-base); } }
+.dl { margin: var(--space-5) 0 0; display: flex; flex-direction: column; gap: var(--space-2); border-radius: var(--radius-xl); padding: var(--space-4); font-size: var(--font-size-sm); background: color-mix(in oklab, var(--color-background) 8%, transparent); }
+.dl div { display: flex; flex-wrap: wrap; column-gap: var(--space-2); }
+.dl dt { font-weight: var(--font-weight-semibold); color: var(--color-ink); }
+.dl dd { margin: 0; color: var(--color-ink-muted); }
+.call-chip { display: flex; align-items: center; gap: var(--space-2-5); border-radius: var(--radius-lg); border: 1px solid var(--tint-call-chip-border); background: var(--color-background); padding: var(--space-2) var(--space-3) var(--space-2) var(--space-2); }
+.call-chip__ph { display: flex; flex-shrink: 0; }
+.call-chip__ph img { width: 2.25rem; height: 2.25rem; border-radius: var(--radius-md); object-fit: cover; }
+.call-chip__ph img + img { margin-left: -0.625rem; border: 2px solid var(--color-background); }
+.call-chip__t { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); line-height: var(--line-height-snug); color: var(--color-foreground); }
+.call-chip__d { font-size: var(--font-size-11px); line-height: var(--line-height-snug); color: color-mix(in oklab, var(--color-foreground) 70%, transparent); }
+.call-chip__n { flex-shrink: 0; margin-left: auto; font-family: var(--font-display); font-size: var(--font-size-xl); line-height: 1; color: var(--color-secondary); }
+.call-chip--dark { background: var(--tint-card-on-dark); border-color: var(--tint-card-border-on-dark); }
+.call-chip--dark .call-chip__ph img + img { border-color: var(--color-secondary); }
+.call-chip--dark .call-chip__t { color: var(--color-ink); }
+.call-chip--dark .call-chip__d { color: var(--color-ink-muted); }
+.call-chip--dark .call-chip__n { color: var(--color-primary); }
+.call-chip--highlight { background: color-mix(in oklab, var(--color-primary) 14%, transparent); border-color: var(--color-primary); }
+.call-chip--highlight .call-chip__t { color: var(--color-primary); }
+
+</style>
+</head>
+<body class="ds-page">
+<main class="ds-doc">
+  <h1>Liste, chip delle call e dati</h1>
+  <p class="ds-intro">Liste con icona Check di Lucide (Mulberry su chiaro, lime su scuro, grigia per le voci &#x27;già incluse&#x27;), liste con caratteri ✓ e ✕ (per chi è / non è, prima e dopo), elenchi numerati con numeri in Oswald 1.875rem, coppie etichetta/valore (dl) e chip delle call con foto, testo e numero. Non ci sono tabelle nel sito.</p>
+  <p class="ds-src">Fonte nel codice: src/routes/index.tsx:1394 (check), 1948 (✓/✕) · src/routes/candidati-ambiziosa.tsx:1242 (CallChip), 2814 (ol), 3003 (dl), 3346</p>
+
+<div class="ds-block"><p class="ds-block-title">Liste con icona Check · su chiaro, su scuro, voci già incluse</p>
+<div class="ds-row">
+  <div class="ds-stage ds-stage--light" style="flex:1 1 260px"><ul class="check-list check-list--tight"><li><svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Questo hook</span></li><li><svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Questo script</span></li><li><svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Questa CTA</span></li></ul></div>
+  <div class="ds-stage ds-stage--dark" style="flex:1 1 260px"><ul class="check-list check-list--dark"><li><svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong style="color:var(--color-ink)">Dubbi</strong> su quello che stai facendo.</span></li><li><svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><strong style="color:var(--color-ink)">Blocchi</strong> che ti fermano.</span></li></ul></div>
+  <div class="ds-stage ds-stage--dark" style="flex:1 1 260px"><ul class="check-list check-list--muted"><li><svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Voce già inclusa nel Program</span></li><li><svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Altra voce già inclusa</span></li></ul></div>
+</div></div>
+<div class="ds-block"><p class="ds-block-title">Liste ✓ / ✕ (testo, non icone)</p>
+<div class="ds-row">
+  <div class="ds-stage ds-stage--light" style="flex:1 1 260px"><ul class="mark-list mark-list--yes"><li><span class="mk">✓</span><span>Vuoi una comunicazione che ti somigli</span></li><li><span class="mk">✓</span><span>Sei pronta a mettere in pratica</span></li></ul></div>
+  <div class="ds-stage ds-stage--dark" style="flex:1 1 260px"><ul class="mark-list mark-list--no"><li><span class="mk">✕</span><span>Cerchi una formula magica</span></li><li><span class="mk">✕</span><span>Non vuoi esporti</span></li></ul></div>
+</div></div>
+<div class="ds-block"><p class="ds-block-title">Elenco numerato con chip delle call · su chiaro e su scuro (call evidenziata)</p>
+<div class="ds-row">
+  <div class="ds-stage ds-stage--light" style="flex:1 1 320px"><ol class="num-list" style="margin-top:0"><li><span class="num-list__n">1</span><div><p class="num-list__t">Kick off</p><p class="num-list__d">Partiamo insieme dal tuo progetto.</p><div style="margin-top:var(--space-3)"><div class="call-chip"><div class="call-chip__ph"><img src="../../src/assets/carlotta-call-avatar.jpg" alt="Carlotta" /><img src="../../src/assets/sharon-call-avatar.jpg" alt="Sharon" /></div><div style="min-width:0;flex:1"><p class="call-chip__t">Kick off call</p><p class="call-chip__d">Queste 2 call le fai con Carlotta e Sharon</p></div><span class="call-chip__n">2</span></div></div></div></li></ol></div>
+  <div class="ds-stage ds-stage--dark" style="flex:1 1 320px"><ol class="num-list num-list--dark" style="margin-top:0"><li><span class="num-list__n">2</span><div><p class="num-list__t">Accompagnamento</p><p class="num-list__d">Ogni settimana con Sharon.</p><div style="margin-top:var(--space-3);display:flex;flex-direction:column;gap:var(--space-2)"><div class="call-chip call-chip--dark"><div class="call-chip__ph"><img src="../../src/assets/sharon-call-avatar.jpg" alt="Sharon" /></div><div style="min-width:0;flex:1"><p class="call-chip__t">Call settimanali</p><p class="call-chip__d">Queste 16 call le fai con Sharon</p></div><span class="call-chip__n">16</span></div><div class="call-chip call-chip--dark call-chip--highlight"><div class="call-chip__ph"><img src="../../src/assets/carlotta-call-avatar.jpg" alt="Carlotta" /></div><div style="min-width:0;flex:1"><p class="call-chip__t">Call mensili con me</p><p class="call-chip__d">Queste 4 call le fai con Carlotta</p></div><span class="call-chip__n">4</span></div></div></div></li></ol></div>
+</div></div>
+<div class="ds-block"><p class="ds-block-title">Coppie etichetta/valore (card bonus)</p>
+<div class="ds-stage ds-stage--dark"><dl class="dl" style="max-width:480px"><div><dt>Quando:</dt><dd>dal lunedì al giovedì, dalle 10:00 alle 16:00</dd></div><div><dt>Tempo di risposta:</dt><dd>entro 24 ore</dd></div></dl></div></div>
+
+</main>
+
+</body>
+</html>

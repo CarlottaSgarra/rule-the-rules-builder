@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Biglietto dell&#x27;evento (EventTicket) · Design system Carlotta Sgarra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Oswald:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" />
+<link rel="stylesheet" href="../tokens.css" />
+<style>
+
+/* ---- Base dei file componente (solo per la pagina di esempio) ---- */
+.ds-icon { width: 1em; height: 1em; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+.ds-icon--fill { fill: currentColor; }
+.ds-page { padding: 0; }
+/* Come il preflight di Tailwind usato dal sito */
+img, svg, video, iframe { display: block; max-width: 100%; }
+img { height: auto; }
+.ds-icon { display: inline-block; }
+button, input, select { font: inherit; }
+.ds-doc { max-width: var(--container-6xl); margin: 0 auto; padding: var(--space-10) var(--page-gutter); }
+.ds-doc > h1 { font-size: var(--font-size-3xl); line-height: 1.2; margin: 0; }
+.ds-doc > p.ds-intro { overflow-wrap: anywhere; margin: var(--space-3) 0 0; max-width: var(--container-3xl); color: color-mix(in oklab, var(--color-foreground) 85%, transparent); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); }
+.ds-src { overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--color-muted-foreground); }
+.ds-block { margin-top: var(--space-8); }
+.ds-block-title { margin: 0 0 var(--space-3); font-family: var(--font-condensed); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--letter-spacing-eyebrow); color: var(--color-foreground); }
+.ds-stage { border-radius: var(--radius-2xl); padding: var(--space-8) var(--space-5); border: 1px dashed color-mix(in oklab, var(--color-foreground) 25%, transparent); }
+.ds-stage--light { background: var(--color-background); color: var(--color-foreground); }
+.ds-stage--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.ds-stage--flush { padding: 0; overflow: hidden; }
+.ds-row { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: flex-start; }
+.ds-col { display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start; }
+.ds-note { font-size: 12px; color: inherit; opacity: 0.75; margin: 0; }
+
+/* Contesto scuro: come nel sito (topbar, footer, FAQ, box) i colori "di testo" vengono
+   ridefiniti per lo sfondo Mulberry. */
+.on-dark {
+  --color-foreground: var(--color-secondary-foreground);
+  --color-muted-foreground: var(--color-muted-foreground-on-dark);
+  --color-border: var(--tint-card-border-on-dark);
+}
+
+/* Contenitori e sezioni */
+.section { position: relative; }
+.section--light { background: var(--color-background); color: var(--color-foreground); }
+.section--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.container { margin: 0 auto; padding: var(--section-padding-y) var(--page-gutter); }
+.container--3xl { max-width: var(--container-3xl); }
+.container--4xl { max-width: var(--container-4xl); }
+.container--5xl { max-width: var(--container-5xl); }
+.container--6xl { max-width: var(--container-6xl); }
+
+/* Titoli di sezione (h2 del sito: text-3xl sm:text-4xl, Fraunces 400) */
+.h2 { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-3xl); line-height: 1.2; letter-spacing: var(--letter-spacing-heading); }
+.h3-card { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+.h3-semibold { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-semibold); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+@media (min-width: 640px) {
+  .h2 { font-size: var(--font-size-4xl); line-height: 1.1111; }
+  .h3-card, .h3-semibold { font-size: var(--font-size-3xl); line-height: 1.2; }
+}
+.text-center { text-align: center; }
+p { margin: 0; }
+strong { font-weight: var(--font-weight-semibold); }
+
+/* ---- Biglietto dell'evento (EventTicket): CSS del componente (solo variabili di tokens.css) ---- */
+
+.event-ticket { position: relative; display: flex; max-width: var(--container-lg); margin: 0 auto; overflow: hidden; border-radius: var(--radius-2xl); background-image: var(--gradient-event-ticket); border: var(--border-width-strong) solid var(--color-primary); box-shadow: var(--shadow-gold), var(--shadow-event-ticket-glow); transition: transform var(--duration-base) var(--ease-out); }
+.event-ticket:hover, .event-ticket.is-hover { transform: rotate(-2deg) scale(1.02); }
+.event-ticket__main { flex: 1; padding: var(--space-5); color: var(--color-secondary-foreground); }
+.event-ticket__label { font-family: var(--font-condensed); font-size: var(--font-size-10px); text-transform: uppercase; letter-spacing: var(--letter-spacing-ticket); color: var(--color-primary); }
+.event-ticket__name { margin-top: var(--space-1); font-family: var(--font-display); font-size: var(--font-size-2xl); }
+.event-ticket__year { font-family: var(--font-condensed); font-size: var(--font-size-sm); text-transform: uppercase; letter-spacing: var(--letter-spacing-label); color: var(--color-primary); }
+.event-ticket__grid { margin-top: var(--space-4); display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--space-4); row-gap: var(--space-3); font-size: var(--font-size-xs); }
+.event-ticket__grid span { display: block; text-transform: uppercase; letter-spacing: var(--letter-spacing-label-sm); color: color-mix(in oklab, var(--color-ink-muted) 70%, transparent); }
+.event-ticket__grid b { display: block; margin-top: 0.125rem; font-weight: var(--font-weight-semibold); }
+.event-ticket__stub { position: relative; display: flex; width: 6rem; flex-shrink: 0; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-2); padding: var(--space-4) var(--space-3); text-align: center; border-left: var(--border-width-strong) dashed var(--tint-dashed-on-dark); color: var(--color-secondary-foreground); }
+.event-ticket__hole { position: absolute; left: 0; width: 1rem; height: 1rem; transform: translateX(-50%); border-radius: var(--radius-full); background: var(--color-background); }
+.event-ticket__hole--t { top: -0.5rem; } .event-ticket__hole--b { bottom: -0.5rem; }
+@media (min-width: 640px) { .event-ticket__main { padding: var(--space-6); } .event-ticket__name { font-size: var(--font-size-3xl); } .event-ticket__stub { width: 7rem; } }
+
+</style>
+</head>
+<body class="ds-page">
+<main class="ds-doc">
+  <h1>Biglietto dell&#x27;evento (EventTicket)</h1>
+  <p class="ds-intro">Biglietto di conferma nella thank-you: gradiente Mulberry→lime, bordo lime 2px, ombra oro + alone, colonna destra separata da tratteggio con due fori rosa. In hover ruota di -2° e cresce del 2% (300ms ease-out).</p>
+  <p class="ds-src">Fonte nel codice: src/components/landing/EventTicket.tsx</p>
+
+<div class="ds-block"><p class="ds-block-title">Normale e hover</p>
+<div class="ds-stage ds-stage--light"><div class="ds-row">
+  <div style="flex:1 1 360px"><div class="event-ticket"><div class="event-ticket__main"><p class="event-ticket__label">Biglietto ufficiale</p><p class="event-ticket__name">Rule The Rules</p><p class="event-ticket__year">2026</p><div class="event-ticket__grid"><div><span>Intestato a</span><b>Giulia Bianchi</b></div><div><span>Date</span><b>5-6-7 Ottobre</b></div><div><span>Ora</span><b>19:30</b></div><div><span>Dove</span><b>Live su Zoom</b></div></div></div><div class="event-ticket__stub"><span class="event-ticket__hole event-ticket__hole--t" aria-hidden="true"></span><span class="event-ticket__hole event-ticket__hole--b" aria-hidden="true"></span><p class="event-ticket__label" style="font-size:9px;letter-spacing:0.15em">Ammessa</p><p class="event-ticket__name" style="margin:0">1</p><p style="font-family:var(--font-condensed);font-size:9px;text-transform:uppercase;letter-spacing:0.1em;color:color-mix(in oklab,var(--color-ink-muted) 70%,transparent)">N° RTR-2026</p></div></div></div>
+  <div style="flex:1 1 360px;padding:var(--space-4)"><div class="event-ticket is-hover"><div class="event-ticket__main"><p class="event-ticket__label">Biglietto ufficiale</p><p class="event-ticket__name">Rule The Rules</p><p class="event-ticket__year">2026</p></div><div class="event-ticket__stub"><span class="event-ticket__hole event-ticket__hole--t" aria-hidden="true"></span><span class="event-ticket__hole event-ticket__hole--b" aria-hidden="true"></span><p class="event-ticket__name" style="margin:0">1</p></div></div></div>
+</div></div></div>
+
+</main>
+
+</body>
+</html>

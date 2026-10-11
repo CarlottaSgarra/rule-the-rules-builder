@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Elementi decorativi e trattamento foto · Design system Carlotta Sgarra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Oswald:wght@400;500;600&family=Poppins:wght@300;400;500;600;700&display=swap" />
+<link rel="stylesheet" href="../tokens.css" />
+<style>
+
+/* ---- Base dei file componente (solo per la pagina di esempio) ---- */
+.ds-icon { width: 1em; height: 1em; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+.ds-icon--fill { fill: currentColor; }
+.ds-page { padding: 0; }
+/* Come il preflight di Tailwind usato dal sito */
+img, svg, video, iframe { display: block; max-width: 100%; }
+img { height: auto; }
+.ds-icon { display: inline-block; }
+button, input, select { font: inherit; }
+.ds-doc { max-width: var(--container-6xl); margin: 0 auto; padding: var(--space-10) var(--page-gutter); }
+.ds-doc > h1 { font-size: var(--font-size-3xl); line-height: 1.2; margin: 0; }
+.ds-doc > p.ds-intro { overflow-wrap: anywhere; margin: var(--space-3) 0 0; max-width: var(--container-3xl); color: color-mix(in oklab, var(--color-foreground) 85%, transparent); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); }
+.ds-src { overflow-wrap: anywhere; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: var(--color-muted-foreground); }
+.ds-block { margin-top: var(--space-8); }
+.ds-block-title { margin: 0 0 var(--space-3); font-family: var(--font-condensed); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: var(--letter-spacing-eyebrow); color: var(--color-foreground); }
+.ds-stage { border-radius: var(--radius-2xl); padding: var(--space-8) var(--space-5); border: 1px dashed color-mix(in oklab, var(--color-foreground) 25%, transparent); }
+.ds-stage--light { background: var(--color-background); color: var(--color-foreground); }
+.ds-stage--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.ds-stage--flush { padding: 0; overflow: hidden; }
+.ds-row { display: flex; flex-wrap: wrap; gap: var(--space-6); align-items: flex-start; }
+.ds-col { display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-start; }
+.ds-note { font-size: 12px; color: inherit; opacity: 0.75; margin: 0; }
+
+/* Contesto scuro: come nel sito (topbar, footer, FAQ, box) i colori "di testo" vengono
+   ridefiniti per lo sfondo Mulberry. */
+.on-dark {
+  --color-foreground: var(--color-secondary-foreground);
+  --color-muted-foreground: var(--color-muted-foreground-on-dark);
+  --color-border: var(--tint-card-border-on-dark);
+}
+
+/* Contenitori e sezioni */
+.section { position: relative; }
+.section--light { background: var(--color-background); color: var(--color-foreground); }
+.section--dark { background: var(--color-secondary); color: var(--color-secondary-foreground); }
+.container { margin: 0 auto; padding: var(--section-padding-y) var(--page-gutter); }
+.container--3xl { max-width: var(--container-3xl); }
+.container--4xl { max-width: var(--container-4xl); }
+.container--5xl { max-width: var(--container-5xl); }
+.container--6xl { max-width: var(--container-6xl); }
+
+/* Titoli di sezione (h2 del sito: text-3xl sm:text-4xl, Fraunces 400) */
+.h2 { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-3xl); line-height: 1.2; letter-spacing: var(--letter-spacing-heading); }
+.h3-card { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-regular); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+.h3-semibold { margin: 0; font-family: var(--font-display); font-weight: var(--font-weight-semibold); font-size: var(--font-size-2xl); line-height: 1.3333; letter-spacing: var(--letter-spacing-heading); }
+@media (min-width: 640px) {
+  .h2 { font-size: var(--font-size-4xl); line-height: 1.1111; }
+  .h3-card, .h3-semibold { font-size: var(--font-size-3xl); line-height: 1.2; }
+}
+.text-center { text-align: center; }
+p { margin: 0; }
+strong { font-weight: var(--font-weight-semibold); }
+
+/* ---- Elementi decorativi e trattamento foto: CSS del componente (solo variabili di tokens.css) ---- */
+
+.dots-bg { position: relative; min-height: 12rem; }
+.dots-bg::before { content: ""; position: absolute; inset: 0; opacity: 0.6; pointer-events: none; background-image: radial-gradient(circle, var(--tint-dots-pattern) 1.5px, transparent 1.5px); background-size: 26px 26px; }
+.section-photo { pointer-events: none; position: absolute; top: 0; bottom: 0; width: 45%;
+  -webkit-mask-image: linear-gradient(to left, #000 35%, transparent), linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(to left, #000 35%, transparent), linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent); -webkit-mask-composite: source-in; mask-composite: intersect; }
+.section-photo--right { right: 0; }
+.section-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
+.circ-badge { width: 8rem; height: 8rem; animation: ds-spin var(--animation-spin-badge) linear infinite; }
+@keyframes ds-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .circ-badge { animation: none; } }
+.mockup { width: 7rem; border-radius: var(--radius-xl); background: var(--color-white); padding: var(--space-2-5); box-shadow: var(--shadow-mockup); outline: 1px solid rgba(0,0,0,0.05); }
+.mockup__label { font-family: var(--font-condensed); font-size: var(--font-size-8px); text-transform: uppercase; letter-spacing: var(--letter-spacing-label); color: var(--color-muted-foreground); }
+.mockup__bar { display: block; height: 0.375rem; border-radius: var(--radius-full); }
+@media (min-width: 640px) { .mockup { width: 10rem; padding: var(--space-3); } }
+
+</style>
+</head>
+<body class="ds-page">
+<main class="ds-doc">
+  <h1>Elementi decorativi e trattamento foto</h1>
+  <p class="ds-intro">Pattern a puntini (Mulberry 22%, griglia 26px), foto di sezione a bassa opacità sfumata ai bordi con mask-image (SectionPhoto), badge circolare con testo che ruota in 30s, freccia SVG che si sdoppia verso le due versioni, mini-mockup bianchi inclinati (carta identitaria, piano editoriale), screenshot inclinati ±5°, foto con overlay nero per il testo bianco e foto a tutta sezione con velatura Mulberry.</p>
+  <p class="ds-src">Fonte nel codice: src/routes/index.tsx:1351-1359 · src/components/landing/SectionPhoto.tsx · src/routes/candidati-ambiziosa.tsx:1709 (badge circolare), 2767 (freccia) · src/components/landing/SessionHighlight.tsx</p>
+
+<div class="ds-block"><p class="ds-block-title">Pattern a puntini · foto di sezione (opacità 0.3, multiply su chiaro)</p>
+<div class="ds-row">
+  <div class="ds-stage ds-stage--light dots-bg" style="flex:1 1 300px"></div>
+  <div class="ds-stage ds-stage--light ds-stage--flush" style="flex:1 1 300px;position:relative;min-height:14rem"><div class="section-photo section-photo--right"><img src="../../src/assets/carlotta-hug.jpg" alt="" style="opacity:0.3;mix-blend-mode:multiply" /></div><p style="position:relative;padding:var(--space-6);max-width:60%">Contenuto sopra la foto decorativa.</p></div>
+  <div class="ds-stage ds-stage--dark ds-stage--flush" style="flex:1 1 300px;position:relative;min-height:14rem"><div class="section-photo section-photo--right"><img src="../../src/assets/carlotta-talking.jpg" alt="" style="opacity:0.3;mix-blend-mode:luminosity" /></div><p style="position:relative;padding:var(--space-6);max-width:60%">Su fondo scuro: blend luminosity.</p></div>
+</div></div>
+<div class="ds-block"><p class="ds-block-title">Badge circolare · freccia sdoppiata · mini-mockup</p>
+<div class="ds-row">
+  <div class="ds-stage ds-stage--dark" style="flex:1 1 220px;display:flex;justify-content:center"><svg class="circ-badge" viewBox="0 0 200 200" aria-hidden="true"><defs><path id="ds-circle" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" /></defs><text fill="var(--color-primary)" font-size="16" font-weight="600" style="font-family:var(--font-condensed);text-transform:uppercase"><textPath href="#ds-circle" textLength="500" lengthAdjust="spacing">Dall'ambizione alla carriera · Dall'ambizione alla carriera · </textPath></text></svg></div>
+  <div class="ds-stage ds-stage--light" style="flex:1 1 300px"><svg viewBox="0 0 800 90" preserveAspectRatio="none" style="width:100%;height:5rem" fill="none" stroke="var(--color-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M400 4 C400 60 200 26 200 82" vector-effect="non-scaling-stroke" /><path d="M191 70 L200 84 L209 70" vector-effect="non-scaling-stroke" /><path d="M400 4 C400 60 600 26 600 82" vector-effect="non-scaling-stroke" /><path d="M591 70 L600 84 L609 70" vector-effect="non-scaling-stroke" /></svg></div>
+  <div class="ds-stage ds-stage--dark" style="flex:1 1 240px;display:flex;gap:var(--space-4);justify-content:center">
+    <div class="mockup" style="transform:rotate(-6deg)"><div style="display:flex;justify-content:space-between;align-items:center"><span class="mockup__label">Carta identitaria</span><span style="color:var(--color-secondary);font-size:0.875rem"><svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 10h2"/><path d="M16 14h2"/><path d="M6.17 15a3 3 0 0 1 5.66 0"/><circle cx="9" cy="11" r="2"/><rect x="2" y="5" width="20" height="14" rx="2"/></svg></span></div><div style="margin-top:8px;display:flex;gap:8px;align-items:center"><span style="width:2rem;height:2rem;border-radius:999px;background-image:var(--gradient-gold);flex-shrink:0"></span><div style="flex:1;display:flex;flex-direction:column;gap:4px"><span class="mockup__bar" style="background:color-mix(in oklab,var(--color-foreground) 70%,transparent)"></span><span class="mockup__bar" style="width:66%;background:color-mix(in oklab,var(--color-foreground) 30%,transparent)"></span></div></div></div>
+    <div class="mockup" style="transform:rotate(3deg)"><div style="display:flex;justify-content:space-between;align-items:center"><span class="mockup__label">Il tuo piano</span><span style="color:var(--color-secondary);font-size:0.875rem"><svg class="ds-icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg></span></div><div style="margin-top:8px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px"><span style="aspect-ratio:1;border-radius:3px;background:var(--color-primary)"></span><span style="aspect-ratio:1;border-radius:3px;background:color-mix(in oklab,var(--color-foreground) 12%,transparent)"></span><span style="aspect-ratio:1;border-radius:3px;background:var(--color-secondary)"></span><span style="aspect-ratio:1;border-radius:3px;background:var(--color-primary)"></span></div></div>
+  </div>
+</div></div>
+
+</main>
+
+</body>
+</html>

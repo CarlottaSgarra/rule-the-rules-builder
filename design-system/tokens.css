@@ -1,0 +1,263 @@
+/*
+ * Design system · Carlotta Sgarra (Rule The Rules / Ambiziosa)
+ * Token ricavati dal codice del sito (src/styles.css, componenti in
+ * src/components/landing/, pagine in src/routes/). Nomi identici a tokens.json.
+ * I colori del sito sono scritti in oklch: qui sono in HEX (conversione
+ * esatta, arrotondata all'intero) con l'oklch originale nel commento.
+ * Generato il 2026-10-11 dal branch design-system. Non modifica il sito.
+ */
+
+:root {
+  /* ---- Colori di brand e semantici ---- */
+  --color-background: #fee1d9; /* Rosa pastello · sfondo pagina e sezioni chiare (oklch(0.931 0.034 35.9) · rgb 254 225 217) · src/styles.css:68 */
+  --color-foreground: #5f0032; /* Mulberry Wood · testo su sfondo chiaro, titoli (oklch(0.316 0.129 357.5) · rgb 95 0 50) · src/styles.css:69 */
+  --color-card: #f7d1c8; /* Card chiare (usata quasi sempre al 50%: bg-card/50) (oklch(0.89 0.045 33) · rgb 247 209 200) · src/styles.css:71 */
+  --color-card-foreground: #5f0032; /* Testo dentro card e input (= foreground) · src/styles.css:72 */
+  --color-primary: #e8f9a2; /* Tidal · verde lime d'accento: etichette e numeri su fondo scuro, bordi luminosi, focus (oklch(0.95 0.111 117.6) · rgb 232 249 162) · src/styles.css:76 */
+  --color-primary-foreground: #5f0032; /* Testo sopra elementi oro/lime (bottoni, badge) · src/styles.css:77 */
+  --color-secondary: #5f0032; /* Mulberry Wood · sfondo delle sezioni scure, topbar, footer · src/styles.css:79 */
+  --color-secondary-foreground: #efefef; /* Bianco caldo · testo sulle sezioni scure (oklch(0.952 0 89.9) · rgb 239 239 239) · src/styles.css:80 */
+  --color-muted: #e1d0cd; /* Grigio-rosa tenue · fondo del VideoFrame segnaposto (oklch(0.87 0.02 30) · rgb 225 208 205) · src/styles.css:82 */
+  --color-muted-foreground: #7c3e55; /* Testo secondario su fondo chiaro (oklch(0.45 0.09 357.5) · rgb 124 62 85) · src/styles.css:83 */
+  --color-muted-foreground-on-dark: #e0c8bf; /* Override di --muted-foreground dentro topbar, footer, FAQ e box scuri (oklch(0.85 0.03 40), scritto a mano 19 volte; = ink-muted) · src/components/landing/SiteTopbar.tsx:33 */
+  --color-accent: #5f0032; /* = Mulberry Wood (token shadcn, usato solo da hover:bg-accent nella pagina di errore) · src/styles.css:85 */
+  --color-accent-foreground: #efefef; /* = bianco caldo · src/styles.css:86 */
+  --color-destructive: #cc272e; /* Rosso · solo i pallini dei posti occupati in /upsell-call (oklch(0.55 0.2 25) · rgb 204 39 46) · src/styles.css:88 */
+  --color-destructive-foreground: #f8f8f8; /* Non usato nelle pagine (oklch(0.98 0 0)) · src/styles.css:89 */
+  --color-border: #c0a7a3; /* Bordi su fondo chiaro (quasi sempre al 70%) (oklch(0.75 0.03 30) · rgb 192 167 163) · src/styles.css:91 */
+  --color-input: #c0a7a3; /* Bordo dei campi del form (= border) · src/styles.css:92 */
+  --color-ring: #e8f9a2; /* Colore del focus (= primary): nel sito solo focus:border-primary sugli input · src/styles.css:93 */
+  --color-cream: #5f0032; /* Nome storico: oggi è Mulberry Wood, fondo dei pannelli scuri incassati (surface-cream) · src/styles.css:110 */
+  --color-gold-deep: #e8f9a2; /* = primary · link e icone check su fondo scuro · src/styles.css:111 */
+  --color-ink: #efefef; /* Bianco caldo · testo su pannelli/sezioni scure (text-ink) · src/styles.css:112 */
+  --color-ink-muted: #e0c8bf; /* Testo secondario su fondo scuro (oklch(0.85 0.03 40) · rgb 224 200 191) · src/styles.css:113 */
+  --color-white: #ffffff; /* Bianco puro: testo su foto con overlay nero, bordi screenshot, fondi mockup (text-white, bg-white) · src/routes/index.tsx:1138 */
+  --color-black: #000000; /* Nero: solo in overlay e ombre con trasparenza · src/routes/index.tsx:1137 */
+  --color-whatsapp: #25d366; /* Verde WhatsApp ufficiale · bottone 'Scrivi a Matilde' · src/routes/candidati-ambiziosa.tsx:3502 */
+  --color-whatsapp-hover: #1ebe5d; /* Verde WhatsApp in hover · src/routes/candidati-ambiziosa.tsx:3502 */
+  --color-seat-free: #22c55e; /* Verde dei pallini 'posto libero' in /upsell-call · src/routes/upsell-call.tsx:110 */
+  --color-live-dot: #fb2c36; /* Rosso del pallino lampeggiante 'live' (Tailwind red-500) · src/components/landing/LiveRegistrationsNotice.tsx:11 */
+  --color-journey-pain: #cc8bc5; /* Viola chiaro della linea 'prima' nel grafico Journey (oklch(0.72 0.11 330)) · src/components/landing/AmbiziosaJourney.tsx:49 */
+  --color-glow-light: #f5ffd1; /* Punto più chiaro del bordo luminoso rotante (oklch(0.98 0.06 117.6)) · src/styles.css:233 */
+  --color-gold-1: #c3c55a; /* Stop 1 di gradient-gold (oklch(0.8 0.13 110)) · src/styles.css:117 */
+  --color-gold-2: #e9fcb0; /* Stop 2 di gradient-gold (oklch(0.96 0.1 120)) · src/styles.css:118 */
+  --color-gold-3: #cbd870; /* Stop 3 di gradient-gold (oklch(0.85 0.13 115)) · src/styles.css:119 */
+  --color-ink-1: #4b0025; /* Stop 1 di gradient-ink (oklch(0.26 0.12 357)) · src/styles.css:123 */
+  --color-ink-2: #6b1346; /* Stop 2 di gradient-ink (oklch(0.36 0.13 350)) · src/styles.css:124 */
+  --color-ink-3: #570231; /* Stop 3 di gradient-ink (oklch(0.3 0.12 355)) · src/styles.css:125 */
+  --color-night-1: #fee0d9; /* Stop 1 di gradient-night (oklch(0.93 0.035 34)) · src/styles.css:127 */
+  --color-night-2: #f8d5cf; /* Stop 2 di gradient-night (oklch(0.9 0.04 30)) · src/styles.css:127 */
+  --color-chart-1: #e8f9a2; /* Definito ma non usato (grafici shadcn) · src/styles.css:95 */
+  --color-chart-2: #5f0032; /* Definito ma non usato · src/styles.css:96 */
+  --color-chart-3: #fee1d9; /* Definito ma non usato · src/styles.css:97 */
+  --color-chart-4: #ac713e; /* Definito ma non usato (oklch(0.6 0.1 60)) · src/styles.css:98 */
+  --color-chart-5: #4e463c; /* Definito ma non usato (oklch(0.4 0.02 75)) · src/styles.css:99 */
+
+  /* ---- Tinte trasparenti ricorrenti (color-mix) ---- */
+  --tint-highlight-light: color-mix(in oklab, var(--color-secondary) 25%, transparent); /* Evidenziatore <Highlight> su fondo chiaro · src/components/landing/Highlight.tsx:37 */
+  --tint-highlight-dark: color-mix(in oklab, var(--color-primary) 55%, transparent); /* Evidenziatore <Highlight dark> su fondo scuro · src/components/landing/Highlight.tsx:36 */
+  --tint-panel-on-dark: color-mix(in oklab, var(--color-secondary) 35%, transparent); /* Box 'chi ti guida', riprova sociale, pill del hero su fondo scuro · src/routes/index.tsx:1630 */
+  --tint-panel-border-on-dark: color-mix(in oklab, var(--color-primary) 30%, transparent); /* Bordo 1px dei box sopra · src/routes/index.tsx:1631 */
+  --tint-card-on-dark: color-mix(in oklab, var(--color-background) 6%, transparent); /* Fondo delle card nelle sezioni scure (serate, step, bonus) · src/routes/index.tsx:1572 */
+  --tint-card-border-on-dark: color-mix(in oklab, var(--color-background) 14%, transparent); /* Bordo card nelle sezioni scure e bordi del footer/FAQ · src/routes/index.tsx:1570 */
+  --tint-dashed-on-dark: color-mix(in oklab, var(--color-primary) 55%, transparent); /* Bordo tratteggiato del biglietto/ticket · src/routes/index.tsx:1147 */
+  --tint-avatar-border: color-mix(in oklab, var(--color-primary) 45%, transparent); /* Bordo tratteggiato degli avatar e del badge outline · src/routes/index.tsx:1647 */
+  --tint-glass-step: color-mix(in oklab, var(--color-secondary) 82%, transparent); /* Card 'metodo' semitrasparenti sopra la foto (con blur 6px) · src/routes/index.tsx:1520 */
+  --tint-glass-step-border: color-mix(in oklab, var(--color-primary) 25%, transparent); /* Bordo delle card 'metodo' · src/routes/index.tsx:1522 */
+  --tint-topbar: color-mix(in oklab, var(--color-secondary) 95%, transparent); /* Fondo della topbar sticky (con backdrop-blur) · src/components/landing/SiteTopbar.tsx:31 */
+  --tint-decor-number: color-mix(in oklab, var(--color-primary) 16%, transparent); /* Numero gigante decorativo dietro le card delle serate/step · src/routes/index.tsx:1577 */
+  --tint-mentorship-extra: color-mix(in oklab, var(--color-primary) 12%, transparent); /* Box 'solo con la Mentorship' e bolle 'dopo' del Journey · src/routes/candidati-ambiziosa.tsx:3424 */
+  --tint-mentorship-extra-border: color-mix(in oklab, var(--color-primary) 40%, transparent); /* Bordo del box sopra e del box 'iscrizioni chiuse' · src/routes/candidati-ambiziosa.tsx:3425 */
+  --tint-dots-pattern: color-mix(in oklab, var(--color-secondary) 22%, transparent); /* Puntini del pattern di sfondo della sezione Problema · src/routes/index.tsx:1355 */
+  --tint-call-chip-border: color-mix(in oklab, var(--color-secondary) 25%, transparent); /* Bordo dei chip call nella card Program · src/routes/candidati-ambiziosa.tsx:1259 */
+  --tint-proof-light-panel: color-mix(in oklab, var(--color-secondary) 10%, transparent); /* Box riprova sociale su fondo chiaro (checkout) · src/routes/checkout.tsx:104 */
+  --tint-proof-light-border: color-mix(in oklab, var(--color-secondary) 18%, transparent); /* Bordo del box sopra · src/routes/checkout.tsx:105 */
+
+  /* ---- Gradienti e overlay ---- */
+  --gradient-gold: linear-gradient(100deg, var(--color-gold-1), var(--color-gold-2), var(--color-gold-3)); /* Ogni bottone CTA, badge, pillola e cerchio-icona · src/styles.css:115 */
+  --gradient-ink: linear-gradient(100deg, var(--color-ink-1), var(--color-ink-2), var(--color-ink-3)); /* Testo dei titoli-logo 'RULE THE RULES' (utility text-gradient-gold) · src/styles.css:121 */
+  --gradient-night: linear-gradient(180deg, var(--color-night-1), var(--color-night-2)); /* Sfondo dell'hero di Rule The Rules e della pagina di accesso · src/styles.css:127 */
+  --gradient-ticket: linear-gradient(100deg, var(--color-secondary) 0%, var(--color-secondary) 45%, color-mix(in oklab, var(--color-primary) 32%, var(--color-secondary)) 100%); /* Box biglietto con form (hero RTR, checkout, accesso) · src/routes/index.tsx:1119 */
+  --gradient-event-ticket: linear-gradient(100deg, var(--color-secondary) 0%, var(--color-secondary) 55%, color-mix(in oklab, var(--color-primary) 30%, var(--color-secondary)) 100%); /* Biglietto EventTicket (thank-you) · src/components/landing/EventTicket.tsx:15 */
+  --overlay-photo-bottom-strong: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.25), transparent); /* Foto con testo bianco in basso (biglietto hero) · src/routes/index.tsx:1137 */
+  --overlay-photo-bottom: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.1), transparent); /* Foto delle card serate con titolo h3 bianco · src/routes/index.tsx:1593 */
+  --overlay-photo-full: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.7), rgba(0,0,0,0.4)); /* Card foto 'Costruire la tua comunicazione' (La scelta) · src/routes/index.tsx:2169 */
+  --overlay-photo-top: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.1), transparent); /* Foto con testo in alto (Ricapitolando) · src/routes/index.tsx:2209 */
+  --overlay-section-dark: linear-gradient(180deg, color-mix(in oklab, var(--color-secondary) 35%, transparent), color-mix(in oklab, var(--color-secondary) 15%, transparent) 40%, var(--color-secondary) 100%); /* Foto a tutta sezione sotto le sezioni scure (Il metodo) · src/routes/index.tsx:1475 */
+  --overlay-hero-ambiziosa: linear-gradient(to bottom, color-mix(in oklab, var(--color-secondary) 68%, transparent) 0%, color-mix(in oklab, var(--color-secondary) 80%, transparent) 72%, var(--color-background) 100%); /* Velatura viola sulla foto dell'hero Ambiziosa · src/routes/candidati-ambiziosa.tsx:1800 */
+  --overlay-video-poster: linear-gradient(to top, color-mix(in oklab, var(--color-background) 90%, transparent), color-mix(in oklab, var(--color-background) 30%, transparent), transparent); /* Copertina del VideoFrame segnaposto · src/components/landing/VideoFrame.tsx:74 */
+  --overlay-fade-dark-top: linear-gradient(180deg, var(--color-secondary), transparent); /* Sfumatura sopra/sotto le colonne di foto in scorrimento (fondo scuro) · src/routes/index.tsx:1856 */
+  --overlay-fade-light-top: linear-gradient(180deg, var(--color-background), transparent); /* Sfumatura sopra/sotto la colonna di screenshot (fondo chiaro) · src/routes/candidati-ambiziosa.tsx:2286 */
+  --shine-gradient: linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent); /* Riflesso che attraversa i bottoni (ShineSweep) · src/components/landing/ShineSweep.tsx:12 */
+
+  /* ---- Tipografia: famiglie e pesi ---- */
+  --font-display: "Fraunces", Georgia, serif; /* Titoli h1-h3, citazioni, prezzi, numeri decorativi · src/styles.css:131 */
+  --font-condensed: "Oswald", system-ui, sans-serif; /* Etichette, badge, bottoni, countdown, menu · src/styles.css:132 */
+  --font-body: "Poppins", system-ui, sans-serif; /* Testo corrente, paragrafi, liste · src/styles.css:133 */
+  --font-weight-regular: 400; /* Titoli Fraunces di default, testo · Tailwind */
+  --font-weight-medium: 500; /* font-medium: righe sotto i bottoni, voci del value stack · Tailwind */
+  --font-weight-semibold: 600; /* font-semibold: grassetti nel testo (582 usi), titoli card · Tailwind */
+  --font-weight-bold: 700; /* font-bold: etichette dei bottoni CTA, prezzo 27€, badge · Tailwind */
+  --root-font-size-mobile: 16px; /* Dimensione base del rem sotto 640px · src/styles.css:173 */
+  --root-font-size-desktop: 18px; /* Dimensione base del rem da 640px: tutto il sito in rem cresce del 12,5% · src/styles.css:167 */
+
+  /* ---- Tipografia: scala (in rem, come Tailwind) ---- */
+  --font-size-8px: 8px; /* text-[8px]: etichette dei mini-mockup · src/components/landing/SessionHighlight.tsx:17 */
+  --font-size-9px: 9px; /* text-[9px]: riga piccola sotto i bottoni (mobile), etichette mockup · src/components/landing/CtaButton.tsx:33 */
+  --font-size-10px: 10px; /* text-[10px]: badge e topbar su mobile (67 usi) · src/routes/index.tsx:1078 */
+  --font-size-11px: 11px; /* text-[11px]: unità del countdown, sottotitoli chip · src/components/landing/Countdown.tsx:46 */
+  --font-size-xs: 0.75rem; /* text-xs · 12px mobile / 13,5px desktop · Tailwind */
+  --font-size-sm: 0.875rem; /* text-sm · 14 / 15,75px · Tailwind */
+  --font-size-base: 1rem; /* text-base · 16 / 18px · Tailwind */
+  --font-size-lg: 1.125rem; /* text-lg · 18 / 20,25px · Tailwind */
+  --font-size-xl: 1.25rem; /* text-xl · 20 / 22,5px · Tailwind */
+  --font-size-2xl: 1.5rem; /* text-2xl · 24 / 27px · Tailwind */
+  --font-size-3xl: 1.875rem; /* text-3xl · 30 / 33,75px · Tailwind */
+  --font-size-4xl: 2.25rem; /* text-4xl · 36 / 40,5px · Tailwind */
+  --font-size-5xl: 3rem; /* text-5xl · 48 / 54px · Tailwind */
+  --font-size-6xl: 3.75rem; /* text-6xl · 60 / 67,5px · Tailwind */
+  --font-size-7xl: 4.5rem; /* text-7xl · solo pagina 404 · Tailwind */
+  --font-size-8xl: 6rem; /* text-8xl · 96 / 108px: titolo-logo da 640px · Tailwind */
+  --font-size-decor: 40rem; /* Numero gigante decorativo delle card (da 768px) · src/routes/index.tsx:1576 */
+  --line-height-display: 0.95; /* leading-[0.95]: titoli-logo · src/routes/index.tsx:1074 */
+  --line-height-none: 1; /* leading-none · Tailwind */
+  --line-height-tight: 1.25; /* leading-tight · Tailwind */
+  --line-height-snug: 1.375; /* leading-snug: lead, citazioni display · Tailwind */
+  --line-height-normal: 1.5; /* Interlinea di text-base · Tailwind */
+  --line-height-relaxed: 1.625; /* leading-relaxed: paragrafi (134 usi) · Tailwind */
+  --letter-spacing-tight: -0.025em; /* tracking-tight: titoli-logo · Tailwind */
+  --letter-spacing-heading: -0.02em; /* Tutti gli h1, h2, h3 (regola base) · src/styles.css:194 */
+  --letter-spacing-button: 0.04em; /* Etichetta dei bottoni CTA · src/components/landing/CtaButton.tsx:30 */
+  --letter-spacing-tag: 0.08em; /* Badge con font-bold, 'ultima riga' · src/routes/index.tsx:2121 */
+  --letter-spacing-label-sm: 0.1em; /* Unità countdown, etichette ticket · src/components/landing/Countdown.tsx:46 */
+  --letter-spacing-label: 0.15em; /* Menu, badge piccoli, ruoli · src/components/landing/AmbiziosaTopbar.tsx:31 */
+  --letter-spacing-eyebrow: 0.2em; /* Etichette sopra i titoli e badge di sezione (55 usi) · src/routes/index.tsx:1487 */
+  --letter-spacing-badge-wide: 0.25em; /* Badge del biglietto · src/routes/index.tsx:1156 */
+  --letter-spacing-ticket: 0.3em; /* 'Biglietto ufficiale' · src/components/landing/EventTicket.tsx:22 */
+  --letter-spacing-kicker: 0.4em; /* Riga sopra il titolo dell'hero · src/routes/index.tsx:1067 */
+
+  /* ---- Spaziature (scala Tailwind: 1 unità = 0.25rem) ---- */
+  --space-0-5: 0.125rem; /* 2px · gap tra stelle · Tailwind */
+  --space-1: 0.25rem; /* 4px · Tailwind */
+  --space-1-5: 0.375rem; /* 6px · py dei badge · Tailwind */
+  --space-2: 0.5rem; /* 8px · gap più usato (61) · Tailwind */
+  --space-2-5: 0.625rem; /* 10px · Tailwind */
+  --space-3: 0.75rem; /* 12px · mt-3 (87 usi) · Tailwind */
+  --space-4: 1rem; /* 16px · gutter topbar, gap · Tailwind */
+  --space-5: 1.25rem; /* 20px · gutter di pagina (px-5), padding card · Tailwind */
+  --space-6: 1.5rem; /* 24px · padding card · Tailwind */
+  --space-7: 1.75rem; /* 28px · padding card prezzi · Tailwind */
+  --space-8: 2rem; /* 32px · padding card desktop · Tailwind */
+  --space-9: 2.25rem; /* 36px · padding card Program desktop (sm:p-9) · src/routes/candidati-ambiziosa.tsx:3322 */
+  --space-10: 2.5rem; /* 40px · gap griglie · Tailwind */
+  --space-12: 3rem; /* 48px · padding pannelli desktop (sm:px-12) · Tailwind */
+  --space-14: 3.5rem; /* 56px · stacco prima della CTA di fine sezione · Tailwind */
+  --space-16: 4rem; /* 64px · padding verticale pannelli · Tailwind */
+  --space-20: 5rem; /* 80px · padding verticale standard di sezione (py-20) · Tailwind */
+  --space-24: 6rem; /* 96px · Tailwind */
+  --space-32: 8rem; /* 128px · Tailwind */
+  --section-padding-y: 5rem; /* py-20: sezione standard (80px mobile / 90px desktop) · src/routes/index.tsx:1360 */
+  --section-padding-y-compact: 3.5rem; /* py-14 (sm:py-20): sezioni checkout/thank-you/FAQ · src/routes/index.tsx:2327 */
+  --section-inset-padding-y: 2.5rem; /* py-10 (sm:py-14): sezione che contiene un pannello surface-cream · src/routes/index.tsx:1285 */
+  --page-gutter: 1.25rem; /* px-5: margine laterale dei contenitori · src/routes/index.tsx:1360 */
+  --page-gutter-tight: 1rem; /* px-4: topbar e sezioni con pannello (sm:px-8) · src/components/landing/SiteTopbar.tsx:37 */
+  --container-xs: 20rem; /* max-w-xs: immagine garanzia, Workbook · Tailwind */
+  --container-sm: 24rem; /* max-w-sm: colonna del form nel biglietto · Tailwind */
+  --container-md: 28rem; /* max-w-md: pagina 404 · Tailwind */
+  --container-lg: 32rem; /* max-w-lg: EventTicket · Tailwind */
+  --container-xl: 36rem; /* max-w-xl: larghezza massima dei bottoni CTA · Tailwind */
+  --container-2xl: 42rem; /* max-w-2xl: testi centrati · Tailwind */
+  --container-3xl: 48rem; /* max-w-3xl: FAQ, intro centrate · Tailwind */
+  --container-4xl: 56rem; /* max-w-4xl: pannelli, checkout, footer · Tailwind */
+  --container-5xl: 64rem; /* max-w-5xl: sezioni di testo (32 usi) · Tailwind */
+  --container-6xl: 72rem; /* max-w-6xl: sezioni larghe, topbar · Tailwind */
+  --header-h: 88px; /* Altezza topbar Ambiziosa sotto 1024px (64px da 1024px) · src/styles.css:138 */
+  --header-h-desktop: 64px; /* Altezza topbar Ambiziosa da 1024px · src/styles.css:143 */
+
+  /* ---- Breakpoint (viewport, come Tailwind v4) ---- */
+  --breakpoint-sm: 640px; /* sm: anche il rem passa da 16 a 18px (713 usi) · Tailwind */
+  --breakpoint-md: 768px; /* md: griglie a 2 colonne, numeri decorativi (102 usi) · Tailwind */
+  --breakpoint-lg: 1024px; /* lg: topbar Ambiziosa su una riga, layout a 3 colonne (82 usi) · Tailwind */
+  --breakpoint-xl: 1280px; /* xl: menu desktop completo, banner posti su una riga (14 usi) · Tailwind */
+  --breakpoint-2xl: 1536px; /* 2xl: etichetta 'Prezzo bloccato per' in topbar (1 uso) · Tailwind */
+
+  /* ---- Raggi ---- */
+  --radius-base: 0.5rem; /* --radius del sito (8px mobile / 9px desktop) · src/styles.css:65 */
+  --radius-xs: 0.25rem; /* rounded (Tailwind): link del menu a tendina · Tailwind */
+  --radius-sm: calc(0.5rem - 4px); /* rounded-sm · src/styles.css:22 */
+  --radius-md: calc(0.5rem - 2px); /* rounded-md: bottone topbar, chip call · src/styles.css:23 */
+  --radius-lg: 0.5rem; /* rounded-lg: input, screenshot · src/styles.css:24 */
+  --radius-xl: calc(0.5rem + 4px); /* rounded-xl: bottoni CTA, card chiare, box · src/styles.css:25 */
+  --radius-2xl: calc(0.5rem + 8px); /* rounded-2xl: card, foto, video (62 usi) · src/styles.css:26 */
+  --radius-3xl: calc(0.5rem + 12px); /* rounded-3xl: banner posti (tablet) · src/styles.css:27 */
+  --radius-panel: 1.75rem; /* Pannelli surface-cream e card Mentorship (inline style) · src/routes/index.tsx:1288 */
+  --radius-ticket: 2rem; /* Box biglietto con form (rounded-[2rem]) · src/routes/index.tsx:1112 */
+  --radius-full: 9999px; /* rounded-full: badge, pill, avatar (112 usi) · Tailwind */
+  --radius-highlight: 0.15em; /* Angoli dell'evidenziatore · src/components/landing/Highlight.tsx:42 */
+
+  /* ---- Bordi ---- */
+  --border-width-thin: 1px; /* Bordo standard card e box · Tailwind */
+  --border-width-strong: 2px; /* Bordo lime del biglietto/Mentorship, tratteggi, cornici screenshot · Tailwind */
+  --border-width-glow: 3px; /* Spessore del bordo luminoso rotante (ticket-border-glow) · src/styles.css:228 */
+
+  /* ---- Ombre ---- */
+  --shadow-gold: 0 18px 50px -18px rgba(232, 249, 162, 0.5); /* Sotto bottoni e badge oro (60 usi) · src/styles.css:128 */
+  --shadow-deep: 0 30px 70px -30px rgba(0, 0, 0, 0.85); /* Sotto foto/video in rilievo e surface-card · src/styles.css:129 */
+  --shadow-ticket-glow: 0 60px 100px -30px color-mix(in oklab, var(--color-primary) 45%, transparent); /* Alone lime sotto il biglietto e la card Mentorship (insieme a shadow-gold) · src/routes/index.tsx:1122 */
+  --shadow-event-ticket-glow: 0 40px 80px -30px color-mix(in oklab, var(--color-primary) 40%, transparent); /* Alone sotto EventTicket · src/components/landing/EventTicket.tsx:18 */
+  --shadow-card-lift: 0 24px 60px -20px rgba(0, 0, 0, 0.55); /* Hover delle card su fondo scuro · src/routes/index.tsx:1570 */
+  --shadow-card-hover: 0 20px 45px -20px rgba(0, 0, 0, 0.35); /* Hover dei box info su fondo chiaro · src/components/landing/InstagramFollowBox.tsx:9 */
+  --shadow-screenshot: 0 20px 40px -12px rgba(0, 0, 0, 0.45); /* Screenshot inclinati con cornice bianca · src/routes/index.tsx:1689 */
+  --shadow-mockup: 0 20px 45px -15px rgba(0, 0, 0, 0.45); /* Mini-mockup bianchi (SessionHighlight, PillarVisual) · src/components/landing/SessionHighlight.tsx:11 */
+  --shadow-wins: 0 20px 45px -25px rgba(0, 0, 0, 0.45); /* Screenshot delle wins in scorrimento · src/routes/candidati-ambiziosa.tsx:2277 */
+  --shadow-bonus-image: 0 20px 45px -20px rgba(0, 0, 0, 0.6); /* Immagini delle card bonus · src/routes/candidati-ambiziosa.tsx:2968 */
+  --shadow-session-tag: 0 10px 24px -8px rgba(0, 0, 0, 0.5); /* Etichette oro 'Serata 1 · …' e badge sul Workbook · src/routes/index.tsx:1662 */
+  --shadow-whatsapp: 0 12px 30px -12px rgba(37, 211, 102, 0.7); /* Bottone WhatsApp · src/routes/candidati-ambiziosa.tsx:3502 */
+  --text-shadow-on-photo: 0 2px 24px rgba(0, 0, 0, 0.65); /* Titoli sopra foto nelle sezioni scure · src/routes/index.tsx:1497 */
+  --text-shadow-on-photo-soft: 0 1px 16px rgba(0, 0, 0, 0.7); /* Paragrafi sopra foto · src/routes/index.tsx:1504 */
+
+  /* ---- Sfocature, opacità, livelli ---- */
+  --blur-glass: 6px; /* backdrop-filter delle card 'metodo' e alone del titolo Ambiziosa · src/routes/index.tsx:1521 */
+  --blur-topbar: 8px; /* backdrop-blur della topbar sticky e della didascalia VIP · src/components/landing/SiteTopbar.tsx:28 */
+  --opacity-texture: 0.08; /* Texture oro sull'hero (mix-blend-overlay) · src/routes/index.tsx:1034 */
+  --opacity-section-photo: 0.22; /* Foto decorativa di sezione (default; 0.25-0.3 nei casi reali) · src/components/landing/SectionPhoto.tsx:21 */
+  --opacity-cta-sub: 0.8; /* Riga piccola sotto il bottone CTA · src/components/landing/CtaButton.tsx:33 */
+  --opacity-disabled: 0.6; /* Bottone disabilitato (form di accesso) · src/routes/accedi-registrazioni.tsx:135 */
+  --z-behind: -1; /* Bordo luminoso dietro la card · src/styles.css:226 */
+  --z-base: 0; /* Righe di testo animate dell'hero · src/routes/index.tsx:1038 */
+  --z-raised: 10; /* Contenuti sopra le foto, tendina del menu, badge 'Il percorso più completo' · src/routes/index.tsx:1065 */
+  --z-header: 50; /* Topbar sticky · src/components/landing/SiteTopbar.tsx:28 */
+
+  /* ---- Movimento ---- */
+  --duration-default: 150ms; /* Durata Tailwind di default (transition senza duration-*) · Tailwind */
+  --duration-fast: 200ms; /* Hover dei bottoni (sollevamento), accordion · src/components/landing/CtaButton.tsx:23 */
+  --duration-base: 300ms; /* Hover delle card (29 usi) · src/routes/index.tsx:1370 */
+  --duration-slow: 500ms; /* Zoom del poster video, bolle del Journey · src/components/landing/VideoFrame.tsx:71 */
+  --duration-highlight: 900ms; /* Evidenziatore che si stende · src/components/landing/Highlight.tsx:42 */
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1); /* Easing di default delle transizioni Tailwind · Tailwind */
+  --ease-out: cubic-bezier(0, 0, 0.2, 1); /* ease-out: evidenziatore, EventTicket, accordion · Tailwind */
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1); /* ease-in-out delle animazioni a ciclo (shine, glow) · src/styles.css:417 */
+  --animation-shine: 2.6s; /* Riflesso sui bottoni (ShineSweep) · src/styles.css:417 */
+  --animation-glow-sweep: 4s; /* Fascia verde sulle lettere di AMBIZIOSA · src/styles.css:447 */
+  --animation-border-spin: 4s; /* Bordo luminoso rotante · src/styles.css:243 */
+  --animation-marquee-x: 140s; /* Righe di testo dell'hero RTR (260s sotto 768px) · src/styles.css:309 */
+  --animation-marquee-y: 32s; /* Colonne di foto (default; nella pagina 28s + 6s per colonna, wins 70/80s) · src/styles.css:389 */
+  --animation-spin-badge: 30s; /* Badge circolare 'Dall'ambizione alla carriera' · src/routes/candidati-ambiziosa.tsx:1714 */
+  --hover-lift-sm: -0.125rem; /* hover:-translate-y-0.5 dei bottoni · src/components/landing/CtaButton.tsx:23 */
+  --hover-lift-md: -0.25rem; /* hover:-translate-y-1 delle card · src/routes/index.tsx:1370 */
+}
+
+/* Base facoltativa: riproduce le regole globali del sito (src/styles.css:160-199).
+   Il sito usa html 16px sotto 640px e 18px da 640px: tutte le misure in rem scalano. */
+html { font-size: var(--root-font-size-mobile); scroll-behavior: smooth; }
+@media (min-width: 640px) { html { font-size: var(--root-font-size-desktop); } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--font-display); letter-spacing: var(--letter-spacing-heading); }
+*, *::before, *::after { box-sizing: border-box; border-color: var(--color-border); }
