@@ -6,7 +6,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Countdown } from "@/components/landing/Countdown";
 import { CtaButton } from "@/components/landing/CtaButton";
 import { Reveal } from "@/components/landing/Reveal";
 import { SignupForm } from "@/components/landing/SignupForm";
@@ -315,10 +314,6 @@ function Checkout() {
             <h2 className="text-2xl sm:text-3xl">
               Non lasciare che <Highlight>un’altra scusa</Highlight> ti fermi
             </h2>
-            <p className="mt-3 text-base text-foreground/80">L’evento inizia tra</p>
-            <div className="mt-3 flex justify-center">
-              <Countdown />
-            </div>
             <div className="mt-8 flex justify-center">
               <CtaButton
                 label={`Ottieni il biglietto a soli ${TICKET_PRICE}€`}

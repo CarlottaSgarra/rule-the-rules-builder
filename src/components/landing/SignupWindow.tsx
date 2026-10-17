@@ -1,5 +1,4 @@
-import { Countdown } from "@/components/landing/Countdown";
-import { SIGNUP_FINAL_CLOSE, useSignupPhase } from "@/lib/signup-window";
+import { useSignupPhase } from "@/lib/signup-window";
 
 // Al posto del form: niente quando le iscrizioni sono aperte, il messaggio
 // "Le iscrizioni sono chiuse" quando sono chiuse, il banner dell'ultima
@@ -40,9 +39,6 @@ export function SignupGate({ children }: { children: React.ReactNode }) {
           <p className="mt-1 text-sm font-semibold leading-snug sm:text-base">
             Iscrizioni aperte fino alle 18 di martedì 6 ottobre
           </p>
-          <div className="mt-2 flex justify-center [&_span]:!text-primary-foreground">
-            <Countdown compact target={SIGNUP_FINAL_CLOSE} />
-          </div>
         </div>
         {children}
       </>

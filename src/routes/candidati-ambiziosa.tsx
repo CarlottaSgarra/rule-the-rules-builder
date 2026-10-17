@@ -30,12 +30,10 @@ import { WhatsAppIcon } from "@/components/landing/WhatsAppIcon";
 import { AmbiziosaJourney } from "@/components/landing/AmbiziosaJourney";
 import { ShineSweep } from "@/components/landing/ShineSweep";
 import { SectionPhoto } from "@/components/landing/SectionPhoto";
-import { Countdown } from "@/components/landing/Countdown";
 import { AmbiziosaHeroVideo } from "@/components/landing/AmbiziosaHeroVideo";
 import { ProfileBeforeAfter, ResultsCards } from "@/components/landing/AmbiziosaProofCards";
 import { TestimonialsExplorer } from "@/components/landing/TestimonialsExplorer";
 import {
-  PRICE_LOCK_DEADLINE,
   EVALUATION_CALL_URL,
   HERO_VIDEO_URL,
   MENTORSHIP_PRICE,
@@ -115,7 +113,6 @@ import client5Img from "@/assets/client-5.png";
 // Microcopy condiviso — l'hero (sezione 2) e ogni box CTA ricorrente
 // (sezione 5) devono usare esattamente questo stesso testo, senza varianti.
 // ---------------------------------------------------------------------------
-const PRICE_LOCK_MS = new Date(PRICE_LOCK_DEADLINE).getTime();
 const CTA_LABEL = "Voglio candidarmi ad Ambiziosa";
 
 // Testo del box CTA ricorrente (CtaBox): stesso identico testo in ogni
@@ -766,8 +763,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
     a: (
       <>
         Si parte <strong className="font-semibold text-foreground">martedì 20 ottobre</strong> e il
-        percorso dura 4 mesi, quindi si arriva a febbraio. I posti sono {MAX_SEATS} in tutto e i
-        prezzi di oggi restano bloccati fino al 16 ottobre.
+        percorso dura 4 mesi, quindi si arriva a febbraio. I posti sono {MAX_SEATS} in tutto.
       </>
     ),
   },
@@ -909,16 +905,6 @@ const faqs: { q: string; a: React.ReactNode }[] = [
         </strong>
         : più di nove non riusciamo a seguirle come vogliamo. Quando i {MAX_SEATS} posti sono
         occupati, non ne apriamo altri.
-      </>
-    ),
-  },
-  {
-    q: "Cosa succede dopo il 16 ottobre?",
-    a: (
-      <>
-        <strong className="font-semibold text-foreground">I prezzi salgono.</strong> Fino al 16
-        ottobre Ambiziosa Program resta bloccato a {PROGRAM_PRICE} e Ambiziosa Mentorship a{" "}
-        {MENTORSHIP_PRICE}.
       </>
     ),
   },
@@ -3288,30 +3274,18 @@ function CandidaturaAmbiziosa() {
                 </strong>
                 .
               </p>
-              {/* Un unico banner: a sinistra i posti (pill oro interna), a
-                  destra il prezzo bloccato con il countdown */}
-              <div
-                className="mx-auto mt-7 flex w-full flex-col items-center gap-3 rounded-2xl bg-secondary p-2 pb-4 sm:w-fit sm:rounded-3xl xl:relative xl:left-1/2 xl:mx-0 xl:w-max xl:-translate-x-1/2 xl:flex-row xl:gap-5 xl:rounded-full xl:pb-2 xl:pr-7"
-                style={
-                  {
-                    "--foreground": "var(--secondary-foreground)",
-                    "--muted-foreground": "oklch(0.85 0.03 40)",
-                  } as React.CSSProperties
-                }
-              >
+              {/* Posti disponibili: il lancio è finito, niente più countdown */}
+              <div className="mt-7 flex justify-center">
                 <span
-                  className="flex w-full shrink-0 items-center justify-center gap-2 rounded-xl px-5 py-3 font-condensed text-xs uppercase tracking-[0.15em] text-primary-foreground sm:rounded-full sm:text-sm xl:w-auto"
-                  style={{ backgroundImage: "var(--gradient-gold)" }}
+                  className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-condensed text-xs uppercase tracking-[0.15em] text-primary-foreground sm:text-sm"
+                  style={{
+                    backgroundImage: "var(--gradient-gold)",
+                    boxShadow: "var(--shadow-gold)",
+                  }}
                 >
                   <Users className="size-4 shrink-0" />
                   Solo {MAX_SEATS} posti disponibili
                 </span>
-                <div className="flex flex-col items-center gap-2 px-3 lg:flex-row lg:gap-4">
-                  <span className="font-condensed text-[10px] uppercase tracking-[0.15em] text-muted-foreground sm:text-xs lg:whitespace-nowrap">
-                    Il prezzo resta bloccato ancora per
-                  </span>
-                  <Countdown compact target={PRICE_LOCK_MS} />
-                </div>
               </div>
             </div>
           </Reveal>

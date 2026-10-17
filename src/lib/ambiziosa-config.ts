@@ -1,11 +1,6 @@
 // Costanti condivise della pagina /candidati-ambiziosa. Unica fonte di
-// verità per data del prezzo bloccato, posti, link esterni ancora da fornire e il
-// copy del bottone "Candidati ora" (identico in tutta la pagina).
-
-// Fino a questo istante i prezzi di Program e Mentorship sono bloccati, poi
-// salgono. Le candidature invece restano aperte anche dopo. Con fuso orario:
-// è lo stesso momento per tutti i visitatori, ovunque si trovino.
-export const PRICE_LOCK_DEADLINE = "2026-10-16T23:59:59+02:00";
+// verità per posti, prezzi, link esterni ancora da fornire e il copy del
+// bottone "Candidati ora" (identico in tutta la pagina).
 
 // Posti disponibili in tutto: Carlotta e Sharon lavorano a stretto contatto con
 // ogni professionista, più di nove non si riescono a seguire come si deve.
@@ -33,8 +28,8 @@ export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURICo
 
 // Prezzi delle due versioni.
 // DA CONFERMARE: IVA inclusa o esclusa (per ora non indicata in pagina).
-export const PROGRAM_PRICE = "4.500€";
-export const MENTORSHIP_PRICE = "7.000€";
+export const PROGRAM_PRICE = "5.500€";
+export const MENTORSHIP_PRICE = "8.000€";
 
 // Passaggio dal Program alla Mentorship entro il primo mese: si paga solo la
 // differenza tra i due prezzi, senza interessi e senza sovrapprezzo.
@@ -50,7 +45,7 @@ export const HERO_VIDEO_URL = "";
 export const CTA_LABEL = "Candidati ora";
 
 // Riga piccola sotto l'etichetta del bottone grande, come il "sub" di CtaButton.
-export const CTA_SUB = "Prezzo bloccato fino al 16 ottobre";
+export const CTA_SUB = "Prenota la tua call valutativa";
 
 // Numeri chiave delle due versioni di Ambiziosa, usati come badge nella
 // pagina di vendita e nella pagina delle registrazioni.

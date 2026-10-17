@@ -1,10 +1,6 @@
-import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { AmbiziosaCtaButton } from "@/components/landing/AmbiziosaCtaButton";
-import { Countdown } from "@/components/landing/Countdown";
-import { MAX_SEATS, PRICE_LOCK_DEADLINE } from "@/lib/ambiziosa-config";
-
-const PRICE_LOCK_MS = new Date(PRICE_LOCK_DEADLINE).getTime();
+import { MAX_SEATS } from "@/lib/ambiziosa-config";
 
 const MENU_ITEMS = [
   { id: "programma", label: "Il programma" },
@@ -31,31 +27,10 @@ function Badge() {
       className="inline-flex min-w-0 items-center rounded-full px-3 py-1 font-condensed text-[10px] uppercase leading-tight tracking-[0.15em] text-primary-foreground sm:text-xs lg:shrink-0"
       style={{ backgroundImage: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
     >
-      {/* Su desktop la riga ospita anche countdown, menu e bottone: lì il badge si
-          accorcia a "Solo 9 posti" per non far scorrere la pagina in orizzontale. */}
       {/* Un unico span: nel badge inline-flex ogni pezzo di testo sarebbe un
           elemento a sé e lo spazio prima del numero verrebbe tagliato. */}
-      <span>
-        <span className="lg:hidden">Candidature aperte · </span>
-        <span className="hidden lg:inline">Solo </span>
-        {MAX_SEATS} posti
-      </span>
+      <span>Candidature aperte · {MAX_SEATS} posti</span>
     </span>
-  );
-}
-
-// Countdown al 16 ottobre, quando i prezzi salgono. Le candidature restano
-// aperte anche dopo: passata la data il countdown semplicemente sparisce.
-function PriceCountdown({ labelClassName = "hidden sm:inline" }: { labelClassName?: string }) {
-  return (
-    <div className="flex items-center gap-1 sm:gap-x-4">
-      <span
-        className={`font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground ${labelClassName}`}
-      >
-        Prezzo bloccato per
-      </span>
-      <Countdown compact target={PRICE_LOCK_MS} />
-    </div>
   );
 }
 
@@ -116,21 +91,6 @@ function CompressedMenu() {
 }
 
 export function AmbiziosaTopbar() {
-  const [mounted, setMounted] = useState(false);
-  const [remainingMs, setRemainingMs] = useState(0);
-
-  useEffect(() => {
-    setMounted(true);
-    const tick = () => setRemainingMs(PRICE_LOCK_MS - Date.now());
-    tick();
-    const interval = setInterval(tick, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  // Prima del montaggio il countdown c'è sempre: stesso output lato server e
-  // lato client, nessun mismatch di hydration.
-  const priceLocked = !mounted || remainingMs > 0;
-
   return (
     <header
       className="sticky top-0 z-50 border-b border-border/60 backdrop-blur"
@@ -147,7 +107,6 @@ export function AmbiziosaTopbar() {
         <div className="hidden lg:flex lg:items-center lg:justify-between lg:gap-4 lg:py-4">
           <div className="flex shrink-0 items-center gap-4">
             <Badge />
-            {priceLocked ? <PriceCountdown labelClassName="hidden 2xl:inline" /> : null}
           </div>
           <div className="hidden xl:block">
             <DesktopMenu />
@@ -166,8 +125,7 @@ export function AmbiziosaTopbar() {
             <Badge />
             <AmbiziosaCtaButton variant="topbar" className="shrink-0" />
           </div>
-          <div className="flex items-center justify-between gap-2">
-            {priceLocked ? <PriceCountdown /> : <span />}
+          <div className="flex items-center justify-end gap-2">
             <CompressedMenu />
           </div>
         </div>

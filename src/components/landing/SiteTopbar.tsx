@@ -1,11 +1,10 @@
-import { Countdown } from "@/components/landing/Countdown";
-import { getSignupCountdownTarget, useSignupPhase } from "@/lib/signup-window";
+import { useSignupPhase } from "@/lib/signup-window";
 
 type Props = {
   ctaHref?: string;
   ctaLabel?: string;
-  // Solo pagine A (/) e B (/b): countdown e bottone seguono le finestre di
-  // iscrizione di SignupWindow (aperte, chiuse, ultimissima possibilità).
+  // Solo pagine A (/) e B (/b): scritta centrale e bottone seguono le finestre
+  // di iscrizione di SignupWindow (aperte, chiuse, ultimissima possibilità).
   signupWindow?: boolean;
 };
 
@@ -15,13 +14,7 @@ export function SiteTopbar({
   signupWindow = false,
 }: Props) {
   const phase = useSignupPhase();
-  const windowTarget = signupWindow ? getSignupCountdownTarget(phase) : null;
   const signupClosed = signupWindow && phase === "closed";
-  const countdownLabel = !signupWindow
-    ? "L’evento inizia tra"
-    : phase === "lastChance"
-      ? "Ultima possibilità, ancora per"
-      : "Iscrizioni aperte ancora per";
 
   return (
     <div
@@ -42,22 +35,13 @@ export function SiteTopbar({
           <span className="whitespace-nowrap sm:block">5-6-7 Ottobre</span>
         </p>
         <div className="flex flex-1 items-center justify-center gap-1 sm:flex-none sm:flex-wrap sm:gap-x-4 sm:gap-y-2 sm:justify-self-center">
+          {/* Il lancio è finito: niente più countdown, solo la scritta quando
+              le iscrizioni sono chiuse. */}
           {signupClosed ? (
             <span className="font-condensed text-[10px] uppercase tracking-[0.15em] text-foreground sm:text-sm">
               Iscrizioni chiuse
             </span>
-          ) : (
-            <>
-              <span className="hidden font-condensed text-xs uppercase tracking-[0.15em] text-muted-foreground sm:inline">
-                {countdownLabel}
-              </span>
-              {windowTarget !== null ? (
-                <Countdown compact target={windowTarget} />
-              ) : (
-                <Countdown compact />
-              )}
-            </>
-          )}
+          ) : null}
         </div>
         <a
           href={ctaHref}
