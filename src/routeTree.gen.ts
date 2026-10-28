@@ -15,6 +15,7 @@ import { Route as BRouteImport } from './routes/b'
 import { Route as CandidatiAmbiziosaRouteImport } from './routes/candidati-ambiziosa'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CheckoutVipRouteImport } from './routes/checkout-vip'
+import { Route as ListaAttesaAmbiziosaRouteImport } from './routes/lista-attesa-ambiziosa'
 import { Route as RegistrazioniRouteImport } from './routes/registrazioni'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as ThankYouVipRouteImport } from './routes/thank-you-vip'
@@ -51,6 +52,11 @@ const CheckoutRoute = CheckoutRouteImport.update({
 const CheckoutVipRoute = CheckoutVipRouteImport.update({
   id: '/checkout-vip',
   path: '/checkout-vip',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListaAttesaAmbiziosaRoute = ListaAttesaAmbiziosaRouteImport.update({
+  id: '/lista-attesa-ambiziosa',
+  path: '/lista-attesa-ambiziosa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegistrazioniRoute = RegistrazioniRouteImport.update({
@@ -96,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/candidati-ambiziosa': typeof CandidatiAmbiziosaRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
+  '/lista-attesa-ambiziosa': typeof ListaAttesaAmbiziosaRoute
   '/registrazioni': typeof RegistrazioniRoute
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
@@ -111,6 +118,7 @@ export interface FileRoutesByTo {
   '/candidati-ambiziosa': typeof CandidatiAmbiziosaRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
+  '/lista-attesa-ambiziosa': typeof ListaAttesaAmbiziosaRoute
   '/registrazioni': typeof RegistrazioniRoute
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
@@ -127,6 +135,7 @@ export interface FileRoutesById {
   '/candidati-ambiziosa': typeof CandidatiAmbiziosaRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
+  '/lista-attesa-ambiziosa': typeof ListaAttesaAmbiziosaRoute
   '/registrazioni': typeof RegistrazioniRoute
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
@@ -144,6 +153,7 @@ export interface FileRouteTypes {
     | '/candidati-ambiziosa'
     | '/checkout'
     | '/checkout-vip'
+    | '/lista-attesa-ambiziosa'
     | '/registrazioni'
     | '/thank-you'
     | '/thank-you-vip'
@@ -159,6 +169,7 @@ export interface FileRouteTypes {
     | '/candidati-ambiziosa'
     | '/checkout'
     | '/checkout-vip'
+    | '/lista-attesa-ambiziosa'
     | '/registrazioni'
     | '/thank-you'
     | '/thank-you-vip'
@@ -174,6 +185,7 @@ export interface FileRouteTypes {
     | '/candidati-ambiziosa'
     | '/checkout'
     | '/checkout-vip'
+    | '/lista-attesa-ambiziosa'
     | '/registrazioni'
     | '/thank-you'
     | '/thank-you-vip'
@@ -190,6 +202,7 @@ export interface RootRouteChildren {
   CandidatiAmbiziosaRoute: typeof CandidatiAmbiziosaRoute
   CheckoutRoute: typeof CheckoutRoute
   CheckoutVipRoute: typeof CheckoutVipRoute
+  ListaAttesaAmbiziosaRoute: typeof ListaAttesaAmbiziosaRoute
   RegistrazioniRoute: typeof RegistrazioniRoute
   ThankYouRoute: typeof ThankYouRoute
   ThankYouVipRoute: typeof ThankYouVipRoute
@@ -241,6 +254,13 @@ declare module '@tanstack/react-router' {
       path: '/checkout-vip'
       fullPath: '/checkout-vip'
       preLoaderRoute: typeof CheckoutVipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lista-attesa-ambiziosa': {
+      id: '/lista-attesa-ambiziosa'
+      path: '/lista-attesa-ambiziosa'
+      fullPath: '/lista-attesa-ambiziosa'
+      preLoaderRoute: typeof ListaAttesaAmbiziosaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/registrazioni': {
@@ -302,6 +322,7 @@ const rootRouteChildren: RootRouteChildren = {
   CandidatiAmbiziosaRoute: CandidatiAmbiziosaRoute,
   CheckoutRoute: CheckoutRoute,
   CheckoutVipRoute: CheckoutVipRoute,
+  ListaAttesaAmbiziosaRoute: ListaAttesaAmbiziosaRoute,
   RegistrazioniRoute: RegistrazioniRoute,
   ThankYouRoute: ThankYouRoute,
   ThankYouVipRoute: ThankYouVipRoute,
