@@ -10,10 +10,10 @@ import carlottaLooking from "@/assets/carlotta-looking.jpg";
 import carlottaLooking2 from "@/assets/carlotta-looking-2.jpg";
 import carlottaHug from "@/assets/carlotta-hug.jpg";
 import carlottaWalking from "@/assets/carlotta-walking.jpg";
-import carlottaWall from "@/assets/carlotta appoggiata a muro che guarda.jpg";
+import carlottaWall from "@/assets/ambiziosa-carlotta-muro-web.jpg";
 import carlottaWallRight from "@/assets/Carlotta che guarda a destra appoggiata al muro.jpg";
 import carlottaBw from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
-import sharonCarlotta from "@/assets/Sharon e Carlotta che ridono.jpg";
+import sharonCarlotta from "@/assets/ambiziosa-sharon-carlotta-web.jpg";
 import sharonSpeaking from "@/assets/sharon-speaking.jpg";
 import community from "@/assets/community.png";
 import livestream from "@/assets/livestream.jpg";
@@ -66,6 +66,16 @@ function useIsDesktop() {
   return desktop;
 }
 
+// Telefoni e tablet: le sfocature parola per parola costano troppo, lì si
+// tiene solo la dissolvenza.
+function useLowPower() {
+  const [low, setLow] = useState(false);
+  useEffect(() => {
+    setLow(window.matchMedia("(max-width: 767px), (pointer: coarse)").matches);
+  }, []);
+  return low;
+}
+
 // Progresso (0-1) dello scroll. "sticky": dentro una sezione alta con un figlio
 // sticky (0 quando la sezione tocca il bordo alto, 1 quando sta per uscire).
 // "pass": un elemento normale che attraversa lo schermo (0 quando entra dal
@@ -87,21 +97,41 @@ function useScrollProgress<T extends HTMLElement>(mode: "sticky" | "pass" = "sti
       if (!node) return;
       const rect = node.getBoundingClientRect();
       const vh = window.innerHeight;
-      if (mode === "sticky") {
-        setProgress(clamp(-rect.top / Math.max(node.offsetHeight - vh, 1)));
-      } else {
-        setProgress(clamp((vh - rect.top) / (vh * 0.5 + rect.height * 0.5)));
-      }
+      const next =
+        mode === "sticky"
+          ? clamp(-rect.top / Math.max(node.offsetHeight - vh, 1))
+          : clamp((vh - rect.top) / (vh * 0.5 + rect.height * 0.5));
+      setProgress((prev) => (Math.abs(prev - next) < 0.0005 ? prev : next));
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
     };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
+    // Si ascolta lo scroll solo mentre la sezione è vicina allo schermo: le
+    // sezioni lontane non ricalcolano niente. All'uscita un ultimo
+    // aggiornamento la lascia nello stato giusto (0 o 1).
+    let listening = false;
+    const start = () => {
+      if (listening) return;
+      listening = true;
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
+      update();
+    };
+    const stop = () => {
+      if (!listening) return;
+      listening = false;
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
+      update();
+    };
+    const io = new IntersectionObserver(([entry]) => (entry?.isIntersecting ? start() : stop()), {
+      rootMargin: "50% 0px",
+    });
+    if (ref.current) io.observe(ref.current);
+    update();
+    return () => {
+      io.disconnect();
+      stop();
       if (frame) cancelAnimationFrame(frame);
     };
   }, [mode, reduced]);
@@ -149,7 +179,7 @@ function Topbar() {
   return (
     <header
       className={`fixed left-1/2 top-4 z-50 flex w-[92%] max-w-3xl -translate-x-1/2 items-center justify-between gap-3 rounded-full py-2 pl-5 pr-2 transition-all duration-300 ${
-        scrolled ? "bg-background/80 shadow-lg backdrop-blur-md" : "bg-transparent"
+        scrolled ? "bg-background/95 shadow-lg md:bg-background/80 md:backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <span className="font-condensed text-sm font-semibold uppercase tracking-[0.3em] text-foreground">
@@ -173,22 +203,22 @@ function Topbar() {
 
 const TITLE = "AMBIZIOSA".split("");
 
+// Colonna laterale già nella sua posizione finale: entra solo con transform e
+// opacità, così il telefono non deve ricalcolare l'impaginazione.
 function SideColumn({ images, side, t }: { images: string[]; side: "left" | "right"; t: number }) {
   const dir = side === "left" ? -1 : 1;
   return (
     <div
-      className="flex h-full shrink-0 flex-row gap-3 will-change-transform"
-      style={{
-        width: `${lerp(0, 30, t)}%`,
-        transform: `translateX(${lerp(dir * 110, 0, t)}%)`,
-        opacity: t,
-      }}
+      className={`absolute bottom-[30%] top-[84px] flex w-[calc(33%-28px)] flex-row gap-3 will-change-transform ${
+        side === "left" ? "left-4" : "right-4"
+      }`}
+      style={{ transform: `translate3d(${lerp(dir * 115, 0, t)}%, 0, 0)`, opacity: t }}
     >
       {images.map((src, i) => (
         <div
           key={src}
           className="relative h-full flex-1 overflow-hidden rounded-3xl"
-          style={{ transform: `translateY(${lerp(25 + i * 20, i === 0 ? 0 : 10, t)}%)` }}
+          style={{ transform: `translate3d(0, ${lerp(25 + i * 20, i === 0 ? 0 : 10, t)}%, 0)` }}
         >
           <img src={src} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
         </div>
@@ -204,28 +234,22 @@ function Hero() {
   const sides = ease(phase(progress, 0.15, 0.7));
   const titleOut = phase(progress, 0, 0.3);
   const caption = phase(progress, 0.6, 0.85);
+  // La foto resta a tutto schermo e si "ritaglia" fino alla scheda centrale.
+  const insetX = desktop ? 33 : 6;
+  const insetBottom = desktop ? 30 : 36;
+  const clip = `inset(${84 * shrink}px ${insetX * shrink}% ${insetBottom * shrink}% ${insetX * shrink}% round ${24 * shrink}px)`;
 
   return (
     <section ref={ref} className="relative h-[300vh] bg-background">
       <div className="sticky top-0 h-svh overflow-hidden">
-        <div
-          className="flex w-full items-start justify-center"
-          style={{
-            height: `${lerp(100, desktop ? 70 : 64, shrink)}%`,
-            gap: `${lerp(0, 12, shrink)}px`,
-            padding: `${lerp(0, 84, shrink)}px ${lerp(0, 16, shrink)}px 0`,
-          }}
-        >
-          {desktop ? (
-            <SideColumn images={[carlottaHug, sharonSpeaking]} side="left" t={sides} />
-          ) : null}
+        {desktop ? <SideColumn images={[carlottaHug, sharonSpeaking]} side="left" t={sides} /> : null}
 
+        <div className="absolute inset-0" style={{ clipPath: clip, WebkitClipPath: clip }}>
+          {/* Scende con il bordo alto del ritaglio (la testa resta in vista) e su computer
+              si sposta a sinistra per tenere Carlotta al centro della scheda. */}
           <div
-            className="relative h-full shrink-0 overflow-hidden will-change-transform"
-            style={{
-              width: `${lerp(100, desktop ? 34 : 88, shrink)}%`,
-              borderRadius: `${lerp(0, 24, shrink)}px`,
-            }}
+            className="absolute inset-0 will-change-transform"
+            style={{ transform: `translate3d(${(desktop ? -9 : 0) * shrink}%, ${84 * shrink}px, 0)` }}
           >
             <img
               src={heroBg}
@@ -238,7 +262,7 @@ function Hero() {
               className="absolute inset-x-0 top-[16%] flex justify-center md:top-[14%]"
               style={{
                 opacity: 1 - titleOut,
-                transform: `translateY(${-titleOut * 200}px)`,
+                transform: `translate3d(0, ${-titleOut * 200}px, 0)`,
               }}
             >
               <span className="whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight text-secondary">
@@ -264,27 +288,25 @@ function Hero() {
               className="absolute left-[6%] top-[11%] z-10 max-w-[40%] md:top-[10%]"
               style={{
                 opacity: 1 - titleOut,
-                transform: `translateY(${-titleOut * 160}px)`,
+                transform: `translate3d(0, ${-titleOut * 160}px, 0)`,
               }}
             >
               <span className="block font-condensed text-[11px] uppercase leading-relaxed tracking-[0.35em] text-secondary/80 sm:text-sm">
                 Il prossimo evento dal vivo
               </span>
             </div>
-            <h1 className="sr-only">Ambiziosa, il prossimo evento dal vivo</h1>
           </div>
-
-          {desktop ? (
-            <SideColumn images={[sharonCarlotta, carlottaTalking]} side="right" t={sides} />
-          ) : null}
+          <h1 className="sr-only">Ambiziosa, il prossimo evento dal vivo</h1>
         </div>
+
+        {desktop ? <SideColumn images={[sharonCarlotta, carlottaTalking]} side="right" t={sides} /> : null}
 
         <div
           className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center px-5 text-center"
           style={{
-            height: `${desktop ? 30 : 36}%`,
+            height: `${insetBottom}%`,
             opacity: caption,
-            transform: `translateY(${(1 - caption) * 30}px)`,
+            transform: `translate3d(0, ${(1 - caption) * 30}px, 0)`,
           }}
         >
           <p className="max-w-3xl font-display text-2xl leading-tight text-foreground sm:text-4xl lg:text-5xl">
@@ -368,6 +390,7 @@ function WordReveal({
   emphasisClassName?: string;
 }) {
   const { ref, progress } = useScrollProgress<HTMLHeadingElement>("pass");
+  const lowPower = useLowPower();
   const words = text.split(" ");
   return (
     <Tag ref={ref} className={className}>
@@ -380,8 +403,8 @@ function WordReveal({
             className={`inline-block ${emphasis ? emphasisClassName : ""}`}
             style={{
               opacity: lerp(minOpacity, 1, t),
-              filter: `blur(${lerp(blur, 0, t)}px)`,
-              transition: "opacity 0.15s linear, filter 0.15s linear",
+              filter: lowPower ? undefined : `blur(${lerp(blur, 0, t)}px)`,
+              transition: lowPower ? "opacity 0.15s linear" : "opacity 0.15s linear, filter 0.15s linear",
               marginRight: "0.28em",
             }}
           >
@@ -459,7 +482,7 @@ const PROBLEM_SLIDES = [
   { src: sharonSpeaking, line: "Mille domande e nessuna risposta." },
 ];
 
-function BlurLine({ text, t }: { text: string; t: number }) {
+function BlurLine({ text, t, lowPower }: { text: string; t: number; lowPower: boolean }) {
   // t: 0 nascosta, 0.5 a fuoco, 1 di nuovo nascosta
   const words = text.split(" ");
   return (
@@ -473,7 +496,7 @@ function BlurLine({ text, t }: { text: string; t: number }) {
             className="inline-block"
             style={{
               opacity: visible,
-              filter: `blur(${lerp(30, 0, visible)}px)`,
+              filter: `blur(${lerp(lowPower ? 6 : 30, 0, visible)}px)`,
               marginRight: "0.25em",
             }}
           >
@@ -488,61 +511,58 @@ function BlurLine({ text, t }: { text: string; t: number }) {
 function ProblemSplit() {
   const { ref, progress } = useScrollProgress<HTMLElement>("sticky");
   const desktop = useIsDesktop();
+  const lowPower = useLowPower();
   const slidesEnd = 0.72;
   const slide = phase(progress, 0, slidesEnd) * PROBLEM_SLIDES.length;
   const split = ease(phase(progress, slidesEnd + 0.04, 1));
+  // Come nell'apertura: la foto centrale si ritaglia, le laterali entrano con transform.
+  const top = (desktop ? 96 : 80) * split;
+  const side = desktop ? `${28 * split}%` : `${16 * split}px`;
+  const clip = `inset(${top}px ${side} ${24 * split}px ${side} round ${24 * split}px)`;
 
   return (
     <section ref={ref} className="relative bg-secondary" style={{ height: "520vh" }}>
       <div className="sticky top-0 h-svh overflow-hidden">
-        <div
-          className="flex h-full w-full items-stretch justify-center"
-          style={{ gap: `${lerp(0, 12, split)}px`, padding: `${lerp(0, desktop ? 96 : 80, split)}px ${lerp(0, 16, split)}px ${lerp(0, 24, split)}px` }}
-        >
-          {desktop ? (
-            <div
-              className="relative overflow-hidden rounded-3xl"
-              style={{ width: `${lerp(0, 26, split)}%`, opacity: split, transform: `translateX(${lerp(-100, 0, split)}%)` }}
-            >
-              <img src={carlottaHug} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
-            </div>
-          ) : null}
-
+        {desktop ? (
           <div
-            className="relative shrink-0 overflow-hidden"
-            style={{ width: `${lerp(100, desktop ? 44 : 100, split)}%`, borderRadius: `${lerp(0, 24, split)}px` }}
+            className="absolute bottom-6 left-4 top-24 w-[calc(28%-28px)] overflow-hidden rounded-3xl will-change-transform"
+            style={{ opacity: split, transform: `translate3d(${lerp(-110, 0, split)}%, 0, 0)` }}
           >
-            {PROBLEM_SLIDES.map((s, i) => (
-              <img
-                key={s.line}
-                src={s.src}
-                alt=""
-                loading="lazy"
-                className="absolute inset-0 size-full object-cover"
-                style={{
-                  // Ogni foto entra a cavallo del cambio di titolo, in poco scroll.
-                  opacity: i === 0 ? 1 : clamp((slide - i + 0.1) / 0.2),
-                  transform: `scale(${lerp(1.08, 1, clamp(slide - i + 0.1))})`,
-                }}
-              />
-            ))}
-            <div className="absolute inset-0 bg-black/45" style={{ opacity: 1 - split * 0.6 }} />
-            <div className="absolute inset-0 flex items-center justify-center" style={{ opacity: 1 - split }}>
-              {PROBLEM_SLIDES.map((s, i) => (
-                <BlurLine key={s.line} text={s.line} t={clamp(slide - i)} />
-              ))}
-            </div>
+            <img src={carlottaHug} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
           </div>
+        ) : null}
 
-          {desktop ? (
-            <div
-              className="relative overflow-hidden rounded-3xl"
-              style={{ width: `${lerp(0, 26, split)}%`, opacity: split, transform: `translateX(${lerp(100, 0, split)}%)` }}
-            >
-              <img src={sharonCarlotta} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
-            </div>
-          ) : null}
+        <div className="absolute inset-0" style={{ clipPath: clip, WebkitClipPath: clip }}>
+          {PROBLEM_SLIDES.map((s, i) => (
+            <img
+              key={s.line}
+              src={s.src}
+              alt=""
+              loading="lazy"
+              className="absolute inset-0 size-full object-cover"
+              style={{
+                // Ogni foto entra a cavallo del cambio di titolo, in poco scroll.
+                opacity: i === 0 ? 1 : clamp((slide - i + 0.1) / 0.2),
+                transform: `scale(${lerp(1.08, 1, clamp(slide - i + 0.1))})`,
+              }}
+            />
+          ))}
+          <div className="absolute inset-0 bg-black/45" style={{ opacity: 1 - split * 0.6 }} />
+          <div className="absolute inset-0 flex items-center justify-center" style={{ opacity: 1 - split }}>
+            {PROBLEM_SLIDES.map((s, i) => (
+              <BlurLine key={s.line} text={s.line} t={clamp(slide - i)} lowPower={lowPower} />
+            ))}
+          </div>
         </div>
+
+        {desktop ? (
+          <div
+            className="absolute bottom-6 right-4 top-24 w-[calc(28%-28px)] overflow-hidden rounded-3xl will-change-transform"
+            style={{ opacity: split, transform: `translate3d(${lerp(110, 0, split)}%, 0, 0)` }}
+          >
+            <img src={sharonCarlotta} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
+          </div>
+        ) : null}
       </div>
     </section>
   );
