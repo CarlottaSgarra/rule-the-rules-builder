@@ -460,3 +460,25 @@
     opacity: 0;
   }
 }
+
+/* Lista d'attesa Ambiziosa: lettere del titolo che salgono una alla volta */
+@keyframes amb-letter-up {
+  from {
+    opacity: 0;
+    transform: translateY(70%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.amb-letter {
+  opacity: 0;
+  animation: amb-letter-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .amb-letter {
+    opacity: 1;
+    animation: none;
+  }
+}
