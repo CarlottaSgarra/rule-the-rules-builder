@@ -234,7 +234,7 @@ function SideColumn({ images, side, t }: { images: string[]; side: "left" | "rig
         <div
           key={src}
           className="relative h-full flex-1 overflow-hidden rounded-3xl"
-          style={{ transform: `translate3d(0, ${lerp(25 + i * 20, i === 0 ? 0 : 10, t)}%, 0)` }}
+          style={{ transform: `translate3d(0, ${lerp(25 + i * 20, 0, t)}%, 0)` }}
         >
           <img src={src} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
         </div>
@@ -326,15 +326,17 @@ function Hero() {
         {desktop ? <SideColumn images={[sharonCarlotta, carlottaTalking]} side="right" t={sides} /> : null}
 
         <div
-          className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center px-5 text-center"
+          className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center px-5 text-center md:justify-start md:pt-8"
           style={{
             height: `${insetBottom}%`,
             opacity: caption,
             transform: `translate3d(0, ${(1 - caption) * 30}px, 0)`,
           }}
         >
-          <p className="max-w-3xl font-display text-2xl leading-tight text-foreground sm:text-4xl lg:text-5xl">
-            Voglio cambiare il mondo della formazione imprenditoriale dal vivo in Italia.
+          {/* Su computer due righe esatte, così il testo resta sotto le foto laterali. */}
+          <p className="max-w-5xl font-display text-2xl leading-tight text-foreground sm:text-4xl lg:text-[2.6rem]">
+            Voglio cambiare il mondo della formazione <br className="hidden md:block" />
+            imprenditoriale dal vivo in Italia.
           </p>
           <p className="mt-4 font-condensed text-sm uppercase tracking-[0.25em] text-foreground/75 sm:text-base">
             <span className="text-foreground">Ambiziosa</span> sarà un evento dal vivo completamente diverso dai soliti
@@ -347,10 +349,11 @@ function Hero() {
 
 /* ---------------------------------------------------------------- 2. Titoli che ruotano */
 
+// La parola chiave di ogni frase va evidenziata in verde.
 const FLIP_LINES = [
-  "Basta speech dove prendi solo appunti.",
-  "Basta speech dove torni a casa con un sacco di domande.",
-  "In due giorni lavoriamo sulla tua struttura di business.",
+  { before: "Basta speech dove prendi solo ", key: "appunti", after: "." },
+  { before: "Basta speech dove torni a casa con un sacco di ", key: "domande", after: "." },
+  { before: "In due giorni lavoriamo sulla tua ", key: "struttura di business", after: "." },
 ];
 
 // Video di presentazione: finché manca, al suo posto c'è un riquadro con il tasto play.
@@ -379,7 +382,7 @@ function FlipHeadlines() {
               const opacity = exit > 0 ? 1 - exit : first ? 1 : enter;
               return (
                 <h2
-                  key={line}
+                  key={line.key}
                   className="absolute inset-0 flex items-center justify-center text-center font-display font-semibold leading-tight tracking-tight text-foreground"
                   style={{
                     transform: `rotateX(${rot}deg)`,
@@ -388,13 +391,11 @@ function FlipHeadlines() {
                     transformStyle: "preserve-3d",
                   }}
                 >
-                  {i === 2 ? (
-                    <span>
-                      In due giorni lavoriamo <em className="italic">sulla tua struttura di business.</em>
-                    </span>
-                  ) : (
-                    line
-                  )}
+                  <span>
+                    {line.before}
+                    <span className="box-decoration-clone rounded-md bg-primary shadow-[0_0_0_0.12em_var(--color-primary)]">{line.key}</span>
+                    {line.after}
+                  </span>
                 </h2>
               );
             })}
