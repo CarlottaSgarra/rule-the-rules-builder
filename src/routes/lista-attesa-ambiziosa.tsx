@@ -433,6 +433,25 @@ function FlipHeadlines() {
   );
 }
 
+// Divide un testo in parole; i pezzi tra **due asterischi** vanno in grassetto
+// (nei paragrafi lunghi servono sempre dei grassetti che guidano la lettura).
+function splitWords(text: string) {
+  let bold = false;
+  return text.split(" ").map((raw) => {
+    let w = raw;
+    if (w.startsWith("**")) {
+      bold = true;
+      w = w.slice(2);
+    }
+    const isBold = bold;
+    if (w.includes("**")) {
+      bold = false;
+      w = w.replace("**", "");
+    }
+    return { w, bold: isBold };
+  });
+}
+
 // Testo che si rivela parola per parola mentre attraversa lo schermo: ogni
 // parola passa da sfocata e trasparente a nitida. `emphasisFrom` mette in
 // corsivo evidenziato le parole da quell'indice in poi.
@@ -455,16 +474,16 @@ function WordReveal({
 }) {
   const { ref, progress } = useScrollProgress<HTMLHeadingElement>("reveal");
   const lowPower = useLowPower();
-  const words = text.split(" ");
+  const words = splitWords(text);
   return (
     <Tag ref={ref} className={className}>
-      {words.map((w, i) => {
+      {words.map(({ w, bold }, i) => {
         const t = clamp(progress * words.length * 1.15 - i);
         const emphasis = emphasisFrom !== undefined && i >= emphasisFrom;
         return (
           <span
             key={i}
-            className={`inline-block ${emphasis ? emphasisClassName : ""}`}
+            className={`inline-block ${emphasis ? emphasisClassName : ""} ${bold ? "font-semibold" : ""}`}
             style={{
               opacity: lerp(minOpacity, 1, t),
               filter: lowPower ? undefined : `blur(${lerp(blur, 0, t)}px)`,
@@ -487,7 +506,11 @@ function Manifesto() {
       <div className="px-6 pb-24 pt-4 md:px-12 md:pb-32">
         <WordReveal
           className="mx-auto max-w-4xl text-center text-2xl leading-relaxed text-foreground sm:text-3xl lg:text-4xl"
-          text="Voglio creare insieme a te la struttura che ti fa respirare. Due giorni dal vivo in cui lavori sul tuo business insieme ad altre imprenditrici e torni a casa con il piano del tuo 2027 già in mano."
+          text="Ambiziosa è il mio evento live del 2027: due giornate dal vivo in cui lavoriamo su tutto ciò che negli eventi non viene mai spiegato. **Struttura di funnel, ads, fisco, previsione annuale delle clienti.**"
+        />
+        <WordReveal
+          className="mx-auto mt-8 max-w-3xl text-center text-lg leading-relaxed text-foreground/80 sm:text-xl"
+          text="È questo che fa crescere il tuo business. I contenuti sono solo la parte iniziale, ma **da soli non bastano** se il tuo obiettivo è arrivare a costruire un'azienda."
         />
       </div>
     </section>
@@ -594,9 +617,9 @@ function ProblemSplit() {
 // Accanto, un piccolo elemento animato mostra la parte che si sta leggendo.
 const PROBLEM_TITLE = "Trovi clienti ogni mese. Sei sicura di trovarli anche fra due mesi?";
 const PROBLEM_PARTS = [
-  "Magari quest'anno hai fatturato più di quanto pensavi. Ma se ti chiedo come ci sei arrivata, come lo rifai l'anno prossimo e dove vuoi arrivare negli anni dopo, la risposta non è così chiara.",
-  "Io ci sono passata. Sono uscita dal forfettario senza un previsionale, senza una struttura. Ho lavorato due anni in perdita: ogni volta che arrivava una cliente facevo il conto di quanto mi restava in tasca, quasi niente. Poi un giorno di giugno ho aperto un F24 da 51 mila euro.",
-  "Nessuno me ne aveva parlato. Tutti insegnano a fare contenuti, offerte e ganci: le tasse, il previsionale, il team e le notti passate a decidere tutto da sola restano fuori.",
+  "Magari quest'anno hai fatturato più di quanto pensavi. Ma se ti chiedo come ci sei arrivata, **come lo rifai l'anno prossimo** e dove vuoi arrivare negli anni dopo, la risposta non è così chiara.",
+  "Io ci sono passata. Sono uscita dal forfettario **senza un previsionale, senza una struttura.** Ho lavorato due anni in perdita: ogni volta che arrivava una cliente facevo il conto di quanto mi restava in tasca, quasi niente. Poi un giorno di giugno ho aperto **un F24 da 51 mila euro.**",
+  "Nessuno me ne aveva parlato. Tutti insegnano a fare contenuti, offerte e ganci: **le tasse, il previsionale, il team** e le notti passate a decidere tutto da sola restano fuori.",
 ];
 
 /* Parte 1: il fatturato del 2026 cresce, il 2027 è un punto di domanda. */
@@ -757,7 +780,7 @@ function OutsideVisual({ on }: { on: boolean }) {
 }
 
 const PROBLEM_VISUALS = [RevenueVisual, ClientsVisual, OutsideVisual];
-const PART_WORDS = PROBLEM_PARTS.map((p) => p.split(" "));
+const PART_WORDS = PROBLEM_PARTS.map(splitWords);
 const TOTAL_WORDS = PART_WORDS.reduce((n, w) => n + w.length, 0);
 
 function VisualCard({ active }: { active: number }) {
@@ -828,13 +851,13 @@ function ProblemStory() {
             <div className="mt-[3vh] space-y-[1.4em] text-[clamp(0.95rem,2.3vh,1.45rem)] leading-relaxed text-ink">
               {PART_WORDS.map((words, part) => (
                 <p key={part}>
-                  {words.map((w) => {
+                  {words.map(({ w, bold }) => {
                     const i = index++;
                     const t = clamp(shown - i);
                     return (
                       <span
                         key={i}
-                        className="inline-block"
+                        className={`inline-block ${bold ? "font-semibold text-primary" : ""}`}
                         style={{
                           opacity: t * (part === active ? 1 : 0.45),
                           filter: lowPower ? undefined : `blur(${lerp(10, 0, t)}px)`,
@@ -953,15 +976,17 @@ function ChangeText() {
     <section className="bg-secondary px-5 pb-24 pt-8 sm:pb-32">
       <div className="mx-auto max-w-3xl space-y-5 text-lg text-white/75">
         <p>
-          Mi sono rotta le palle degli eventi in cui si applaude, si fanno due foto e poi il lunedì
-          non cambia niente. Li ho organizzati anch'io. So quanto costano, a chi li fa e a chi ci
-          va.
+          Mi sono rotta le palle degli eventi in cui si applaude, si fanno due foto e poi{" "}
+          <strong className="font-semibold text-white">il lunedì non cambia niente.</strong> Li ho
+          organizzati anch'io. So quanto costano, a chi li fa e a chi ci va.
         </p>
         <p>
-          Questa volta si lavora. Sul palco ci sono io con il mio team, le persone che ogni giorno
-          fanno funzionare la mia azienda. Ti portiamo tutto quello che c'è dietro: gli errori, i
-          numeri, le notti insonni, le cose che hanno funzionato davvero. Poi ci si mette al lavoro
-          sulla tua azienda, insieme ad altre imprenditrici.
+          <strong className="font-semibold text-white">Questa volta si lavora.</strong> Sul palco ci
+          sono io con il mio team, le persone che ogni giorno fanno funzionare la mia azienda. Ti
+          portiamo tutto quello che c'è dietro: gli errori, i numeri, le notti insonni, le cose che
+          hanno funzionato davvero. Poi ci si mette al lavoro{" "}
+          <strong className="font-semibold text-white">sulla tua azienda</strong>, insieme ad altre
+          imprenditrici.
         </p>
         <p className="pt-4 font-display text-3xl leading-tight text-white sm:text-5xl">
           Non esci con domande. <em className="italic text-primary">Esci con risposte.</em>
@@ -1148,19 +1173,23 @@ function PromiseSection() {
           <div className="mt-8 space-y-5 text-lg text-foreground/80">
             <p>
               Quando le clienti arrivano e i soldi pure, il business cambia faccia. Se lo porti avanti
-              senza una struttura, a un certo punto soffochi: non hai più tempo né spazio in testa per
+              senza una struttura, <strong className="font-semibold text-foreground">a un certo punto soffochi</strong>: non hai più tempo né spazio in testa per
               capire cosa vuoi davvero e dove vuoi andare.
             </p>
             <p>
-              La struttura è quello che tiene in piedi il tuo business anche fra due mesi. Sapere che
+              <strong className="font-semibold text-foreground">
+                La struttura è quello che tiene in piedi il tuo business anche fra due mesi.
+              </strong>{" "}
+              Sapere che
               fatturato vuoi, con quali offerte e con quali contenuti, quanto paghi di tasse e chi
               lavora con te. E stare bene mentre lo fai, perché saper comunicare è il 20% del lavoro:
               il resto è gestione emotiva.
             </p>
             <p>
               Io ho imparato tutto questo da sola, perdendo tempo, soldi e un bel pezzo di libertà. Ora
-              voglio costruire insieme a te un'azienda che ti assomiglia, con una vita dentro, del
-              tempo libero e la voglia di divertirti ancora.
+              voglio costruire insieme a te{" "}
+              <strong className="font-semibold text-foreground">un'azienda che ti assomiglia</strong>,
+              con una vita dentro, del tempo libero e la voglia di divertirti ancora.
             </p>
           </div>
           <p className="mt-10 font-condensed text-4xl uppercase tracking-tight text-foreground sm:text-6xl">
@@ -1175,8 +1204,8 @@ function PromiseSection() {
       <div className="mx-auto mt-24 max-w-3xl rounded-3xl border border-foreground/15 p-8 text-center sm:p-12">
         <span className="font-condensed text-xs uppercase tracking-[0.3em] text-foreground/60">Per chi è</span>
         <p className="mt-4 text-xl leading-relaxed text-foreground sm:text-2xl">
-          È per te se hai un business avviato da almeno un anno, trovi clienti e fai contenuti, ma
-          non sai se tutto questo reggerà fra due mesi. Vuoi qualcosa di più grande e non vuoi più
+          È per te se hai un business avviato da almeno un anno, trovi clienti e fai contenuti, ma{" "}
+          <strong className="font-semibold">non sai se tutto questo reggerà fra due mesi.</strong> Vuoi qualcosa di più grande e non vuoi più
           costruirlo da sola.
         </p>
         <p className="mt-5 text-lg text-foreground/70">
@@ -1209,8 +1238,9 @@ function Closing() {
         </h2>
         <p className="mt-2 font-display text-2xl text-primary sm:text-3xl">7 dicembre, aprono le vendite.</p>
         <p className="mx-auto mt-8 max-w-xl text-lg text-white/85">
-          I posti sono 100: quando finiscono, finiscono. Chi è in lista d'attesa può iscriversi per
-          prima, con un prezzo riservato solo a lei. Lasciami nome ed email e ti avviso io.
+          <strong className="font-semibold text-white">I posti sono 100: quando finiscono, finiscono.</strong>{" "}
+          Chi è in lista d'attesa può iscriversi per prima, con un prezzo riservato solo a lei.
+          Lasciami nome ed email e ti avviso io.
         </p>
         <div
           id="lista-attesa"
