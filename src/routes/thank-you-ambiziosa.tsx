@@ -17,7 +17,7 @@ const QUESTIONNAIRE_HREF: string | null = null;
 const INSTAGRAM_HREF = "https://www.instagram.com/carlottasgarra.web/";
 
 // Apertura delle vendite: evento di un giorno intero il 7 dicembre 2026.
-const CALENDAR_TITLE = "Ambiziosa 2027 – aprono le vendite";
+const CALENDAR_TITLE = "Ambiziosa 2027: aprono le vendite";
 const CALENDAR_DETAILS =
   "Oggi aprono le vendite di Ambiziosa 2027. Chi è in lista d'attesa riceve l'email con l'early ticket.";
 const GOOGLE_CALENDAR_URL = (() => {
