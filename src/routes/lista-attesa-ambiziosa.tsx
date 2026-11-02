@@ -594,11 +594,18 @@ function ProblemSplit() {
               }}
             />
           ))}
-          <div className="absolute inset-0 bg-black/45" style={{ opacity: 1 - split * 0.6 }} />
-          <div className="absolute inset-0 flex items-center justify-center" style={{ opacity: 1 - split }}>
-            {PROBLEM_SLIDES.map((s, i) => (
-              <BlurLine key={s.line} text={s.line} t={clamp(slide - i)} lowPower={lowPower} />
-            ))}
+          <div className="absolute inset-0 bg-black/45" style={{ opacity: 1 - split * 0.3 }} />
+          {/* L'ultima frase non sparisce: resta al centro e si rimpicciolisce
+              insieme alla foto quando arrivano le foto laterali. */}
+          <div
+            className="absolute inset-0 flex items-center justify-center"
+            style={{ transform: `scale(${lerp(1, desktop ? 0.62 : 0.9, split)})` }}
+          >
+            {PROBLEM_SLIDES.map((s, i) => {
+              const t = clamp(slide - i);
+              const last = i === PROBLEM_SLIDES.length - 1;
+              return <BlurLine key={s.line} text={s.line} t={last ? Math.min(t, 0.5) : t} lowPower={lowPower} />;
+            })}
           </div>
         </div>
 
