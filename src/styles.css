@@ -520,3 +520,48 @@
     animation: none;
   }
 }
+
+/* Velo dorato: una copia del titolo con un gradiente d'oro dentro le lettere,
+   che compare quando le lettere sono salite e poi scorre piano avanti e indietro. */
+.gold-veil {
+  background-image: linear-gradient(
+    100deg,
+    #9a7634 0%,
+    #c9a45c 16%,
+    #f3e3b5 26%,
+    #c9a45c 36%,
+    #a8823a 52%,
+    #d9bb7a 68%,
+    #f3e3b5 78%,
+    #b8914a 90%,
+    #9a7634 100%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0;
+  animation:
+    gold-veil-in 0.9s ease-out 1.4s forwards,
+    gold-veil-move 7s ease-in-out 1.4s infinite;
+}
+@keyframes gold-veil-in {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes gold-veil-move {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gold-veil {
+    opacity: 1;
+    animation: none;
+  }
+}

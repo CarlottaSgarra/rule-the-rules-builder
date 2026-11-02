@@ -271,7 +271,7 @@ function Hero() {
                 transform: `translate3d(0, ${-titleOut * 200}px, 0)`,
               }}
             >
-              <span className="whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight text-secondary">
+              <span className="relative whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight text-primary">
                 {TITLE.map((letter, i) => (
                   <span
                     key={i}
@@ -281,6 +281,14 @@ function Hero() {
                     {letter}
                   </span>
                 ))}
+                {/* Stesse lettere, senza movimento, con il velo dorato sopra. */}
+                <span aria-hidden className="gold-veil pointer-events-none absolute inset-0">
+                  {TITLE.map((letter, i) => (
+                    <span key={i} className="inline-block">
+                      {letter}
+                    </span>
+                  ))}
+                </span>
               </span>
             </div>
             <img
