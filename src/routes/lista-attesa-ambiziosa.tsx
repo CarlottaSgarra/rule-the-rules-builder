@@ -334,10 +334,10 @@ function Hero() {
           }}
         >
           <p className="max-w-3xl font-display text-2xl leading-tight text-foreground sm:text-4xl lg:text-5xl">
-            Non somiglia a nessun altro evento di marketing in Italia.
+            Voglio cambiare il mondo della formazione imprenditoriale dal vivo in Italia.
           </p>
           <p className="mt-4 font-condensed text-sm uppercase tracking-[0.25em] text-foreground/75 sm:text-base">
-            Le vendite aprono il <span className="text-foreground">7 dicembre</span>
+            <span className="text-foreground">Ambiziosa</span> sarà un evento dal vivo completamente diverso dai soliti
           </p>
         </div>
       </div>
@@ -347,7 +347,11 @@ function Hero() {
 
 /* ---------------------------------------------------------------- 2. Titoli che ruotano */
 
-const FLIP_LINES = ["Qui si lavora davvero.", "Si esce con il piano.", "Fatto al contrario."];
+const FLIP_LINES = [
+  "Basta speech dove prendi solo appunti.",
+  "Basta speech dove torni a casa con un sacco di domande.",
+  "In due giorni lavoriamo sulla tua struttura di business.",
+];
 
 function FlipHeadlines() {
   const { ref, progress } = useScrollProgress<HTMLDivElement>("sticky");
@@ -357,7 +361,7 @@ function FlipHeadlines() {
     <div ref={ref} className="relative" style={{ height: "260vh" }}>
       <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden px-4">
         <div className="relative w-full max-w-6xl" style={{ perspective: "1000px" }}>
-          <div className="relative min-h-[1.4em] text-[12vw] md:text-[7vw]">
+          <div className="relative min-h-[1.4em] text-[9vw] md:text-[5vw]">
             {FLIP_LINES.map((line, i) => {
               // Entra ruotando dal basso, resta, esce ruotando verso l'alto.
               const enter = phase(progress, i * step - 0.08, i * step + 0.08);
@@ -378,7 +382,7 @@ function FlipHeadlines() {
                 >
                   {i === 2 ? (
                     <span>
-                      Fatto <em className="italic">al contrario.</em>
+                      In due giorni lavoriamo <em className="italic">sulla tua struttura di business.</em>
                     </span>
                   ) : (
                     line
