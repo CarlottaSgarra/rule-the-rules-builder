@@ -353,19 +353,27 @@ const FLIP_LINES = [
   "In due giorni lavoriamo sulla tua struttura di business.",
 ];
 
+// Video di presentazione: finché manca, al suo posto c'è un riquadro con il tasto play.
+const PRESENTATION_VIDEO_SRC: string | null = null;
+
 function FlipHeadlines() {
   const { ref, progress } = useScrollProgress<HTMLDivElement>("sticky");
-  const step = 1 / FLIP_LINES.length;
+  // Una tappa in più dopo i titoli: l'ultima frase sparisce e arriva il video.
+  const step = 1 / (FLIP_LINES.length + 1);
+  const video = phase(progress, FLIP_LINES.length * step - 0.02, FLIP_LINES.length * step + 0.12);
 
   return (
-    <div ref={ref} className="relative" style={{ height: "260vh" }}>
+    <div ref={ref} className="relative" style={{ height: "340vh" }}>
       <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden px-4">
         <div className="relative w-full max-w-6xl" style={{ perspective: "1000px" }}>
           <div className="relative min-h-[1.4em] text-[9vw] md:text-[5vw]">
             {FLIP_LINES.map((line, i) => {
               // Entra ruotando dal basso, resta, esce ruotando verso l'alto.
               const enter = phase(progress, i * step - 0.08, i * step + 0.08);
-              const exit = i === FLIP_LINES.length - 1 ? 0 : phase(progress, (i + 1) * step - 0.08, (i + 1) * step + 0.08);
+              const last = i === FLIP_LINES.length - 1;
+              const exit = last
+                ? phase(progress, (i + 1) * step - 0.1, (i + 1) * step)
+                : phase(progress, (i + 1) * step - 0.08, (i + 1) * step + 0.08);
               const first = i === 0;
               const rot = exit > 0 ? lerp(0, 90, exit) : first ? 0 : lerp(-90, 0, enter);
               const opacity = exit > 0 ? 1 - exit : first ? 1 : enter;
@@ -390,6 +398,33 @@ function FlipHeadlines() {
                 </h2>
               );
             })}
+          </div>
+        </div>
+
+        <div
+          className="absolute inset-0 flex flex-col items-center justify-center px-5"
+          style={{
+            opacity: video,
+            transform: `translate3d(0, ${(1 - video) * 40}px, 0)`,
+            pointerEvents: video > 0.5 ? "auto" : "none",
+          }}
+        >
+          <p className="mb-4 text-center font-condensed text-sm uppercase tracking-[0.25em] text-foreground sm:text-base">
+            Clicca qui sotto e guarda il video
+          </p>
+          <div className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-secondary shadow-2xl">
+            {PRESENTATION_VIDEO_SRC ? (
+              <video src={PRESENTATION_VIDEO_SRC} controls playsInline preload="metadata" className="h-full w-full object-cover" />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center">
+                <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground sm:h-20 sm:w-20">
+                  <svg viewBox="0 0 24 24" className="ml-1 h-7 w-7 sm:h-9 sm:w-9" fill="currentColor" aria-hidden>
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </span>
+                <span className="sr-only">Video di presentazione in arrivo</span>
+              </div>
+            )}
           </div>
         </div>
       </div>
