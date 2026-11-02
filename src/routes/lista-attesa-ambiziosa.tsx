@@ -80,7 +80,7 @@ function useLowPower() {
 // sticky (0 quando la sezione tocca il bordo alto, 1 quando sta per uscire).
 // "pass": un elemento normale che attraversa lo schermo (0 quando entra dal
 // basso, 1 quando arriva a metà schermo).
-function useScrollProgress<T extends HTMLElement>(mode: "sticky" | "pass" = "sticky") {
+function useScrollProgress<T extends HTMLElement>(mode: "sticky" | "pass" | "reveal" = "sticky") {
   const ref = useRef<T>(null);
   const [progress, setProgress] = useState(0);
   const reduced = useReducedMotion();
@@ -100,7 +100,11 @@ function useScrollProgress<T extends HTMLElement>(mode: "sticky" | "pass" = "sti
       const next =
         mode === "sticky"
           ? clamp(-rect.top / Math.max(node.offsetHeight - vh, 1))
-          : clamp((vh - rect.top) / (vh * 0.5 + rect.height * 0.5));
+          : mode === "reveal"
+            ? // Parte quando il testo arriva poco sotto il centro dello schermo,
+              // così i blocchi si accendono uno dopo l'altro.
+              clamp((vh * 0.72 - rect.top) / (vh * 0.25 + rect.height * 0.6))
+            : clamp((vh - rect.top) / (vh * 0.5 + rect.height * 0.5));
       setProgress((prev) => (Math.abs(prev - next) < 0.0005 ? prev : next));
     };
     const onScroll = () => {
@@ -190,7 +194,7 @@ function Topbar() {
       <a
         href="#lista-attesa"
         onClick={scrollToWaitlist}
-        className="rounded-full bg-primary px-3 py-2.5 text-center font-condensed text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:min-w-[13rem] sm:px-10 sm:text-sm"
+        className="glow-sweep relative rounded-full bg-primary px-3 py-2.5 text-center font-condensed text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:min-w-[13rem] sm:px-10 sm:text-sm"
       >
         Entra in lista
       </a>
@@ -271,24 +275,24 @@ function Hero() {
                 transform: `translate3d(0, ${-titleOut * 200}px, 0)`,
               }}
             >
-              <span className="relative whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight text-primary">
+              <span className="whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight text-primary">
                 {TITLE.map((letter, i) => (
                   <span
                     key={i}
-                    className="amb-letter inline-block"
-                    style={{ animationDelay: `${0.15 + i * 0.07}s` }}
+                    className="amb-letter gold-glow-letter inline-block"
+                    style={{
+                      // Salita della lettera, poi la luce che passa da sinistra a destra.
+                      animationName: "amb-letter-up, gold-glow-letter",
+                      animationDuration: "0.9s, 5s",
+                      animationTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1), ease-in-out",
+                      animationIterationCount: "1, infinite",
+                      animationFillMode: "forwards, none",
+                      animationDelay: `${0.15 + i * 0.07}s, ${1.8 + i * 0.09}s`,
+                    }}
                   >
                     {letter}
                   </span>
                 ))}
-                {/* Stesse lettere, senza movimento, con il velo dorato sopra. */}
-                <span aria-hidden className="gold-veil pointer-events-none absolute inset-0">
-                  {TITLE.map((letter, i) => (
-                    <span key={i} className="inline-block">
-                      {letter}
-                    </span>
-                  ))}
-                </span>
               </span>
             </div>
             <img
@@ -452,7 +456,7 @@ function WordReveal({
   emphasisFrom?: number;
   emphasisClassName?: string;
 }) {
-  const { ref, progress } = useScrollProgress<HTMLHeadingElement>("pass");
+  const { ref, progress } = useScrollProgress<HTMLHeadingElement>("reveal");
   const lowPower = useLowPower();
   const words = text.split(" ");
   return (
@@ -488,49 +492,6 @@ function Manifesto() {
           className="mx-auto max-w-4xl text-center text-2xl leading-relaxed text-foreground sm:text-3xl lg:text-4xl"
           text="Voglio creare insieme a te la struttura che ti fa respirare. Due giorni dal vivo in cui lavori sul tuo business insieme ad altre imprenditrici e torni a casa con il piano del tuo 2027 già in mano."
         />
-      </div>
-    </section>
-  );
-}
-
-/* ---------------------------------------------------------------- 3. Galleria */
-
-const GALLERY = [
-  { src: carlottaPresenting, span: "col-span-2 row-span-2", pos: "45% 30%" },
-  { src: carlottaBw, span: "col-span-1 row-span-2", pos: "50% 20%" },
-  { src: community, span: "col-span-1 row-span-1", pos: "50% 50%" },
-  { src: carlottaLooking, span: "col-span-1 row-span-1", pos: "50% 30%" },
-  { src: livestream, span: "col-span-2 row-span-1", pos: "50% 40%" },
-  { src: carlottaWalking, span: "col-span-2 row-span-1 md:col-span-2", pos: "50% 25%" },
-];
-
-function GalleryTile({ src, span, pos, index }: { src: string; span: string; pos: string; index: number }) {
-  const { ref, inView } = useInView<HTMLDivElement>();
-  return (
-    <div ref={ref} className={`relative overflow-hidden rounded-2xl ${span}`}>
-      <img
-        src={src}
-        alt=""
-        loading="lazy"
-        className="absolute inset-0 size-full object-cover transition-all duration-1000 ease-out"
-        style={{
-          objectPosition: pos,
-          opacity: inView ? 1 : 0,
-          transform: inView ? "scale(1)" : "scale(1.12)",
-          transitionDelay: `${index * 90}ms`,
-        }}
-      />
-    </div>
-  );
-}
-
-function Gallery() {
-  return (
-    <section className="bg-background px-4 pb-24 md:px-12 md:pb-32">
-      <div className="mx-auto grid w-full max-w-7xl auto-rows-[160px] grid-cols-2 gap-3 md:auto-rows-[220px] md:grid-cols-4 md:gap-4">
-        {GALLERY.map((g, i) => (
-          <GalleryTile key={i} index={i} {...g} />
-        ))}
       </div>
     </section>
   );
@@ -632,36 +593,93 @@ function ProblemSplit() {
 }
 
 // Dopo che le foto si sono raggruppate al centro, il racconto compare parola
-// per parola, come il testo dopo le foto di MONO.
+// per parola, come il testo dopo le foto di MONO. Il titolo è il testo
+// principale; i paragrafi sono più piccoli, con a destra una foto che cambia
+// a ogni paragrafo.
 const PROBLEM_PARAGRAPHS = [
-  "Magari quest'anno hai fatturato più di quanto pensavi. Ma se ti chiedo come ci sei arrivata, come lo rifai l'anno prossimo e dove vuoi arrivare negli anni dopo, la risposta non è così chiara.",
-  "Io ci sono passata. Sono uscita dal forfettario senza un previsionale e ho lavorato due anni in perdita: ogni volta che arrivava una cliente facevo il conto di quanto mi restava in tasca, quasi niente. Poi un giorno di giugno ho aperto un F24 da 51 mila euro.",
-  "Nessuno me ne aveva parlato. Tutti insegnano a fare contenuti, offerte e ganci: le tasse, il previsionale, il team e le notti passate a decidere tutto da sola restano fuori.",
+  {
+    text: "Magari quest'anno hai fatturato più di quanto pensavi. Ma se ti chiedo come ci sei arrivata, come lo rifai l'anno prossimo e dove vuoi arrivare negli anni dopo, la risposta non è così chiara.",
+    src: carlottaLooking,
+    pos: "50% 30%",
+  },
+  {
+    text: "Io ci sono passata. Sono uscita dal forfettario senza un previsionale e ho lavorato due anni in perdita: ogni volta che arrivava una cliente facevo il conto di quanto mi restava in tasca, quasi niente. Poi un giorno di giugno ho aperto un F24 da 51 mila euro.",
+    src: carlottaBw,
+    pos: "50% 20%",
+  },
+  {
+    text: "Nessuno me ne aveva parlato. Tutti insegnano a fare contenuti, offerte e ganci: le tasse, il previsionale, il team e le notti passate a decidere tutto da sola restano fuori.",
+    src: livestream,
+    pos: "50% 40%",
+  },
 ];
 
 function ProblemText() {
+  const listRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const items = listRef.current?.children;
+      if (!items) return;
+      const line = window.innerHeight * 0.6;
+      let next = 0;
+      Array.from(items).forEach((el, i) => {
+        if (el.getBoundingClientRect().top < line) next = i;
+      });
+      setActive(next);
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    update();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
-    <section className="relative overflow-hidden bg-secondary px-6 pb-28 pt-16 md:px-12 md:pb-40 md:pt-24">
-      <div className="relative mx-auto max-w-4xl">
+    <section className="relative overflow-clip bg-secondary px-6 pb-28 pt-16 md:px-12 md:pb-40 md:pt-24">
+      <div className="relative mx-auto max-w-6xl">
         <WordReveal
           as="h2"
-          blur={40}
+          blur={30}
           minOpacity={0}
-          className="font-display text-3xl leading-tight text-ink sm:text-5xl"
+          className="max-w-4xl font-display text-4xl leading-tight text-ink sm:text-6xl"
           text="Trovi clienti ogni mese. Sei sicura di trovarli anche fra due mesi?"
           emphasisFrom={4}
-          emphasisClassName="italic text-primary"
+          emphasisClassName="text-primary"
         />
-        <div className="mt-14 space-y-12 md:mt-20 md:space-y-16">
-          {PROBLEM_PARAGRAPHS.map((text) => (
-            <WordReveal
-              key={text}
-              blur={40}
-              minOpacity={0}
-              className="text-2xl font-semibold leading-snug text-white md:text-4xl lg:text-5xl"
-              text={text}
-            />
-          ))}
+        <div className="mt-14 grid gap-12 md:mt-20 md:grid-cols-[1fr_0.8fr] md:gap-16">
+          <div ref={listRef} className="space-y-10 md:space-y-[40vh] md:pb-[20vh]">
+            {PROBLEM_PARAGRAPHS.map((p) => (
+              <WordReveal
+                key={p.text}
+                blur={12}
+                minOpacity={0}
+                className="max-w-xl text-lg leading-relaxed text-ink/85 md:text-xl"
+                text={p.text}
+              />
+            ))}
+          </div>
+          <div className="hidden md:block">
+            <div className="sticky top-28 aspect-[4/5] w-full overflow-hidden rounded-3xl">
+              {PROBLEM_PARAGRAPHS.map((p, i) => (
+                <img
+                  key={p.text}
+                  src={p.src}
+                  alt=""
+                  loading="lazy"
+                  className="absolute inset-0 size-full object-cover transition-opacity duration-700"
+                  style={{ objectPosition: p.pos, opacity: i === active ? 1 : 0 }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -787,7 +805,7 @@ function Steps() {
           <a
             href="#lista-attesa"
             onClick={scrollToWaitlist}
-            className="rounded-full bg-foreground px-8 py-4 font-condensed text-sm uppercase tracking-[0.15em] text-background transition-transform hover:-translate-y-0.5 sm:text-base"
+            className="glow-sweep relative rounded-full bg-primary px-8 py-4 font-condensed text-sm font-semibold uppercase tracking-[0.15em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:text-base"
           >
             Entra in lista d'attesa
           </a>
@@ -1017,7 +1035,7 @@ function FloatingCta() {
     <a
       href="#lista-attesa"
       onClick={scrollToWaitlist}
-      className="fixed bottom-5 left-1/2 z-40 whitespace-nowrap rounded-full bg-primary px-6 py-3 font-condensed text-sm uppercase tracking-[0.15em] text-primary-foreground shadow-xl transition-all duration-500"
+      className="glow-sweep fixed bottom-5 left-1/2 z-40 whitespace-nowrap rounded-full bg-primary px-6 py-3 font-condensed text-sm uppercase tracking-[0.15em] text-primary-foreground shadow-xl transition-all duration-500"
       style={{
         opacity: show ? 1 : 0,
         transform: `translate(-50%, ${show ? 0 : 20}px)`,
@@ -1035,7 +1053,6 @@ function ListaAttesaAmbiziosa() {
       <Topbar />
       <Hero />
       <Manifesto />
-      <Gallery />
       <ProblemSplit />
       <ProblemText />
       <ZoomStack />
