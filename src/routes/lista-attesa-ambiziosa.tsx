@@ -744,17 +744,17 @@ function ClientsVisual({ on }: { on: boolean }) {
 }
 
 /* Parte 3: la piramide da freelance ad azienda, costruita dal basso. I primi
-   tre gradini li insegnano tutti; sopra la linea c'è quello che non spiega
+   due gradini li insegnano tutti; sopra la linea c'è quello che non spiega
    nessuno, ed è lì che lavora Ambiziosa. */
 const PYRAMID = [
-  { label: "Contenuti e ganci", width: 100 },
+  { label: "Contenuti · Ganci · Script", width: 100 },
   { label: "Offerte", width: 88 },
   { label: "Funnel e ads", width: 76 },
   { label: "Previsionale", width: 64 },
   { label: "Fisco e team", width: 52 },
   { label: "Visione", width: 40 },
 ];
-const PYRAMID_LINE_AFTER = 3;
+const PYRAMID_LINE_AFTER = 2;
 
 function PyramidVisual({ on }: { on: boolean }) {
   const step = 260;
