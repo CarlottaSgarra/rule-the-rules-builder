@@ -178,45 +178,29 @@ function Topbar() {
 
   return (
     <header
-      className={`fixed left-1/2 top-4 z-50 flex w-[92%] max-w-3xl -translate-x-1/2 items-center gap-3 rounded-full py-2 pl-5 pr-2 md:gap-4 transition-all duration-300 ${
+      className={`fixed left-1/2 top-4 z-50 grid w-[92%] max-w-3xl -translate-x-1/2 grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-full px-4 py-2 sm:gap-3 sm:px-5 transition-all duration-300 ${
         scrolled ? "bg-background/95 shadow-lg md:bg-background/80 md:backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      {/* Da telefono non c'è posto al centro: dopo il primo scroll la data lascia
-          il posto a "I posti sono limitati". */}
-      <span className="relative grid font-condensed text-[11px] uppercase tracking-[0.2em] text-foreground/80 sm:text-xs">
-        <span
-          className={`col-start-1 row-start-1 transition-opacity duration-500 ${scrolled ? "opacity-0 md:opacity-100" : "opacity-100"}`}
-        >
-          Le vendite aprono il{"\u00a0"}7/12
-        </span>
-        <span
-          aria-hidden
-          className={`col-start-1 row-start-1 self-center font-semibold text-foreground transition-opacity duration-500 md:hidden ${scrolled ? "opacity-100" : "opacity-0"}`}
-        >
-          I posti sono limitati
-        </span>
+      {/* Bottone sempre al centro; data a sinistra e, dopo il primo scroll,
+          "I posti sono limitati" a destra con lo stesso peso della data. */}
+      <span className="font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 sm:text-xs sm:tracking-[0.2em]">
+        Le vendite aprono il{"\u00a0"}7/12
       </span>
-      {/* Su computer, in cima alla pagina il bottone sta vicino alla data per non coprire
-          il viso di Carlotta; dopo il primo scroll questo spazio si allarga e lo porta a destra. */}
+      <a
+        href="#lista-attesa"
+        onClick={scrollToWaitlist}
+        className="rounded-full bg-primary px-3 py-2.5 text-center font-condensed text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:min-w-[13rem] sm:px-10 sm:text-sm"
+      >
+        Entra in lista
+      </a>
       <span
-        aria-hidden
-        className={`min-w-0 transition-[flex-grow] duration-500 ${scrolled ? "grow" : "grow md:grow-0"}`}
-      />
-      <span
-        className={`pointer-events-none absolute left-1/2 hidden -translate-x-1/2 font-condensed text-sm font-semibold uppercase tracking-[0.25em] text-foreground transition-all duration-500 md:inline ${
+        className={`text-right font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 transition-all duration-500 sm:text-xs sm:tracking-[0.2em] ${
           scrolled ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
         }`}
       >
         I posti sono limitati
       </span>
-      <a
-        href="#lista-attesa"
-        onClick={scrollToWaitlist}
-        className="shrink-0 rounded-full bg-primary px-6 py-2.5 text-center font-condensed text-xs font-semibold uppercase tracking-[0.15em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:min-w-[13rem] sm:px-10 sm:text-sm"
-      >
-        Entra in lista
-      </a>
     </header>
   );
 }
@@ -355,8 +339,7 @@ function Hero() {
 
 /* ---------------------------------------------------------------- 2. Titoli che ruotano */
 
-// La parola chiave di ogni frase è in verde Tidal: sul rosa da solo non si legge,
-// quindi ha un contorno bordeaux sottile dietro al riempimento.
+// La parola chiave di ogni frase è in verde Tidal.
 const FLIP_LINES = [
   { before: "Basta speech dove prendi solo ", key: "appunti", after: "." },
   { before: "Basta speech dove torni a casa con un sacco di ", key: "domande", after: "." },
@@ -401,12 +384,7 @@ function FlipHeadlines() {
                 >
                   <span>
                     {line.before}
-                    <span
-                      className="text-primary"
-                      style={{ WebkitTextStroke: "0.12em var(--color-foreground)", paintOrder: "stroke fill" }}
-                    >
-                      {line.key}
-                    </span>
+                    <span className="text-primary">{line.key}</span>
                     {line.after}
                   </span>
                 </h2>
