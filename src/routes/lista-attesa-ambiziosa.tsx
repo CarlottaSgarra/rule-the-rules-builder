@@ -6,17 +6,14 @@ import heroBg from "@/assets/Carlotta spostata a sinistra che guarda verso la ca
 import heroCutout from "@/assets/ambiziosa-carlotta-cutout.png";
 import carlottaPresenting from "@/assets/carlotta-presenting.jpg";
 import carlottaTalking from "@/assets/carlotta-talking.jpg";
-import carlottaLooking from "@/assets/carlotta-looking.jpg";
 import carlottaLooking2 from "@/assets/carlotta-looking-2.jpg";
 import carlottaHug from "@/assets/carlotta-hug.jpg";
 import carlottaWalking from "@/assets/carlotta-walking.jpg";
 import carlottaWall from "@/assets/ambiziosa-carlotta-muro-web.jpg";
 import carlottaWallRight from "@/assets/Carlotta che guarda a destra appoggiata al muro.jpg";
-import carlottaBw from "@/assets/Carlotta bianco e nero che guarda in camera.jpg";
 import sharonCarlotta from "@/assets/ambiziosa-sharon-carlotta-web.jpg";
 import sharonSpeaking from "@/assets/sharon-speaking.jpg";
 import community from "@/assets/community.png";
-import livestream from "@/assets/livestream.jpg";
 
 // TODO Andrea: sostituire con il form Systeme della lista d'attesa dell'evento
 // dal vivo (oggi punta al form standard di Rule The Rules, che va cambiato
@@ -592,98 +589,296 @@ function ProblemSplit() {
   );
 }
 
-// Dopo che le foto si sono raggruppate al centro, il racconto compare parola
-// per parola, come il testo dopo le foto di MONO. Il titolo è il testo
-// principale; i paragrafi sono più piccoli, con a destra una foto che cambia
-// a ogni paragrafo.
-const PROBLEM_PARAGRAPHS = [
-  {
-    text: "Magari quest'anno hai fatturato più di quanto pensavi. Ma se ti chiedo come ci sei arrivata, come lo rifai l'anno prossimo e dove vuoi arrivare negli anni dopo, la risposta non è così chiara.",
-    src: carlottaLooking,
-    pos: "50% 30%",
-  },
-  {
-    text: "Io ci sono passata. Sono uscita dal forfettario senza un previsionale e ho lavorato due anni in perdita: ogni volta che arrivava una cliente facevo il conto di quanto mi restava in tasca, quasi niente. Poi un giorno di giugno ho aperto un F24 da 51 mila euro.",
-    src: carlottaBw,
-    pos: "50% 20%",
-  },
-  {
-    text: "Nessuno me ne aveva parlato. Tutti insegnano a fare contenuti, offerte e ganci: le tasse, il previsionale, il team e le notti passate a decidere tutto da sola restano fuori.",
-    src: livestream,
-    pos: "50% 40%",
-  },
+// Dopo che le foto si sono raggruppate al centro arriva il racconto: il
+// titolo, poi un solo paragrafo in tre parti che si accende parola per parola.
+// Accanto, un piccolo elemento animato mostra la parte che si sta leggendo.
+const PROBLEM_TITLE = "Trovi clienti ogni mese. Sei sicura di trovarli anche fra due mesi?";
+const PROBLEM_PARTS = [
+  "Magari quest'anno hai fatturato più di quanto pensavi. Ma se ti chiedo come ci sei arrivata, come lo rifai l'anno prossimo e dove vuoi arrivare negli anni dopo, la risposta non è così chiara.",
+  "Io ci sono passata. Sono uscita dal forfettario senza un previsionale, senza una struttura. Ho lavorato due anni in perdita: ogni volta che arrivava una cliente facevo il conto di quanto mi restava in tasca, quasi niente. Poi un giorno di giugno ho aperto un F24 da 51 mila euro.",
+  "Nessuno me ne aveva parlato. Tutti insegnano a fare contenuti, offerte e ganci: le tasse, il previsionale, il team e le notti passate a decidere tutto da sola restano fuori.",
 ];
 
-function ProblemText() {
-  const listRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(0);
+/* Parte 1: il fatturato del 2026 cresce, il 2027 è un punto di domanda. */
+const REVENUE_2026 = [28, 33, 30, 38, 36, 44, 41, 50, 56, 52, 63, 72];
+const MONTHS = ["G", "F", "M", "A", "M", "G", "L", "A", "S", "O", "N", "D"];
 
-  useEffect(() => {
-    let frame = 0;
-    const update = () => {
-      frame = 0;
-      const items = listRef.current?.children;
-      if (!items) return;
-      const line = window.innerHeight * 0.6;
-      let next = 0;
-      Array.from(items).forEach((el, i) => {
-        if (el.getBoundingClientRect().top < line) next = i;
-      });
-      setActive(next);
-    };
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    update();
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (frame) cancelAnimationFrame(frame);
-    };
-  }, []);
-
+function RevenueVisual({ on }: { on: boolean }) {
   return (
-    <section className="relative overflow-clip bg-secondary px-6 pb-28 pt-16 md:px-12 md:pb-40 md:pt-24">
-      <div className="relative mx-auto max-w-6xl">
-        <WordReveal
-          as="h2"
-          blur={30}
-          minOpacity={0}
-          className="max-w-4xl font-display text-4xl leading-tight text-ink sm:text-6xl"
-          text="Trovi clienti ogni mese. Sei sicura di trovarli anche fra due mesi?"
-          emphasisFrom={4}
-          emphasisClassName="text-primary"
-        />
-        <div className="mt-14 grid gap-12 md:mt-20 md:grid-cols-[1fr_0.8fr] md:gap-16">
-          <div ref={listRef} className="space-y-10 md:space-y-[40vh] md:pb-[20vh]">
-            {PROBLEM_PARAGRAPHS.map((p) => (
-              <WordReveal
-                key={p.text}
-                blur={12}
-                minOpacity={0}
-                className="max-w-xl text-lg leading-relaxed text-ink/85 md:text-xl"
-                text={p.text}
-              />
-            ))}
+    <div className="flex h-full flex-col">
+      <div className="flex items-baseline justify-between font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">
+        <span>Fatturato 2026</span>
+        <span className="text-primary">2027 ?</span>
+      </div>
+      <div className="mt-6 flex flex-1 items-end gap-1.5">
+        {REVENUE_2026.map((v, i) => (
+          <div key={i} className="flex h-full flex-1 flex-col justify-end">
+            <div
+              className="rounded-t-md bg-primary transition-all duration-700 ease-out"
+              style={{ height: on ? `${v}%` : "0%", transitionDelay: on ? `${i * 60}ms` : "0ms" }}
+            />
           </div>
-          <div className="hidden md:block">
-            <div className="sticky top-28 aspect-[4/5] w-full overflow-hidden rounded-3xl">
-              {PROBLEM_PARAGRAPHS.map((p, i) => (
-                <img
-                  key={p.text}
-                  src={p.src}
-                  alt=""
-                  loading="lazy"
-                  className="absolute inset-0 size-full object-cover transition-opacity duration-700"
-                  style={{ objectPosition: p.pos, opacity: i === active ? 1 : 0 }}
-                />
-              ))}
+        ))}
+        <div className="mx-1 h-full w-px bg-ink/15" />
+        {[0, 1, 2].map((i) => (
+          <div key={`n${i}`} className="flex h-full flex-1 flex-col justify-end">
+            <div
+              className="flex items-start justify-center rounded-t-md border border-dashed border-primary/70 pt-1 font-display text-sm text-primary transition-all duration-700 ease-out"
+              style={{ height: on ? "60%" : "0%", opacity: on ? 1 : 0, transitionDelay: on ? `${900 + i * 120}ms` : "0ms" }}
+            >
+              ?
             </div>
           </div>
+        ))}
+      </div>
+      <div className="mt-2 flex gap-1.5 font-condensed text-[10px] text-ink/40">
+        {MONTHS.map((m, i) => (
+          <span key={i} className="flex-1 text-center">
+            {m}
+          </span>
+        ))}
+        <span className="mx-1 w-px" />
+        {[0, 1, 2].map((i) => (
+          <span key={`m${i}`} className="flex-1" />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* Parte 2: l'F24 di giugno che sale fino a 51.000 euro, e quanto resta di ogni cliente. */
+function useCountUp(target: number, on: boolean, duration = 1400) {
+  const [value, setValue] = useState(0);
+  useEffect(() => {
+    if (!on) {
+      setValue(0);
+      return;
+    }
+    let frame = 0;
+    const start = performance.now();
+    const tick = (now: number) => {
+      const t = clamp((now - start) / duration);
+      setValue(Math.round(target * ease(t)));
+      if (t < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [target, on, duration]);
+  return value;
+}
+
+function F24Visual({ on }: { on: boolean }) {
+  const total = useCountUp(51000, on);
+  return (
+    <div className="flex h-full flex-col justify-between gap-6">
+      <div className="rounded-2xl border border-ink/15 bg-ink/5 p-5">
+        <div className="flex items-baseline justify-between font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">
+          <span>Modello F24</span>
+          <span>Giugno</span>
+        </div>
+        <div className="mt-4 border-t border-dashed border-ink/20 pt-4">
+          <span className="font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">Totale da pagare</span>
+          <p className="mt-1 font-display text-5xl tabular-nums text-primary">€ {total.toLocaleString("it-IT")}</p>
+        </div>
+      </div>
+      <div>
+        <div className="flex items-baseline justify-between font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">
+          <span>Ogni cliente che arriva</span>
+          <span className="text-primary">quanto ti resta</span>
+        </div>
+        <div className="mt-3 h-4 w-full overflow-hidden rounded-full bg-ink/15">
+          <div
+            className="h-full rounded-full bg-primary transition-all duration-1000 ease-out"
+            style={{ width: on ? "10%" : "0%", transitionDelay: on ? "900ms" : "0ms" }}
+          />
+        </div>
+        <p className="mt-2 text-right font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">Quasi niente</p>
+      </div>
+    </div>
+  );
+}
+
+/* Parte 3: cosa insegnano tutti e cosa resta fuori. */
+const TAUGHT = ["Contenuti", "Offerte", "Ganci"];
+const LEFT_OUT = ["Tasse", "Previsionale", "Team", "Le notti da sola"];
+
+function OutsideVisual({ on }: { on: boolean }) {
+  return (
+    <div className="grid h-full grid-cols-2 gap-4">
+      <div>
+        <p className="font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">Quello che ti insegnano</p>
+        <ul className="mt-4 space-y-2.5">
+          {TAUGHT.map((item, i) => (
+            <li
+              key={item}
+              className="flex items-center gap-2.5 rounded-xl bg-primary px-3 py-2.5 font-display text-lg text-primary-foreground transition-all duration-500"
+              style={{
+                opacity: on ? 1 : 0,
+                transform: on ? "translateY(0)" : "translateY(12px)",
+                transitionDelay: on ? `${i * 120}ms` : "0ms",
+              }}
+            >
+              <span aria-hidden>✓</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <p className="font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">Quello che resta fuori</p>
+        <ul className="mt-4 space-y-2.5">
+          {LEFT_OUT.map((item, i) => (
+            <li
+              key={item}
+              className="rounded-xl border border-dashed border-ink/30 px-3 py-2.5 font-display text-lg text-ink/70 transition-all duration-500"
+              style={{
+                opacity: on ? 1 : 0,
+                transform: on ? "translateY(0)" : "translateY(12px)",
+                transitionDelay: on ? `${500 + i * 140}ms` : "0ms",
+              }}
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+const PROBLEM_VISUALS = [RevenueVisual, F24Visual, OutsideVisual];
+const PART_WORDS = PROBLEM_PARTS.map((p) => p.split(" "));
+const TOTAL_WORDS = PART_WORDS.reduce((n, w) => n + w.length, 0);
+
+function VisualCard({ active }: { active: number }) {
+  return (
+    <div className="relative h-[340px] w-full rounded-3xl border border-ink/10 bg-ink/[0.04] p-6 md:h-[380px] md:p-8">
+      {PROBLEM_VISUALS.map((Visual, i) => (
+        <div
+          key={i}
+          className="absolute inset-6 transition-opacity duration-500 md:inset-8"
+          style={{ opacity: i === active ? 1 : 0 }}
+          aria-hidden={i !== active}
+        >
+          <Visual on={i === active} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Su computer la sezione resta ferma mentre si scorre: il titolo si accende,
+// poi il paragrafo parola per parola, e l'elemento a destra segue la parte letta.
+function ProblemStory() {
+  const { ref, progress } = useScrollProgress<HTMLElement>("sticky");
+  const lowPower = useLowPower();
+  const titleWords = PROBLEM_TITLE.split(" ");
+  const titleT = phase(progress, 0, 0.14);
+  const textT = phase(progress, 0.16, 0.9);
+  const shown = textT * TOTAL_WORDS * 1.05;
+  const reading = Math.min(Math.floor(textT * TOTAL_WORDS), TOTAL_WORDS - 1);
+  let active = 0;
+  let count = 0;
+  PART_WORDS.forEach((w, i) => {
+    if (reading >= count) active = i;
+    count += w.length;
+  });
+
+  let index = 0;
+  return (
+    <section ref={ref} className="relative bg-secondary" style={{ height: "340vh" }}>
+      <div className="sticky top-0 flex h-svh items-center overflow-hidden px-12 pb-8 pt-24">
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-[1.15fr_0.85fr] items-center gap-16">
+          <div>
+            <h2 className="font-display text-4xl leading-tight text-ink lg:text-5xl">
+              {titleWords.map((w, i) => {
+                const t = clamp(titleT * titleWords.length * 1.15 - i);
+                return (
+                  <span
+                    key={i}
+                    className={`inline-block ${i >= 4 ? "text-primary" : ""}`}
+                    style={{
+                      opacity: t,
+                      filter: lowPower ? undefined : `blur(${lerp(20, 0, t)}px)`,
+                      marginRight: "0.28em",
+                    }}
+                  >
+                    {w}
+                  </span>
+                );
+              })}
+            </h2>
+            <p className="mt-8 text-xl leading-relaxed text-ink lg:text-2xl lg:leading-relaxed">
+              {PART_WORDS.map((words, part) => (
+                <span key={part} className="transition-colors duration-500">
+                  {words.map((w) => {
+                    const i = index++;
+                    const t = clamp(shown - i);
+                    return (
+                      <span
+                        key={i}
+                        className="inline-block"
+                        style={{
+                          opacity: t * (part === active ? 1 : 0.45),
+                          filter: lowPower ? undefined : `blur(${lerp(10, 0, t)}px)`,
+                          transition: "opacity 0.3s linear",
+                          marginRight: "0.28em",
+                        }}
+                      >
+                        {w}
+                      </span>
+                    );
+                  })}
+                </span>
+              ))}
+            </p>
+          </div>
+          <VisualCard active={active} />
         </div>
       </div>
     </section>
   );
+}
+
+// Da telefono non c'è spazio per tenere tutto fermo: titolo, poi ogni parte
+// del paragrafo con il suo elemento animato sotto.
+function ProblemStoryMobile() {
+  return (
+    <section className="bg-secondary px-5 pb-24 pt-16">
+      <WordReveal
+        as="h2"
+        blur={20}
+        minOpacity={0}
+        className="font-display text-4xl leading-tight text-ink"
+        text={PROBLEM_TITLE}
+        emphasisFrom={4}
+        emphasisClassName="text-primary"
+      />
+      <div className="mt-10 space-y-10">
+        {PROBLEM_PARTS.map((text, i) => (
+          <MobilePart key={i} text={text} index={i} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function MobilePart({ text, index }: { text: string; index: number }) {
+  const { ref, inView } = useInView<HTMLDivElement>();
+  const Visual = PROBLEM_VISUALS[index] ?? RevenueVisual;
+  return (
+    <div className="space-y-6">
+      <WordReveal blur={8} minOpacity={0} className="text-xl leading-relaxed text-ink" text={text} />
+      <div ref={ref} className="h-[300px] rounded-3xl border border-ink/10 bg-ink/[0.04] p-5">
+        <Visual on={inView} />
+      </div>
+    </div>
+  );
+}
+
+function ProblemText() {
+  const desktop = useIsDesktop();
+  return desktop ? <ProblemStory /> : <ProblemStoryMobile />;
 }
 
 /* ---------------------------------------------------------------- 5. Il cambio */
