@@ -353,8 +353,8 @@ function Hero() {
 
 // La parola chiave di ogni frase è in oro.
 const FLIP_LINES = [
-  { before: "Basta speech dove prendi solo ", key: "appunti", after: "." },
-  { before: "Basta speech dove torni a casa con un sacco di ", key: "domande", after: "." },
+  { before: "Basta eventi dove prendi solo ", key: "appunti", after: "." },
+  { before: "Basta eventi dove torni a casa con un sacco di ", key: "domande", after: "." },
   { before: "In due giorni lavoriamo sulla tua ", key: "struttura di business", after: "." },
   { before: "Contenuti, offerte, funnel, ads. E ", key: "il mio team", after: " ti controlla tutto." },
 ];
