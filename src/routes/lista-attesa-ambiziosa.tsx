@@ -743,55 +743,68 @@ function ClientsVisual({ on }: { on: boolean }) {
   );
 }
 
-/* Parte 3: cosa insegnano tutti e cosa resta fuori. */
-const TAUGHT = ["Contenuti", "Offerte", "Ganci"];
-const LEFT_OUT = ["Tasse", "Previsionale", "Team", "Le notti da sola"];
+/* Parte 3: la piramide da freelance ad azienda, costruita dal basso. I primi
+   tre gradini li insegnano tutti; sopra la linea c'è quello che non spiega
+   nessuno, ed è lì che lavora Ambiziosa. */
+const PYRAMID = [
+  { label: "Contenuti e ganci", width: 100 },
+  { label: "Offerte", width: 88 },
+  { label: "Funnel e ads", width: 76 },
+  { label: "Previsionale", width: 64 },
+  { label: "Fisco e team", width: 52 },
+  { label: "Visione", width: 40 },
+];
+const PYRAMID_LINE_AFTER = 3;
 
-function OutsideVisual({ on }: { on: boolean }) {
+function PyramidVisual({ on }: { on: boolean }) {
+  const step = 260;
+  const levels = PYRAMID.map((level, i) => {
+    const above = i >= PYRAMID_LINE_AFTER;
+    // Dopo la linea c'è una pausa, poi si costruisce la parte in oro.
+    const delay = i * step + (above ? 400 : 0);
+    return (
+      <div
+        key={level.label}
+        className={`mx-auto flex min-h-0 flex-1 items-center justify-center rounded-lg font-condensed text-xs uppercase tracking-[0.18em] transition-all duration-500 sm:text-sm ${
+          above ? "bg-primary font-semibold text-primary-foreground" : "bg-ink/10 text-ink/80"
+        }`}
+        style={{
+          width: `${level.width}%`,
+          opacity: on ? 1 : 0,
+          transform: on ? "translateY(0) scaleX(1)" : "translateY(14px) scaleX(0.9)",
+          transitionDelay: on ? `${delay}ms` : "0ms",
+        }}
+      >
+        {level.label}
+      </div>
+    );
+  });
+  const lineDelay = PYRAMID_LINE_AFTER * step + 100;
+
   return (
-    <div className="grid h-full grid-cols-2 gap-4">
-      <div>
-        <p className="font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">Quello che ti insegnano</p>
-        <ul className="mt-4 space-y-2.5">
-          {TAUGHT.map((item, i) => (
-            <li
-              key={item}
-              className="flex items-center gap-2.5 rounded-xl bg-primary px-3 py-2.5 font-display text-lg text-primary-foreground transition-all duration-500"
-              style={{
-                opacity: on ? 1 : 0,
-                transform: on ? "translateY(0)" : "translateY(12px)",
-                transitionDelay: on ? `${i * 120}ms` : "0ms",
-              }}
-            >
-              <span aria-hidden>✓</span>
-              {item}
-            </li>
-          ))}
-        </ul>
+    <div className="flex h-full flex-col">
+      <p className="text-center font-condensed text-xs uppercase tracking-[0.25em] text-primary">Azienda</p>
+      {/* Dal basso verso l'alto: column-reverse mette il primo gradino in fondo. */}
+      <div className="my-3 flex min-h-0 flex-1 flex-col-reverse gap-1.5">
+        {levels.slice(0, PYRAMID_LINE_AFTER)}
+        <div
+          className="flex items-center gap-3 py-1 transition-opacity duration-500"
+          style={{ opacity: on ? 1 : 0, transitionDelay: on ? `${lineDelay}ms` : "0ms" }}
+        >
+          <span className="flex-1 border-t border-dashed border-ink/40" />
+          <span className="font-condensed text-[10px] uppercase tracking-[0.2em] text-ink/60 sm:text-xs">
+            Qui si fermano quasi tutti
+          </span>
+          <span className="flex-1 border-t border-dashed border-ink/40" />
+        </div>
+        {levels.slice(PYRAMID_LINE_AFTER)}
       </div>
-      <div>
-        <p className="font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">Quello che resta fuori</p>
-        <ul className="mt-4 space-y-2.5">
-          {LEFT_OUT.map((item, i) => (
-            <li
-              key={item}
-              className="rounded-xl border border-dashed border-ink/30 px-3 py-2.5 font-display text-lg text-ink/70 transition-all duration-500"
-              style={{
-                opacity: on ? 1 : 0,
-                transform: on ? "translateY(0)" : "translateY(12px)",
-                transitionDelay: on ? `${500 + i * 140}ms` : "0ms",
-              }}
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <p className="text-center font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">Freelance</p>
     </div>
   );
 }
 
-const PROBLEM_VISUALS = [RevenueVisual, ClientsVisual, OutsideVisual];
+const PROBLEM_VISUALS = [RevenueVisual, ClientsVisual, PyramidVisual];
 const PART_WORDS = PROBLEM_PARTS.map(splitWords);
 const TOTAL_WORDS = PART_WORDS.reduce((n, w) => n + w.length, 0);
 
@@ -947,7 +960,7 @@ function ZoomStack() {
   const per = 1 / STACK.length;
 
   return (
-    <section ref={ref} className="relative bg-secondary" style={{ height: "460vh" }}>
+    <section ref={ref} className="relative -mt-px bg-secondary" style={{ height: "460vh" }}>
       <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden px-4">
         <div className="relative h-[72vh] w-full max-w-5xl md:h-[80vh]">
           {STACK.map((card, i) => {
