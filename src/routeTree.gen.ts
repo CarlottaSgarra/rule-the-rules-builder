@@ -18,6 +18,7 @@ import { Route as CheckoutVipRouteImport } from './routes/checkout-vip'
 import { Route as ListaAttesaAmbiziosaRouteImport } from './routes/lista-attesa-ambiziosa'
 import { Route as RegistrazioniRouteImport } from './routes/registrazioni'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
+import { Route as ThankYouAmbiziosaRouteImport } from './routes/thank-you-ambiziosa'
 import { Route as ThankYouVipRouteImport } from './routes/thank-you-vip'
 import { Route as UpsellCallRouteImport } from './routes/upsell-call'
 import { Route as UpsellStoryIdentityRouteImport } from './routes/upsell-story-identity'
@@ -69,6 +70,11 @@ const ThankYouRoute = ThankYouRouteImport.update({
   path: '/thank-you',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ThankYouAmbiziosaRoute = ThankYouAmbiziosaRouteImport.update({
+  id: '/thank-you-ambiziosa',
+  path: '/thank-you-ambiziosa',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ThankYouVipRoute = ThankYouVipRouteImport.update({
   id: '/thank-you-vip',
   path: '/thank-you-vip',
@@ -105,6 +111,7 @@ export interface FileRoutesByFullPath {
   '/lista-attesa-ambiziosa': typeof ListaAttesaAmbiziosaRoute
   '/registrazioni': typeof RegistrazioniRoute
   '/thank-you': typeof ThankYouRoute
+  '/thank-you-ambiziosa': typeof ThankYouAmbiziosaRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
   '/upsell-story-identity': typeof UpsellStoryIdentityRoute
@@ -121,6 +128,7 @@ export interface FileRoutesByTo {
   '/lista-attesa-ambiziosa': typeof ListaAttesaAmbiziosaRoute
   '/registrazioni': typeof RegistrazioniRoute
   '/thank-you': typeof ThankYouRoute
+  '/thank-you-ambiziosa': typeof ThankYouAmbiziosaRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
   '/upsell-story-identity': typeof UpsellStoryIdentityRoute
@@ -138,6 +146,7 @@ export interface FileRoutesById {
   '/lista-attesa-ambiziosa': typeof ListaAttesaAmbiziosaRoute
   '/registrazioni': typeof RegistrazioniRoute
   '/thank-you': typeof ThankYouRoute
+  '/thank-you-ambiziosa': typeof ThankYouAmbiziosaRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
   '/upsell-story-identity': typeof UpsellStoryIdentityRoute
@@ -156,6 +165,7 @@ export interface FileRouteTypes {
     | '/lista-attesa-ambiziosa'
     | '/registrazioni'
     | '/thank-you'
+    | '/thank-you-ambiziosa'
     | '/thank-you-vip'
     | '/upsell-call'
     | '/upsell-story-identity'
@@ -172,6 +182,7 @@ export interface FileRouteTypes {
     | '/lista-attesa-ambiziosa'
     | '/registrazioni'
     | '/thank-you'
+    | '/thank-you-ambiziosa'
     | '/thank-you-vip'
     | '/upsell-call'
     | '/upsell-story-identity'
@@ -188,6 +199,7 @@ export interface FileRouteTypes {
     | '/lista-attesa-ambiziosa'
     | '/registrazioni'
     | '/thank-you'
+    | '/thank-you-ambiziosa'
     | '/thank-you-vip'
     | '/upsell-call'
     | '/upsell-story-identity'
@@ -205,6 +217,7 @@ export interface RootRouteChildren {
   ListaAttesaAmbiziosaRoute: typeof ListaAttesaAmbiziosaRoute
   RegistrazioniRoute: typeof RegistrazioniRoute
   ThankYouRoute: typeof ThankYouRoute
+  ThankYouAmbiziosaRoute: typeof ThankYouAmbiziosaRoute
   ThankYouVipRoute: typeof ThankYouVipRoute
   UpsellCallRoute: typeof UpsellCallRoute
   UpsellStoryIdentityRoute: typeof UpsellStoryIdentityRoute
@@ -277,6 +290,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThankYouRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/thank-you-ambiziosa': {
+      id: '/thank-you-ambiziosa'
+      path: '/thank-you-ambiziosa'
+      fullPath: '/thank-you-ambiziosa'
+      preLoaderRoute: typeof ThankYouAmbiziosaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/thank-you-vip': {
       id: '/thank-you-vip'
       path: '/thank-you-vip'
@@ -325,6 +345,7 @@ const rootRouteChildren: RootRouteChildren = {
   ListaAttesaAmbiziosaRoute: ListaAttesaAmbiziosaRoute,
   RegistrazioniRoute: RegistrazioniRoute,
   ThankYouRoute: ThankYouRoute,
+  ThankYouAmbiziosaRoute: ThankYouAmbiziosaRoute,
   ThankYouVipRoute: ThankYouVipRoute,
   UpsellCallRoute: UpsellCallRoute,
   UpsellStoryIdentityRoute: UpsellStoryIdentityRoute,
