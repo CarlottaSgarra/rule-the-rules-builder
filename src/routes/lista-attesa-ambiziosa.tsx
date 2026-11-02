@@ -349,11 +349,13 @@ function Hero() {
 
 /* ---------------------------------------------------------------- 2. Titoli che ruotano */
 
-// La parola chiave di ogni frase va evidenziata in verde.
+// La parola chiave di ogni frase è in verde Tidal: sul rosa da solo non si legge,
+// quindi ha un contorno bordeaux sottile dietro al riempimento.
 const FLIP_LINES = [
   { before: "Basta speech dove prendi solo ", key: "appunti", after: "." },
   { before: "Basta speech dove torni a casa con un sacco di ", key: "domande", after: "." },
   { before: "In due giorni lavoriamo sulla tua ", key: "struttura di business", after: "." },
+  { before: "Contenuti, offerte, funnel, ads. E ", key: "il mio team", after: " ti controlla tutto." },
 ];
 
 // Video di presentazione: finché manca, al suo posto c'è un riquadro con il tasto play.
@@ -366,7 +368,7 @@ function FlipHeadlines() {
   const video = phase(progress, FLIP_LINES.length * step - 0.02, FLIP_LINES.length * step + 0.12);
 
   return (
-    <div ref={ref} className="relative" style={{ height: "340vh" }}>
+    <div ref={ref} className="relative" style={{ height: "420vh" }}>
       <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden px-4">
         <div className="relative w-full max-w-6xl" style={{ perspective: "1000px" }}>
           <div className="relative min-h-[1.4em] text-[9vw] md:text-[5vw]">
@@ -393,7 +395,12 @@ function FlipHeadlines() {
                 >
                   <span>
                     {line.before}
-                    <span className="box-decoration-clone rounded-md bg-primary shadow-[0_0_0_0.12em_var(--color-primary)]">{line.key}</span>
+                    <span
+                      className="text-primary"
+                      style={{ WebkitTextStroke: "0.12em var(--color-foreground)", paintOrder: "stroke fill" }}
+                    >
+                      {line.key}
+                    </span>
                     {line.after}
                   </span>
                 </h2>
