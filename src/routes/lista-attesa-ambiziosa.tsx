@@ -178,7 +178,7 @@ function Topbar() {
 
   return (
     <header
-      className={`fixed left-1/2 top-4 z-50 flex w-[92%] max-w-3xl -translate-x-1/2 items-center justify-between gap-3 rounded-full py-2 pl-5 pr-2 transition-all duration-300 ${
+      className={`fixed left-1/2 top-4 z-50 flex w-[92%] max-w-3xl -translate-x-1/2 items-center gap-3 rounded-full py-2 pl-5 pr-2 md:gap-4 transition-all duration-300 ${
         scrolled ? "bg-background/95 shadow-lg md:bg-background/80 md:backdrop-blur-md" : "bg-transparent"
       }`}
     >
@@ -197,6 +197,12 @@ function Topbar() {
           I posti sono limitati
         </span>
       </span>
+      {/* Su computer, in cima alla pagina il bottone sta vicino alla data per non coprire
+          il viso di Carlotta; dopo il primo scroll questo spazio si allarga e lo porta a destra. */}
+      <span
+        aria-hidden
+        className={`min-w-0 transition-[flex-grow] duration-500 ${scrolled ? "grow" : "grow md:grow-0"}`}
+      />
       <span
         className={`pointer-events-none absolute left-1/2 hidden -translate-x-1/2 font-condensed text-sm font-semibold uppercase tracking-[0.25em] text-foreground transition-all duration-500 md:inline ${
           scrolled ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
