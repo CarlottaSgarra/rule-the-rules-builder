@@ -615,7 +615,12 @@ function RevenueVisual({ on }: { on: boolean }) {
           <div key={i} className="flex h-full flex-1 flex-col justify-end">
             <div
               className="rounded-t-md bg-primary transition-all duration-700 ease-out"
-              style={{ height: on ? `${v}%` : "0%", transitionDelay: on ? `${i * 60}ms` : "0ms" }}
+              // I mesi si riempiono uno dopo l'altro, da gennaio a dicembre.
+              style={{
+                height: on ? `${v}%` : "0%",
+                transitionDuration: "450ms",
+                transitionDelay: on ? `${i * 110}ms` : "0ms",
+              }}
             />
           </div>
         ))}
@@ -624,7 +629,7 @@ function RevenueVisual({ on }: { on: boolean }) {
           <div key={`n${i}`} className="flex h-full flex-1 flex-col justify-end">
             <div
               className="flex items-start justify-center rounded-t-md border border-dashed border-primary/70 pt-1 font-display text-sm text-primary transition-all duration-700 ease-out"
-              style={{ height: on ? "60%" : "0%", opacity: on ? 1 : 0, transitionDelay: on ? `${900 + i * 120}ms` : "0ms" }}
+              style={{ height: on ? "60%" : "0%", opacity: on ? 1 : 0, transitionDelay: on ? `${1500 + i * 150}ms` : "0ms" }}
             >
               ?
             </div>
@@ -646,54 +651,59 @@ function RevenueVisual({ on }: { on: boolean }) {
   );
 }
 
-/* Parte 2: l'F24 di giugno che sale fino a 51.000 euro, e quanto resta di ogni cliente. */
-function useCountUp(target: number, on: boolean, duration = 1400) {
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    if (!on) {
-      setValue(0);
-      return;
-    }
-    let frame = 0;
-    const start = performance.now();
-    const tick = (now: number) => {
-      const t = clamp((now - start) / duration);
-      setValue(Math.round(target * ease(t)));
-      if (t < 1) frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [target, on, duration]);
-  return value;
-}
+/* Parte 2: il previsionale, cioè quante clienti ti servono ogni mese. I
+   numeri sono un esempio; l'ultimo mese resta un punto di domanda. */
+const CLIENTS_PLAN = [
+  { month: "Marzo", clients: 3 },
+  { month: "Aprile", clients: 5 },
+  { month: "Maggio", clients: 4 },
+  { month: "Giugno", clients: 6 },
+];
 
-function F24Visual({ on }: { on: boolean }) {
-  const total = useCountUp(51000, on);
+function ClientsVisual({ on }: { on: boolean }) {
+  let dot = 0;
   return (
-    <div className="flex h-full flex-col justify-between gap-6">
-      <div className="rounded-2xl border border-ink/15 bg-ink/5 p-5">
-        <div className="flex items-baseline justify-between font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">
-          <span>Modello F24</span>
-          <span>Giugno</span>
-        </div>
-        <div className="mt-4 border-t border-dashed border-ink/20 pt-4">
-          <span className="font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">Totale da pagare</span>
-          <p className="mt-1 font-display text-5xl tabular-nums text-primary">€ {total.toLocaleString("it-IT")}</p>
-        </div>
+    <div className="flex h-full flex-col">
+      <div className="flex items-baseline justify-between font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">
+        <span>Previsionale</span>
+        <span className="text-primary">Quante clienti ti servono?</span>
       </div>
-      <div>
-        <div className="flex items-baseline justify-between font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">
-          <span>Ogni cliente che arriva</span>
-          <span className="text-primary">quanto ti resta</span>
-        </div>
-        <div className="mt-3 h-4 w-full overflow-hidden rounded-full bg-ink/15">
-          <div
-            className="h-full rounded-full bg-primary transition-all duration-1000 ease-out"
-            style={{ width: on ? "10%" : "0%", transitionDelay: on ? "900ms" : "0ms" }}
-          />
-        </div>
-        <p className="mt-2 text-right font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">Quasi niente</p>
-      </div>
+      <ul className="mt-6 flex flex-1 flex-col justify-between">
+        {CLIENTS_PLAN.map((row, r) => (
+          <li
+            key={row.month}
+            className="flex items-center gap-4 border-b border-ink/10 pb-3 transition-opacity duration-500"
+            style={{ opacity: on ? 1 : 0, transitionDelay: on ? `${r * 350}ms` : "0ms" }}
+          >
+            <span className="w-20 font-condensed text-sm uppercase tracking-[0.2em] text-ink/80">{row.month}</span>
+            <span className="flex flex-1 gap-1.5">
+              {Array.from({ length: row.clients }).map((_, i) => {
+                const d = dot++;
+                return (
+                  <span
+                    key={i}
+                    className="size-4 rounded-full bg-primary transition-all duration-300"
+                    style={{
+                      opacity: on ? 1 : 0,
+                      transform: on ? "scale(1)" : "scale(0.4)",
+                      transitionDelay: on ? `${r * 350 + 150 + i * 90}ms` : "0ms",
+                    }}
+                  />
+                );
+              })}
+            </span>
+            <span className="font-display text-lg tabular-nums text-ink">{row.clients}</span>
+          </li>
+        ))}
+        <li
+          className="flex items-center gap-4 pt-1 transition-opacity duration-500"
+          style={{ opacity: on ? 1 : 0, transitionDelay: on ? `${CLIENTS_PLAN.length * 350 + 300}ms` : "0ms" }}
+        >
+          <span className="w-20 font-condensed text-sm uppercase tracking-[0.2em] text-ink/80">Poi</span>
+          <span className="flex-1 border-t border-dashed border-primary/60" />
+          <span className="font-display text-3xl text-primary">?</span>
+        </li>
+      </ul>
     </div>
   );
 }
@@ -746,13 +756,16 @@ function OutsideVisual({ on }: { on: boolean }) {
   );
 }
 
-const PROBLEM_VISUALS = [RevenueVisual, F24Visual, OutsideVisual];
+const PROBLEM_VISUALS = [RevenueVisual, ClientsVisual, OutsideVisual];
 const PART_WORDS = PROBLEM_PARTS.map((p) => p.split(" "));
 const TOTAL_WORDS = PART_WORDS.reduce((n, w) => n + w.length, 0);
 
 function VisualCard({ active }: { active: number }) {
   return (
-    <div className="relative h-[340px] w-full rounded-3xl border border-ink/10 bg-ink/[0.04] p-6 md:h-[380px] md:p-8">
+    <div
+      className="relative h-[340px] w-full rounded-3xl border border-ink/10 bg-ink/[0.04] p-6 transition-opacity duration-700 md:h-[min(380px,52vh)] md:p-8"
+      style={{ opacity: active < 0 ? 0 : 1 }}
+    >
       {PROBLEM_VISUALS.map((Visual, i) => (
         <div
           key={i}
@@ -768,13 +781,15 @@ function VisualCard({ active }: { active: number }) {
 }
 
 // Su computer la sezione resta ferma mentre si scorre: il titolo si accende,
-// poi il paragrafo parola per parola, e l'elemento a destra segue la parte letta.
+// poi i tre paragrafi parola per parola, e l'elemento a destra segue la parte
+// letta. Il blocco parte sotto la barra in alto e i caratteri seguono l'altezza
+// dello schermo, così niente finisce sotto il menu o fuori dal fondo.
 function ProblemStory() {
   const { ref, progress } = useScrollProgress<HTMLElement>("sticky");
   const lowPower = useLowPower();
   const titleWords = PROBLEM_TITLE.split(" ");
-  const titleT = phase(progress, 0, 0.14);
-  const textT = phase(progress, 0.16, 0.9);
+  const titleT = phase(progress, 0, 0.12);
+  const textT = phase(progress, 0.14, 0.82);
   const shown = textT * TOTAL_WORDS * 1.05;
   const reading = Math.min(Math.floor(textT * TOTAL_WORDS), TOTAL_WORDS - 1);
   let active = 0;
@@ -783,14 +798,16 @@ function ProblemStory() {
     if (reading >= count) active = i;
     count += w.length;
   });
+  // Il primo elemento compare solo quando inizia il primo paragrafo.
+  const visual = textT > 0 ? active : -1;
 
   let index = 0;
   return (
-    <section ref={ref} className="relative bg-secondary" style={{ height: "340vh" }}>
-      <div className="sticky top-0 flex h-svh items-center overflow-hidden px-12 pb-8 pt-24">
+    <section ref={ref} className="relative bg-secondary" style={{ height: "380vh" }}>
+      <div className="sticky top-0 flex h-svh items-start overflow-hidden px-12 pb-6 pt-28">
         <div className="mx-auto grid w-full max-w-6xl grid-cols-[1.15fr_0.85fr] items-center gap-16">
           <div>
-            <h2 className="font-display text-4xl leading-tight text-ink lg:text-5xl">
+            <h2 className="font-display text-[clamp(1.6rem,4.4vh,3rem)] leading-tight text-ink">
               {titleWords.map((w, i) => {
                 const t = clamp(titleT * titleWords.length * 1.15 - i);
                 return (
@@ -808,9 +825,9 @@ function ProblemStory() {
                 );
               })}
             </h2>
-            <p className="mt-8 text-xl leading-relaxed text-ink lg:text-2xl lg:leading-relaxed">
+            <div className="mt-[3vh] space-y-[1.4em] text-[clamp(0.95rem,2.3vh,1.45rem)] leading-relaxed text-ink">
               {PART_WORDS.map((words, part) => (
-                <span key={part} className="transition-colors duration-500">
+                <p key={part}>
                   {words.map((w) => {
                     const i = index++;
                     const t = clamp(shown - i);
@@ -829,11 +846,11 @@ function ProblemStory() {
                       </span>
                     );
                   })}
-                </span>
+                </p>
               ))}
-            </p>
+            </div>
           </div>
-          <VisualCard active={active} />
+          <VisualCard active={visual} />
         </div>
       </div>
     </section>
