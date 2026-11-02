@@ -188,7 +188,7 @@ function Topbar() {
         <span
           className={`col-start-1 row-start-1 transition-opacity duration-500 ${scrolled ? "opacity-0 md:opacity-100" : "opacity-100"}`}
         >
-          Le vendite aprono il 7{"\u00a0"}dicembre
+          Le vendite aprono il{"\u00a0"}7/12
         </span>
         <span
           aria-hidden
@@ -207,7 +207,7 @@ function Topbar() {
       <a
         href="#lista-attesa"
         onClick={scrollToWaitlist}
-        className="shrink-0 rounded-full bg-primary px-4 py-2 font-condensed text-xs uppercase tracking-[0.15em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:text-sm"
+        className="shrink-0 rounded-full bg-primary px-6 py-2.5 text-center font-condensed text-xs font-semibold uppercase tracking-[0.15em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:min-w-[13rem] sm:px-10 sm:text-sm"
       >
         Entra in lista
       </a>
