@@ -337,8 +337,8 @@ function Hero() {
             Voglio cambiare il mondo della formazione <br className="hidden md:block" />
             imprenditoriale dal vivo in Italia.
           </p>
-          <p className="mt-4 font-condensed text-sm uppercase tracking-[0.25em] text-foreground/75 sm:text-base">
-            <span className="text-foreground">Ambiziosa</span> sarà un evento dal vivo completamente diverso dai soliti
+          <p className="mt-4 max-w-4xl text-balance font-condensed text-sm uppercase leading-relaxed tracking-[0.2em] text-foreground/75 sm:text-base">
+            Il <span className="text-foreground">95%</span> degli eventi di marketing in Italia è pura teoria e ti fa tornare a casa con più dubbi che altro
           </p>
         </div>
       </div>
