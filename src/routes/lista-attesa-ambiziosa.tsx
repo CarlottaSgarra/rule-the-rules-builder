@@ -478,7 +478,7 @@ function Manifesto() {
       <div className="px-6 pb-24 pt-4 md:px-12 md:pb-32">
         <WordReveal
           className="mx-auto max-w-4xl text-center text-2xl leading-relaxed text-foreground sm:text-3xl lg:text-4xl"
-          text="Voglio cambiare il modo in cui si fa formazione dal vivo. Un evento in cui lavori sulla tua azienda insieme ad altre imprenditrici e torni a casa con il piano già in mano."
+          text="Voglio creare insieme a te la struttura che ti fa respirare. Due giorni dal vivo in cui lavori sul tuo business insieme ad altre imprenditrici e torni a casa con il piano del tuo 2027 già in mano."
         />
       </div>
     </section>
@@ -531,10 +531,10 @@ function Gallery() {
 /* ---------------------------------------------------------------- 4. Il problema */
 
 const PROBLEM_SLIDES = [
-  { src: carlottaPresenting, line: "Treno, hotel, terza fila." },
-  { src: carlottaTalking, line: "Un quaderno pieno di appunti." },
-  { src: carlottaLooking2, line: "Lunedì: tutto in un cassetto." },
-  { src: sharonSpeaking, line: "Mille domande e nessuna risposta." },
+  { src: carlottaPresenting, line: "Hai le clienti." },
+  { src: carlottaTalking, line: "Fai contenuti." },
+  { src: carlottaLooking2, line: "Il fatturato cresce." },
+  { src: sharonSpeaking, line: "E poi?" },
 ];
 
 function BlurLine({ text, t, lowPower }: { text: string; t: number; lowPower: boolean }) {
@@ -626,9 +626,9 @@ function ProblemSplit() {
 // Dopo che le foto si sono raggruppate al centro, il racconto compare parola
 // per parola, come il testo dopo le foto di MONO.
 const PROBLEM_PARAGRAPHS = [
-  "Hai preso il treno, magari anche l'hotel. Ti sei seduta in terza fila con il quaderno nuovo e hai scritto tutto: le frasi dal palco, le slide, le idee che ti venivano mentre gli speaker parlavano.",
-  "Poi sei tornata a casa. Il lunedì sono arrivate le clienti, le mail, i contenuti da pubblicare. Quel quaderno è finito in un cassetto, insieme a tutte le cose che \"prima o poi faccio\".",
-  "Succede a quasi tutte, perché la maggior parte degli eventi dal vivo funziona così: tu stai seduta, qualcuno parla dal palco e tu ti segni dei compiti che dovrai fare da sola, quando avrai tempo. Il tempo poi non arriva mai.",
+  "Magari quest'anno hai fatturato più di quanto pensavi. Ma se ti chiedo come ci sei arrivata, come lo rifai l'anno prossimo e dove vuoi arrivare negli anni dopo, la risposta non è così chiara.",
+  "Io ci sono passata. Sono uscita dal forfettario senza un previsionale e ho lavorato due anni in perdita: ogni volta che arrivava una cliente facevo il conto di quanto mi restava in tasca, quasi niente. Poi un giorno di giugno ho aperto un F24 da 51 mila euro.",
+  "Nessuno me ne aveva parlato. Tutti insegnano a fare contenuti, offerte e ganci: le tasse, il previsionale, il team e le notti passate a decidere tutto da sola restano fuori.",
 ];
 
 function ProblemText() {
@@ -640,8 +640,8 @@ function ProblemText() {
           blur={40}
           minOpacity={0}
           className="font-display text-3xl leading-tight text-ink sm:text-5xl"
-          text="Ti è mai capitato di tornare da un evento con la testa piena e le mani vuote?"
-          emphasisFrom={10}
+          text="Trovi clienti ogni mese. Sei sicura di trovarli anche fra due mesi?"
+          emphasisFrom={4}
           emphasisClassName="italic text-primary"
         />
         <div className="mt-14 space-y-12 md:mt-20 md:space-y-16">
@@ -909,18 +909,20 @@ function PromiseSection() {
           </h2>
           <div className="mt-8 space-y-5 text-lg text-foreground/80">
             <p>
-              Quando le clienti arrivano e i soldi pure, il business cambia faccia. Se fai contenuti
-              e gestisci clienti senza una struttura, a un certo punto soffochi: non hai più tempo né
-              spazio in testa per capire cosa vuoi davvero e dove vuoi andare.
+              Quando le clienti arrivano e i soldi pure, il business cambia faccia. Se lo porti avanti
+              senza una struttura, a un certo punto soffochi: non hai più tempo né spazio in testa per
+              capire cosa vuoi davvero e dove vuoi andare.
             </p>
             <p>
-              Io ci sono passata. Ero una freelance e mi sono ritrovata, quasi per sbaglio, a dover
-              aprire una società. Ho perso tempo, soldi e un bel pezzo di libertà per imparare a
-              diventare un'azienda senza perdere me stessa.
+              La struttura è quello che tiene in piedi il tuo business anche fra due mesi. Sapere che
+              fatturato vuoi, con quali offerte e con quali contenuti, quanto paghi di tasse e chi
+              lavora con te. E stare bene mentre lo fai, perché saper comunicare è il 20% del lavoro:
+              il resto è gestione emotiva.
             </p>
             <p>
-              Al prossimo evento ti porto il passaggio fatto bene: un'azienda che ti assomiglia, con
-              una vita dentro, del tempo libero e la voglia di divertirti ancora.
+              Io ho imparato tutto questo da sola, perdendo tempo, soldi e un bel pezzo di libertà. Ora
+              voglio costruire insieme a te un'azienda che ti assomiglia, con una vita dentro, del
+              tempo libero e la voglia di divertirti ancora.
             </p>
           </div>
           <p className="mt-10 font-condensed text-4xl uppercase tracking-tight text-foreground sm:text-6xl">
@@ -935,9 +937,9 @@ function PromiseSection() {
       <div className="mx-auto mt-24 max-w-3xl rounded-3xl border border-foreground/15 p-8 text-center sm:p-12">
         <span className="font-condensed text-xs uppercase tracking-[0.3em] text-foreground/60">Per chi è</span>
         <p className="mt-4 text-xl leading-relaxed text-foreground sm:text-2xl">
-          È per te se hai un business avviato da almeno un anno e hai già delle clienti, ma quello
-          che hai costruito ormai ti sta stretto. Vuoi qualcosa di più grande e non sai ancora come
-          starci dentro.
+          È per te se hai un business avviato da almeno un anno, trovi clienti e fai contenuti, ma
+          non sai se tutto questo reggerà fra due mesi. Vuoi qualcosa di più grande e non vuoi più
+          costruirlo da sola.
         </p>
         <p className="mt-5 text-lg text-foreground/70">
           Se stai partendo da zero, questo evento non fa ancora per te.
