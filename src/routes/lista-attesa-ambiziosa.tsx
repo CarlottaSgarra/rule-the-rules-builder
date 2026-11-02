@@ -20,8 +20,6 @@ import community from "@/assets/community.png";
 // prima di pubblicare la pagina).
 const WAITLIST_ACTION = "https://systeme.io/embedded/44087792/subscription";
 
-// Apertura delle vendite: 7 dicembre 2026 (ora da confermare).
-const SALES_OPEN = new Date("2026-12-07T00:00:00+01:00").getTime();
 
 export const Route = createFileRoute("/lista-attesa-ambiziosa")({
   head: () => ({
@@ -1021,164 +1019,44 @@ function ChangeText() {
   );
 }
 
-/* ---------------------------------------------------------------- 6. Le tre tappe */
+/* ---------------------------------------------------------------- 6. Iscrizione */
 
-const STEPS = [
-  {
-    when: "Oggi",
-    title: "Entri in lista d'attesa",
-    text: "Gratis. Entrare in lista non ti impegna a comprare.",
-    tag: "Gratis",
-    src: carlottaWallRight,
-    pos: "50% 25%",
-  },
-  {
-    when: "7 dicembre",
-    title: "Aprono le vendite",
-    text: "Chi è in lista d'attesa lo sa per prima e ha un prezzo riservato.",
-    tag: "Prezzo riservato",
-    src: carlottaPresenting,
-    pos: "45% 30%",
-    highlight: true,
-  },
-  {
-    when: "Febbraio 2027",
-    title: "Ambiziosa dal vivo",
-    text: "100 posti in tutto.",
-    tag: "100 posti",
-    src: sharonCarlotta,
-    pos: "50% 35%",
-  },
-];
-
-function Steps() {
+// Subito dopo le foto impilate: il form della lista d'attesa, con il perché
+// conviene iscriversi adesso.
+function WaitlistSignup() {
   return (
-    <section className="bg-background px-4 py-24 md:px-12 md:py-32">
-      <div className="mx-auto max-w-7xl">
-        <h2 className="mb-12 text-center font-display text-3xl leading-tight text-foreground sm:text-5xl">
-          Come si arriva ad <em className="italic">Ambiziosa dal vivo</em>
-        </h2>
-        <div className="grid gap-6 md:grid-cols-3 md:gap-5">
-          {STEPS.map((s, i) => (
-            <StepCard key={s.when} index={i} {...s} />
-          ))}
-        </div>
-        <div className="mt-14 flex flex-col items-center gap-3 text-center">
-          <a
-            href="#lista-attesa"
-            onClick={scrollToWaitlist}
-            className="glow-sweep relative rounded-full bg-primary px-8 py-4 font-condensed text-sm font-semibold uppercase tracking-[0.15em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:text-base"
-          >
-            Entra in lista d'attesa
-          </a>
-          <p className="text-sm text-foreground/70">Entrare in lista è gratis e non ti impegna a comprare.</p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function StepCard({
-  when,
-  title,
-  text,
-  tag,
-  src,
-  pos,
-  highlight,
-  index,
-}: (typeof STEPS)[number] & { index: number }) {
-  const { ref, inView } = useInView<HTMLDivElement>();
-  return (
-    <div
-      ref={ref}
-      className="group transition-all duration-700 ease-out"
-      style={{
-        opacity: inView ? 1 : 0,
-        transform: inView ? "none" : "translateY(40px)",
-        transitionDelay: `${index * 120}ms`,
-      }}
-    >
-      <div className={`relative aspect-[4/5] overflow-hidden rounded-3xl ${highlight ? "ring-4 ring-primary" : ""}`}>
-        <img
-          src={src}
-          alt=""
-          loading="lazy"
-          className="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-105"
-          style={{ objectPosition: pos }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-        <span className="absolute bottom-5 left-5 font-display text-4xl text-white sm:text-5xl">{when}</span>
-      </div>
-      <div className="mt-4 flex items-start justify-between gap-4">
+    <section className="bg-background px-5 py-24 sm:py-32">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
         <div>
-          <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-          <p className="mt-1 text-sm text-foreground/70">{text}</p>
-        </div>
-        <span
-          className={`shrink-0 rounded-full px-3 py-1 font-condensed text-xs uppercase tracking-[0.12em] ${
-            highlight ? "bg-primary text-primary-foreground" : "bg-foreground text-background"
-          }`}
-        >
-          {tag}
-        </span>
-      </div>
-    </div>
-  );
-}
-
-/* ---------------------------------------------------------------- 7. Conto alla rovescia */
-
-function useTimeLeft(target: number) {
-  const [left, setLeft] = useState<number | null>(null);
-  useEffect(() => {
-    const tick = () => setLeft(target - Date.now());
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [target]);
-  const ms = Math.max(0, left ?? 0);
-  return [
-    { v: Math.floor(ms / 86400000), l: "giorni" },
-    { v: Math.floor((ms / 3600000) % 24), l: "ore" },
-    { v: Math.floor((ms / 60000) % 60), l: "minuti" },
-    { v: Math.floor((ms / 1000) % 60), l: "secondi" },
-  ].map((c) => ({ ...c, v: left === null ? "--" : String(c.v).padStart(2, "0") }));
-}
-
-function CountdownBand() {
-  const cells = useTimeLeft(SALES_OPEN);
-  const { ref, progress } = useScrollProgress<HTMLElement>("pass");
-
-  return (
-    <section ref={ref} className="bg-background">
-      <div className="relative h-[60vh] overflow-hidden md:h-[80vh]">
-        <img
-          src={carlottaPresenting}
-          alt="Carlotta sul palco"
-          loading="lazy"
-          className="absolute inset-0 size-full object-cover"
-          style={{ objectPosition: "45% 30%", transform: `scale(${lerp(1.15, 1, progress)})` }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-        <p className="absolute inset-x-0 bottom-8 px-5 text-center font-condensed text-sm uppercase tracking-[0.3em] text-white sm:bottom-12 sm:text-base">
-          All'apertura delle vendite mancano
-        </p>
-      </div>
-      <div className="grid grid-cols-2 border-b border-foreground/15 md:grid-cols-4">
-        {cells.map((c, i) => (
-          <div
-            key={c.l}
-            className={`flex flex-col items-center gap-1 px-4 py-8 md:py-12 ${i > 0 ? "md:border-l md:border-foreground/15" : ""} ${i % 2 === 1 ? "border-l border-foreground/15 md:border-l" : ""} ${i < 2 ? "border-b border-foreground/15 md:border-b-0" : ""}`}
-          >
-            <span className="font-condensed text-[11px] uppercase tracking-[0.25em] text-foreground/60">
-              {c.l}
-            </span>
-            <span className="font-display text-5xl tabular-nums text-foreground sm:text-6xl lg:text-7xl">
-              {c.v}
-            </span>
+          <span className="font-condensed text-xs uppercase tracking-[0.3em] text-foreground/60 sm:text-sm">
+            Le vendite aprono il 7 dicembre
+          </span>
+          <h2 className="mt-4 font-display text-4xl leading-tight text-foreground sm:text-5xl">
+            Iscriviti alla lista d'attesa di <span className="text-[var(--gold-text)]">Ambiziosa</span>
+          </h2>
+          <div className="mt-8 space-y-5 text-lg leading-relaxed text-foreground/80">
+            <p>
+              Il 7 dicembre aprono le vendite e i posti sono 100. Chi è in lista d'attesa lo sa per
+              prima: ti scrivo io appena si aprono, così puoi entrare prima che i posti finiscano.{" "}
+              <strong className="font-semibold text-foreground">
+                E hai l'early ticket, il prezzo riservato solo a chi è in lista.
+              </strong>
+            </p>
           </div>
-        ))}
+        </div>
+        <div
+          id="lista-attesa"
+          data-waitlist
+          className="w-full scroll-mt-28 rounded-3xl bg-card p-6 sm:p-8"
+          // Il link alla privacy usa text-primary (oro), poco leggibile sulla
+          // card chiara: qui lo riportiamo al nero sporco.
+          style={{ boxShadow: "var(--shadow-deep)", "--primary": "var(--secondary)" } as React.CSSProperties}
+        >
+          <SignupForm compact action={WAITLIST_ACTION} submitLabel="Entra in lista d'attesa" />
+          <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
+            Entrare in lista è gratis e non ti impegna a comprare.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -1226,17 +1104,6 @@ function PromiseSection() {
         </div>
       </div>
 
-      <div className="mx-auto mt-24 max-w-3xl rounded-3xl border border-foreground/15 p-8 text-center sm:p-12">
-        <span className="font-condensed text-xs uppercase tracking-[0.3em] text-foreground/60">Per chi è</span>
-        <p className="mt-4 text-xl leading-relaxed text-foreground sm:text-2xl">
-          È per te se hai un business avviato da almeno un anno, trovi clienti e fai contenuti, ma{" "}
-          <strong className="font-semibold">non sai se tutto questo reggerà fra due mesi.</strong> Vuoi qualcosa di più grande e non vuoi più
-          costruirlo da sola.
-        </p>
-        <p className="mt-5 text-lg text-foreground/70">
-          Se stai partendo da zero, questo evento non fa ancora per te.
-        </p>
-      </div>
     </section>
   );
 }
@@ -1268,7 +1135,7 @@ function Closing() {
           Lasciami nome ed email e ti avviso io.
         </p>
         <div
-          id="lista-attesa"
+          data-waitlist
           className="mx-auto mt-10 w-full max-w-md scroll-mt-28 rounded-3xl bg-card p-6 text-left sm:p-8"
           // Il link alla privacy usa text-primary (oro), poco leggibile sulla
           // card chiara: qui lo riportiamo al nero sporco.
@@ -1289,8 +1156,11 @@ function FloatingCta() {
   const [show, setShow] = useState(false);
   useEffect(() => {
     const onScroll = () => {
-      const form = document.getElementById("lista-attesa");
-      const formVisible = form ? form.getBoundingClientRect().top < window.innerHeight : false;
+      // Si nasconde mentre uno dei due form è sullo schermo.
+      const formVisible = Array.from(document.querySelectorAll("[data-waitlist]")).some((el) => {
+        const rect = el.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom > 0;
+      });
       setShow(window.scrollY > window.innerHeight * 2 && !formVisible);
     };
     onScroll();
@@ -1324,8 +1194,7 @@ function ListaAttesaAmbiziosa() {
       <ProblemText />
       <ZoomStack />
       <ChangeText />
-      <Steps />
-      <CountdownBand />
+      <WaitlistSignup />
       <PromiseSection />
       <Closing />
       <FloatingCta />
