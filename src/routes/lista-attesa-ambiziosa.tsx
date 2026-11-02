@@ -179,13 +179,14 @@ function Topbar() {
 
   return (
     <header
-      className={`fixed left-1/2 top-4 z-50 grid w-[92%] max-w-3xl -translate-x-1/2 grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-full px-4 py-2 sm:gap-3 sm:px-5 transition-all duration-300 ${
+      className={`fixed left-1/2 top-4 z-50 grid w-[92%] max-w-4xl -translate-x-1/2 grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-full px-4 py-2 sm:gap-3 sm:px-5 transition-all duration-300 ${
         scrolled ? "bg-background/95 shadow-lg md:bg-background/80 md:backdrop-blur-md" : "bg-transparent"
       }`}
     >
       {/* Bottone sempre al centro; data a sinistra e, dopo il primo scroll,
-          "I posti sono limitati" a destra con lo stesso peso della data. */}
-      <span className="font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 sm:text-xs sm:tracking-[0.2em]">
+          "Posti limitati · Early ticket per gli iscritti" a destra con lo stesso peso
+          della data. Da telefono, dove la colonna è stretta, resta "Early ticket". */}
+      <span className="font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 sm:text-xs sm:tracking-[0.12em]">
         Le vendite aprono il{"\u00a0"}7/12
       </span>
       <a
@@ -196,11 +197,13 @@ function Topbar() {
         Entra in lista
       </a>
       <span
-        className={`text-right font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 transition-all duration-500 sm:text-xs sm:tracking-[0.2em] ${
+        className={`text-balance text-right font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 transition-all duration-500 sm:text-xs sm:tracking-[0.12em] ${
           scrolled ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
         }`}
       >
-        I posti sono limitati
+        Posti limitati
+        <span className="hidden md:inline"> · Early ticket per gli iscritti</span>
+        <span className="block md:hidden">Early ticket</span>
       </span>
     </header>
   );
