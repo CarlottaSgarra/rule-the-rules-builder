@@ -182,8 +182,27 @@ function Topbar() {
         scrolled ? "bg-background/95 shadow-lg md:bg-background/80 md:backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <span className="font-condensed text-[11px] uppercase tracking-[0.2em] text-foreground/80 sm:text-xs">
-        Le vendite aprono il 7{"\u00a0"}dicembre
+      {/* Da telefono non c'è posto al centro: dopo il primo scroll la data lascia
+          il posto a "I posti sono limitati". */}
+      <span className="relative grid font-condensed text-[11px] uppercase tracking-[0.2em] text-foreground/80 sm:text-xs">
+        <span
+          className={`col-start-1 row-start-1 transition-opacity duration-500 ${scrolled ? "opacity-0 md:opacity-100" : "opacity-100"}`}
+        >
+          Le vendite aprono il 7{"\u00a0"}dicembre
+        </span>
+        <span
+          aria-hidden
+          className={`col-start-1 row-start-1 self-center font-semibold text-foreground transition-opacity duration-500 md:hidden ${scrolled ? "opacity-100" : "opacity-0"}`}
+        >
+          I posti sono limitati
+        </span>
+      </span>
+      <span
+        className={`pointer-events-none absolute left-1/2 hidden -translate-x-1/2 font-condensed text-sm font-semibold uppercase tracking-[0.25em] text-foreground transition-all duration-500 md:inline ${
+          scrolled ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
+        }`}
+      >
+        I posti sono limitati
       </span>
       <a
         href="#lista-attesa"
@@ -281,15 +300,23 @@ function Hero() {
               className="pointer-events-none absolute inset-0 size-full object-cover"
               style={{ objectPosition: "62% 12%" }}
             />
+            {/* Davanti allo scontorno: una copia invisibile del titolo dà la misura,
+                così l'etichetta parte esattamente dalla A di AMBIZIOSA. */}
             <div
-              className="absolute inset-x-0 top-1/2 z-10 px-6 text-center"
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 top-1/2 z-10 flex -translate-y-1/2 justify-center"
               style={{
                 opacity: 1 - titleOut,
-                transform: `translate3d(0, calc(-100% - 9.5vw - 0.75rem + ${-titleOut * 160}px), 0)`,
+                transform: `translate3d(0, ${-titleOut * 200}px, 0)`,
               }}
             >
-              <span className="inline-block whitespace-nowrap rounded-full bg-background/85 px-3 py-1.5 font-condensed text-[11px] font-medium uppercase leading-relaxed tracking-[0.14em] sm:px-4 sm:tracking-[0.3em] text-secondary sm:text-sm">
-                Il mio nuovo evento dal vivo del 2027
+              <span className="relative whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight">
+                <span className="invisible">AMBIZIOSA</span>
+                <span className="absolute bottom-full left-[0.06em] mb-2 max-w-[48%] whitespace-normal font-condensed text-[11px] font-semibold uppercase leading-relaxed tracking-[0.2em] text-secondary sm:mb-3 sm:text-sm md:max-w-none md:whitespace-nowrap md:tracking-[0.3em]"
+                  style={{ textShadow: "0 0 10px rgb(255 255 255 / 0.95), 0 0 2px rgb(255 255 255 / 0.9)" }}
+                >
+                  Il mio nuovo evento dal vivo del 2027
+                </span>
               </span>
             </div>
           </div>
