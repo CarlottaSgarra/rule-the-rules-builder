@@ -182,16 +182,16 @@ function Topbar() {
         scrolled ? "bg-background/95 shadow-lg md:bg-background/80 md:backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <span className="font-condensed text-sm font-semibold uppercase tracking-[0.3em] text-foreground">
-        Ambiziosa
+      <span className="font-condensed text-[11px] uppercase tracking-[0.2em] text-foreground/80 sm:text-xs">
+        Le vendite aprono il 7{"\u00a0"}dicembre
       </span>
-      <span className="hidden font-condensed text-xs uppercase tracking-[0.2em] text-foreground/70 sm:inline">
-        Le vendite aprono il 7 dicembre
+      <span className="pointer-events-none absolute left-1/2 hidden -translate-x-1/2 font-condensed text-sm font-semibold uppercase tracking-[0.3em] text-foreground md:inline">
+        Ambiziosa
       </span>
       <a
         href="#lista-attesa"
         onClick={scrollToWaitlist}
-        className="rounded-full bg-foreground px-4 py-2 font-condensed text-xs uppercase tracking-[0.15em] text-background transition-transform hover:-translate-y-0.5 sm:text-sm"
+        className="shrink-0 rounded-full bg-primary px-4 py-2 font-condensed text-xs uppercase tracking-[0.15em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:text-sm"
       >
         Entra in lista
       </a>
@@ -285,18 +285,18 @@ function Hero() {
               style={{ objectPosition: "62% 12%" }}
             />
             <div
-              className="absolute left-[6%] top-[11%] z-10 max-w-[40%] md:top-[10%]"
+              className="absolute left-[6%] top-[11%] z-10 max-w-[44%] md:top-[10%] md:max-w-none md:whitespace-nowrap"
               style={{
                 opacity: 1 - titleOut,
                 transform: `translate3d(0, ${-titleOut * 160}px, 0)`,
               }}
             >
               <span className="block font-condensed text-[11px] uppercase leading-relaxed tracking-[0.35em] text-secondary/80 sm:text-sm">
-                Il prossimo evento dal vivo
+                Il mio nuovo evento dal vivo del 2027
               </span>
             </div>
           </div>
-          <h1 className="sr-only">Ambiziosa, il prossimo evento dal vivo</h1>
+          <h1 className="sr-only">Ambiziosa, il mio nuovo evento dal vivo del 2027</h1>
         </div>
 
         {desktop ? <SideColumn images={[sharonCarlotta, carlottaTalking]} side="right" t={sides} /> : null}
