@@ -185,9 +185,6 @@ function Topbar() {
       <span className="font-condensed text-[11px] uppercase tracking-[0.2em] text-foreground/80 sm:text-xs">
         Le vendite aprono il 7{"\u00a0"}dicembre
       </span>
-      <span className="pointer-events-none absolute left-1/2 hidden -translate-x-1/2 font-condensed text-sm font-semibold uppercase tracking-[0.3em] text-foreground md:inline">
-        Ambiziosa
-      </span>
       <a
         href="#lista-attesa"
         onClick={scrollToWaitlist}
@@ -259,7 +256,7 @@ function Hero() {
             />
             <div
               aria-hidden
-              className="absolute inset-x-0 top-[16%] flex justify-center md:top-[14%]"
+              className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 justify-center"
               style={{
                 opacity: 1 - titleOut,
                 transform: `translate3d(0, ${-titleOut * 200}px, 0)`,
@@ -285,13 +282,13 @@ function Hero() {
               style={{ objectPosition: "62% 12%" }}
             />
             <div
-              className="absolute left-[6%] top-[11%] z-10 max-w-[44%] md:top-[10%] md:max-w-none md:whitespace-nowrap"
+              className="absolute inset-x-0 top-1/2 z-10 px-6 text-center"
               style={{
                 opacity: 1 - titleOut,
-                transform: `translate3d(0, ${-titleOut * 160}px, 0)`,
+                transform: `translate3d(0, calc(-100% - 9.5vw - 0.75rem + ${-titleOut * 160}px), 0)`,
               }}
             >
-              <span className="block font-condensed text-[11px] uppercase leading-relaxed tracking-[0.35em] text-secondary/80 sm:text-sm">
+              <span className="inline-block whitespace-nowrap rounded-full bg-background/85 px-3 py-1.5 font-condensed text-[11px] font-medium uppercase leading-relaxed tracking-[0.14em] sm:px-4 sm:tracking-[0.3em] text-secondary sm:text-sm">
                 Il mio nuovo evento dal vivo del 2027
               </span>
             </div>
