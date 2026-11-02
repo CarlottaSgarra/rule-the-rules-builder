@@ -509,7 +509,7 @@ function Manifesto() {
       <div className="px-6 pb-24 pt-4 md:px-12 md:pb-32">
         <WordReveal
           className="mx-auto max-w-4xl text-center text-2xl leading-relaxed text-foreground sm:text-3xl lg:text-4xl"
-          text="Ambiziosa è il mio evento live del 2027: due giornate dal vivo in cui lavoriamo su tutto ciò che negli eventi non viene mai spiegato. **Struttura di funnel, ads, fisco, previsione annuale delle clienti.**"
+          text="**Ambiziosa** è il mio evento live del **2027:** due giornate dal vivo in cui lavoriamo su tutto ciò che negli eventi non viene mai spiegato. **Struttura di funnel, ads, fisco, previsione annuale delle clienti.**"
         />
         <WordReveal
           className="mx-auto mt-8 max-w-3xl text-center text-lg leading-relaxed text-foreground/80 sm:text-xl"
@@ -523,10 +523,10 @@ function Manifesto() {
 /* ---------------------------------------------------------------- 4. Il problema */
 
 const PROBLEM_SLIDES = [
-  { src: carlottaPresenting, line: "Hai le clienti." },
-  { src: carlottaTalking, line: "Fai contenuti." },
-  { src: carlottaLooking2, line: "Il fatturato cresce." },
-  { src: sharonSpeaking, line: "E poi?" },
+  { src: carlottaPresenting, line: "I contenuti sono il primo step." },
+  { src: carlottaTalking, line: "Ma da soli non tengono in piedi un'azienda." },
+  { src: carlottaLooking2, line: "E non ti garantiscono un fatturato costante." },
+  { src: sharonSpeaking, line: "In Ambiziosa 2027 lavoriamo su tutta la struttura." },
 ];
 
 function BlurLine({ text, t, lowPower }: { text: string; t: number; lowPower: boolean }) {
