@@ -618,7 +618,9 @@ function ProblemSplit() {
 // Dopo che le foto si sono raggruppate al centro arriva il racconto: il
 // titolo, poi un solo paragrafo in tre parti che si accende parola per parola.
 // Accanto, un piccolo elemento animato mostra la parte che si sta leggendo.
-const PROBLEM_TITLE = "Trovi clienti ogni mese. Sei sicura di trovarli anche fra due mesi?";
+const PROBLEM_TITLE = "È vero, in questo momento stai trovando clienti ogni mese. Ma sei sicura di trovarli anche fra due mesi?";
+// Da questa parola in poi il titolo è in oro.
+const PROBLEM_TITLE_GOLD_FROM = 10;
 const PROBLEM_PARTS = [
   "Magari quest'anno hai fatturato più di quanto pensavi. Ma se ti chiedo come ci sei arrivata, **come lo rifai l'anno prossimo** e dove vuoi arrivare negli anni dopo, la risposta non è così chiara.",
   "Io ci sono passata. Sono uscita dal forfettario **senza un previsionale, senza una struttura.** Ho lavorato due anni in perdita: ogni volta che arrivava una cliente facevo il conto di quanto mi restava in tasca, quasi niente. Poi un giorno di giugno ho aperto **un F24 da 51 mila euro.**",
@@ -839,7 +841,7 @@ function ProblemStory() {
                 return (
                   <span
                     key={i}
-                    className={`inline-block ${i >= 4 ? "text-primary" : ""}`}
+                    className={`inline-block ${i >= PROBLEM_TITLE_GOLD_FROM ? "text-primary" : ""}`}
                     style={{
                       opacity: t,
                       filter: lowPower ? undefined : `blur(${lerp(20, 0, t)}px)`,
@@ -894,7 +896,7 @@ function ProblemStoryMobile() {
         minOpacity={0}
         className="font-display text-4xl leading-tight text-ink"
         text={PROBLEM_TITLE}
-        emphasisFrom={4}
+        emphasisFrom={PROBLEM_TITLE_GOLD_FROM}
         emphasisClassName="text-primary"
       />
       <div className="mt-10 space-y-10">
