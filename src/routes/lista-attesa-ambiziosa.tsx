@@ -339,7 +339,7 @@ function Hero() {
 
 /* ---------------------------------------------------------------- 2. Titoli che ruotano */
 
-// La parola chiave di ogni frase è in verde Tidal.
+// La parola chiave di ogni frase è in oro.
 const FLIP_LINES = [
   { before: "Basta speech dove prendi solo ", key: "appunti", after: "." },
   { before: "Basta speech dove torni a casa con un sacco di ", key: "domande", after: "." },
@@ -384,7 +384,7 @@ function FlipHeadlines() {
                 >
                   <span>
                     {line.before}
-                    <span className="text-primary">{line.key}</span>
+                    <span className="text-[var(--gold-text)]">{line.key}</span>
                     {line.after}
                   </span>
                 </h2>
@@ -674,7 +674,7 @@ function ZoomStack() {
   const per = 1 / STACK.length;
 
   return (
-    <section ref={ref} className="relative bg-[#1a0010]" style={{ height: "460vh" }}>
+    <section ref={ref} className="relative bg-secondary" style={{ height: "460vh" }}>
       <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden px-4">
         <div className="relative h-[72vh] w-full max-w-5xl md:h-[80vh]">
           {STACK.map((card, i) => {
@@ -712,7 +712,7 @@ function ZoomStack() {
 
 function ChangeText() {
   return (
-    <section className="bg-[#1a0010] px-5 pb-24 pt-8 sm:pb-32">
+    <section className="bg-secondary px-5 pb-24 pt-8 sm:pb-32">
       <div className="mx-auto max-w-3xl space-y-5 text-lg text-white/75">
         <p>
           Mi sono rotta le palle degli eventi in cui si applaude, si fanno due foto e poi il lunedì
@@ -961,7 +961,7 @@ function Closing() {
         className="absolute inset-0 size-full object-cover"
         style={{ objectPosition: "50% 25%" }}
       />
-      <div className="absolute inset-0 bg-[#1a0010]/70" />
+      <div className="absolute inset-0 bg-secondary/70" />
       <div className="relative mx-auto max-w-3xl px-5 py-24 text-center sm:py-32">
         <span className="font-condensed text-xs uppercase tracking-[0.3em] text-white/70 sm:text-sm">
           Segnati questa data
@@ -977,8 +977,8 @@ function Closing() {
         <div
           id="lista-attesa"
           className="mx-auto mt-10 w-full max-w-md scroll-mt-28 rounded-3xl bg-card p-6 text-left sm:p-8"
-          // Il link alla privacy usa text-primary (verde lime), illeggibile sulla
-          // card chiara: qui lo riportiamo al Mulberry Wood.
+          // Il link alla privacy usa text-primary (oro), poco leggibile sulla
+          // card chiara: qui lo riportiamo al nero sporco.
           style={{ boxShadow: "var(--shadow-deep)", "--primary": "var(--secondary)" } as React.CSSProperties}
         >
           <SignupForm compact action={WAITLIST_ACTION} submitLabel="Entra in lista d'attesa" />
@@ -1023,7 +1023,7 @@ function FloatingCta() {
 
 function ListaAttesaAmbiziosa() {
   return (
-    <div className="bg-background text-foreground">
+    <div className="theme-ambiziosa-2027 bg-background text-foreground">
       <Topbar />
       <Hero />
       <Manifesto />

@@ -158,6 +158,44 @@
   --font-sans: var(--font-body);
 }
 
+@font-face {
+  font-family: "Svetze";
+  src: url("./assets/fonts/svetze-extrabold.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Ambiziosa 2027 (evento dal vivo): nero sporco, bianco sporco e oro.
+   Vale solo dentro le pagine con la classe .theme-ambiziosa-2027. */
+.theme-ambiziosa-2027 {
+  --background: #f4f2ee; /* Bianco sporco */
+  --foreground: #282828; /* Nero sporco */
+  --card: #e9e6e0;
+  --card-foreground: #282828;
+  --popover: #e9e6e0;
+  --popover-foreground: #282828;
+  --primary: #c9a45c; /* Oro: bottoni e parole chiave su nero */
+  --primary-foreground: #282828;
+  --secondary: #282828; /* Box e sezioni scure */
+  --secondary-foreground: #f4f2ee;
+  --muted: #e2ded7;
+  --muted-foreground: #5c5a56;
+  --accent: #282828;
+  --accent-foreground: #f4f2ee;
+  --border: #cfcac1;
+  --input: #cfcac1;
+  --ring: #c9a45c;
+  --ink: #f4f2ee;
+  --ink-muted: #c9c5bd;
+  --gold-deep: #c9a45c;
+  --gold-text: #9a7634; /* Oro più scuro per le parole chiave sul bianco sporco */
+  /* Svetze esiste solo in Extra Bold: lo usano tutti i titoli al posto di Fraunces. */
+  --font-display: "Svetze", Georgia, serif;
+  --gradient-gold: linear-gradient(100deg, #b8914a, #d9bb7a, #c9a45c);
+  --shadow-gold: 0 18px 50px -18px rgb(201 164 92 / 0.55);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
