@@ -217,7 +217,7 @@ function SideColumn({ images, side, t }: { images: string[]; side: "left" | "rig
   const dir = side === "left" ? -1 : 1;
   return (
     <div
-      className={`absolute bottom-[30%] top-[84px] flex w-[calc(33%-28px)] flex-row gap-3 will-change-transform ${
+      className={`absolute bottom-[34%] top-[84px] flex w-[calc(33%-28px)] flex-row gap-3 will-change-transform ${
         side === "left" ? "left-4" : "right-4"
       }`}
       style={{ transform: `translate3d(${lerp(dir * 115, 0, t)}%, 0, 0)`, opacity: t }}
@@ -244,7 +244,7 @@ function Hero() {
   const caption = phase(progress, 0.6, 0.85);
   // La foto resta a tutto schermo e si "ritaglia" fino alla scheda centrale.
   const insetX = desktop ? 33 : 6;
-  const insetBottom = desktop ? 30 : 36;
+  const insetBottom = desktop ? 34 : 36;
   const clip = `inset(${84 * shrink}px ${insetX * shrink}% ${insetBottom * shrink}% ${insetX * shrink}% round ${24 * shrink}px)`;
 
   return (
@@ -326,7 +326,7 @@ function Hero() {
         {desktop ? <SideColumn images={[sharonCarlotta, carlottaTalking]} side="right" t={sides} /> : null}
 
         <div
-          className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center px-5 text-center md:justify-start md:pt-8"
+          className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center px-5 text-center md:justify-start md:pt-6"
           style={{
             height: `${insetBottom}%`,
             opacity: caption,
@@ -334,7 +334,7 @@ function Hero() {
           }}
         >
           {/* Su computer tre righe esatte, così il testo resta sotto le foto laterali. */}
-          <p className="max-w-5xl text-balance font-display text-2xl leading-tight text-foreground sm:text-3xl lg:text-[2.1rem]">
+          <p className="max-w-5xl text-balance font-display text-2xl leading-tight text-foreground sm:text-3xl lg:text-[clamp(1.6rem,4.4vh,2.1rem)]">
             <span className="text-[var(--gold-text)]">Ambiziosa</span> è il mio evento live di 2 giorni <br className="hidden md:block" />
             dove lavoriamo sulla struttura per trasformare <br className="hidden md:block" />
             la tua attività in un'azienda.
@@ -1163,7 +1163,7 @@ function FloatingCta() {
         const rect = el.getBoundingClientRect();
         return rect.top < window.innerHeight && rect.bottom > 0;
       });
-      setShow(window.scrollY > window.innerHeight * 2 && !formVisible);
+      setShow(window.scrollY > window.innerHeight * 2.5 && !formVisible);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
