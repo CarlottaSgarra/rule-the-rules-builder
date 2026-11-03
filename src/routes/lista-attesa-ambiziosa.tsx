@@ -334,12 +334,12 @@ function Hero() {
           }}
         >
           {/* Su computer tre righe esatte, così il testo resta sotto le foto laterali. */}
-          <p className="max-w-5xl text-balance font-display text-2xl leading-tight text-foreground sm:text-3xl lg:text-[2.3rem]">
+          <p className="max-w-5xl text-balance font-display text-2xl leading-tight text-foreground sm:text-3xl lg:text-[2.1rem]">
             <span className="text-[var(--gold-text)]">Ambiziosa</span> è il mio evento live di 2 giorni <br className="hidden md:block" />
             dove lavoriamo sulla struttura per trasformare <br className="hidden md:block" />
             la tua attività in un'azienda.
           </p>
-          <p className="mt-4 max-w-4xl text-balance font-condensed text-sm uppercase leading-relaxed tracking-[0.2em] text-foreground/75 sm:text-base">
+          <p className="mt-3 max-w-4xl text-balance font-condensed text-sm uppercase leading-relaxed tracking-[0.2em] text-foreground/75 sm:text-base">
             Lavoriamo su quello che non viene mai detto negli eventi standard:{" "}
             <span className="text-foreground">funnel, ads, fisco, visione aziendale, delega</span>
           </p>
