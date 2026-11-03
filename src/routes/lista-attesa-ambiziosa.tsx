@@ -333,13 +333,15 @@ function Hero() {
             transform: `translate3d(0, ${(1 - caption) * 30}px, 0)`,
           }}
         >
-          {/* Su computer due righe esatte, così il testo resta sotto le foto laterali. */}
-          <p className="max-w-5xl font-display text-2xl leading-tight text-foreground sm:text-4xl lg:text-[2.6rem]">
-            Voglio cambiare il mondo della formazione <br className="hidden md:block" />
-            imprenditoriale dal vivo in Italia.
+          {/* Su computer tre righe esatte, così il testo resta sotto le foto laterali. */}
+          <p className="max-w-5xl text-balance font-display text-2xl leading-tight text-foreground sm:text-3xl lg:text-[2.3rem]">
+            <span className="text-[var(--gold-text)]">Ambiziosa</span> è il mio evento live di 2 giorni <br className="hidden md:block" />
+            dove lavoriamo sulla struttura per trasformare <br className="hidden md:block" />
+            la tua attività in un'azienda.
           </p>
           <p className="mt-4 max-w-4xl text-balance font-condensed text-sm uppercase leading-relaxed tracking-[0.2em] text-foreground/75 sm:text-base">
-            Il <span className="text-foreground">95%</span> degli eventi di marketing in Italia è pura teoria e ti fa tornare a casa con più dubbi che altro
+            Lavoriamo su quello che non viene mai detto negli eventi standard:{" "}
+            <span className="text-foreground">funnel, ads, fisco, visione aziendale, delega</span>
           </p>
         </div>
       </div>
