@@ -345,8 +345,8 @@ function Hero() {
         >
           {/* Su computer tre righe esatte, così il testo resta sotto le foto laterali. */}
           <p className="max-w-5xl text-balance font-display text-xl leading-tight text-foreground sm:text-3xl lg:text-[clamp(1.6rem,4.4vh,2.1rem)]">
-            <span className="text-[var(--gold-text)]">Ambiziosa</span> è il mio evento live di 2 giorni, <br className="hidden md:block" />
-            dedicato alle donne imprenditrici che hanno l'ambizione <br className="hidden md:block" />
+            <span className="text-[var(--gold-text)]">Ambiziosa</span> è il mio evento live di 2 giorni, a febbraio, <br className="hidden md:block" />
+            dedicato a donne imprenditrici che hanno l'ambizione <br className="hidden md:block" />
             di trasformare la loro attività in un'azienda strutturata.
           </p>
           <p className="mt-3 max-w-4xl text-balance font-condensed text-xs uppercase leading-relaxed tracking-[0.2em] text-foreground/75 sm:text-base">
@@ -365,7 +365,7 @@ function Hero() {
 const FLIP_LINES = [
   { before: "Ambiziosa non è un evento dove prendi ", key: "appunti", after: " passivamente." },
   { before: "In due giorni lavoriamo sulla tua ", key: "struttura di business", after: "." },
-  { before: "Contenuti, offerte, funnel, ads. E ", key: "il mio team", after: " ti controlla tutto." },
+  { before: "Contenuti, offerte, funnel, ads. Con il supporto del ", key: "mio team", after: " in diretta." },
 ];
 
 // Video di presentazione: finché manca, al suo posto c'è un riquadro con il tasto play.
