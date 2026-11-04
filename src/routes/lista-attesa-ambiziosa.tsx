@@ -10,16 +10,17 @@ import heroCutoutDesktop from "@/assets/ambiziosa-carlotta-muro-cutout.webp";
 import carlottaPresenting from "@/assets/carlotta-presenting.jpg";
 import carlottaTalking from "@/assets/carlotta-talking.jpg";
 import carlottaLooking2 from "@/assets/carlotta-looking-2.jpg";
-import carlottaHug from "@/assets/carlotta-hug.jpg";
 import carlottaWalking from "@/assets/carlotta-walking.jpg";
 import carlottaWall from "@/assets/ambiziosa-carlotta-muro-web.jpg";
 import carlottaWallRight from "@/assets/Carlotta che guarda a destra appoggiata al muro.jpg";
-import carlottaPointing from "@/assets/carlotta-pointing.jpg";
+import carlottaStage from "@/assets/method-bg.jpg";
 import community from "@/assets/community.png";
 import participantsSmiling from "@/assets/social-proof-1.jpg";
 import participantNotes from "@/assets/social-proof-11.jpg";
 import participantsRoom from "@/assets/social-proof-4.jpg";
 import participantsHug from "@/assets/social-proof-7.jpg";
+import participantWriting from "@/assets/social-proof-10.jpg";
+import participantHandUp from "@/assets/social-proof-12.jpg";
 
 // Form Systeme della lista d'attesa dell'evento dal vivo.
 const WAITLIST_ACTION = "https://systeme.io/embedded/46305405/subscription";
@@ -207,16 +208,11 @@ function Topbar() {
         scrolled ? "bg-background/95 shadow-lg md:bg-background/80 md:backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      {/* Bottone sempre al centro; data a sinistra e, dopo il primo scroll,
-          "Posti limitati · Early ticket per gli iscritti" a destra con lo stesso peso
-          della data. Da telefono, dove la colonna è stretta, resta "Early ticket". */}
+      {/* Bottone sempre al centro, data a sinistra e "Posti limitati · Early ticket per
+          gli iscritti" a destra, visibili da subito: allo scroll compare solo lo sfondo
+          con l'ombra. Da telefono, dove la colonna è stretta, resta "Early ticket". */}
       <div className="min-w-0">
-        {/* Con left + translate il testo scorre da accanto al bottone al bordo sinistro. */}
-        <span
-          className={`relative inline-block font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 transition-all duration-500 sm:text-xs sm:tracking-[0.12em] ${
-            scrolled ? "left-0 translate-x-0 text-left" : "left-full -translate-x-full text-right"
-          }`}
-        >
+        <span className="inline-block text-left font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 sm:text-xs sm:tracking-[0.12em]">
           Le vendite ufficiali aprono il{"\u00a0"}7/12
         </span>
       </div>
@@ -227,11 +223,7 @@ function Topbar() {
       >
         Entra in lista d'attesa
       </a>
-      <span
-        className={`text-balance text-right font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 transition-all duration-500 sm:text-xs sm:tracking-[0.12em] ${
-          scrolled ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
-        }`}
-      >
+      <span className="text-balance text-right font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 sm:text-xs sm:tracking-[0.12em]">
         <span className="hidden sm:inline">Posti limitati</span>
         <span className="hidden md:inline"> · Early ticket per gli iscritti</span>
         <span className="block md:hidden">Early ticket</span>
@@ -290,6 +282,12 @@ function Hero() {
   const startBottom = desktop ? HERO_FRAME.bottom : 0;
   const clip = `inset(${lerp(startTop, HERO_PHOTOS_TOP, shrink)}px ${lerp(startX, insetX, shrink)}% ${lerp(startBottom, insetBottom, shrink)}% ${lerp(startX, insetX, shrink)}% round ${lerp(desktop ? 24 : 0, 24, shrink)}px)`;
   const photoPosition = desktop ? "35% 5%" : "62% 12%";
+  // Il titolo non sparisce: sale, si rimpicciolisce e resta in cima alla scheda,
+  // dietro la testa di Carlotta, così si legge tutto (anche la B). Su computer i
+  // valori sono nel sistema della foto, che a sua volta scala e si sposta.
+  const titleTransform = desktop
+    ? `translate3d(${-10.9 * shrink}vw, calc((4.49vw + 48px - 48.5vh) * ${shrink}), 0) scale(${lerp(1, 0.55, shrink)})`
+    : `translate3d(0, calc((8.5vw + 10px - 50svh) * ${shrink}), 0) scale(${lerp(1, 0.95, shrink)})`;
 
   return (
     <section ref={ref} className="relative h-[300vh] bg-background">
@@ -309,7 +307,7 @@ function Hero() {
                     right: `${HERO_FRAME.x}%`,
                     bottom: `${HERO_FRAME.bottom}%`,
                     transformOrigin: "38% 0",
-                    transform: `translate3d(${11 * shrink}vw, ${(HERO_PHOTOS_TOP - HERO_FRAME.top) * shrink}px, 0) scale(${lerp(1, 0.72, shrink)})`,
+                    transform: `translate3d(${11 * shrink}vw, ${(HERO_PHOTOS_TOP - HERO_FRAME.top + 15) * shrink}px, 0) scale(${lerp(1, 0.72, shrink)})`,
                   }
                 : { transform: `translate3d(0, ${HERO_PHOTOS_TOP * shrink}px, 0)` }
             }
@@ -325,11 +323,8 @@ function Hero() {
             </picture>
             <div
               aria-hidden
-              className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 justify-center"
-              style={{
-                opacity: 1 - titleOut,
-                transform: `translate3d(0, ${-titleOut * 200}px, 0)`,
-              }}
+              className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 justify-center will-change-transform"
+              style={{ transform: titleTransform }}
             >
               <span className="whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight md:text-[19vw] text-primary">
                 {TITLE.map((letter, i) => (
@@ -593,11 +588,13 @@ function Manifesto() {
 
 /* ---------------------------------------------------------------- 4. Il problema */
 
-const PROBLEM_SLIDES = [
+const PROBLEM_SLIDES: { src: string; line: string; position?: string; mobilePosition?: string; shift?: number }[] = [
   { src: carlottaPresenting, line: "I contenuti sono il primo step." },
   { src: carlottaTalking, line: "Ma da soli non tengono in piedi un'azienda." },
   { src: carlottaLooking2, line: "E non ti garantiscono un fatturato costante." },
-  { src: carlottaPointing, line: "In Ambiziosa 2027 lavoriamo su tutta la struttura." },
+  // Carlotta è a sinistra nella foto: su computer scorre a destra mentre la foto
+  // si stringe, così nella scheda centrale resta al centro.
+  { src: carlottaStage, line: "In Ambiziosa 2027 lavoriamo su tutta la struttura.", position: "0% 30%", mobilePosition: "11.5% 30%", shift: 24 },
 ];
 
 function BlurLine({ text, t, lowPower }: { text: string; t: number; lowPower: boolean }) {
@@ -646,7 +643,7 @@ function ProblemSplit() {
             className="absolute bottom-6 left-4 top-24 w-[calc(28%-28px)] overflow-hidden rounded-3xl will-change-transform"
             style={{ opacity: split, transform: `translate3d(${lerp(-110, 0, split)}%, 0, 0)` }}
           >
-            <img src={carlottaHug} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
+            <img src={participantWriting} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
           </div>
         ) : null}
 
@@ -661,7 +658,8 @@ function ProblemSplit() {
               style={{
                 // Ogni foto entra a cavallo del cambio di titolo, in poco scroll.
                 opacity: i === 0 ? 1 : clamp((slide - i + 0.1) / 0.2),
-                transform: `scale(${lerp(1.08, 1, clamp(slide - i + 0.1))})`,
+                objectPosition: desktop ? s.position : s.mobilePosition,
+                transform: `translate3d(${desktop ? (s.shift ?? 0) * split : 0}vw, 0, 0) scale(${lerp(1.08, 1, clamp(slide - i + 0.1))})`,
               }}
             />
           ))}
@@ -685,7 +683,7 @@ function ProblemSplit() {
             className="absolute bottom-6 right-4 top-24 w-[calc(28%-28px)] overflow-hidden rounded-3xl will-change-transform"
             style={{ opacity: split, transform: `translate3d(${lerp(110, 0, split)}%, 0, 0)` }}
           >
-            <img src={carlottaWalking} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
+            <img src={participantHandUp} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" style={{ objectPosition: "36% 50%" }} />
           </div>
         ) : null}
       </div>
