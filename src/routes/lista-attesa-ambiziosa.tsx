@@ -362,8 +362,7 @@ function Hero() {
 
 // La parola chiave di ogni frase è in oro.
 const FLIP_LINES = [
-  { before: "Basta eventi dove prendi solo ", key: "appunti", after: "." },
-  { before: "Basta eventi dove torni a casa con un sacco di ", key: "domande", after: "." },
+  { before: "Ambiziosa non è un evento dove prendi ", key: "appunti", after: " passivamente." },
   { before: "In due giorni lavoriamo sulla tua ", key: "struttura di business", after: "." },
   { before: "Contenuti, offerte, funnel, ads. E ", key: "il mio team", after: " ti controlla tutto." },
 ];
@@ -373,6 +372,7 @@ const PRESENTATION_VIDEO_SRC: string | null = null;
 
 function FlipHeadlines() {
   const { ref, progress } = useScrollProgress<HTMLDivElement>("sticky");
+  const [videoStarted, setVideoStarted] = useState(false);
   // Una tappa in più dopo i titoli: l'ultima frase sparisce e arriva il video.
   const step = 1 / (FLIP_LINES.length + 1);
   const video = phase(progress, FLIP_LINES.length * step - 0.02, FLIP_LINES.length * step + 0.12);
@@ -422,12 +422,16 @@ function FlipHeadlines() {
             pointerEvents: video > 0.5 ? "auto" : "none",
           }}
         >
-          <p className="mb-4 text-center font-condensed text-sm uppercase tracking-[0.25em] text-foreground sm:text-base">
-            Clicca qui sotto e guarda il video
-          </p>
           <div className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-secondary shadow-2xl">
             {PRESENTATION_VIDEO_SRC ? (
-              <video src={PRESENTATION_VIDEO_SRC} controls playsInline preload="metadata" className="h-full w-full object-cover" />
+              <video
+                src={PRESENTATION_VIDEO_SRC}
+                controls
+                playsInline
+                preload="metadata"
+                onPlay={() => setVideoStarted(true)}
+                className="h-full w-full object-cover"
+              />
             ) : (
               <div className="flex h-full w-full items-center justify-center">
                 <span className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground sm:h-20 sm:w-20">
@@ -437,6 +441,12 @@ function FlipHeadlines() {
                 </span>
                 <span className="sr-only">Video di presentazione in arrivo</span>
               </div>
+            )}
+            {/* Sopra al tasto play, dentro il video: fuori finirebbe sotto il menu. */}
+            {videoStarted ? null : (
+              <p className="pointer-events-none absolute inset-x-4 bottom-[calc(50%+2.75rem)] text-center font-condensed text-xs uppercase tracking-[0.2em] text-white [text-shadow:0_1px_8px_rgb(0_0_0_/_0.6)] sm:bottom-[calc(50%+3.5rem)] sm:text-base sm:tracking-[0.25em]">
+                Clicca qui sotto e guarda il video
+              </p>
             )}
           </div>
         </div>
@@ -518,7 +528,7 @@ function Manifesto() {
       <div className="px-6 pb-24 pt-4 md:px-12 md:pb-32">
         <WordReveal
           className="mx-auto max-w-4xl text-center text-2xl leading-relaxed text-foreground sm:text-3xl lg:text-4xl"
-          text="**Ambiziosa** è il mio evento live del **2027:** due giornate dal vivo in cui lavoriamo su tutto ciò che negli eventi non viene mai spiegato. **Struttura di funnel, ads, fisco, previsione annuale delle clienti.**"
+          text="Se sei imprenditrice e vuoi trasformare la tua attività in un'azienda, non puoi basare tutto solo sui contenuti, ma devi avere **una struttura solida alle spalle.** Nei **2 giorni di evento live** lavori proprio su questo: **struttura di funnel, ads, fisco, previsione annuale delle clienti.**"
         />
         <WordReveal
           className="mx-auto mt-8 max-w-3xl text-center text-lg leading-relaxed text-foreground/80 sm:text-xl"
@@ -1163,38 +1173,6 @@ function Closing() {
   );
 }
 
-function FloatingCta() {
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    const onScroll = () => {
-      // Si nasconde mentre uno dei due form è sullo schermo.
-      const formVisible = Array.from(document.querySelectorAll("[data-waitlist]")).some((el) => {
-        const rect = el.getBoundingClientRect();
-        return rect.top < window.innerHeight && rect.bottom > 0;
-      });
-      setShow(window.scrollY > window.innerHeight * 2.5 && !formVisible);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  return (
-    <a
-      href="#lista-attesa"
-      onClick={scrollToWaitlist}
-      className="glow-sweep fixed bottom-5 left-1/2 z-40 whitespace-nowrap rounded-full bg-primary px-6 py-3 font-condensed text-sm uppercase tracking-[0.15em] text-primary-foreground shadow-xl transition-all duration-500"
-      style={{
-        opacity: show ? 1 : 0,
-        transform: `translate(-50%, ${show ? 0 : 20}px)`,
-        pointerEvents: show ? "auto" : "none",
-      }}
-    >
-      Entra in lista d'attesa · 7 dicembre
-    </a>
-  );
-}
-
 function ListaAttesaAmbiziosa() {
   return (
     <div className="theme-ambiziosa-2027 bg-background text-foreground">
@@ -1208,7 +1186,6 @@ function ListaAttesaAmbiziosa() {
       <WaitlistSignup />
       <PromiseSection />
       <Closing />
-      <FloatingCta />
       <SiteFooter showRefundGuarantee={false} />
     </div>
   );
