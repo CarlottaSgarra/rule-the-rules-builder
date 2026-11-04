@@ -47,7 +47,7 @@ const ICS_HREF = `data:text/calendar;charset=utf-8,${encodeURIComponent(
   ].join("\r\n"),
 )}`;
 
-export const Route = createFileRoute("/thank-you-ambiziosa")({
+export const Route = createFileRoute("/grazie-iscrizione-lista-attesa-ambiziosa-2027")({
   head: () => ({
     meta: [
       { title: "Sei in lista · Ambiziosa 2027" },

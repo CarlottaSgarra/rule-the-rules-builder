@@ -13,11 +13,12 @@ import carlottaWall from "@/assets/ambiziosa-carlotta-muro-web.jpg";
 import carlottaWallRight from "@/assets/Carlotta che guarda a destra appoggiata al muro.jpg";
 import carlottaPointing from "@/assets/carlotta-pointing.jpg";
 import community from "@/assets/community.png";
+import participantsSmiling from "@/assets/social-proof-1.jpg";
+import participantNotes from "@/assets/social-proof-11.jpg";
+import participantsRoom from "@/assets/social-proof-4.jpg";
 
-// TODO Andrea: sostituire con il form Systeme della lista d'attesa dell'evento
-// dal vivo (oggi punta al form standard di Rule The Rules, che va cambiato
-// prima di pubblicare la pagina).
-const WAITLIST_ACTION = "https://systeme.io/embedded/44087792/subscription";
+// Form Systeme della lista d'attesa dell'evento dal vivo.
+const WAITLIST_ACTION = "https://systeme.io/embedded/46305405/subscription";
 
 
 export const Route = createFileRoute("/lista-attesa-ambiziosa")({
@@ -259,7 +260,7 @@ function Hero() {
   return (
     <section ref={ref} className="relative h-[300vh] bg-background">
       <div className="sticky top-0 h-svh overflow-hidden">
-        {desktop ? <SideColumn images={[{ src: carlottaWalking, position: "50% 60%" }, { src: carlottaHug, position: "50% 40%" }]} side="left" t={sides} /> : null}
+        {desktop ? <SideColumn images={[{ src: carlottaWalking, position: "50% 60%" }, { src: participantsSmiling, position: "62% 50%" }]} side="left" t={sides} /> : null}
 
         <div className="absolute inset-0" style={{ clipPath: clip, WebkitClipPath: clip }}>
           {/* Scende con il bordo alto del ritaglio (la testa resta in vista) e su computer
@@ -332,7 +333,7 @@ function Hero() {
           <h1 className="sr-only">Ambiziosa, il mio nuovo evento dal vivo del 2027</h1>
         </div>
 
-        {desktop ? <SideColumn images={[{ src: carlottaLooking2, position: "38% 50%" }, { src: carlottaPresenting, position: "62% 50%" }]} side="right" t={sides} /> : null}
+        {desktop ? <SideColumn images={[{ src: participantNotes, position: "50% 40%" }, { src: participantsRoom, position: "50% 50%" }]} side="right" t={sides} /> : null}
 
         <div
           className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center px-5 text-center md:justify-start md:pt-6"

@@ -524,6 +524,10 @@
 /* Glow dorato: una luce che passa sulle lettere di AMBIZIOSA da sinistra a
    destra (ogni lettera parte un attimo dopo la precedente) e sui bottoni oro. */
 .gold-glow-letter {
+  /* Il riempimento oro si ferma al bordo della lettera: con l'interlinea stretta
+     taglierebbe le curve di S, B e O. Il margine negativo lascia le lettere dov'erano. */
+  padding: 0.12em 0.04em;
+  margin: -0.12em -0.04em;
   background-image: linear-gradient(
     100deg,
     #c9a45c 0%,

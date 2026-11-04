@@ -15,10 +15,10 @@ import { Route as BRouteImport } from './routes/b'
 import { Route as CandidatiAmbiziosaRouteImport } from './routes/candidati-ambiziosa'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CheckoutVipRouteImport } from './routes/checkout-vip'
+import { Route as GrazieIscrizioneListaAttesaAmbiziosa2027RouteImport } from './routes/grazie-iscrizione-lista-attesa-ambiziosa-2027'
 import { Route as ListaAttesaAmbiziosaRouteImport } from './routes/lista-attesa-ambiziosa'
 import { Route as RegistrazioniRouteImport } from './routes/registrazioni'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
-import { Route as ThankYouAmbiziosaRouteImport } from './routes/thank-you-ambiziosa'
 import { Route as ThankYouVipRouteImport } from './routes/thank-you-vip'
 import { Route as UpsellCallRouteImport } from './routes/upsell-call'
 import { Route as UpsellStoryIdentityRouteImport } from './routes/upsell-story-identity'
@@ -55,6 +55,12 @@ const CheckoutVipRoute = CheckoutVipRouteImport.update({
   path: '/checkout-vip',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GrazieIscrizioneListaAttesaAmbiziosa2027Route =
+  GrazieIscrizioneListaAttesaAmbiziosa2027RouteImport.update({
+    id: '/grazie-iscrizione-lista-attesa-ambiziosa-2027',
+    path: '/grazie-iscrizione-lista-attesa-ambiziosa-2027',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ListaAttesaAmbiziosaRoute = ListaAttesaAmbiziosaRouteImport.update({
   id: '/lista-attesa-ambiziosa',
   path: '/lista-attesa-ambiziosa',
@@ -68,11 +74,6 @@ const RegistrazioniRoute = RegistrazioniRouteImport.update({
 const ThankYouRoute = ThankYouRouteImport.update({
   id: '/thank-you',
   path: '/thank-you',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ThankYouAmbiziosaRoute = ThankYouAmbiziosaRouteImport.update({
-  id: '/thank-you-ambiziosa',
-  path: '/thank-you-ambiziosa',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ThankYouVipRoute = ThankYouVipRouteImport.update({
@@ -108,10 +109,10 @@ export interface FileRoutesByFullPath {
   '/candidati-ambiziosa': typeof CandidatiAmbiziosaRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
+  '/grazie-iscrizione-lista-attesa-ambiziosa-2027': typeof GrazieIscrizioneListaAttesaAmbiziosa2027Route
   '/lista-attesa-ambiziosa': typeof ListaAttesaAmbiziosaRoute
   '/registrazioni': typeof RegistrazioniRoute
   '/thank-you': typeof ThankYouRoute
-  '/thank-you-ambiziosa': typeof ThankYouAmbiziosaRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
   '/upsell-story-identity': typeof UpsellStoryIdentityRoute
@@ -125,10 +126,10 @@ export interface FileRoutesByTo {
   '/candidati-ambiziosa': typeof CandidatiAmbiziosaRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
+  '/grazie-iscrizione-lista-attesa-ambiziosa-2027': typeof GrazieIscrizioneListaAttesaAmbiziosa2027Route
   '/lista-attesa-ambiziosa': typeof ListaAttesaAmbiziosaRoute
   '/registrazioni': typeof RegistrazioniRoute
   '/thank-you': typeof ThankYouRoute
-  '/thank-you-ambiziosa': typeof ThankYouAmbiziosaRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
   '/upsell-story-identity': typeof UpsellStoryIdentityRoute
@@ -143,10 +144,10 @@ export interface FileRoutesById {
   '/candidati-ambiziosa': typeof CandidatiAmbiziosaRoute
   '/checkout': typeof CheckoutRoute
   '/checkout-vip': typeof CheckoutVipRoute
+  '/grazie-iscrizione-lista-attesa-ambiziosa-2027': typeof GrazieIscrizioneListaAttesaAmbiziosa2027Route
   '/lista-attesa-ambiziosa': typeof ListaAttesaAmbiziosaRoute
   '/registrazioni': typeof RegistrazioniRoute
   '/thank-you': typeof ThankYouRoute
-  '/thank-you-ambiziosa': typeof ThankYouAmbiziosaRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
   '/upsell-story-identity': typeof UpsellStoryIdentityRoute
@@ -162,10 +163,10 @@ export interface FileRouteTypes {
     | '/candidati-ambiziosa'
     | '/checkout'
     | '/checkout-vip'
+    | '/grazie-iscrizione-lista-attesa-ambiziosa-2027'
     | '/lista-attesa-ambiziosa'
     | '/registrazioni'
     | '/thank-you'
-    | '/thank-you-ambiziosa'
     | '/thank-you-vip'
     | '/upsell-call'
     | '/upsell-story-identity'
@@ -179,10 +180,10 @@ export interface FileRouteTypes {
     | '/candidati-ambiziosa'
     | '/checkout'
     | '/checkout-vip'
+    | '/grazie-iscrizione-lista-attesa-ambiziosa-2027'
     | '/lista-attesa-ambiziosa'
     | '/registrazioni'
     | '/thank-you'
-    | '/thank-you-ambiziosa'
     | '/thank-you-vip'
     | '/upsell-call'
     | '/upsell-story-identity'
@@ -196,10 +197,10 @@ export interface FileRouteTypes {
     | '/candidati-ambiziosa'
     | '/checkout'
     | '/checkout-vip'
+    | '/grazie-iscrizione-lista-attesa-ambiziosa-2027'
     | '/lista-attesa-ambiziosa'
     | '/registrazioni'
     | '/thank-you'
-    | '/thank-you-ambiziosa'
     | '/thank-you-vip'
     | '/upsell-call'
     | '/upsell-story-identity'
@@ -214,10 +215,10 @@ export interface RootRouteChildren {
   CandidatiAmbiziosaRoute: typeof CandidatiAmbiziosaRoute
   CheckoutRoute: typeof CheckoutRoute
   CheckoutVipRoute: typeof CheckoutVipRoute
+  GrazieIscrizioneListaAttesaAmbiziosa2027Route: typeof GrazieIscrizioneListaAttesaAmbiziosa2027Route
   ListaAttesaAmbiziosaRoute: typeof ListaAttesaAmbiziosaRoute
   RegistrazioniRoute: typeof RegistrazioniRoute
   ThankYouRoute: typeof ThankYouRoute
-  ThankYouAmbiziosaRoute: typeof ThankYouAmbiziosaRoute
   ThankYouVipRoute: typeof ThankYouVipRoute
   UpsellCallRoute: typeof UpsellCallRoute
   UpsellStoryIdentityRoute: typeof UpsellStoryIdentityRoute
@@ -269,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutVipRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/grazie-iscrizione-lista-attesa-ambiziosa-2027': {
+      id: '/grazie-iscrizione-lista-attesa-ambiziosa-2027'
+      path: '/grazie-iscrizione-lista-attesa-ambiziosa-2027'
+      fullPath: '/grazie-iscrizione-lista-attesa-ambiziosa-2027'
+      preLoaderRoute: typeof GrazieIscrizioneListaAttesaAmbiziosa2027RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lista-attesa-ambiziosa': {
       id: '/lista-attesa-ambiziosa'
       path: '/lista-attesa-ambiziosa'
@@ -288,13 +296,6 @@ declare module '@tanstack/react-router' {
       path: '/thank-you'
       fullPath: '/thank-you'
       preLoaderRoute: typeof ThankYouRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/thank-you-ambiziosa': {
-      id: '/thank-you-ambiziosa'
-      path: '/thank-you-ambiziosa'
-      fullPath: '/thank-you-ambiziosa'
-      preLoaderRoute: typeof ThankYouAmbiziosaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/thank-you-vip': {
@@ -342,10 +343,11 @@ const rootRouteChildren: RootRouteChildren = {
   CandidatiAmbiziosaRoute: CandidatiAmbiziosaRoute,
   CheckoutRoute: CheckoutRoute,
   CheckoutVipRoute: CheckoutVipRoute,
+  GrazieIscrizioneListaAttesaAmbiziosa2027Route:
+    GrazieIscrizioneListaAttesaAmbiziosa2027Route,
   ListaAttesaAmbiziosaRoute: ListaAttesaAmbiziosaRoute,
   RegistrazioniRoute: RegistrazioniRoute,
   ThankYouRoute: ThankYouRoute,
-  ThankYouAmbiziosaRoute: ThankYouAmbiziosaRoute,
   ThankYouVipRoute: ThankYouVipRoute,
   UpsellCallRoute: UpsellCallRoute,
   UpsellStoryIdentityRoute: UpsellStoryIdentityRoute,
