@@ -4,6 +4,8 @@ type Props = {
   submitLabel?: string;
   submitSub?: string;
   action?: string;
+  phoneRequired?: boolean;
+  phonePlaceholder?: string;
 };
 
 const STANDARD_TICKET_ACTION = "https://systeme.io/embedded/44087792/subscription";
@@ -55,6 +57,8 @@ export function SignupForm({
   submitLabel = "Vai al pagamento",
   submitSub,
   action = STANDARD_TICKET_ACTION,
+  phoneRequired = false,
+  phonePlaceholder = "WhatsApp (senza prefisso)",
 }: Props) {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     const phoneInput = e.currentTarget.elements.namedItem("phone_number");
@@ -107,7 +111,8 @@ export function SignupForm({
           <input
             type="tel"
             name="phone_number"
-            placeholder="WhatsApp (senza prefisso)"
+            placeholder={phonePlaceholder}
+            required={phoneRequired}
             className="w-full min-w-0 rounded-lg border border-input bg-background px-4 py-3 text-sm text-card-foreground outline-none placeholder:text-card-foreground/50 focus:border-primary"
           />
         </div>

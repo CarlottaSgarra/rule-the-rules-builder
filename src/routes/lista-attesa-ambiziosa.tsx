@@ -1136,7 +1136,7 @@ function WaitlistSignup() {
           // card chiara: qui lo riportiamo al nero sporco.
           style={{ boxShadow: "var(--shadow-deep)", "--primary": "var(--secondary)", "--primary-foreground": "var(--background)" } as React.CSSProperties}
         >
-          <SignupForm compact action={WAITLIST_ACTION} submitLabel="Entra in lista d'attesa" />
+          <SignupForm action={WAITLIST_ACTION} submitLabel="Entra in lista d'attesa" phoneRequired phonePlaceholder="Telefono (senza prefisso)" />
           <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
             Entrare in lista è gratis e non ti impegna a comprare.
           </p>
@@ -1231,7 +1231,7 @@ function Closing() {
           // card chiara: qui lo riportiamo al nero sporco.
           style={{ boxShadow: "var(--shadow-deep)", "--primary": "var(--secondary)", "--primary-foreground": "var(--background)" } as React.CSSProperties}
         >
-          <SignupForm compact action={WAITLIST_ACTION} submitLabel="Entra in lista d'attesa" />
+          <SignupForm action={WAITLIST_ACTION} submitLabel="Entra in lista d'attesa" phoneRequired phonePlaceholder="Telefono (senza prefisso)" />
           <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
             Entrare in lista è gratis e non ti impegna a comprare.
           </p>
