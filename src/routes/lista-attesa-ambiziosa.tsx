@@ -343,14 +343,14 @@ function Hero() {
           }}
         >
           {/* Su computer tre righe esatte, così il testo resta sotto le foto laterali. */}
-          <p className="max-w-5xl text-balance font-display text-2xl leading-tight text-foreground sm:text-3xl lg:text-[clamp(1.6rem,4.4vh,2.1rem)]">
-            <span className="text-[var(--gold-text)]">Ambiziosa</span> è il mio evento live di 2 giorni <br className="hidden md:block" />
-            dove lavoriamo sulla struttura per trasformare <br className="hidden md:block" />
-            la tua attività in un'azienda.
+          <p className="max-w-5xl text-balance font-display text-xl leading-tight text-foreground sm:text-3xl lg:text-[clamp(1.6rem,4.4vh,2.1rem)]">
+            <span className="text-[var(--gold-text)]">Ambiziosa</span> è il mio evento live di 2 giorni, <br className="hidden md:block" />
+            dedicato alle donne imprenditrici che hanno l'ambizione <br className="hidden md:block" />
+            di trasformare la loro attività in un'azienda strutturata.
           </p>
-          <p className="mt-3 max-w-4xl text-balance font-condensed text-sm uppercase leading-relaxed tracking-[0.2em] text-foreground/75 sm:text-base">
-            Lavoriamo su quello che non viene mai detto negli eventi standard:{" "}
-            <span className="text-foreground">funnel, ads, fisco, visione aziendale, delega</span>
+          <p className="mt-3 max-w-4xl text-balance font-condensed text-xs uppercase leading-relaxed tracking-[0.2em] text-foreground/75 sm:text-base">
+            Lavoriamo su quello che veramente ti serve per creare un'azienda che cresce:{" "}
+            <span className="text-foreground">funnel, ads, fisco, visione aziendale, delega e team.</span>
           </p>
         </div>
       </div>
@@ -528,7 +528,7 @@ function Manifesto() {
       <div className="px-6 pb-24 pt-4 md:px-12 md:pb-32">
         <WordReveal
           className="mx-auto max-w-4xl text-center text-2xl leading-relaxed text-foreground sm:text-3xl lg:text-4xl"
-          text="Se sei imprenditrice e vuoi trasformare la tua attività in un'azienda, non puoi basare tutto solo sui contenuti, ma devi avere **una struttura solida alle spalle.** Nei **2 giorni di evento live** lavori proprio su questo: **struttura di funnel, ads, fisco, previsione annuale delle clienti.**"
+          text="Se sei imprenditrice e vuoi trasformare la tua attività in un'azienda, non puoi basare tutto solo sui contenuti, ma devi avere **una struttura solida alle spalle.** Nei **2 giorni di evento live** lavori proprio su questo: **struttura di funnel, ads, fisco, previsione annuale dei clienti.**"
         />
         <WordReveal
           className="mx-auto mt-8 max-w-3xl text-center text-lg leading-relaxed text-foreground/80 sm:text-xl"
