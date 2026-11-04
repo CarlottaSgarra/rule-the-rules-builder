@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SignupForm } from "@/components/landing/SignupForm";
 import { SiteFooter } from "@/components/landing/SiteFooter";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import heroBg from "@/assets/Carlotta spostata a sinistra che guarda verso la camera.jpg";
 import heroCutout from "@/assets/ambiziosa-carlotta-cutout.png";
 import carlottaPresenting from "@/assets/carlotta-presenting.jpg";
@@ -1174,6 +1175,59 @@ function Closing() {
   );
 }
 
+/* ---------------------------------------------------------------- Domande frequenti */
+
+const FAQS = [
+  {
+    q: "Quando si svolge Ambiziosa?",
+    a: "A febbraio 2027, dal vivo, in 2 giorni. La data esatta e il luogo li trovi all'apertura delle vendite, il 7 dicembre.",
+  },
+  {
+    q: "Quando aprono le vendite?",
+    a: "Il 7 dicembre. Chi è in lista d'attesa può iscriversi per prima, con un prezzo riservato solo a lei.",
+  },
+  {
+    q: "Entrare in lista d'attesa mi impegna a comprare?",
+    a: "No. Entrare in lista è gratis e non ti impegna a comprare: ti avviso io quando si aprono le vendite e poi decidi tu.",
+  },
+  {
+    q: "Quanto costa il biglietto?",
+    a: "Il prezzo lo comunico all'apertura delle vendite. Chi è in lista d'attesa ha un prezzo riservato.",
+  },
+  {
+    q: "Quanti posti ci sono?",
+    a: "100. Quando finiscono, finiscono.",
+  },
+  {
+    q: "Va bene anche se sto partendo da zero?",
+    a: "Ambiziosa è pensata per chi ha già un'attività avviata e dei clienti, e vuole trasformarla in un'azienda strutturata. Se stai partendo da zero, non è ancora il momento giusto.",
+  },
+  {
+    q: "Su cosa lavoriamo nei 2 giorni?",
+    a: "Su quello che ti serve per creare un'azienda che cresce: funnel, ads, fisco, visione aziendale, delega e team.",
+  },
+];
+
+function Faq() {
+  return (
+    <section id="faq" className="bg-background px-5 py-20 sm:py-28">
+      <div className="mx-auto max-w-3xl">
+        <h2 className="text-center font-display text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
+          Domande <span className="text-[var(--gold-text)]">frequenti</span>
+        </h2>
+        <Accordion type="single" collapsible className="mt-10">
+          {FAQS.map((f) => (
+            <AccordionItem key={f.q} value={f.q}>
+              <AccordionTrigger className="text-left text-base text-foreground sm:text-lg">{f.q}</AccordionTrigger>
+              <AccordionContent className="text-sm leading-relaxed text-foreground/75 sm:text-base">{f.a}</AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+    </section>
+  );
+}
+
 function ListaAttesaAmbiziosa() {
   return (
     <div className="theme-ambiziosa-2027 bg-background text-foreground">
@@ -1187,6 +1241,7 @@ function ListaAttesaAmbiziosa() {
       <WaitlistSignup />
       <PromiseSection />
       <Closing />
+      <Faq />
       <SiteFooter showRefundGuarantee={false} />
     </div>
   );
