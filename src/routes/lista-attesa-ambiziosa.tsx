@@ -191,7 +191,7 @@ function Topbar() {
             scrolled ? "left-0 translate-x-0 text-left" : "left-full -translate-x-full text-right"
           }`}
         >
-          Le vendite aprono il{"\u00a0"}7/12
+          Le vendite ufficiali aprono il{"\u00a0"}7/12
         </span>
       </div>
       <a
