@@ -5,6 +5,8 @@ import { SiteFooter } from "@/components/landing/SiteFooter";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import heroBg from "@/assets/Carlotta spostata a sinistra che guarda verso la camera.jpg";
 import heroCutout from "@/assets/ambiziosa-carlotta-cutout.png";
+import heroBgDesktop from "@/assets/carlotta appoggiata a muro che guarda.jpg";
+import heroCutoutDesktop from "@/assets/ambiziosa-carlotta-muro-cutout.webp";
 import carlottaPresenting from "@/assets/carlotta-presenting.jpg";
 import carlottaTalking from "@/assets/carlotta-talking.jpg";
 import carlottaLooking2 from "@/assets/carlotta-looking-2.jpg";
@@ -17,6 +19,7 @@ import community from "@/assets/community.png";
 import participantsSmiling from "@/assets/social-proof-1.jpg";
 import participantNotes from "@/assets/social-proof-11.jpg";
 import participantsRoom from "@/assets/social-proof-4.jpg";
+import participantsHug from "@/assets/social-proof-7.jpg";
 
 // Form Systeme della lista d'attesa dell'evento dal vivo.
 const WAITLIST_ACTION = "https://systeme.io/embedded/46305405/subscription";
@@ -139,7 +142,7 @@ function useScrollProgress<T extends HTMLElement>(mode: "sticky" | "pass" | "rev
   return { ref, progress };
 }
 
-function useInView<T extends HTMLElement>() {
+function useInView<T extends HTMLElement>({ threshold = 0.2, rootMargin = "0px" }: IntersectionObserverInit = {}) {
   const ref = useRef<T>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
@@ -152,12 +155,34 @@ function useInView<T extends HTMLElement>() {
           io.disconnect();
         }
       },
-      { threshold: 0.2 },
+      { threshold, rootMargin },
     );
     io.observe(node);
     return () => io.disconnect();
-  }, []);
+  }, [threshold, rootMargin]);
   return { ref, inView };
+}
+
+// Da telefono un blocco compare solo quando ci si arriva sopra scorrendo. Su
+// computer resta sempre visibile.
+function Appear({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.15, rootMargin: "0px 0px -12% 0px" });
+  const desktop = useIsDesktop();
+  const reduced = useReducedMotion();
+  const shown = desktop || reduced || inView;
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: shown ? 1 : 0,
+        transform: shown ? "none" : "translate3d(0, 28px, 0)",
+        transition: "opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+      }}
+    >
+      {children}
+    </div>
+  );
 }
 
 function scrollToWaitlist(e: React.MouseEvent) {
@@ -198,7 +223,7 @@ function Topbar() {
       <a
         href="#lista-attesa"
         onClick={scrollToWaitlist}
-        className="glow-sweep relative rounded-full bg-primary px-3 py-2.5 text-center font-condensed text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:min-w-[13rem] sm:px-10 sm:text-sm"
+        className="glow-sweep relative rounded-full bg-primary px-3 py-2.5 text-center font-condensed text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] text-background transition-transform hover:-translate-y-0.5 sm:min-w-[13rem] sm:px-10 sm:text-sm"
       >
         Entra in lista d'attesa
       </a>
@@ -221,6 +246,8 @@ const TITLE = "AMBIZIOSA".split("");
 
 // Distanza delle foto dell'apertura dal bordo alto, per staccarle dal menu.
 const HERO_PHOTOS_TOP = 112;
+// Cornice iniziale della foto su computer: sotto il menu, con un po' di margine.
+const HERO_FRAME = { top: 88, x: 3, bottom: 3 };
 
 // Colonna laterale già nella sua posizione finale: entra solo con transform e
 // opacità, così il telefono non deve ricalcolare l'impaginazione.
@@ -253,29 +280,49 @@ function Hero() {
   const sides = ease(phase(progress, 0.15, 0.7));
   const titleOut = phase(progress, 0, 0.3);
   const caption = phase(progress, 0.6, 0.85);
-  // La foto resta a tutto schermo e si "ritaglia" fino alla scheda centrale.
+  // La foto si "ritaglia" fino alla scheda centrale. Da telefono parte a tutto
+  // schermo; su computer parte già in una cornice sotto il menu, con la foto
+  // orizzontale, così si vede Carlotta intera e non solo un dettaglio.
   const insetX = desktop ? 33 : 6;
   const insetBottom = desktop ? 34 : 36;
-  const clip = `inset(${HERO_PHOTOS_TOP * shrink}px ${insetX * shrink}% ${insetBottom * shrink}% ${insetX * shrink}% round ${24 * shrink}px)`;
+  const startTop = desktop ? HERO_FRAME.top : 0;
+  const startX = desktop ? HERO_FRAME.x : 0;
+  const startBottom = desktop ? HERO_FRAME.bottom : 0;
+  const clip = `inset(${lerp(startTop, HERO_PHOTOS_TOP, shrink)}px ${lerp(startX, insetX, shrink)}% ${lerp(startBottom, insetBottom, shrink)}% ${lerp(startX, insetX, shrink)}% round ${lerp(desktop ? 24 : 0, 24, shrink)}px)`;
+  const photoPosition = desktop ? "35% 5%" : "62% 12%";
 
   return (
     <section ref={ref} className="relative h-[300vh] bg-background">
       <div className="sticky top-0 h-svh overflow-hidden">
-        {desktop ? <SideColumn images={[{ src: carlottaWalking, position: "50% 60%" }, { src: participantsSmiling, position: "62% 50%" }]} side="left" t={sides} /> : null}
+        {desktop ? <SideColumn images={[{ src: participantsHug, position: "45% 50%" }, { src: participantsSmiling, position: "62% 50%" }]} side="left" t={sides} /> : null}
 
         <div className="absolute inset-0" style={{ clipPath: clip, WebkitClipPath: clip }}>
-          {/* Scende con il bordo alto del ritaglio (la testa resta in vista) e su computer
-              si sposta a sinistra per tenere Carlotta al centro della scheda. */}
+          {/* Scende con il bordo alto del ritaglio (la testa resta in vista). Su computer
+              si sposta a destra e si rimpicciolisce per tenere Carlotta al centro della scheda. */}
           <div
             className="absolute inset-0 will-change-transform"
-            style={{ transform: `translate3d(${(desktop ? -9 : 0) * shrink}%, ${HERO_PHOTOS_TOP * shrink}px, 0)` }}
+            style={
+              desktop
+                ? {
+                    top: HERO_FRAME.top,
+                    left: `${HERO_FRAME.x}%`,
+                    right: `${HERO_FRAME.x}%`,
+                    bottom: `${HERO_FRAME.bottom}%`,
+                    transformOrigin: "38% 0",
+                    transform: `translate3d(${11 * shrink}vw, ${(HERO_PHOTOS_TOP - HERO_FRAME.top) * shrink}px, 0) scale(${lerp(1, 0.72, shrink)})`,
+                  }
+                : { transform: `translate3d(0, ${HERO_PHOTOS_TOP * shrink}px, 0)` }
+            }
           >
-            <img
-              src={heroBg}
-              alt="Carlotta sul lungomare di Genova"
-              className="absolute inset-0 size-full object-cover"
-              style={{ objectPosition: "62% 12%" }}
-            />
+            <picture>
+              <source media="(min-width: 768px)" srcSet={heroBgDesktop} />
+              <img
+                src={heroBg}
+                alt="Carlotta"
+                className="absolute inset-0 size-full rounded-3xl object-cover max-md:rounded-none"
+                style={{ objectPosition: photoPosition }}
+              />
+            </picture>
             <div
               aria-hidden
               className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 justify-center"
@@ -284,7 +331,7 @@ function Hero() {
                 transform: `translate3d(0, ${-titleOut * 200}px, 0)`,
               }}
             >
-              <span className="whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight text-primary">
+              <span className="whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight md:text-[19vw] text-primary">
                 {TITLE.map((letter, i) => (
                   <span
                     key={i}
@@ -304,13 +351,16 @@ function Hero() {
                 ))}
               </span>
             </div>
-            <img
-              src={heroCutout}
-              alt=""
-              aria-hidden
-              className="pointer-events-none absolute inset-0 size-full object-cover"
-              style={{ objectPosition: "62% 12%" }}
-            />
+            <picture>
+              <source media="(min-width: 768px)" srcSet={heroCutoutDesktop} />
+              <img
+                src={heroCutout}
+                alt=""
+                aria-hidden
+                className="pointer-events-none absolute inset-0 size-full object-cover"
+                style={{ objectPosition: photoPosition }}
+              />
+            </picture>
             {/* Davanti allo scontorno: una copia invisibile del titolo dà la misura,
                 così l'etichetta parte esattamente dalla A di AMBIZIOSA. */}
             <div
@@ -321,9 +371,9 @@ function Hero() {
                 transform: `translate3d(0, ${-titleOut * 200}px, 0)`,
               }}
             >
-              <span className="relative whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight">
+              <span className="relative whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight md:text-[19vw]">
                 <span className="invisible">AMBIZIOSA</span>
-                <span className="absolute bottom-full left-[0.06em] mb-2 max-w-[48%] whitespace-normal font-condensed text-[11px] font-semibold uppercase leading-relaxed tracking-[0.2em] text-secondary sm:mb-3 sm:text-sm md:max-w-none md:whitespace-nowrap md:tracking-[0.3em]"
+                <span className="absolute bottom-full left-[0.06em] mb-2 max-w-[48%] whitespace-normal md:left-auto md:right-[0.06em] font-condensed text-[11px] font-semibold uppercase leading-relaxed tracking-[0.2em] text-secondary sm:mb-3 sm:text-sm md:max-w-none md:whitespace-nowrap md:tracking-[0.3em]"
                   style={{ textShadow: "0 0 10px rgb(255 255 255 / 0.95), 0 0 2px rgb(255 255 255 / 0.9)" }}
                 >
                   Il mio nuovo evento dal vivo del 2027
@@ -652,7 +702,7 @@ const PROBLEM_TITLE_GOLD_FROM = 10;
 const PROBLEM_PARTS = [
   "Magari quest'anno hai fatturato più di quanto pensavi. Ma se ti chiedo come ci sei arrivata, **come lo rifai l'anno prossimo** e dove vuoi arrivare negli anni dopo, la risposta non è così chiara.",
   "Io ci sono passata. Sono uscita dal forfettario **senza un previsionale, senza una struttura.** Ho lavorato due anni in perdita: ogni volta che arrivava una cliente facevo il conto di quanto mi restava in tasca, quasi niente. Poi un giorno di giugno ho aperto **un F24 da 51 mila euro.**",
-  "Nessuno me ne aveva parlato. Tutti insegnano a fare contenuti, offerte e ganci: **le tasse, il previsionale, il team** e le notti passate a decidere tutto da sola restano fuori.",
+  "Nessuno me ne aveva parlato. Tutti insegnano a fare contenuti, offerte e ganci: **i funnel di vendita, le ads, il previsionale dei clienti, il team e la delega, e la visione aziendale** non te li spiega mai nessuno.",
 ];
 
 /* Parte 1: il fatturato del 2026 cresce, il 2027 è un punto di domanda. */
@@ -950,13 +1000,23 @@ function ProblemStoryMobile() {
 }
 
 function MobilePart({ text, index }: { text: string; index: number }) {
-  const { ref, inView } = useInView<HTMLDivElement>();
+  // L'elemento compare e si anima solo quando ci si arriva sopra, a testo finito.
+  const { ref, inView } = useInView<HTMLDivElement>({ threshold: 0.85, rootMargin: "0px 0px -8% 0px" });
   const Visual = PROBLEM_VISUALS[index] ?? RevenueVisual;
   return (
     <div className="space-y-6">
       <WordReveal blur={8} minOpacity={0} className="text-xl leading-relaxed text-ink" text={text} />
-      <div ref={ref} className="h-[300px] rounded-3xl border border-ink/10 bg-ink/[0.04] p-5">
-        <Visual on={inView} />
+      <div ref={ref} className="h-[300px]">
+        <div
+          className="h-full rounded-3xl border border-ink/10 bg-ink/[0.04] p-5"
+          style={{
+            opacity: inView ? 1 : 0,
+            transform: inView ? "none" : "translate3d(0, 28px, 0)",
+            transition: "opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+          }}
+        >
+          <Visual on={inView} />
+        </div>
       </div>
     </div>
   );
@@ -1021,22 +1081,22 @@ function ChangeText() {
   return (
     <section className="bg-secondary px-5 pb-24 pt-8 sm:pb-32">
       <div className="mx-auto max-w-3xl space-y-5 text-lg text-white/75">
-        <p>
+        <Appear><p>
           Mi sono rotta le palle degli eventi in cui si applaude, si fanno due foto e poi{" "}
           <strong className="font-semibold text-white">il lunedì non cambia niente.</strong> Li ho
           organizzati anch'io. So quanto costano, a chi li fa e a chi ci va.
-        </p>
-        <p>
+        </p></Appear>
+        <Appear><p>
           <strong className="font-semibold text-white">Questa volta si lavora.</strong> Sul palco ci
           sono io con il mio team, le persone che ogni giorno fanno funzionare la mia azienda. Ti
           portiamo tutto quello che c'è dietro: gli errori, i numeri, le notti insonni, le cose che
           hanno funzionato davvero. Poi ci si mette al lavoro{" "}
           <strong className="font-semibold text-white">sulla tua azienda</strong>, insieme ad altre
           imprenditrici.
-        </p>
-        <p className="pt-4 font-display text-3xl leading-tight text-white sm:text-5xl">
+        </p></Appear>
+        <Appear><p className="pt-4 font-display text-3xl leading-tight text-white sm:text-5xl">
           Non esci con domande. <em className="italic text-primary">Esci con risposte.</em>
-        </p>
+        </p></Appear>
       </div>
     </section>
   );
@@ -1050,7 +1110,7 @@ function WaitlistSignup() {
   return (
     <section className="bg-background px-5 py-24 sm:py-32">
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
-        <div>
+        <Appear>
           <span className="font-condensed text-xs uppercase tracking-[0.3em] text-foreground/60 sm:text-sm">
             Le vendite aprono il 7 dicembre
           </span>
@@ -1066,20 +1126,22 @@ function WaitlistSignup() {
               </strong>
             </p>
           </div>
-        </div>
+        </Appear>
+        <Appear>
         <div
           id="lista-attesa"
           data-waitlist
           className="w-full scroll-mt-28 rounded-3xl bg-card p-6 sm:p-8"
           // Il link alla privacy usa text-primary (oro), poco leggibile sulla
           // card chiara: qui lo riportiamo al nero sporco.
-          style={{ boxShadow: "var(--shadow-deep)", "--primary": "var(--secondary)" } as React.CSSProperties}
+          style={{ boxShadow: "var(--shadow-deep)", "--primary": "var(--secondary)", "--primary-foreground": "var(--background)" } as React.CSSProperties}
         >
           <SignupForm compact action={WAITLIST_ACTION} submitLabel="Entra in lista d'attesa" />
           <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
             Entrare in lista è gratis e non ti impegna a comprare.
           </p>
         </div>
+        </Appear>
       </div>
     </section>
   );
@@ -1092,17 +1154,17 @@ function PromiseSection() {
     <section className="bg-background px-5 py-24 sm:py-32">
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <h2 className="font-display text-3xl leading-tight text-foreground sm:text-5xl">
+          <Appear><h2 className="font-display text-3xl leading-tight text-foreground sm:text-5xl">
             Tutti ti insegnano a trovare clienti.{" "}
             <em className="italic">Nessuno ti racconta cosa succede dopo.</em>
-          </h2>
+          </h2></Appear>
           <div className="mt-8 space-y-5 text-lg text-foreground/80">
-            <p>
+            <Appear><p>
               Quando le clienti arrivano e i soldi pure, il business cambia faccia. Se lo porti avanti
               senza una struttura, <strong className="font-semibold text-foreground">a un certo punto soffochi</strong>: non hai più tempo né spazio in testa per
               capire cosa vuoi davvero e dove vuoi andare.
-            </p>
-            <p>
+            </p></Appear>
+            <Appear><p>
               <strong className="font-semibold text-foreground">
                 La struttura è quello che tiene in piedi il tuo business anche fra due mesi.
               </strong>{" "}
@@ -1110,21 +1172,23 @@ function PromiseSection() {
               fatturato vuoi, con quali offerte e con quali contenuti, quanto paghi di tasse e chi
               lavora con te. E stare bene mentre lo fai, perché saper comunicare è il 20% del lavoro:
               il resto è gestione emotiva.
-            </p>
-            <p>
+            </p></Appear>
+            <Appear><p>
               Io ho imparato tutto questo da sola, perdendo tempo, soldi e un bel pezzo di libertà. Ora
               voglio costruire insieme a te{" "}
               <strong className="font-semibold text-foreground">un'azienda che ti assomiglia</strong>,
               con una vita dentro, del tempo libero e la voglia di divertirti ancora.
-            </p>
+            </p></Appear>
           </div>
-          <p className="mt-10 font-condensed text-4xl uppercase tracking-tight text-foreground sm:text-6xl">
+          <Appear><p className="mt-10 font-condensed text-4xl uppercase tracking-tight text-foreground sm:text-6xl">
             Da freelance ad azienda.
-          </p>
+          </p></Appear>
         </div>
+        <Appear className="w-full">
         <div className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-3xl">
           <img src={carlottaWalking} alt="Carlotta" loading="lazy" className="absolute inset-0 size-full object-cover" />
         </div>
+        </Appear>
       </div>
 
     </section>
@@ -1145,6 +1209,7 @@ function Closing() {
       />
       <div className="absolute inset-0 bg-secondary/70" />
       <div className="relative mx-auto max-w-3xl px-5 py-24 text-center sm:py-32">
+        <Appear>
         <span className="font-condensed text-xs uppercase tracking-[0.3em] text-white/70 sm:text-sm">
           Segnati questa data
         </span>
@@ -1157,18 +1222,21 @@ function Closing() {
           Chi è in lista d'attesa può iscriversi per prima, con un prezzo riservato solo a lei.
           Lasciami nome ed email e ti avviso io.
         </p>
+        </Appear>
+        <Appear>
         <div
           data-waitlist
           className="mx-auto mt-10 w-full max-w-md scroll-mt-28 rounded-3xl bg-card p-6 text-left sm:p-8"
           // Il link alla privacy usa text-primary (oro), poco leggibile sulla
           // card chiara: qui lo riportiamo al nero sporco.
-          style={{ boxShadow: "var(--shadow-deep)", "--primary": "var(--secondary)" } as React.CSSProperties}
+          style={{ boxShadow: "var(--shadow-deep)", "--primary": "var(--secondary)", "--primary-foreground": "var(--background)" } as React.CSSProperties}
         >
           <SignupForm compact action={WAITLIST_ACTION} submitLabel="Entra in lista d'attesa" />
           <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
             Entrare in lista è gratis e non ti impegna a comprare.
           </p>
         </div>
+        </Appear>
         <p className="mt-10 font-display text-2xl text-white">Carlotta 🌷</p>
       </div>
     </section>
@@ -1212,15 +1280,17 @@ function Faq() {
   return (
     <section id="faq" className="bg-background px-5 py-20 sm:py-28">
       <div className="mx-auto max-w-3xl">
-        <h2 className="text-center font-display text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
+        <Appear><h2 className="text-center font-display text-4xl font-semibold leading-tight tracking-tight text-foreground sm:text-5xl">
           Domande <span className="text-[var(--gold-text)]">frequenti</span>
-        </h2>
+        </h2></Appear>
         <Accordion type="single" collapsible className="mt-10">
           {FAQS.map((f) => (
-            <AccordionItem key={f.q} value={f.q}>
-              <AccordionTrigger className="text-left text-base text-foreground sm:text-lg">{f.q}</AccordionTrigger>
-              <AccordionContent className="text-sm leading-relaxed text-foreground/75 sm:text-base">{f.a}</AccordionContent>
-            </AccordionItem>
+            <Appear key={f.q}>
+              <AccordionItem value={f.q}>
+                <AccordionTrigger className="text-left text-base text-foreground sm:text-lg">{f.q}</AccordionTrigger>
+                <AccordionContent className="text-sm leading-relaxed text-foreground/75 sm:text-base">{f.a}</AccordionContent>
+              </AccordionItem>
+            </Appear>
           ))}
         </Accordion>
       </div>
