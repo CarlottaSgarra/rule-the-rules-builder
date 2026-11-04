@@ -14,7 +14,6 @@ import carlottaWalking from "@/assets/carlotta-walking.jpg";
 import carlottaWall from "@/assets/ambiziosa-carlotta-muro-web.jpg";
 import carlottaWallRight from "@/assets/Carlotta che guarda a destra appoggiata al muro.jpg";
 import carlottaStage from "@/assets/method-bg.jpg";
-import community from "@/assets/community.png";
 import participantsSmiling from "@/assets/social-proof-1.jpg";
 import participantNotes from "@/assets/social-proof-11.jpg";
 import participantsRoom from "@/assets/social-proof-4.jpg";
@@ -1028,10 +1027,9 @@ function ProblemText() {
 /* ---------------------------------------------------------------- 5. Il cambio */
 
 const STACK = [
-  { src: carlottaWall, line: "Per questo lo faccio al contrario." },
-  { src: carlottaTalking, line: "Sul palco, io e il team." },
-  { src: carlottaLooking2, line: "Errori, numeri, notti insonni." },
-  { src: community, line: "Poi si lavora sulla tua azienda." },
+  { src: carlottaWall, line: "Per questo ho deciso di fare un evento totalmente nuovo." },
+  { src: carlottaTalking, line: "Ti mostro tutti i numeri e la struttura della mia azienda." },
+  { src: carlottaLooking2, line: "Poi lavoriamo sulla tua struttura insieme al mio team." },
 ];
 
 function ZoomStack() {
@@ -1039,7 +1037,7 @@ function ZoomStack() {
   const per = 1 / STACK.length;
 
   return (
-    <section ref={ref} className="relative -mt-px bg-secondary" style={{ height: "460vh" }}>
+    <section ref={ref} className="relative -mt-px bg-secondary" style={{ height: "345vh" }}>
       <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden px-4">
         <div className="relative h-[72vh] w-full max-w-5xl md:h-[80vh]">
           {STACK.map((card, i) => {
@@ -1080,20 +1078,22 @@ function ChangeText() {
     <section className="bg-secondary px-5 pb-24 pt-8 sm:pb-32">
       <div className="mx-auto max-w-3xl space-y-5 text-lg text-white/75">
         <Appear><p>
-          Mi sono rotta le palle degli eventi in cui si applaude, si fanno due foto e poi{" "}
-          <strong className="font-semibold text-white">il lunedì non cambia niente.</strong> Li ho
-          organizzati anch'io. So quanto costano, a chi li fa e a chi ci va.
+          Mi sono rotta le palle degli eventi in cui si applaude tanto, si scrivono appunti, ma poi
+          quando torni a casa{" "}
+          <strong className="font-semibold text-white">hai ancora più dubbi di prima</strong> e ti
+          chiedi se ne sia valsa la pena.
         </p></Appear>
         <Appear><p>
-          <strong className="font-semibold text-white">Questa volta si lavora.</strong> Sul palco ci
+          <strong className="font-semibold text-white">Questa volta si lavora sul serio.</strong> Sul palco ci
           sono io con il mio team, le persone che ogni giorno fanno funzionare la mia azienda. Ti
           portiamo tutto quello che c'è dietro: gli errori, i numeri, le notti insonni, le cose che
-          hanno funzionato davvero. Poi ci si mette al lavoro{" "}
+          hanno funzionato davvero. Poi, nella seconda parte dell'evento, ci mettiamo al lavoro{" "}
           <strong className="font-semibold text-white">sulla tua azienda</strong>, insieme ad altre
           imprenditrici.
         </p></Appear>
         <Appear><p className="pt-4 font-display text-3xl leading-tight text-white sm:text-5xl">
-          Non esci con domande. <em className="italic text-primary">Esci con risposte.</em>
+          Hai presente quella domanda che ti gira in testa legata alla tua azienda?{" "}
+          <em className="italic text-primary">Ecco, durante l'evento ti do la risposta una volta per tutte.</em>
         </p></Appear>
       </div>
     </section>
