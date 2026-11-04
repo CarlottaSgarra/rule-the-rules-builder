@@ -11,8 +11,7 @@ import carlottaHug from "@/assets/carlotta-hug.jpg";
 import carlottaWalking from "@/assets/carlotta-walking.jpg";
 import carlottaWall from "@/assets/ambiziosa-carlotta-muro-web.jpg";
 import carlottaWallRight from "@/assets/Carlotta che guarda a destra appoggiata al muro.jpg";
-import sharonCarlotta from "@/assets/ambiziosa-sharon-carlotta-web.jpg";
-import sharonSpeaking from "@/assets/sharon-speaking.jpg";
+import carlottaPointing from "@/assets/carlotta-pointing.jpg";
 import community from "@/assets/community.png";
 
 // TODO Andrea: sostituire con il form Systeme della lista d'attesa dell'evento
@@ -184,22 +183,29 @@ function Topbar() {
       {/* Bottone sempre al centro; data a sinistra e, dopo il primo scroll,
           "Posti limitati · Early ticket per gli iscritti" a destra con lo stesso peso
           della data. Da telefono, dove la colonna è stretta, resta "Early ticket". */}
-      <span className="font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 sm:text-xs sm:tracking-[0.12em]">
-        Le vendite aprono il{"\u00a0"}7/12
-      </span>
+      <div className="min-w-0">
+        {/* Con left + translate il testo scorre da accanto al bottone al bordo sinistro. */}
+        <span
+          className={`relative inline-block font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 transition-all duration-500 sm:text-xs sm:tracking-[0.12em] ${
+            scrolled ? "left-0 translate-x-0 text-left" : "left-full -translate-x-full text-right"
+          }`}
+        >
+          Le vendite aprono il{"\u00a0"}7/12
+        </span>
+      </div>
       <a
         href="#lista-attesa"
         onClick={scrollToWaitlist}
         className="glow-sweep relative rounded-full bg-primary px-3 py-2.5 text-center font-condensed text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:min-w-[13rem] sm:px-10 sm:text-sm"
       >
-        Entra in lista
+        Entra in lista d'attesa
       </a>
       <span
         className={`text-balance text-right font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 transition-all duration-500 sm:text-xs sm:tracking-[0.12em] ${
           scrolled ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
         }`}
       >
-        Posti limitati
+        <span className="hidden sm:inline">Posti limitati</span>
         <span className="hidden md:inline"> · Early ticket per gli iscritti</span>
         <span className="block md:hidden">Early ticket</span>
       </span>
@@ -211,24 +217,27 @@ function Topbar() {
 
 const TITLE = "AMBIZIOSA".split("");
 
+// Distanza delle foto dell'apertura dal bordo alto, per staccarle dal menu.
+const HERO_PHOTOS_TOP = 112;
+
 // Colonna laterale già nella sua posizione finale: entra solo con transform e
 // opacità, così il telefono non deve ricalcolare l'impaginazione.
-function SideColumn({ images, side, t }: { images: string[]; side: "left" | "right"; t: number }) {
+function SideColumn({ images, side, t }: { images: { src: string; position: string }[]; side: "left" | "right"; t: number }) {
   const dir = side === "left" ? -1 : 1;
   return (
     <div
-      className={`absolute bottom-[34%] top-[84px] flex w-[calc(33%-28px)] flex-row gap-3 will-change-transform ${
+      className={`absolute bottom-[34%] flex w-[calc(33%-28px)] flex-row gap-3 will-change-transform ${
         side === "left" ? "left-4" : "right-4"
       }`}
-      style={{ transform: `translate3d(${lerp(dir * 115, 0, t)}%, 0, 0)`, opacity: t }}
+      style={{ top: HERO_PHOTOS_TOP, transform: `translate3d(${lerp(dir * 115, 0, t)}%, 0, 0)`, opacity: t }}
     >
-      {images.map((src, i) => (
+      {images.map(({ src, position }, i) => (
         <div
           key={src}
           className="relative h-full flex-1 overflow-hidden rounded-3xl"
           style={{ transform: `translate3d(0, ${lerp(25 + i * 20, 0, t)}%, 0)` }}
         >
-          <img src={src} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
+          <img src={src} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" style={{ objectPosition: position }} />
         </div>
       ))}
     </div>
@@ -245,19 +254,19 @@ function Hero() {
   // La foto resta a tutto schermo e si "ritaglia" fino alla scheda centrale.
   const insetX = desktop ? 33 : 6;
   const insetBottom = desktop ? 34 : 36;
-  const clip = `inset(${84 * shrink}px ${insetX * shrink}% ${insetBottom * shrink}% ${insetX * shrink}% round ${24 * shrink}px)`;
+  const clip = `inset(${HERO_PHOTOS_TOP * shrink}px ${insetX * shrink}% ${insetBottom * shrink}% ${insetX * shrink}% round ${24 * shrink}px)`;
 
   return (
     <section ref={ref} className="relative h-[300vh] bg-background">
       <div className="sticky top-0 h-svh overflow-hidden">
-        {desktop ? <SideColumn images={[carlottaHug, sharonSpeaking]} side="left" t={sides} /> : null}
+        {desktop ? <SideColumn images={[{ src: carlottaWalking, position: "50% 60%" }, { src: carlottaHug, position: "50% 40%" }]} side="left" t={sides} /> : null}
 
         <div className="absolute inset-0" style={{ clipPath: clip, WebkitClipPath: clip }}>
           {/* Scende con il bordo alto del ritaglio (la testa resta in vista) e su computer
               si sposta a sinistra per tenere Carlotta al centro della scheda. */}
           <div
             className="absolute inset-0 will-change-transform"
-            style={{ transform: `translate3d(${(desktop ? -9 : 0) * shrink}%, ${84 * shrink}px, 0)` }}
+            style={{ transform: `translate3d(${(desktop ? -9 : 0) * shrink}%, ${HERO_PHOTOS_TOP * shrink}px, 0)` }}
           >
             <img
               src={heroBg}
@@ -323,7 +332,7 @@ function Hero() {
           <h1 className="sr-only">Ambiziosa, il mio nuovo evento dal vivo del 2027</h1>
         </div>
 
-        {desktop ? <SideColumn images={[sharonCarlotta, carlottaTalking]} side="right" t={sides} /> : null}
+        {desktop ? <SideColumn images={[{ src: carlottaLooking2, position: "38% 50%" }, { src: carlottaPresenting, position: "62% 50%" }]} side="right" t={sides} /> : null}
 
         <div
           className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center px-5 text-center md:justify-start md:pt-6"
@@ -526,7 +535,7 @@ const PROBLEM_SLIDES = [
   { src: carlottaPresenting, line: "I contenuti sono il primo step." },
   { src: carlottaTalking, line: "Ma da soli non tengono in piedi un'azienda." },
   { src: carlottaLooking2, line: "E non ti garantiscono un fatturato costante." },
-  { src: sharonSpeaking, line: "In Ambiziosa 2027 lavoriamo su tutta la struttura." },
+  { src: carlottaPointing, line: "In Ambiziosa 2027 lavoriamo su tutta la struttura." },
 ];
 
 function BlurLine({ text, t, lowPower }: { text: string; t: number; lowPower: boolean }) {
@@ -614,7 +623,7 @@ function ProblemSplit() {
             className="absolute bottom-6 right-4 top-24 w-[calc(28%-28px)] overflow-hidden rounded-3xl will-change-transform"
             style={{ opacity: split, transform: `translate3d(${lerp(110, 0, split)}%, 0, 0)` }}
           >
-            <img src={sharonCarlotta} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
+            <img src={carlottaWalking} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
           </div>
         ) : null}
       </div>
