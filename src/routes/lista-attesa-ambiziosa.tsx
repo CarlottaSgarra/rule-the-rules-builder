@@ -3,10 +3,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SignupForm } from "@/components/landing/SignupForm";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import heroBg from "@/assets/Carlotta spostata a sinistra che guarda verso la camera.jpg";
-import heroCutout from "@/assets/ambiziosa-carlotta-cutout.png";
-import heroBgDesktop from "@/assets/carlotta appoggiata a muro che guarda.jpg";
-import heroCutoutDesktop from "@/assets/ambiziosa-carlotta-muro-cutout.webp";
+import heroBg from "@/assets/carlotta appoggiata a muro che guarda.jpg";
+import heroCutout from "@/assets/ambiziosa-carlotta-muro-cutout.webp";
 import carlottaPresenting from "@/assets/carlotta-presenting.jpg";
 import carlottaTalking from "@/assets/carlotta-talking.jpg";
 import carlottaLooking2 from "@/assets/carlotta-looking-2.jpg";
@@ -203,7 +201,7 @@ function Topbar() {
 
   return (
     <header
-      className={`fixed left-1/2 top-4 z-50 grid w-[92%] max-w-4xl -translate-x-1/2 grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-full px-4 py-2 sm:gap-3 sm:px-5 transition-all duration-300 ${
+      className={`fixed left-1/2 top-4 z-50 grid w-[92%] max-w-4xl -translate-x-1/2 grid-cols-[minmax(0,auto)_max-content_minmax(0,auto)] items-center justify-between gap-1.5 rounded-full px-3 py-2 sm:gap-3 sm:px-5 md:grid-cols-[1fr_auto_1fr] transition-all duration-300 ${
         scrolled ? "bg-background/95 shadow-lg md:bg-background/80 md:backdrop-blur-md" : "bg-transparent"
       }`}
     >
@@ -212,13 +210,14 @@ function Topbar() {
           con l'ombra. Da telefono, dove la colonna è stretta, resta "Early ticket". */}
       <div className="min-w-0">
         <span className="inline-block text-left font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 sm:text-xs sm:tracking-[0.12em]">
-          Le vendite ufficiali aprono il{"\u00a0"}7/12
+          <span className="md:hidden">Vendite ufficiali:{"\u00a0"}7/12</span>
+          <span className="hidden md:inline">Le vendite ufficiali aprono il{"\u00a0"}7/12</span>
         </span>
       </div>
       <a
         href="#lista-attesa"
         onClick={scrollToWaitlist}
-        className="glow-sweep relative rounded-full bg-primary px-3 py-2.5 text-center font-condensed text-xs font-semibold uppercase tracking-[0.1em] sm:tracking-[0.15em] text-background transition-transform hover:-translate-y-0.5 sm:min-w-[13rem] sm:px-10 sm:text-sm"
+        className="glow-sweep relative whitespace-nowrap rounded-full bg-primary px-3 py-2.5 text-center font-condensed text-xs font-semibold uppercase tracking-[0.05em] sm:tracking-[0.15em] text-background transition-transform hover:-translate-y-0.5 sm:min-w-[13rem] sm:px-10 sm:text-sm"
       >
         Entra in lista d'attesa
       </a>
@@ -271,22 +270,19 @@ function Hero() {
   const sides = ease(phase(progress, 0.15, 0.7));
   const titleOut = phase(progress, 0, 0.3);
   const caption = phase(progress, 0.6, 0.85);
-  // La foto si "ritaglia" fino alla scheda centrale. Da telefono parte a tutto
-  // schermo; su computer parte già in una cornice sotto il menu, con la foto
-  // orizzontale, così si vede Carlotta intera e non solo un dettaglio.
+  // La foto parte in una cornice sotto il menu e si "ritaglia" fino alla scheda
+  // centrale.
   const insetX = desktop ? 33 : 6;
   const insetBottom = desktop ? 34 : 36;
-  const startTop = desktop ? HERO_FRAME.top : 0;
-  const startX = desktop ? HERO_FRAME.x : 0;
-  const startBottom = desktop ? HERO_FRAME.bottom : 0;
-  const clip = `inset(${lerp(startTop, HERO_PHOTOS_TOP, shrink)}px ${lerp(startX, insetX, shrink)}% ${lerp(startBottom, insetBottom, shrink)}% ${lerp(startX, insetX, shrink)}% round ${lerp(desktop ? 24 : 0, 24, shrink)}px)`;
-  const photoPosition = desktop ? "35% 5%" : "62% 12%";
+  const clip = `inset(${lerp(HERO_FRAME.top, HERO_PHOTOS_TOP, shrink)}px ${lerp(HERO_FRAME.x, insetX, shrink)}% ${lerp(HERO_FRAME.bottom, insetBottom, shrink)}% ${lerp(HERO_FRAME.x, insetX, shrink)}% round 24px)`;
+  const photoPosition = desktop ? "35% 5%" : "31% 5%";
   // Il titolo non sparisce: sale, si rimpicciolisce e resta in cima alla scheda,
   // dietro la testa di Carlotta, così si legge tutto (anche la B). Su computer i
-  // valori sono nel sistema della foto, che a sua volta scala e si sposta.
+  // valori sono nel sistema della foto, che a sua volta scala e si sposta. Da
+  // telefono il corpo di Carlotta lo coprirebbe: sta già in cima alla foto dall'inizio.
   const titleTransform = desktop
     ? `translate3d(${-10.9 * shrink}vw, calc((4.49vw + 48px - 48.5vh) * ${shrink}), 0) scale(${lerp(1, 0.55, shrink)})`
-    : `translate3d(0, calc((8.5vw + 10px - 50svh) * ${shrink}), 0) scale(${lerp(1, 0.95, shrink)})`;
+    : `translate3d(0, calc(${lerp(8.93, 8.5, shrink)}vw + ${lerp(74, 66, shrink)}px - 48.5svh), 0) scale(${lerp(1, 0.95, shrink)})`;
 
   return (
     <section ref={ref} className="relative h-[300vh] bg-background">
@@ -298,28 +294,25 @@ function Hero() {
               si sposta a destra e si rimpicciolisce per tenere Carlotta al centro della scheda. */}
           <div
             className="absolute inset-0 will-change-transform"
-            style={
-              desktop
+            style={{
+              top: HERO_FRAME.top,
+              left: `${HERO_FRAME.x}%`,
+              right: `${HERO_FRAME.x}%`,
+              bottom: `${HERO_FRAME.bottom}%`,
+              ...(desktop
                 ? {
-                    top: HERO_FRAME.top,
-                    left: `${HERO_FRAME.x}%`,
-                    right: `${HERO_FRAME.x}%`,
-                    bottom: `${HERO_FRAME.bottom}%`,
                     transformOrigin: "38% 0",
                     transform: `translate3d(${11 * shrink}vw, ${(HERO_PHOTOS_TOP - HERO_FRAME.top + 15) * shrink}px, 0) scale(${lerp(1, 0.72, shrink)})`,
                   }
-                : { transform: `translate3d(0, ${HERO_PHOTOS_TOP * shrink}px, 0)` }
-            }
+                : { transform: `translate3d(0, ${12 * shrink}px, 0)` }),
+            }}
           >
-            <picture>
-              <source media="(min-width: 768px)" srcSet={heroBgDesktop} />
-              <img
-                src={heroBg}
-                alt="Carlotta"
-                className="absolute inset-0 size-full rounded-3xl object-cover max-md:rounded-none"
-                style={{ objectPosition: photoPosition }}
-              />
-            </picture>
+            <img
+              src={heroBg}
+              alt="Carlotta"
+              className="absolute inset-0 size-full rounded-3xl object-cover"
+              style={{ objectPosition: photoPosition }}
+            />
             <div
               aria-hidden
               className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 justify-center will-change-transform"
@@ -345,16 +338,13 @@ function Hero() {
                 ))}
               </span>
             </div>
-            <picture>
-              <source media="(min-width: 768px)" srcSet={heroCutoutDesktop} />
-              <img
-                src={heroCutout}
-                alt=""
-                aria-hidden
-                className="pointer-events-none absolute inset-0 size-full object-cover"
-                style={{ objectPosition: photoPosition }}
-              />
-            </picture>
+            <img
+              src={heroCutout}
+              alt=""
+              aria-hidden
+              className="pointer-events-none absolute inset-0 size-full object-cover"
+              style={{ objectPosition: photoPosition }}
+            />
             {/* Davanti allo scontorno: una copia invisibile del titolo dà la misura,
                 così l'etichetta parte esattamente dalla A di AMBIZIOSA. */}
             <div
@@ -362,12 +352,14 @@ function Hero() {
               className="pointer-events-none absolute inset-x-0 top-1/2 z-10 flex -translate-y-1/2 justify-center"
               style={{
                 opacity: 1 - titleOut,
-                transform: `translate3d(0, ${-titleOut * 200}px, 0)`,
+                transform: desktop
+                  ? `translate3d(0, ${-titleOut * 200}px, 0)`
+                  : "translate3d(0, calc(8.93vw + 74px - 48.5svh), 0)",
               }}
             >
               <span className="relative whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight md:text-[19vw]">
                 <span className="invisible">AMBIZIOSA</span>
-                <span className="absolute bottom-full left-[0.06em] mb-2 max-w-[48%] whitespace-normal md:left-auto md:right-[0.06em] font-condensed text-[11px] font-semibold uppercase leading-relaxed tracking-[0.2em] text-secondary sm:mb-3 sm:text-sm md:max-w-none md:whitespace-nowrap md:tracking-[0.3em]"
+                <span className="absolute bottom-full left-[0.06em] mb-1 whitespace-nowrap font-condensed text-[10px] font-semibold uppercase leading-relaxed tracking-[0.14em] text-secondary sm:mb-3 sm:text-sm md:left-auto md:right-[0.06em] md:tracking-[0.3em]"
                   style={{ textShadow: "0 0 10px rgb(255 255 255 / 0.95), 0 0 2px rgb(255 255 255 / 0.9)" }}
                 >
                   Il mio nuovo evento dal vivo del 2027
