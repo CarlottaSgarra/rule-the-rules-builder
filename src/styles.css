@@ -556,6 +556,19 @@
     filter: drop-shadow(0 0 0 rgb(243 227 181 / 0));
   }
 }
+/* Da telefono: la stessa luce, senza l'alone sfocato che va ridisegnato a ogni fotogramma. */
+@keyframes gold-glow-letter-lite {
+  0% {
+    background-position: 100% 0;
+  }
+  24%,
+  100% {
+    background-position: 0% 0;
+  }
+}
+.amb-title-still .gold-glow-letter {
+  animation-name: amb-letter-up, none !important;
+}
 /* Il bottone deve essere già posizionato (relative o fixed). */
 .glow-sweep,
 .theme-ambiziosa-2027 #lista-attesa button[type="submit"] {

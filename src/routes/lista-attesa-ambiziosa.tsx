@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { SignupForm } from "@/components/landing/SignupForm";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import heroBg from "@/assets/carlotta appoggiata a muro che guarda.jpg";
+import heroBg from "@/assets/ambiziosa-carlotta-muro-hero.webp";
 import heroCutout from "@/assets/ambiziosa-carlotta-muro-cutout.webp";
 import carlottaPresenting from "@/assets/carlotta-presenting.jpg";
 import carlottaTalking from "@/assets/carlotta-talking.jpg";
@@ -71,6 +71,22 @@ function useLowPower() {
     setLow(window.matchMedia("(max-width: 767px), (pointer: coarse)").matches);
   }, []);
   return low;
+}
+
+// Misura di un elemento, aggiornata solo quando cambia davvero.
+function useElementSize<T extends HTMLElement>() {
+  const ref = useRef<T>(null);
+  const [size, setSize] = useState({ w: 0, h: 0 });
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const update = () => setSize({ w: node.clientWidth, h: node.clientHeight });
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(node);
+    return () => ro.disconnect();
+  }, []);
+  return { ref, size };
 }
 
 // Progresso (0-1) dello scroll. "sticky": dentro una sezione alta con un figlio
@@ -266,6 +282,8 @@ function SideColumn({ images, side, t }: { images: { src: string; position: stri
 function Hero() {
   const { ref, progress } = useScrollProgress<HTMLElement>("sticky");
   const desktop = useIsDesktop();
+  const lowPower = useLowPower();
+  const { ref: stageRef, size: stage } = useElementSize<HTMLDivElement>();
   const shrink = ease(phase(progress, 0, 0.6));
   const sides = ease(phase(progress, 0.15, 0.7));
   const titleOut = phase(progress, 0, 0.3);
@@ -275,7 +293,42 @@ function Hero() {
   const insetX = desktop ? 33 : 6;
   const insetBottom = desktop ? 34 : 36;
   const clip = `inset(${lerp(HERO_FRAME.top, HERO_PHOTOS_TOP, shrink)}px ${lerp(HERO_FRAME.x, insetX, shrink)}% ${lerp(HERO_FRAME.bottom, insetBottom, shrink)}% ${lerp(HERO_FRAME.x, insetX, shrink)}% round 24px)`;
+  // Da telefono il ritaglio animato costringe a ridisegnare tutta la foto a ogni
+  // fotogramma e la riduzione scatta. Stesso effetto con due trasformazioni, che
+  // la scheda grafica gestisce da sola: la cornice si stringe e il contenuto fa
+  // il movimento opposto, così la foto resta ferma.
+  const frameW = stage.w * (1 - (2 * HERO_FRAME.x) / 100);
+  const frameH = stage.h * (1 - HERO_FRAME.bottom / 100) - HERO_FRAME.top;
+  const curLeft = (lerp(HERO_FRAME.x, insetX, shrink) / 100) * stage.w;
+  const curTop = lerp(HERO_FRAME.top, HERO_PHOTOS_TOP, shrink);
+  const curBottom = (lerp(HERO_FRAME.bottom, insetBottom, shrink) / 100) * stage.h;
+  const scaleX = frameW > 0 ? (stage.w - 2 * curLeft) / frameW : 1;
+  const scaleY = frameH > 0 ? (stage.h - curTop - curBottom) / frameH : 1;
+  const moveX = curLeft - (HERO_FRAME.x / 100) * stage.w;
+  const moveY = curTop - HERO_FRAME.top;
   const photoPosition = desktop ? "35% 5%" : "31% 5%";
+  const titleLetters = useMemo(
+    () =>
+      TITLE.map((letter, i) => (
+        <span
+          key={i}
+          className="amb-letter gold-glow-letter inline-block"
+          style={{
+            // Salita della lettera, poi la luce che passa da sinistra a destra.
+            // Da telefono la luce resta, senza l'alone che costa troppo.
+            animationName: `amb-letter-up, ${lowPower ? "gold-glow-letter-lite" : "gold-glow-letter"}`,
+            animationDuration: "0.9s, 5s",
+            animationTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1), ease-in-out",
+            animationIterationCount: "1, infinite",
+            animationFillMode: "forwards, none",
+            animationDelay: `${0.15 + i * 0.07}s, ${1.8 + i * 0.09}s`,
+          }}
+        >
+          {letter}
+        </span>
+      )),
+    [lowPower],
+  );
   // Il titolo non sparisce: sale, si rimpicciolisce e resta in cima alla scheda,
   // dietro la testa di Carlotta, così si legge tutto (anche la B). Su computer i
   // valori sono nel sistema della foto, che a sua volta scala e si sposta. Da
@@ -286,26 +339,45 @@ function Hero() {
 
   return (
     <section ref={ref} className="relative h-[300vh] bg-background">
-      <div className="sticky top-0 h-svh overflow-hidden">
+      <div ref={stageRef} className="sticky top-0 h-svh overflow-hidden">
         {desktop ? <SideColumn images={[{ src: participantsHug, position: "45% 50%" }, { src: participantsSmiling, position: "62% 50%" }]} side="left" t={sides} /> : null}
 
-        <div className="absolute inset-0" style={{ clipPath: clip, WebkitClipPath: clip }}>
+        <div
+          className={desktop ? "absolute inset-0" : "absolute overflow-hidden will-change-transform"}
+          style={
+            desktop
+              ? { clipPath: clip, WebkitClipPath: clip }
+              : {
+                  top: HERO_FRAME.top,
+                  left: `${HERO_FRAME.x}%`,
+                  right: `${HERO_FRAME.x}%`,
+                  bottom: `${HERO_FRAME.bottom}%`,
+                  // La cornice si schiaccia in altezza: questo raggio dà angoli tondi anche da ridotta.
+                  borderRadius: "24px / 30px",
+                  transformOrigin: "0 0",
+                  transform: `translate3d(${moveX}px, ${moveY}px, 0) scale(${scaleX}, ${scaleY})`,
+                }
+          }
+        >
           {/* Scende con il bordo alto del ritaglio (la testa resta in vista). Su computer
               si sposta a destra e si rimpicciolisce per tenere Carlotta al centro della scheda. */}
           <div
             className="absolute inset-0 will-change-transform"
-            style={{
-              top: HERO_FRAME.top,
-              left: `${HERO_FRAME.x}%`,
-              right: `${HERO_FRAME.x}%`,
-              bottom: `${HERO_FRAME.bottom}%`,
-              ...(desktop
+            style={
+              desktop
                 ? {
+                    top: HERO_FRAME.top,
+                    left: `${HERO_FRAME.x}%`,
+                    right: `${HERO_FRAME.x}%`,
+                    bottom: `${HERO_FRAME.bottom}%`,
                     transformOrigin: "38% 0",
                     transform: `translate3d(${11 * shrink}vw, ${(HERO_PHOTOS_TOP - HERO_FRAME.top - 1) * shrink}px, 0) scale(${lerp(1, 0.72, shrink)})`,
                   }
-                : { transform: `translate3d(0, ${12 * shrink}px, 0)` }),
-            }}
+                : {
+                    transformOrigin: "0 0",
+                    transform: `scale(${1 / scaleX}, ${1 / scaleY}) translate3d(${-moveX}px, ${-moveY + 12 * shrink}px, 0)`,
+                  }
+            }
           >
             <img
               src={heroBg}
@@ -318,24 +390,13 @@ function Hero() {
               className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 justify-center will-change-transform"
               style={{ transform: titleTransform }}
             >
-              <span className="whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight md:text-[19vw] text-primary">
-                {TITLE.map((letter, i) => (
-                  <span
-                    key={i}
-                    className="amb-letter gold-glow-letter inline-block"
-                    style={{
-                      // Salita della lettera, poi la luce che passa da sinistra a destra.
-                      animationName: "amb-letter-up, gold-glow-letter",
-                      animationDuration: "0.9s, 5s",
-                      animationTimingFunction: "cubic-bezier(0.22, 1, 0.36, 1), ease-in-out",
-                      animationIterationCount: "1, infinite",
-                      animationFillMode: "forwards, none",
-                      animationDelay: `${0.15 + i * 0.07}s, ${1.8 + i * 0.09}s`,
-                    }}
-                  >
-                    {letter}
-                  </span>
-                ))}
+              {/* Da telefono la luce sul titolo si ferma appena si scorre: niente ridisegni durante lo scroll. */}
+              <span
+                className={`whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight md:text-[19vw] text-primary ${
+                  lowPower && progress > 0.005 ? "amb-title-still" : ""
+                }`}
+              >
+                {titleLetters}
               </span>
             </div>
             <img
@@ -437,8 +498,9 @@ function FlipHeadlines() {
                   style={{
                     transform: `rotateX(${rot}deg)`,
                     opacity,
+                    visibility: opacity <= 0.001 ? "hidden" : "visible",
+                    willChange: "transform, opacity",
                     backfaceVisibility: "hidden",
-                    transformStyle: "preserve-3d",
                   }}
                 >
                   <span>
@@ -652,7 +714,7 @@ function BlurLine({ text, t, lowPower }: { text: string; t: number; lowPower: bo
             className="inline-block"
             style={{
               opacity: visible,
-              filter: `blur(${lerp(lowPower ? 6 : 30, 0, visible)}px)`,
+              filter: lowPower ? undefined : `blur(${lerp(30, 0, visible)}px)`,
               marginRight: "0.25em",
             }}
           >
@@ -688,7 +750,7 @@ function ProblemSplit() {
           </div>
         ) : null}
 
-        <div className="absolute inset-0" style={{ clipPath: clip, WebkitClipPath: clip }}>
+        <div className="absolute inset-0" style={split > 0 ? { clipPath: clip, WebkitClipPath: clip } : undefined}>
           {PROBLEM_SLIDES.map((s, i) => (
             <img
               key={s.line}
@@ -699,6 +761,7 @@ function ProblemSplit() {
               style={{
                 // Ogni foto entra a cavallo del cambio di titolo, in poco scroll.
                 opacity: i === 0 ? 1 : clamp((slide - i + 0.1) / 0.2),
+                visibility: i === 0 || slide - i + 0.1 > 0 ? "visible" : "hidden",
                 objectPosition: desktop ? s.position : s.mobilePosition,
                 transform: `translate3d(${desktop ? (s.shift ?? 0) * split : 0}vw, 0, 0) scale(${lerp(1.08, 1, clamp(slide - i + 0.1))})`,
               }}
@@ -1091,6 +1154,8 @@ function ZoomStack() {
                 className="absolute inset-0 overflow-hidden rounded-2xl md:rounded-3xl"
                 style={{
                   zIndex: i,
+                  willChange: "transform, opacity",
+                  visibility: i === 0 || t > 0 ? "visible" : "hidden",
                   opacity: i === 0 ? 1 : t,
                   transform:
                     i === 0
