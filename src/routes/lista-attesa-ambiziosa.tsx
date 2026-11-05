@@ -577,10 +577,60 @@ function Manifesto() {
   );
 }
 
+/* ---------------------------------------------------------------- Riprova sociale */
+
+// Tutte le foto delle partecipanti, divise su due file che scorrono in versi opposti.
+const PARTICIPANT_PHOTOS = Object.entries(
+  import.meta.glob<string>("/src/assets/social-proof-*.jpg", { eager: true, import: "default" }),
+)
+  .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+  .map(([, src]) => src);
+
+function ProofRow({ photos, direction }: { photos: string[]; direction: "left" | "right" }) {
+  return (
+    <div className="overflow-hidden">
+      {/* Le foto sono ripetute due volte: a metà corsa il giro riparte senza stacchi. */}
+      <div
+        className={`flex w-max ${direction === "left" ? "animate-marquee-rtl" : "animate-marquee-ltr"}`}
+        style={{ animationDuration: "70s" }}
+      >
+        {[...photos, ...photos].map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt={i < photos.length ? "Partecipanti all'edizione precedente di Ambiziosa" : ""}
+            aria-hidden={i >= photos.length}
+            loading="lazy"
+            className="mr-3 h-44 w-auto max-w-none rounded-2xl object-cover sm:mr-4 md:h-72"
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SocialProof() {
+  return (
+    <section className="overflow-hidden bg-background pb-24 md:pb-32">
+      <Appear>
+        <h2 className="mx-auto max-w-4xl px-5 text-center font-display text-4xl leading-tight text-foreground sm:text-5xl">
+          L'edizione precedente di <span className="text-[var(--gold-text)]">Ambiziosa</span> è stata pazzesca.
+          <br />
+          Sarai con me quest'anno?
+        </h2>
+      </Appear>
+      <div className="mt-10 space-y-3 sm:space-y-4 md:mt-14">
+        <ProofRow photos={PARTICIPANT_PHOTOS.slice(0, 8)} direction="left" />
+        <ProofRow photos={PARTICIPANT_PHOTOS.slice(8)} direction="right" />
+      </div>
+    </section>
+  );
+}
+
 /* ---------------------------------------------------------------- 4. Il problema */
 
 const PROBLEM_SLIDES: { src: string; line: string; position?: string; mobilePosition?: string; shift?: number }[] = [
-  { src: carlottaPresenting, line: "I contenuti sono il primo step." },
+  { src: carlottaPresenting, line: "Tutti si concentrano sui contenuti, ma quelli sono solo il primo step." },
   { src: carlottaTalking, line: "Ma da soli non tengono in piedi un'azienda." },
   { src: carlottaLooking2, line: "E non ti garantiscono un fatturato costante." },
   // Carlotta è a sinistra nella foto: su computer scorre a destra mentre la foto
@@ -1202,9 +1252,8 @@ function Closing() {
         <span className="font-condensed text-xs uppercase tracking-[0.3em] text-white/70 sm:text-sm">
           Segnati questa data
         </span>
-        <h2 className="mt-4 space-y-2 font-display text-2xl leading-tight text-primary sm:text-4xl">
-          <span className="block">6 dicembre, aprono le vendite per gli iscritti in lista d'attesa.</span>
-          <span className="block">7 dicembre, aprono le vendite ufficiali.</span>
+        <h2 className="mt-4 font-display text-2xl leading-tight text-primary sm:text-4xl">
+          6 dicembre, aprono le vendite per gli iscritti in lista d'attesa.
         </h2>
         <p className="mx-auto mt-8 max-w-xl text-lg text-white/85">
           <strong className="font-semibold text-white">I posti sono 100: quando finiscono, finiscono.</strong>{" "}
@@ -1237,11 +1286,11 @@ function Closing() {
 const FAQS = [
   {
     q: "Quando si svolge Ambiziosa?",
-    a: "A febbraio 2027, dal vivo, in 2 giorni. La data esatta e il luogo li trovi all'apertura delle vendite, il 7 dicembre.",
+    a: "A febbraio 2027, dal vivo, in 2 giorni. Ti comunicherò la data esatta e il luogo non appena apriremo le vendite dell'evento.",
   },
   {
     q: "Quando aprono le vendite?",
-    a: "Il 7 dicembre. Chi è in lista d'attesa può iscriversi per prima, con un prezzo riservato solo a lei.",
+    a: "Il 7 dicembre aprono le vendite ufficiali per chi non è in lista d'attesa. Chi è in lista d'attesa può iscriversi già dal giorno prima a prezzo esclusivo.",
   },
   {
     q: "Entrare in lista d'attesa mi impegna a comprare?",
@@ -1253,7 +1302,7 @@ const FAQS = [
   },
   {
     q: "Quanti posti ci sono?",
-    a: "100. Quando finiscono, finiscono.",
+    a: "100. Ho voluto creare un evento riservato per poter lavorare bene con ogni imprenditrice che parteciperà ad Ambiziosa.",
   },
   {
     q: "Va bene anche se sto partendo da zero?",
@@ -1293,6 +1342,7 @@ function ListaAttesaAmbiziosa() {
       <Topbar />
       <Hero />
       <Manifesto />
+      <SocialProof />
       <ProblemSplit />
       <ProblemText />
       <ZoomStack />

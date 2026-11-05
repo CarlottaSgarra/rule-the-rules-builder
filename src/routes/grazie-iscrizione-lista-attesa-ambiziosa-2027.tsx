@@ -16,15 +16,15 @@ const WHATSAPP_GROUP_HREF: string | null = null;
 const QUESTIONNAIRE_HREF: string | null = null;
 const INSTAGRAM_HREF = "https://www.instagram.com/carlottasgarra.web/";
 
-// Apertura delle vendite: evento di un giorno intero il 7 dicembre 2026.
-const CALENDAR_TITLE = "Ambiziosa 2027: aprono le vendite";
+// Apertura delle vendite per chi è in lista: evento di un giorno intero il 6 dicembre 2026.
+const CALENDAR_TITLE = "Ambiziosa 2027: aprono le vendite per chi è in lista";
 const CALENDAR_DETAILS =
-  "Oggi aprono le vendite di Ambiziosa 2027. Chi è in lista d'attesa riceve l'email con l'early ticket.";
+  "Oggi aprono le vendite di Ambiziosa 2027 per chi è in lista d'attesa: ti arriva l'email con l'early ticket. Le vendite ufficiali aprono domani, il 7 dicembre.";
 const GOOGLE_CALENDAR_URL = (() => {
   const params = new URLSearchParams({
     action: "TEMPLATE",
     text: CALENDAR_TITLE,
-    dates: "20261207/20261208",
+    dates: "20261206/20261207",
     details: CALENDAR_DETAILS,
   });
   return `https://www.google.com/calendar/render?${params.toString()}`;
@@ -38,8 +38,8 @@ const ICS_HREF = `data:text/calendar;charset=utf-8,${encodeURIComponent(
     "BEGIN:VEVENT",
     "UID:ambiziosa-2027-apertura-vendite@carlottasgarra.it",
     "DTSTAMP:20261102T000000Z",
-    "DTSTART;VALUE=DATE:20261207",
-    "DTEND;VALUE=DATE:20261208",
+    "DTSTART;VALUE=DATE:20261206",
+    "DTEND;VALUE=DATE:20261207",
     `SUMMARY:${CALENDAR_TITLE}`,
     `DESCRIPTION:${CALENDAR_DETAILS}`,
     "END:VEVENT",
@@ -121,9 +121,9 @@ function CalendarSheet() {
       <div className="bg-secondary py-2 font-condensed text-sm uppercase tracking-[0.3em] text-secondary-foreground">
         Dicembre
       </div>
-      <p className="py-3 font-display text-7xl leading-none text-foreground">7</p>
+      <p className="py-3 font-display text-7xl leading-none text-foreground">6</p>
       <p className="pb-4 font-condensed text-xs uppercase tracking-[0.2em] text-[var(--gold-text)]">
-        Aprono le vendite
+        Early ticket
       </p>
     </div>
   );
@@ -189,7 +189,7 @@ function ThankYouAmbiziosa() {
             </span>
             <h1 className="mt-6 font-display text-4xl leading-tight text-foreground sm:text-6xl">
               Sei in lista!{" "}
-              <span className="text-[var(--gold-text)]">Il 7 dicembre aprono le vendite</span>
+              <span className="text-[var(--gold-text)]">Il 6 dicembre aprono le vendite per te</span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-foreground/80">
               <Mail className="mb-0.5 mr-1.5 inline size-4 align-text-bottom" /> Ti ho appena mandato
@@ -198,8 +198,9 @@ function ThankYouAmbiziosa() {
               (occhio anche allo spam, sai com'è).
             </p>
             <p className="mx-auto mt-3 max-w-xl text-lg leading-relaxed text-foreground/80">
-              Il 7 dicembre <strong className="font-semibold text-foreground">ti scrivo per prima</strong>{" "}
-              con l'early ticket, il prezzo riservato a chi è in lista. I posti sono 100. Intanto ci sono
+              Il 6 dicembre, 24 ore prima delle vendite ufficiali,{" "}
+              <strong className="font-semibold text-foreground">ti scrivo per prima</strong> con l'early
+              ticket, il prezzo riservato a chi è in lista. I posti sono 100. Intanto ci sono
               quattro cose che puoi fare adesso.
             </p>
           </Reveal>
@@ -220,7 +221,7 @@ function ThankYouAmbiziosa() {
                 visual={<CalendarSheet />}
                 icon={<CalendarPlus className="size-6" />}
                 title="Segna la data in calendario"
-                sub="7 dicembre 2026 · aprono le vendite di Ambiziosa 2027"
+                sub="6 dicembre 2026 · aprono le vendite di Ambiziosa 2027 per chi è in lista"
                 cta={
                   <>
                     <CtaButton
@@ -242,7 +243,7 @@ function ThankYouAmbiziosa() {
                 }
               >
                 <p>
-                  <strong className="font-semibold text-foreground">Salvati la data adesso</strong>: il 7
+                  <strong className="font-semibold text-foreground">Salvati la data adesso</strong>: il 6
                   dicembre ti arriva l'email con l'apertura delle vendite.
                 </p>
               </StepBox>
