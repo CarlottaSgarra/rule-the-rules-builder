@@ -132,7 +132,7 @@ export function SignupForm({
       </label>
       <button
         type="submit"
-        className="flex w-full flex-col items-center rounded-xl px-6 py-4 transition-transform hover:-translate-y-0.5"
+        className="flex w-full cursor-pointer flex-col items-center rounded-xl px-6 py-4 transition-transform hover:-translate-y-0.5"
         style={{
           backgroundImage: "var(--gradient-gold)",
           color: "var(--primary-foreground)",

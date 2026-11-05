@@ -1102,18 +1102,20 @@ function WaitlistSignup() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1.1fr_0.9fr] md:gap-16">
         <Appear>
           <span className="font-condensed text-xs uppercase tracking-[0.3em] text-foreground/60 sm:text-sm">
-            Le vendite aprono il 7 dicembre
+            Le vendite ufficiali aprono il 7 dicembre, ma per chi è in lista d'attesa c'è l'early ticket dal 6 dicembre
           </span>
           <h2 className="mt-4 font-display text-4xl leading-tight text-foreground sm:text-5xl">
             Iscriviti alla lista d'attesa di <span className="text-[var(--gold-text)]">Ambiziosa</span>
           </h2>
           <div className="mt-8 space-y-5 text-lg leading-relaxed text-foreground/80">
             <p>
-              Il 7 dicembre aprono le vendite e i posti sono 100. Chi è in lista d'attesa lo sa per
-              prima: ti scrivo io appena si aprono, così puoi entrare prima che i posti finiscano.{" "}
+              Il 7 dicembre aprono le vendite ufficiali e i posti sono solo 100. Chi è in lista d'attesa
+              però può acquistare il proprio biglietto{" "}
               <strong className="font-semibold text-foreground">
-                E hai l'early ticket, il prezzo riservato solo a chi è in lista.
+                già 24 ore prima, quindi il 6 dicembre, a prezzo esclusivo
               </strong>
+              : ti avviso io non appena le vendite si aprono, così puoi prenotare il tuo posto prima che
+              i posti finiscano.
             </p>
           </div>
         </Appear>
@@ -1126,7 +1128,7 @@ function WaitlistSignup() {
           // card chiara: qui lo riportiamo al nero sporco.
           style={{ boxShadow: "var(--shadow-deep)", "--primary": "var(--secondary)", "--primary-foreground": "var(--background)" } as React.CSSProperties}
         >
-          <SignupForm action={WAITLIST_ACTION} submitLabel="Entra in lista d'attesa" phoneRequired phonePlaceholder="Telefono (senza prefisso)" />
+          <SignupForm action={WAITLIST_ACTION} submitLabel="Entra in lista d'attesa" phoneRequired phonePlaceholder="Numero di telefono" />
           <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
             Entrare in lista è gratis e non ti impegna a comprare.
           </p>
@@ -1221,7 +1223,7 @@ function Closing() {
           // card chiara: qui lo riportiamo al nero sporco.
           style={{ boxShadow: "var(--shadow-deep)", "--primary": "var(--secondary)", "--primary-foreground": "var(--background)" } as React.CSSProperties}
         >
-          <SignupForm action={WAITLIST_ACTION} submitLabel="Entra in lista d'attesa" phoneRequired phonePlaceholder="Telefono (senza prefisso)" />
+          <SignupForm action={WAITLIST_ACTION} submitLabel="Entra in lista d'attesa" phoneRequired phonePlaceholder="Numero di telefono" />
           <p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">
             Entrare in lista è gratis e non ti impegna a comprare.
           </p>
