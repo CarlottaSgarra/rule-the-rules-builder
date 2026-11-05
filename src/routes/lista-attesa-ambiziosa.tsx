@@ -1079,7 +1079,7 @@ function ClientsVisual({ on }: { on: boolean }) {
   let dot = 0;
   return (
     <div className="flex h-full flex-col">
-      <div className="flex items-baseline justify-between font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">
+      <div className="flex flex-col items-start gap-1 text-left font-condensed text-xs uppercase tracking-[0.25em] text-ink/60">
         <span>Previsionale</span>
         <span className="text-primary">Quante clienti ti servono?</span>
       </div>
