@@ -281,7 +281,7 @@ function Hero() {
   // valori sono nel sistema della foto, che a sua volta scala e si sposta. Da
   // telefono il corpo di Carlotta lo coprirebbe: sta già in cima alla foto dall'inizio.
   const titleTransform = desktop
-    ? `translate3d(${-10.9 * shrink}vw, calc((4.49vw + 48px - 48.5vh) * ${shrink}), 0) scale(${lerp(1, 0.55, shrink)})`
+    ? `translate3d(${-10.9 * shrink}vw, calc((4.49vw + 38px - 48.5vh) * ${shrink}), 0) scale(${lerp(1, 0.55, shrink)})`
     : `translate3d(0, calc(${lerp(8.93, 8.5, shrink)}vw + ${lerp(74, 66, shrink)}px - 48.5svh), 0) scale(${lerp(1, 0.95, shrink)})`;
 
   return (
@@ -302,7 +302,7 @@ function Hero() {
               ...(desktop
                 ? {
                     transformOrigin: "38% 0",
-                    transform: `translate3d(${11 * shrink}vw, ${(HERO_PHOTOS_TOP - HERO_FRAME.top + 15) * shrink}px, 0) scale(${lerp(1, 0.72, shrink)})`,
+                    transform: `translate3d(${11 * shrink}vw, ${(HERO_PHOTOS_TOP - HERO_FRAME.top - 1) * shrink}px, 0) scale(${lerp(1, 0.72, shrink)})`,
                   }
                 : { transform: `translate3d(0, ${12 * shrink}px, 0)` }),
             }}
