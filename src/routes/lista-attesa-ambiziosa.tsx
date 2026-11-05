@@ -1147,13 +1147,13 @@ function PromiseSection() {
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[1.15fr_0.85fr]">
         <div>
           <Appear><h2 className="font-display text-3xl leading-tight text-foreground sm:text-5xl">
-            Tutti ti insegnano a trovare clienti.{" "}
-            <em className="italic">Nessuno ti racconta cosa succede dopo.</em>
+            Tutti si concentrano solo sui contenuti.{" "}
+            <em className="italic">Nessuno ti racconta come si struttura veramente un'azienda.</em>
           </h2></Appear>
           <div className="mt-8 space-y-5 text-lg text-foreground/80">
             <Appear><p>
-              Quando le clienti arrivano e i soldi pure, il business cambia faccia. Se lo porti avanti
-              senza una struttura, <strong className="font-semibold text-foreground">a un certo punto soffochi</strong>: non hai più tempo né spazio in testa per
+              Quando le clienti arrivano e i soldi pure, il business cambia faccia. Se ti concentri solo
+              sui contenuti ma non sulla struttura della tua azienda, <strong className="font-semibold text-foreground">a un certo punto soffochi</strong>: non hai più tempo né spazio in testa per
               capire cosa vuoi davvero e dove vuoi andare.
             </p></Appear>
             <Appear><p>
@@ -1168,13 +1168,10 @@ function PromiseSection() {
             <Appear><p>
               Io ho imparato tutto questo da sola, perdendo tempo, soldi e un bel pezzo di libertà. Ora
               voglio costruire insieme a te{" "}
-              <strong className="font-semibold text-foreground">un'azienda che ti assomiglia</strong>,
+              <strong className="font-semibold text-foreground">un'azienda che ti renda veramente libera</strong>,
               con una vita dentro, del tempo libero e la voglia di divertirti ancora.
             </p></Appear>
           </div>
-          <Appear><p className="mt-10 font-condensed text-4xl uppercase tracking-tight text-foreground sm:text-6xl">
-            Da freelance ad azienda.
-          </p></Appear>
         </div>
         <Appear className="w-full">
         <div className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-3xl">
@@ -1205,14 +1202,14 @@ function Closing() {
         <span className="font-condensed text-xs uppercase tracking-[0.3em] text-white/70 sm:text-sm">
           Segnati questa data
         </span>
-        <h2 className="mt-4 font-condensed text-[22vw] font-semibold uppercase leading-[0.85] tracking-tight text-white sm:text-[12rem]">
-          7.12
+        <h2 className="mt-4 space-y-2 font-display text-2xl leading-tight text-primary sm:text-4xl">
+          <span className="block">6 dicembre, aprono le vendite per gli iscritti in lista d'attesa.</span>
+          <span className="block">7 dicembre, aprono le vendite ufficiali.</span>
         </h2>
-        <p className="mt-2 font-display text-2xl text-primary sm:text-3xl">7 dicembre, aprono le vendite.</p>
         <p className="mx-auto mt-8 max-w-xl text-lg text-white/85">
           <strong className="font-semibold text-white">I posti sono 100: quando finiscono, finiscono.</strong>{" "}
-          Chi è in lista d'attesa può iscriversi per prima, con un prezzo riservato solo a lei.
-          Lasciami nome ed email e ti avviso io.
+          Iscrivendoti in lista d'attesa puoi prenotare il tuo posto all'evento prima di tutti gli
+          altri con un prezzo riservato solo per te.
         </p>
         </Appear>
         <Appear>
