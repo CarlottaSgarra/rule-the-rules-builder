@@ -241,8 +241,15 @@ function BarContent() {
 
 function Topbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+      // Da telefono il menu resta in alto finché la foto di apertura non è uscita
+      // dallo schermo: la foto ridotta finisce al 64% dell'altezza e la sezione tiene
+      // ferma la scena per un ulteriore 30%.
+      setPastHero(window.scrollY > window.innerHeight * 0.94);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -252,18 +259,17 @@ function Topbar() {
     <>
       <header
         className={`fixed left-1/2 top-4 z-50 -translate-x-1/2 transition-[translate,background-color,box-shadow] duration-300 ${BAR_CLASS} ${
-          scrolled
-            ? "bg-background/95 shadow-lg max-md:-translate-y-[200%] md:bg-background/80 md:backdrop-blur-md"
-            : "bg-transparent"
-        }`}
+          scrolled ? "bg-background/95 shadow-lg md:bg-background/80 md:backdrop-blur-md" : "bg-transparent"
+        } ${pastHero ? "max-md:-translate-y-[200%]" : ""}`}
       >
         <BarContent />
       </header>
-      {/* Da telefono, appena si scorre, il menu passa in basso: lì si arriva con il dito. */}
+      {/* Da telefono, quando la foto di apertura è uscita, il menu passa in basso: lì si
+          arriva con il dito. Tornando su ricompare quello in alto. */}
       <div
-        aria-hidden={!scrolled}
+        aria-hidden={!pastHero}
         className={`fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-50 -translate-x-1/2 bg-background/95 shadow-lg transition-[translate] duration-300 md:hidden ${BAR_CLASS} ${
-          scrolled ? "translate-y-0" : "translate-y-[200%]"
+          pastHero ? "translate-y-0" : "translate-y-[200%]"
         }`}
       >
         <BarContent />
@@ -332,8 +338,6 @@ function Hero() {
   // centrale.
   const insetX = desktop ? 33 : 6;
   const insetBottom = desktop ? 34 : 36;
-  // Da telefono, a foto ridotta, il menu è in basso: la scheda sale di questi pixel.
-  const HERO_LIFT_MOBILE = 56;
   const clip = `inset(${lerp(HERO_FRAME.top, HERO_PHOTOS_TOP, shrink)}px ${lerp(HERO_FRAME.x, insetX, shrink)}% ${lerp(HERO_FRAME.bottom, insetBottom, shrink)}% ${lerp(HERO_FRAME.x, insetX, shrink)}% round 24px)`;
   // Prima che la pagina si attivi non sappiamo ancora se è un telefono: posizione
   // della foto e del titolo stanno nel CSS (amb-hero-start), così non si spostano.
@@ -355,7 +359,7 @@ function Hero() {
       const dx = left - (HERO_FRAME.x / 100) * stage.w;
       const dy = top - HERO_FRAME.top;
       return {
-        outer: `translate3d(${dx}px, ${dy - HERO_LIFT_MOBILE * v}px, 0) scale(${sx}, ${sy})`,
+        outer: `translate3d(${dx}px, ${dy}px, 0) scale(${sx}, ${sy})`,
         inner: `scale(${1 / sx}, ${1 / sy}) translate3d(${-dx}px, ${-dy + 12 * v}px, 0)`,
         title: `translate3d(0, calc(${lerp(8.93, 8.5, v)}vw + ${lerp(74, 66, v)}px - 48.5svh), 0) scale(${lerp(1, 0.95, v)})`,
       };
@@ -507,9 +511,9 @@ function Hero() {
         {desktop ? <SideColumn images={[{ src: participantNotes, position: "50% 40%" }, { src: participantsRoom, position: "50% 50%" }]} side="right" t={sides} /> : null}
 
         <div
-          className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center px-5 pb-[84px] text-center md:justify-start md:pb-0 md:pt-6"
+          className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center px-5 text-center md:justify-start md:pt-6"
           style={{
-            height: desktop ? `${insetBottom}%` : "44%",
+            height: `${insetBottom}%`,
             opacity: desktop ? caption : shrunk ? 1 : 0,
             transform: desktop ? `translate3d(0, ${(1 - caption) * 30}px, 0)` : `translate3d(0, ${shrunk ? 0 : 30}px, 0)`,
             transition: desktop
