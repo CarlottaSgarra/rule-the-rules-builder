@@ -245,9 +245,9 @@ function Topbar() {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
-      // Da telefono il menu resta in alto finché la foto di apertura non è uscita
-      // dallo schermo: la foto ridotta finisce al 64% dell'altezza e la sezione tiene
-      // ferma la scena per un ulteriore 30%.
+      // Da telefono il menu in basso arriva quando la foto di apertura è uscita dallo
+      // schermo: la foto ridotta finisce al 64% dell'altezza e la sezione tiene ferma
+      // la scena per un ulteriore 30%.
       setPastHero(window.scrollY > window.innerHeight * 0.94);
     };
     onScroll();
@@ -257,24 +257,34 @@ function Topbar() {
 
   return (
     <>
+      {/* Su computer resta fisso in alto. Da telefono il menu in alto sta dentro
+          l'apertura (HeroMobileMenu) e sale via insieme alla foto. */}
       <header
-        className={`fixed left-1/2 top-4 z-50 -translate-x-1/2 transition-[translate,background-color,box-shadow] duration-300 ${BAR_CLASS} ${
-          scrolled ? "bg-background/95 shadow-lg md:bg-background/80 md:backdrop-blur-md" : "bg-transparent"
-        } ${pastHero ? "max-md:-translate-y-[200%]" : ""}`}
+        className={`fixed left-1/2 top-4 z-50 -translate-x-1/2 transition-[background-color,box-shadow] duration-300 max-md:hidden ${BAR_CLASS} ${
+          scrolled ? "bg-background/80 shadow-lg backdrop-blur-md" : "bg-transparent"
+        }`}
       >
         <BarContent />
       </header>
-      {/* Da telefono, quando la foto di apertura è uscita, il menu passa in basso: lì si
-          arriva con il dito. Tornando su ricompare quello in alto. */}
+      {/* Da telefono, quando la foto di apertura è uscita, compare la barra in basso:
+          lì si arriva con il dito. Tornando su sparisce. */}
       <div
         aria-hidden={!pastHero}
-        className={`fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-50 -translate-x-1/2 bg-background/95 shadow-lg transition-[translate] duration-300 md:hidden ${BAR_CLASS} ${
-          pastHero ? "translate-y-0" : "translate-y-[200%]"
+        className={`fixed inset-x-0 bottom-0 z-50 grid grid-cols-[minmax(0,1fr)_max-content_minmax(0,1fr)] items-center gap-1.5 border-t border-foreground/10 bg-background px-4 pb-[max(0.625rem,env(safe-area-inset-bottom))] pt-2.5 transition-[translate] duration-300 md:hidden ${
+          pastHero ? "translate-y-0" : "translate-y-full"
         }`}
       >
         <BarContent />
       </div>
     </>
+  );
+}
+
+function HeroMobileMenu() {
+  return (
+    <header className={`absolute left-1/2 top-4 z-50 -translate-x-1/2 md:hidden ${BAR_CLASS}`}>
+      <BarContent />
+    </header>
   );
 }
 
@@ -419,6 +429,7 @@ function Hero() {
   return (
     <section ref={ref} className="amb-hero-start relative h-[130vh] bg-background md:h-[300vh]">
       <div ref={stageRef} className="sticky top-0 h-svh overflow-hidden">
+        <HeroMobileMenu />
         {desktop ? <SideColumn images={[{ src: participantsHug, position: "45% 50%" }, { src: participantsSmiling, position: "62% 50%" }]} side="left" t={sides} /> : null}
 
         <div
