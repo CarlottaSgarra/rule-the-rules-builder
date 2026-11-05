@@ -209,24 +209,14 @@ function scrollToWaitlist(e: React.MouseEvent) {
 
 /* ---------------------------------------------------------------- Barra */
 
-function Topbar() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+const BAR_CLASS = "grid w-[92%] max-w-4xl grid-cols-[minmax(0,1fr)_max-content_minmax(0,1fr)] items-center gap-1.5 rounded-full px-3 py-2 sm:gap-3 sm:px-5 md:grid-cols-[1fr_auto_1fr]";
 
+function BarContent() {
   return (
-    <header
-      className={`fixed left-1/2 top-4 z-50 grid w-[92%] max-w-4xl -translate-x-1/2 grid-cols-[minmax(0,auto)_max-content_minmax(0,auto)] items-center justify-between gap-1.5 rounded-full px-3 py-2 sm:gap-3 sm:px-5 md:grid-cols-[1fr_auto_1fr] transition-all duration-300 ${
-        scrolled ? "bg-background/95 shadow-lg md:bg-background/80 md:backdrop-blur-md" : "bg-transparent"
-      }`}
-    >
-      {/* Bottone sempre al centro, data a sinistra e "Posti limitati · Early ticket per
-          gli iscritti" a destra, visibili da subito: allo scroll compare solo lo sfondo
-          con l'ombra. Da telefono, dove la colonna è stretta, resta "Early ticket". */}
+    <>
+      {/* Bottone sempre al centro: le due colonne laterali hanno la stessa larghezza.
+          Data a sinistra e "Posti limitati · Early ticket per gli iscritti" a destra.
+          Da telefono, dove la colonna è stretta, resta "Early ticket". */}
       <div className="min-w-0">
         <span className="inline-block text-left font-condensed text-[11px] uppercase leading-tight tracking-[0.1em] text-foreground/80 sm:text-xs sm:tracking-[0.12em]">
           <span className="md:hidden">Vendite ufficiali:{"\u00a0"}7/12</span>
@@ -245,7 +235,40 @@ function Topbar() {
         <span className="hidden md:inline"> · Early ticket per gli iscritti</span>
         <span className="block md:hidden">Early ticket</span>
       </span>
-    </header>
+    </>
+  );
+}
+
+function Topbar() {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <>
+      <header
+        className={`fixed left-1/2 top-4 z-50 -translate-x-1/2 transition-[translate,background-color,box-shadow] duration-300 ${BAR_CLASS} ${
+          scrolled
+            ? "bg-background/95 shadow-lg max-md:-translate-y-[200%] md:bg-background/80 md:backdrop-blur-md"
+            : "bg-transparent"
+        }`}
+      >
+        <BarContent />
+      </header>
+      {/* Da telefono, appena si scorre, il menu passa in basso: lì si arriva con il dito. */}
+      <div
+        aria-hidden={!scrolled}
+        className={`fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-50 -translate-x-1/2 bg-background/95 shadow-lg transition-[translate] duration-300 md:hidden ${BAR_CLASS} ${
+          scrolled ? "translate-y-0" : "translate-y-[200%]"
+        }`}
+      >
+        <BarContent />
+      </div>
+    </>
   );
 }
 
@@ -299,7 +322,7 @@ function Hero() {
   });
   // Da telefono la riduzione non segue il dito: parte da sola dopo il primo tratto
   // di scroll e va a tempo, così la gestisce la scheda grafica e resta fluida.
-  const shrunk = !desktop && progress > 0.1;
+  const shrunk = !desktop && progress > 0.3;
   const { ref: stageRef, size: stage } = useElementSize<HTMLDivElement>();
   const shrink = desktop ? ease(phase(progress, 0, 0.6)) : 0;
   const sides = ease(phase(progress, 0.15, 0.7));
@@ -309,8 +332,12 @@ function Hero() {
   // centrale.
   const insetX = desktop ? 33 : 6;
   const insetBottom = desktop ? 34 : 36;
+  // Da telefono, a foto ridotta, il menu è in basso: la scheda sale di questi pixel.
+  const HERO_LIFT_MOBILE = 56;
   const clip = `inset(${lerp(HERO_FRAME.top, HERO_PHOTOS_TOP, shrink)}px ${lerp(HERO_FRAME.x, insetX, shrink)}% ${lerp(HERO_FRAME.bottom, insetBottom, shrink)}% ${lerp(HERO_FRAME.x, insetX, shrink)}% round 24px)`;
-  const photoPosition = desktop ? "35% 5%" : "31% 5%";
+  // Prima che la pagina si attivi non sappiamo ancora se è un telefono: posizione
+  // della foto e del titolo stanno nel CSS (amb-hero-start), così non si spostano.
+  const photoPosition = "var(--hero-photo-position)";
   useEffect(() => {
     const m = motion.current;
     m.running.forEach((a) => a.cancel());
@@ -328,7 +355,7 @@ function Hero() {
       const dx = left - (HERO_FRAME.x / 100) * stage.w;
       const dy = top - HERO_FRAME.top;
       return {
-        outer: `translate3d(${dx}px, ${dy}px, 0) scale(${sx}, ${sy})`,
+        outer: `translate3d(${dx}px, ${dy - HERO_LIFT_MOBILE * v}px, 0) scale(${sx}, ${sy})`,
         inner: `scale(${1 / sx}, ${1 / sy}) translate3d(${-dx}px, ${-dy + 12 * v}px, 0)`,
         title: `translate3d(0, calc(${lerp(8.93, 8.5, v)}vw + ${lerp(74, 66, v)}px - 48.5svh), 0) scale(${lerp(1, 0.95, v)})`,
       };
@@ -337,7 +364,13 @@ function Hero() {
     const current = lerp(m.from, m.to, ease(clamp((now - m.start) / HERO_SHRINK_MS)));
     const to = shrunk ? 1 : 0;
     const frames = Array.from({ length: 31 }, (_, i) => at(lerp(current, to, ease(i / 30))));
-    const options: KeyframeAnimationOptions = { duration: HERO_SHRINK_MS, easing: "linear", fill: "forwards" };
+    // Quando torna grande aspetta un attimo: prima sparisce il testo sotto.
+    const options: KeyframeAnimationOptions = {
+      duration: HERO_SHRINK_MS,
+      delay: to === 0 && current > 0 ? 160 : 0,
+      easing: "linear",
+      fill: "both",
+    };
     m.running = [
       outerRef.current.animate(frames.map((f) => ({ transform: f.outer })), options),
       innerRef.current.animate(frames.map((f) => ({ transform: f.inner })), options),
@@ -374,11 +407,13 @@ function Hero() {
   // valori sono nel sistema della foto, che a sua volta scala e si sposta. Da
   // telefono il corpo di Carlotta lo coprirebbe: sta già in cima alla foto dall'inizio.
   const titleTransform = desktop
-    ? `translate3d(${-10.9 * shrink}vw, calc((4.49vw + 38px - 48.5vh) * ${shrink}), 0) scale(${lerp(1, 0.55, shrink)})`
-    : `translate3d(0, calc(${lerp(8.93, 8.5, shrink)}vw + ${lerp(74, 66, shrink)}px - 48.5svh), 0) scale(${lerp(1, 0.95, shrink)})`;
+    ? shrink > 0
+      ? `translate3d(${-10.9 * shrink}vw, calc((4.49vw + 38px - 48.5vh) * ${shrink}), 0) scale(${lerp(1, 0.55, shrink)})`
+      : "var(--hero-title-start)"
+    : "var(--hero-title-start)";
 
   return (
-    <section ref={ref} className="relative h-[200vh] bg-background md:h-[300vh]">
+    <section ref={ref} className="amb-hero-start relative h-[130vh] bg-background md:h-[300vh]">
       <div ref={stageRef} className="sticky top-0 h-svh overflow-hidden">
         {desktop ? <SideColumn images={[{ src: participantsHug, position: "45% 50%" }, { src: participantsSmiling, position: "62% 50%" }]} side="left" t={sides} /> : null}
 
@@ -453,9 +488,7 @@ function Hero() {
               style={{
                 opacity: desktop ? 1 - titleOut : shrunk ? 0 : 1,
                 transition: desktop ? undefined : "opacity 0.3s ease",
-                transform: desktop
-                  ? `translate3d(0, ${-titleOut * 200}px, 0)`
-                  : "translate3d(0, calc(8.93vw + 74px - 48.5svh), 0)",
+                transform: desktop && titleOut > 0 ? `translate3d(0, ${-titleOut * 200}px, 0)` : "var(--hero-title-start)",
               }}
             >
               <span className="relative whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight md:text-[19vw]">
@@ -474,12 +507,16 @@ function Hero() {
         {desktop ? <SideColumn images={[{ src: participantNotes, position: "50% 40%" }, { src: participantsRoom, position: "50% 50%" }]} side="right" t={sides} /> : null}
 
         <div
-          className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center px-5 text-center md:justify-start md:pt-6"
+          className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center px-5 pb-[84px] text-center md:justify-start md:pb-0 md:pt-6"
           style={{
-            height: `${insetBottom}%`,
+            height: desktop ? `${insetBottom}%` : "44%",
             opacity: desktop ? caption : shrunk ? 1 : 0,
             transform: desktop ? `translate3d(0, ${(1 - caption) * 30}px, 0)` : `translate3d(0, ${shrunk ? 0 : 30}px, 0)`,
-            transition: desktop ? undefined : "opacity 0.6s ease 0.35s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s",
+            transition: desktop
+              ? undefined
+              : shrunk
+                ? "opacity 0.6s ease 0.35s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s"
+                : "opacity 0.14s ease, transform 0.14s ease",
           }}
         >
           {/* Su computer tre righe esatte, così il testo resta sotto le foto laterali. */}
@@ -1586,7 +1623,9 @@ function ListaAttesaAmbiziosa() {
       <PromiseSection />
       <Closing />
       <Faq />
-      <SiteFooter showRefundGuarantee={false} />
+      <div className="pb-20 md:pb-0">
+        <SiteFooter showRefundGuarantee={false} />
+      </div>
     </div>
   );
 }
