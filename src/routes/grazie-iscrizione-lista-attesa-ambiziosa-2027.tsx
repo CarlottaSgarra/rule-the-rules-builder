@@ -13,7 +13,7 @@ import profiloIgCarlottaImg from "@/assets/profilo-ig-carlotta.png";
 // Da inserire quando arriva: link del questionario Google Form. Finché è null il
 // bottone dice "in arrivo".
 const WHATSAPP_GROUP_HREF: string | null = "https://chat.whatsapp.com/BzHnjsnaB2pEoqt53jcN9b?mode=gi_t";
-const QUESTIONNAIRE_HREF: string | null = null;
+const QUESTIONNAIRE_HREF: string | null = "https://docs.google.com/forms/d/e/1FAIpQLSeoHK0qoW0dJvhwhPaj8nN8Ec3L82x5MQv2LM8YzdHPzV4TkQ/viewform";
 const INSTAGRAM_HREF = "https://www.instagram.com/carlottasgarra.web/";
 
 // Apertura delle vendite per chi è in lista: evento di un giorno intero il 6 dicembre 2026.
