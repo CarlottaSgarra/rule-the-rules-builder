@@ -739,7 +739,7 @@ function Manifesto() {
       <FlipHeadlines />
       <div className="px-6 pb-24 pt-4 md:px-12 md:pb-32">
         <WordReveal
-          className="mx-auto max-w-4xl text-center text-2xl leading-relaxed text-foreground sm:text-3xl lg:text-4xl"
+          className="mx-auto max-w-3xl text-center text-lg leading-relaxed text-foreground sm:text-xl"
           text="Se sei imprenditrice e vuoi trasformare la tua attività in un'azienda, non puoi basare tutto solo sui contenuti, ma devi avere **una struttura solida alle spalle.** Nei **2 giorni di evento live** lavori proprio su questo: **struttura di funnel, ads, fisco, previsione annuale dei clienti.**"
         />
         <WordReveal
