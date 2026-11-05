@@ -359,6 +359,25 @@
   }
 }
 
+/* Slider da telefono: ogni foto scorre da sola della lunghezza della fila. */
+@keyframes proof-item {
+  to {
+    transform: translate3d(calc(-1 * var(--proof-row)), 0, 0);
+  }
+}
+
+.proof-item {
+  animation-name: proof-item;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proof-item {
+    animation: none;
+  }
+}
+
 @keyframes float {
   0%,
   100% {

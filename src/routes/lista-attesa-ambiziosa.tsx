@@ -93,7 +93,9 @@ function useElementSize<T extends HTMLElement>() {
 // sticky (0 quando la sezione tocca il bordo alto, 1 quando sta per uscire).
 // "pass": un elemento normale che attraversa lo schermo (0 quando entra dal
 // basso, 1 quando arriva a metà schermo).
-function useScrollProgress<T extends HTMLElement>(mode: "sticky" | "pass" | "reveal" = "sticky") {
+// `coarse`: da telefono le animazioni partono a tappe e non seguono il dito, quindi
+// basta aggiornare il progresso a passi: niente lavoro a ogni fotogramma.
+function useScrollProgress<T extends HTMLElement>(mode: "sticky" | "pass" | "reveal" = "sticky", coarse = false) {
   const ref = useRef<T>(null);
   const [progress, setProgress] = useState(0);
   const reduced = useReducedMotion();
@@ -110,7 +112,7 @@ function useScrollProgress<T extends HTMLElement>(mode: "sticky" | "pass" | "rev
       if (!node) return;
       const rect = node.getBoundingClientRect();
       const vh = window.innerHeight;
-      const next =
+      const raw =
         mode === "sticky"
           ? clamp(-rect.top / Math.max(node.offsetHeight - vh, 1))
           : mode === "reveal"
@@ -118,6 +120,7 @@ function useScrollProgress<T extends HTMLElement>(mode: "sticky" | "pass" | "rev
               // così i blocchi si accendono uno dopo l'altro.
               clamp((vh * 0.72 - rect.top) / (vh * 0.25 + rect.height * 0.6))
             : clamp((vh - rect.top) / (vh * 0.5 + rect.height * 0.5));
+      const next = coarse ? Math.round(raw * 50) / 50 : raw;
       setProgress((prev) => (Math.abs(prev - next) < 0.0005 ? prev : next));
     };
     const onScroll = () => {
@@ -151,7 +154,7 @@ function useScrollProgress<T extends HTMLElement>(mode: "sticky" | "pass" | "rev
       stop();
       if (frame) cancelAnimationFrame(frame);
     };
-  }, [mode, reduced]);
+  }, [mode, reduced, coarse]);
 
   return { ref, progress };
 }
@@ -279,12 +282,26 @@ function SideColumn({ images, side, t }: { images: { src: string; position: stri
   );
 }
 
+const HERO_SHRINK_MS = 850;
+
 function Hero() {
-  const { ref, progress } = useScrollProgress<HTMLElement>("sticky");
   const desktop = useIsDesktop();
+  const { ref, progress } = useScrollProgress<HTMLElement>("sticky", !desktop);
   const lowPower = useLowPower();
+  const outerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const motion = useRef<{ from: number; to: number; start: number; running: Animation[] }>({
+    from: 0,
+    to: 0,
+    start: 0,
+    running: [],
+  });
+  // Da telefono la riduzione non segue il dito: parte da sola dopo il primo tratto
+  // di scroll e va a tempo, così la gestisce la scheda grafica e resta fluida.
+  const shrunk = !desktop && progress > 0.1;
   const { ref: stageRef, size: stage } = useElementSize<HTMLDivElement>();
-  const shrink = ease(phase(progress, 0, 0.6));
+  const shrink = desktop ? ease(phase(progress, 0, 0.6)) : 0;
   const sides = ease(phase(progress, 0.15, 0.7));
   const titleOut = phase(progress, 0, 0.3);
   const caption = phase(progress, 0.6, 0.85);
@@ -293,20 +310,43 @@ function Hero() {
   const insetX = desktop ? 33 : 6;
   const insetBottom = desktop ? 34 : 36;
   const clip = `inset(${lerp(HERO_FRAME.top, HERO_PHOTOS_TOP, shrink)}px ${lerp(HERO_FRAME.x, insetX, shrink)}% ${lerp(HERO_FRAME.bottom, insetBottom, shrink)}% ${lerp(HERO_FRAME.x, insetX, shrink)}% round 24px)`;
-  // Da telefono il ritaglio animato costringe a ridisegnare tutta la foto a ogni
-  // fotogramma e la riduzione scatta. Stesso effetto con due trasformazioni, che
-  // la scheda grafica gestisce da sola: la cornice si stringe e il contenuto fa
-  // il movimento opposto, così la foto resta ferma.
-  const frameW = stage.w * (1 - (2 * HERO_FRAME.x) / 100);
-  const frameH = stage.h * (1 - HERO_FRAME.bottom / 100) - HERO_FRAME.top;
-  const curLeft = (lerp(HERO_FRAME.x, insetX, shrink) / 100) * stage.w;
-  const curTop = lerp(HERO_FRAME.top, HERO_PHOTOS_TOP, shrink);
-  const curBottom = (lerp(HERO_FRAME.bottom, insetBottom, shrink) / 100) * stage.h;
-  const scaleX = frameW > 0 ? (stage.w - 2 * curLeft) / frameW : 1;
-  const scaleY = frameH > 0 ? (stage.h - curTop - curBottom) / frameH : 1;
-  const moveX = curLeft - (HERO_FRAME.x / 100) * stage.w;
-  const moveY = curTop - HERO_FRAME.top;
   const photoPosition = desktop ? "35% 5%" : "31% 5%";
+  useEffect(() => {
+    const m = motion.current;
+    m.running.forEach((a) => a.cancel());
+    m.running = [];
+    if (desktop || !stage.w || !outerRef.current || !innerRef.current || !titleRef.current) return;
+    // La cornice si stringe e il contenuto fa il movimento opposto: la foto resta ferma.
+    const frameW = stage.w * (1 - (2 * HERO_FRAME.x) / 100);
+    const frameH = stage.h * (1 - HERO_FRAME.bottom / 100) - HERO_FRAME.top;
+    const at = (v: number) => {
+      const left = (lerp(HERO_FRAME.x, insetX, v) / 100) * stage.w;
+      const top = lerp(HERO_FRAME.top, HERO_PHOTOS_TOP, v);
+      const bottom = (lerp(HERO_FRAME.bottom, insetBottom, v) / 100) * stage.h;
+      const sx = (stage.w - 2 * left) / frameW;
+      const sy = (stage.h - top - bottom) / frameH;
+      const dx = left - (HERO_FRAME.x / 100) * stage.w;
+      const dy = top - HERO_FRAME.top;
+      return {
+        outer: `translate3d(${dx}px, ${dy}px, 0) scale(${sx}, ${sy})`,
+        inner: `scale(${1 / sx}, ${1 / sy}) translate3d(${-dx}px, ${-dy + 12 * v}px, 0)`,
+        title: `translate3d(0, calc(${lerp(8.93, 8.5, v)}vw + ${lerp(74, 66, v)}px - 48.5svh), 0) scale(${lerp(1, 0.95, v)})`,
+      };
+    };
+    const now = performance.now();
+    const current = lerp(m.from, m.to, ease(clamp((now - m.start) / HERO_SHRINK_MS)));
+    const to = shrunk ? 1 : 0;
+    const frames = Array.from({ length: 31 }, (_, i) => at(lerp(current, to, ease(i / 30))));
+    const options: KeyframeAnimationOptions = { duration: HERO_SHRINK_MS, easing: "linear", fill: "forwards" };
+    m.running = [
+      outerRef.current.animate(frames.map((f) => ({ transform: f.outer })), options),
+      innerRef.current.animate(frames.map((f) => ({ transform: f.inner })), options),
+      titleRef.current.animate(frames.map((f) => ({ transform: f.title })), options),
+    ];
+    m.from = current;
+    m.to = to;
+    m.start = now;
+  }, [desktop, shrunk, stage.w, stage.h, insetX, insetBottom]);
   const titleLetters = useMemo(
     () =>
       TITLE.map((letter, i) => (
@@ -338,11 +378,12 @@ function Hero() {
     : `translate3d(0, calc(${lerp(8.93, 8.5, shrink)}vw + ${lerp(74, 66, shrink)}px - 48.5svh), 0) scale(${lerp(1, 0.95, shrink)})`;
 
   return (
-    <section ref={ref} className="relative h-[300vh] bg-background">
+    <section ref={ref} className="relative h-[200vh] bg-background md:h-[300vh]">
       <div ref={stageRef} className="sticky top-0 h-svh overflow-hidden">
         {desktop ? <SideColumn images={[{ src: participantsHug, position: "45% 50%" }, { src: participantsSmiling, position: "62% 50%" }]} side="left" t={sides} /> : null}
 
         <div
+          ref={outerRef}
           className={desktop ? "absolute inset-0" : "absolute overflow-hidden will-change-transform"}
           style={
             desktop
@@ -355,13 +396,13 @@ function Hero() {
                   // La cornice si schiaccia in altezza: questo raggio dà angoli tondi anche da ridotta.
                   borderRadius: "24px / 30px",
                   transformOrigin: "0 0",
-                  transform: `translate3d(${moveX}px, ${moveY}px, 0) scale(${scaleX}, ${scaleY})`,
                 }
           }
         >
           {/* Scende con il bordo alto del ritaglio (la testa resta in vista). Su computer
               si sposta a destra e si rimpicciolisce per tenere Carlotta al centro della scheda. */}
           <div
+            ref={innerRef}
             className="absolute inset-0 will-change-transform"
             style={
               desktop
@@ -373,10 +414,7 @@ function Hero() {
                     transformOrigin: "38% 0",
                     transform: `translate3d(${11 * shrink}vw, ${(HERO_PHOTOS_TOP - HERO_FRAME.top - 1) * shrink}px, 0) scale(${lerp(1, 0.72, shrink)})`,
                   }
-                : {
-                    transformOrigin: "0 0",
-                    transform: `scale(${1 / scaleX}, ${1 / scaleY}) translate3d(${-moveX}px, ${-moveY + 12 * shrink}px, 0)`,
-                  }
+                : { transformOrigin: "0 0" }
             }
           >
             <img
@@ -386,6 +424,7 @@ function Hero() {
               style={{ objectPosition: photoPosition }}
             />
             <div
+              ref={titleRef}
               aria-hidden
               className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 justify-center will-change-transform"
               style={{ transform: titleTransform }}
@@ -393,7 +432,7 @@ function Hero() {
               {/* Da telefono la luce sul titolo si ferma appena si scorre: niente ridisegni durante lo scroll. */}
               <span
                 className={`whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight md:text-[19vw] text-primary ${
-                  lowPower && progress > 0.005 ? "amb-title-still" : ""
+                  lowPower && progress > 0.02 ? "amb-title-still" : ""
                 }`}
               >
                 {titleLetters}
@@ -412,7 +451,8 @@ function Hero() {
               aria-hidden
               className="pointer-events-none absolute inset-x-0 top-1/2 z-10 flex -translate-y-1/2 justify-center"
               style={{
-                opacity: 1 - titleOut,
+                opacity: desktop ? 1 - titleOut : shrunk ? 0 : 1,
+                transition: desktop ? undefined : "opacity 0.3s ease",
                 transform: desktop
                   ? `translate3d(0, ${-titleOut * 200}px, 0)`
                   : "translate3d(0, calc(8.93vw + 74px - 48.5svh), 0)",
@@ -437,8 +477,9 @@ function Hero() {
           className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-center px-5 text-center md:justify-start md:pt-6"
           style={{
             height: `${insetBottom}%`,
-            opacity: caption,
-            transform: `translate3d(0, ${(1 - caption) * 30}px, 0)`,
+            opacity: desktop ? caption : shrunk ? 1 : 0,
+            transform: desktop ? `translate3d(0, ${(1 - caption) * 30}px, 0)` : `translate3d(0, ${shrunk ? 0 : 30}px, 0)`,
+            transition: desktop ? undefined : "opacity 0.6s ease 0.35s, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s",
           }}
         >
           {/* Su computer tre righe esatte, così il testo resta sotto le foto laterali. */}
@@ -470,14 +511,21 @@ const FLIP_LINES = [
 const PRESENTATION_VIDEO_SRC: string | null = null;
 
 function FlipHeadlines() {
-  const { ref, progress } = useScrollProgress<HTMLDivElement>("sticky");
+  const desktop = useIsDesktop();
+  const { ref, progress } = useScrollProgress<HTMLDivElement>("sticky", !desktop);
   const [videoStarted, setVideoStarted] = useState(false);
   // Una tappa in più dopo i titoli: l'ultima frase sparisce e arriva il video.
   const step = 1 / (FLIP_LINES.length + 1);
-  const video = phase(progress, FLIP_LINES.length * step - 0.02, FLIP_LINES.length * step + 0.12);
+  // Da telefono ogni frase cambia a tempo appena si supera la sua tappa.
+  const active = Math.floor(progress / step);
+  const video = desktop
+    ? phase(progress, FLIP_LINES.length * step - 0.02, FLIP_LINES.length * step + 0.12)
+    : active >= FLIP_LINES.length
+      ? 1
+      : 0;
 
   return (
-    <div ref={ref} className="relative" style={{ height: "420vh" }}>
+    <div ref={ref} className="relative" style={{ height: desktop ? "420vh" : "320vh" }}>
       <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden px-4">
         <div className="relative w-full max-w-6xl" style={{ perspective: "1000px" }}>
           <div className="relative min-h-[1.4em] text-[9vw] md:text-[5vw]">
@@ -489,8 +537,18 @@ function FlipHeadlines() {
                 ? phase(progress, (i + 1) * step - 0.1, (i + 1) * step)
                 : phase(progress, (i + 1) * step - 0.08, (i + 1) * step + 0.08);
               const first = i === 0;
-              const rot = exit > 0 ? lerp(0, 90, exit) : first ? 0 : lerp(-90, 0, enter);
-              const opacity = exit > 0 ? 1 - exit : first ? 1 : enter;
+              const rot = desktop
+                ? exit > 0
+                  ? lerp(0, 90, exit)
+                  : first
+                    ? 0
+                    : lerp(-90, 0, enter)
+                : i < active
+                  ? 90
+                  : i > active
+                    ? -90
+                    : 0;
+              const opacity = desktop ? (exit > 0 ? 1 - exit : first ? 1 : enter) : i === active ? 1 : 0;
               return (
                 <h2
                   key={line.key}
@@ -498,8 +556,9 @@ function FlipHeadlines() {
                   style={{
                     transform: `rotateX(${rot}deg)`,
                     opacity,
-                    visibility: opacity <= 0.001 ? "hidden" : "visible",
+                    visibility: desktop && opacity <= 0.001 ? "hidden" : "visible",
                     willChange: "transform, opacity",
+                    transition: desktop ? undefined : "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease",
                     backfaceVisibility: "hidden",
                   }}
                 >
@@ -519,6 +578,7 @@ function FlipHeadlines() {
           style={{
             opacity: video,
             transform: `translate3d(0, ${(1 - video) * 40}px, 0)`,
+            transition: desktop ? undefined : "opacity 0.5s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
             pointerEvents: video > 0.5 ? "auto" : "none",
           }}
         >
@@ -648,25 +708,64 @@ const PARTICIPANT_PHOTOS = Object.entries(
   .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
   .map(([, src]) => src);
 
+const PROOF_STEP_MOBILE = 276; // larghezza della foto + spazio, in pixel
+
 function ProofRow({ photos, direction }: { photos: string[]; direction: "left" | "right" }) {
+  const desktop = useIsDesktop();
+  const rowRef = useRef<HTMLDivElement>(null);
+  const [onScreen, setOnScreen] = useState(false);
+  // Fuori dallo schermo lo slider si ferma: non pesa sul resto della pagina.
+  useEffect(() => {
+    if (!rowRef.current) return;
+    const io = new IntersectionObserver(([entry]) => setOnScreen(!!entry?.isIntersecting), { rootMargin: "30% 0px" });
+    io.observe(rowRef.current);
+    return () => io.disconnect();
+  }, []);
+  const playState = onScreen ? "running" : "paused";
+
   return (
-    <div className="overflow-hidden">
-      {/* Le foto sono ripetute due volte: a metà corsa il giro riparte senza stacchi. */}
-      <div
-        className={`flex w-max ${direction === "left" ? "animate-marquee-rtl" : "animate-marquee-ltr"}`}
-        style={{ animationDuration: "70s" }}
-      >
-        {[...photos, ...photos].map((src, i) => (
-          <img
-            key={i}
-            src={src}
-            alt={i < photos.length ? "Partecipanti all'edizione precedente di Ambiziosa" : ""}
-            aria-hidden={i >= photos.length}
-            loading="lazy"
-            className="mr-3 h-44 w-auto max-w-none rounded-2xl object-cover sm:mr-4 md:h-72"
-          />
-        ))}
-      </div>
+    <div ref={rowRef} className="overflow-hidden">
+      {desktop ? (
+        /* Le foto sono ripetute due volte: a metà corsa il giro riparte senza stacchi. */
+        <div
+          className={`flex w-max ${direction === "left" ? "animate-marquee-rtl" : "animate-marquee-ltr"}`}
+          style={{ animationDuration: "70s", animationPlayState: playState }}
+        >
+          {[...photos, ...photos].map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt={i < photos.length ? "Partecipanti all'edizione precedente di Ambiziosa" : ""}
+              aria-hidden={i >= photos.length}
+              loading="lazy"
+              className="mr-3 h-44 w-auto max-w-none rounded-2xl object-cover sm:mr-4 md:h-72"
+            />
+          ))}
+        </div>
+      ) : (
+        /* Da telefono su iPhone una striscia unica così lunga può non essere disegnata
+           affatto: ogni foto si muove per conto suo, allineata alle altre. */
+        <div className="flex w-max">
+          {[...photos, ...photos].map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt={i < photos.length ? "Partecipanti all'edizione precedente di Ambiziosa" : ""}
+              aria-hidden={i >= photos.length}
+              decoding="async"
+              className="proof-item mr-3 h-44 w-[264px] max-w-none rounded-2xl object-cover"
+              style={
+                {
+                  "--proof-row": `${photos.length * PROOF_STEP_MOBILE}px`,
+                  animationDuration: "70s",
+                  animationDirection: direction === "left" ? "normal" : "reverse",
+                  animationPlayState: playState,
+                } as React.CSSProperties
+              }
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -700,9 +799,25 @@ const PROBLEM_SLIDES: { src: string; line: string; position?: string; mobilePosi
   { src: carlottaStage, line: "In Ambiziosa 2027 lavoriamo su tutta la struttura.", position: "0% 30%", mobilePosition: "11.5% 30%", shift: 24 },
 ];
 
-function BlurLine({ text, t, lowPower }: { text: string; t: number; lowPower: boolean }) {
+function BlurLine({ text, t, lowPower, on }: { text: string; t: number; lowPower: boolean; on?: boolean }) {
   // t: 0 nascosta, 0.5 a fuoco, 1 di nuovo nascosta
   const words = text.split(" ");
+  // Da telefono la frase intera entra ed esce a tempo.
+  if (on !== undefined) {
+    return (
+      <h2
+        className="absolute max-w-4xl px-6 text-center font-display text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl"
+        style={{
+          opacity: on ? 1 : 0,
+          transform: `translate3d(0, ${on ? 0 : 14}px, 0)`,
+          transition: "opacity 0.45s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
+          willChange: "transform, opacity",
+        }}
+      >
+        {text}
+      </h2>
+    );
+  }
   return (
     <h2 className="absolute max-w-4xl px-6 text-center font-display text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-7xl">
       {words.map((w, i) => {
@@ -727,19 +842,22 @@ function BlurLine({ text, t, lowPower }: { text: string; t: number; lowPower: bo
 }
 
 function ProblemSplit() {
-  const { ref, progress } = useScrollProgress<HTMLElement>("sticky");
   const desktop = useIsDesktop();
+  const { ref, progress } = useScrollProgress<HTMLElement>("sticky", !desktop);
   const lowPower = useLowPower();
   const slidesEnd = 0.72;
   const slide = phase(progress, 0, slidesEnd) * PROBLEM_SLIDES.length;
-  const split = ease(phase(progress, slidesEnd + 0.04, 1));
+  // Da telefono foto e frasi cambiano a tempo, senza seguire il dito.
+  const current = Math.min(Math.floor(slide), PROBLEM_SLIDES.length - 1);
+  const split = desktop ? ease(phase(progress, slidesEnd + 0.04, 1)) : progress > slidesEnd + 0.08 ? 1 : 0;
+  const mobileFade = "opacity 0.6s ease";
   // Come nell'apertura: la foto centrale si ritaglia, le laterali entrano con transform.
   const top = (desktop ? 96 : 80) * split;
   const side = desktop ? `${28 * split}%` : `${16 * split}px`;
   const clip = `inset(${top}px ${side} ${24 * split}px ${side} round ${24 * split}px)`;
 
   return (
-    <section ref={ref} className="relative bg-secondary" style={{ height: "520vh" }}>
+    <section ref={ref} className="relative bg-secondary" style={{ height: desktop ? "520vh" : "400vh" }}>
       <div className="sticky top-0 h-svh overflow-hidden">
         {desktop ? (
           <div
@@ -750,34 +868,71 @@ function ProblemSplit() {
           </div>
         ) : null}
 
-        <div className="absolute inset-0" style={split > 0 ? { clipPath: clip, WebkitClipPath: clip } : undefined}>
+        <div
+          className="absolute inset-0"
+          style={
+            desktop
+              ? split > 0
+                ? { clipPath: clip, WebkitClipPath: clip }
+                : undefined
+              : {
+                  clipPath: clip,
+                  WebkitClipPath: clip,
+                  transition: "clip-path 0.7s cubic-bezier(0.22, 1, 0.36, 1), -webkit-clip-path 0.7s cubic-bezier(0.22, 1, 0.36, 1)",
+                }
+          }
+        >
           {PROBLEM_SLIDES.map((s, i) => (
             <img
               key={s.line}
               src={s.src}
               alt=""
-              loading="lazy"
+              loading={desktop ? "lazy" : "eager"}
+              decoding="async"
               className="absolute inset-0 size-full object-cover"
-              style={{
-                // Ogni foto entra a cavallo del cambio di titolo, in poco scroll.
-                opacity: i === 0 ? 1 : clamp((slide - i + 0.1) / 0.2),
-                visibility: i === 0 || slide - i + 0.1 > 0 ? "visible" : "hidden",
-                objectPosition: desktop ? s.position : s.mobilePosition,
-                transform: `translate3d(${desktop ? (s.shift ?? 0) * split : 0}vw, 0, 0) scale(${lerp(1.08, 1, clamp(slide - i + 0.1))})`,
-              }}
+              style={
+                desktop
+                  ? {
+                      // Ogni foto entra a cavallo del cambio di titolo, in poco scroll.
+                      opacity: i === 0 ? 1 : clamp((slide - i + 0.1) / 0.2),
+                      visibility: i === 0 || slide - i + 0.1 > 0 ? "visible" : "hidden",
+                      objectPosition: s.position,
+                      transform: `translate3d(${(s.shift ?? 0) * split}vw, 0, 0) scale(${lerp(1.08, 1, clamp(slide - i + 0.1))})`,
+                    }
+                  : {
+                      opacity: i <= current ? 1 : 0,
+                      objectPosition: s.mobilePosition,
+                      transition: mobileFade,
+                      willChange: "opacity",
+                    }
+              }
             />
           ))}
-          <div className="absolute inset-0 bg-black/45" style={{ opacity: 1 - split * 0.3 }} />
+          <div
+            className="absolute inset-0 bg-black/45"
+            style={{ opacity: 1 - split * 0.3, transition: desktop ? undefined : mobileFade }}
+          />
           {/* L'ultima frase non sparisce: resta al centro e si rimpicciolisce
               insieme alla foto quando arrivano le foto laterali. */}
           <div
             className="absolute inset-0 flex items-center justify-center"
-            style={{ transform: `scale(${lerp(1, desktop ? 0.62 : 0.9, split)})` }}
+            style={{
+              transform: `scale(${lerp(1, desktop ? 0.62 : 0.9, split)})`,
+              transition: desktop ? undefined : "transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)",
+            }}
           >
             {PROBLEM_SLIDES.map((s, i) => {
               const t = clamp(slide - i);
               const last = i === PROBLEM_SLIDES.length - 1;
-              return <BlurLine key={s.line} text={s.line} t={last ? Math.min(t, 0.5) : t} lowPower={lowPower} />;
+              return (
+                <BlurLine
+                  key={s.line}
+                  text={s.line}
+                  t={last ? Math.min(t, 0.5) : t}
+                  lowPower={lowPower}
+                  {...(desktop ? {} : { on: i === current })}
+                />
+              );
             })}
           </div>
         </div>
@@ -1138,16 +1293,21 @@ const STACK = [
 ];
 
 function ZoomStack() {
-  const { ref, progress } = useScrollProgress<HTMLElement>("sticky");
+  const desktop = useIsDesktop();
+  const { ref, progress } = useScrollProgress<HTMLElement>("sticky", !desktop);
   const per = 1 / STACK.length;
+  // Da telefono ogni card sale a tempo appena si supera la sua tappa.
+  const entered = (i: number) => i === 0 || progress > i * per - 0.04;
 
   return (
-    <section ref={ref} className="relative -mt-px bg-secondary" style={{ height: "345vh" }}>
+    <section ref={ref} className="relative -mt-px bg-secondary" style={{ height: desktop ? "345vh" : "280vh" }}>
       <div className="sticky top-0 flex h-svh items-center justify-center overflow-hidden px-4">
         <div className="relative h-[72vh] w-full max-w-5xl md:h-[80vh]">
           {STACK.map((card, i) => {
             const t = ease(phase(progress, i * per, i * per + per * 0.85));
             const covered = i < STACK.length - 1 ? ease(phase(progress, (i + 1) * per, (i + 1) * per + per * 0.85)) : 0;
+            const isIn = entered(i);
+            const isCovered = i < STACK.length - 1 && entered(i + 1);
             return (
               <div
                 key={card.line}
@@ -1155,15 +1315,25 @@ function ZoomStack() {
                 style={{
                   zIndex: i,
                   willChange: "transform, opacity",
-                  visibility: i === 0 || t > 0 ? "visible" : "hidden",
-                  opacity: i === 0 ? 1 : t,
-                  transform:
-                    i === 0
-                      ? `scale(${lerp(1, 0.92, covered)})`
-                      : `translate3d(0, ${lerp(100, 0, t)}%, 0) scale(${lerp(0.8, 1, t) - covered * 0.08})`,
+                  ...(desktop
+                    ? {
+                        visibility: i === 0 || t > 0 ? ("visible" as const) : ("hidden" as const),
+                        opacity: i === 0 ? 1 : t,
+                        transform:
+                          i === 0
+                            ? `scale(${lerp(1, 0.92, covered)})`
+                            : `translate3d(0, ${lerp(100, 0, t)}%, 0) scale(${lerp(0.8, 1, t) - covered * 0.08})`,
+                      }
+                    : {
+                        opacity: isIn ? 1 : 0,
+                        transform: isIn
+                          ? `translate3d(0, 0, 0) scale(${isCovered ? 0.92 : 1})`
+                          : "translate3d(0, 100%, 0) scale(0.8)",
+                        transition: "transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease",
+                      }),
                 }}
               >
-                <img src={card.src} alt="" loading="lazy" className="absolute inset-0 size-full object-cover" />
+                <img src={card.src} alt="" loading={desktop ? "lazy" : "eager"} decoding="async" className="absolute inset-0 size-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
                 <p className="absolute inset-x-0 bottom-0 p-6 font-display text-3xl leading-tight text-white sm:p-10 sm:text-5xl lg:text-6xl">
                   {card.line}
