@@ -10,16 +10,16 @@ import profiloIgCarlottaImg from "@/assets/profilo-ig-carlotta.png";
 // Pagina dopo l'iscrizione alla lista d'attesa di Ambiziosa 2027: stessa
 // struttura della thank you di Rule The Rules, con la grafica di Ambiziosa 2027.
 
-// Da inserire quando arrivano: link del gruppo WhatsApp di Ambiziosa 2027 e
-// del questionario Google Form. Finché sono null il bottone dice "in arrivo".
-const WHATSAPP_GROUP_HREF: string | null = null;
+// Da inserire quando arriva: link del questionario Google Form. Finché è null il
+// bottone dice "in arrivo".
+const WHATSAPP_GROUP_HREF: string | null = "https://chat.whatsapp.com/BzHnjsnaB2pEoqt53jcN9b?mode=gi_t";
 const QUESTIONNAIRE_HREF: string | null = null;
 const INSTAGRAM_HREF = "https://www.instagram.com/carlottasgarra.web/";
 
 // Apertura delle vendite per chi è in lista: evento di un giorno intero il 6 dicembre 2026.
-const CALENDAR_TITLE = "Ambiziosa 2027: aprono le vendite per chi è in lista";
+const CALENDAR_TITLE = "Ambiziosa 2027 early ticket: aprono le vendite per chi è in lista d'attesa";
 const CALENDAR_DETAILS =
-  "Oggi aprono le vendite di Ambiziosa 2027 per chi è in lista d'attesa: ti arriva l'email con l'early ticket. Le vendite ufficiali aprono domani, il 7 dicembre.";
+  "Oggi aprono le vendite di Ambiziosa 2027 per chi è in lista d'attesa. La mattina del 6 dicembre ti invierò un'email con il link per prenotare il tuo biglietto.";
 const GOOGLE_CALENDAR_URL = (() => {
   const params = new URLSearchParams({
     action: "TEMPLATE",
@@ -123,7 +123,7 @@ function CalendarSheet() {
       </div>
       <p className="py-3 font-display text-7xl leading-none text-foreground">6</p>
       <p className="pb-4 font-condensed text-xs uppercase tracking-[0.2em] text-[var(--gold-text)]">
-        Early ticket
+        Vendite early ticket
       </p>
     </div>
   );
@@ -189,7 +189,7 @@ function ThankYouAmbiziosa() {
             </span>
             <h1 className="mt-6 font-display text-4xl leading-tight text-foreground sm:text-6xl">
               Sei in lista!{" "}
-              <span className="text-[var(--gold-text)]">Il 6 dicembre aprono le vendite per te</span>
+              <span className="text-[var(--gold-text)]">Il 6 dicembre aprono le vendite per chi è in lista d'attesa</span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-foreground/80">
               <Mail className="mb-0.5 mr-1.5 inline size-4 align-text-bottom" /> Ti ho appena mandato
@@ -198,10 +198,12 @@ function ThankYouAmbiziosa() {
               (occhio anche allo spam, sai com'è).
             </p>
             <p className="mx-auto mt-3 max-w-xl text-lg leading-relaxed text-foreground/80">
-              Il 6 dicembre, 24 ore prima delle vendite ufficiali,{" "}
-              <strong className="font-semibold text-foreground">ti scrivo per prima</strong> con l'early
-              ticket, il prezzo riservato a chi è in lista. I posti sono 100. Intanto ci sono
-              quattro cose che puoi fare adesso.
+              Il 7 dicembre si aprono le vendite ufficiali per chi non è in lista, ma{" "}
+              <strong className="font-semibold text-foreground">
+                tu potrai già acquistare il biglietto dal 6 dicembre con l'early ticket
+              </strong>{" "}
+              e a un prezzo esclusivo. Ti ricordo che i posti sono solo 100 e probabilmente finiranno
+              velocemente.
             </p>
           </Reveal>
         </div>
@@ -221,7 +223,7 @@ function ThankYouAmbiziosa() {
                 visual={<CalendarSheet />}
                 icon={<CalendarPlus className="size-6" />}
                 title="Segna la data in calendario"
-                sub="6 dicembre 2026 · aprono le vendite di Ambiziosa 2027 per chi è in lista"
+                sub="6 dicembre 2026 · vendite early ticket di Ambiziosa 2027"
                 cta={
                   <>
                     <CtaButton
@@ -243,8 +245,8 @@ function ThankYouAmbiziosa() {
                 }
               >
                 <p>
-                  <strong className="font-semibold text-foreground">Salvati la data adesso</strong>: il 6
-                  dicembre ti arriva l'email con l'apertura delle vendite.
+                  <strong className="font-semibold text-foreground">Salvati la data adesso</strong>: la mattina
+                  del 6 dicembre ti arriva l'email con il link per prenotare il tuo biglietto.
                 </p>
               </StepBox>
             </Reveal>
