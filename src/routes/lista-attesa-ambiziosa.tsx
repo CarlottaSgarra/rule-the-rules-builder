@@ -266,12 +266,12 @@ function Topbar() {
       >
         <BarContent />
       </header>
-      {/* Da telefono, quando la foto di apertura è uscita, compare la barra in basso:
+      {/* Da telefono, quando la foto di apertura è uscita, compare il menu in basso:
           lì si arriva con il dito. Tornando su sparisce. */}
       <div
         aria-hidden={!pastHero}
-        className={`fixed inset-x-0 bottom-0 z-50 grid grid-cols-[minmax(0,1fr)_max-content_minmax(0,1fr)] items-center gap-1.5 border-t border-foreground/10 bg-background px-4 pb-[max(0.625rem,env(safe-area-inset-bottom))] pt-2.5 transition-[translate] duration-300 md:hidden ${
-          pastHero ? "translate-y-0" : "translate-y-full"
+        className={`fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-50 -translate-x-1/2 bg-background/95 shadow-lg transition-[translate] duration-300 md:hidden ${BAR_CLASS} ${
+          pastHero ? "translate-y-0" : "translate-y-[200%]"
         }`}
       >
         <BarContent />
