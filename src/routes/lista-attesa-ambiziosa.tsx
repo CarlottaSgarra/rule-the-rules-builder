@@ -247,10 +247,9 @@ function Topbar() {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
-      // Da telefono il menu in basso arriva quando la foto di apertura è uscita dallo
-      // schermo: la foto ridotta finisce al 64% dell'altezza e la sezione tiene ferma
-      // la scena per un ulteriore 30%.
-      setPastHero(window.scrollY > window.innerHeight * 0.94);
+      // Da telefono il menu in basso arriva appena quello in alto è uscito dallo schermo.
+      const heroMenu = document.getElementById("hero-mobile-menu");
+      setPastHero(!!heroMenu && heroMenu.getBoundingClientRect().bottom <= 0);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -268,7 +267,7 @@ function Topbar() {
       >
         <BarContent />
       </header>
-      {/* Da telefono, quando la foto di apertura è uscita, compare il menu in basso:
+      {/* Da telefono, appena esce il menu in alto, compare il menu in basso:
           lì si arriva con il dito. Tornando su sparisce. */}
       <div
         aria-hidden={!pastHero}
@@ -284,7 +283,7 @@ function Topbar() {
 
 function HeroMobileMenu() {
   return (
-    <header className={`absolute left-1/2 top-4 z-50 -translate-x-1/2 md:hidden ${BAR_CLASS}`}>
+    <header id="hero-mobile-menu" className={`absolute left-1/2 top-4 z-50 -translate-x-1/2 md:hidden ${BAR_CLASS}`}>
       <BarContent />
     </header>
   );
@@ -515,8 +514,7 @@ function Hero() {
             >
               <span className="relative whitespace-nowrap font-display text-[length:var(--hero-title-size)] font-extrabold uppercase leading-[0.85] tracking-tight">
                 <span className="invisible">AMBIZIOSA</span>
-                <span className="absolute bottom-full left-[0.06em] mb-1 whitespace-nowrap font-condensed text-[10px] font-semibold uppercase leading-relaxed tracking-[0.14em] max-md:text-white md:text-secondary sm:mb-3 sm:text-sm md:left-auto md:right-[0.06em] md:tracking-[0.3em]"
-                  style={desktop ? { textShadow: "0 0 10px rgb(255 255 255 / 0.95), 0 0 2px rgb(255 255 255 / 0.9)" } : undefined}
+                <span className="absolute bottom-full left-[0.06em] mb-1 whitespace-nowrap font-condensed text-[10px] font-semibold uppercase leading-relaxed tracking-[0.14em] max-md:text-white md:text-secondary md:[text-shadow:0_0_10px_rgb(255_255_255_/_0.95),0_0_2px_rgb(255_255_255_/_0.9)] sm:mb-3 sm:text-sm md:left-auto md:right-[0.06em] md:tracking-[0.3em]"
                 >
                   Il mio nuovo evento dal vivo del 2027
                 </span>
