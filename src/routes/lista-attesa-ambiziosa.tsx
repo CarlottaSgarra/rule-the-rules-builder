@@ -559,13 +559,43 @@ const FLIP_LINES = [
   { before: "Contenuti, offerte, funnel, ads. Con il supporto del ", key: "mio team", after: " in diretta." },
 ];
 
-// Video di presentazione: finché manca, al suo posto c'è un riquadro con il tasto play.
-const PRESENTATION_VIDEO_SRC: string | null = null;
+// Video di presentazione su Vimeo. Il video è limitato ad alcuni domini: quello che
+// carica questa pagina deve essere tra i domini ammessi nelle impostazioni di Vimeo.
+const PRESENTATION_VIMEO_ID: string | null = "1244164228";
 
 function FlipHeadlines() {
   const desktop = useIsDesktop();
   const { ref, progress } = useScrollProgress<HTMLDivElement>("sticky", !desktop);
   const [videoStarted, setVideoStarted] = useState(false);
+  const videoFrameRef = useRef<HTMLIFrameElement>(null);
+  // La scritta sopra il tasto play sparisce appena parte il video: Vimeo lo comunica
+  // con un messaggio; il tocco dentro il video toglie il focus dalla pagina.
+  useEffect(() => {
+    const frame = videoFrameRef.current;
+    if (!frame) return;
+    const onMessage = (e: MessageEvent) => {
+      if (e.origin !== "https://player.vimeo.com") return;
+      let data: { event?: string } = {};
+      try {
+        data = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
+      } catch {
+        return;
+      }
+      if (data.event === "ready") {
+        frame.contentWindow?.postMessage(JSON.stringify({ method: "addEventListener", value: "play" }), "https://player.vimeo.com");
+      }
+      if (data.event === "play") setVideoStarted(true);
+    };
+    const onBlur = () => {
+      if (document.activeElement === frame) setVideoStarted(true);
+    };
+    window.addEventListener("message", onMessage);
+    window.addEventListener("blur", onBlur);
+    return () => {
+      window.removeEventListener("message", onMessage);
+      window.removeEventListener("blur", onBlur);
+    };
+  }, []);
   // Una tappa in più dopo i titoli: l'ultima frase sparisce e arriva il video.
   const step = 1 / (FLIP_LINES.length + 1);
   // Da telefono ogni frase cambia a tempo appena si supera la sua tappa.
@@ -635,14 +665,14 @@ function FlipHeadlines() {
           }}
         >
           <div className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-secondary shadow-2xl">
-            {PRESENTATION_VIDEO_SRC ? (
-              <video
-                src={PRESENTATION_VIDEO_SRC}
-                controls
-                playsInline
-                preload="metadata"
-                onPlay={() => setVideoStarted(true)}
-                className="h-full w-full object-cover"
+            {PRESENTATION_VIMEO_ID ? (
+              <iframe
+                ref={videoFrameRef}
+                src={`https://player.vimeo.com/video/${PRESENTATION_VIMEO_ID}?title=0&byline=0&portrait=0&playsinline=1`}
+                title="Video di presentazione di Ambiziosa"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full"
               />
             ) : (
               <div className="flex h-full w-full items-center justify-center">
