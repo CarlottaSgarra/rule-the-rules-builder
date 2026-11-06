@@ -244,7 +244,11 @@ function BarContent() {
 function Topbar() {
   const [scrolled, setScrolled] = useState(false);
   const [pastHero, setPastHero] = useState(false);
+  // Dentro Systeme la pagina sta in un iframe alto 100vh: su iPhone il fondo dell'iframe
+  // finisce sotto la barra di Safari e un menu attaccato al bordo non si vedrebbe.
+  const [inFrame, setInFrame] = useState(false);
   useEffect(() => {
+    setInFrame(window.self !== window.top);
     const onScroll = () => {
       setScrolled(window.scrollY > 40);
       // Da telefono il menu in basso arriva appena quello in alto è uscito dallo schermo.
@@ -271,8 +275,9 @@ function Topbar() {
           lì si arriva con il dito. Tornando su sparisce. */}
       <div
         aria-hidden={!pastHero}
+        style={inFrame ? { bottom: "96px" } : undefined}
         className={`fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 z-50 -translate-x-1/2 bg-background/95 shadow-lg transition-[translate] duration-300 md:hidden ${BAR_CLASS} ${
-          pastHero ? "translate-y-0" : "translate-y-[200%]"
+          pastHero ? "translate-y-0" : inFrame ? "translate-y-[400%]" : "translate-y-[200%]"
         }`}
       >
         <BarContent />
