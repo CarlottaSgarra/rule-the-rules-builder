@@ -481,7 +481,7 @@ function Hero() {
             >
               {/* Da telefono la luce sul titolo si ferma appena si scorre: niente ridisegni durante lo scroll. */}
               <span
-                className={`whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight md:text-[19vw] text-primary ${
+                className={`whitespace-nowrap font-display text-[length:var(--hero-title-size)] font-extrabold uppercase leading-[0.85] tracking-tight text-primary ${
                   lowPower && progress > 0.02 ? "amb-title-still" : ""
                 }`}
               >
@@ -506,7 +506,7 @@ function Hero() {
                 transform: desktop && titleOut > 0 ? `translate3d(0, ${-titleOut * 200}px, 0)` : "var(--hero-title-start)",
               }}
             >
-              <span className="relative whitespace-nowrap font-condensed text-[21vw] font-semibold uppercase leading-[0.85] tracking-tight md:text-[19vw]">
+              <span className="relative whitespace-nowrap font-display text-[length:var(--hero-title-size)] font-extrabold uppercase leading-[0.85] tracking-tight">
                 <span className="invisible">AMBIZIOSA</span>
                 <span className="absolute bottom-full left-[0.06em] mb-1 whitespace-nowrap font-condensed text-[10px] font-semibold uppercase leading-relaxed tracking-[0.14em] text-secondary sm:mb-3 sm:text-sm md:left-auto md:right-[0.06em] md:tracking-[0.3em]"
                   style={{ textShadow: "0 0 10px rgb(255 255 255 / 0.95), 0 0 2px rgb(255 255 255 / 0.9)" }}
@@ -566,36 +566,6 @@ const PRESENTATION_VIMEO_ID: string | null = "1244164228";
 function FlipHeadlines() {
   const desktop = useIsDesktop();
   const { ref, progress } = useScrollProgress<HTMLDivElement>("sticky", !desktop);
-  const [videoStarted, setVideoStarted] = useState(false);
-  const videoFrameRef = useRef<HTMLIFrameElement>(null);
-  // La scritta sopra il tasto play sparisce appena parte il video: Vimeo lo comunica
-  // con un messaggio; il tocco dentro il video toglie il focus dalla pagina.
-  useEffect(() => {
-    const frame = videoFrameRef.current;
-    if (!frame) return;
-    const onMessage = (e: MessageEvent) => {
-      if (e.origin !== "https://player.vimeo.com") return;
-      let data: { event?: string } = {};
-      try {
-        data = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
-      } catch {
-        return;
-      }
-      if (data.event === "ready") {
-        frame.contentWindow?.postMessage(JSON.stringify({ method: "addEventListener", value: "play" }), "https://player.vimeo.com");
-      }
-      if (data.event === "play") setVideoStarted(true);
-    };
-    const onBlur = () => {
-      if (document.activeElement === frame) setVideoStarted(true);
-    };
-    window.addEventListener("message", onMessage);
-    window.addEventListener("blur", onBlur);
-    return () => {
-      window.removeEventListener("message", onMessage);
-      window.removeEventListener("blur", onBlur);
-    };
-  }, []);
   // Una tappa in più dopo i titoli: l'ultima frase sparisce e arriva il video.
   const step = 1 / (FLIP_LINES.length + 1);
   // Da telefono ogni frase cambia a tempo appena si supera la sua tappa.
@@ -667,7 +637,6 @@ function FlipHeadlines() {
           <div className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-secondary shadow-2xl">
             {PRESENTATION_VIMEO_ID ? (
               <iframe
-                ref={videoFrameRef}
                 src={`https://player.vimeo.com/video/${PRESENTATION_VIMEO_ID}?title=0&byline=0&portrait=0&playsinline=1`}
                 title="Video di presentazione di Ambiziosa"
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
@@ -683,12 +652,6 @@ function FlipHeadlines() {
                 </span>
                 <span className="sr-only">Video di presentazione in arrivo</span>
               </div>
-            )}
-            {/* Sopra al tasto play, dentro il video: fuori finirebbe sotto il menu. */}
-            {videoStarted ? null : (
-              <p className="pointer-events-none absolute inset-x-4 bottom-[calc(50%+2.75rem)] text-center font-condensed text-xs uppercase tracking-[0.2em] text-white [text-shadow:0_1px_8px_rgb(0_0_0_/_0.6)] sm:bottom-[calc(50%+3.5rem)] sm:text-base sm:tracking-[0.25em]">
-                Clicca qui sotto e guarda il video
-              </p>
             )}
           </div>
         </div>
