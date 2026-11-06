@@ -5,13 +5,15 @@ import { SiteFooter } from "@/components/landing/SiteFooter";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import heroBg from "@/assets/ambiziosa-carlotta-muro-hero.webp";
 import heroCutout from "@/assets/ambiziosa-carlotta-muro-cutout.webp";
-import carlottaPresenting from "@/assets/carlotta-presenting.jpg";
 import carlottaTalking from "@/assets/carlotta-talking.jpg";
 import carlottaLooking2 from "@/assets/carlotta-looking-2.jpg";
 import carlottaWalking from "@/assets/carlotta-walking.jpg";
 import carlottaWall from "@/assets/ambiziosa-carlotta-muro-web.jpg";
 import carlottaWallRight from "@/assets/Carlotta che guarda a destra appoggiata al muro.jpg";
 import carlottaStage from "@/assets/method-bg.jpg";
+import carlottaWriting from "@/assets/Carlotta che scrive su un documento, sorridendo.jpg";
+import carlottaWallRightNew from "@/assets/Carlotta appoggiata al muro che guarda verso destra.jpg";
+import carlottaTablet from "@/assets/Carlotta con tablet che guarda a sinistra, appoggiata a muro dietro a finestra.jpg";
 import participantsSmiling from "@/assets/social-proof-1.jpg";
 import participantNotes from "@/assets/social-proof-11.jpg";
 import participantsRoom from "@/assets/social-proof-4.jpg";
@@ -839,9 +841,9 @@ function SocialProof() {
 /* ---------------------------------------------------------------- 4. Il problema */
 
 const PROBLEM_SLIDES: { src: string; line: string; position?: string; mobilePosition?: string; shift?: number }[] = [
-  { src: carlottaPresenting, line: "Tutti si concentrano sui contenuti, ma quelli sono solo il primo step." },
-  { src: carlottaTalking, line: "Da soli non tengono in piedi un'azienda." },
-  { src: carlottaLooking2, line: "E non ti garantiscono un fatturato costante." },
+  { src: carlottaWriting, line: "Tutti si concentrano sui contenuti, ma quelli sono solo il primo step.", position: "50% 12%", mobilePosition: "80% 50%" },
+  { src: carlottaWallRightNew, line: "Da soli non tengono in piedi un'azienda.", position: "50% 22%", mobilePosition: "45% 50%" },
+  { src: carlottaTablet, line: "E non ti garantiscono un fatturato costante.", position: "50% 20%", mobilePosition: "65% 50%" },
   // Carlotta è a sinistra nella foto: su computer scorre a destra mentre la foto
   // si stringe, così nella scheda centrale resta al centro.
   { src: carlottaStage, line: "In Ambiziosa 2027 lavoriamo su tutta la struttura.", position: "0% 30%", mobilePosition: "11.5% 30%", shift: 24 },
