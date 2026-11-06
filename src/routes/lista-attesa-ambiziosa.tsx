@@ -10,7 +10,7 @@ import carlottaLooking2 from "@/assets/carlotta-looking-2.jpg";
 import carlottaWalking from "@/assets/carlotta-walking.jpg";
 import carlottaWall from "@/assets/ambiziosa-carlotta-muro-web.jpg";
 import carlottaWallRight from "@/assets/Carlotta che guarda a destra appoggiata al muro.jpg";
-import carlottaStage from "@/assets/method-bg.jpg";
+import carlottaHarbor from "@/assets/Carlotta al porto che guarda verso la fotocamera, in mezzo alla foto.jpg";
 import carlottaWriting from "@/assets/Carlotta che scrive su un documento, sorridendo.jpg";
 import carlottaWallRightNew from "@/assets/Carlotta appoggiata al muro che guarda verso destra.jpg";
 import carlottaTablet from "@/assets/Carlotta con tablet che guarda a sinistra, appoggiata a muro dietro a finestra.jpg";
@@ -475,6 +475,11 @@ function Hero() {
               className="absolute inset-0 size-full rounded-3xl object-cover"
               style={{ objectPosition: photoPosition }}
             />
+            {/* Da telefono: gradiente sopra lo sfondo e sotto titolo e testa di Carlotta. */}
+            <div
+              aria-hidden
+              className="absolute inset-x-0 top-0 h-[42%] rounded-t-3xl bg-gradient-to-b from-black/70 via-black/35 to-transparent md:hidden"
+            />
             <div
               ref={titleRef}
               aria-hidden
@@ -510,8 +515,8 @@ function Hero() {
             >
               <span className="relative whitespace-nowrap font-display text-[length:var(--hero-title-size)] font-extrabold uppercase leading-[0.85] tracking-tight">
                 <span className="invisible">AMBIZIOSA</span>
-                <span className="absolute bottom-full left-[0.06em] mb-1 whitespace-nowrap font-condensed text-[10px] font-semibold uppercase leading-relaxed tracking-[0.14em] text-secondary sm:mb-3 sm:text-sm md:left-auto md:right-[0.06em] md:tracking-[0.3em]"
-                  style={{ textShadow: "0 0 10px rgb(255 255 255 / 0.95), 0 0 2px rgb(255 255 255 / 0.9)" }}
+                <span className="absolute bottom-full left-[0.06em] mb-1 whitespace-nowrap font-condensed text-[10px] font-semibold uppercase leading-relaxed tracking-[0.14em] max-md:text-white md:text-secondary sm:mb-3 sm:text-sm md:left-auto md:right-[0.06em] md:tracking-[0.3em]"
+                  style={desktop ? { textShadow: "0 0 10px rgb(255 255 255 / 0.95), 0 0 2px rgb(255 255 255 / 0.9)" } : undefined}
                 >
                   Il mio nuovo evento dal vivo del 2027
                 </span>
@@ -844,9 +849,7 @@ const PROBLEM_SLIDES: { src: string; line: string; position?: string; mobilePosi
   { src: carlottaWriting, line: "Tutti si concentrano sui contenuti, ma quelli sono solo il primo step.", position: "50% 12%", mobilePosition: "80% 50%" },
   { src: carlottaWallRightNew, line: "Da soli non tengono in piedi un'azienda.", position: "50% 22%", mobilePosition: "45% 50%" },
   { src: carlottaTablet, line: "E non ti garantiscono un fatturato costante.", position: "50% 20%", mobilePosition: "65% 50%" },
-  // Carlotta è a sinistra nella foto: su computer scorre a destra mentre la foto
-  // si stringe, così nella scheda centrale resta al centro.
-  { src: carlottaStage, line: "In Ambiziosa 2027 lavoriamo su tutta la struttura.", position: "0% 30%", mobilePosition: "11.5% 30%", shift: 24 },
+  { src: carlottaHarbor, line: "In Ambiziosa 2027 lavoriamo su tutta la struttura.", position: "50% 2%", mobilePosition: "50% 50%" },
 ];
 
 function BlurLine({ text, t, lowPower, on }: { text: string; t: number; lowPower: boolean; on?: boolean }) {
