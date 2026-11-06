@@ -422,7 +422,7 @@ function Hero() {
   // telefono il corpo di Carlotta lo coprirebbe: sta già in cima alla foto dall'inizio.
   const titleTransform = desktop
     ? shrink > 0
-      ? `translate3d(${-10.9 * shrink}vw, calc((4.49vw + 38px - 48.5vh) * ${shrink}), 0) scale(${lerp(1, 0.55, shrink)})`
+      ? `translate3d(${-10.9 * shrink}vw, calc((4.49vw + 38px - 48.5vh) * ${shrink}), 0) scale(${lerp(1, 0.46, shrink)})`
       : "var(--hero-title-start)"
     : "var(--hero-title-start)";
 
@@ -634,6 +634,9 @@ function FlipHeadlines() {
             pointerEvents: video > 0.5 ? "auto" : "none",
           }}
         >
+          <p className="mb-3 text-center font-condensed text-xs uppercase tracking-[0.2em] text-foreground md:hidden">
+            Clicca qui sotto e guarda il video
+          </p>
           <div className="relative aspect-video w-full max-w-4xl overflow-hidden rounded-2xl bg-secondary shadow-2xl">
             {PRESENTATION_VIMEO_ID ? (
               <iframe

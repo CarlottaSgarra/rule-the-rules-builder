@@ -362,14 +362,14 @@
 /* Apertura di Ambiziosa: valori iniziali decisi dal CSS, validi già prima che la pagina si attivi. */
 .amb-hero-start {
   --hero-photo-position: 35% 5%;
-  --hero-title-size: 13vw;
+  --hero-title-size: 16vw;
   --hero-title-start: translate3d(0, 0, 0);
 }
 
 @media (max-width: 767px) {
   .amb-hero-start {
     --hero-photo-position: 31% 5%;
-    --hero-title-size: 15vw;
+    --hero-title-size: 16.2vw;
     --hero-title-start: translate3d(0, calc(8.93vw + 74px - 48.5svh), 0);
   }
 }
