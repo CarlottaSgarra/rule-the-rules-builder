@@ -874,7 +874,7 @@ function SocialProof() {
 
 const PROBLEM_SLIDES: { src: string; line: string; position?: string; mobilePosition?: string; shift?: number }[] = [
   { src: carlottaPresenting, line: "Tutti si concentrano sui contenuti, ma quelli sono solo il primo step." },
-  { src: carlottaTalking, line: "Ma da soli non tengono in piedi un'azienda." },
+  { src: carlottaTalking, line: "Da soli non tengono in piedi un'azienda." },
   { src: carlottaLooking2, line: "E non ti garantiscono un fatturato costante." },
   // Carlotta è a sinistra nella foto: su computer scorre a destra mentre la foto
   // si stringe, così nella scheda centrale resta al centro.
