@@ -241,6 +241,21 @@ function BarContent() {
   );
 }
 
+// Pulsante che riporta al form, messo ogni due sezioni (stesso stile di quello del menu).
+function SectionCta({ className = "" }: { className?: string }) {
+  return (
+    <Appear className={`flex justify-center px-5 ${className}`}>
+      <a
+        href="#lista-attesa"
+        onClick={scrollToWaitlist}
+        className="glow-sweep relative whitespace-nowrap rounded-full bg-primary px-8 py-3.5 text-center font-condensed text-sm font-semibold uppercase tracking-[0.15em] text-background transition-transform hover:-translate-y-0.5 sm:min-w-[16rem] sm:px-12"
+      >
+        Entra in lista d'attesa
+      </a>
+    </Appear>
+  );
+}
+
 function Topbar() {
   const [scrolled, setScrolled] = useState(false);
   const [pastHero, setPastHero] = useState(false);
@@ -842,6 +857,7 @@ function SocialProof() {
         <ProofRow photos={PARTICIPANT_PHOTOS.slice(0, 8)} direction="left" />
         <ProofRow photos={PARTICIPANT_PHOTOS.slice(8)} direction="right" />
       </div>
+      <SectionCta className="mt-12 md:mt-16" />
     </section>
   );
 }
@@ -1636,6 +1652,9 @@ function ListaAttesaAmbiziosa() {
       <SocialProof />
       <ProblemSplit />
       <ProblemText />
+      <div className="bg-secondary pb-20 md:pb-28">
+        <SectionCta />
+      </div>
       <ZoomStack />
       <ChangeText />
       <WaitlistSignup />
