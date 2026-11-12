@@ -1616,6 +1616,10 @@ const FAQS = [
     a: "Ambiziosa è pensata per chi ha già un'attività avviata e dei clienti, e vuole trasformarla in un'azienda strutturata. Se stai partendo da zero, non è ancora il momento giusto.",
   },
   {
+    q: "Se il mio obiettivo adesso non è creare un'azienda ma avviare il progetto, ha senso partecipare?",
+    a: "Sì, se hai la visione in grande. Ad Ambiziosa vedi già tutta la strada tracciata, dalla struttura al team, e così eviti tanti errori che di solito si scoprono solo strada facendo.",
+  },
+  {
     q: "Su cosa lavoriamo nei 2 giorni?",
     a: "Su quello che ti serve per creare un'azienda che cresce: funnel, ads, fisco, visione aziendale, delega e team.",
   },
