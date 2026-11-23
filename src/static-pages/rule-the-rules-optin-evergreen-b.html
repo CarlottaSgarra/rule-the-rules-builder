@@ -1701,10 +1701,11 @@ html{scroll-behavior:smooth}
       </ul>
       <p class="buy__text x-mt-6"><strong style="color:var(--color-ink)">Inizia oggi a farti riconoscere dalle tue clienti.</strong></p>
       <p class="buy__hint">Lascia nome ed email e accedi subito ↓</p>
-      <form class="form" onsubmit="event.preventDefault()">
-        <label class="sr-only" for="b-nome">Nome</label><input class="field" id="b-nome" type="text" placeholder="Nome" autocomplete="given-name">
-        <label class="sr-only" for="b-email">Email</label><input class="field" id="b-email" type="email" placeholder="La tua email migliore" autocomplete="email">
-        <label class="check"><input type="checkbox"><span>Ho visto e accettato la <a href="#">Privacy Policy</a>.</span></label>
+      <!-- Modulo opt-in di Systeme "Modulo Opt In - Rule The Rules" (funnel Rule The Rules 2026 evergreen): dopo l'invio Systeme porta al checkout -->
+      <form class="form" method="post" action="https://systeme.io/embedded/47027176/subscription" target="_top">
+        <label class="sr-only" for="b-nome">Nome</label><input class="field" id="b-nome" type="text" name="first_name" placeholder="Nome" autocomplete="given-name" required>
+        <label class="sr-only" for="b-email">Email</label><input class="field" id="b-email" type="email" name="email" placeholder="La tua email migliore" autocomplete="email" required>
+        <label class="check"><input type="checkbox" required><span>Ho visto e accettato la <a href="https://www.iubenda.com/privacy-policy/47892266" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
         <button class="btn-submit" type="submit"><span class="btn-submit__label">Sì, vado al pagamento</span></button>
         <p class="under-btn">Paghi 37 € invece di 97 € · Accesso a vita</p>
         <div class="pay" aria-label="Metodi di pagamento accettati"><span class="pay__chip pay__visa">VISA</span><span class="pay__chip pay__mc"><i></i><i></i></span><span class="pay__chip pay__amex">AMEX</span><span class="pay__chip pay__pp"><b>Pay</b>Pal</span><span class="pay__chip pay__ap">Apple Pay</span><span class="pay__chip pay__gp"><b>G</b> Pay</span></div>

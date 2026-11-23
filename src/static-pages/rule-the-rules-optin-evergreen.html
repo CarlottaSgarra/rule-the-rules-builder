@@ -1385,10 +1385,11 @@ body { background: var(--color-background); color: var(--color-foreground); over
         <li>Masterclass 1 · Togli il costume</li><li>Masterclass 2 · Licenzia le regole</li><li>Masterclass 3 · Il piano editoriale non è una gabbia</li><li>Il workbook con le Carte Identitarie</li><li>Accesso a vita</li>
       </ul>
       <p class="buy__hint">Lascia nome ed email e accedi subito ↓</p>
-      <form class="form" id="form-acquisto" onsubmit="event.preventDefault()">
-        <input class="field" id="nome" type="text" placeholder="Nome" autocomplete="given-name" />
-        <input class="field" id="email" type="email" placeholder="La tua email migliore" autocomplete="email" />
-        <label class="check"><input id="privacy" type="checkbox" /><span>Ho visto e accettato la <a href="#">Privacy Policy</a>.</span></label>
+      <!-- Modulo opt-in di Systeme "Modulo Opt In - Rule The Rules" (funnel Rule The Rules 2026 evergreen): dopo l'invio Systeme porta al checkout -->
+      <form class="form" id="form-acquisto" method="post" action="https://systeme.io/embedded/47027176/subscription" target="_top">
+        <input class="field" id="nome" type="text" name="first_name" placeholder="Nome" autocomplete="given-name" required />
+        <input class="field" id="email" type="email" name="email" placeholder="La tua email migliore" autocomplete="email" required />
+        <label class="check"><input id="privacy" type="checkbox" required /><span>Ho visto e accettato la <a href="https://www.iubenda.com/privacy-policy/47892266" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
         <button class="btn-submit" type="submit"><span class="btn-submit__label">Sì, vado al pagamento</span></button>
         <p class="under-btn">Risparmi 60 € rispetto al prezzo pieno · Accesso a vita</p>
         <div class="pay" aria-label="Metodi di pagamento accettati"><span class="pay__chip pay__visa">VISA</span><span class="pay__chip pay__mc"><i></i><i></i></span><span class="pay__chip pay__amex">AMEX</span><span class="pay__chip pay__pp"><b>Pay</b>Pal</span><span class="pay__chip pay__ap">Apple Pay</span><span class="pay__chip pay__gp"><b>G</b> Pay</span></div>
