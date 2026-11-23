@@ -19,6 +19,7 @@ import { Route as GrazieIscrizioneListaAttesaAmbiziosa2027RouteImport } from './
 import { Route as ListaAttesaAmbiziosaRouteImport } from './routes/lista-attesa-ambiziosa'
 import { Route as RegistrazioniRouteImport } from './routes/registrazioni'
 import { Route as RuleTheRulesOptinEvergreenRouteImport } from './routes/rule-the-rules-optin-evergreen'
+import { Route as RuleTheRulesOptinEvergreenBRouteImport } from './routes/rule-the-rules-optin-evergreen-b'
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as ThankYouVipRouteImport } from './routes/thank-you-vip'
 import { Route as UpsellCallRouteImport } from './routes/upsell-call'
@@ -78,6 +79,12 @@ const RuleTheRulesOptinEvergreenRoute =
     path: '/rule-the-rules-optin-evergreen',
     getParentRoute: () => rootRouteImport,
   } as any)
+const RuleTheRulesOptinEvergreenBRoute =
+  RuleTheRulesOptinEvergreenBRouteImport.update({
+    id: '/rule-the-rules-optin-evergreen-b',
+    path: '/rule-the-rules-optin-evergreen-b',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ThankYouRoute = ThankYouRouteImport.update({
   id: '/thank-you',
   path: '/thank-you',
@@ -120,6 +127,7 @@ export interface FileRoutesByFullPath {
   '/lista-attesa-ambiziosa': typeof ListaAttesaAmbiziosaRoute
   '/registrazioni': typeof RegistrazioniRoute
   '/rule-the-rules-optin-evergreen': typeof RuleTheRulesOptinEvergreenRoute
+  '/rule-the-rules-optin-evergreen-b': typeof RuleTheRulesOptinEvergreenBRoute
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
@@ -138,6 +146,7 @@ export interface FileRoutesByTo {
   '/lista-attesa-ambiziosa': typeof ListaAttesaAmbiziosaRoute
   '/registrazioni': typeof RegistrazioniRoute
   '/rule-the-rules-optin-evergreen': typeof RuleTheRulesOptinEvergreenRoute
+  '/rule-the-rules-optin-evergreen-b': typeof RuleTheRulesOptinEvergreenBRoute
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
@@ -157,6 +166,7 @@ export interface FileRoutesById {
   '/lista-attesa-ambiziosa': typeof ListaAttesaAmbiziosaRoute
   '/registrazioni': typeof RegistrazioniRoute
   '/rule-the-rules-optin-evergreen': typeof RuleTheRulesOptinEvergreenRoute
+  '/rule-the-rules-optin-evergreen-b': typeof RuleTheRulesOptinEvergreenBRoute
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/lista-attesa-ambiziosa'
     | '/registrazioni'
     | '/rule-the-rules-optin-evergreen'
+    | '/rule-the-rules-optin-evergreen-b'
     | '/thank-you'
     | '/thank-you-vip'
     | '/upsell-call'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '/lista-attesa-ambiziosa'
     | '/registrazioni'
     | '/rule-the-rules-optin-evergreen'
+    | '/rule-the-rules-optin-evergreen-b'
     | '/thank-you'
     | '/thank-you-vip'
     | '/upsell-call'
@@ -213,6 +225,7 @@ export interface FileRouteTypes {
     | '/lista-attesa-ambiziosa'
     | '/registrazioni'
     | '/rule-the-rules-optin-evergreen'
+    | '/rule-the-rules-optin-evergreen-b'
     | '/thank-you'
     | '/thank-you-vip'
     | '/upsell-call'
@@ -232,6 +245,7 @@ export interface RootRouteChildren {
   ListaAttesaAmbiziosaRoute: typeof ListaAttesaAmbiziosaRoute
   RegistrazioniRoute: typeof RegistrazioniRoute
   RuleTheRulesOptinEvergreenRoute: typeof RuleTheRulesOptinEvergreenRoute
+  RuleTheRulesOptinEvergreenBRoute: typeof RuleTheRulesOptinEvergreenBRoute
   ThankYouRoute: typeof ThankYouRoute
   ThankYouVipRoute: typeof ThankYouVipRoute
   UpsellCallRoute: typeof UpsellCallRoute
@@ -312,6 +326,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RuleTheRulesOptinEvergreenRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/rule-the-rules-optin-evergreen-b': {
+      id: '/rule-the-rules-optin-evergreen-b'
+      path: '/rule-the-rules-optin-evergreen-b'
+      fullPath: '/rule-the-rules-optin-evergreen-b'
+      preLoaderRoute: typeof RuleTheRulesOptinEvergreenBRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/thank-you': {
       id: '/thank-you'
       path: '/thank-you'
@@ -369,6 +390,7 @@ const rootRouteChildren: RootRouteChildren = {
   ListaAttesaAmbiziosaRoute: ListaAttesaAmbiziosaRoute,
   RegistrazioniRoute: RegistrazioniRoute,
   RuleTheRulesOptinEvergreenRoute: RuleTheRulesOptinEvergreenRoute,
+  RuleTheRulesOptinEvergreenBRoute: RuleTheRulesOptinEvergreenBRoute,
   ThankYouRoute: ThankYouRoute,
   ThankYouVipRoute: ThankYouVipRoute,
   UpsellCallRoute: UpsellCallRoute,
@@ -379,3 +401,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
