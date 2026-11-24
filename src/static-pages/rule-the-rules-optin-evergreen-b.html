@@ -1650,11 +1650,12 @@ body.bm-open{overflow:hidden}
 .avg::before{left:-1px;background:linear-gradient(90deg,var(--color-background) 8%,color-mix(in oklab,var(--color-background) 0%,transparent))}
 .avg::after{right:-1px;background:linear-gradient(270deg,var(--color-background) 8%,color-mix(in oklab,var(--color-background) 0%,transparent))}
 .av--me{z-index:2}
-.mc-head{display:grid;gap:var(--space-5);align-items:end;padding-bottom:var(--space-8);border-bottom:1px solid var(--tint-card-border-on-dark)}
-@media (min-width:900px){.mc-head{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:var(--space-10)}}
+.mc-head{display:grid;gap:var(--space-8);align-items:center;padding-bottom:var(--space-8);border-bottom:1px solid var(--tint-card-border-on-dark)}
+@media (min-width:900px){.mc-head{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-10)}}
+.mc-head__side{margin-top:var(--space-5)}
 .mc-head .h2{margin:0}
 .mc-head__side{color:var(--color-ink-muted);line-height:var(--line-height-relaxed)}
-.x-page img.mc-bundle{display:block;width:100%;max-width:34rem;height:auto;margin:var(--space-10) auto 0}
+.x-page img.mc-bundle{display:block;width:100%;max-width:34rem;height:auto;margin:0 auto}
 .mc-rows{margin-top:var(--space-10)}
 .mc-row{display:grid;gap:var(--space-8);align-items:center;padding:var(--space-12) 0;border-top:1px solid var(--tint-card-border-on-dark)}
 .mc-row:first-child{border-top:0}
@@ -2044,10 +2045,10 @@ body.bm-open{overflow:hidden}
       <div>
         <span class="x-kicker">Ecco cosa ottieni con 37 €</span>
         <h2 class="h2">Tre masterclass e 3 workbook, uno per ogni masterclass, <span class="hl hl--dark">pronti appena ti iscrivi</span>.</h2>
+        <p class="mc-head__side">Le guardi quando vuoi e ogni masterclass ha il suo workbook con gli esercizi.</p>
       </div>
-      <p class="mc-head__side">Le guardi quando vuoi e ogni masterclass ha il suo workbook con gli esercizi.</p>
+      <img class="mc-bundle" src="/rtr-b/mockup-bundle.webp" alt="Le 3 masterclass su computer e telefono e i 3 workbook di Rule the Rules">
     </div>
-    <img class="mc-bundle" src="/rtr-b/mockup-bundle.webp" alt="Le 3 masterclass su computer e telefono e i 3 workbook di Rule the Rules">
     <div class="mc-rows">
       <div class="mc-row">
         <div class="mc-row__txt">
