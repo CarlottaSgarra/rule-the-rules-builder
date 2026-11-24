@@ -1420,6 +1420,33 @@ html{scroll-behavior:smooth}
 .b-stack li{display:flex;justify-content:space-between;gap:var(--space-4)}
 .b-forwho{list-style:none;padding:0;margin:var(--space-6) 0 0;display:grid;gap:var(--space-3)}
 .b-forwho li{display:flex;gap:var(--space-3);align-items:flex-start;line-height:var(--line-height-relaxed)}
+.bh{padding-top:var(--space-12)}
+.bh-badge{display:inline-block;padding:.3rem 1rem;border-radius:var(--radius-md);background-image:var(--gradient-gold);color:var(--color-secondary);font-family:var(--font-condensed);font-weight:600;font-size:var(--font-size-lg);letter-spacing:.06em;text-transform:uppercase;box-shadow:4px 4px 0 var(--color-secondary)}
+.bh-bar{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:stretch;margin-top:var(--space-5);border:1.5px solid var(--color-secondary);border-radius:var(--radius-md);overflow:hidden;font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:var(--letter-spacing-label);font-size:var(--font-size-xs)}
+.bh-bar__chip{display:flex;align-items:center;gap:.45rem;padding:.55rem .9rem;background:var(--color-secondary);color:var(--color-primary);font-weight:600}
+.bh-bar__chip::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:var(--color-primary)}
+.bh-bar__txt{padding:.55rem .9rem;color:var(--color-secondary);background:color-mix(in oklab,var(--color-background) 70%,transparent)}
+.bh-for{max-width:34rem;margin:var(--space-6) auto 0;font-size:var(--font-size-sm);color:color-mix(in oklab,var(--color-foreground) 80%,transparent)}
+.bh-h1{margin:var(--space-5) auto 0;max-width:none;font-family:var(--font-display);font-weight:700;font-size:clamp(2.5rem,7vw,4.8rem);line-height:1.06;letter-spacing:var(--letter-spacing-heading);color:var(--color-secondary)}
+.bh-h1 .hl{padding:0 .12em;white-space:nowrap;background-size:100% 38%;background-position:0 86%;background-image:linear-gradient(var(--tint-highlight-dark),var(--tint-highlight-dark))}
+.bh-l{display:block}
+@media (max-width:639px){.bh-h1{font-size:2rem;letter-spacing:-.01em}.bh-l--small{font-size:.62em}}
+.bh-l--small{margin-top:.55em;font-size:.48em;font-weight:600;line-height:1.2;text-wrap:balance}
+.bh-sub{margin-top:var(--space-6);font-weight:600;color:var(--color-secondary)}
+.bh-sub em{font-style:normal;white-space:nowrap;padding:0 .3rem;border-radius:var(--radius-highlight);background:var(--tint-highlight-light)}
+.bh-note{max-width:32rem;margin:var(--space-3) auto 0;font-size:var(--font-size-xs);line-height:1.6;color:color-mix(in oklab,var(--color-foreground) 75%,transparent)}
+.bh-cta{display:flex;justify-content:center;align-items:center;gap:var(--space-4);margin-top:var(--space-8)}
+.bh-cta::before,.bh-cta::after{content:"";border-block:.5rem solid transparent;flex-shrink:0}
+.bh-cta::before{border-left:.75rem solid var(--color-secondary)}
+.bh-cta::after{border-right:.75rem solid var(--color-secondary)}
+.bh-cta .btn-cta{box-shadow:6px 6px 0 var(--color-secondary)}
+.bh-tiles-k{margin-top:var(--space-10);font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:var(--letter-spacing-label);font-size:var(--font-size-xs);color:var(--color-secondary)}
+.bh-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3);max-width:40rem;margin:var(--space-3) auto 0}
+@media (min-width:640px){.bh-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.bh-tile{padding:var(--space-4) var(--space-2);border-radius:var(--radius-lg);background:var(--color-secondary);box-shadow:4px 4px 0 color-mix(in oklab,var(--color-secondary) 35%,transparent)}
+.bh-tile b{display:block;font-family:var(--font-condensed);font-weight:600;font-size:var(--font-size-3xl);line-height:1.1;color:var(--color-primary)}
+.bh-tile span{display:block;margin-top:.3rem;font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:var(--letter-spacing-label);font-size:.65rem;color:var(--color-ink-muted)}
+@media (max-width:420px){.bh-cta{gap:var(--space-2)}.bh-cta::before,.bh-cta::after{display:none}}
 </style>
 <div class="x-page">
 
@@ -1431,16 +1458,28 @@ html{scroll-behavior:smooth}
   </div>
 </div>
 
-<!-- 2 · Hero -->
+<!-- 2 · Hero (struttura dell'header di Onnipresente, design system di Rule the Rules) -->
 <header class="x-night">
-  <div class="x-wrap x-wrap--5 x-center">
-    <p class="x-over" style="max-width:36rem;margin:0 auto;color:var(--color-secondary)">Per coach, consulenti e professioniste che su Instagram seguono gancio, script e piano editoriale e hanno un profilo uguale a quello delle colleghe.</p>
-    <h1 class="x-h1 x-mt-6">Rule <span class="hl">the Rules</span></h1>
-    <p class="x-lead x-mt-6" style="max-width:var(--container-3xl);margin-inline:auto"><strong>Quello che pubblichi potrebbe averlo pubblicato una tua concorrente. E le tue clienti non vedono nessuna differenza.</strong></p>
-    <p class="x-mt-6 x-muted" style="max-width:var(--container-2xl);margin-inline:auto">In 3 masterclass torni a registrare senza quella nausea davanti alla videocamera e costruisci un profilo che le tue clienti riconoscono come tuo, anche senza leggere il tuo nome. Entra nel 2027 con una comunicazione identitaria, impossibile da confondere con quella di chiunque altra. Circa 7 ore in tutto, le guardi quando vuoi.</p>
-    <div class="x-photo x-r169 x-mt-10" style="max-width:var(--container-3xl);margin-inline:auto"><img src="/rtr-b/porto.jpg" alt="Carlotta Sgarra in piedi sul lungomare" style="object-position:50% 35%"><span class="x-photo__tag">Il metodo di Carlotta Sgarra · più di 1.500 professioniste accompagnate</span></div>
-    <div class="cta-row"><a class="btn-cta" href="#accedi"><span class="btn-cta__label">Accedi ora a Rule the Rules</span><span class="btn-cta__sub">A soli 37 €</span></a></div>
-    <p class="under-btn" style="color:var(--color-foreground)">Le regole utili le tieni, lasci andare solo le altre.</p>
+  <div class="x-wrap x-wrap--5 x-center bh">
+    <span class="bh-badge">#RuleTheRules</span>
+    <div><div class="bh-bar"><span class="bh-bar__chip">3 masterclass</span><span class="bh-bar__txt">Il metodo di Carlotta Sgarra · accesso immediato a vita</span></div></div>
+    <p class="bh-for">Per coach, consulenti e professioniste che su Instagram seguono ganci, script e piano editoriale e si ritrovano un profilo uguale a quello delle colleghe.</p>
+    <h1 class="bh-h1"><span class="bh-l">Crea contenuti che</span> <span class="bh-l"><span class="hl">nessuno skippa</span></span> <span class="bh-l">e fai <span class="hl">grandi numeri</span></span> <span class="bh-l bh-l--small">senza farti ingabbiare dalle regole dei guru</span></h1>
+    <p class="bh-sub">3 masterclass · circa 7 ore · <em>le guardi quando vuoi</em> · 37 €</p>
+    <p class="bh-note">(Con le masterclass ricevi anche il workbook con gli esercizi di ogni masterclass, da fare sul tuo profilo.)</p>
+    <div class="bh-cta"><a class="btn-cta" href="#accedi"><span class="btn-cta__label">Accedi ora a Rule the Rules</span><span class="btn-cta__sub">A soli 37 €</span></a></div>
+    <p class="under-btn" style="color:var(--color-foreground)">Le regole utili le tieni, lasci andare solo quelle che ti ingabbiano.</p>
+    <p class="bh-tiles-k">Rule the Rules in breve</p>
+    <div class="bh-tiles">
+      <div class="bh-tile"><b>1.500+</b><span>professioniste accompagnate da Carlotta</span></div>
+      <div class="bh-tile"><b>3</b><span>masterclass</span></div>
+      <div class="bh-tile"><b>7 ore</b><span>circa, di contenuti</span></div>
+      <div class="bh-tile"><b>A vita</b><span>l'accesso</span></div>
+    </div>
+    <div class="x-photo x-r169 x-mt-10" style="max-width:var(--container-3xl);margin-inline:auto"><img src="/rtr-b/porto.jpg" alt="Carlotta Sgarra in piedi sul lungomare" style="object-position:50% 12%"><span class="x-photo__tag">Carlotta Sgarra, ideatrice di Rule the Rules</span></div>
+    <p class="x-lead x-mt-10" style="max-width:var(--container-3xl);margin-inline:auto"><strong>Quello che pubblichi potrebbe averlo pubblicato una tua concorrente. E le tue clienti non vedono nessuna differenza.</strong></p>
+    <!-- leva 2027: da cambiare dal 01/01/2027 -->
+    <p class="x-mt-6 x-muted" style="max-width:var(--container-2xl);margin-inline:auto">In 3 masterclass tornerai a registrare senza quella nausea che ti viene davanti alla videocamera e costruirai un profilo che le tue clienti riconosceranno come tuo, anche senza leggere il tuo nome. Intanto entra nel 2027 con una comunicazione identitaria, impossibile da confondere con quella di chiunque altra.</p>
   </div>
 </header>
 
