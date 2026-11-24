@@ -1525,6 +1525,29 @@ html{scroll-behavior:smooth}
 }
 @keyframes bm-up{from{transform:translateY(40px)}to{transform:none}}
 body.bm-open{overflow:hidden}
+.mc-shot img{object-fit:cover}
+.wb-card{display:grid;gap:var(--space-8);align-items:center}
+@media (min-width:1024px){.wb-card{grid-template-columns:minmax(0,1fr) minmax(0,.9fr)}}
+.wb-mock{position:relative;width:min(74%,18rem);aspect-ratio:3/4;margin:var(--space-6) auto var(--space-8);perspective:900px}
+.wb-mock::after{content:"";position:absolute;left:4%;right:-14%;bottom:-9%;height:10%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.45),transparent);filter:blur(4px);z-index:-1}
+.wb-book{position:absolute;inset:0;border-radius:10px 20px 20px 10px;overflow:hidden;background:linear-gradient(160deg,#fff7f4 0%,var(--color-background) 38%,var(--color-card) 78%,color-mix(in oklab,var(--color-primary) 35%,var(--color-card)) 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),inset 0 18px 30px -20px rgba(255,255,255,.9),0 30px 50px -22px rgba(0,0,0,.65)}
+.wb-book::before{content:"";position:absolute;top:0;bottom:0;left:0;width:9%;background:linear-gradient(90deg,color-mix(in oklab,var(--color-secondary) 22%,transparent),rgba(255,255,255,.55) 45%,color-mix(in oklab,var(--color-secondary) 12%,transparent))}
+.wb-book::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.45) 0%,transparent 35%,transparent 70%,rgba(255,255,255,.18) 100%);pointer-events:none}
+.wb-book--3{transform:translate(22%,5%) scale(.92);filter:brightness(.86)}
+.wb-book--2{transform:translate(11%,2.5%) scale(.96);filter:brightness(.93)}
+.wb-book--1{transform:rotateY(-6deg)}
+.wb-book{container-type:inline-size}
+.wb-cover{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;padding:16% 12% 12% 18%;color:var(--color-secondary);text-align:left}
+.wb-k{font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.12em;font-size:4.1cqw;white-space:nowrap;color:color-mix(in oklab,var(--color-secondary) 75%,transparent)}
+.wb-t{margin-top:.7rem;font-family:var(--font-display);font-weight:700;font-size:11.5cqw;line-height:1.02;text-transform:uppercase;letter-spacing:-.01em}
+.wb-book--2 .wb-t,.wb-book--3 .wb-t{opacity:.0}
+.wb-line{display:block;width:30%;height:3px;margin-top:1rem;border-radius:3px;background:var(--color-secondary)}
+.wb-s{margin-top:1rem;font-size:5.6cqw;line-height:1.4;font-weight:600}
+.wb-f{margin-top:auto;padding-top:.7rem;border-top:1px solid color-mix(in oklab,var(--color-secondary) 25%,transparent);font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.08em;font-size:3.9cqw;color:color-mix(in oklab,var(--color-secondary) 80%,transparent)}
+.wb-badge{position:absolute;z-index:3;top:-14%;right:-18%;width:6.2rem;height:6.2rem;border-radius:50%;display:grid;place-content:center;text-align:center;background-image:var(--gradient-gold);color:var(--color-secondary);box-shadow:var(--shadow-gold),0 12px 24px -10px rgba(0,0,0,.5);transform:rotate(8deg)}
+.wb-badge b{font-family:var(--font-display);font-size:2rem;line-height:1}
+.wb-badge span{font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.08em;font-size:.58rem;line-height:1.2;max-width:4.5rem}
+@media (max-width:480px){.wb-badge{right:-10%;width:5.2rem;height:5.2rem}}
 </style>
 <div class="x-page">
 
@@ -1780,7 +1803,7 @@ body.bm-open{overflow:hidden}
             <p><strong>È qui che smetti di recitare.</strong></p>
           </div>
         </div>
-        <div class="x-photo x-r43"><img src="/rtr-b/non-regole.jpg" alt="Carlotta Sgarra seduta sui gradini" style="object-position:50% 40%"></div>
+        <div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-1.jpg" alt="Una slide della Masterclass 1: Chi vuoi essere nel tuo mercato?" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 1</span></div>
       </div>
       <div class="card-dark item item--video">
         <div>
@@ -1794,7 +1817,7 @@ body.bm-open{overflow:hidden}
             <p><strong>Qui torni a parlare con la tua voce.</strong></p>
           </div>
         </div>
-        <div class="x-photo x-r43"><img src="/rtr-b/licenzia.jpg" alt="Carlotta Sgarra in bianco e nero su una scala" style="object-position:50% 30%"><span class="x-photo__tag">[Anteprima di 30-60 secondi]</span></div>
+        <div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-2.jpg" alt="Una slide della Masterclass 2" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 2</span></div>
       </div>
       <div class="card-dark item item--video">
         <div>
@@ -1808,16 +1831,30 @@ body.bm-open{overflow:hidden}
             <p><strong>Da qui è il piano editoriale a lavorare per te.</strong></p>
           </div>
         </div>
-        <div class="x-photo x-r43"><img src="/rtr-b/sharon-carlotta.jpg" alt="Carlotta Sgarra e Sharon Convertino" style="object-position:50% 30%"><span class="x-photo__tag">[Anteprima di 30-60 secondi]</span></div>
+        <div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-3.jpg" alt="Una slide della Masterclass 3" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 3</span></div>
       </div>
       <div class="extras">
-        <div class="card-dark" style="padding:var(--space-6)">
+        <div class="card-dark wb-card" style="padding:var(--space-6)">
+          <div class="wb-card__txt">
           <span class="session-tag">04 · Incluso</span>
           <h3 style="margin:var(--space-4) 0 0;font-family:var(--font-display);font-weight:400;font-size:var(--font-size-2xl);color:var(--color-ink)">I 3 workbook, uno per ogni masterclass</h3>
           <div class="lines">
             <p>Ogni masterclass ha il suo workbook: lì metterai nero su bianco la tua voce, le tue parole e la tua storia, cioè le tue Carte Identitarie.</p>
             <p>Gli esercizi li fai sul tuo profilo e alla fine ti ritrovi tutto scritto lì.</p>
             <p><strong>Anche se oggi non sai ancora dire chi sei senza il personaggio, le Carte Identitarie ti guidano a trovarlo, esercizio dopo esercizio.</strong></p>
+          </div>
+          </div>
+          <div class="wb-mock" aria-label="I 3 workbook di Rule the Rules">
+            <div class="wb-book wb-book--3"><div class="wb-cover"><p class="wb-k">Workbook · Masterclass 3</p><p class="wb-t">Il piano editoriale non è legge</p></div></div>
+            <div class="wb-book wb-book--2"><div class="wb-cover"><p class="wb-k">Workbook · Masterclass 2</p><p class="wb-t">Le regole le decidi tu</p></div></div>
+            <div class="wb-book wb-book--1"><div class="wb-cover">
+              <p class="wb-k">Workbook · Masterclass 1</p>
+              <p class="wb-t">Ti appartiene davvero?</p>
+              <span class="wb-line"></span>
+              <p class="wb-s">Hai imparato a comunicare o solo a eseguire bene gli ordini degli altri?</p>
+              <p class="wb-f">Carte Identitarie · esercizi sul tuo profilo</p>
+            </div></div>
+            <div class="wb-badge"><b>3</b><span>workbook inclusi</span></div>
           </div>
         </div>
         <div class="card-dark" style="padding:var(--space-6)"><span class="session-tag">Bonus</span><p class="x-mt-4"><span class="ph">[BONUS: da decidere]</span></p></div>
