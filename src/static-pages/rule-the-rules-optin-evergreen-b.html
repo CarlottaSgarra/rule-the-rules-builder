@@ -1582,6 +1582,25 @@ body.bm-open{overflow:hidden}
 .avg::before{left:-1px;background:linear-gradient(90deg,var(--color-background) 8%,color-mix(in oklab,var(--color-background) 0%,transparent))}
 .avg::after{right:-1px;background:linear-gradient(270deg,var(--color-background) 8%,color-mix(in oklab,var(--color-background) 0%,transparent))}
 .av--me{z-index:2}
+.mc-head{display:grid;gap:var(--space-5);align-items:end;padding-bottom:var(--space-8);border-bottom:1px solid var(--tint-card-border-on-dark)}
+@media (min-width:900px){.mc-head{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:var(--space-10)}}
+.mc-head .h2{margin:0}
+.mc-head__side{color:var(--color-ink-muted);line-height:var(--line-height-relaxed)}
+.x-page img.mc-bundle{display:block;width:100%;max-width:34rem;height:auto;margin:var(--space-10) auto 0;border-radius:var(--radius-2xl);box-shadow:var(--shadow-card-lift)}
+.mc-rows{margin-top:var(--space-10)}
+.mc-row{display:grid;gap:var(--space-8);align-items:center;padding:var(--space-12) 0;border-top:1px solid var(--tint-card-border-on-dark)}
+.mc-row:first-child{border-top:0}
+@media (min-width:900px){.mc-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-12)}.mc-row--rev .mc-row__txt{order:2}}
+.mc-row__txt{text-align:left}
+.mc-num{display:block;font-family:var(--font-display);font-weight:700;font-size:clamp(4.5rem,9vw,7rem);line-height:.9;color:var(--color-primary)}
+.mc-row:nth-child(even) .mc-num{color:transparent;-webkit-text-stroke:2px var(--color-primary)}
+.mc-row__txt .x-kicker{margin:var(--space-4) 0 var(--space-2)}
+.mc-row__txt h3{margin:0;font-family:var(--font-display);font-weight:600;font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.12;color:var(--color-ink)}
+.mc-row__txt .item__impact{margin-top:var(--space-3);font-weight:600;color:var(--color-ink)}
+.mc-row__txt .lines{margin-top:var(--space-4)}
+.mc-row__vis .x-photo{border-radius:var(--radius-2xl)}
+.x-page img.mc-wb{display:block;width:100%;max-width:26rem;height:auto;margin-inline:auto;border-radius:var(--radius-2xl);box-shadow:var(--shadow-card-lift)}
+.extras--one{grid-template-columns:1fr!important;margin-top:var(--space-6)}
 </style>
 <div class="x-page">
 
@@ -1910,17 +1929,22 @@ body.bm-open{overflow:hidden}
   </div>
 </section>
 
-<!-- 10 · Cosa ottieni e prezzo -->
+<!-- 10 · Cosa ottieni e prezzo (struttura della sezione "I tre segreti" di Mik Cosentino, design system di Carlotta) -->
 <section class="x-dark">
   <div class="x-wrap x-wrap--5">
-    <div class="x-center" style="max-width:var(--container-3xl);margin-inline:auto">
-      <span class="x-kicker">Ecco cosa ottieni con 37 €</span>
-      <h2 class="h2">Tre masterclass e 3 workbook, uno per ogni masterclass, <span class="hl hl--dark">pronti appena ti iscrivi</span>.</h2>
+    <div class="mc-head">
+      <div>
+        <span class="x-kicker">Ecco cosa ottieni con 37 €</span>
+        <h2 class="h2">Tre masterclass e 3 workbook, uno per ogni masterclass, <span class="hl hl--dark">pronti appena ti iscrivi</span>.</h2>
+      </div>
+      <p class="mc-head__side">Le guardi quando vuoi e ogni masterclass ha il suo workbook con gli esercizi.</p>
     </div>
-    <div class="items">
-      <div class="card-dark item item--video">
-        <div>
-          <span class="session-tag">01 · Masterclass 1</span>
+    <img class="mc-bundle" src="/rtr-b/mockup-bundle.jpg" alt="Le 3 masterclass su computer e telefono e i 3 workbook di Rule the Rules">
+    <div class="mc-rows">
+      <div class="mc-row">
+        <div class="mc-row__txt">
+          <span class="mc-num" aria-hidden="true">01</span>
+          <span class="x-kicker">Masterclass 1</span>
           <h3>Togli il costume</h3>
           <p class="item__impact">Toglierai il costume della professionista giusta.</p>
           <div class="lines">
@@ -1929,11 +1953,12 @@ body.bm-open{overflow:hidden}
             <p><strong>È qui che smetti di recitare.</strong></p>
           </div>
         </div>
-        <div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-1.jpg" alt="Una slide della Masterclass 1: Chi vuoi essere nel tuo mercato?" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 1</span></div>
+        <div class="mc-row__vis"><div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-1.jpg" alt="Una slide della Masterclass 1: Chi vuoi essere nel tuo mercato?" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 1</span></div></div>
       </div>
-      <div class="card-dark item item--video">
-        <div>
-          <span class="session-tag">02 · Masterclass 2</span>
+      <div class="mc-row mc-row--rev">
+        <div class="mc-row__txt">
+          <span class="mc-num" aria-hidden="true">02</span>
+          <span class="x-kicker">Masterclass 2</span>
           <h3>Licenzia le regole</h3>
           <p class="item__impact">Licenzierai le regole che parlano al posto tuo: il gancio, lo script, il format che ti fanno sentire un'altra quando registri.</p>
           <div class="lines">
@@ -1943,11 +1968,12 @@ body.bm-open{overflow:hidden}
             <p><strong>Qui torni a parlare con la tua voce.</strong></p>
           </div>
         </div>
-        <div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-2.jpg" alt="Una slide della Masterclass 2" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 2</span></div>
+        <div class="mc-row__vis"><div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-2.jpg" alt="Una slide della Masterclass 2" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 2</span></div></div>
       </div>
-      <div class="card-dark item item--video">
-        <div>
-          <span class="session-tag">03 · Masterclass 3</span>
+      <div class="mc-row">
+        <div class="mc-row__txt">
+          <span class="mc-num" aria-hidden="true">03</span>
+          <span class="x-kicker">Masterclass 3</span>
           <h3>Il piano editoriale non è una gabbia</h3>
           <p class="item__impact">Costruirai la struttura del tuo piano editoriale, una che ti somiglia.</p>
           <div class="lines">
@@ -1957,23 +1983,24 @@ body.bm-open{overflow:hidden}
             <p><strong>Da qui è il piano editoriale a lavorare per te.</strong></p>
           </div>
         </div>
-        <div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-3.jpg" alt="Una slide della Masterclass 3" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 3</span></div>
+        <div class="mc-row__vis"><div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-3.jpg" alt="Una slide della Masterclass 3" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 3</span></div></div>
       </div>
-      <div class="extras">
-        <div class="card-dark wb-card" style="padding:var(--space-6)">
-          <div class="wb-card__txt">
-          <span class="session-tag">04 · Incluso</span>
-          <h3 style="margin:var(--space-4) 0 0;font-family:var(--font-display);font-weight:400;font-size:var(--font-size-2xl);color:var(--color-ink)">I 3 workbook, uno per ogni masterclass</h3>
+      <div class="mc-row mc-row--rev">
+        <div class="mc-row__txt">
+          <span class="mc-num" aria-hidden="true">04</span>
+          <span class="x-kicker">Incluso</span>
+          <h3>I 3 workbook, uno per ogni masterclass</h3>
           <div class="lines">
             <p>Ogni masterclass ha il suo workbook: lì metterai nero su bianco la tua voce, le tue parole e la tua storia, cioè le tue Carte Identitarie.</p>
             <p>Gli esercizi li fai sul tuo profilo e alla fine ti ritrovi tutto scritto lì.</p>
             <p><strong>Anche se oggi non sai ancora dire chi sei senza il personaggio, le Carte Identitarie ti guidano a trovarlo, esercizio dopo esercizio.</strong></p>
-          </div>
-          </div>
-          <img class="wb-img" src="/rtr-b/mockup-bundle.jpg" alt="Le 3 masterclass su computer e telefono e i 3 workbook di Rule the Rules" loading="lazy">
         </div>
-        <div class="card-dark" style="padding:var(--space-6)"><span class="session-tag">Bonus</span><p class="x-mt-4"><span class="ph">[BONUS: da decidere]</span></p></div>
+        </div>
+        <div class="mc-row__vis"><img class="mc-wb" src="/rtr-b/mockup-workbook.jpg" alt="I 3 workbook di Rule the Rules" loading="lazy"></div>
       </div>
+    </div>
+    <div class="extras extras--one">
+        <div class="card-dark" style="padding:var(--space-6)"><span class="session-tag">Bonus</span><p class="x-mt-4"><span class="ph">[BONUS: da decidere]</span></p></div>
     </div>
   </div>
 </section>
