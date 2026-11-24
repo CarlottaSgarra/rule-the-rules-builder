@@ -1486,6 +1486,15 @@ html{scroll-behavior:smooth}
 .b-stack li{display:flex;justify-content:space-between;gap:var(--space-4);text-align:left}
 .b-stack li span:first-child{flex:1}
 .b-stack li span:last-child{white-space:nowrap}
+.fpt{display:grid;gap:var(--space-5);margin-top:var(--space-8);align-items:start}
+@media (min-width:900px){.fpt{grid-template-columns:minmax(0,1.75fr) minmax(0,1fr);gap:var(--space-8)}}
+.fpt__yes{padding:var(--space-8);border-radius:var(--radius-2xl);background:var(--color-secondary);color:var(--color-ink);box-shadow:var(--shadow-card-lift)}
+.fpt__yes .b-forwho{gap:var(--space-5)}
+@media (min-width:900px){.fpt__yes .b-forwho li{font-size:var(--font-size-lg)}}
+.fpt__yes{padding:var(--space-6)}@media (min-width:900px){.fpt__yes{padding:var(--space-8)}}
+.fpt__yes .x-tick{background:var(--color-primary);color:var(--color-secondary)}
+.fpt__no{padding:var(--space-5) var(--space-6);border-radius:var(--radius-xl);border:1px dashed color-mix(in oklab,var(--color-secondary) 30%,transparent);font-size:var(--font-size-sm);line-height:var(--line-height-relaxed);color:color-mix(in oklab,var(--color-foreground) 70%,transparent)}
+.fpt__nok{font-weight:700;margin:0 0 var(--space-2);text-transform:uppercase;letter-spacing:.08em;font-size:var(--font-size-xs)}
 .b-forwho{list-style:none;padding:0;margin:var(--space-6) 0 0;display:grid;gap:var(--space-3)}
 .b-forwho li{display:flex;gap:var(--space-3);align-items:flex-start;line-height:var(--line-height-relaxed)}
 .bh{padding-top:var(--space-12)}
@@ -1923,39 +1932,6 @@ body.bm-open{overflow:hidden}
   </div>
 </section>
 
-<!-- 4 · Cosa ti porti a casa -->
-<section class="x-dark">
-  <div class="x-wrap x-wrap--5 x-center">
-    <span class="x-kicker">Alla fine delle 3 masterclass</span>
-    <h2 class="h2">Esci con quello che ti rende <span class="hl hl--dark">riconoscibile</span> agli occhi delle tue clienti.</h2>
-    <div class="x-grid x-grid--3 x-mt-10">
-      <div class="b4-card">
-        <span class="b4-num" aria-hidden="true">01</span>
-        <span class="x-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="12" height="14" rx="2"/><path d="M8 4h10a2 2 0 0 1 2 2v12"/></svg></span>
-        <h3>Carte Identitarie</h3>
-        <p class="t">La tua voce, le tue parole e la tua storia messe nero su bianco.</p>
-        <div class="b4-vis"><div class="b4-vis__box"><p class="b4-vis__k">La tua Carta Identitaria</p><div class="b4-chips"><span>La tua voce</span><span>Le tue parole</span><span>La tua storia</span></div></div></div>
-      </div>
-      <div class="b4-card">
-        <span class="b4-num" aria-hidden="true">02</span>
-        <span class="x-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h9M4 18h6"/><path d="M15 15l5 5M20 15l-5 5"/></svg></span>
-        <h3>Anti-regole</h3>
-        <p class="t">Il gancio, lo script, il format che ti hanno insegnato, passati al setaccio: cosa tieni, cosa lasci andare e cosa rifai a modo tuo.</p>
-        <div class="b4-vis"><div class="b4-vis__box"><p class="b4-vis__k">Le 3 domande per ogni regola</p><ul class="b4-q"><li><b>1</b>A cosa serve?</li><li><b>2</b>Cosa ti toglie?</li><li><b>3</b>Come la fai tua?</li></ul></div></div>
-      </div>
-      <div class="b4-card">
-        <span class="b4-num" aria-hidden="true">03</span>
-        <span class="x-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
-        <h3>La struttura del tuo piano editoriale</h3>
-        <p class="t">Una che ti somiglia, con una funzione per ogni contenuto.</p>
-        <div class="b4-vis"><div class="b4-vis__box"><p class="b4-vis__k">Il tuo piano editoriale</p><div class="b4-chips"><span>Format</span><span>Tipi di contenuto</span><span>Banca idee</span></div><p class="b4-vis__foot">Con Sharon Convertino, nella Masterclass 3.</p></div></div>
-      </div>
-    </div>
-    <p class="x-mt-8" style="color:var(--color-ink)"><strong>Già dalla prima masterclass saprai per cosa vuoi essere riconosciuta e cosa vuoi che il tuo profilo racconti di te.</strong></p>
-    <p class="x-mt-3 x-muted">Le guardi quando vuoi e ogni masterclass ha il suo workbook con gli esercizi.</p>
-  </div>
-</section>
-
 <!-- 5b · Estratto della Masterclass 1 (video grande al centro) -->
 <section class="x-night" id="estratto">
   <div class="x-wrap x-center">
@@ -2111,6 +2087,39 @@ body.bm-open{overflow:hidden}
   </div>
 </section>
 
+<!-- 4 · Cosa ti porti a casa -->
+<section class="x-dark" style="border-top:1px solid var(--tint-card-border-on-dark)">
+  <div class="x-wrap x-wrap--5 x-center">
+    <span class="x-kicker">Alla fine delle 3 masterclass</span>
+    <h2 class="h2">Esci con quello che ti rende <span class="hl hl--dark">riconoscibile</span> agli occhi delle tue clienti.</h2>
+    <div class="x-grid x-grid--3 x-mt-10">
+      <div class="b4-card">
+        <span class="b4-num" aria-hidden="true">01</span>
+        <span class="x-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="12" height="14" rx="2"/><path d="M8 4h10a2 2 0 0 1 2 2v12"/></svg></span>
+        <h3>Carte Identitarie</h3>
+        <p class="t">La tua voce, le tue parole e la tua storia messe nero su bianco.</p>
+        <div class="b4-vis"><div class="b4-vis__box"><p class="b4-vis__k">La tua Carta Identitaria</p><div class="b4-chips"><span>La tua voce</span><span>Le tue parole</span><span>La tua storia</span></div></div></div>
+      </div>
+      <div class="b4-card">
+        <span class="b4-num" aria-hidden="true">02</span>
+        <span class="x-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h9M4 18h6"/><path d="M15 15l5 5M20 15l-5 5"/></svg></span>
+        <h3>Anti-regole</h3>
+        <p class="t">Il gancio, lo script, il format che ti hanno insegnato, passati al setaccio: cosa tieni, cosa lasci andare e cosa rifai a modo tuo.</p>
+        <div class="b4-vis"><div class="b4-vis__box"><p class="b4-vis__k">Le 3 domande per ogni regola</p><ul class="b4-q"><li><b>1</b>A cosa serve?</li><li><b>2</b>Cosa ti toglie?</li><li><b>3</b>Come la fai tua?</li></ul></div></div>
+      </div>
+      <div class="b4-card">
+        <span class="b4-num" aria-hidden="true">03</span>
+        <span class="x-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+        <h3>La struttura del tuo piano editoriale</h3>
+        <p class="t">Una che ti somiglia, con una funzione per ogni contenuto.</p>
+        <div class="b4-vis"><div class="b4-vis__box"><p class="b4-vis__k">Il tuo piano editoriale</p><div class="b4-chips"><span>Format</span><span>Tipi di contenuto</span><span>Banca idee</span></div><p class="b4-vis__foot">Con Sharon Convertino, nella Masterclass 3.</p></div></div>
+      </div>
+    </div>
+    <p class="x-mt-8" style="color:var(--color-ink)"><strong>Già dalla prima masterclass saprai per cosa vuoi essere riconosciuta e cosa vuoi che il tuo profilo racconti di te.</strong></p>
+    <p class="x-mt-3 x-muted">Le guardi quando vuoi e ogni masterclass ha il suo workbook con gli esercizi.</p>
+  </div>
+</section>
+
 <section class="x-dark" id="accedi" style="border-top:1px solid var(--tint-card-border-on-dark)">
   <div class="x-wrap x-center">
     <div class="buy"><div class="glow-border"><div class="ticket on-dark"><div class="buy__in">
@@ -2139,27 +2148,21 @@ body.bm-open{overflow:hidden}
   </div>
 </section>
 
-<!-- 11 · Per chi è e obiezioni -->
+<!-- 11 · Per chi è -->
 <section class="x-cream">
   <div class="x-wrap">
-    <div class="x-split" style="align-items:start">
-      <div>
-        <h2 class="h2">Rule the Rules <span class="hl">fa per te</span> se:</h2>
-        <ul class="b-forwho">
+    <h2 class="h2">Rule the Rules <span class="hl">fa per te</span> se:</h2>
+    <div class="fpt">
+      <div class="fpt__yes">
+        <ul class="b-forwho" style="margin:0">
           <li><span class="x-tick">✓</span><span>su Instagram pubblichi già e segui gancio, script e piano editoriale, ma il tuo profilo sembra quello di qualsiasi collega;</span></li>
           <li><span class="x-tick">✓</span><span>registri contenuti che sulla carta sono giusti ma non ti somigliano;</span></li>
           <li><span class="x-tick">✓</span><span>vuoi che le tue clienti riconoscano il tuo modo di parlare, anche senza leggere il tuo nome.</span></li>
         </ul>
-        <p class="x-card x-mt-6"><strong>Invece non fa per te</strong> se cerchi un piano editoriale già pronto da seguire o un nuovo copione da imparare a memoria: qui costruisci tu il tuo modo di comunicare, partendo da come parli con le tue clienti.</p>
       </div>
-      <div>
-        <h2 class="h2">Provo a indovinare <span class="hl">cosa stai pensando</span>:</h2>
-        <div class="objs">
-          <div class="obj"><p class="obj__q">"Ho paura che se sono del tutto me stessa non converto in clienti."</p><p class="obj__a">Di gancio, script e format tieni quello che ti aiuta a farti capire dalle tue clienti e lasci andare quello che ti fa sparire in mezzo alle altre: una cliente sceglie chi riconosce.</p></div>
-          <div class="obj"><p class="obj__q">"Il mio settore è troppo tecnico per essere spontanea."</p><p class="obj__a">Nel mio percorso di mentorship ho lavorato con wedding planner, nutrizioniste, tatuatrici, makeup artist e professioniste di tanti altri settori: conta il modo in cui comunichi, qualunque sia l'argomento.</p></div>
-          <div class="obj"><p class="obj__q">"Ho già investito tempo e soldi in corsi su Instagram e contenuti."</p><p class="obj__a">Anch'io, più di 70.000 €. Quello che hai imparato resta tuo: lo rileggi e scegli cosa tenere.</p></div>
-          <div class="obj"><p class="obj__q">"Non sono sicura di sapere chi sono senza personaggio."</p><p class="obj__a">È normale ed è proprio da lì che si parte: nella Masterclass 1 togli il costume e con gli esercizi del suo workbook metti nero su bianco la tua voce.</p></div>
-        </div>
+      <div class="fpt__no">
+        <p class="fpt__nok">Non fa per te se</p>
+        <p>cerchi un piano editoriale già pronto da seguire o un nuovo copione da imparare a memoria: qui costruisci tu il tuo modo di comunicare, partendo da come parli con le tue clienti.</p>
       </div>
     </div>
     <div class="cta-row"><a class="btn-cta" href="#accedi"><span class="btn-cta__label">Accedi ora a Rule the Rules</span><span class="btn-cta__sub">A soli 37 €</span></a></div>
