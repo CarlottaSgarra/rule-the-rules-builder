@@ -1483,6 +1483,9 @@ html{scroll-behavior:smooth}
 .b-tst__av{width:3rem;height:3rem;border-radius:50%;overflow:hidden;flex-shrink:0;display:grid;place-items:center;background-image:var(--gradient-gold);color:var(--color-primary-foreground);font-family:var(--font-display)}
 .b-tst__res{margin-top:var(--space-4);font-family:var(--font-display);font-style:italic;font-size:var(--font-size-lg);color:var(--color-ink);line-height:1.35}
 .b-vid{margin-top:var(--space-4)}
+.buy__t .hl{white-space:nowrap}
+.buy__t{margin:0 0 var(--space-6);font-family:var(--font-display);font-weight:700;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.1;color:var(--color-ink)}
+.x-page img.buy__mock{display:block;width:100%;max-width:24rem;height:auto;margin:var(--space-4) auto var(--space-2)}
 .b-stack li{display:flex;justify-content:space-between;gap:var(--space-4);text-align:left}
 .b-stack li span:first-child{flex:1}
 .b-stack li span:last-child{white-space:nowrap}
@@ -2123,8 +2126,10 @@ body.bm-open{overflow:hidden}
 <section class="x-dark" id="accedi" style="border-top:1px solid var(--tint-card-border-on-dark)">
   <div class="x-wrap x-center">
     <div class="buy"><div class="glow-border"><div class="ticket on-dark"><div class="buy__in">
+      <h2 class="buy__t">Ti manca poco per accedere a <span class="hl hl--dark">Rule the Rules</span></h2>
       <p class="buy__price"><span class="strike">297 €</span></p>
       <p class="b-big-price">37 €</p>
+      <img class="buy__mock" src="/rtr-b/mockup-bundle.webp" alt="Le 3 masterclass su computer e telefono e i 3 workbook di Rule the Rules" loading="lazy">
       <p class="buy__text">Valore totale 297 €: tu lo prendi a 37 €. Accesso immediato a vita.</p>
       <ul class="buy__list b-stack">
         <li><span>Masterclass 1 · Togli il costume</span><span>87 €</span></li>
