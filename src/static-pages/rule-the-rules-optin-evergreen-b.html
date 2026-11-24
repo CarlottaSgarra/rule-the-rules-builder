@@ -1459,6 +1459,22 @@ html{scroll-behavior:smooth}
 .b4-q li{display:flex;gap:var(--space-2);align-items:baseline;color:var(--color-ink);font-size:var(--font-size-sm)}
 .b4-q b{font-family:var(--font-display);color:var(--color-primary)}
 .b4-vis__foot{margin-top:var(--space-3);font-size:var(--font-size-xs);color:var(--color-ink-muted)}
+.bh-hero{position:relative;isolation:isolate;overflow:hidden;background:var(--color-secondary);color:var(--color-ink)}
+.x-page img.bh-bg{position:absolute;top:0;left:0;right:0;z-index:-2;width:100%;height:980px;object-fit:cover;object-position:22% 22%}
+.bh-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,color-mix(in oklab,var(--color-ink-1) 62%,transparent) 0px,color-mix(in oklab,var(--color-secondary) 74%,transparent) 560px,var(--color-secondary) 980px)}
+@media (max-width:639px){.x-page img.bh-bg{height:900px;object-position:34% 20%}}
+.bh-hero .bh-h1,.bh-hero .bh-sub{color:var(--color-ink)}
+.bh-hero .bh-for,.bh-hero .bh-note,.bh-hero .under-btn{color:var(--color-ink-muted)!important}
+.bh-hero .x-kicker{color:var(--color-primary)}
+.bh-hero .bh-tile{background:var(--tint-card-on-dark);border-color:var(--tint-card-border-on-dark)}
+.bh-hero .bh-tile b{color:var(--color-primary)}
+.bh-hero .bh-tile span{color:var(--color-ink-muted)}
+.bh-video{position:relative}
+.bh-video::after{content:"";position:absolute;inset:0;background:color-mix(in oklab,var(--color-ink-1) 28%,transparent);pointer-events:none}
+.bh-play{position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);width:5.5rem;height:5.5rem;border-radius:50%;display:grid;place-items:center;background-image:var(--gradient-gold);color:var(--color-secondary);box-shadow:var(--shadow-gold),0 0 0 .6rem color-mix(in oklab,var(--color-primary) 22%,transparent)}
+.bh-play svg{width:2.2rem;height:2.2rem;margin-left:.25rem}
+.bh-video .x-photo__tag{z-index:2}
+@media (max-width:639px){.bh-play{width:4rem;height:4rem}.bh-play svg{width:1.6rem;height:1.6rem}.bh-video .x-photo__tag{display:none}}
 </style>
 <div class="x-page">
 
@@ -1471,23 +1487,24 @@ html{scroll-behavior:smooth}
 </div>
 
 <!-- 2 · Hero (struttura dell'header di Onnipresente, design system di Rule the Rules) -->
-<header class="x-night">
+<header class="bh-hero">
+  <img class="bh-bg" src="/rtr-b/muro.jpg" alt="" aria-hidden="true">
   <div class="x-wrap x-center bh">
-    <div class="bh-tags"><span class="badge badge--lg">Rule the Rules · 3 masterclass</span><span class="badge badge--outline-light">Il metodo di Carlotta Sgarra · accesso immediato a vita</span></div>
+    <div class="bh-tags"><span class="badge badge--lg">Rule the Rules · 3 masterclass</span><span class="badge badge--outline">Il metodo di Carlotta Sgarra · accesso immediato a vita</span></div>
     <p class="bh-for">Per coach, consulenti e professioniste che in questo momento si sentono ingabbiate con i contenuti e uguali a tutte le altre.</p>
-    <h1 class="bh-h1"><span class="bh-l">Crea contenuti che <span class="hl">nessuno skippa</span></span> <span class="bh-l">e porta nei DM <span class="hl">le clienti giuste</span></span> <span class="bh-l">senza farti ingabbiare dalle regole dei guru</span></h1>
-    <p class="bh-sub">3 masterclass esclusive · circa 7 ore · <span class="hl">tue a vita</span> · 37 €</p>
-    <p class="bh-note">(Con le masterclass ricevi anche il workbook con gli esercizi di ogni masterclass, da fare sul tuo profilo.)</p>
+    <h1 class="bh-h1"><span class="bh-l">Crea contenuti che <span class="hl hl--dark">nessuno skippa</span></span> <span class="bh-l">e porta nei DM <span class="hl hl--dark">le clienti giuste</span></span> <span class="bh-l">senza farti ingabbiare dalle regole dei guru</span></h1>
+    <p class="bh-sub">3 masterclass esclusive · circa 7 ore · <span class="hl hl--dark">tue a vita</span> · 37 €</p>
+    <p class="bh-note">(Con le masterclass ricevi anche un workbook per ogni masterclass, con gli esercizi da fare sul tuo profilo.)</p>
     <div class="cta-row"><a class="btn-cta" href="#accedi"><span class="btn-cta__label">Accedi ora a Rule the Rules</span><span class="btn-cta__sub">A soli 37 €</span></a></div>
     <p class="under-btn" style="color:var(--color-foreground)">Circa 7 ore di masterclass per creare finalmente una comunicazione che faccia uscire TE e ti renda DIVERSA da tutte le altre.</p>
     <span class="x-kicker bh-tiles-k">Rule the Rules in breve</span>
     <div class="bh-tiles">
-      <div class="bh-tile"><b>1.500+</b><span>professioniste accompagnate da Carlotta</span></div>
       <div class="bh-tile"><b>3</b><span>masterclass</span></div>
       <div class="bh-tile"><b>7 ore</b><span>circa, di contenuti</span></div>
-      <div class="bh-tile"><b>A vita</b><span>l'accesso</span></div>
+      <div class="bh-tile"><b>A vita</b><span>le masterclass restano tue</span></div>
+      <div class="bh-tile"><b>3</b><span>workbook, 1 per ogni masterclass</span></div>
     </div>
-    <div class="x-photo x-r169 x-mt-10" style="max-width:var(--container-3xl);margin-inline:auto"><img src="/rtr-b/porto.jpg" alt="Carlotta Sgarra in piedi sul lungomare" style="object-position:50% 12%"><span class="x-photo__tag">Carlotta Sgarra, ideatrice di Rule the Rules</span></div>
+    <div class="x-photo x-r169 x-mt-10 bh-video" style="max-width:var(--container-3xl);margin-inline:auto"><img src="/rtr-b/porto.jpg" alt="Carlotta Sgarra in piedi sul lungomare" style="object-position:50% 12%"><span class="bh-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span><span class="x-photo__tag">Carlotta Sgarra, ideatrice di Rule the Rules</span></div>
   </div>
 </header>
 
@@ -1506,7 +1523,7 @@ html{scroll-behavior:smooth}
         <div class="b3-nums">
           <div><b>6</b><span>contenuti di Carlotta, uno per anno</span></div>
           <div><b>3</b><span>domande per capire se gancio, script e format che usi ti somigliano</span></div>
-          <div><b>1</b><span>workbook con gli esercizi</span></div>
+          <div><b>3</b><span>workbook, uno per ogni masterclass</span></div>
         </div>
         <div class="b3__punch">
           <p class="x-lead">Le persone non comprano da chi ha il gancio perfetto e nemmeno da chi pubblica di più.</p>
