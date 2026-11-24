@@ -1498,7 +1498,26 @@ html{scroll-behavior:smooth}
 .bm__list li{display:flex;gap:var(--space-2);align-items:center;font-size:var(--font-size-sm)}
 .bm__list li::before{content:"";width:.45rem;height:.45rem;border-radius:50%;background:var(--color-primary);flex-shrink:0}
 .bm__x{position:absolute;z-index:3;top:var(--space-4);right:var(--space-4);width:2.75rem;height:2.75rem;border-radius:50%;border:1px solid var(--tint-card-border-on-dark);background:color-mix(in oklab,var(--color-secondary) 70%,transparent);color:var(--color-ink);font-size:1.4rem;line-height:1;cursor:pointer}
-@media (max-width:819px){.bm{align-items:start;overflow:auto}.bm__box{max-height:none;margin-block:var(--space-4)}.bm__r{min-height:15rem;order:-1}.bm__x{top:var(--space-3);right:var(--space-3)}}
+.bm__handle{display:none}
+@media (max-width:819px){
+.bm{padding:0;align-items:end}
+.bm__box{max-height:92dvh;overflow-y:auto;border-radius:var(--radius-2xl) var(--radius-2xl) 0 0;animation:bm-up .28s var(--ease-out,ease-out)}
+.bm__handle{display:block;position:absolute;z-index:3;top:.6rem;left:50%;transform:translateX(-50%);width:3rem;height:.3rem;border-radius:999px;background:color-mix(in oklab,var(--color-ink) 55%,transparent)}
+.bm__r{order:-1;min-height:0;padding:var(--space-8) 42% var(--space-5) var(--space-5);justify-content:center}
+.x-page .bm__r img{left:auto;width:55%;object-position:50% 15%}
+.bm__r::before{background:linear-gradient(90deg,var(--color-secondary) 0%,var(--color-secondary) 42%,color-mix(in oklab,var(--color-secondary) 55%,transparent) 62%,color-mix(in oklab,var(--color-secondary) 25%,transparent) 100%)}
+.bm__r .x-kicker{margin-bottom:var(--space-2);font-size:.62rem;letter-spacing:.14em;white-space:nowrap}
+.bm__price b{font-size:var(--font-size-5xl)}
+.bm__price s{font-size:var(--font-size-xs);width:100%}
+.bm__list{display:none}
+.bm__l{padding:var(--space-6) var(--space-5) var(--space-8)}
+.bm__l > .x-kicker{display:none}
+.bm__t{margin-top:0;font-size:1.9rem}
+.bm__p{margin-top:var(--space-2);font-size:var(--font-size-sm)}
+.bm .form{margin-top:var(--space-5)}
+.bm__x{top:var(--space-3);right:var(--space-3);width:2.4rem;height:2.4rem}
+}
+@keyframes bm-up{from{transform:translateY(40px)}to{transform:none}}
 body.bm-open{overflow:hidden}
 </style>
 <div class="x-page">
@@ -1892,6 +1911,7 @@ body.bm-open{overflow:hidden}
 <div class="bm" id="bm" hidden role="dialog" aria-modal="true" aria-labelledby="bm-t">
   <div class="bm__bg" data-bm-close></div>
   <div class="bm__box">
+    <span class="bm__handle" aria-hidden="true"></span>
     <button class="bm__x" type="button" aria-label="Chiudi" data-bm-close>&times;</button>
     <div class="bm__l">
       <span class="x-kicker">Accesso immediato · 37 €</span>
