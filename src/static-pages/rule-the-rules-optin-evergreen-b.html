@@ -1552,7 +1552,8 @@ body.bm-open{overflow:hidden}
 .b3b__top{display:grid;gap:var(--space-10);align-items:center}
 @media (min-width:960px){.b3b__top{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:var(--space-12)}}
 .b3b__t{margin:0;font-family:var(--font-display);font-weight:700;font-size:clamp(2.1rem,4.4vw,3.4rem);line-height:1.06;letter-spacing:var(--letter-spacing-heading);color:var(--color-secondary)}
-.b3b__sub{margin-top:var(--space-5);font-size:var(--font-size-lg);font-weight:600;line-height:1.5;color:var(--color-secondary)}
+.b3b__sub{margin-top:var(--space-5);font-size:var(--font-size-lg);font-weight:400;line-height:1.55;color:color-mix(in oklab,var(--color-foreground) 75%,transparent)}
+.b3b__sub strong{font-weight:700;color:var(--color-secondary)}
 .avg{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:.7rem;max-width:30rem;margin-inline:auto}
 @media (max-width:639px){.avg{gap:.4rem}.av{border-radius:var(--radius-lg)}.av-note{left:-.3rem;transform:none;max-width:12rem}.av-note::before{left:1.4rem}}
 .av{aspect-ratio:1;border-radius:var(--radius-xl);background:color-mix(in oklab,var(--color-card) 70%,var(--color-background));display:grid;place-items:center;box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--color-border) 45%,transparent)}
@@ -1644,8 +1645,8 @@ body.bm-open{overflow:hidden}
     <div class="b3b__top">
       <div>
         <span class="x-kicker">Guardati da fuori</span>
-        <h2 class="b3b__t">Se vuoi che le tue clienti scelgano te, prima devono riuscire a distinguerti da tutte le altre.</h2>
-        <p class="b3b__sub">Il tuo profilo somiglia a quello delle tue colleghe per un motivo semplice: hai applicato gli stessi consigli dei guru che seguono anche loro (magari facendoti dare una mano dall'AI per scrivere i testi).</p>
+        <h2 class="b3b__t">Se vuoi che le tue clienti scelgano te, prima devono riuscire a <span class="hl">distinguerti da tutte le altre</span>.</h2>
+        <p class="b3b__sub">Il tuo profilo <strong>somiglia a quello delle tue colleghe</strong> per un motivo semplice: hai applicato <strong>gli stessi consigli dei guru</strong> che seguono anche loro (magari facendoti dare una mano dall'AI per scrivere i testi).</p>
       </div>
       <div class="avg" style="margin-bottom:var(--space-16)">
           <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
