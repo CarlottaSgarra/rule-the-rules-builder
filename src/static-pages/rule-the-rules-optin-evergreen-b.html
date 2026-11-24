@@ -1421,32 +1421,22 @@ html{scroll-behavior:smooth}
 .b-forwho{list-style:none;padding:0;margin:var(--space-6) 0 0;display:grid;gap:var(--space-3)}
 .b-forwho li{display:flex;gap:var(--space-3);align-items:flex-start;line-height:var(--line-height-relaxed)}
 .bh{padding-top:var(--space-12)}
-.bh-badge{display:inline-block;padding:.3rem 1rem;border-radius:var(--radius-md);background-image:var(--gradient-gold);color:var(--color-secondary);font-family:var(--font-condensed);font-weight:600;font-size:var(--font-size-lg);letter-spacing:.06em;text-transform:uppercase;box-shadow:4px 4px 0 var(--color-secondary)}
-.bh-bar{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:stretch;margin-top:var(--space-5);border:1.5px solid var(--color-secondary);border-radius:var(--radius-md);overflow:hidden;font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:var(--letter-spacing-label);font-size:var(--font-size-xs)}
-.bh-bar__chip{display:flex;align-items:center;gap:.45rem;padding:.55rem .9rem;background:var(--color-secondary);color:var(--color-primary);font-weight:600}
-.bh-bar__chip::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:var(--color-primary)}
-.bh-bar__txt{padding:.55rem .9rem;color:var(--color-secondary);background:color-mix(in oklab,var(--color-background) 70%,transparent)}
+.bh-tags{display:flex;flex-direction:column;align-items:center;gap:var(--space-4)}
 .bh-for{max-width:46rem;margin:var(--space-6) auto 0;font-size:var(--font-size-sm);color:color-mix(in oklab,var(--color-foreground) 80%,transparent)}
-.bh-h1{margin:var(--space-5) auto 0;max-width:none;font-family:var(--font-display);font-weight:700;font-size:clamp(2.5rem,4.6vw,4.1rem);line-height:1.08;letter-spacing:var(--letter-spacing-heading);color:var(--color-secondary)}
-.bh-h1 .hl{padding:0 .12em;white-space:nowrap;background-size:100% 38%;background-position:0 86%;background-image:linear-gradient(var(--tint-highlight-dark),var(--tint-highlight-dark))}
+.bh-h1{margin:var(--space-5) auto 0;font-family:var(--font-display);font-weight:700;font-size:clamp(2.5rem,4.6vw,4.1rem);line-height:1.18;letter-spacing:var(--letter-spacing-heading);color:var(--color-secondary)}
+.bh-h1 .hl{white-space:nowrap}
 .bh-l{display:block}
 .bh-l--small{margin-top:.55em;font-size:.5em;font-weight:600;line-height:1.2;text-wrap:balance}
 @media (max-width:639px){.bh-h1{font-size:2rem;letter-spacing:-.01em}.bh-l--small{font-size:.62em}}
 .bh-sub{margin-top:var(--space-6);font-weight:600;color:var(--color-secondary)}
-.bh-sub em{font-style:normal;white-space:nowrap;padding:0 .3rem;border-radius:var(--radius-highlight);background:var(--tint-highlight-light)}
+.bh-sub .hl{white-space:nowrap}
 .bh-note{max-width:44rem;margin:var(--space-3) auto 0;font-size:var(--font-size-xs);line-height:1.6;color:color-mix(in oklab,var(--color-foreground) 75%,transparent)}
-.bh-cta{display:flex;justify-content:center;align-items:center;gap:var(--space-4);margin-top:var(--space-8)}
-.bh-cta::before,.bh-cta::after{content:"";border-block:.5rem solid transparent;flex-shrink:0}
-.bh-cta::before{border-left:.75rem solid var(--color-secondary)}
-.bh-cta::after{border-right:.75rem solid var(--color-secondary)}
-.bh-cta .btn-cta{box-shadow:6px 6px 0 var(--color-secondary)}
-.bh-tiles-k{margin-top:var(--space-10);font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:var(--letter-spacing-label);font-size:var(--font-size-xs);color:var(--color-secondary)}
-.bh-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3);max-width:40rem;margin:var(--space-3) auto 0}
+.bh-tiles-k{margin-top:var(--space-10)}
+.bh-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-3);max-width:44rem;margin:var(--space-4) auto 0}
 @media (min-width:640px){.bh-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.bh-tile{padding:var(--space-4) var(--space-2);border-radius:var(--radius-lg);background:var(--color-secondary);box-shadow:4px 4px 0 color-mix(in oklab,var(--color-secondary) 35%,transparent)}
-.bh-tile b{display:block;font-family:var(--font-condensed);font-weight:600;font-size:var(--font-size-3xl);line-height:1.1;color:var(--color-primary)}
-.bh-tile span{display:block;margin-top:.3rem;font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:var(--letter-spacing-label);font-size:.65rem;color:var(--color-ink-muted)}
-@media (max-width:420px){.bh-cta{gap:var(--space-2)}.bh-cta::before,.bh-cta::after{display:none}}
+.bh-tile{padding:var(--space-5) var(--space-3);border-radius:var(--radius-xl);background:color-mix(in oklab,var(--color-card) 55%,transparent);border:1px solid color-mix(in oklab,var(--color-border) 70%,transparent)}
+.bh-tile b{display:block;font-family:var(--font-display);font-weight:600;font-size:var(--font-size-3xl);line-height:1.1;color:var(--color-secondary)}
+.bh-tile span{display:block;margin-top:var(--space-2);font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:var(--letter-spacing-label);font-size:var(--font-size-10px);color:var(--color-muted-foreground)}
 </style>
 <div class="x-page">
 
@@ -1461,15 +1451,14 @@ html{scroll-behavior:smooth}
 <!-- 2 · Hero (struttura dell'header di Onnipresente, design system di Rule the Rules) -->
 <header class="x-night">
   <div class="x-wrap x-center bh">
-    <span class="bh-badge">#RuleTheRules</span>
-    <div><div class="bh-bar"><span class="bh-bar__chip">3 masterclass</span><span class="bh-bar__txt">Il metodo di Carlotta Sgarra · accesso immediato a vita</span></div></div>
+    <div class="bh-tags"><span class="badge badge--lg">Rule the Rules · 3 masterclass</span><span class="badge badge--outline-light">Il metodo di Carlotta Sgarra · accesso immediato a vita</span></div>
     <p class="bh-for">Per coach, consulenti e professioniste che su Instagram seguono ganci, script e piano editoriale e si ritrovano un profilo uguale a quello delle colleghe.</p>
     <h1 class="bh-h1"><span class="bh-l">Crea contenuti che <span class="hl">nessuno skippa</span></span> <span class="bh-l">e porta nei DM <span class="hl">le clienti giuste</span></span> <span class="bh-l bh-l--small">senza farti ingabbiare dalle regole dei guru</span></h1>
-    <p class="bh-sub">3 masterclass · circa 7 ore · <em>le guardi quando vuoi</em> · 37 €</p>
+    <p class="bh-sub">3 masterclass · circa 7 ore · <span class="hl">le guardi quando vuoi</span> · 37 €</p>
     <p class="bh-note">(Con le masterclass ricevi anche il workbook con gli esercizi di ogni masterclass, da fare sul tuo profilo.)</p>
-    <div class="bh-cta"><a class="btn-cta" href="#accedi"><span class="btn-cta__label">Accedi ora a Rule the Rules</span><span class="btn-cta__sub">A soli 37 €</span></a></div>
+    <div class="cta-row"><a class="btn-cta" href="#accedi"><span class="btn-cta__label">Accedi ora a Rule the Rules</span><span class="btn-cta__sub">A soli 37 €</span></a></div>
     <p class="under-btn" style="color:var(--color-foreground)">Le regole utili le tieni, lasci andare solo quelle che ti ingabbiano.</p>
-    <p class="bh-tiles-k">Rule the Rules in breve</p>
+    <span class="x-kicker bh-tiles-k">Rule the Rules in breve</span>
     <div class="bh-tiles">
       <div class="bh-tile"><b>1.500+</b><span>professioniste accompagnate da Carlotta</span></div>
       <div class="bh-tile"><b>3</b><span>masterclass</span></div>
