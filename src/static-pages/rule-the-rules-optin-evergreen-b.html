@@ -1577,6 +1577,11 @@ body.bm-open{overflow:hidden}
 .b3b__end{max-width:var(--container-3xl);margin:var(--space-12) auto 0;text-align:center}
 .b3b__end .x-big{color:var(--color-secondary)}
 .b3b__end p.x-small{margin-top:var(--space-3);color:color-mix(in oklab,var(--color-foreground) 80%,transparent)}
+.x-page img.wb-img{display:block;width:100%;max-width:26rem;height:auto;margin-inline:auto;border-radius:var(--radius-2xl);box-shadow:var(--shadow-card-lift)}
+.avg::before,.avg::after{content:"";position:absolute;top:-2px;bottom:-2px;width:24%;z-index:1;pointer-events:none}
+.avg::before{left:-1px;background:linear-gradient(90deg,var(--color-background) 8%,color-mix(in oklab,var(--color-background) 0%,transparent))}
+.avg::after{right:-1px;background:linear-gradient(270deg,var(--color-background) 8%,color-mix(in oklab,var(--color-background) 0%,transparent))}
+.av--me{z-index:2}
 </style>
 <div class="x-page">
 
@@ -1697,7 +1702,7 @@ body.bm-open{overflow:hidden}
           <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
           <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
           <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
-          <div class="av-hero"><svg class="av-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 14l4-2M10 4l1 5M18 6l-3 4"/></svg><div class="av-hero__ring"><svg viewBox="0 0 48 48"><use href="#avMe"/></svg></div><b>@iltuonome</b><span>La professionista che riconoscono subito</span></div>
+          <div class="av-hero"><svg class="av-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 14l4-2M10 4l1 5M18 6l-3 4"/></svg><div class="av-hero__ring"><svg viewBox="0 0 48 48"><use href="#avMe"/></svg></div><b>@iltuonome</b><span>Se ti riconoscono subito, contattano te, non qualcun altro.</span></div>
           <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
           <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
           <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
@@ -1965,18 +1970,7 @@ body.bm-open{overflow:hidden}
             <p><strong>Anche se oggi non sai ancora dire chi sei senza il personaggio, le Carte Identitarie ti guidano a trovarlo, esercizio dopo esercizio.</strong></p>
           </div>
           </div>
-          <div class="wb-mock" aria-label="I 3 workbook di Rule the Rules">
-            <div class="wb-book wb-book--3"><div class="wb-cover"><p class="wb-k">Workbook · Masterclass 3</p><p class="wb-t">Il piano editoriale non è legge</p></div></div>
-            <div class="wb-book wb-book--2"><div class="wb-cover"><p class="wb-k">Workbook · Masterclass 2</p><p class="wb-t">Le regole le decidi tu</p></div></div>
-            <div class="wb-book wb-book--1"><div class="wb-cover">
-              <p class="wb-k">Workbook · Masterclass 1</p>
-              <p class="wb-t">Ti appartiene davvero?</p>
-              <span class="wb-line"></span>
-              <p class="wb-s">Hai imparato a comunicare o solo a eseguire bene gli ordini degli altri?</p>
-              <p class="wb-f">Carte Identitarie · esercizi sul tuo profilo</p>
-            </div></div>
-            <div class="wb-badge"><b>3</b><span>workbook inclusi</span></div>
-          </div>
+          <img class="wb-img" src="/rtr-b/mockup-bundle.jpg" alt="Le 3 masterclass su computer e telefono e i 3 workbook di Rule the Rules" loading="lazy">
         </div>
         <div class="card-dark" style="padding:var(--space-6)"><span class="session-tag">Bonus</span><p class="x-mt-4"><span class="ph">[BONUS: da decidere]</span></p></div>
       </div>
