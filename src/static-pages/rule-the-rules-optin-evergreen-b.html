@@ -1404,6 +1404,71 @@ html{scroll-behavior:smooth}
 </head>
 <body>
 <style>
+
+/* Titoli di sezione: tutti alla grandezza del titolo "Se vuoi che le tue clienti scelgano te" (Andrea, 24/11) */
+.x-page .h2,.b3b__t{font-weight:700;font-size:clamp(2.1rem,4.4vw,3.4rem);line-height:1.06}
+/* Fai la prova: piccole animazioni per ogni regola */
+.rv{position:relative;height:8.75rem;margin-bottom:var(--space-5);border-radius:var(--radius-xl);overflow:hidden;background:rgba(20,0,10,.38);border:1px solid var(--tint-card-border-on-dark);font-family:var(--font-condensed);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--color-ink-muted)}
+.rv *{box-sizing:border-box}
+/* 01 timeline da editor video */
+.rv-tl__ruler{position:absolute;left:6%;right:6%;top:10px;display:flex;justify-content:space-between;font-size:9px;opacity:.7}
+.rv-tl__track{position:absolute;left:6%;right:6%;top:34px;height:44px;border-radius:6px;background:repeating-linear-gradient(90deg,#7a2a4f 0 16%,#5f0032 16% 17%);opacity:.9}
+.rv-tl__wave{position:absolute;left:6%;right:6%;top:86px;height:18px;border-radius:4px;background:repeating-linear-gradient(90deg,rgba(232,249,162,.45) 0 2px,transparent 2px 5px);-webkit-mask:linear-gradient(0deg,transparent 0,#000 30%,#000 70%,transparent 100%)}
+.rv-tl__hook{position:absolute;left:6%;width:17.6%;top:30px;height:52px;border:2px solid var(--color-primary);border-radius:7px;background:rgba(232,249,162,.18);animation:rv-glow 4s linear infinite}
+.rv-tl__hook b{position:absolute;left:50%;bottom:4px;transform:translateX(-50%);background:var(--color-primary);color:var(--color-secondary);font-weight:700;font-size:9px;padding:1px 5px;border-radius:4px}
+.rv-tl__ph{position:absolute;top:24px;bottom:22px;width:2px;background:#fff;left:6%;animation:rv-ph 4s linear infinite}
+.rv-tl__ph:before{content:"";position:absolute;top:-5px;left:-5px;border:6px solid transparent;border-top-color:#fff}
+.rv-tl__tc{position:absolute;right:10px;bottom:6px;font-size:10px;color:var(--color-ink)}
+@keyframes rv-ph{from{left:6%}to{left:94%}}
+@keyframes rv-glow{0%,20%{box-shadow:0 0 0 3px rgba(232,249,162,.35)}25%,100%{box-shadow:none}}
+/* 02 durata 0-60 */
+.rv-du__bar{position:absolute;left:8%;right:8%;top:58px;height:14px;border-radius:999px;background:rgba(255,255,255,.12)}
+.rv-du__ok{position:absolute;left:0;top:0;bottom:0;border-radius:999px 0 0 999px;background:var(--color-primary);animation:rv-ok 4.5s linear infinite}
+.rv-du__over{position:absolute;left:66.7%;top:0;bottom:0;border-radius:0 999px 999px 0;background:repeating-linear-gradient(45deg,#cc272e 0 6px,#e05a60 6px 12px);animation:rv-over 4.5s linear infinite}
+.rv-du__cut{position:absolute;left:calc(8% + 84%*.667);top:30px;bottom:22px;border-left:2px dashed #fff;transform:translateX(-1px)}
+.rv-du__cut span{position:absolute;top:-2px;left:6px;color:var(--color-ink);font-weight:700}
+.rv-du__s{position:absolute;top:82px;font-size:10px}
+.rv-du__msg{position:absolute;left:0;right:0;bottom:10px;text-align:center;color:#ff9da1;font-weight:700;opacity:0;animation:rv-msg 4.5s linear infinite}
+@keyframes rv-ok{0%{width:0}55%,100%{width:66.7%}}
+@keyframes rv-over{0%,55%{width:0}85%,100%{width:30%}}
+@keyframes rv-msg{0%,62%{opacity:0}68%,92%{opacity:1}100%{opacity:0}}
+/* 03 gobbo */
+.rv-pr__lines{position:absolute;left:0;right:0;top:0;padding:0 14px;text-align:center;font-family:var(--font-display);text-transform:none;letter-spacing:0;font-size:15px;line-height:28px;color:var(--color-ink-muted);animation:rv-scroll 7s linear infinite}
+.rv-pr__band{position:absolute;left:8px;right:8px;top:54px;height:30px;border-radius:6px;border:1px solid rgba(232,249,162,.6);background:rgba(232,249,162,.08)}
+.rv-pr__rec{position:absolute;left:10px;top:8px;display:flex;align-items:center;gap:5px;color:var(--color-ink);font-size:9px}
+.rv-pr__rec:before{content:"";width:7px;height:7px;border-radius:50%;background:#fb2c36;animation:rv-blink 1s steps(2) infinite}
+.rv:before,.rv:after{content:none}
+.rv--pr:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(20,0,10,.95) 0,transparent 34%,transparent 66%,rgba(20,0,10,.95) 100%)}
+@keyframes rv-scroll{from{transform:translateY(58px)}to{transform:translateY(-110px)}}
+@keyframes rv-blink{50%{opacity:0}}
+/* 04 blazer e sfondo */
+.rv-bz__frame{position:absolute;left:12px;top:10px;bottom:10px;width:5.6rem;border-radius:10px;background:linear-gradient(180deg,#d9cfc9,#c9bdb6);overflow:hidden}
+.rv-bz__frame svg{position:absolute;left:50%;bottom:0;width:84%;transform:translateX(-50%)}
+.rv-bz__list{position:absolute;left:7.6rem;right:10px;top:14px;display:grid;gap:7px}
+.rv-bz__list li{list-style:none;display:flex;align-items:center;gap:7px;color:var(--color-ink);opacity:0;animation:rv-in 5s infinite}
+.rv-bz__list li i{width:15px;height:15px;border-radius:4px;display:grid;place-items:center;font-style:normal;font-size:10px;background:var(--color-primary);color:var(--color-secondary);font-weight:700}
+.rv-bz__list li:nth-child(2){animation-delay:.5s}.rv-bz__list li:nth-child(3){animation-delay:1s}
+.rv-bz__list li:nth-child(4){animation-delay:1.5s;color:#ff9da1}.rv-bz__list li:nth-child(4) i{background:transparent;border:1px dashed #ff9da1;color:#ff9da1}
+@keyframes rv-in{0%{opacity:0;transform:translateX(-6px)}8%,85%{opacity:1;transform:none}95%,100%{opacity:0}}
+/* 05 solo lavoro */
+.rv-gr__head{position:absolute;left:12px;right:12px;top:9px;display:flex;align-items:center;gap:7px;color:var(--color-ink);text-transform:none;letter-spacing:0;font-family:var(--font-sans,inherit)}
+.rv-gr__head i{width:18px;height:18px;border-radius:50%;background:var(--gradient-gold,#cbd870)}
+.rv-gr__grid{position:absolute;left:12px;right:12px;top:34px;bottom:10px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.rv-gr__grid span{display:grid;place-items:center;border-radius:4px;background:#7a2a4f;color:var(--color-ink);font-size:9px;text-align:center;line-height:1.1;padding:2px}
+.rv-gr__grid span.me{background:transparent;border:1px dashed #ff9da1;color:#ff9da1;animation:rv-pulse 1.6s ease-in-out infinite}
+@keyframes rv-pulse{50%{transform:scale(1.08)}}
+/* 06 pubblicare di continuo */
+.rv-wk__days{position:absolute;left:12px;right:4.6rem;top:22px;display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+.rv-wk__days span{display:block}
+.rv-wk__days b{display:block;height:34px;margin-top:6px;border-radius:5px;border:1px solid var(--tint-card-border-on-dark);animation:rv-day 7s steps(1) infinite}
+.rv-wk__days div:nth-child(2) b{animation-delay:.6s}.rv-wk__days div:nth-child(3) b{animation-delay:1.2s}.rv-wk__days div:nth-child(4) b{animation-delay:1.8s}.rv-wk__days div:nth-child(5) b{animation-delay:2.4s}.rv-wk__days div:nth-child(6) b{animation-delay:3s}.rv-wk__days div:nth-child(7) b{animation-delay:3.6s}
+.rv-wk__bat{position:absolute;right:14px;top:20px;width:2.6rem;height:4.4rem;border:2px solid var(--color-ink);border-radius:6px;padding:3px;display:flex;align-items:flex-end}
+.rv-wk__bat:before{content:"";position:absolute;top:-6px;left:50%;width:12px;height:4px;margin-left:-6px;border-radius:2px 2px 0 0;background:var(--color-ink)}
+.rv-wk__bat i{display:block;width:100%;border-radius:3px;animation:rv-bat 7s linear infinite}
+.rv-wk__lab{position:absolute;left:12px;right:12px;bottom:9px;display:flex;justify-content:space-between}
+@keyframes rv-day{0%{background:transparent}2%,90%{background:var(--color-primary)}100%{background:transparent}}
+@keyframes rv-bat{0%{height:100%;background:var(--color-primary)}55%{height:35%;background:#f2c14e}80%,95%{height:8%;background:#cc272e}100%{height:100%;background:var(--color-primary)}}
+@media (prefers-reduced-motion:reduce){.rv *{animation:none!important}.rv-bz__list li{opacity:1}.rv-du__ok{width:66.7%}.rv-du__over{width:30%}.rv-du__msg{opacity:1}.rv-tl__ph{left:23%}.rv-wk__days b{background:var(--color-primary)}.rv-wk__bat i{height:12%;background:#cc272e}.rv-pr__lines{transform:translateY(-30px)}}
 .b-punch{font-family:var(--font-display);font-size:var(--font-size-xl);line-height:1.3}
 @media (min-width:640px){.b-punch{font-size:var(--font-size-2xl)}}
 .b-mc{padding:var(--space-6);border-radius:var(--radius-2xl);background:var(--tint-card-on-dark);border:1px solid var(--tint-card-border-on-dark);text-align:left}
@@ -1815,12 +1880,12 @@ body.bm-open{overflow:hidden}
     <span class="x-kicker">Fai la prova</span>
     <h2 class="h2">Apri il tuo profilo Instagram e <span class="hl hl--dark">conta quante di queste abitudini</span> hai anche tu:</h2>
     <div class="x-grid x-grid--3 x-mt-10" style="text-align:left">
-      <div class="b-mc"><p class="b-mc__k">Regola 01</p><h3>Il gancio nei primi tre secondi, sempre.</h3></div>
-      <div class="b-mc"><p class="b-mc__k">Regola 02</p><h3>Il reel che non deve superare i sessanta secondi.</h3></div>
-      <div class="b-mc"><p class="b-mc__k">Regola 03</p><h3>Lo script scritto prima, parola per parola.</h3></div>
-      <div class="b-mc"><p class="b-mc__k">Regola 04</p><h3>Il blazer e lo sfondo "da professionista".</h3></div>
-      <div class="b-mc"><p class="b-mc__k">Regola 05</p><h3>Parlare solo di lavoro, mai di te.</h3></div>
-      <div class="b-mc"><p class="b-mc__k">Regola 06</p><h3>Pubblicare di continuo, anche quando ti pesa.</h3></div>
+      <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-tl__ruler"><span>00:00</span><span>00:03</span><span>00:06</span><span>00:09</span><span>00:12</span><span>00:15</span></div><div class="rv-tl__track"></div><div class="rv-tl__wave"></div><div class="rv-tl__hook"><b>Gancio</b></div><div class="rv-tl__ph"></div></div><p class="b-mc__k">Regola 01</p><h3>Il gancio nei primi tre secondi, sempre.</h3></div>
+      <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-du__bar"><div class="rv-du__ok"></div><div class="rv-du__over"></div></div><div class="rv-du__cut"><span>✂ 60s</span></div><span class="rv-du__s" style="left:8%">0s</span><span class="rv-du__s" style="right:8%">90s</span><p class="rv-du__msg" style="margin:0">Troppo lungo: taglia!</p></div><p class="b-mc__k">Regola 02</p><h3>Il reel che non deve superare i sessanta secondi.</h3></div>
+      <div class="b-mc"><div class="rv rv--pr" aria-hidden="true"><div class="rv-pr__band"></div><div class="rv-pr__lines">Ciao! Oggi ti spiego<br>i tre errori che fai<br>quando crei contenuti.<br>Primo: non hai<br>una strategia chiara.<br>Secondo: non pubblichi<br>con costanza.<br>Scrivimi INFO nei DM</div><span class="rv-pr__rec">Rec</span></div><p class="b-mc__k">Regola 03</p><h3>Lo script scritto prima, parola per parola.</h3></div>
+      <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-bz__frame"><svg viewBox="0 0 60 70" aria-hidden="true"><path d="M17 30c0-14 5-22 13-22s13 8 13 22h-5V20H22v10z" fill="#5f0032"/><circle cx="30" cy="22" r="8" fill="#f3d9cf"/><path d="M6 70c1-14 10-22 24-22s23 8 24 22z" fill="#2b2b33"/><path d="M24 48l6 14 6-14z" fill="#fff"/><path d="M24 48l-4 4 8 14zM36 48l4 4-8 14z" fill="#1d1d24"/></svg></div><ul class="rv-bz__list" style="margin:0;padding:0"><li><i>✓</i>Blazer</li><li><i>✓</i>Sfondo neutro</li><li><i>✓</i>Luce perfetta</li><li><i>?</i>E tu dove sei?</li></ul></div><p class="b-mc__k">Regola 04</p><h3>Il blazer e lo sfondo "da professionista".</h3></div>
+      <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-gr__head"><i></i>@iltuonome</div><div class="rv-gr__grid"><span>3 tips</span><span>Errori</span><span>Come fare</span><span>Guida</span><span>Consigli</span><span>Tips</span><span class="me">E tu?</span><span>Errori</span></div></div><p class="b-mc__k">Regola 05</p><h3>Parlare solo di lavoro, mai di te.</h3></div>
+      <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-wk__days"><div><span>L</span><b></b></div><div><span>M</span><b></b></div><div><span>M</span><b></b></div><div><span>G</span><b></b></div><div><span>V</span><b></b></div><div><span>S</span><b></b></div><div><span>D</span><b></b></div></div><div class="rv-wk__bat"><i></i></div><div class="rv-wk__lab"><span>Post pubblicati</span><span>Energia</span></div></div><p class="b-mc__k">Regola 06</p><h3>Pubblicare di continuo, anche quando ti pesa.</h3></div>
     </div>
     <p class="x-mt-10 x-lead" style="color:var(--color-ink);max-width:var(--container-3xl);margin-inline:auto">Se ne hai contate almeno tre, la sensazione di recitare quasi sempre arriva da qui: sono regole che hai imparato da qualcun altro. Nella seconda masterclass, "Licenzia le regole", le esaminerai e deciderai tu quali tenere.</p>
     <p class="x-mt-10" style="color:var(--color-ink-muted)">Su Instagram c'è chi esegue le regole e chi le sceglie.</p>
