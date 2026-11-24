@@ -1548,6 +1548,34 @@ body.bm-open{overflow:hidden}
 .wb-badge b{font-family:var(--font-display);font-size:2rem;line-height:1}
 .wb-badge span{font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.08em;font-size:.58rem;line-height:1.2;max-width:4.5rem}
 @media (max-width:480px){.wb-badge{right:-10%;width:5.2rem;height:5.2rem}}
+.b3b{background:var(--color-background)}
+.b3b__top{display:grid;gap:var(--space-10);align-items:center}
+@media (min-width:960px){.b3b__top{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:var(--space-12)}}
+.b3b__t{margin:0;font-family:var(--font-display);font-weight:700;font-size:clamp(2.1rem,4.4vw,3.4rem);line-height:1.06;letter-spacing:var(--letter-spacing-heading);color:var(--color-secondary)}
+.b3b__sub{margin-top:var(--space-5);font-size:var(--font-size-lg);font-weight:600;line-height:1.5;color:var(--color-secondary)}
+.avg{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:.7rem;max-width:30rem;margin-inline:auto}
+@media (max-width:639px){.avg{gap:.4rem}.av{border-radius:var(--radius-lg)}.av-note{left:-.3rem;transform:none;max-width:12rem}.av-note::before{left:1.4rem}}
+.av{aspect-ratio:1;border-radius:var(--radius-xl);background:color-mix(in oklab,var(--color-card) 70%,var(--color-background));display:grid;place-items:center;box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--color-border) 45%,transparent)}
+.av svg{width:62%;height:62%}
+.av--me{position:relative;box-shadow:inset 0 0 0 2px var(--color-secondary)}
+.av-note{position:absolute;z-index:2;left:50%;top:calc(100% + .7rem);transform:translateX(-50%);width:max-content;max-width:14rem;padding:.55rem .8rem;border-radius:var(--radius-lg);background:var(--color-secondary);color:var(--color-ink);font-size:var(--font-size-xs);line-height:1.35;text-align:center;box-shadow:0 12px 24px -12px rgba(0,0,0,.45)}
+.av-note::before{content:"";position:absolute;left:50%;top:-.4rem;transform:translateX(-50%) rotate(45deg);width:.8rem;height:.8rem;background:var(--color-secondary)}
+.b3b__desc{max-width:var(--container-3xl);margin:var(--space-16) auto 0;text-align:center;font-family:var(--font-display);font-size:var(--font-size-xl);line-height:1.35;color:var(--color-secondary)}
+.b3b__cards{margin-top:var(--space-8)}
+.b3b-card{padding:var(--space-6);border-radius:var(--radius-2xl);background:color-mix(in oklab,var(--color-card) 55%,transparent);border:1px solid color-mix(in oklab,var(--color-border) 70%,transparent);text-align:left}
+.b3b-card .x-kicker{margin-bottom:var(--space-3)}
+.b3b-card p{line-height:var(--line-height-relaxed);color:color-mix(in oklab,var(--color-foreground) 88%,transparent)}
+.b3b__bottom{margin-top:var(--space-16)}
+.avg--hero{max-width:34rem}
+.av-hero{grid-column:3 / span 2;grid-row:2 / span 2;aspect-ratio:1;position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;margin:-.6rem;border-radius:var(--radius-2xl);background:var(--color-secondary);color:var(--color-ink);transform:rotate(-4deg);box-shadow:0 24px 50px -18px rgba(75,0,37,.7)}
+.av-hero__ring{flex:none;width:46%;height:auto;aspect-ratio:1;border-radius:50%;padding:5px;background:var(--color-primary);box-shadow:0 0 0 5px var(--color-secondary),0 0 0 7px color-mix(in oklab,var(--color-primary) 60%,transparent)}
+.av-hero__ring svg{display:block;width:100%;height:100%;border-radius:50%;background:var(--color-background)}
+.av-hero b{font-family:var(--font-condensed);font-weight:600;letter-spacing:.04em;font-size:clamp(.8rem,2.2vw,1.05rem)}
+.av-hero span{font-size:clamp(.55rem,1.4vw,.68rem);color:var(--color-ink-muted);text-align:center;line-height:1.2;padding:0 .4rem}
+.av-spark{position:absolute;top:-.9rem;right:-.6rem;width:1.8rem;height:1.8rem;color:var(--color-primary)}
+.b3b__end{max-width:var(--container-3xl);margin:var(--space-12) auto 0;text-align:center}
+.b3b__end .x-big{color:var(--color-secondary)}
+.b3b__end p.x-small{margin-top:var(--space-3);color:color-mix(in oklab,var(--color-foreground) 80%,transparent)}
 </style>
 <div class="x-page">
 
@@ -1600,6 +1628,98 @@ body.bm-open{overflow:hidden}
         </div>
       </div>
       <div class="x-photo x-r45"><img src="/rtr-b/mani-tasca.jpg" alt="Ritratto di Carlotta Sgarra" style="object-position:50% 20%"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3b · Uguale a tutte le altre (struttura della sezione di Mik Cosentino, design system di Carlotta) -->
+<section class="b3b">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="avA" viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#cdb6b1"/><path d="M14 22c0-8 4-13 10-13s10 5 10 13v6h-4v-6H18v6h-4z" fill="#8d6f69"/><circle cx="24" cy="21" r="7" fill="#efe3e0"/><path d="M10 44c2-8 8-12 14-12s12 4 14 12" fill="#efe3e0"/></symbol>
+  <symbol id="avB" viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#cdb6b1"/><path d="M13 34c0-15 3-24 11-24s11 9 11 24h-5V21H18v13z" fill="#8d6f69"/><circle cx="24" cy="21" r="7" fill="#efe3e0"/><path d="M10 44c2-8 8-12 14-12s12 4 14 12" fill="#efe3e0"/></symbol>
+  <symbol id="avC" viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" fill="#cdb6b1"/><circle cx="24" cy="10" r="5" fill="#8d6f69"/><path d="M16 20c0-5 3-8 8-8s8 3 8 8z" fill="#8d6f69"/><circle cx="24" cy="22" r="7" fill="#efe3e0"/><path d="M10 44c2-8 8-12 14-12s12 4 14 12" fill="#efe3e0"/></symbol>
+  <symbol id="avMe" viewBox="0 0 48 48"><path d="M12 36c0-16 3-27 12-27s12 11 12 27h-5V21H17v15z" fill="#5f0032"/><circle cx="24" cy="21" r="7.5" fill="#f3d9cf"/><path d="M18.5 17c2-4 9-4 11 0" fill="#5f0032"/><circle cx="21.3" cy="21.5" r=".9" fill="#5f0032"/><circle cx="26.7" cy="21.5" r=".9" fill="#5f0032"/><path d="M21.5 25c1.5 1.3 3.5 1.3 5 0" stroke="#5f0032" stroke-width="1" fill="none" stroke-linecap="round"/><path d="M9 48c2-9 8-14 15-14s13 5 15 14z" fill="#e8f9a2"/></symbol>
+</svg>
+  <div class="x-wrap">
+    <div class="b3b__top">
+      <div>
+        <span class="x-kicker">Guardati da fuori</span>
+        <h2 class="b3b__t">Se vuoi che le tue clienti scelgano te, prima devono riuscire a distinguerti da tutte le altre.</h2>
+        <p class="b3b__sub">Il tuo profilo somiglia a quello delle tue colleghe per un motivo semplice: hai applicato gli stessi consigli dei guru che seguono anche loro (magari facendoti dare una mano dall'AI per scrivere i testi).</p>
+      </div>
+      <div class="avg" style="margin-bottom:var(--space-16)">
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av av--me"><svg viewBox="0 0 48 48"><use href="#avB"/></svg><span class="av-note">Tu sei questa. Le tue clienti ti riconoscerebbero?</span></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+      </div>
+    </div>
+    <p class="b3b__desc">Quando chi ti guarda non trova un motivo per scegliere proprio te, finisce per decidere in base al prezzo o al caso. Cosa succede in concreto, però, dipende dal lavoro che fai:</p>
+    <div class="x-grid x-grid--3 b3b__cards">
+      <div class="b3b-card"><span class="x-kicker">Se sei una coach</span><p>Le persone ti seguono, salvano i tuoi caroselli e magari ti scrivono pure un complimento in DM. Però, quando decidono di iniziare un percorso, lo fanno con la coach che hanno visto per ultima, perché tra te e lei <strong>non hanno notato nessuna differenza</strong>.</p></div>
+      <div class="b3b-card"><span class="x-kicker">Se sei una consulente</span><p>Ti arriva una richiesta di preventivo e sai già come andrà: la persona l'ha chiesto anche ad altre consulenti, mette i preventivi uno accanto all'altro e guarda solo il prezzo. Se dal tuo profilo non si capisce perché dovrebbe lavorare con te, <strong>vincerà chi costa meno</strong>.</p></div>
+      <div class="b3b-card"><span class="x-kicker">Se sei una professionista</span><p>Ci metti ore per ogni contenuto (tra registrazione, montaggio e testi) e pubblichi con costanza. Poi scopri che una persona che ti seguiva da mesi ha prenotato da una collega che dice le stesse cose con le stesse parole. <strong>Per lei, una valeva l'altra.</strong></p></div>
+    </div>
+    <div class="b3b__bottom">
+      <div class="avg avg--hero">
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av-hero"><svg class="av-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 14l4-2M10 4l1 5M18 6l-3 4"/></svg><div class="av-hero__ring"><svg viewBox="0 0 48 48"><use href="#avMe"/></svg></div><b>@iltuonome</b><span>La professionista che riconoscono subito</span></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+      </div>
+      <div class="b3b__end">
+        <p class="x-big">Quando le regole dei guru smettono di decidere al posto tuo e ritrovi la tua identità, <strong>le persone ti riconoscono al primo sguardo.</strong> E quando avranno bisogno, scriveranno a te, non a un'altra.</p>
+        <p class="x-small">Nelle 3 masterclass di Rule the Rules costruisci le TUE regole di comunicazione, partendo da chi sei.</p>
+      </div>
     </div>
   </div>
 </section>
