@@ -1497,6 +1497,9 @@ html{scroll-behavior:smooth}
 .fpt__yes,.fpt__no{padding:var(--space-6)}@media (min-width:900px){.fpt__yes,.fpt__no{padding:var(--space-8)}}
 .fpt__yes .x-tick{color:var(--color-primary)}
 .fpt__no{padding:var(--space-6);border-radius:var(--radius-xl);border:1px dashed color-mix(in oklab,var(--color-secondary) 30%,transparent);font-size:var(--font-size-sm);line-height:var(--line-height-relaxed);color:color-mix(in oklab,var(--color-foreground) 70%,transparent)}
+.fpt__no .b-forwho{gap:var(--space-4)}
+.fpt__no .x-tick{color:color-mix(in oklab,var(--color-secondary) 55%,transparent)}
+.fpt__end{margin-top:var(--space-5);font-weight:600;color:var(--color-secondary)}
 .fpt__nok{font-weight:700;margin:0 0 var(--space-2);text-transform:uppercase;letter-spacing:.08em;font-size:var(--font-size-xs)}
 .b-forwho{list-style:none;padding:0;margin:var(--space-6) 0 0;display:grid;gap:var(--space-3)}
 .b-forwho li{display:flex;gap:var(--space-3);align-items:flex-start;line-height:var(--line-height-relaxed)}
@@ -2166,8 +2169,13 @@ body.bm-open{overflow:hidden}
         </ul>
       </div>
       <div class="fpt__no">
-        <p class="fpt__nok">Non fa per te se</p>
-        <p>cerchi un piano editoriale già pronto da seguire o un nuovo copione da imparare a memoria: qui costruisci tu il tuo modo di comunicare, partendo da come parli con le tue clienti.</p>
+        <p class="fpt__nok">Non fa per te se:</p>
+        <ul class="b-forwho" style="margin:0">
+          <li><span class="x-tick">✕</span><span>cerchi un piano editoriale già pronto da copiare, con i contenuti decisi da qualcun altro;</span></li>
+          <li><span class="x-tick">✕</span><span>vuoi un nuovo copione da imparare a memoria al posto di quello vecchio;</span></li>
+          <li><span class="x-tick">✕</span><span>non hai voglia di rimettere in discussione il gancio, lo script e i format che usi oggi.</span></li>
+        </ul>
+        <p class="fpt__end">Qui costruisci tu il tuo modo di comunicare, partendo da come parli con le tue clienti.</p>
       </div>
     </div>
     <div class="cta-row"><a class="btn-cta" href="#accedi"><span class="btn-cta__label">Accedi ora a Rule the Rules</span><span class="btn-cta__sub">A soli 37 €</span></a></div>
