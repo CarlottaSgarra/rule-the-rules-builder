@@ -1443,7 +1443,7 @@ html{scroll-behavior:smooth}
 @keyframes rv-blink{50%{opacity:0}}
 /* 04 blazer e sfondo */
 .rv-bz__frame{position:absolute;left:12px;top:10px;bottom:10px;width:5.6rem;border-radius:10px;background:linear-gradient(180deg,#d9cfc9,#c9bdb6);overflow:hidden}
-.rv-bz__frame svg{position:absolute;left:50%;bottom:0;width:84%;transform:translateX(-50%)}
+.x-page .rv-bz__frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
 .rv-bz__list{position:absolute;left:7.6rem;right:10px;top:14px;display:grid;gap:7px}
 .rv-bz__list li{list-style:none;display:flex;align-items:center;gap:7px;color:var(--color-ink);opacity:0;animation:rv-in 5s infinite}
 .rv-bz__list li i{width:15px;height:15px;border-radius:4px;display:grid;place-items:center;font-style:normal;font-size:10px;background:var(--color-primary);color:var(--color-secondary);font-weight:700}
@@ -1460,15 +1460,16 @@ html{scroll-behavior:smooth}
 /* 06 pubblicare di continuo */
 .rv-wk__days{position:absolute;left:12px;right:4.6rem;top:22px;display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
 .rv-wk__days span{display:block}
-.rv-wk__days b{display:block;height:34px;margin-top:6px;border-radius:5px;border:1px solid var(--tint-card-border-on-dark);animation:rv-day 7s steps(1) infinite}
+.rv-wk__days b{display:block;height:34px;margin-top:6px;border-radius:5px;border:1px solid var(--tint-card-border-on-dark);--d:var(--color-primary);animation:rv-day 7s steps(1) infinite}
+.rv-wk__days div:nth-child(2) b{--d:#eef08a}.rv-wk__days div:nth-child(3) b{--d:#f3d46a}.rv-wk__days div:nth-child(4) b{--d:#f2b04e}.rv-wk__days div:nth-child(5) b{--d:#ec8a45}.rv-wk__days div:nth-child(6) b{--d:#e2573a}.rv-wk__days div:nth-child(7) b{--d:#cc272e}
 .rv-wk__days div:nth-child(2) b{animation-delay:.6s}.rv-wk__days div:nth-child(3) b{animation-delay:1.2s}.rv-wk__days div:nth-child(4) b{animation-delay:1.8s}.rv-wk__days div:nth-child(5) b{animation-delay:2.4s}.rv-wk__days div:nth-child(6) b{animation-delay:3s}.rv-wk__days div:nth-child(7) b{animation-delay:3.6s}
 .rv-wk__bat{position:absolute;right:14px;top:20px;width:2.6rem;height:4.4rem;border:2px solid var(--color-ink);border-radius:6px;padding:3px;display:flex;align-items:flex-end}
 .rv-wk__bat:before{content:"";position:absolute;top:-6px;left:50%;width:12px;height:4px;margin-left:-6px;border-radius:2px 2px 0 0;background:var(--color-ink)}
 .rv-wk__bat i{display:block;width:100%;border-radius:3px;animation:rv-bat 7s linear infinite}
 .rv-wk__lab{position:absolute;left:12px;right:12px;bottom:9px;display:flex;justify-content:space-between}
-@keyframes rv-day{0%{background:transparent}2%,90%{background:var(--color-primary)}100%{background:transparent}}
+@keyframes rv-day{0%{background:transparent}2%,90%{background:var(--d)}100%{background:transparent}}
 @keyframes rv-bat{0%{height:100%;background:var(--color-primary)}55%{height:35%;background:#f2c14e}80%,95%{height:8%;background:#cc272e}100%{height:100%;background:var(--color-primary)}}
-@media (prefers-reduced-motion:reduce){.rv *{animation:none!important}.rv-bz__list li{opacity:1}.rv-du__ok{width:66.7%}.rv-du__over{width:30%}.rv-du__msg{opacity:1}.rv-tl__ph{left:23%}.rv-wk__days b{background:var(--color-primary)}.rv-wk__bat i{height:12%;background:#cc272e}.rv-pr__lines{transform:translateY(-30px)}}
+@media (prefers-reduced-motion:reduce){.rv *{animation:none!important}.rv-bz__list li{opacity:1}.rv-du__ok{width:66.7%}.rv-du__over{width:30%}.rv-du__msg{opacity:1}.rv-tl__ph{left:23%}.rv-wk__days b{background:var(--d)}.rv-wk__bat i{height:12%;background:#cc272e}.rv-pr__lines{transform:translateY(-30px)}}
 .b-punch{font-family:var(--font-display);font-size:var(--font-size-xl);line-height:1.3}
 @media (min-width:640px){.b-punch{font-size:var(--font-size-2xl)}}
 .b-mc{padding:var(--space-6);border-radius:var(--radius-2xl);background:var(--tint-card-on-dark);border:1px solid var(--tint-card-border-on-dark);text-align:left}
@@ -1482,7 +1483,9 @@ html{scroll-behavior:smooth}
 .b-tst__av{width:3rem;height:3rem;border-radius:50%;overflow:hidden;flex-shrink:0;display:grid;place-items:center;background-image:var(--gradient-gold);color:var(--color-primary-foreground);font-family:var(--font-display)}
 .b-tst__res{margin-top:var(--space-4);font-family:var(--font-display);font-style:italic;font-size:var(--font-size-lg);color:var(--color-ink);line-height:1.35}
 .b-vid{margin-top:var(--space-4)}
-.b-stack li{display:flex;justify-content:space-between;gap:var(--space-4)}
+.b-stack li{display:flex;justify-content:space-between;gap:var(--space-4);text-align:left}
+.b-stack li span:first-child{flex:1}
+.b-stack li span:last-child{white-space:nowrap}
 .b-forwho{list-style:none;padding:0;margin:var(--space-6) 0 0;display:grid;gap:var(--space-3)}
 .b-forwho li{display:flex;gap:var(--space-3);align-items:flex-start;line-height:var(--line-height-relaxed)}
 .bh{padding-top:var(--space-12)}
@@ -1642,7 +1645,7 @@ body.bm-open{overflow:hidden}
 .b3b__end{max-width:var(--container-3xl);margin:var(--space-12) auto 0;text-align:center}
 .b3b__end .x-big{color:var(--color-secondary)}
 .b3b__end p.x-small{margin-top:var(--space-3);color:color-mix(in oklab,var(--color-foreground) 80%,transparent)}
-.x-page img.wb-img{display:block;width:100%;max-width:26rem;height:auto;margin-inline:auto;border-radius:var(--radius-2xl);box-shadow:var(--shadow-card-lift)}
+.x-page img.wb-img{display:block;width:100%;max-width:26rem;height:auto;margin-inline:auto}
 .avg::before,.avg::after{content:"";position:absolute;top:-2px;bottom:-2px;width:24%;z-index:1;pointer-events:none}
 .avg::before{left:-1px;background:linear-gradient(90deg,var(--color-background) 8%,color-mix(in oklab,var(--color-background) 0%,transparent))}
 .avg::after{right:-1px;background:linear-gradient(270deg,var(--color-background) 8%,color-mix(in oklab,var(--color-background) 0%,transparent))}
@@ -1651,7 +1654,7 @@ body.bm-open{overflow:hidden}
 @media (min-width:900px){.mc-head{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:var(--space-10)}}
 .mc-head .h2{margin:0}
 .mc-head__side{color:var(--color-ink-muted);line-height:var(--line-height-relaxed)}
-.x-page img.mc-bundle{display:block;width:100%;max-width:34rem;height:auto;margin:var(--space-10) auto 0;border-radius:var(--radius-2xl);box-shadow:var(--shadow-card-lift)}
+.x-page img.mc-bundle{display:block;width:100%;max-width:34rem;height:auto;margin:var(--space-10) auto 0}
 .mc-rows{margin-top:var(--space-10)}
 .mc-row{display:grid;gap:var(--space-8);align-items:center;padding:var(--space-12) 0;border-top:1px solid var(--tint-card-border-on-dark)}
 .mc-row:first-child{border-top:0}
@@ -1664,7 +1667,7 @@ body.bm-open{overflow:hidden}
 .mc-row__txt .item__impact{margin-top:var(--space-3);font-weight:600;color:var(--color-ink)}
 .mc-row__txt .lines{margin-top:var(--space-4)}
 .mc-row__vis .x-photo{border-radius:var(--radius-2xl)}
-.x-page img.mc-wb{display:block;width:100%;max-width:26rem;height:auto;margin-inline:auto;border-radius:var(--radius-2xl);box-shadow:var(--shadow-card-lift)}
+.x-page img.mc-wb{display:block;width:100%;max-width:26rem;height:auto;margin-inline:auto}
 .extras--one{grid-template-columns:1fr!important;margin-top:var(--space-6)}
 .sym-zz{gap:var(--space-3)}
 .sym-zz .b-sym{width:min(100%,32rem);background:#fff;border-color:color-mix(in oklab,var(--color-secondary) 14%,transparent);box-shadow:0 10px 24px -16px rgba(95,0,50,.35)}
@@ -1675,7 +1678,7 @@ body.bm-open{overflow:hidden}
 @media (max-width:639px){.sym-zz .b-sym{width:92%}}
 .ex-video{width:100%;max-width:60rem;margin:var(--space-10) auto 0;border-radius:var(--radius-2xl);box-shadow:var(--shadow-deep)}
 .tx{display:grid;gap:var(--space-8);margin-top:var(--space-10);text-align:left}
-@media (min-width:1024px){.tx{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:start}.tx__main{order:2;position:sticky;top:4.25rem}.tx__list{order:1}}
+@media (min-width:1024px){.tx{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:start}.tx__main{order:2;position:sticky;top:3.3rem}.tx__list{order:1}}
 .tx__video{aspect-ratio:16/9;border-radius:var(--radius-2xl);overflow:hidden;border:1px solid var(--tint-panel-border-on-dark);box-shadow:var(--shadow-deep);background:#000}
 .tx__video iframe{display:block;width:100%;height:100%;border:0}
 .tx__name{margin-top:var(--space-5);font-family:var(--font-display);font-size:var(--font-size-2xl);color:var(--color-ink)}
@@ -1883,7 +1886,7 @@ body.bm-open{overflow:hidden}
       <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-tl__ruler"><span>00:00</span><span>00:03</span><span>00:06</span><span>00:09</span><span>00:12</span><span>00:15</span></div><div class="rv-tl__track"></div><div class="rv-tl__wave"></div><div class="rv-tl__hook"><b>Gancio</b></div><div class="rv-tl__ph"></div></div><p class="b-mc__k">Regola 01</p><h3>Il gancio nei primi tre secondi, sempre.</h3></div>
       <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-du__bar"><div class="rv-du__ok"></div><div class="rv-du__over"></div></div><div class="rv-du__cut"><span>✂ 60s</span></div><span class="rv-du__s" style="left:8%">0s</span><span class="rv-du__s" style="right:8%">90s</span><p class="rv-du__msg" style="margin:0">Troppo lungo: taglia!</p></div><p class="b-mc__k">Regola 02</p><h3>Il reel che non deve superare i sessanta secondi.</h3></div>
       <div class="b-mc"><div class="rv rv--pr" aria-hidden="true"><div class="rv-pr__band"></div><div class="rv-pr__lines">Ciao! Oggi ti spiego<br>i tre errori che fai<br>quando crei contenuti.<br>Primo: non hai<br>una strategia chiara.<br>Secondo: non pubblichi<br>con costanza.<br>Scrivimi INFO nei DM</div><span class="rv-pr__rec">Rec</span></div><p class="b-mc__k">Regola 03</p><h3>Lo script scritto prima, parola per parola.</h3></div>
-      <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-bz__frame"><svg viewBox="0 0 60 70" aria-hidden="true"><path d="M17 30c0-14 5-22 13-22s13 8 13 22h-5V20H22v10z" fill="#5f0032"/><circle cx="30" cy="22" r="8" fill="#f3d9cf"/><path d="M6 70c1-14 10-22 24-22s23 8 24 22z" fill="#2b2b33"/><path d="M24 48l6 14 6-14z" fill="#fff"/><path d="M24 48l-4 4 8 14zM36 48l4 4-8 14z" fill="#1d1d24"/></svg></div><ul class="rv-bz__list" style="margin:0;padding:0"><li><i>✓</i>Blazer</li><li><i>✓</i>Sfondo neutro</li><li><i>✓</i>Luce perfetta</li><li><i>?</i>E tu dove sei?</li></ul></div><p class="b-mc__k">Regola 04</p><h3>Il blazer e lo sfondo "da professionista".</h3></div>
+      <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-bz__frame"><img src="/rtr-b/blazer.jpg" alt=""></div><ul class="rv-bz__list" style="margin:0;padding:0"><li><i>✓</i>Blazer</li><li><i>✓</i>Sfondo neutro</li><li><i>✓</i>Luce perfetta</li><li><i>?</i>E tu dove sei?</li></ul></div><p class="b-mc__k">Regola 04</p><h3>Il blazer e lo sfondo "da professionista".</h3></div>
       <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-gr__head"><i></i>@iltuonome</div><div class="rv-gr__grid"><span>3 tips</span><span>Errori</span><span>Come fare</span><span>Guida</span><span>Consigli</span><span>Tips</span><span class="me">E tu?</span><span>Errori</span></div></div><p class="b-mc__k">Regola 05</p><h3>Parlare solo di lavoro, mai di te.</h3></div>
       <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-wk__days"><div><span>L</span><b></b></div><div><span>M</span><b></b></div><div><span>M</span><b></b></div><div><span>G</span><b></b></div><div><span>V</span><b></b></div><div><span>S</span><b></b></div><div><span>D</span><b></b></div></div><div class="rv-wk__bat"><i></i></div><div class="rv-wk__lab"><span>Post pubblicati</span><span>Energia</span></div></div><p class="b-mc__k">Regola 06</p><h3>Pubblicare di continuo, anche quando ti pesa.</h3></div>
     </div>
@@ -1956,7 +1959,7 @@ body.bm-open{overflow:hidden}
 <section class="x-night" id="estratto">
   <div class="x-wrap x-center">
     <span class="x-kicker">Prima di decidere</span>
-    <h2 class="h2" style="max-width:var(--container-3xl);margin-inline:auto">Vuoi vedere come lavoro <span class="hl">prima di decidere</span>?</h2>
+    <h2 class="h2" style="max-width:var(--container-3xl);margin-inline:auto">Vuoi vedere <span class="hl">un pezzo di una delle masterclass</span>?</h2>
     <p class="x-mt-4 x-muted" style="max-width:var(--container-2xl);margin-inline:auto">Guarda un estratto della prima masterclass: in pochi minuti capisci se il mio modo di spiegare fa per te.</p>
     <div class="video-frame video-frame--placeholder x-r169 ex-video"><div class="video-frame__poster-ph"></div><div class="video-frame__in"><span class="video-frame__label">Estratto · Togli il costume [3-5 minuti dalla Masterclass 1]</span></div></div>
     <div class="cta-row"><a class="btn-cta" href="#accedi"><span class="btn-cta__label">Per me è sì, accedo ora</span><span class="btn-cta__sub">A soli 37 €</span></a></div>
@@ -2044,7 +2047,7 @@ body.bm-open{overflow:hidden}
       </div>
       <p class="mc-head__side">Le guardi quando vuoi e ogni masterclass ha il suo workbook con gli esercizi.</p>
     </div>
-    <img class="mc-bundle" src="/rtr-b/mockup-bundle.jpg" alt="Le 3 masterclass su computer e telefono e i 3 workbook di Rule the Rules">
+    <img class="mc-bundle" src="/rtr-b/mockup-bundle.webp" alt="Le 3 masterclass su computer e telefono e i 3 workbook di Rule the Rules">
     <div class="mc-rows">
       <div class="mc-row">
         <div class="mc-row__txt">
@@ -2101,11 +2104,8 @@ body.bm-open{overflow:hidden}
             <p><strong>Anche se oggi non sai ancora dire chi sei senza il personaggio, le Carte Identitarie ti guidano a trovarlo, esercizio dopo esercizio.</strong></p>
         </div>
         </div>
-        <div class="mc-row__vis"><img class="mc-wb" src="/rtr-b/mockup-workbook.jpg" alt="I 3 workbook di Rule the Rules" loading="lazy"></div>
+        <div class="mc-row__vis"><img class="mc-wb" src="/rtr-b/mockup-workbook.webp" alt="I 3 workbook di Rule the Rules" loading="lazy"></div>
       </div>
-    </div>
-    <div class="extras extras--one">
-        <div class="card-dark" style="padding:var(--space-6)"><span class="session-tag">Bonus</span><p class="x-mt-4"><span class="ph">[BONUS: da decidere]</span></p></div>
     </div>
   </div>
 </section>
