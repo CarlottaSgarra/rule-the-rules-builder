@@ -1533,6 +1533,12 @@ html{scroll-behavior:smooth}
 }
 /* Popup da desktop: la colonna di sinistra arriva fino in fondo */
 @media (min-width:820px){#bm .bm__l{display:flex;flex-direction:column}#bm .bm__gift{margin-top:auto}#bm .bm .form,#bm .form{margin-bottom:var(--space-4)}}
+/* Dentro Systeme (iframe ad altezza automatica): il popup e la barra seguono lo schermo del visitatore (Andrea, 25/11) */
+html.rtr-embed body.bm-open{overflow:visible}
+html.rtr-embed .bm{position:absolute;inset:auto 0 auto 0;top:var(--vp-top,0px);height:var(--vp-h,100vh)}
+html.rtr-embed .bm__box{max-height:calc(var(--vp-h,100vh) - 2rem)}
+@media (max-width:819px){html.rtr-embed .bm__box{max-height:calc(var(--vp-h,100vh) * .92)}}
+@media (min-width:768px){html.rtr-embed .x-bar{position:relative;z-index:30;transform:translateY(var(--vp-top,0px))}}
 /* Fai la prova: piccole animazioni per ogni regola */
 .rv{position:relative;height:8.75rem;margin-bottom:var(--space-5);border-radius:var(--radius-xl);overflow:hidden;background:rgba(20,0,10,.38);border:1px solid var(--tint-card-border-on-dark);font-family:var(--font-condensed);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--color-ink-muted)}
 .rv *{box-sizing:border-box}
@@ -2224,7 +2230,7 @@ body.bm-open{overflow:hidden}
         var t=D[+btn.dataset.i]; f.src='https://www.youtube-nocookie.com/embed/'+t.y; f.title=t.n;
         n.textContent=t.n; r.textContent=t.r; b.innerHTML=t.b; a.innerHTML=t.a;
         bs.forEach(function(x){x.setAttribute('aria-pressed',x===btn?'true':'false');});
-        if(window.innerWidth<1024) f.scrollIntoView({behavior:'smooth',block:'center'});
+        if(window.innerWidth<1024){ if(window.rtrScrollTo){window.rtrScrollTo(f,'center');} else {f.scrollIntoView({behavior:'smooth',block:'center'});} }
       });});
     })();
     </script>
@@ -2369,6 +2375,31 @@ body.bm-open{overflow:hidden}
 </script>
 
 </div>
+
+<script>
+/* Ponte con Systeme: se la pagina è dentro un iframe con lo script di Systeme, l'iframe prende l'altezza di tutta la pagina
+   (un solo scorrimento, quello di Systeme) e il popup si apre nella parte di schermo che il visitatore sta guardando. */
+(function(){
+  if(window.self===window.top) return;
+  var root=document.documentElement, embed=false, lastH=0;
+  function send(m){ try{ window.parent.postMessage(m,'*'); }catch(e){} }
+  function sendH(){ var h=Math.ceil(document.body.getBoundingClientRect().height); if(Math.abs(h-lastH)>1){ lastH=h; send({rtr:'h',h:h}); } }
+  window.addEventListener('message',function(e){
+    var d=e.data||{}; if(d.rtr!=='vp') return;
+    if(!embed){ embed=true; root.classList.add('rtr-embed'); sendH(); }
+    root.style.setProperty('--vp-top',Math.max(0,d.top)+'px');
+    root.style.setProperty('--vp-h',Math.max(200,d.h)+'px');
+  });
+  window.rtrScrollTo=function(el,block){
+    if(!embed){ el.scrollIntoView({behavior:'smooth',block:block||'start'}); return; }
+    var r=el.getBoundingClientRect(), y=r.top+window.scrollY;
+    send({rtr:'scroll',y:y,center:block==='center',eh:r.height});
+  };
+  send({rtr:'ready'});
+  window.addEventListener('load',sendH); window.addEventListener('resize',sendH);
+  if(window.ResizeObserver){ new ResizeObserver(sendH).observe(document.body); } else { setInterval(sendH,1000); }
+})();
+</script>
 
 </body>
 </html>
