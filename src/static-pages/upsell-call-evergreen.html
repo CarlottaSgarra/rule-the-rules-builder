@@ -1905,6 +1905,17 @@ html{scroll-behavior:smooth}
 .up-fade--r{right:0;background:linear-gradient(270deg,var(--color-secondary),transparent)}
 .up-no{display:inline-block;margin-top:var(--space-8);font-size:var(--font-size-sm);color:var(--color-ink-muted);text-decoration:underline;text-underline-offset:3px}
 .up-no:hover{color:var(--color-ink)}
+/* 25/11: header chiaro (rosa pastello), senza foto e velo viola: testi scuri */
+.bh-hero.up-hero{background:var(--color-background);color:var(--color-foreground)}
+.bh-hero.up-hero::before{display:none}
+.bh-hero.up-hero .bh-h1{color:var(--color-secondary)}
+.up-hero .up-sub{color:color-mix(in oklab,var(--color-foreground) 80%,transparent)}
+.up-hero .up-sub strong,.up-hero .up-price__q,.up-hero .up-price__only{color:var(--color-foreground)}
+.up-hero .up-price__q b,.up-hero .b-big-price{color:var(--color-secondary)}
+.up-hero .b-old-badge{background:#fff;box-shadow:0 10px 20px -10px rgba(75,0,37,.35)}
+.up-hero .up-pills span{border-color:color-mix(in oklab,var(--color-secondary) 35%,transparent);color:var(--color-secondary)}
+.bh-hero.up-hero .under-btn{color:color-mix(in oklab,var(--color-foreground) 70%,transparent)!important}
+.up-hero .up-video{border-color:color-mix(in oklab,var(--color-secondary) 20%,transparent);box-shadow:0 30px 60px -30px rgba(75,0,37,.45)}
 </style>
 
 <div class="x-page">
@@ -1914,10 +1925,9 @@ html{scroll-behavior:smooth}
 
 <!-- 2-5 · Badge, titolo, video, prezzo e bottone -->
 <header class="bh-hero up-hero">
-  <img class="bh-bg" src="/rtr-b/muro.jpg" alt="" aria-hidden="true">
   <div class="x-wrap x-center bh">
     <div class="bh-tags"><span class="badge badge--lg">Offerta esclusiva · Solo su questa pagina</span></div>
-    <h1 class="bh-h1"><span class="bh-l">Vuoi applicare subito le 3 masterclass al tuo profilo,</span> <span class="bh-l"><span class="hl hl--dark">con me e Sharon in una call 1:1?</span></span></h1>
+    <h1 class="bh-h1"><span class="bh-l">Vuoi applicare subito le 3 masterclass al tuo profilo,</span> <span class="bh-l"><span class="hl">con me e Sharon in una call 1:1?</span></span></h1>
     <p class="up-sub">Le masterclass le guardi al tuo ritmo. Se vuoi metterle in pratica adesso e portare nei DM le clienti giuste, ho aperto degli slot con me e Sharon, che nel mio team è esperta di contenuti: <strong>vanno via velocemente e non sono sempre disponibili.</strong></p>
     <div class="up-video"><iframe src="https://player.vimeo.com/video/1224683201?title=0&amp;byline=0&amp;portrait=0" title="Guarda come funziona la call di implementazione" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
     <div class="up-price">
