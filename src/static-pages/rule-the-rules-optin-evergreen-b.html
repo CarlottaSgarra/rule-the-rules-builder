@@ -1462,7 +1462,7 @@ html{scroll-behavior:smooth}
 .bm-prog{margin:0 0 var(--space-6);padding-right:3rem}
 .bm-prog__top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--font-condensed);font-size:var(--font-size-sm);letter-spacing:.1em;text-transform:uppercase;color:var(--color-secondary)}
 .bm-prog__bar{margin-top:var(--space-2);height:1rem;border-radius:999px;padding:3px;background:color-mix(in oklab,var(--color-secondary) 12%,transparent);box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--color-secondary) 25%,transparent)}
-.bm-prog__bar i{display:block;height:100%;width:90%;border-radius:999px;background-color:var(--color-secondary);background-image:repeating-linear-gradient(-45deg,color-mix(in oklab,var(--color-primary) 45%,transparent) 0 7px,transparent 7px 14px);background-size:20px 20px;animation:bm-fill 1.6s cubic-bezier(.2,.8,.2,1) .25s both,bm-stripes 1s linear infinite}
+.bm-prog__bar i{display:block;height:100%;width:90%;border-radius:999px;background-color:var(--color-gold-2,#e8f9a2);background-image:repeating-linear-gradient(-45deg,color-mix(in oklab,var(--color-gold-1,#c3c55a) 85%,transparent) 0 7px,transparent 7px 14px);box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--color-gold-1,#c3c55a) 70%,transparent);background-size:20px 20px;animation:bm-fill 1.6s cubic-bezier(.2,.8,.2,1) .25s both,bm-stripes 1s linear infinite}
 @keyframes bm-fill{from{width:0}to{width:90%}}
 @keyframes bm-stripes{from{background-position:0 0}to{background-position:20px 0}}
 @media (prefers-reduced-motion:reduce){.bm-prog__bar i{animation:none}}
@@ -1472,6 +1472,11 @@ html{scroll-behavior:smooth}
 .b-old-badge s{text-decoration:none;position:relative}
 .b-old-badge s::after{content:"";position:absolute;left:-8%;right:-8%;top:50%;height:3px;border-radius:2px;background:#cc272e;transform:rotate(-14deg)}
 @media (max-width:639px){.b-old-badge{right:-1.4rem;font-size:var(--font-size-lg)}}
+/* Un po' più di verde lime nelle parti scure, come da design system: bordi lime 25-55%, numeri lime (Andrea, 25/11) */
+.x-dark .b4-card,.x-dark .x-card--dark,.x-dark .mc-get,.x-dark .b3-card{border-color:color-mix(in oklab,var(--color-primary) 32%,transparent)!important}
+.b4-num{color:color-mix(in oklab,var(--color-primary) 70%,transparent)!important}
+.mc-get{box-shadow:inset 3px 0 0 var(--color-primary)}
+.x-dark .x-kicker,.x-night .x-kicker{color:var(--color-primary)}
 /* Fai la prova: piccole animazioni per ogni regola */
 .rv{position:relative;height:8.75rem;margin-bottom:var(--space-5);border-radius:var(--radius-xl);overflow:hidden;background:rgba(20,0,10,.38);border:1px solid var(--tint-card-border-on-dark);font-family:var(--font-condensed);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--color-ink-muted)}
 .rv *{box-sizing:border-box}
