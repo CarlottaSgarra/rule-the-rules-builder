@@ -23,6 +23,7 @@ import { Route as RuleTheRulesOptinEvergreenBRouteImport } from './routes/rule-t
 import { Route as ThankYouRouteImport } from './routes/thank-you'
 import { Route as ThankYouVipRouteImport } from './routes/thank-you-vip'
 import { Route as UpsellCallRouteImport } from './routes/upsell-call'
+import { Route as UpsellCallEvergreenRouteImport } from './routes/upsell-call-evergreen'
 import { Route as UpsellStoryIdentityRouteImport } from './routes/upsell-story-identity'
 import { Route as UpsellStoryIdentity2RouteImport } from './routes/upsell-story-identity-2'
 import { Route as VipRouteImport } from './routes/vip'
@@ -100,6 +101,11 @@ const UpsellCallRoute = UpsellCallRouteImport.update({
   path: '/upsell-call',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UpsellCallEvergreenRoute = UpsellCallEvergreenRouteImport.update({
+  id: '/upsell-call-evergreen',
+  path: '/upsell-call-evergreen',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UpsellStoryIdentityRoute = UpsellStoryIdentityRouteImport.update({
   id: '/upsell-story-identity',
   path: '/upsell-story-identity',
@@ -131,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
+  '/upsell-call-evergreen': typeof UpsellCallEvergreenRoute
   '/upsell-story-identity': typeof UpsellStoryIdentityRoute
   '/upsell-story-identity-2': typeof UpsellStoryIdentity2Route
   '/vip': typeof VipRoute
@@ -150,6 +157,7 @@ export interface FileRoutesByTo {
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
+  '/upsell-call-evergreen': typeof UpsellCallEvergreenRoute
   '/upsell-story-identity': typeof UpsellStoryIdentityRoute
   '/upsell-story-identity-2': typeof UpsellStoryIdentity2Route
   '/vip': typeof VipRoute
@@ -170,6 +178,7 @@ export interface FileRoutesById {
   '/thank-you': typeof ThankYouRoute
   '/thank-you-vip': typeof ThankYouVipRoute
   '/upsell-call': typeof UpsellCallRoute
+  '/upsell-call-evergreen': typeof UpsellCallEvergreenRoute
   '/upsell-story-identity': typeof UpsellStoryIdentityRoute
   '/upsell-story-identity-2': typeof UpsellStoryIdentity2Route
   '/vip': typeof VipRoute
@@ -191,6 +200,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/thank-you-vip'
     | '/upsell-call'
+    | '/upsell-call-evergreen'
     | '/upsell-story-identity'
     | '/upsell-story-identity-2'
     | '/vip'
@@ -210,6 +220,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/thank-you-vip'
     | '/upsell-call'
+    | '/upsell-call-evergreen'
     | '/upsell-story-identity'
     | '/upsell-story-identity-2'
     | '/vip'
@@ -229,6 +240,7 @@ export interface FileRouteTypes {
     | '/thank-you'
     | '/thank-you-vip'
     | '/upsell-call'
+    | '/upsell-call-evergreen'
     | '/upsell-story-identity'
     | '/upsell-story-identity-2'
     | '/vip'
@@ -249,6 +261,7 @@ export interface RootRouteChildren {
   ThankYouRoute: typeof ThankYouRoute
   ThankYouVipRoute: typeof ThankYouVipRoute
   UpsellCallRoute: typeof UpsellCallRoute
+  UpsellCallEvergreenRoute: typeof UpsellCallEvergreenRoute
   UpsellStoryIdentityRoute: typeof UpsellStoryIdentityRoute
   UpsellStoryIdentity2Route: typeof UpsellStoryIdentity2Route
   VipRoute: typeof VipRoute
@@ -354,6 +367,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UpsellCallRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/upsell-call-evergreen': {
+      id: '/upsell-call-evergreen'
+      path: '/upsell-call-evergreen'
+      fullPath: '/upsell-call-evergreen'
+      preLoaderRoute: typeof UpsellCallEvergreenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/upsell-story-identity': {
       id: '/upsell-story-identity'
       path: '/upsell-story-identity'
@@ -394,6 +414,7 @@ const rootRouteChildren: RootRouteChildren = {
   ThankYouRoute: ThankYouRoute,
   ThankYouVipRoute: ThankYouVipRoute,
   UpsellCallRoute: UpsellCallRoute,
+  UpsellCallEvergreenRoute: UpsellCallEvergreenRoute,
   UpsellStoryIdentityRoute: UpsellStoryIdentityRoute,
   UpsellStoryIdentity2Route: UpsellStoryIdentity2Route,
   VipRoute: VipRoute,
