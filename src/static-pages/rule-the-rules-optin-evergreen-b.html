@@ -1438,6 +1438,8 @@ html{scroll-behavior:smooth}
 .footer__h{margin-bottom:var(--space-3)!important;font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.16em;color:var(--color-primary)}
 .footer__col a{color:var(--color-ink-muted);text-decoration:underline;text-underline-offset:3px}
 .footer__col a:hover{color:var(--color-primary)}
+/* Immagini delle card "Dopo le 3 masterclass": intere, mai tagliate */
+.x-page img.b4-img{display:block;width:100%;height:auto;max-height:13rem;object-fit:contain;margin:var(--space-8) auto 0;filter:drop-shadow(0 14px 22px rgba(30,0,15,.45))}
 /* Dopo le 3 masterclass: tre riquadri orizzontali sfalsati a zig zag (Andrea, 25/11) */
 .b4-zz{display:flex;flex-direction:column;gap:var(--space-8)}
 .b4-zz .b4-card{text-align:left}
@@ -1445,15 +1447,25 @@ html{scroll-behavior:smooth}
 .b4-zz{gap:var(--space-10)}
 .b4-zz .b4-card{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);grid-auto-rows:auto;column-gap:var(--space-10);align-content:center;width:min(86%,54rem);padding:var(--space-8) var(--space-10)}
 .b4-zz .b4-card>*{grid-column:2}
-.b4-zz .b4-card .b4-img{grid-column:1;grid-row:1 / span 5;align-self:center;margin:0;max-height:15rem}
+.x-page .b4-zz .b4-card img.b4-img{grid-column:1;grid-row:1 / span 5;align-self:center;margin:0;max-height:15rem}
 .b4-zz .b4-card h3{margin-top:0}
 .b4-zz .b4-card .b4-num{position:static;grid-column:2;font-size:var(--font-size-4xl);margin-bottom:var(--space-3)}
 .b4-zz .b4-card:nth-child(odd){margin-right:auto}
 .b4-zz .b4-card:nth-child(even){margin-left:auto;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}
 .b4-zz .b4-card:nth-child(even)>*{grid-column:1}
-.b4-zz .b4-card:nth-child(even) .b4-img{grid-column:2}
+.x-page .b4-zz .b4-card:nth-child(even) img.b4-img{grid-column:2}
 .b4-zz .b4-card:nth-child(even) .b4-num{grid-column:1}
 }
+/* Popup: mockup sopra il prezzo (sotto il viso di Carlotta) e barra di avanzamento al 90% (Andrea, 25/11) */
+.x-page .bm__r img.bm__mock{position:static;inset:auto;z-index:auto;display:block;width:100%;max-width:15rem;height:auto;object-fit:contain;margin:0 0 var(--space-3);filter:drop-shadow(0 16px 24px rgba(30,0,15,.55))}
+@media (max-width:819px){.x-page .bm__r img.bm__mock{display:none}.bm__r .x-kicker{white-space:normal!important}}
+@media (min-width:820px){.x-page .bm__r img:not(.bm__mock){object-position:50% 0%}}
+.bm-prog{margin-top:var(--space-5)}
+.bm-prog__top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--font-condensed);font-size:var(--font-size-sm);letter-spacing:.08em;text-transform:uppercase;color:var(--color-secondary)}
+.bm-prog__bar{margin-top:var(--space-2);height:.7rem;border-radius:999px;background:color-mix(in oklab,var(--color-secondary) 14%,transparent);overflow:hidden}
+.bm-prog__bar i{display:block;height:100%;width:90%;border-radius:999px;background:linear-gradient(90deg,var(--color-secondary),color-mix(in oklab,var(--color-secondary) 78%,var(--color-background)));animation:bm-fill 1.6s cubic-bezier(.2,.8,.2,1) .25s both}
+@keyframes bm-fill{from{width:0}to{width:90%}}
+@media (prefers-reduced-motion:reduce){.bm-prog__bar i{animation:none}}
 /* Fai la prova: piccole animazioni per ogni regola */
 .rv{position:relative;height:8.75rem;margin-bottom:var(--space-5);border-radius:var(--radius-xl);overflow:hidden;background:rgba(20,0,10,.38);border:1px solid var(--tint-card-border-on-dark);font-family:var(--font-condensed);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--color-ink-muted)}
 .rv *{box-sizing:border-box}
@@ -2261,6 +2273,7 @@ body.bm-open{overflow:hidden}
       <span class="x-kicker">Accesso immediato · 37 €</span>
       <h2 class="bm__t" id="bm-t">Accedi a <span class="hl">Rule the Rules</span></h2>
       <p class="bm__p">Lascia nome ed email: al passo successivo completi il pagamento e le 3 masterclass diventano tue a vita.</p>
+      <div class="bm-prog" role="img" aria-label="Ti manca pochissimo: 90%"><div class="bm-prog__top"><span>Ti manca pochissimo</span><b>90%</b></div><div class="bm-prog__bar"><i></i></div></div>
       <form class="form" method="post" action="https://systeme.io/embedded/47027176/subscription" target="_top">
         <label class="sr-only" for="m-nome">Nome</label><input class="field" id="m-nome" type="text" name="first_name" placeholder="Nome" autocomplete="given-name" required>
         <label class="sr-only" for="m-email">Email</label><input class="field" id="m-email" type="email" name="email" placeholder="La tua email migliore" autocomplete="email" required>
@@ -2271,7 +2284,8 @@ body.bm-open{overflow:hidden}
     </div>
     <div class="bm__r">
       <img src="/rtr-b/bn.jpg" alt="" aria-hidden="true">
-      <span class="x-kicker" style="color:var(--color-primary)">Il tuo accesso · tue a vita</span>
+      <img class="bm__mock" src="/rtr-b/mockup-bundle.webp" alt="Le 3 masterclass su computer e telefono e i 3 workbook di Rule the Rules">
+      <span class="x-kicker" style="color:var(--color-primary)">Le masterclass e i workbook sono tuoi a vita</span>
       <div class="bm__price"><b>37 €</b><s>invece di 297 €</s></div>
       <ul class="bm__list"><li>3 masterclass esclusive su identità, contenuti, format e calendario editoriale</li><li>Più di 5 ore di contenuti</li><li>3 workbook, uno per ogni masterclass</li></ul>
     </div>
