@@ -1459,11 +1459,10 @@ html{scroll-behavior:smooth}
 @media (min-width:820px){.x-page .bm__r img:not(.bm__mock){object-position:50% 0%}}
 .x-page img.bm__wb{flex:none;display:block;width:4.5rem;height:auto;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(30,0,15,.25))}
 @media (max-width:819px){.bm__t .hl{white-space:normal}.bm__box{grid-template-columns:minmax(0,1fr)}}
-.bm-prog{grid-column:1 / -1;order:-2;padding:var(--space-5) 4.5rem var(--space-4) var(--space-6);background:var(--color-secondary);color:var(--color-ink)}
-@media (min-width:640px){.bm-prog{padding-left:var(--space-10)}}
-.bm-prog__top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--font-condensed);font-size:var(--font-size-sm);letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary)}
-.bm-prog__bar{margin-top:var(--space-2);height:1rem;border-radius:999px;padding:3px;background:color-mix(in oklab,var(--color-background) 14%,transparent);box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--color-primary) 35%,transparent)}
-.bm-prog__bar i{display:block;height:100%;width:90%;border-radius:999px;background-color:var(--color-primary);background-image:repeating-linear-gradient(-45deg,color-mix(in oklab,var(--color-secondary) 22%,transparent) 0 7px,transparent 7px 14px);background-size:20px 20px;animation:bm-fill 1.6s cubic-bezier(.2,.8,.2,1) .25s both,bm-stripes 1s linear infinite}
+.bm-prog{margin:0 0 var(--space-6);padding-right:3rem}
+.bm-prog__top{display:flex;justify-content:space-between;align-items:baseline;font-family:var(--font-condensed);font-size:var(--font-size-sm);letter-spacing:.1em;text-transform:uppercase;color:var(--color-secondary)}
+.bm-prog__bar{margin-top:var(--space-2);height:1rem;border-radius:999px;padding:3px;background:color-mix(in oklab,var(--color-secondary) 12%,transparent);box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--color-secondary) 25%,transparent)}
+.bm-prog__bar i{display:block;height:100%;width:90%;border-radius:999px;background-color:var(--color-secondary);background-image:repeating-linear-gradient(-45deg,color-mix(in oklab,var(--color-primary) 45%,transparent) 0 7px,transparent 7px 14px);background-size:20px 20px;animation:bm-fill 1.6s cubic-bezier(.2,.8,.2,1) .25s both,bm-stripes 1s linear infinite}
 @keyframes bm-fill{from{width:0}to{width:90%}}
 @keyframes bm-stripes{from{background-position:0 0}to{background-position:20px 0}}
 @media (prefers-reduced-motion:reduce){.bm-prog__bar i{animation:none}}
@@ -2275,9 +2274,8 @@ body.bm-open{overflow:hidden}
   <div class="bm__box">
     <span class="bm__handle" aria-hidden="true"></span>
     <button class="bm__x" type="button" aria-label="Chiudi" data-bm-close>&times;</button>
-    <div class="bm-prog" role="img" aria-label="Ti manca pochissimo: 90%"><div class="bm-prog__top"><span>Ti manca pochissimo</span><b>90%</b></div><div class="bm-prog__bar"><i></i></div></div>
     <div class="bm__l">
-      <span class="x-kicker">Accesso immediato · 37 €</span>
+      <div class="bm-prog" role="img" aria-label="Ti manca pochissimo: 90%"><div class="bm-prog__top"><span>Ti manca pochissimo</span><b>90%</b></div><div class="bm-prog__bar"><i></i></div></div>
       <h2 class="bm__t" id="bm-t">Accedi alle <span class="hl">3 Masterclass Esclusive</span> di Rule The Rules.</h2>
       <p class="bm__p">Lascia nome ed email: al passo successivo completi il pagamento e le 3 masterclass diventano tue a vita.</p>
       <form class="form" method="post" action="https://systeme.io/embedded/47027176/subscription" target="_top">
