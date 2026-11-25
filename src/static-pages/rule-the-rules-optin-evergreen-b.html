@@ -1787,6 +1787,10 @@ body.bm-open{overflow:hidden}
 .av-hero b{font-family:var(--font-condensed);font-weight:600;letter-spacing:.04em;font-size:clamp(.8rem,2.2vw,1.05rem)}
 .av-hero span{font-size:clamp(.55rem,1.4vw,.68rem);color:var(--color-ink-muted);text-align:center;line-height:1.2;padding:0 .4rem}
 .av-spark{position:absolute;top:-.9rem;right:-.6rem;width:1.8rem;height:1.8rem;color:var(--color-primary)}
+/* 25/11: anello sempre tondo anche su Safari mobile (misure fisse sul riquadro, non su flex+aspect-ratio) e riquadro più piccolo da mobile */
+.av-hero{container-type:inline-size}
+.av-hero__ring{width:44cqi;height:44cqi;aspect-ratio:auto}
+@media (max-width:639px){.av-hero{margin:.2rem;gap:.3rem;transform:rotate(-3deg)}.av-hero__ring{width:40cqi;height:40cqi;padding:3px;box-shadow:0 0 0 3px var(--color-secondary),0 0 0 4px color-mix(in oklab,var(--color-primary) 60%,transparent)}.av-hero b{font-size:9cqi}.av-hero span{font-size:6.6cqi;padding:0 .3rem}.av-spark{top:-.6rem;right:-.4rem;width:1.3rem;height:1.3rem}}
 .b3b__end{max-width:var(--container-3xl);margin:var(--space-12) auto 0;text-align:center}
 .b3b__end .x-big{color:var(--color-secondary)}
 .b3b__end p.x-small{margin-top:var(--space-3);color:color-mix(in oklab,var(--color-foreground) 80%,transparent)}
