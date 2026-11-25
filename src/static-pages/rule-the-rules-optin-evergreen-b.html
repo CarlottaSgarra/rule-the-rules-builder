@@ -1436,6 +1436,8 @@ html{scroll-behavior:smooth}
 .footer__company p{margin:0!important}
 @media (max-width:767px){.footer__company{flex-direction:column;align-items:center;text-align:center}}
 @media (min-width:1024px){.footer__company{flex-wrap:nowrap;gap:var(--space-2) var(--space-4)}}
+.b4-img{display:block;width:100%;height:auto;max-height:13rem;object-fit:contain;margin:var(--space-8) auto 0;filter:drop-shadow(0 14px 22px rgba(30,0,15,.45))}
+.b4-num{z-index:1}
 /* Fai la prova: piccole animazioni per ogni regola */
 .rv{position:relative;height:8.75rem;margin-bottom:var(--space-5);border-radius:var(--radius-xl);overflow:hidden;background:rgba(20,0,10,.38);border:1px solid var(--tint-card-border-on-dark);font-family:var(--font-condensed);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--color-ink-muted)}
 .rv *{box-sizing:border-box}
@@ -2142,21 +2144,21 @@ body.bm-open{overflow:hidden}
     <div class="x-grid x-grid--3 x-mt-10">
       <div class="b4-card">
         <span class="b4-num" aria-hidden="true">01</span>
-        <span class="x-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="7" width="12" height="14" rx="2"/><path d="M8 4h10a2 2 0 0 1 2 2v12"/></svg></span>
+        <img class="b4-img" src="/rtr-b/b4-carte-identitarie.webp" alt="Carte rosa scritte a mano a ventaglio, uno specchio e una penna" loading="lazy">
         <h3>Carte Identitarie</h3>
         <p class="t">Nei workbook scriverai chi sei, così davanti alla videocamera parlerai come parli con le tue clienti.</p>
         <div class="b4-vis"><div class="b4-vis__box"><p class="b4-vis__k">La tua Carta Identitaria</p><div class="b4-chips"><span>La tua voce</span><span>Le tue parole</span><span>La tua storia</span></div></div></div>
       </div>
       <div class="b4-card">
         <span class="b4-num" aria-hidden="true">02</span>
-        <span class="x-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h9M4 18h6"/><path d="M15 15l5 5M20 15l-5 5"/></svg></span>
+        <img class="b4-img" src="/rtr-b/b4-anti-regole.webp" alt="Liste di regole su foglietti accartocciati, strappati e barrati con l'evidenziatore" loading="lazy">
         <h3>Le tue anti-regole</h3>
         <p class="t">Gancio, script, muro bianco, blazer: terrai le regole che ti servono e licenzierai le altre.</p>
         <div class="b4-vis"><div class="b4-vis__box"><p class="b4-vis__k">3 domande per licenziare una regola</p><ul class="b4-q"><li><b>1</b>A cosa serve?</li><li><b>2</b>Cosa ti toglie?</li><li><b>3</b>Come la fai tua?</li></ul></div></div>
       </div>
       <div class="b4-card">
         <span class="b4-num" aria-hidden="true">03</span>
-        <span class="x-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+        <img class="b4-img" src="/rtr-b/b4-piano-editoriale.webp" alt="Un planner con i foglietti dei contenuti e una gabbietta aperta" loading="lazy">
         <h3>La struttura di un piano editoriale che non ti dà la nausea</h3>
         <p class="t">Costruirai la struttura di un piano che parte da te, dove ogni contenuto ha una funzione: attirare persone nuove, farti conoscere, far capire perché scegliere te.</p>
         <div class="b4-vis"><div class="b4-vis__box"><p class="b4-vis__k">Il tuo piano editoriale</p><div class="b4-chips"><span>Format</span><span>Tipi di contenuto</span><span>Banca idee</span></div><p class="b4-vis__foot">Con Sharon Convertino, nella Masterclass 3.</p></div></div>
