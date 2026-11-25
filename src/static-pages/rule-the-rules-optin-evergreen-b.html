@@ -1430,14 +1430,14 @@ html{scroll-behavior:smooth}
 .mc-get ul{margin:var(--space-3) 0 0;padding:0;list-style:none;display:grid;gap:var(--space-2)}
 .mc-get li{position:relative;padding-left:1.6rem;line-height:1.45;color:var(--color-ink)}
 .mc-get li::before{content:"✓";position:absolute;left:0;top:0;color:var(--color-primary);font-weight:700}
-/* Footer: niente linea, dati distribuiti su tutta la riga (Andrea, 25/11) */
-.footer__in{max-width:var(--container-6xl,72rem)}
-.footer__company{border-top:0;padding-top:0;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--space-2) var(--space-6)}
-.footer__company p{margin:0!important}
-@media (max-width:767px){.footer__company{flex-direction:column;align-items:center;text-align:center}}
-@media (min-width:1024px){.footer__company{flex-wrap:nowrap;gap:var(--space-2) var(--space-4)}}
-.b4-img{display:block;width:100%;height:auto;max-height:13rem;object-fit:contain;margin:var(--space-8) auto 0;filter:drop-shadow(0 14px 22px rgba(30,0,15,.45))}
-.b4-num{z-index:1}
+/* Footer in 3 colonne: azienda, contatti, informazioni legali (Andrea, 25/11) */
+.footer__in{max-width:var(--container-5xl,64rem)}
+.footer__cols{display:grid;gap:var(--space-8);text-align:center}
+@media (min-width:768px){.footer__cols{grid-template-columns:repeat(3,minmax(0,1fr));text-align:left}}
+.footer__col p{margin:0 0 .3rem}
+.footer__h{margin-bottom:var(--space-3)!important;font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.16em;color:var(--color-primary)}
+.footer__col a{color:var(--color-ink-muted);text-decoration:underline;text-underline-offset:3px}
+.footer__col a:hover{color:var(--color-primary)}
 /* Fai la prova: piccole animazioni per ogni regola */
 .rv{position:relative;height:8.75rem;margin-bottom:var(--space-5);border-radius:var(--radius-xl);overflow:hidden;background:rgba(20,0,10,.38);border:1px solid var(--tint-card-border-on-dark);font-family:var(--font-condensed);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--color-ink-muted)}
 .rv *{box-sizing:border-box}
@@ -2218,8 +2218,9 @@ body.bm-open{overflow:hidden}
   <div class="x-wrap x-wrap--3 x-center">
     <h2 class="h2">Se cerchi un altro gancio da copiare, ce ne sono già mille. Se vuoi contenuti con la tua voce, <span class="hl">entra</span>.</h2>
     <div class="lines" style="align-items:center">
-      <p>"Vorrei che essere me bastasse": è una delle frasi che ho sentito più spesso dalle oltre 1.500 professioniste che ho accompagnato.</p>
-      <p><strong>Rule the Rules serve a questo: a fare video in cui essere te basta, anche con le tue imperfezioni.</strong></p>
+      <p>"Vorrei che essere me bastasse": è una delle frasi che ho sentito più spesso dalle oltre 1.500 professioniste che ho accompagnato e nel 2027 è sempre più vera.</p>
+      <p>Le persone non sono più alla ricerca di INFORMAZIONI. Sono alla ricerca di altre persone in cui rispecchiarsi: nel loro modo di parlare, di dire le cose, di trasmettere i propri VALORI. Hanno bisogno di connessione e autenticità, non finzione.</p>
+      <p><strong>Le 3 masterclass di Rule the Rules servono a questo: a tirar fuori la vera TE nei contenuti, che è rimasta sepolta da tutte le regole che hai seguito in questi anni.</strong></p>
       <p>Parti dalla Masterclass 1: è lì che togli il costume.</p>
     </div>
     <div class="cta-row"><a class="btn-cta" href="#accedi"><span class="btn-cta__label">Accedi ora a Rule the Rules</span><span class="btn-cta__sub">A soli 37 €</span></a></div>
@@ -2227,7 +2228,11 @@ body.bm-open{overflow:hidden}
   </div>
 </section>
 
-<footer class="footer on-dark"><div class="footer__in"><div class="footer__company"><p>C.S. ENDLESS GROUP SRL</p><p style="margin-top:8px">P.iva: 14295170964</p><p>Viale Emilio Caldara 44 · Milano</p><p>Email: info@carlottasgarra.it</p><p style="margin-top:8px">Privacy Policy · Cookie Policy</p></div></div></footer>
+<footer class="footer on-dark"><div class="footer__in"><div class="footer__cols">
+  <div class="footer__col"><p class="footer__h">C.S. ENDLESS GROUP SRL</p><p>P.iva: 14295170964</p><p>Viale Emilio Caldara 44 · Milano</p></div>
+  <div class="footer__col"><p class="footer__h">Contatti</p><p><a href="mailto:info@carlottasgarra.it">info@carlottasgarra.it</a></p></div>
+  <div class="footer__col"><p class="footer__h">Informazioni legali</p><p><a href="https://www.iubenda.com/privacy-policy/47892266" target="_blank" rel="noopener">Privacy Policy</a></p><p><a href="https://www.iubenda.com/privacy-policy/47892266/cookie-policy" target="_blank" rel="noopener">Cookie Policy</a></p></div>
+</div></div></footer>
 
 
 <!-- Popup di iscrizione: si apre da tutti i bottoni "#accedi" (il form in fondo alla pagina resta) -->
