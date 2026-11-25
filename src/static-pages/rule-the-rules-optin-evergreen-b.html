@@ -1438,6 +1438,22 @@ html{scroll-behavior:smooth}
 .footer__h{margin-bottom:var(--space-3)!important;font-family:var(--font-condensed);text-transform:uppercase;letter-spacing:.16em;color:var(--color-primary)}
 .footer__col a{color:var(--color-ink-muted);text-decoration:underline;text-underline-offset:3px}
 .footer__col a:hover{color:var(--color-primary)}
+/* Dopo le 3 masterclass: tre riquadri orizzontali sfalsati a zig zag (Andrea, 25/11) */
+.b4-zz{display:flex;flex-direction:column;gap:var(--space-8)}
+.b4-zz .b4-card{text-align:left}
+@media (min-width:900px){
+.b4-zz{gap:var(--space-10)}
+.b4-zz .b4-card{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);grid-auto-rows:auto;column-gap:var(--space-10);align-content:center;width:min(86%,54rem);padding:var(--space-8) var(--space-10)}
+.b4-zz .b4-card>*{grid-column:2}
+.b4-zz .b4-card .b4-img{grid-column:1;grid-row:1 / span 5;align-self:center;margin:0;max-height:15rem}
+.b4-zz .b4-card h3{margin-top:0}
+.b4-zz .b4-card .b4-num{position:static;grid-column:2;font-size:var(--font-size-4xl);margin-bottom:var(--space-3)}
+.b4-zz .b4-card:nth-child(odd){margin-right:auto}
+.b4-zz .b4-card:nth-child(even){margin-left:auto;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr)}
+.b4-zz .b4-card:nth-child(even)>*{grid-column:1}
+.b4-zz .b4-card:nth-child(even) .b4-img{grid-column:2}
+.b4-zz .b4-card:nth-child(even) .b4-num{grid-column:1}
+}
 /* Fai la prova: piccole animazioni per ogni regola */
 .rv{position:relative;height:8.75rem;margin-bottom:var(--space-5);border-radius:var(--radius-xl);overflow:hidden;background:rgba(20,0,10,.38);border:1px solid var(--tint-card-border-on-dark);font-family:var(--font-condensed);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--color-ink-muted)}
 .rv *{box-sizing:border-box}
@@ -2141,7 +2157,7 @@ body.bm-open{overflow:hidden}
   <div class="x-wrap x-wrap--5 x-center">
     <span class="x-kicker">Dopo le 3 masterclass</span>
     <h2 class="h2">Esci con la tua voce, le tue anti-regole e la struttura del tuo piano per fare video <span class="hl hl--dark">che nessuno skippa</span>.</h2>
-    <div class="x-grid x-grid--3 x-mt-10">
+    <div class="b4-zz x-mt-10">
       <div class="b4-card">
         <span class="b4-num" aria-hidden="true">01</span>
         <img class="b4-img" src="/rtr-b/b4-carte-identitarie.webp" alt="Carte rosa scritte a mano a ventaglio, uno specchio e una penna" loading="lazy">
