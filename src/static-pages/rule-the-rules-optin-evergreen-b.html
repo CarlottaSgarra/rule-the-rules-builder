@@ -1407,6 +1407,23 @@ html{scroll-behavior:smooth}
 
 /* Titoli di sezione: tutti alla grandezza del titolo "Se vuoi che le tue clienti scelgano te" (Andrea, 24/11) */
 .x-page .h2,.b3b__t{font-weight:700;font-size:clamp(2.1rem,4.4vw,3.4rem);line-height:1.06}
+/* Chi esegue / chi sceglie: folla con te nascosta e folla con te che spicchi (Andrea, 25/11) */
+.cw{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.45rem;max-width:15rem;margin:0 auto var(--space-6)}
+.cw i{position:relative;aspect-ratio:1;border-radius:var(--radius-lg);display:grid;place-items:center;font-style:normal}
+.cw svg{width:66%;height:66%}
+.cw--hide i{background:color-mix(in oklab,var(--color-ink) 12%,transparent)}
+.cw--hide .cw__me b{position:absolute;top:-.45rem;right:-.35rem;width:1.15rem;height:1.15rem;border-radius:50%;display:grid;place-items:center;background:var(--color-primary);color:var(--color-secondary);font-family:var(--font-condensed);font-size:.7rem;font-weight:600;opacity:0;animation:cw-q 4s ease-in-out infinite}
+.cw--hide .cw__me{animation:cw-hide 4s ease-in-out infinite}
+@keyframes cw-hide{0%,15%{box-shadow:inset 0 0 0 2px var(--color-primary)}35%,100%{box-shadow:inset 0 0 0 2px transparent}}
+@keyframes cw-q{0%,40%{opacity:0;transform:scale(.6)}55%,85%{opacity:1;transform:scale(1)}100%{opacity:0}}
+.cw--pop i{background:color-mix(in oklab,var(--color-card) 70%,var(--color-background));opacity:.45;animation:cw-dim 4s ease-in-out infinite}
+.cw--pop .cw__me{opacity:1;z-index:1;background:var(--color-secondary);box-shadow:0 0 0 3px var(--color-primary),0 12px 24px -10px rgba(75,0,37,.6);animation:cw-pop 4s ease-in-out infinite}
+.cw--pop .cw__me svg{border-radius:50%;background:var(--color-background)}
+@keyframes cw-dim{0%,10%{opacity:1}35%,90%{opacity:.4}100%{opacity:1}}
+@keyframes cw-pop{0%,10%{transform:scale(1) rotate(0)}35%,90%{transform:scale(1.4) rotate(-4deg)}100%{transform:scale(1) rotate(0)}}
+@media (prefers-reduced-motion:reduce){.cw *{animation:none!important}.cw--pop i{opacity:.4}.cw--pop .cw__me{opacity:1;transform:scale(1.3) rotate(-4deg)}.cw--hide .cw__me b{opacity:1}}
+/* Hero: il sunto sul 2027 (Andrea, 25/11) */
+.bh-claim{max-width:40rem;margin:var(--space-4) auto 0;font-family:var(--font-display);font-size:var(--font-size-lg);line-height:1.4;color:var(--color-primary)}
 /* Fai la prova: piccole animazioni per ogni regola */
 .rv{position:relative;height:8.75rem;margin-bottom:var(--space-5);border-radius:var(--radius-xl);overflow:hidden;background:rgba(20,0,10,.38);border:1px solid var(--tint-card-border-on-dark);font-family:var(--font-condensed);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--color-ink-muted)}
 .rv *{box-sizing:border-box}
@@ -1732,9 +1749,9 @@ body.bm-open{overflow:hidden}
   <div class="x-wrap x-center bh">
     <div class="bh-tags"><span class="badge badge--lg">Rule the Rules · 3 masterclass</span><span class="badge badge--outline">Il metodo di Carlotta Sgarra · accesso immediato a vita</span></div>
     <p class="bh-for">Per coach, consulenti e professioniste che in questo momento si sentono ingabbiate con i contenuti e uguali a tutte le altre.</p>
-    <h1 class="bh-h1"><span class="bh-l">Torna ad avere <span class="hl hl--dark">voglia di pubblicare</span></span> <span class="bh-l">e attira <span class="hl hl--dark">chi si rivede in te</span></span> <span class="bh-l">senza farti ingabbiare dalle regole dei guru</span></h1>
+    <h1 class="bh-h1"><span class="bh-l">Crea contenuti che <span class="hl hl--dark">nessuno skippa</span></span> <span class="bh-l">e porta nei DM <span class="hl hl--dark">le clienti giuste</span></span> <span class="bh-l">senza farti ingabbiare dalle regole dei guru</span></h1>
     <p class="bh-sub">3 masterclass esclusive · circa 7 ore · <span class="hl hl--dark">tue a vita</span> · 37 €</p>
-    <p class="bh-note">(Con le masterclass ricevi anche un workbook per ogni masterclass, con gli esercizi da fare sul tuo profilo.)</p>
+    <p class="bh-claim">Il 2027 per me è chiaro: Instagram non premia più i video perfetti, premia quelli in cui ci sei tu, con i tuoi valori e le tue imperfezioni.</p>
     <div class="cta-row"><a class="btn-cta" href="#accedi"><span class="btn-cta__label">Accedi ora a Rule the Rules</span><span class="btn-cta__sub">A soli 37 €</span></a></div>
     <p class="under-btn" style="color:var(--color-foreground)">Circa 7 ore di masterclass per creare finalmente una comunicazione che faccia uscire TE e ti renda DIVERSA da tutte le altre.</p>
     <span class="x-kicker bh-tiles-k">Rule the Rules in breve</span>
@@ -1761,7 +1778,7 @@ body.bm-open{overflow:hidden}
           <p><strong>Partendo da lì costruisci le TUE regole, quelle che parlano con la tua voce: così registri come parli e chi ti segue ti riconosce.</strong></p>
         </div>
         <div class="b3__punch">
-          <p class="x-lead">Le persone non si fermano più per il gancio perfetto e nemmeno per l'ennesimo contenuto pieno di informazioni.</p>
+          <p class="x-lead">Le persone saltano il gancio perfetto e l'ennesimo contenuto pieno di informazioni.</p>
           <p class="statement x-mt-4"><span class="hl">Vogliono vedere te.</span></p>
           <p class="x-mt-6" style="line-height:var(--line-height-relaxed)">Nelle 3 masterclass esclusive di Rule the Rules andiamo a creare la tua <strong>IDENTITÀ</strong>, le tue <strong>REGOLE</strong> e a trovare i tuoi <strong>FORMAT</strong> esclusivi.</p>
         </div>
@@ -1867,7 +1884,7 @@ body.bm-open{overflow:hidden}
 <section class="x-cream">
   <div class="x-wrap x-wrap--3 x-center">
     <span class="x-kicker">Ti suona familiare?</span>
-    <h2 class="h2">Apri il piano editoriale, vedi il contenuto di oggi e <span class="hl">ti viene il vomito</span>.</h2>
+    <h2 class="h2">Apri il piano editoriale, vedi il contenuto di oggi e <span class="hl">ti viene la nausea</span>.</h2>
     <p class="x-lead x-mt-6">Ho accompagnato centinaia di professioniste e molte, a un certo punto, mi hanno descritto una sensazione simile: "Mi sono sentita ossessionata dai contenuti."</p>
     <p class="x-mt-6">Eppure ti metti lì e registri un reel GIUSTO, con il gancio, lo script, il muro bianco dietro e i capelli perfetti (rifacendolo finché non ti sembra abbastanza professionale) e ti ritrovi a pensare:</p>
     <div class="x-stack x-mt-8 sym-zz">
@@ -1881,7 +1898,7 @@ body.bm-open{overflow:hidden}
       <div class="b-sym"><span class="x-dot"></span><p class="x-said">"Sono stanca di seguire regole."</p></div>
     </div>
     <div class="lines" style="align-items:center">
-      <p>Il punto è che hai perso la voglia di pubblicare e nei tuoi contenuti non si sente più la tua voce. In questi anni hai seguito le regole di chi ti diceva che "Nei reel funziona questo, questo e questo", senza pensare se per te fosse giusto o meno. <strong>Ma ora non è più il momento di seguire regole preconfezionate: è il momento di romperle e creare la TUA comunicazione.</strong></p>
+      <p>Il punto è che a forza di inseguire il video perfetto, nei tuoi contenuti non si sente più la tua voce, così chi ti guarda non trova un motivo per scrivere proprio a te. In questi anni hai seguito le regole di chi ti diceva che "Nei reel funziona questo, questo e questo", senza pensare se per te fosse giusto o meno. <strong>Ma ora non è più il momento di seguire regole preconfezionate: è il momento di romperle e creare la TUA comunicazione.</strong></p>
     </div>
     <div class="x-card x-mt-10" style="text-align:left">
       <div class="x-row"><div class="x-photo x-r11" style="width:5rem;flex-shrink:0;border-radius:50%"><img src="/rtr-b/bn.jpg" alt="Carlotta Sgarra" style="object-position:50% 25%"></div>
@@ -1897,7 +1914,7 @@ body.bm-open{overflow:hidden}
 <section class="x-dark">
   <div class="x-wrap x-wrap--5 x-center">
     <span class="x-kicker">Fai la prova</span>
-    <h2 class="h2">Apri il tuo profilo Instagram e <span class="hl hl--dark">conta quante di queste abitudini</span> hai anche tu:</h2>
+    <h2 class="h2">Quante di queste <span class="hl hl--dark">regolette segui</span>, anche se ti stanno sul c***o?</h2>
     <div class="x-grid x-grid--3 x-mt-10" style="text-align:left">
       <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-tl__ruler"><span>00:00</span><span>00:03</span><span>00:06</span><span>00:09</span><span>00:12</span><span>00:15</span></div><div class="rv-tl__track"></div><div class="rv-tl__wave"></div><div class="rv-tl__hook"><b>Gancio</b></div><div class="rv-tl__ph"></div></div><p class="b-mc__k">Regola 01</p><h3>Il gancio nei primi tre secondi, sempre.</h3></div>
       <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-du__bar"><div class="rv-du__ok"></div><div class="rv-du__over"></div></div><div class="rv-du__cut"><span>✂ 60s</span></div><span class="rv-du__s" style="left:8%">0s</span><span class="rv-du__s" style="right:8%">90s</span><p class="rv-du__msg" style="margin:0">Troppo lungo: taglia!</p></div><p class="b-mc__k">Regola 02</p><h3>Il reel che non deve superare i sessanta secondi.</h3></div>
@@ -1906,11 +1923,84 @@ body.bm-open{overflow:hidden}
       <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-gr__head"><i></i>@iltuonome</div><div class="rv-gr__grid"><span>3 tips</span><span>Errori</span><span>Come fare</span><span>Guida</span><span>Consigli</span><span>Tips</span><span class="me">E tu?</span><span>Errori</span></div></div><p class="b-mc__k">Regola 05</p><h3>Parlare solo di lavoro, mai di te.</h3></div>
       <div class="b-mc"><div class="rv" aria-hidden="true"><div class="rv-wk__days"><div><span>L</span><b></b></div><div><span>M</span><b></b></div><div><span>M</span><b></b></div><div><span>G</span><b></b></div><div><span>V</span><b></b></div><div><span>S</span><b></b></div><div><span>D</span><b></b></div></div><div class="rv-wk__bat"><i></i></div><div class="rv-wk__lab"><span>Post pubblicati</span><span>Energia</span></div></div><p class="b-mc__k">Regola 06</p><h3>Pubblicare di continuo, anche quando ti pesa.</h3></div>
     </div>
-    <p class="x-mt-10 x-lead" style="color:var(--color-ink);max-width:var(--container-3xl);margin-inline:auto">Se ne hai contate almeno tre, la sensazione di recitare quasi sempre arriva da qui: sono regole che hai imparato da qualcun altro. Nella seconda masterclass, "Licenzia le regole", le esaminerai e deciderai tu quali tenere.</p>
-    <p class="x-mt-10" style="color:var(--color-ink-muted)">Su Instagram c'è chi esegue le regole e chi le sceglie.</p>
+    <p class="x-mt-10 x-lead" style="color:var(--color-ink);max-width:var(--container-3xl);margin-inline:auto">Se ne segui almeno tre, la sensazione di recitare quasi sempre arriva da qui: sono regolette che hai imparato da qualcun altro. Nella seconda masterclass, "Licenzia le regole", le esaminerai e deciderai tu quali tenere.</p>
+    <p class="x-mt-10" style="color:var(--color-ink-muted)">Su Instagram c'è chi esegue le regole dei guru e chi sceglie le proprie.</p>
     <div class="x-grid x-grid--2 x-mt-6" style="max-width:var(--container-3xl);margin-inline:auto">
-      <div class="x-card x-card--dark"><p class="x-big">Chi esegue si confonde con le altre.</p></div>
-      <div class="x-card" style="background:var(--color-background)"><p class="x-big" style="color:var(--color-foreground)">Chi sceglie si fa riconoscere.</p></div>
+      <div class="x-card x-card--dark"><div class="cw cw--hide" aria-hidden="true"><i><svg viewBox="0 0 48 48"><use href="#avA"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avC"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avB"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avB"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avA"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avC"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avA"/></svg></i><i class="cw__me"><svg viewBox="0 0 48 48"><use href="#avB"/></svg><b>?</b></i><i><svg viewBox="0 0 48 48"><use href="#avC"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avA"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avC"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avB"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avA"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avC"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avB"/></svg></i></div><p class="x-big">Chi esegue le regole dei guru si confonde con le altre.</p></div>
+      <div class="x-card" style="background:var(--color-background)"><div class="cw cw--pop" aria-hidden="true"><i><svg viewBox="0 0 48 48"><use href="#avA"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avC"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avB"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avB"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avA"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avC"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avA"/></svg></i><i class="cw__me"><svg viewBox="0 0 48 48"><use href="#avMe"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avC"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avA"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avC"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avB"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avA"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avC"/></svg></i><i><svg viewBox="0 0 48 48"><use href="#avB"/></svg></i></div><p class="x-big" style="color:var(--color-foreground)">Chi sceglie le proprie regole si fa riconoscere.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · Cosa ottieni e prezzo (struttura della sezione "I tre segreti" di Mik Cosentino, design system di Carlotta) -->
+<section class="x-dark" style="border-top:1px solid var(--tint-card-border-on-dark)">
+  <div class="x-wrap x-wrap--5">
+    <div class="mc-head">
+      <div>
+        <span class="x-kicker">Ecco cosa ottieni con 37 €</span>
+        <h2 class="h2">Tre masterclass e 3 workbook, uno per ogni masterclass, <span class="hl hl--dark">per comunicare con autenticità nel 2027</span>.</h2>
+        <p class="mc-head__side">Le guardi quando vuoi e ogni masterclass ha il suo workbook con gli esercizi.</p>
+      </div>
+      <img class="mc-bundle" src="/rtr-b/mockup-bundle.webp" alt="Le 3 masterclass su computer e telefono e i 3 workbook di Rule the Rules">
+    </div>
+    <div class="mc-rows">
+      <div class="mc-row">
+        <div class="mc-row__txt">
+          <span class="mc-num" aria-hidden="true">01</span>
+          <span class="x-kicker">Masterclass 1</span>
+          <h3>Togli il costume</h3>
+          <p class="item__impact">Toglierai il costume della professionista giusta.</p>
+          <div class="lines">
+            <p>Scoprirai come anni di ganci, format e consigli ti hanno fatto costruire un personaggio che adesso ti tocca interpretare ogni volta che apri Instagram.</p>
+            <p>Ti racconto come sono passata dall'essere un "soldato perfetto" che eseguiva ogni consiglio a comunicare in un modo in cui finalmente ci sono io. Te lo mostro con sei miei contenuti, uno per ogni anno del mio percorso.</p>
+            <p><strong>È qui che smetti di recitare.</strong></p>
+          </div>
+        </div>
+        <div class="mc-row__vis"><div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-1.jpg" alt="Una slide della Masterclass 1: Chi vuoi essere nel tuo mercato?" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 1</span></div></div>
+      </div>
+      <div class="mc-row mc-row--rev">
+        <div class="mc-row__txt">
+          <span class="mc-num" aria-hidden="true">02</span>
+          <span class="x-kicker">Masterclass 2</span>
+          <h3>Licenzia le regole</h3>
+          <p class="item__impact">Licenzierai le regole che parlano al posto tuo: il gancio, lo script, il format che ti fanno sentire un'altra quando registri.</p>
+          <div class="lines">
+            <p>Le metterai sul banco degli imputati, una per una, con tre domande: a cosa serve, cosa ti toglie, come la fai tua.</p>
+            <p>Ti mostrerò le mie anti-regole, cioè come ho rifatto a modo mio quello che mi avevano insegnato, come esempio da cui partire: a me interessano le tue.</p>
+            <p>Poi riprenderai un tuo contenuto e lo registrerai come lo diresti a una cliente, al primo colpo.</p>
+            <p><strong>Qui torni a parlare con la tua voce.</strong></p>
+          </div>
+        </div>
+        <div class="mc-row__vis"><div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-2.jpg" alt="Una slide della Masterclass 2" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 2</span></div></div>
+      </div>
+      <div class="mc-row">
+        <div class="mc-row__txt">
+          <span class="mc-num" aria-hidden="true">03</span>
+          <span class="x-kicker">Masterclass 3</span>
+          <h3>Il piano editoriale non è una gabbia</h3>
+          <p class="item__impact">Costruirai la struttura del tuo piano editoriale, una che ti somiglia.</p>
+          <div class="lines">
+            <p>Il piano che ti faceva sentire in gabbia diventa una strategia.</p>
+            <p>Con Sharon Convertino, esperta di contenuti nel mio team e prima ancora mia cliente, costruirai format, tipi di contenuto e banca idee.</p>
+            <p>Io ti spiegherò come dare a ogni contenuto una funzione nel tuo business: attirare persone nuove, farti conoscere, far capire perché scegliere te e avvicinarle alle tue offerte.</p>
+            <p><strong>Da qui è il piano editoriale a lavorare per te.</strong></p>
+          </div>
+        </div>
+        <div class="mc-row__vis"><div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-3.jpg" alt="Una slide della Masterclass 3" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 3</span></div></div>
+      </div>
+      <div class="mc-row mc-row--rev">
+        <div class="mc-row__txt">
+          <span class="mc-num" aria-hidden="true">04</span>
+          <span class="x-kicker">Incluso</span>
+          <h3>I 3 workbook, uno per ogni masterclass</h3>
+          <div class="lines">
+            <p>Ogni masterclass ha il suo workbook: lì metterai nero su bianco la tua voce, le tue parole e la tua storia, cioè le tue Carte Identitarie.</p>
+            <p>Gli esercizi li fai sul tuo profilo e alla fine ti ritrovi tutto scritto lì.</p>
+            <p><strong>Anche se oggi non sai ancora dire chi sei senza il personaggio, le Carte Identitarie ti guidano a trovarlo, esercizio dopo esercizio.</strong></p>
+        </div>
+        </div>
+        <div class="mc-row__vis"><img class="mc-wb" src="/rtr-b/mockup-workbook.webp" alt="I 3 workbook di Rule the Rules" loading="lazy"></div>
+      </div>
     </div>
   </div>
 </section>
@@ -2006,93 +2096,6 @@ body.bm-open{overflow:hidden}
   </div>
 </section>
 
-<!-- 9 · Perché proprio adesso -->
-<section class="x-night">
-  <div class="x-wrap x-wrap--3 x-center">
-    <span class="x-kicker">Perché proprio adesso</span>
-    <h2 class="h2">Hai fatto tutto per bene, hai seguito ogni consiglio e adesso <span class="hl">Instagram ti fa schifo</span>.</h2>
-    <div class="lines" style="align-items:center">
-      <p>Ormai aprire Instagram ti pesa e certi giorni vorresti chiudere il profilo e non pensarci più.</p>
-      <p>Ti capisco, perché ci sono passata anch'io: quando applicavo tutto quello che mi insegnavano i corsi registravo un mese di video in un giorno (e poi stavo lì a ricaricare le visualizzazioni).</p>
-      <p><strong>Prima di chiudere tutto, prova a cambiare il modo in cui usi Instagram: quello che ti hanno insegnato gli altri l'hai già provato, adesso tocca al TUO.</strong></p>
-    </div>
-    <div class="x-card x-mt-10"><p class="x-lead" style="margin:0">Il 2027 sta arrivando e puoi entrarci in due modi: continuando a seguire le regole che ti racconta ogni singolo guru online (e a pubblicare controvoglia), oppure con contenuti che ti somigliano e che attirano chi la pensa come te, perché dentro ci sei tu.</p></div>
-  </div>
-</section>
-
-<!-- 10 · Cosa ottieni e prezzo (struttura della sezione "I tre segreti" di Mik Cosentino, design system di Carlotta) -->
-<section class="x-dark">
-  <div class="x-wrap x-wrap--5">
-    <div class="mc-head">
-      <div>
-        <span class="x-kicker">Ecco cosa ottieni con 37 €</span>
-        <h2 class="h2">Tre masterclass e 3 workbook, uno per ogni masterclass, <span class="hl hl--dark">pronti appena ti iscrivi</span>.</h2>
-        <p class="mc-head__side">Le guardi quando vuoi e ogni masterclass ha il suo workbook con gli esercizi.</p>
-      </div>
-      <img class="mc-bundle" src="/rtr-b/mockup-bundle.webp" alt="Le 3 masterclass su computer e telefono e i 3 workbook di Rule the Rules">
-    </div>
-    <div class="mc-rows">
-      <div class="mc-row">
-        <div class="mc-row__txt">
-          <span class="mc-num" aria-hidden="true">01</span>
-          <span class="x-kicker">Masterclass 1</span>
-          <h3>Togli il costume</h3>
-          <p class="item__impact">Toglierai il costume della professionista giusta.</p>
-          <div class="lines">
-            <p>Scoprirai come anni di ganci, format e consigli ti hanno fatto costruire un personaggio che adesso ti tocca interpretare ogni volta che apri Instagram.</p>
-            <p>Ti racconto come sono passata dall'essere un "soldato perfetto" che eseguiva ogni consiglio a comunicare in un modo in cui finalmente ci sono io. Te lo mostro con sei miei contenuti, uno per ogni anno del mio percorso.</p>
-            <p><strong>È qui che smetti di recitare.</strong></p>
-          </div>
-        </div>
-        <div class="mc-row__vis"><div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-1.jpg" alt="Una slide della Masterclass 1: Chi vuoi essere nel tuo mercato?" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 1</span></div></div>
-      </div>
-      <div class="mc-row mc-row--rev">
-        <div class="mc-row__txt">
-          <span class="mc-num" aria-hidden="true">02</span>
-          <span class="x-kicker">Masterclass 2</span>
-          <h3>Licenzia le regole</h3>
-          <p class="item__impact">Licenzierai le regole che parlano al posto tuo: il gancio, lo script, il format che ti fanno sentire un'altra quando registri.</p>
-          <div class="lines">
-            <p>Le metterai sul banco degli imputati, una per una, con tre domande: a cosa serve, cosa ti toglie, come la fai tua.</p>
-            <p>Ti mostrerò le mie anti-regole, cioè come ho rifatto a modo mio quello che mi avevano insegnato, come esempio da cui partire: a me interessano le tue.</p>
-            <p>Poi riprenderai un tuo contenuto e lo registrerai come lo diresti a una cliente, al primo colpo.</p>
-            <p><strong>Qui torni a parlare con la tua voce.</strong></p>
-          </div>
-        </div>
-        <div class="mc-row__vis"><div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-2.jpg" alt="Una slide della Masterclass 2" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 2</span></div></div>
-      </div>
-      <div class="mc-row">
-        <div class="mc-row__txt">
-          <span class="mc-num" aria-hidden="true">03</span>
-          <span class="x-kicker">Masterclass 3</span>
-          <h3>Il piano editoriale non è una gabbia</h3>
-          <p class="item__impact">Costruirai la struttura del tuo piano editoriale, una che ti somiglia.</p>
-          <div class="lines">
-            <p>Il piano che ti faceva sentire in gabbia diventa una strategia.</p>
-            <p>Con Sharon Convertino, esperta di contenuti nel mio team e prima ancora mia cliente, costruirai format, tipi di contenuto e banca idee.</p>
-            <p>Io ti spiegherò come dare a ogni contenuto una funzione nel tuo business: attirare persone nuove, farti conoscere, far capire perché scegliere te e avvicinarle alle tue offerte.</p>
-            <p><strong>Da qui è il piano editoriale a lavorare per te.</strong></p>
-          </div>
-        </div>
-        <div class="mc-row__vis"><div class="x-photo x-r169 mc-shot"><img src="/rtr-b/mc-3.jpg" alt="Una slide della Masterclass 3" style="object-position:50% 50%"><span class="x-photo__tag">Dentro la Masterclass 3</span></div></div>
-      </div>
-      <div class="mc-row mc-row--rev">
-        <div class="mc-row__txt">
-          <span class="mc-num" aria-hidden="true">04</span>
-          <span class="x-kicker">Incluso</span>
-          <h3>I 3 workbook, uno per ogni masterclass</h3>
-          <div class="lines">
-            <p>Ogni masterclass ha il suo workbook: lì metterai nero su bianco la tua voce, le tue parole e la tua storia, cioè le tue Carte Identitarie.</p>
-            <p>Gli esercizi li fai sul tuo profilo e alla fine ti ritrovi tutto scritto lì.</p>
-            <p><strong>Anche se oggi non sai ancora dire chi sei senza il personaggio, le Carte Identitarie ti guidano a trovarlo, esercizio dopo esercizio.</strong></p>
-        </div>
-        </div>
-        <div class="mc-row__vis"><img class="mc-wb" src="/rtr-b/mockup-workbook.webp" alt="I 3 workbook di Rule the Rules" loading="lazy"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- 4 · Cosa ti porti a casa -->
 <section class="x-dark" style="border-top:1px solid var(--tint-card-border-on-dark)">
   <div class="x-wrap x-wrap--5 x-center">
@@ -2122,7 +2125,6 @@ body.bm-open{overflow:hidden}
       </div>
     </div>
     <p class="x-mt-8" style="color:var(--color-ink)"><strong>Già dalla prima masterclass saprai per cosa vuoi essere riconosciuta e cosa vuoi che il tuo profilo racconti di te.</strong></p>
-    <p class="x-mt-3 x-muted">Le guardi quando vuoi e ogni masterclass ha il suo workbook con gli esercizi.</p>
   </div>
 </section>
 
@@ -2141,7 +2143,7 @@ body.bm-open{overflow:hidden}
         <li><span>I 3 workbook, uno per ogni masterclass</span><span>36 €</span></li>
         <li><span>Accesso a vita</span><span>incluso</span></li>
       </ul>
-      <p class="buy__text x-mt-6"><strong style="color:var(--color-ink)">Inizia oggi a ritrovare la voglia di pubblicare.</strong></p>
+      <p class="buy__text x-mt-6"><strong style="color:var(--color-ink)">Inizia oggi a farti riconoscere dalle tue clienti.</strong></p>
       <p class="buy__hint">Lascia nome ed email e accedi subito ↓</p>
       <!-- Modulo opt-in di Systeme "Modulo Opt In - Rule The Rules" (funnel Rule The Rules 2026 evergreen): dopo l'invio Systeme porta al checkout -->
       <form class="form" method="post" action="https://systeme.io/embedded/47027176/subscription" target="_top">
@@ -2165,7 +2167,7 @@ body.bm-open{overflow:hidden}
         <ul class="b-forwho" style="margin:0">
           <li><span class="x-tick">✓</span><span>su Instagram pubblichi già e segui gancio, script e piano editoriale, ma il tuo profilo sembra quello di qualsiasi collega;</span></li>
           <li><span class="x-tick">✓</span><span>registri contenuti che sulla carta sono giusti ma non ti somigliano;</span></li>
-          <li><span class="x-tick">✓</span><span>vuoi tornare a pubblicare con naturalezza e con un modo di parlare che si riconosce anche senza leggere il tuo nome.</span></li>
+          <li><span class="x-tick">✓</span><span>vuoi fare video senza preoccuparti di essere perfetta, con un modo di parlare che le tue clienti riconoscono anche senza leggere il tuo nome.</span></li>
         </ul>
       </div>
       <div class="fpt__no">
@@ -2204,7 +2206,7 @@ body.bm-open{overflow:hidden}
     <h2 class="h2">Se cerchi un altro gancio da copiare, ce ne sono già mille. Se vuoi contenuti con la tua voce, <span class="hl">entra</span>.</h2>
     <div class="lines" style="align-items:center">
       <p>"Vorrei che essere me bastasse": è una delle frasi che ho sentito più spesso dalle oltre 1.500 professioniste che ho accompagnato.</p>
-      <p><strong>Rule the Rules serve a questo: a costruire contenuti in cui essere te basta.</strong></p>
+      <p><strong>Rule the Rules serve a questo: a fare video in cui essere te basta, anche con le tue imperfezioni.</strong></p>
       <p>Parti dalla Masterclass 1: è lì che togli il costume.</p>
     </div>
     <div class="cta-row"><a class="btn-cta" href="#accedi"><span class="btn-cta__label">Accedi ora a Rule the Rules</span><span class="btn-cta__sub">A soli 37 €</span></a></div>
