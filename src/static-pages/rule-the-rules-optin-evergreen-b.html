@@ -1476,7 +1476,7 @@ html{scroll-behavior:smooth}
 .x-dark .b4-card,.x-dark .x-card--dark,.x-dark .mc-get,.x-dark .b3-card{border-color:color-mix(in oklab,var(--color-primary) 32%,transparent)!important}
 .b4-num{color:color-mix(in oklab,var(--color-primary) 70%,transparent)!important}
 .mc-get{box-shadow:inset 3px 0 0 var(--color-primary)}
-.x-dark .x-kicker,.x-night .x-kicker{color:var(--color-primary)}
+.x-dark .x-kicker{color:var(--color-primary)}
 /* Popup più compatto da desktop: tutto entra nello schermo senza scorrere (Andrea, 25/11) */
 @media (min-width:820px){
 #bm .bm__box{overflow-y:auto}
@@ -1539,6 +1539,8 @@ html.rtr-embed .bm{position:absolute;inset:auto 0 auto 0;top:var(--vp-top,0px);h
 html.rtr-embed .bm__box{max-height:calc(var(--vp-h,100vh) - 2rem)}
 @media (max-width:819px){html.rtr-embed .bm__box{max-height:calc(var(--vp-h,100vh) * .92)}}
 @media (min-width:768px){html.rtr-embed .x-bar{position:relative;z-index:30;transform:translateY(var(--vp-top,0px))}}
+/* Box di acquisto: niente mezze lune del biglietto (Andrea, 25/11) */
+.buy .notch{display:none}
 /* Fai la prova: piccole animazioni per ogni regola */
 .rv{position:relative;height:8.75rem;margin-bottom:var(--space-5);border-radius:var(--radius-xl);overflow:hidden;background:rgba(20,0,10,.38);border:1px solid var(--tint-card-border-on-dark);font-family:var(--font-condensed);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--color-ink-muted)}
 .rv *{box-sizing:border-box}
@@ -1962,8 +1964,8 @@ body.bm-open{overflow:hidden}
           <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
           <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
           <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
-          <div class="av av--me"><svg viewBox="0 0 48 48"><use href="#avB"/></svg><span class="av-note">Tu sei questa. Le tue clienti ti riconoscerebbero?</span></div>
-          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
+          <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
+          <div class="av av--me"><svg viewBox="0 0 48 48"><use href="#avC"/></svg><span class="av-note">Tu sei questa. Le tue clienti ti riconoscerebbero?</span></div>
           <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avA"/></svg></div>
           <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avB"/></svg></div>
           <div class="av" aria-hidden="true"><svg viewBox="0 0 48 48"><use href="#avC"/></svg></div>
